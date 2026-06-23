@@ -1,0 +1,103 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import { Menu, X, Zap } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/plan", label: "8-Week Plan" },
+  { href: "/tips", label: "Tips" },
+];
+
+export function Navbar() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <Link href="/" className="flex items-center gap-2 font-bold text-lg">
+          <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            <Zap className="size-4" />
+          </span>
+          <span>
+            Run<span className="text-primary">Now</span>
+          </span>
+        </Link>
+
+        <nav className="hidden items-center gap-1 md:flex">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "relative px-4 py-2 text-sm font-medium transition-colors rounded-lg",
+                pathname === link.href
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              {pathname === link.href && (
+                <motion.span
+                  layoutId="nav-pill"
+                  className="absolute inset-0 rounded-lg bg-muted"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                />
+              )}
+              <span className="relative z-10">{link.label}</span>
+            </Link>
+          ))}
+        </nav>
+
+        <div className="hidden md:block">
+          <Button render={<Link href="/plan" />} size="sm">
+            Start Running
+          </Button>
+        </div>
+
+        <button
+          className="md:hidden p-2 rounded-lg hover:bg-muted"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+        >
+          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+        </button>
+      </div>
+
+      {open && (
+        <motion.nav
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="border-t border-border md:hidden"
+        >
+          <div className="flex flex-col gap-1 p-4">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "px-4 py-3 rounded-lg text-sm font-medium",
+                  pathname === link.href
+                    ? "bg-muted text-foreground"
+                    : "text-muted-foreground"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Button render={<Link href="/plan" />} className="mt-2" onClick={() => setOpen(false)}>
+              Start Running
+            </Button>
+          </div>
+        </motion.nav>
+      )}
+    </header>
+  );
+}
