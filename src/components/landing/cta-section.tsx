@@ -21,6 +21,7 @@ export function CtaSection() {
                 no account, no pressure, just progress.
               </p>
               <Button
+                nativeButton={false}
                 render={<Link href="/plan" />}
                 size="lg"
                 variant="secondary"

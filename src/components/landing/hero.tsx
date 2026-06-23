@@ -33,11 +33,12 @@ export function Hero() {
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
-            <Button render={<Link href="/plan" />} size="lg" className="h-12 px-8 text-base">
+            <Button nativeButton={false} render={<Link href="/plan" />} size="lg" className="h-12 px-8 text-base">
               Start the 8-Week Plan
               <ArrowRight className="size-4" />
             </Button>
             <Button
+              nativeButton={false}
               render={<Link href="/tips" />}
               variant="outline"
               size="lg"

@@ -55,7 +55,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <Button render={<Link href="/plan" />} size="sm">
+          <Button nativeButton={false} render={<Link href="/plan" />} size="sm">
             Start Running
           </Button>
         </div>
@@ -92,7 +92,7 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Button render={<Link href="/plan" />} className="mt-2" onClick={() => setOpen(false)}>
+            <Button nativeButton={false} render={<Link href="/plan" />} className="mt-2" onClick={() => setOpen(false)}>
               Start Running
             </Button>
           </div>
