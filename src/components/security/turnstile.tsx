@@ -40,6 +40,7 @@ export function TurnstileWidget({
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const [ready, setReady] = useState(false);
+  const [loadError, setLoadError] = useState(false);
   const onVerifyRef = useRef(onVerify);
   const onExpireRef = useRef(onExpire);
   const onErrorRef = useRef(onError);
@@ -61,6 +62,7 @@ export function TurnstileWidget({
     script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
     script.async = true;
     script.onload = () => setReady(true);
+    script.onerror = () => setLoadError(true);
     document.head.appendChild(script);
   }, []);
 
@@ -75,7 +77,10 @@ export function TurnstileWidget({
       sitekey: SITE_KEY,
       callback: (token) => onVerifyRef.current(token),
       "expired-callback": () => onExpireRef.current?.(),
-      "error-callback": () => onErrorRef.current?.(),
+      "error-callback": () => {
+        setLoadError(true);
+        onErrorRef.current?.();
+      },
       theme: "auto",
     });
 
@@ -88,14 +93,15 @@ export function TurnstileWidget({
   }, [ready]);
 
   if (!SITE_KEY) {
-    if (process.env.NODE_ENV === "development") {
-      return (
-        <p className="text-xs text-muted-foreground rounded-lg border border-dashed border-border p-3">
-          Captcha disabled in dev — set NEXT_PUBLIC_TURNSTILE_SITE_KEY to enable.
-        </p>
-      );
-    }
     return null;
+  }
+
+  if (loadError) {
+    return (
+      <p className="text-sm text-destructive rounded-lg border border-destructive/30 bg-destructive/5 p-3">
+        Captcha failed to load. Check your connection or disable ad blockers, then refresh.
+      </p>
+    );
   }
 
   return <div ref={containerRef} className={cn("min-h-[65px]", className)} />;

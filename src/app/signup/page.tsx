@@ -162,11 +162,13 @@ function SignupForm() {
                 autoComplete="off"
                 aria-hidden
               />
-              <TurnstileWidget
-                onVerify={setTurnstileToken}
-                onExpire={() => setTurnstileToken(null)}
-                onError={() => setTurnstileToken(null)}
-              />
+              {captchaRequired && (
+                <TurnstileWidget
+                  onVerify={setTurnstileToken}
+                  onExpire={() => setTurnstileToken(null)}
+                  onError={() => setTurnstileToken(null)}
+                />
+              )}
               {error && (
                 <p className="text-sm text-destructive">{error}</p>
               )}

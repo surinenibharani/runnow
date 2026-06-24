@@ -11,14 +11,13 @@ export async function verifyTurnstile(
   token: string | undefined,
   remoteIp?: string
 ): Promise<boolean> {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
-
-  if (!secret) {
-    if (process.env.NODE_ENV === "production") return false;
+  // Skip when Turnstile is not fully configured (avoids blocking signup in dev/partial deploys)
+  if (!isTurnstileConfigured()) {
     return true;
   }
 
-  if (!token) return false;
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret || !token) return false;
 
   try {
     const body = new URLSearchParams({
