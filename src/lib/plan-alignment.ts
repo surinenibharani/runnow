@@ -1,4 +1,4 @@
-import type { Activity } from "@prisma/client";
+import type { ActivitySummary } from "@/lib/activity-fields";
 import type { ScheduleDay, ScheduledWeek } from "@/lib/plan-types";
 import { applyScheduleToPlan } from "@/lib/schedule-builder";
 import { getPlanById, DEFAULT_PLAN_ID } from "@/lib/plans";
@@ -84,7 +84,7 @@ type AlignmentInput = {
   longRunDay: number;
   runDaysPerWeek?: number;
   completedIds: string;
-  activities: Activity[];
+  activities: ActivitySummary[];
 };
 
 export function analyzePlanAlignment(input: AlignmentInput): PlanAlignmentSummary | null {
@@ -107,7 +107,7 @@ export function analyzePlanAlignment(input: AlignmentInput): PlanAlignmentSummar
   const todayKey = toDateKey(new Date());
   const completedSet = new Set(parseCompletedIds(input.completedIds));
 
-  const activitiesByDate = new Map<string, Activity[]>();
+  const activitiesByDate = new Map<string, ActivitySummary[]>();
   for (const a of input.activities) {
     const key = toDateKey(a.startDate);
     const list = activitiesByDate.get(key) ?? [];

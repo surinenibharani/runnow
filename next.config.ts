@@ -34,12 +34,19 @@ const securityHeaders = [
           key: "Strict-Transport-Security",
           value: "max-age=63072000; includeSubDomains; preload",
         },
+        {
+          key: "Content-Security-Policy",
+          value: `${contentSecurityPolicy}; upgrade-insecure-requests`,
+        },
       ]),
-  { key: "Content-Security-Policy", value: contentSecurityPolicy },
+  ...(isDev ? [{ key: "Content-Security-Policy", value: contentSecurityPolicy }] : []),
 ];
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ["lucide-react", "framer-motion"],
+  },
   async headers() {
     return [
       {

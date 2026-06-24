@@ -12,12 +12,14 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { pageMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Beginner Running Tips",
   description:
     "Practical advice for new runners — pacing, gear, recovery, and mindset.",
-};
+  path: "/tips",
+});
 
 const tips = [
   {

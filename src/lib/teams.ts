@@ -63,13 +63,18 @@ export function isCoach(user: {
 }): boolean {
   if (user.subscriptionTier !== "COACH" && user.role !== "COACH") return false;
 
-  // Dev / legacy accounts without Stripe billing
-  if (!process.env.STRIPE_SECRET_KEY || !user.stripeSubscriptionId) {
-    return user.subscriptionTier === "COACH" || user.role === "COACH";
+  const stripeConfigured = Boolean(process.env.STRIPE_SECRET_KEY);
+
+  if (!stripeConfigured) {
+    return (
+      process.env.NODE_ENV === "development" &&
+      (user.subscriptionTier === "COACH" || user.role === "COACH")
+    );
   }
 
   return (
-    user.subscriptionTier === "COACH" &&
+    (user.subscriptionTier === "COACH" || user.role === "COACH") &&
+    !!user.stripeSubscriptionId &&
     !!user.stripeSubscriptionStatus &&
     ["active", "trialing"].includes(user.stripeSubscriptionStatus)
   );

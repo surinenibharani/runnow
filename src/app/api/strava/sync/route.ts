@@ -3,11 +3,21 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { syncStravaActivitiesForUser } from "@/lib/strava-sync";
 import { isStravaConfigured } from "@/lib/strava";
+import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
 
-export async function POST() {
+export async function POST(request: Request) {
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const ip = getClientIp(request);
+  const limited = rateLimit(`strava-sync:${session.user.id}:${ip}`, 5, 60 * 1000);
+  if (!limited.ok) {
+    return NextResponse.json(
+      { error: "Too many sync requests. Try again shortly." },
+      { status: 429, headers: { "Retry-After": String(limited.retryAfter) } }
+    );
   }
 
   if (!isStravaConfigured()) {

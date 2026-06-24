@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { activitySummarySelect, groupActivitiesByUser } from "@/lib/activity-fields";
 import { analyzePlanAlignment } from "@/lib/plan-alignment";
 import { calculateRunStreak } from "@/lib/run-analysis";
 import { getOrCreateUserTrainingPlan } from "@/lib/teams";
@@ -54,18 +55,33 @@ export async function GET(_request: Request, context: RouteContext) {
       })
     : [];
 
+  const memberUserIds = team.members.map((m) => m.user.id);
+
+  const [allActivities, allPlans, allStravaAccounts] = await Promise.all([
+    prisma.activity.findMany({
+      where: { userId: { in: memberUserIds } },
+      orderBy: { startDate: "desc" },
+      select: activitySummarySelect,
+    }),
+    prisma.userTrainingPlan.findMany({
+      where: { userId: { in: memberUserIds } },
+    }),
+    prisma.stravaAccount.findMany({
+      where: { userId: { in: memberUserIds } },
+      select: { userId: true, athleteId: true },
+    }),
+  ]);
+
+  const activitiesByUser = groupActivitiesByUser(allActivities, memberUserIds, 50);
+  const plansByUser = new Map(allPlans.map((p) => [p.userId, p]));
+  const stravaByUser = new Map(allStravaAccounts.map((s) => [s.userId, s]));
+
   const memberStats = await Promise.all(
     team.members.map(async (member) => {
       const userId = member.user.id;
-      const [activities, trainingPlan, stravaAccount] = await Promise.all([
-        prisma.activity.findMany({
-          where: { userId },
-          orderBy: { startDate: "desc" },
-          take: 50,
-        }),
-        prisma.userTrainingPlan.findUnique({ where: { userId } }),
-        prisma.stravaAccount.findUnique({ where: { userId } }),
-      ]);
+      const activities = activitiesByUser.get(userId) ?? [];
+      const stravaAccount = stravaByUser.get(userId);
+      const trainingPlan = plansByUser.get(userId);
 
       const streak = calculateRunStreak(activities);
       const plan = trainingPlan ?? (await getOrCreateUserTrainingPlan(userId));

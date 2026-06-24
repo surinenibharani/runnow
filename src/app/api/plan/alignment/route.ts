@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { activitySummarySelect } from "@/lib/activity-fields";
 import { analyzePlanAlignment } from "@/lib/plan-alignment";
 import { getOrCreateUserTrainingPlan } from "@/lib/teams";
 
@@ -17,6 +18,7 @@ export async function GET() {
       where: { userId },
       orderBy: { startDate: "desc" },
       take: 50,
+      select: activitySummarySelect,
     }),
   ]);
 

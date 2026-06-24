@@ -92,21 +92,50 @@ export async function PUT(request: Request) {
     return NextResponse.json({ error: "Invalid run days per week" }, { status: 400 });
   }
 
-  const updated = await updateUserTrainingPlan(session.user.id, {
+  if (planId !== undefined && !getPlanById(planId)) {
+    return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
+  }
+
+  if (restDay !== undefined && (restDay < 1 || restDay > 7)) {
+    return NextResponse.json({ error: "Invalid rest day" }, { status: 400 });
+  }
+
+  if (longRunDay !== undefined && (longRunDay < 1 || longRunDay > 7)) {
+    return NextResponse.json({ error: "Invalid long run day" }, { status: 400 });
+  }
+
+  if (
+    restDay !== undefined &&
+    longRunDay !== undefined &&
+    restDay === longRunDay
+  ) {
+    return NextResponse.json(
+      { error: "Rest day and long run day must differ" },
+      { status: 400 }
+    );
+  }
+
+  const allowStreak = completedIds !== undefined;
+  const updateData: Parameters<typeof updateUserTrainingPlan>[1] = {
     planId,
     currentWeek,
     restDay,
     longRunDay,
     runDaysPerWeek,
     completedIds,
-    streak,
     lastCompletedDate:
       lastCompletedDate === null
         ? null
         : lastCompletedDate
           ? new Date(lastCompletedDate)
           : undefined,
-  });
+  };
+
+  if (allowStreak && streak !== undefined) {
+    updateData.streak = typeof streak === "number" ? Math.max(0, streak) : 0;
+  }
+
+  const updated = await updateUserTrainingPlan(session.user.id, updateData);
 
   return NextResponse.json({
     planId: updated.planId,

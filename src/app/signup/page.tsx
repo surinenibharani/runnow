@@ -14,6 +14,7 @@ import {
   TurnstileWidget,
   isTurnstileEnabled,
 } from "@/components/security/turnstile";
+import { safeCallbackUrl } from "@/lib/security/callback-url";
 import { SITE_NAME } from "@/lib/site";
 
 export default function SignupPage() {
@@ -27,7 +28,7 @@ export default function SignupPage() {
 function SignupForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const callbackUrl = safeCallbackUrl(searchParams.get("callbackUrl"), "/dashboard");
   const isCoachFlow = callbackUrl.startsWith("/teams");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

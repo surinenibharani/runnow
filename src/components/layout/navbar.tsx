@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { useSession, signOut } from "next-auth/react";
@@ -44,11 +43,7 @@ export function Navbar() {
               )}
             >
               {pathname === link.href && (
-                <motion.span
-                  layoutId="nav-pill"
-                  className="absolute inset-0 rounded-lg bg-muted"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
-                />
+                <span className="absolute inset-0 rounded-lg bg-muted transition-colors" />
               )}
               <span className="relative z-10">{link.label}</span>
             </Link>
@@ -87,12 +82,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <motion.nav
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="border-t border-border md:hidden"
-        >
+        <nav className="border-t border-border md:hidden animate-in fade-in slide-in-from-top-1 duration-200">
           <div className="flex flex-col gap-1 p-4">
             {links.map((link) => (
               <Link
@@ -128,7 +118,7 @@ export function Navbar() {
               </>
             )}
           </div>
-        </motion.nav>
+        </nav>
       )}
     </header>
   );

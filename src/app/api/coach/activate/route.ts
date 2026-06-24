@@ -5,6 +5,10 @@ import { getStripe } from "@/lib/stripe";
 
 /** Dev-only fallback when Stripe is not configured */
 export async function POST() {
+  if (process.env.NODE_ENV !== "development") {
+    return NextResponse.json({ error: "Not available" }, { status: 403 });
+  }
+
   if (getStripe()) {
     return NextResponse.json(
       { error: "Use Stripe checkout instead of manual activation" },

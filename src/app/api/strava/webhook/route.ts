@@ -47,6 +47,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
+  const expectedSubId = process.env.STRAVA_WEBHOOK_SUBSCRIPTION_ID;
+
+  if (process.env.NODE_ENV === "production" && !expectedSubId) {
+    console.error("STRAVA_WEBHOOK_SUBSCRIPTION_ID is not set in production");
+    return NextResponse.json({ error: "Webhook not configured" }, { status: 503 });
+  }
+
+  if (expectedSubId && String(event.subscription_id) !== expectedSubId) {
+    return NextResponse.json({ error: "Invalid subscription" }, { status: 403 });
+  }
+
   try {
     const athleteId = String(event.owner_id);
     const userId = await findUserIdByStravaAthleteId(athleteId);

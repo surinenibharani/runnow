@@ -5,16 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 import { gearCategories, gearGroups } from "@/lib/gear/items";
-import { SITE_URL } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Running Gear Guide",
   description:
     "Beginner-friendly gear picks for shoes, apparel, hydration, tracking watches, Strava, and more — what to buy and when you actually need it.",
-  alternates: {
-    canonical: `${SITE_URL}/gear`,
-  },
-};
+  path: "/gear",
+});
 
 export default function GearPage() {
   return (

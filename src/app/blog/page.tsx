@@ -1,26 +1,21 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Clock, User } from "lucide-react";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { JsonLd } from "@/components/seo/json-ld";
+import { blogIndexJsonLd } from "@/lib/seo";
 import { blogPosts } from "@/lib/blog/posts";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo/metadata";
+import { SITE_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Running Blog",
   description:
     "Beginner-friendly articles on training, nutrition, recovery, and mindset — written for runners starting from zero.",
-  alternates: {
-    canonical: `${SITE_URL}/blog`,
-  },
-  openGraph: {
-    title: `Running Blog | ${SITE_NAME}`,
-    description:
-      "Practical guides for beginners — from your first jog to your first marathon.",
-    url: `${SITE_URL}/blog`,
-  },
-};
+  path: "/blog",
+});
 
 const sortedPosts = [...blogPosts].sort(
   (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
@@ -29,6 +24,7 @@ const sortedPosts = [...blogPosts].sort(
 export default function BlogPage() {
   return (
     <div className="py-12 sm:py-16">
+      <JsonLd data={blogIndexJsonLd(blogPosts.length)} />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <FadeIn className="text-center mb-12">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">

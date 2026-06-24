@@ -1,4 +1,5 @@
-import type { Activity, User } from "@prisma/client";
+import type { User } from "@prisma/client";
+import type { ActivitySummary } from "@/lib/activity-fields";
 import {
   formatDistance,
   formatDuration,
@@ -55,7 +56,7 @@ function isRunActivity(type: string): boolean {
   return t.includes("run") || t === "trailrun" || t === "virtualrun";
 }
 
-export function calculateRunStreak(activities: Activity[]): RunStreak {
+export function calculateRunStreak(activities: ActivitySummary[]): RunStreak {
   const runDays = [
     ...new Set(
       activities
@@ -115,7 +116,7 @@ export function calculateRunStreak(activities: Activity[]): RunStreak {
 
 export function generateSuggestions(
   user: Pick<User, "age">,
-  activities: Activity[]
+  activities: ActivitySummary[]
 ): RunSuggestion[] {
   const suggestions: RunSuggestion[] = [];
   const runs = activities
@@ -227,12 +228,12 @@ export function generateSuggestions(
   return suggestions.slice(0, 5);
 }
 
-export function findRouteComparisons(activities: Activity[]): RouteComparison[] {
+export function findRouteComparisons(activities: ActivitySummary[]): RouteComparison[] {
   const runs = activities
     .filter((a) => isRunActivity(a.type) && a.routeKey)
     .sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
 
-  const byRoute = new Map<string, Activity[]>();
+  const byRoute = new Map<string, ActivitySummary[]>();
   for (const run of runs) {
     if (!run.routeKey) continue;
     const list = byRoute.get(run.routeKey) ?? [];
@@ -248,8 +249,8 @@ export function findRouteComparisons(activities: Activity[]): RouteComparison[] 
     const current = routeRuns[0];
     const previous = routeRuns[1];
 
-    const currentSpeed = current.averageSpeed ?? current.distance / current.movingTime;
-    const prevSpeed = previous.averageSpeed ?? previous.distance / previous.movingTime;
+    const currentSpeed = current.distance / current.movingTime;
+    const prevSpeed = previous.distance / previous.movingTime;
 
     const paceDeltaSec = 1609.34 / currentSpeed - 1609.34 / prevSpeed;
     const durationDelta = current.movingTime - previous.movingTime;

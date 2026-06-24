@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { WeekTracker } from "@/components/plan/week-tracker";
+import dynamic from "next/dynamic";
 import { FadeIn } from "@/components/motion/fade-in";
+import { pageMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+const WeekTracker = dynamic(
+  () => import("@/components/plan/week-tracker").then((m) => ({ default: m.WeekTracker })),
+  { loading: () => <div className="text-center text-muted-foreground">Loading plans...</div> }
+);
+
+export const metadata: Metadata = pageMetadata({
   title: "Training Plans",
   description:
     "Free 5K, half marathon, and marathon plans with multiple durations, cross-training, and progress tracking.",
-};
+  path: "/plan",
+});
 
 export default function PlanPage() {
   return (

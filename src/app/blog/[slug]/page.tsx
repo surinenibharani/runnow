@@ -7,6 +7,7 @@ import { PostContent } from "@/components/blog/post-content";
 import { BlogComments } from "@/components/blog/blog-comments";
 import { JsonLd } from "@/components/seo/json-ld";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { ogImageMeta } from "@/lib/seo/metadata";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
   blogPosts,
@@ -25,9 +26,15 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  if (!post) return { title: "Post Not Found" };
+  if (!post) {
+    return {
+      title: "Post Not Found",
+      robots: { index: false, follow: false },
+    };
+  }
 
   const url = `${SITE_URL}/blog/${slug}`;
+  const images = ogImageMeta();
 
   return {
     title: post.title,
@@ -42,11 +49,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       authors: [post.author],
       url,
       siteName: SITE_NAME,
+      images,
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
+      images: images.map((i) => i.url),
     },
     alternates: {
       canonical: url,

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { activitySummarySelect } from "@/lib/activity-fields";
 import {
   calculateRunStreak,
   generateSuggestions,
@@ -18,11 +19,22 @@ export async function GET() {
   const userId = session.user.id;
 
   const [user, activities, stravaAccount, trainingPlan] = await Promise.all([
-    prisma.user.findUnique({ where: { id: userId } }),
+    prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        age: true,
+        role: true,
+        subscriptionTier: true,
+      },
+    }),
     prisma.activity.findMany({
       where: { userId },
       orderBy: { startDate: "desc" },
       take: 100,
+      select: activitySummarySelect,
     }),
     prisma.stravaAccount.findUnique({ where: { userId } }),
     getOrCreateUserTrainingPlan(userId),

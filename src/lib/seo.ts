@@ -7,6 +7,7 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
+    logo: `${SITE_URL}/icon.svg`,
     description: `${SITE_NAME} — ${SITE_TAGLINE}. Free beginner running plans from 5K to marathon.`,
   };
 }
@@ -25,13 +26,18 @@ export function websiteJsonLd() {
   };
 }
 
+import { OG_IMAGE_PATH } from "@/lib/seo/metadata";
+
 export function articleJsonLd(post: BlogPost) {
+  const url = `${SITE_URL}/blog/${post.slug}`;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
     datePublished: post.publishedAt,
+    url,
+    image: [`${SITE_URL}${OG_IMAGE_PATH}`],
     author: {
       "@type": "Person",
       name: post.author,
@@ -40,10 +46,33 @@ export function articleJsonLd(post: BlogPost) {
       "@type": "Organization",
       name: SITE_NAME,
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/icon.svg`,
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${SITE_URL}/blog/${post.slug}`,
+      "@id": url,
+    },
+  };
+}
+
+export function blogIndexJsonLd(postCount: number) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: `${SITE_NAME} Running Blog`,
+    url: `${SITE_URL}/blog`,
+    description: "Beginner-friendly running articles on training, nutrition, and mindset.",
+    blogPost: {
+      "@type": "ItemList",
+      numberOfItems: postCount,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
     },
   };
 }

@@ -11,8 +11,12 @@ export async function verifyTurnstile(
   token: string | undefined,
   remoteIp?: string
 ): Promise<boolean> {
-  // Skip when Turnstile is not fully configured (avoids blocking signup in dev/partial deploys)
+  // Skip when Turnstile is not fully configured
   if (!isTurnstileConfigured()) {
+    if (process.env.NODE_ENV === "production") {
+      console.error("Turnstile is not configured in production");
+      return false;
+    }
     return true;
   }
 

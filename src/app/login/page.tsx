@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FadeIn } from "@/components/motion/fade-in";
+import { safeCallbackUrl } from "@/lib/security/callback-url";
 
 export default function LoginPage() {
   return (
@@ -22,7 +23,7 @@ export default function LoginPage() {
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const callbackUrl = safeCallbackUrl(searchParams.get("callbackUrl"), "/dashboard");
   const isCoachFlow = callbackUrl.startsWith("/teams");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

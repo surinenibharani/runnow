@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getStripe } from "@/lib/stripe";
+import { getCoachPriceId, getStripe } from "@/lib/stripe";
 
 /** Sync coach status from Stripe after checkout (webhook may lag a few seconds). */
 export async function POST() {
@@ -26,9 +26,13 @@ export async function POST() {
     limit: 5,
   });
 
-  const active = subscriptions.data.find((s) =>
-    ["active", "trialing"].includes(s.status)
-  );
+  const coachPriceId = getCoachPriceId();
+
+  const active = subscriptions.data.find((s) => {
+    if (!["active", "trialing"].includes(s.status)) return false;
+    if (!coachPriceId) return true;
+    return s.items.data.some((item) => item.price.id === coachPriceId);
+  });
 
   if (active) {
     const updated = await prisma.user.update({
