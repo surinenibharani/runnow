@@ -4,6 +4,10 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
 import { PostContent } from "@/components/blog/post-content";
+import { BlogComments } from "@/components/blog/blog-comments";
+import { JsonLd } from "@/components/seo/json-ld";
+import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
   blogPosts,
   getPostBySlug,
@@ -23,15 +27,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = getPostBySlug(slug);
   if (!post) return { title: "Post Not Found" };
 
+  const url = `${SITE_URL}/blog/${slug}`;
+
   return {
     title: post.title,
     description: post.excerpt,
+    keywords: [post.category, "running", "beginner runner", SITE_NAME],
+    authors: [{ name: post.author }],
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.publishedAt,
       authors: [post.author],
+      url,
+      siteName: SITE_NAME,
+    },
+    twitter: {
+      card: "summary",
+      title: post.title,
+      description: post.excerpt,
+    },
+    alternates: {
+      canonical: url,
     },
   };
 }
@@ -45,6 +63,16 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="py-12 sm:py-16">
+      <JsonLd
+        data={[
+          articleJsonLd(post),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${slug}` },
+          ]),
+        ]}
+      />
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <FadeIn>
           <Link
@@ -56,6 +84,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           </Link>
 
           <PostContent post={post} related={related} />
+          <BlogComments postSlug={slug} />
 
           {slug === "avoiding-injuries" && (
             <p className="mt-8 text-sm text-muted-foreground">

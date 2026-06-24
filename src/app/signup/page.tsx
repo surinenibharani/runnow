@@ -9,6 +9,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FadeIn } from "@/components/motion/fade-in";
+import {
+  TurnstileWidget,
+  isTurnstileEnabled,
+} from "@/components/security/turnstile";
 import { SITE_NAME } from "@/lib/site";
 
 export default function SignupPage() {
@@ -17,18 +21,35 @@ export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const captchaRequired = isTurnstileEnabled();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError("");
 
+    if (captchaRequired && !turnstileToken) {
+      setError("Please complete the captcha");
+      setLoading(false);
+      return;
+    }
+
     const res = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password, age }),
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        age,
+        turnstileToken,
+        website: honeypot,
+      }),
     });
 
     const data = await res.json();
@@ -75,6 +96,7 @@ export default function SignupPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   autoComplete="name"
+                  maxLength={80}
                 />
               </div>
               <div className="space-y-2">
@@ -86,6 +108,7 @@ export default function SignupPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   autoComplete="email"
+                  maxLength={254}
                 />
               </div>
               <div className="space-y-2">
@@ -97,6 +120,7 @@ export default function SignupPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={8}
+                  maxLength={128}
                   autoComplete="new-password"
                 />
               </div>
@@ -112,10 +136,29 @@ export default function SignupPage() {
                   placeholder="e.g. 32"
                 />
               </div>
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden
+              />
+              <TurnstileWidget
+                onVerify={setTurnstileToken}
+                onExpire={() => setTurnstileToken(null)}
+                onError={() => setTurnstileToken(null)}
+              />
               {error && (
                 <p className="text-sm text-destructive">{error}</p>
               )}
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={loading || (captchaRequired && !turnstileToken)}
+              >
                 {loading ? "Creating account…" : "Create account"}
               </Button>
             </form>

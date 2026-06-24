@@ -40,6 +40,9 @@ Open [http://localhost:3000](http://localhost:3000).
 | `DATABASE_URL` | `file:./dev.db` for local SQLite |
 | `AUTH_SECRET` | Random string — `openssl rand -base64 32` |
 | `AUTH_URL` | `http://localhost:3000` (your site URL in prod) |
+| `NEXT_PUBLIC_SITE_URL` | Public URL for SEO (sitemap, canonical links) |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key (captcha) |
+| `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile secret key |
 | `STRAVA_CLIENT_ID` | From [Strava API settings](https://www.strava.com/settings/api) |
 | `STRAVA_CLIENT_SECRET` | Strava app secret |
 
@@ -60,6 +63,16 @@ Open [http://localhost:3000](http://localhost:3000).
   - Recent synced activities
 
 > Strava does not expose age via API — add it in signup or on the dashboard for accurate HR zones.
+
+## SEO & security
+
+- **Sitemap** — auto-generated at `/sitemap.xml`
+- **Robots** — `/robots.txt` blocks `/api/` and `/dashboard` from crawlers
+- **Structured data** — JSON-LD for organization, website, and blog articles
+- **Security headers** — CSP, HSTS, X-Frame-Options, nosniff, and more via `next.config.ts`
+- **Rate limiting** — registration and blog comments limited per IP
+- **Captcha** — Cloudflare Turnstile on signup and anonymous blog comments ([create keys](https://dash.cloudflare.com/?to=/:account/turnstile))
+- **Honeypot fields** — hidden spam traps on signup and comment forms
 
 ## Deploy to Vercel
 

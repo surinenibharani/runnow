@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { BlogPost, BlogSection } from "@/lib/blog/types";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { PostShareButtons } from "@/components/blog/post-share-buttons";
+import { SITE_URL } from "@/lib/site";
 
 function SectionBlock({ section }: { section: BlogSection }) {
   return (
@@ -89,6 +91,11 @@ export function PostContent({ post, related = [] }: PostContentProps) {
           <span aria-hidden>·</span>
           <span>{post.readTime} read</span>
         </div>
+        <PostShareButtons
+          title={post.title}
+          url={`${SITE_URL}/blog/${post.slug}`}
+          className="mt-6 pt-6 border-t border-border/60"
+        />
       </header>
 
       <div className="space-y-10">

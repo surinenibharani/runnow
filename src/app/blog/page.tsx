@@ -5,12 +5,21 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 import { blogPosts } from "@/lib/blog/posts";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Running Blog",
   description:
     "Beginner-friendly articles on training, nutrition, recovery, and mindset — written for runners starting from zero.",
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+  },
+  openGraph: {
+    title: `Running Blog | ${SITE_NAME}`,
+    description:
+      "Practical guides for beginners — from your first jog to your first marathon.",
+    url: `${SITE_URL}/blog`,
+  },
 };
 
 const sortedPosts = [...blogPosts].sort(

@@ -19,6 +19,7 @@ model User {
   sessions      Session[]
   stravaAccount StravaAccount?
   activities    Activity[]
+  blogComments  BlogComment[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 }
@@ -92,4 +93,16 @@ model Activity {
 
   @@index([userId, routeKey])
   @@index([userId, startDate])
+}
+
+model BlogComment {
+  id         String   @id @default(cuid())
+  postSlug   String
+  authorName String
+  content    String
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt  DateTime @default(now())
+
+  @@index([postSlug, createdAt])
 }
