@@ -7,6 +7,10 @@ import {
   generateSuggestions,
   findRouteComparisons,
 } from "@/lib/run-analysis";
+import {
+  aggregateActivityTypes,
+  aggregateHeartRateZones,
+} from "@/lib/activity-charts";
 import { analyzePlanAlignment } from "@/lib/plan-alignment";
 import { getOrCreateUserTrainingPlan } from "@/lib/teams";
 
@@ -56,6 +60,8 @@ export async function GET() {
     completedIds: trainingPlan.completedIds,
     activities,
   });
+  const activityBreakdown = aggregateActivityTypes(activities);
+  const heartRateZones = aggregateHeartRateZones(activities, user.age);
 
   const recentRuns = activities.slice(0, 10).map((a) => ({
     id: a.id,
@@ -96,6 +102,8 @@ export async function GET() {
     streak,
     suggestions,
     routeComparisons,
+    activityBreakdown,
+    heartRateZones,
     recentRuns,
     totalRuns: activities.length,
   });

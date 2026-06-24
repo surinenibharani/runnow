@@ -24,7 +24,9 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { formatDistance, formatDuration, formatPace } from "@/lib/strava";
 import type { PlanAlignmentSummary } from "@/lib/plan-alignment";
 import { PlanAlignmentCard } from "@/components/dashboard/plan-alignment";
+import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
 import type { RouteComparison, RunSuggestion } from "@/lib/run-analysis";
+import type { PieSlice } from "@/lib/activity-charts";
 
 interface DashboardData {
   user: {
@@ -49,6 +51,8 @@ interface DashboardData {
   streak: { current: number; longest: number; lastRunDate: string | null };
   suggestions: RunSuggestion[];
   routeComparisons: RouteComparison[];
+  activityBreakdown: PieSlice[];
+  heartRateZones: PieSlice[];
   recentRuns: Array<{
     id: string;
     name: string;
@@ -322,6 +326,40 @@ export function DashboardContent() {
             </CardContent>
           </Card>
         </div>
+
+        {data.stravaConnected &&
+          (data.activityBreakdown.length > 0 ||
+            data.heartRateZones.length > 0) && (
+          <FadeIn>
+            <div className="grid gap-4 lg:grid-cols-2">
+              <Card className="border-border/60">
+                <CardContent className="p-6">
+                  <ActivityPieChart
+                    title="Activity mix"
+                    subtitle="Synced Strava activities (last 100)"
+                    slices={data.activityBreakdown}
+                    valueLabel="total"
+                  />
+                </CardContent>
+              </Card>
+              <Card className="border-border/60">
+                <CardContent className="p-6">
+                  <ActivityPieChart
+                    title="Heart rate zones"
+                    subtitle={
+                      data.user.age
+                        ? `Estimated from avg HR · max ${220 - data.user.age} bpm`
+                        : "Add your age above for accurate zones (using 35 as default)"
+                    }
+                    slices={data.heartRateZones}
+                    valueLabel="minutes"
+                    emptyMessage="No heart rate data on synced activities yet. Use a watch or chest strap on your runs."
+                  />
+                </CardContent>
+              </Card>
+            </div>
+          </FadeIn>
+        )}
 
         {data.alignment && (
           <FadeIn>
