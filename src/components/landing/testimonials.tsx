@@ -5,20 +5,20 @@ const testimonials = [
   {
     quote:
       "I genuinely thought running wasn't for me. Week 4 and I'm actually looking forward to my runs.",
-    name: "Sarah M.",
-    detail: "Started at 42, never ran before",
+    name: "Kumar",
+    detail: "Age 46 · started from zero",
   },
   {
     quote:
       "The walk-run intervals made it feel achievable. No shame in walking — that's the whole point.",
-    name: "James K.",
-    detail: "Completed the 8-week plan",
+    name: "Venkat",
+    detail: "Age 42 · completed the 8-week plan",
   },
   {
     quote:
       "Checking off workouts and seeing my streak grow kept me accountable. Simple but it works.",
-    name: "Priya R.",
-    detail: "On week 6 and counting",
+    name: "Fakruddin",
+    detail: "Age 44 · on week 6 and counting",
   },
 ];
 
