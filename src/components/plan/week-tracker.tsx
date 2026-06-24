@@ -27,6 +27,7 @@ import {
   resetTrainingPlanRemote,
 } from "@/lib/training-plan-client";
 import { CrossTrainingDetails, CrossTrainingPreview } from "@/components/plan/cross-training-details";
+import { getActivityCaption } from "@/lib/workout-caption";
 import { StravaConnectBanner } from "@/components/strava/strava-connect-banner";
 import { SchedulePicker } from "@/components/plan/schedule-picker";
 import { Button } from "@/components/ui/button";
@@ -346,12 +347,19 @@ export function WeekTracker() {
           ))}
         </TabsList>
 
-        {PLAN_FAMILIES.map((f) => (
+        {PLAN_FAMILIES.map((f) => {
+          const familyVariants = getPlansForFamily(f.id);
+          const displayPlan =
+            f.id === familyId
+              ? basePlan
+              : familyVariants[familyVariants.length - 1] ?? familyVariants[0];
+
+          return (
           <TabsContent key={f.id} value={f.id} className="mt-6 space-y-4">
             <div className="rounded-xl border border-border/60 bg-muted/20 p-4 sm:p-5">
               <h2 className="font-semibold text-lg">{f.name}</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                {getPlansForFamily(f.id)[0]?.description}
+                {displayPlan?.description}
               </p>
               <Badge variant="outline" className="mt-3">
                 {f.prerequisite}
@@ -377,7 +385,8 @@ export function WeekTracker() {
               </div>
             </div>
           </TabsContent>
-        ))}
+          );
+        })}
       </Tabs>
 
       <SchedulePicker
@@ -465,10 +474,22 @@ export function WeekTracker() {
                     : day.crossTraining!.name;
 
                 const description = isCompleteRest
-                  ? "No running or cross-training. Let your body fully recover."
-                  : day.kind === "run"
-                    ? day.run!.description
-                    : day.crossTraining!.focus;
+                  ? getActivityCaption(day, {
+                      durationLabel: basePlan.duration,
+                      durationWeeks: basePlan.durationWeeks,
+                      weekNumber: week.week,
+                      runDaysPerWeek: schedulePrefs.runDaysPerWeek,
+                      isLongRunDay: false,
+                    })
+                  : getActivityCaption(day, {
+                      durationLabel: basePlan.duration,
+                      durationWeeks: basePlan.durationWeeks,
+                      weekNumber: week.week,
+                      runDaysPerWeek: schedulePrefs.runDaysPerWeek,
+                      isLongRunDay:
+                        day.kind === "run" &&
+                        day.dayOfWeek === schedulePrefs.longRunDay,
+                    });
 
                 const duration = isCompleteRest
                   ? "Rest"

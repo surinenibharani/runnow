@@ -26,9 +26,8 @@ export default function PlanPage() {
               Your Training Plans
             </h1>
             <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
-              Pick your distance and timeline, then set your rest day and long
-              run day. Six active days per week — runs and cross-training move
-              to fit your schedule.
+              Pick your distance and timeline, then customize run days, rest day,
+              and long run day. Runs and cross-training shift to fit your schedule.
             </p>
           </div>
         </FadeIn>
