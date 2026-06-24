@@ -82,6 +82,7 @@ type AlignmentInput = {
   currentWeek: number;
   restDay: number;
   longRunDay: number;
+  runDaysPerWeek?: number;
   completedIds: string;
   activities: Activity[];
 };
@@ -93,6 +94,7 @@ export function analyzePlanAlignment(input: AlignmentInput): PlanAlignmentSummar
   const scheduled = applyScheduleToPlan(plan, {
     restDay: input.restDay,
     longRunDay: input.longRunDay,
+    runDaysPerWeek: input.runDaysPerWeek === 4 ? 4 : 3,
   });
 
   const weekIndex = Math.min(

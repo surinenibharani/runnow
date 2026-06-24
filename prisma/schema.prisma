@@ -126,6 +126,7 @@ model UserTrainingPlan {
   currentWeek       Int       @default(1)
   restDay           Int       @default(7)
   longRunDay        Int       @default(6)
+  runDaysPerWeek    Int       @default(3)
   completedIds      String    @default("[]")
   streak            Int       @default(0)
   lastCompletedDate DateTime?

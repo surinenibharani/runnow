@@ -10,6 +10,8 @@ interface SchedulePickerProps {
 }
 
 export function SchedulePicker({ preferences, onChange }: SchedulePickerProps) {
+  const crossTrainDays = 6 - preferences.runDaysPerWeek;
+
   const setRestDay = (day: number) => {
     const next = { ...preferences, restDay: day };
     if (next.longRunDay === day) {
@@ -24,13 +26,45 @@ export function SchedulePicker({ preferences, onChange }: SchedulePickerProps) {
     onChange({ ...preferences, longRunDay: day });
   };
 
+  const setRunDaysPerWeek = (count: 3 | 4) => {
+    onChange({ ...preferences, runDaysPerWeek: count });
+  };
+
   return (
     <div className="rounded-xl border border-border/60 bg-muted/20 p-4 sm:p-5 space-y-5">
       <div>
         <h3 className="font-semibold">Your weekly schedule</h3>
         <p className="text-sm text-muted-foreground mt-1">
-          6 training days + 1 complete rest day. Runs and cross-training shift to
-          match your chosen rest and long run days.
+          Choose how many days you run each week, then set your rest and long run
+          days. Cross-training fills the remaining active days.
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm font-medium mb-2">Run days per week</p>
+        <div className="flex flex-wrap gap-2">
+          {([3, 4] as const).map((count) => {
+            const selected = preferences.runDaysPerWeek === count;
+            return (
+              <button
+                key={`runs-${count}`}
+                type="button"
+                onClick={() => setRunDaysPerWeek(count)}
+                className={cn(
+                  "px-4 py-2 rounded-lg text-sm font-medium border transition-colors",
+                  selected
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-background border-border/60 text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {count} days
+              </button>
+            );
+          })}
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          {preferences.runDaysPerWeek} runs + {crossTrainDays} cross-training + 1
+          rest day
         </p>
       </div>
 
@@ -94,8 +128,11 @@ export function SchedulePicker({ preferences, onChange }: SchedulePickerProps) {
         <span className="rounded-md bg-muted px-2 py-1">
           Rest: {DAY_NAMES[preferences.restDay - 1]}
         </span>
+        <span className="rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-1">
+          {preferences.runDaysPerWeek} run days
+        </span>
         <span className="rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 px-2 py-1">
-          6 active days
+          {crossTrainDays} cross-train
         </span>
       </div>
     </div>

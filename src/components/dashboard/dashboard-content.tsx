@@ -44,6 +44,7 @@ interface DashboardData {
     currentWeek: number;
     restDay: number;
     longRunDay: number;
+    runDaysPerWeek: 3 | 4;
   };
   streak: { current: number; longest: number; lastRunDate: string | null };
   suggestions: RunSuggestion[];

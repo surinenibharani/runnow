@@ -54,6 +54,7 @@ export async function GET() {
     currentWeek: plan.currentWeek,
     restDay: plan.restDay,
     longRunDay: plan.longRunDay,
+    runDaysPerWeek: plan.runDaysPerWeek === 4 ? 4 : 3,
     completedIds: parseCompletedIdsFromDb(plan.completedIds),
     streak: plan.streak,
     lastCompletedDate: plan.lastCompletedDate?.toISOString() ?? null,
@@ -73,6 +74,7 @@ export async function PUT(request: Request) {
     currentWeek,
     restDay,
     longRunDay,
+    runDaysPerWeek,
     completedIds,
     streak,
     lastCompletedDate,
@@ -86,11 +88,16 @@ export async function PUT(request: Request) {
     return NextResponse.json({ error: "completedIds must be an array" }, { status: 400 });
   }
 
+  if (runDaysPerWeek !== undefined && runDaysPerWeek !== 3 && runDaysPerWeek !== 4) {
+    return NextResponse.json({ error: "Invalid run days per week" }, { status: 400 });
+  }
+
   const updated = await updateUserTrainingPlan(session.user.id, {
     planId,
     currentWeek,
     restDay,
     longRunDay,
+    runDaysPerWeek,
     completedIds,
     streak,
     lastCompletedDate:
@@ -106,6 +113,7 @@ export async function PUT(request: Request) {
     currentWeek: updated.currentWeek,
     restDay: updated.restDay,
     longRunDay: updated.longRunDay,
+    runDaysPerWeek: updated.runDaysPerWeek === 4 ? 4 : 3,
     completedIds: parseCompletedIdsFromDb(updated.completedIds),
     streak: updated.streak,
     lastCompletedDate: updated.lastCompletedDate?.toISOString() ?? null,

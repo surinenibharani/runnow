@@ -4,6 +4,7 @@ export type TrainingPlanState = {
   currentWeek: number;
   restDay: number;
   longRunDay: number;
+  runDaysPerWeek: 3 | 4;
   completedIds: string[];
   streak: number;
   lastCompletedDate: string | null;

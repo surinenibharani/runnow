@@ -12,12 +12,18 @@ import { DAY_NAMES } from "@/lib/plan-types";
 export interface SchedulePreferences {
   restDay: number;
   longRunDay: number;
+  runDaysPerWeek: 3 | 4;
 }
 
 export const DEFAULT_SCHEDULE: SchedulePreferences = {
   restDay: 7,
   longRunDay: 6,
+  runDaysPerWeek: 3,
 };
+
+export function defaultRunDaysForPlan(runsPerWeek: number): 3 | 4 {
+  return runsPerWeek >= 4 ? 4 : 3;
+}
 
 export function isValidSchedule(prefs: SchedulePreferences): boolean {
   return (
@@ -25,7 +31,8 @@ export function isValidSchedule(prefs: SchedulePreferences): boolean {
     prefs.restDay <= 7 &&
     prefs.longRunDay >= 1 &&
     prefs.longRunDay <= 7 &&
-    prefs.restDay !== prefs.longRunDay
+    prefs.restDay !== prefs.longRunDay &&
+    (prefs.runDaysPerWeek === 3 || prefs.runDaysPerWeek === 4)
   );
 }
 
@@ -48,10 +55,16 @@ function scheduleWeek(
   week: WeekTemplate,
   prefs: SchedulePreferences
 ): ScheduledWeek {
-  const { restDay, longRunDay } = prefs;
+  const { restDay, longRunDay, runDaysPerWeek } = prefs;
   const activeDays = DAY_NAMES.map((_, i) => i + 1).filter((d) => d !== restDay);
-  const runDays = pickRunDays(activeDays, longRunDay, week.runs.length);
-  const runAssignment = assignRunsToDays(week.runs, runDays, longRunDay);
+  const adjustedRuns = adjustRunsForFrequency(
+    week.runs,
+    runDaysPerWeek,
+    planId,
+    week.week
+  );
+  const runDays = pickRunDays(activeDays, longRunDay, adjustedRuns.length);
+  const runAssignment = assignRunsToDays(adjustedRuns, runDays, longRunDay);
 
   const runDaySet = new Set(runDays);
   const nextRunTypeByDay = buildNextRunLookup(runDays, runAssignment);
@@ -141,6 +154,53 @@ function pickEvenlySpaced(days: number[], count: number): number[] {
     picked.push(days[idx]);
   }
   return [...new Set(picked)];
+}
+
+function runPriority(runType: RunType): number {
+  const order: Record<RunType, number> = {
+    race: 100,
+    long: 90,
+    tempo: 70,
+    interval: 70,
+    easy: 50,
+    "walk-run": 40,
+    recovery: 20,
+  };
+  return order[runType] ?? 0;
+}
+
+function adjustRunsForFrequency(
+  runs: Workout[],
+  targetCount: number,
+  planId: string,
+  weekNum: number
+): Workout[] {
+  if (runs.length === targetCount) return runs;
+
+  if (runs.length < targetCount) {
+    const extra = targetCount - runs.length;
+    const fillers: Workout[] = [];
+    for (let i = 0; i < extra; i++) {
+      fillers.push({
+        id: `${planId}-w${weekNum}-extra${i + 1}`,
+        day: runs.length + i + 1,
+        name: "Easy Add-On Run",
+        description: "Extra easy miles at a relaxed, conversational pace.",
+        duration: "~25–30 min",
+        intervals: "2–3 mi easy — fully recoverable effort",
+        runType: "recovery",
+      });
+    }
+    return [...runs, ...fillers];
+  }
+
+  const longRun = getLongRun(runs);
+  const others = runs.filter((r) => r.id !== longRun.id);
+  const sorted = [...others].sort(
+    (a, b) => runPriority(b.runType) - runPriority(a.runType)
+  );
+  const kept = sorted.slice(0, targetCount - 1);
+  return [...kept, longRun];
 }
 
 function getLongRun(runs: Workout[]): Workout {

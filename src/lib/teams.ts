@@ -13,6 +13,7 @@ export async function getOrCreateUserTrainingPlan(userId: string) {
       currentWeek: 1,
       restDay: 7,
       longRunDay: 6,
+      runDaysPerWeek: 3,
       completedIds: "[]",
     },
   });
@@ -25,6 +26,7 @@ export async function updateUserTrainingPlan(
     currentWeek?: number;
     restDay?: number;
     longRunDay?: number;
+    runDaysPerWeek?: number;
     completedIds?: string[];
     streak?: number;
     lastCompletedDate?: Date | null;
@@ -39,6 +41,9 @@ export async function updateUserTrainingPlan(
       ...(data.currentWeek !== undefined && { currentWeek: data.currentWeek }),
       ...(data.restDay !== undefined && { restDay: data.restDay }),
       ...(data.longRunDay !== undefined && { longRunDay: data.longRunDay }),
+      ...(data.runDaysPerWeek !== undefined && {
+        runDaysPerWeek: data.runDaysPerWeek,
+      }),
       ...(data.completedIds !== undefined && {
         completedIds: serializeCompletedIds(data.completedIds),
       }),

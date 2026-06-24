@@ -100,6 +100,7 @@ export async function mergeStravaPlanCompletions(userId: string): Promise<number
     currentWeek: trainingPlan.currentWeek,
     restDay: trainingPlan.restDay,
     longRunDay: trainingPlan.longRunDay,
+    runDaysPerWeek: trainingPlan.runDaysPerWeek,
     completedIds: trainingPlan.completedIds,
     activities,
   });

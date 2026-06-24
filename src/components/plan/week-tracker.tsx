@@ -13,7 +13,7 @@ import {
   getTotalWorkouts,
 } from "@/lib/plans";
 import type { TrainingPlan, ScheduleDay } from "@/lib/plans";
-import { applyScheduleToPlan } from "@/lib/schedule-builder";
+import { applyScheduleToPlan, DEFAULT_SCHEDULE } from "@/lib/schedule-builder";
 import type { SchedulePreferences } from "@/lib/schedule-builder";
 import {
   getSchedulePreferences,
@@ -57,10 +57,7 @@ export function WeekTracker() {
   const [familyId, setFamilyId] = useState(initialPlan.familyId);
   const [planId, setPlanId] = useState(initialPlan.id);
   const [basePlan, setBasePlan] = useState<TrainingPlan>(initialPlan);
-  const [schedulePrefs, setSchedulePrefs] = useState<SchedulePreferences>({
-    restDay: 7,
-    longRunDay: 6,
-  });
+  const [schedulePrefs, setSchedulePrefs] = useState<SchedulePreferences>(DEFAULT_SCHEDULE);
   const [progress, setProgress] = useState<ProgressData>(emptyProgress);
   const [activeWeek, setActiveWeek] = useState("1");
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
@@ -90,6 +87,7 @@ export function WeekTracker() {
     currentWeek: number;
     restDay: number;
     longRunDay: number;
+    runDaysPerWeek?: number;
     completedIds: string[];
     streak: number;
     lastCompletedDate: string | null;
@@ -100,7 +98,11 @@ export function WeekTracker() {
       setPlanId(selected.id);
       setBasePlan(selected);
     }
-    setSchedulePrefs({ restDay: remote.restDay, longRunDay: remote.longRunDay });
+    setSchedulePrefs({
+      restDay: remote.restDay,
+      longRunDay: remote.longRunDay,
+      runDaysPerWeek: remote.runDaysPerWeek === 4 ? 4 : 3,
+    });
     setProgress({
       completed: remote.completedIds,
       streak: remote.streak,
@@ -136,6 +138,7 @@ export function WeekTracker() {
               planId: remote.planId !== DEFAULT_PLAN_ID ? remote.planId : planId,
               restDay: localSchedule.restDay,
               longRunDay: localSchedule.longRunDay,
+              runDaysPerWeek: localSchedule.runDaysPerWeek,
               completedIds: localProgress.completed,
               streak: localProgress.streak,
               lastCompletedDate: localProgress.lastCompletedDate,
@@ -181,6 +184,7 @@ export function WeekTracker() {
           planId: nextPlanId,
           restDay: prefs.restDay,
           longRunDay: prefs.longRunDay,
+          runDaysPerWeek: prefs.runDaysPerWeek,
           ...(week !== undefined && { currentWeek: week }),
         });
         setProgress((p) => ({

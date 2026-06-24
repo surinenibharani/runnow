@@ -75,6 +75,7 @@ export async function GET(_request: Request, context: RouteContext) {
         currentWeek: plan.currentWeek,
         restDay: plan.restDay,
         longRunDay: plan.longRunDay,
+        runDaysPerWeek: plan.runDaysPerWeek,
         completedIds: plan.completedIds,
         activities,
       });

@@ -19,7 +19,11 @@ export function getSchedulePreferences(): SchedulePreferences {
     if (!raw) return DEFAULT_SCHEDULE;
     const parsed = JSON.parse(raw) as SchedulePreferences;
     if (parsed.restDay === parsed.longRunDay) return DEFAULT_SCHEDULE;
-    return { ...DEFAULT_SCHEDULE, ...parsed };
+    const merged = { ...DEFAULT_SCHEDULE, ...parsed };
+    if (merged.runDaysPerWeek !== 3 && merged.runDaysPerWeek !== 4) {
+      merged.runDaysPerWeek = DEFAULT_SCHEDULE.runDaysPerWeek;
+    }
+    return merged;
   } catch {
     return DEFAULT_SCHEDULE;
   }

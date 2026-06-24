@@ -148,7 +148,7 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-02-05",
     readTime: "8 min",
-    relatedSlugs: ["training-first-5k", "importance-of-cross-training", "nutrition-for-runners"],
+    relatedSlugs: ["training-first-5k", "race-day-tips", "nutrition-for-runners"],
     sections: [
       {
         paragraphs: [
@@ -205,7 +205,7 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-02-19",
     readTime: "9 min",
-    relatedSlugs: ["training-first-half-marathon", "nutrition-for-runners", "mental-side-of-running"],
+    relatedSlugs: ["training-first-half-marathon", "race-day-tips", "mental-side-of-running"],
     sections: [
       {
         paragraphs: [
@@ -653,55 +653,169 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "race-day-tips",
-    title: "Race Day Tips for First-Time Runners",
+    title: "Race Day: What to Do and What Not to Do (5K, Half & Marathon)",
     excerpt:
-      "Your first race is as much mental as physical. A practical checklist from the night before to the finish line.",
+      "The right race-day habits can make or break months of training. Universal do's and don'ts — plus specific advice for 5K, half marathon, and full marathon.",
     category: "Racing",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-05-28",
-    readTime: "6 min",
-    relatedSlugs: ["training-first-5k", "nutrition-for-runners", "how-to-pace-yourself"],
+    publishedAt: "2026-06-23",
+    readTime: "10 min",
+    relatedSlugs: [
+      "training-first-5k",
+      "training-first-half-marathon",
+      "training-first-full-marathon",
+      "nutrition-for-runners",
+    ],
     sections: [
       {
         paragraphs: [
-          "Race day nerves are normal — they mean you care. A little preparation turns anxiety into excitement.",
+          "You've done the hard part — the early mornings, the long runs, the days you didn't feel like lacing up. Race day is where it all comes together. It's also where small mistakes (new shoes, skipping breakfast, going out too fast) can undo weeks of work.",
+          "The good news: most race-day errors are preventable. Below are universal rules that apply to every distance, followed by specific recommendations for 5K, half marathon, and full marathon.",
         ],
       },
       {
-        heading: "The night before",
+        heading: "Universal do's (every distance)",
         list: [
-          "Lay out everything: bib, shoes, socks, outfit, safety pins",
-          "Set two alarms",
-          "Eat a normal dinner — nothing exotic",
-          "Charge your phone/watch",
-          "Visualize the start, middle, and finish — it helps",
+          "Lay out your kit the night before — bib, pins, shoes, socks, outfit, watch, gels if needed",
+          "Eat familiar foods only — nothing new on race morning",
+          "Arrive 60–90 minutes early for bigger races (bathroom lines and bag drop take time)",
+          "Pin your bib on the front of your shirt, not your jacket you'll shed",
+          "Do a 5–10 minute warm-up: easy jog or brisk walk plus dynamic stretches",
+          "Line up at your realistic pace — not at the front with the fast crowd",
+          "Start slower than you think you should; adrenaline lies to everyone",
+          "Run your own race — ignore early passers and negative splits from strangers",
+          "Thank volunteers at aid stations; grab water even on cool days",
+          "Keep walking after you cross the finish line — don't stop cold",
         ],
       },
       {
-        heading: "Race morning",
+        heading: "Universal don'ts (every distance)",
         list: [
-          "Eat 2–3 hours before — familiar foods only",
-          "Arrive early; bathroom lines are real",
-          "Warm up with 5–10 min easy walking",
-          "Line up according to your expected pace — don't start at the front",
+          "Don't wear new shoes, socks, or an untested race outfit",
+          "Don't try a new breakfast, gel, or sports drink for the first time",
+          "Don't cram extra miles or a hard workout the week of the race",
+          "Don't start in the wrong corral or sprint the first mile",
+          "Don't skip the warm-up because you're nervous or it's a short race",
+          "Don't go out with people faster than your training pace",
+          "Don't forget sunscreen on exposed skin for morning races",
+          "Don't stop immediately at the finish — blood can pool and you'll feel faint",
+          "Don't skip the post-race snack and hydration",
+          "Don't beat yourself up if the day doesn't go perfectly — you still finished",
         ],
       },
       {
-        heading: "During the race",
+        heading: "5K (3.1 miles)",
+        paragraphs: [
+          "A 5K is short enough that mistakes hurt fast — there's no time to recover from a bad start. It's also forgiving enough that smart pacing and a calm morning go a long way.",
+        ],
+        subsections: [
+          {
+            heading: "What to do",
+            list: [
+              "Eat a light breakfast 1.5–2 hours before if you're used to eating before runs",
+              "Warm up with 10 minutes easy jogging plus 2–3 short strides (20–30 sec pickups)",
+              "Start in the middle of the pack if you're unsure of your pace",
+              "Run the first mile 10–15 seconds slower than goal pace — you'll thank yourself at mile 2",
+              "Use the final 0.5–1 mile to push if you have gas left",
+              "Have a post-race plan: water, a banana or bar, and a light cool-down walk",
+            ],
+          },
+          {
+            heading: "What not to do",
+            list: [
+              "Don't treat a 5K like a sprint from the gun — you'll blow up by mile 1.5",
+              "Don't skip the warm-up because \"it's only 3 miles\" — cold legs feel terrible",
+              "Don't carb-load like it's a marathon — a normal dinner and light breakfast are enough",
+              "Don't wear headphones if the race discourages them — stay aware at crowded starts",
+              "Don't plan a hard workout the next day — easy walk or rest",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Half marathon (13.1 miles)",
+        paragraphs: [
+          "The half is the distance where pacing discipline really matters. Go out too fast and miles 10–13 become a long, painful lesson. Fueling and hydration start mattering here too.",
+        ],
+        subsections: [
+          {
+            heading: "What to do",
+            list: [
+              "Eat a carb-focused dinner the night before — pasta, rice, or potatoes you've eaten before",
+              "Breakfast 2–3 hours before: oatmeal, toast, banana, or your usual long-run meal",
+              "Carry or plan for fuel: a gel or chews around miles 6–8 if your long runs included them",
+              "Drink at most aid stations — small sips, don't chug",
+              "Run miles 1–3 at easy effort; settle into goal pace by mile 4–5",
+              "Break the race into thirds: easy start, steady middle, strong finish if you can",
+              "Know the course — hills, turns, and where the tough miles fall",
+              "Have friends or family at one or two spots on course for a mental boost",
+            ],
+          },
+          {
+            heading: "What not to do",
+            list: [
+              "Don't chase the 5K crowd at the start — half marathon pacing is a different game",
+              "Don't try gels for the first time on race day — practice on long runs",
+              "Don't skip aid stations because you feel fine at mile 5 — dehydration hits later",
+              "Don't wear cotton socks or a brand-new singlet",
+              "Don't negative-split your first half by running miles 1–6 too fast",
+              "Don't walk off course immediately after finishing — keep moving 5–10 minutes",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Full marathon (26.2 miles)",
+        paragraphs: [
+          "The marathon rewards patience and punishes arrogance. Your goal is to arrive at mile 20 with legs that still work. Everything before that is setup.",
+        ],
+        subsections: [
+          {
+            heading: "What to do",
+            list: [
+              "Taper properly the final 2–3 weeks — trust the training on your legs",
+              "Eat familiar carbs the night before; eat breakfast 3 hours before the start",
+              "Plan fueling: gel or chews every 4–6 miles starting around mile 6–8",
+              "Alternate water and sports drink at aid stations — don't rely on one only",
+              "Run the first 10K 30–60 seconds per mile slower than goal pace if you're a first-timer",
+              "Walk through aid stations if needed — 10 seconds of walking saves energy",
+              "Mentally rehearse miles 18–22 — that's where the race actually happens",
+              "Wear what you trained in for your longest runs, including socks and anti-chafe",
+              "Set multiple goals: A (perfect day), B (solid finish), C (just finish strong)",
+              "Have a post-race bag with dry clothes, flip-flops, and a real meal planned",
+            ],
+          },
+          {
+            heading: "What not to do",
+            list: [
+              "Don't run 26 miles in training to \"prove\" you're ready — 18–20 is enough",
+              "Don't start with the 3:30 pace group if you trained at 4:30",
+              "Don't try new shoes, socks, shorts, or anti-chafe products on race morning",
+              "Don't skip breakfast because you're nervous — you'll pay by mile 16",
+              "Don't take every gel offered on course — stick to your practiced plan",
+              "Don't surge on hills early — save climbing strength for the second half",
+              "Don't let a bad mile spiral — reset at the next mile marker",
+              "Don't sign up for a hard race the next weekend — respect recovery",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "The night before & race morning checklist",
         list: [
-          "Start slower than you want to",
-          "Run your own race — ignore people passing you early",
-          "Use aid stations; walk through them if needed",
-          "Break the distance into chunks (mile markers or lamp posts)",
+          "Bib pinned, timing chip checked, bag packed",
+          "Two alarms set; know how you'll get to the start",
+          "Weather-appropriate layers you can toss at the start if allowed",
+          "Phone charged; watch synced if you use one",
+          "Bathroom stop 15–30 minutes before your corral closes",
+          "Positive self-talk: you trained for this — execute the plan",
         ],
       },
       {
         heading: "After you finish",
-        list: [
-          "Keep walking — don't collapse immediately",
-          "Grab water and a snack",
-          "Stretch lightly, change into dry clothes",
-          "Celebrate. You did it.",
+        paragraphs: [
+          "Walk for at least 5–10 minutes. Grab water and something with carbs and protein within 30–60 minutes. Stretch lightly — don't force deep stretches on exhausted muscles. Change out of wet clothes. Celebrate: you earned it.",
+          "For half and full marathons, take easy days or full rest the week after. Your body did something significant. Recovery is part of racing, not weakness.",
         ],
       },
     ],
