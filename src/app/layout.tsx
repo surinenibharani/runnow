@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { AuthProvider } from "@/components/providers/auth-provider";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -21,8 +22,8 @@ export const metadata: Metadata = {
     template: "%s | RunNow",
   },
   description:
-    "Your friendly guide to becoming a runner. Free 8-week beginner plan, daily tips, and progress tracking to keep you coming back.",
-  keywords: ["running", "beginner runner", "couch to 5k", "start running", "running plan"],
+    "Your friendly guide to becoming a runner. Free 5K, half marathon, and marathon plans with progress tracking.",
+  keywords: ["running", "beginner runner", "couch to 5k", "half marathon plan", "marathon training", "running plan"],
   openGraph: {
     title: "RunNow — Start Running Today",
     description: "From zero to your first 5K in 8 weeks. Free, simple, and built for beginners.",
@@ -41,9 +42,11 @@ export default function RootLayout({
       className={`${dmSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

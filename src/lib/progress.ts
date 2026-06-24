@@ -1,5 +1,3 @@
-const STORAGE_KEY = "runnow-progress";
-
 export interface ProgressData {
   completed: string[];
   lastCompletedDate: string | null;
@@ -12,11 +10,15 @@ const defaultProgress: ProgressData = {
   streak: 0,
 };
 
-export function getProgress(): ProgressData {
+function storageKey(planId: string): string {
+  return `runnow-progress-${planId}`;
+}
+
+export function getProgress(planId: string): ProgressData {
   if (typeof window === "undefined") return defaultProgress;
 
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(storageKey(planId));
     if (!raw) return defaultProgress;
     return { ...defaultProgress, ...JSON.parse(raw) };
   } catch {
@@ -35,8 +37,8 @@ function isToday(dateStr: string): boolean {
   return new Date(dateStr).toDateString() === new Date().toDateString();
 }
 
-export function toggleWorkout(workoutId: string): ProgressData {
-  const current = getProgress();
+export function toggleWorkout(planId: string, workoutId: string): ProgressData {
+  const current = getProgress(planId);
   const today = new Date().toISOString();
   const isCompleted = current.completed.includes(workoutId);
 
@@ -64,10 +66,10 @@ export function toggleWorkout(workoutId: string): ProgressData {
   }
 
   const updated: ProgressData = { completed, lastCompletedDate, streak };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+  localStorage.setItem(storageKey(planId), JSON.stringify(updated));
   return updated;
 }
 
-export function resetProgress(): void {
-  localStorage.removeItem(STORAGE_KEY);
+export function resetProgress(planId: string): void {
+  localStorage.removeItem(storageKey(planId));
 }

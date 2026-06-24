@@ -19,7 +19,7 @@ export function Hero() {
           className="flex flex-col items-center text-center"
         >
           <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm">
-            Free · No sign-up · 8 weeks to 5K
+            Free · No sign-up · 5K to Marathon
           </Badge>
 
           <h1 className="max-w-4xl text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
@@ -28,13 +28,13 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl leading-relaxed">
-            RunNow walks you from couch to confident runner with a proven plan,
-            bite-sized tips, and progress tracking that keeps you showing up.
+            RunNow walks you from couch to marathon with proven plans,
+            quirky run names, and progress tracking that keeps you showing up.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
             <Button nativeButton={false} render={<Link href="/plan" />} size="lg" className="h-12 px-8 text-base">
-              Start the 8-Week Plan
+              Start Training
               <ArrowRight className="size-4" />
             </Button>
             <Button
@@ -56,8 +56,8 @@ export function Hero() {
             className="mt-16 grid w-full max-w-3xl grid-cols-3 gap-4 sm:gap-8"
           >
             {[
-              { value: "8", label: "Weeks to 5K" },
-              { value: "3×", label: "Runs per week" },
+              { value: "3", label: "Distance plans" },
+              { value: "4×", label: "Runs per week (max)" },
               { value: "0", label: "Experience needed" },
             ].map((stat) => (
               <div

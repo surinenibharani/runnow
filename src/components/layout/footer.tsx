@@ -24,7 +24,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/plan" className="hover:text-foreground transition-colors">
-                  8-Week Plan
+                  Training Plans
                 </Link>
               </li>
               <li>

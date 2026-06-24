@@ -5,9 +5,9 @@ import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-i
 const features = [
   {
     icon: Calendar,
-    title: "Structured 8-Week Plan",
+    title: "Plans for Every Distance",
     description:
-      "Three runs per week with walk-run intervals that gradually build your endurance. No guesswork.",
+      "5K, half marathon, and full marathon programs — each with named runs that make showing up more fun.",
   },
   {
     icon: TrendingUp,
@@ -25,7 +25,7 @@ const features = [
     icon: Trophy,
     title: "Celebrate Milestones",
     description:
-      "From your first minute of running to crossing a 5K finish line — every win counts.",
+      "From your first 5K to 26.2 miles — every workout has a quirky name and a purpose.",
   },
 ];
 

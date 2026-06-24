@@ -4,19 +4,22 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Menu, X, Zap } from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/plan", label: "8-Week Plan" },
+  { href: "/plan", label: "Training Plans" },
   { href: "/tips", label: "Tips" },
+  { href: "/dashboard", label: "Dashboard" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
@@ -54,10 +57,26 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
-          <Button nativeButton={false} render={<Link href="/plan" />} size="sm">
-            Start Running
-          </Button>
+        <div className="hidden md:flex items-center gap-2">
+          {session ? (
+            <>
+              <Button nativeButton={false} render={<Link href="/dashboard" />} variant="outline" size="sm">
+                Dashboard
+              </Button>
+              <Button variant="ghost" size="sm" onClick={() => signOut({ callbackUrl: "/" })}>
+                Sign out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button nativeButton={false} render={<Link href="/login" />} variant="outline" size="sm">
+                Log in
+              </Button>
+              <Button nativeButton={false} render={<Link href="/signup" />} size="sm">
+                Sign up
+              </Button>
+            </>
+          )}
         </div>
 
         <button
@@ -92,9 +111,24 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Button nativeButton={false} render={<Link href="/plan" />} className="mt-2" onClick={() => setOpen(false)}>
-              Start Running
-            </Button>
+            {session ? (
+              <Button
+                variant="ghost"
+                className="mt-2 justify-start"
+                onClick={() => signOut({ callbackUrl: "/" })}
+              >
+                Sign out
+              </Button>
+            ) : (
+              <>
+                <Button nativeButton={false} render={<Link href="/login" />} variant="outline" className="mt-2" onClick={() => setOpen(false)}>
+                  Log in
+                </Button>
+                <Button nativeButton={false} render={<Link href="/signup" />} className="mt-2" onClick={() => setOpen(false)}>
+                  Sign up
+                </Button>
+              </>
+            )}
           </div>
         </motion.nav>
       )}
