@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { auth } from "@/lib/auth";
+import { safeCallbackUrl } from "@/lib/security/callback-url";
 import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
 
 const blockedPaths = [
@@ -22,14 +23,17 @@ function isProtectedRoute(pathname: string): boolean {
   return false;
 }
 
-export async function proxy(request: NextRequest) {
+export const proxy = auth((request) => {
   const { pathname } = request.nextUrl;
 
   if (blockedPaths.some((pattern) => pattern.test(pathname))) {
     return new NextResponse(null, { status: 404 });
   }
 
-  if (request.method === "POST" && pathname.startsWith("/api/auth/")) {
+  if (
+    request.method === "POST" &&
+    pathname === "/api/auth/callback/credentials"
+  ) {
     const ip = getClientIp(request);
     const limited = rateLimit(`auth:${ip}`, 15, 15 * 60 * 1000);
     if (!limited.ok) {
@@ -43,13 +47,18 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  if (isProtectedRoute(pathname)) {
-    const session = await auth();
-    if (!session?.user) {
-      const login = new URL("/login", request.url);
-      login.searchParams.set("callbackUrl", pathname);
-      return NextResponse.redirect(login);
-    }
+  if (request.auth?.user && (pathname === "/login" || pathname === "/signup")) {
+    const callbackUrl = safeCallbackUrl(
+      request.nextUrl.searchParams.get("callbackUrl"),
+      "/dashboard"
+    );
+    return NextResponse.redirect(new URL(callbackUrl, request.url));
+  }
+
+  if (isProtectedRoute(pathname) && !request.auth?.user) {
+    const login = new URL("/login", request.url);
+    login.searchParams.set("callbackUrl", pathname);
+    return NextResponse.redirect(login);
   }
 
   if (pathname.startsWith("/api/")) {
@@ -68,7 +77,7 @@ export async function proxy(request: NextRequest) {
   }
 
   return NextResponse.next();
-}
+});
 
 export const config = {
   matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],

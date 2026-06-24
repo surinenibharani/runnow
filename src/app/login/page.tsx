@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,14 +21,20 @@ export default function LoginPage() {
 }
 
 function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const { status } = useSession();
   const callbackUrl = safeCallbackUrl(searchParams.get("callbackUrl"), "/dashboard");
   const isCoachFlow = callbackUrl.startsWith("/teams");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      window.location.assign(callbackUrl);
+    }
+  }, [status, callbackUrl]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -41,15 +47,31 @@ function LoginForm() {
       redirect: false,
     });
 
-    setLoading(false);
-
-    if (result?.error) {
-      setError("Invalid email or password");
+    if (!result?.ok) {
+      setLoading(false);
+      setError(
+        result?.error === "CredentialsSignin"
+          ? "Invalid email or password"
+          : "Sign in failed. Please try again."
+      );
       return;
     }
 
-    router.push(callbackUrl);
-    router.refresh();
+    window.location.assign(callbackUrl);
+  }
+
+  if (status === "loading") {
+    return (
+      <div className="py-16 text-center text-muted-foreground">Loading…</div>
+    );
+  }
+
+  if (status === "authenticated") {
+    return (
+      <div className="py-16 text-center text-muted-foreground">
+        Redirecting…
+      </div>
+    );
   }
 
   return (

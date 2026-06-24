@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,8 +26,8 @@ export default function SignupPage() {
 }
 
 function SignupForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const { status } = useSession();
   const callbackUrl = safeCallbackUrl(searchParams.get("callbackUrl"), "/dashboard");
   const isCoachFlow = callbackUrl.startsWith("/teams");
   const [name, setName] = useState("");
@@ -40,6 +40,12 @@ function SignupForm() {
   const [loading, setLoading] = useState(false);
 
   const captchaRequired = isTurnstileEnabled();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      window.location.assign(callbackUrl);
+    }
+  }, [status, callbackUrl]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -79,15 +85,27 @@ function SignupForm() {
       redirect: false,
     });
 
-    setLoading(false);
-
-    if (result?.error) {
+    if (!result?.ok) {
+      setLoading(false);
       setError("Account created but sign-in failed. Please log in manually.");
       return;
     }
 
-    router.push(callbackUrl);
-    router.refresh();
+    window.location.assign(callbackUrl);
+  }
+
+  if (status === "loading") {
+    return (
+      <div className="py-16 text-center text-muted-foreground">Loading…</div>
+    );
+  }
+
+  if (status === "authenticated") {
+    return (
+      <div className="py-16 text-center text-muted-foreground">
+        Redirecting…
+      </div>
+    );
   }
 
   return (
