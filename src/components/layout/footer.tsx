@@ -32,6 +32,11 @@ export function Footer() {
                   Running Tips
                 </Link>
               </li>
+              <li>
+                <Link href="/injuries" className="hover:text-foreground transition-colors">
+                  Injury Prevention
+                </Link>
+              </li>
             </ul>
           </div>
 
