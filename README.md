@@ -8,14 +8,15 @@ A beautiful, beginner-friendly running website built with Next.js, Tailwind CSS,
 - **Custom schedule** — Pick rest day and long run day; cross-training on off days
 - **User accounts** — Sign up / log in with email and password
 - **Strava integration** — Sync runs, streaks, HR-based suggestions, route comparisons
-- **Progress tracking** — Check off plan workouts (saved in browser)
+- **Progress tracking** — Check off plan workouts (synced to your account when logged in)
 - **Tips page** — Practical advice for new runners
 
 ## Tech Stack
 
 - [Next.js 16](https://nextjs.org/) (App Router)
 - [NextAuth.js v5](https://authjs.dev/) — authentication
-- [Prisma](https://www.prisma.io/) + SQLite (local) / PostgreSQL (production)
+- [Prisma](https://www.prisma.io/) + PostgreSQL (Neon, Vercel Postgres, or local)
+- [Stripe](https://stripe.com/) — coach subscriptions
 - [Strava API](https://developers.strava.com/) — activity sync
 - [Tailwind CSS v4](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
@@ -26,9 +27,30 @@ A beautiful, beginner-friendly running website built with Next.js, Tailwind CSS,
 ```bash
 npm install
 cp .env.example .env
-# Edit .env — set AUTH_SECRET and optional Strava keys
+# Edit .env — set DATABASE_URL, AUTH_SECRET, and optional Strava/Stripe keys
 npx prisma migrate dev
 npm run dev
+```
+
+### Database (PostgreSQL)
+
+This project uses **PostgreSQL** everywhere (local and production). Easiest options:
+
+1. **[Neon](https://neon.tech)** (free tier) — create a project, copy the connection strings
+2. **Vercel Postgres** — add from your Vercel project → Storage
+3. **Docker** — `docker run -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgres`
+
+Set both env vars (for Neon, use the **pooled** URL for `DATABASE_URL` and the **direct** URL for `DIRECT_URL`; locally they can be the same):
+
+```bash
+DATABASE_URL="postgresql://..."
+DIRECT_URL="postgresql://..."
+```
+
+Then run migrations:
+
+```bash
+npx prisma migrate dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -37,14 +59,19 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Variable | Description |
 |----------|-------------|
-| `DATABASE_URL` | `file:./dev.db` for local SQLite |
+| `DATABASE_URL` | PostgreSQL connection string (pooled on serverless) |
+| `DIRECT_URL` | Direct PostgreSQL URL for Prisma migrations |
 | `AUTH_SECRET` | Random string — `openssl rand -base64 32` |
 | `AUTH_URL` | `http://localhost:3000` (your site URL in prod) |
 | `NEXT_PUBLIC_SITE_URL` | Public URL for SEO (sitemap, canonical links) |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 measurement ID (`G-XXXXXXXXXX`) |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key (captcha) |
 | `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile secret key |
 | `STRAVA_CLIENT_ID` | From [Strava API settings](https://www.strava.com/settings/api) |
 | `STRAVA_CLIENT_SECRET` | Strava app secret |
+| `STRIPE_SECRET_KEY` | Stripe secret key (`sk_test_...` or `sk_live_...`) |
+| `STRIPE_WEBHOOK_SECRET` | From Stripe webhook endpoint (`whsec_...`) |
+| `STRIPE_COACH_PRICE_ID` | Recurring price ID for coach plan (`price_...`) |
 
 ### Strava setup
 
@@ -63,6 +90,23 @@ Open [http://localhost:3000](http://localhost:3000).
   - Recent synced activities
 
 > Strava does not expose age via API — add it in signup or on the dashboard for accurate HR zones.
+
+### Coach teams & Stripe
+
+1. Create a **recurring product** in [Stripe Dashboard](https://dashboard.stripe.com/products) (e.g. “Coach plan”)
+2. Copy the **Price ID** → `STRIPE_COACH_PRICE_ID`
+3. Add webhook endpoint: `https://yourdomain.com/api/stripe/webhook`
+   - Events: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`
+4. Copy webhook signing secret → `STRIPE_WEBHOOK_SECRET`
+5. Coaches go to **Teams** → **Subscribe as coach** → create teams and approve athletes
+
+Without Stripe keys, local dev falls back to the demo activate endpoint on checkout.
+
+### Training plan sync
+
+- Logged-in users: progress on `/plan` syncs to the database via `/api/user/training-plan`
+- First login merges any existing browser `localStorage` progress into the account
+- Guests still use `localStorage` until they sign in
 
 ## SEO & security
 
@@ -93,7 +137,14 @@ git push -u origin main
 4. Vercel auto-detects Next.js — click **Deploy**
 5. Your site will be live at `letsrunnow.vercel.app` (or similar)
 
-### 3. Connect Your Cloudflare Domain
+### 3. PostgreSQL on Vercel
+
+1. In your Vercel project → **Storage** → create **Neon** or **Postgres** database
+2. Vercel auto-sets `DATABASE_URL` — also add `DIRECT_URL` (Neon provides both)
+3. Add remaining env vars from `.env.example` (Auth, Strava, Stripe, GA, Turnstile)
+4. Redeploy — `vercel-build` runs `prisma migrate deploy` automatically
+
+### 4. Connect Your Cloudflare Domain
 
 #### Buy a domain on Cloudflare
 

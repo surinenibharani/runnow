@@ -39,20 +39,38 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           email: user.email,
           name: user.name,
           image: user.image,
+          role: user.role,
+          subscriptionTier: user.subscriptionTier,
         };
       },
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
+        token.role = user.role;
+        token.subscriptionTier = user.subscriptionTier;
       }
+
+      if (token.id && (user || trigger === "update")) {
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id as string },
+          select: { role: true, subscriptionTier: true },
+        });
+        if (dbUser) {
+          token.role = dbUser.role;
+          token.subscriptionTier = dbUser.subscriptionTier;
+        }
+      }
+
       return token;
     },
     async session({ session, token }) {
       if (session.user && token.id) {
         session.user.id = token.id as string;
+        session.user.role = token.role as string;
+        session.user.subscriptionTier = token.subscriptionTier as string;
       }
       return session;
     },

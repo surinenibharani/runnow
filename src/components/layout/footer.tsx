@@ -34,6 +34,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/gear" className="hover:text-foreground transition-colors">
+                  Gear Guide
+                </Link>
+              </li>
+              <li>
                 <Link href="/injuries" className="hover:text-foreground transition-colors">
                   Injury Prevention
                 </Link>

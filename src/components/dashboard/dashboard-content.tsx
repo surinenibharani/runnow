@@ -6,12 +6,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   Activity,
+  ExternalLink,
   Flame,
   Heart,
   LogOut,
   MapPin,
   RefreshCw,
   TrendingUp,
+  Unplug,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,11 +22,29 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FadeIn } from "@/components/motion/fade-in";
 import { formatDistance, formatDuration, formatPace } from "@/lib/strava";
+import type { PlanAlignmentSummary } from "@/lib/plan-alignment";
+import { PlanAlignmentCard } from "@/components/dashboard/plan-alignment";
 import type { RouteComparison, RunSuggestion } from "@/lib/run-analysis";
 
 interface DashboardData {
-  user: { id: string; name: string | null; email: string; age: number | null };
+  user: {
+    id: string;
+    name: string | null;
+    email: string;
+    age: number | null;
+    role?: string;
+    subscriptionTier?: string;
+  };
   stravaConnected: boolean;
+  stravaLastSyncedAt: string | null;
+  stravaProfileUrl: string | null;
+  alignment: PlanAlignmentSummary | null;
+  trainingPlan: {
+    planId: string;
+    currentWeek: number;
+    restDay: number;
+    longRunDay: number;
+  };
   streak: { current: number; longest: number; lastRunDate: string | null };
   suggestions: RunSuggestion[];
   routeComparisons: RouteComparison[];
@@ -49,6 +69,7 @@ export function DashboardContent() {
   const [syncing, setSyncing] = useState(false);
   const [age, setAge] = useState("");
   const [message, setMessage] = useState("");
+  const [disconnecting, setDisconnecting] = useState(false);
 
   const loadDashboard = useCallback(async () => {
     const res = await fetch("/api/dashboard");
@@ -75,9 +96,51 @@ export function DashboardContent() {
   useEffect(() => {
     const connected = searchParams.get("connected");
     const error = searchParams.get("error");
-    if (connected === "strava") setMessage("Strava connected! Sync your runs below.");
-    if (error?.startsWith("strava")) setMessage("Strava connection failed. Try again.");
+    const synced = searchParams.get("synced");
+    const planMatched = searchParams.get("planMatched");
+
+    if (connected === "strava") {
+      if (synced) {
+        const parts = [`Imported ${synced} run${synced === "1" ? "" : "s"} from Strava`];
+        if (planMatched && planMatched !== "0") {
+          parts.push(`${planMatched} matched your training plan`);
+        }
+        setMessage(parts.join(" · ") + ".");
+      } else {
+        setMessage("Strava connected! Your runs will sync automatically.");
+      }
+    }
+
+    if (error === "strava_denied") setMessage("Strava authorization was cancelled.");
+    if (error === "strava_invalid") setMessage("Strava connection expired. Please try again.");
+    if (error === "strava_failed") setMessage("Strava connection failed. Check your app settings and try again.");
+    if (error === "strava_not_configured") {
+      setMessage("Strava is not configured on this server. Add STRAVA_CLIENT_ID and STRAVA_CLIENT_SECRET.");
+    }
   }, [searchParams]);
+
+  async function handleDisconnect() {
+    if (!confirm("Disconnect Strava? Your synced runs will stay on your dashboard.")) return;
+    setDisconnecting(true);
+    const res = await fetch("/api/strava/disconnect", { method: "POST" });
+    setDisconnecting(false);
+    if (res.ok) {
+      setMessage("Strava disconnected.");
+      loadDashboard();
+    }
+  }
+
+  function formatLastSynced(iso: string | null): string {
+    if (!iso) return "Never synced";
+    const date = new Date(iso);
+    const diffMs = Date.now() - date.getTime();
+    const mins = Math.floor(diffMs / 60000);
+    if (mins < 1) return "Synced just now";
+    if (mins < 60) return `Synced ${mins}m ago`;
+    const hours = Math.floor(mins / 60);
+    if (hours < 24) return `Synced ${hours}h ago`;
+    return `Synced ${date.toLocaleDateString()}`;
+  }
 
   async function handleSync() {
     setSyncing(true);
@@ -124,14 +187,47 @@ export function DashboardContent() {
               </h1>
               <p className="text-muted-foreground mt-1">
                 Your Strava-powered running insights
+                {data.stravaConnected && (
+                  <span className="block text-xs mt-1">
+                    {formatLastSynced(data.stravaLastSyncedAt)}
+                  </span>
+                )}
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
               {data.stravaConnected ? (
-                <Button onClick={handleSync} disabled={syncing} size="sm">
-                  <RefreshCw className={`size-4 ${syncing ? "animate-spin" : ""}`} />
-                  {syncing ? "Syncing…" : "Sync Strava"}
-                </Button>
+                <>
+                  <Button onClick={handleSync} disabled={syncing} size="sm">
+                    <RefreshCw className={`size-4 ${syncing ? "animate-spin" : ""}`} />
+                    {syncing ? "Syncing…" : "Sync Strava"}
+                  </Button>
+                  {data.stravaProfileUrl && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      nativeButton={false}
+                      render={
+                        <a
+                          href={data.stravaProfileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        />
+                      }
+                    >
+                      <ExternalLink className="size-4" />
+                      Strava profile
+                    </Button>
+                  )}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleDisconnect}
+                    disabled={disconnecting}
+                  >
+                    <Unplug className="size-4" />
+                    Disconnect
+                  </Button>
+                </>
               ) : (
                 <Button nativeButton={false} render={<a href="/api/strava/connect" />} size="sm">
                   <Activity className="size-4" />
@@ -154,17 +250,22 @@ export function DashboardContent() {
         </FadeIn>
 
         {!data.stravaConnected && (
-          <Card className="border-primary/30 bg-primary/5">
+          <Card className="border-[#fc4c02]/30 bg-[#fc4c02]/5">
             <CardContent className="p-6">
               <h2 className="font-semibold text-lg">Connect Strava to get started</h2>
               <p className="text-sm text-muted-foreground mt-2">
                 Link your Strava account to import runs, track streaks, compare routes,
-                and get coaching tips based on heart rate and run type.
+                auto-match your training plan, and get coaching tips based on heart rate.
               </p>
+              <ul className="text-sm text-muted-foreground mt-3 space-y-1 list-disc list-inside">
+                <li>Automatic plan alignment when you sync runs</li>
+                <li>Streak tracking and route comparisons</li>
+                <li>Heart rate coaching suggestions</li>
+              </ul>
               <Button
                 nativeButton={false}
                 render={<a href="/api/strava/connect" />}
-                className="mt-4"
+                className="mt-4 bg-[#fc4c02] hover:bg-[#e34402] text-white"
               >
                 Connect Strava
               </Button>
@@ -220,6 +321,12 @@ export function DashboardContent() {
             </CardContent>
           </Card>
         </div>
+
+        {data.alignment && (
+          <FadeIn>
+            <PlanAlignmentCard alignment={data.alignment} />
+          </FadeIn>
+        )}
 
         {data.suggestions.length > 0 && (
           <FadeIn>
@@ -343,7 +450,11 @@ export function DashboardContent() {
             View training plans
           </Link>
           {" · "}
-          Training plan checkboxes are separate from Strava sync
+          <Link href="/teams" className="text-primary hover:underline">
+            Teams
+          </Link>
+          {" · "}
+          Strava runs auto-match your plan when synced
         </p>
       </div>
     </div>

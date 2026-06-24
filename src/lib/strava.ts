@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 const STRAVA_AUTH_URL = "https://www.strava.com/oauth/authorize";
 const STRAVA_TOKEN_URL = "https://www.strava.com/oauth/token";
 const STRAVA_API = "https://www.strava.com/api/v3";
@@ -43,10 +45,18 @@ export interface StravaAthlete {
   profile?: string;
 }
 
+export function isStravaConfigured(): boolean {
+  return !!(process.env.STRAVA_CLIENT_ID && process.env.STRAVA_CLIENT_SECRET);
+}
+
+export function getStravaRedirectUri(): string {
+  return `${SITE_URL}/api/strava/callback`;
+}
+
 export function getStravaAuthUrl(state: string): string {
   const params = new URLSearchParams({
     client_id: process.env.STRAVA_CLIENT_ID!,
-    redirect_uri: `${process.env.AUTH_URL}/api/strava/callback`,
+    redirect_uri: getStravaRedirectUri(),
     response_type: "code",
     approval_prompt: "auto",
     scope: STRAVA_SCOPES,

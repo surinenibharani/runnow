@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,7 +17,18 @@ import {
 import { SITE_NAME } from "@/lib/site";
 
 export default function SignupPage() {
+  return (
+    <Suspense fallback={<div className="py-16 text-center text-muted-foreground">Loading…</div>}>
+      <SignupForm />
+    </Suspense>
+  );
+}
+
+function SignupForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const isCoachFlow = callbackUrl.startsWith("/teams");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -73,7 +85,7 @@ export default function SignupPage() {
       return;
     }
 
-    router.push("/dashboard");
+    router.push(callbackUrl);
     router.refresh();
   }
 
@@ -82,9 +94,13 @@ export default function SignupPage() {
       <FadeIn className="mx-auto max-w-md">
         <Card className="border-border/60">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Create your account</CardTitle>
+            <CardTitle className="text-2xl">
+              {isCoachFlow ? "Sign up as coach" : "Create your account"}
+            </CardTitle>
             <p className="text-sm text-muted-foreground mt-1">
-              Join {SITE_NAME} — connect Strava for personalized insights
+              {isCoachFlow
+                ? "Create your account, then subscribe to the coach plan on the Teams page"
+                : `Join ${SITE_NAME} — connect Strava for personalized insights`}
             </p>
           </CardHeader>
           <CardContent>

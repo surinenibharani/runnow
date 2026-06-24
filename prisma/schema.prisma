@@ -3,25 +3,34 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id            String         @id @default(cuid())
-  name          String?
-  email         String         @unique
-  passwordHash  String?
-  age           Int?
-  image         String?
-  emailVerified DateTime?
-  accounts      Account[]
-  sessions      Session[]
-  stravaAccount StravaAccount?
-  activities    Activity[]
-  blogComments  BlogComment[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id                       String            @id @default(cuid())
+  name                     String?
+  email                    String            @unique
+  passwordHash             String?
+  age                      Int?
+  image                    String?
+  emailVerified            DateTime?
+  role                     String            @default("RUNNER")
+  subscriptionTier         String            @default("FREE")
+  stripeCustomerId         String?           @unique
+  stripeSubscriptionId     String?           @unique
+  stripeSubscriptionStatus String?
+  accounts                 Account[]
+  sessions                 Session[]
+  stravaAccount            StravaAccount?
+  activities               Activity[]
+  blogComments             BlogComment[]
+  trainingPlan             UserTrainingPlan?
+  coachedTeams             Team[]            @relation("CoachTeams")
+  teamMemberships          TeamMember[]
+  createdAt                DateTime          @default(now())
+  updatedAt                DateTime          @updatedAt
 }
 
 model Account {
@@ -59,16 +68,19 @@ model VerificationToken {
 }
 
 model StravaAccount {
-  id           String   @id @default(cuid())
-  userId       String   @unique
+  id           String    @id @default(cuid())
+  userId       String    @unique
   athleteId    String
   accessToken  String
   refreshToken String
   expiresAt    DateTime
   scope        String?
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  lastSyncedAt DateTime?
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([athleteId])
 }
 
 model Activity {
@@ -105,4 +117,49 @@ model BlogComment {
   createdAt  DateTime @default(now())
 
   @@index([postSlug, createdAt])
+}
+
+model UserTrainingPlan {
+  id                String    @id @default(cuid())
+  userId            String    @unique
+  planId            String
+  currentWeek       Int       @default(1)
+  restDay           Int       @default(7)
+  longRunDay        Int       @default(6)
+  completedIds      String    @default("[]")
+  streak            Int       @default(0)
+  lastCompletedDate DateTime?
+  startedAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Team {
+  id          String       @id @default(cuid())
+  name        String
+  slug        String       @unique
+  description String?
+  inviteCode  String       @unique @default(cuid())
+  coachId     String
+  coach       User         @relation("CoachTeams", fields: [coachId], references: [id], onDelete: Cascade)
+  members     TeamMember[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([coachId])
+}
+
+model TeamMember {
+  id        String   @id @default(cuid())
+  teamId    String
+  userId    String
+  status    String   @default("PENDING")
+  message   String?
+  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([teamId, userId])
+  @@index([userId, status])
 }

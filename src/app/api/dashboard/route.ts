@@ -6,6 +6,8 @@ import {
   generateSuggestions,
   findRouteComparisons,
 } from "@/lib/run-analysis";
+import { analyzePlanAlignment } from "@/lib/plan-alignment";
+import { getOrCreateUserTrainingPlan } from "@/lib/teams";
 
 export async function GET() {
   const session = await auth();
@@ -15,7 +17,7 @@ export async function GET() {
 
   const userId = session.user.id;
 
-  const [user, activities, stravaAccount] = await Promise.all([
+  const [user, activities, stravaAccount, trainingPlan] = await Promise.all([
     prisma.user.findUnique({ where: { id: userId } }),
     prisma.activity.findMany({
       where: { userId },
@@ -23,6 +25,7 @@ export async function GET() {
       take: 100,
     }),
     prisma.stravaAccount.findUnique({ where: { userId } }),
+    getOrCreateUserTrainingPlan(userId),
   ]);
 
   if (!user) {
@@ -32,6 +35,14 @@ export async function GET() {
   const streak = calculateRunStreak(activities);
   const suggestions = generateSuggestions(user, activities);
   const routeComparisons = findRouteComparisons(activities);
+  const alignment = analyzePlanAlignment({
+    planId: trainingPlan.planId,
+    currentWeek: trainingPlan.currentWeek,
+    restDay: trainingPlan.restDay,
+    longRunDay: trainingPlan.longRunDay,
+    completedIds: trainingPlan.completedIds,
+    activities,
+  });
 
   const recentRuns = activities.slice(0, 10).map((a) => ({
     id: a.id,
@@ -52,9 +63,22 @@ export async function GET() {
       name: user.name,
       email: user.email,
       age: user.age,
+      role: user.role,
+      subscriptionTier: user.subscriptionTier,
     },
     stravaConnected: !!stravaAccount,
     stravaAthleteId: stravaAccount?.athleteId ?? null,
+    stravaLastSyncedAt: stravaAccount?.lastSyncedAt?.toISOString() ?? null,
+    stravaProfileUrl: stravaAccount
+      ? `https://www.strava.com/athletes/${stravaAccount.athleteId}`
+      : null,
+    trainingPlan: {
+      planId: trainingPlan.planId,
+      currentWeek: trainingPlan.currentWeek,
+      restDay: trainingPlan.restDay,
+      longRunDay: trainingPlan.longRunDay,
+    },
+    alignment,
     streak,
     suggestions,
     routeComparisons,

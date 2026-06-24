@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,7 +12,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FadeIn } from "@/components/motion/fade-in";
 
 export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="py-16 text-center text-muted-foreground">Loading…</div>}>
+      <LoginForm />
+    </Suspense>
+  );
+}
+
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const isCoachFlow = callbackUrl.startsWith("/teams");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -35,7 +47,7 @@ export default function LoginPage() {
       return;
     }
 
-    router.push("/dashboard");
+    router.push(callbackUrl);
     router.refresh();
   }
 
@@ -44,9 +56,13 @@ export default function LoginPage() {
       <FadeIn className="mx-auto max-w-md">
         <Card className="border-border/60">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Welcome back</CardTitle>
+            <CardTitle className="text-2xl">
+              {isCoachFlow ? "Log in as coach" : "Welcome back"}
+            </CardTitle>
             <p className="text-sm text-muted-foreground mt-1">
-              Log in to sync Strava and track your runs
+              {isCoachFlow
+                ? "Sign in to manage your teams or subscribe to the coach plan"
+                : "Log in to sync Strava and track your runs"}
             </p>
           </CardHeader>
           <CardContent>
@@ -77,12 +93,15 @@ export default function LoginPage() {
                 <p className="text-sm text-destructive">{error}</p>
               )}
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? "Signing in…" : "Sign in"}
+                {loading ? "Signing in…" : isCoachFlow ? "Log in as coach" : "Sign in"}
               </Button>
             </form>
             <p className="text-center text-sm text-muted-foreground mt-6">
               No account?{" "}
-              <Link href="/signup" className="text-primary hover:underline">
+              <Link
+                href={`/signup?callbackUrl=${encodeURIComponent(callbackUrl)}`}
+                className="text-primary hover:underline"
+              >
                 Create one
               </Link>
             </p>

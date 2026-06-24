@@ -1,19 +1,19 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getStravaAuthUrl } from "@/lib/strava";
+import { getStravaAuthUrl, isStravaConfigured } from "@/lib/strava";
+import { SITE_URL } from "@/lib/site";
 import { randomBytes } from "crypto";
 import { cookies } from "next/headers";
 
 export async function GET() {
   const session = await auth();
   if (!session?.user?.id) {
-    return NextResponse.redirect(new URL("/login", process.env.AUTH_URL));
+    return NextResponse.redirect(new URL("/login?callbackUrl=/dashboard", SITE_URL));
   }
 
-  if (!process.env.STRAVA_CLIENT_ID || !process.env.STRAVA_CLIENT_SECRET) {
-    return NextResponse.json(
-      { error: "Strava is not configured. Add STRAVA_CLIENT_ID and STRAVA_CLIENT_SECRET to .env" },
-      { status: 503 }
+  if (!isStravaConfigured()) {
+    return NextResponse.redirect(
+      new URL("/dashboard?error=strava_not_configured", SITE_URL)
     );
   }
 

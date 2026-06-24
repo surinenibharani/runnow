@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import { exchangeStravaCode } from "@/lib/strava";
+import { exchangeStravaCode, STRAVA_SCOPES } from "@/lib/strava";
+import { syncStravaActivitiesForUser } from "@/lib/strava-sync";
+import { SITE_URL } from "@/lib/site";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -9,12 +11,10 @@ export async function GET(request: Request) {
   const state = searchParams.get("state");
   const error = searchParams.get("error");
 
-  const baseUrl = process.env.AUTH_URL ?? "http://localhost:3000";
+  const baseUrl = SITE_URL;
 
   if (error) {
-    return NextResponse.redirect(
-      `${baseUrl}/dashboard?error=strava_denied`
-    );
+    return NextResponse.redirect(`${baseUrl}/dashboard?error=strava_denied`);
   }
 
   const cookieStore = await cookies();
@@ -39,17 +39,18 @@ export async function GET(request: Request) {
         accessToken: tokens.access_token,
         refreshToken: tokens.refresh_token,
         expiresAt: new Date(tokens.expires_at * 1000),
-        scope: "read,activity:read_all,profile:read_all",
+        scope: STRAVA_SCOPES,
       },
       update: {
         athleteId: String(tokens.athlete.id),
         accessToken: tokens.access_token,
         refreshToken: tokens.refresh_token,
         expiresAt: new Date(tokens.expires_at * 1000),
+        scope: STRAVA_SCOPES,
       },
     });
 
-    if (tokens.athlete.firstname && !tokens.athlete.username) {
+    if (tokens.athlete.firstname) {
       await prisma.user.update({
         where: { id: userId },
         data: {
@@ -58,7 +59,21 @@ export async function GET(request: Request) {
       });
     }
 
-    return NextResponse.redirect(`${baseUrl}/dashboard?connected=strava`);
+    let synced = 0;
+    let planMatched = 0;
+    try {
+      const result = await syncStravaActivitiesForUser(userId);
+      synced = result.synced;
+      planMatched = result.planWorkoutsMatched;
+    } catch {
+      // OAuth succeeded; user can manual sync from dashboard
+    }
+
+    const params = new URLSearchParams({ connected: "strava" });
+    if (synced > 0) params.set("synced", String(synced));
+    if (planMatched > 0) params.set("planMatched", String(planMatched));
+
+    return NextResponse.redirect(`${baseUrl}/dashboard?${params.toString()}`);
   } catch {
     return NextResponse.redirect(`${baseUrl}/dashboard?error=strava_failed`);
   }

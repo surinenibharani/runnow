@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { Suspense } from "react";
 import { AuthProvider } from "@/components/providers/auth-provider";
+import { GoogleAnalyticsScripts } from "@/components/analytics/google-analytics";
+import { GoogleAnalyticsPageView } from "@/components/analytics/page-view-tracker";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
@@ -79,8 +82,14 @@ export default function RootLayout({
       lang="en"
       className={`${dmSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <GoogleAnalyticsScripts />
+      </head>
       <body className="min-h-full flex flex-col">
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+        <Suspense fallback={null}>
+          <GoogleAnalyticsPageView />
+        </Suspense>
         <AuthProvider>
           <Navbar />
           <main className="flex-1">{children}</main>

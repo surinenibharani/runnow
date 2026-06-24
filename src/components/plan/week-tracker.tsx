@@ -1,9 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ChevronDown, Flame, Moon, RotateCcw } from "lucide-react";
+import { Check, ChevronDown, Cloud, Flame, Moon, RotateCcw } from "lucide-react";
 import {
   PLAN_FAMILIES,
   PLANS,
@@ -19,7 +20,14 @@ import {
   saveSchedulePreferences,
 } from "@/lib/schedule-preferences";
 import { getProgress, toggleWorkout, resetProgress, type ProgressData } from "@/lib/progress";
+import {
+  fetchTrainingPlan,
+  saveTrainingPlan,
+  toggleWorkoutRemote,
+  resetTrainingPlanRemote,
+} from "@/lib/training-plan-client";
 import { CrossTrainingDetails, CrossTrainingPreview } from "@/components/plan/cross-training-details";
+import { StravaConnectBanner } from "@/components/strava/strava-connect-banner";
 import { SchedulePicker } from "@/components/plan/schedule-picker";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -35,8 +43,15 @@ function resolveInitialPlan(searchPlan: string | null): TrainingPlan {
   return PLANS.find((p) => p.id === DEFAULT_PLAN_ID) ?? PLANS[0];
 }
 
+const emptyProgress: ProgressData = {
+  completed: [],
+  lastCompletedDate: null,
+  streak: 0,
+};
+
 export function WeekTracker() {
   const searchParams = useSearchParams();
+  const { status: authStatus } = useSession();
   const initialPlan = resolveInitialPlan(searchParams.get("plan"));
 
   const [familyId, setFamilyId] = useState(initialPlan.familyId);
@@ -46,13 +61,14 @@ export function WeekTracker() {
     restDay: 7,
     longRunDay: 6,
   });
-  const [progress, setProgress] = useState<ProgressData>({
-    completed: [],
-    lastCompletedDate: null,
-    streak: 0,
-  });
+  const [progress, setProgress] = useState<ProgressData>(emptyProgress);
   const [activeWeek, setActiveWeek] = useState("1");
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
+  const [useRemote, setUseRemote] = useState(false);
+  const [syncing, setSyncing] = useState(false);
+  const migratedRef = useRef(false);
+
+  const isAuthenticated = authStatus === "authenticated";
 
   const scheduledPlan = useMemo(
     () => applyScheduleToPlan(basePlan, schedulePrefs),
@@ -69,57 +85,215 @@ export function WeekTracker() {
     ? Math.round((completedInPlan / totalWorkouts) * 100)
     : 0;
 
-  useEffect(() => {
-    setSchedulePrefs(getSchedulePreferences());
-  }, []);
-
-  useEffect(() => {
-    setProgress(getProgress(planId));
-    setActiveWeek("1");
-    setExpandedDay(null);
-  }, [planId, schedulePrefs]);
-
-  const handleScheduleChange = useCallback((prefs: SchedulePreferences) => {
-    setSchedulePrefs(prefs);
-    saveSchedulePreferences(prefs);
-  }, []);
-
-  const handleFamilyChange = useCallback((id: string) => {
-    const variants = getPlansForFamily(id);
-    const selected = variants[variants.length - 1] ?? variants[0];
+  const applyRemotePlan = useCallback((remote: {
+    planId: string;
+    currentWeek: number;
+    restDay: number;
+    longRunDay: number;
+    completedIds: string[];
+    streak: number;
+    lastCompletedDate: string | null;
+  }) => {
+    const selected = PLANS.find((p) => p.id === remote.planId);
     if (selected) {
-      setFamilyId(id);
+      setFamilyId(selected.familyId);
       setPlanId(selected.id);
       setBasePlan(selected);
     }
+    setSchedulePrefs({ restDay: remote.restDay, longRunDay: remote.longRunDay });
+    setProgress({
+      completed: remote.completedIds,
+      streak: remote.streak,
+      lastCompletedDate: remote.lastCompletedDate,
+    });
+    setActiveWeek(String(remote.currentWeek || 1));
   }, []);
 
-  const handleVariantChange = useCallback((id: string) => {
-    const selected = PLANS.find((p) => p.id === id);
-    if (selected) {
-      setPlanId(id);
-      setBasePlan(selected);
+  useEffect(() => {
+    if (authStatus !== "authenticated") {
+      setUseRemote(false);
+      setSchedulePrefs(getSchedulePreferences());
+      setProgress(getProgress(planId));
+      return;
     }
-  }, []);
+
+    let cancelled = false;
+
+    async function loadRemote() {
+      setSyncing(true);
+      try {
+        const remote = await fetchTrainingPlan();
+        if (!remote || cancelled) return;
+
+        if (!migratedRef.current) {
+          const localProgress = getProgress(remote.planId);
+          const localSchedule = getSchedulePreferences();
+          const hasLocalProgress = localProgress.completed.length > 0;
+          const hasRemoteProgress = remote.completedIds.length > 0;
+
+          if (hasLocalProgress && !hasRemoteProgress) {
+            const merged = await saveTrainingPlan({
+              planId: remote.planId !== DEFAULT_PLAN_ID ? remote.planId : planId,
+              restDay: localSchedule.restDay,
+              longRunDay: localSchedule.longRunDay,
+              completedIds: localProgress.completed,
+              streak: localProgress.streak,
+              lastCompletedDate: localProgress.lastCompletedDate,
+            });
+            applyRemotePlan(merged);
+          } else {
+            applyRemotePlan(remote);
+          }
+          migratedRef.current = true;
+        } else {
+          applyRemotePlan(remote);
+        }
+
+        setUseRemote(true);
+      } catch {
+        setUseRemote(false);
+        setSchedulePrefs(getSchedulePreferences());
+        setProgress(getProgress(planId));
+      } finally {
+        if (!cancelled) setSyncing(false);
+      }
+    }
+
+    loadRemote();
+    return () => {
+      cancelled = true;
+    };
+  }, [authStatus, applyRemotePlan, planId]);
+
+  useEffect(() => {
+    if (!isAuthenticated || !useRemote) {
+      setProgress(getProgress(planId));
+      setActiveWeek("1");
+      setExpandedDay(null);
+    }
+  }, [planId, schedulePrefs, isAuthenticated, useRemote]);
+
+  const persistPlanSettings = useCallback(
+    async (nextPlanId: string, prefs: SchedulePreferences, week?: number) => {
+      if (!useRemote) return;
+      try {
+        const updated = await saveTrainingPlan({
+          planId: nextPlanId,
+          restDay: prefs.restDay,
+          longRunDay: prefs.longRunDay,
+          ...(week !== undefined && { currentWeek: week }),
+        });
+        setProgress((p) => ({
+          ...p,
+          completed: updated.completedIds,
+          streak: updated.streak,
+          lastCompletedDate: updated.lastCompletedDate,
+        }));
+      } catch {
+        // keep local UI state on failure
+      }
+    },
+    [useRemote]
+  );
+
+  const handleScheduleChange = useCallback(
+    (prefs: SchedulePreferences) => {
+      setSchedulePrefs(prefs);
+      if (useRemote) {
+        void persistPlanSettings(planId, prefs);
+      } else {
+        saveSchedulePreferences(prefs);
+      }
+    },
+    [useRemote, planId, persistPlanSettings]
+  );
+
+  const handleFamilyChange = useCallback(
+    (id: string) => {
+      const variants = getPlansForFamily(id);
+      const selected = variants[variants.length - 1] ?? variants[0];
+      if (selected) {
+        setFamilyId(id);
+        setPlanId(selected.id);
+        setBasePlan(selected);
+        if (useRemote) void persistPlanSettings(selected.id, schedulePrefs, 1);
+      }
+    },
+    [useRemote, schedulePrefs, persistPlanSettings]
+  );
+
+  const handleVariantChange = useCallback(
+    (id: string) => {
+      const selected = PLANS.find((p) => p.id === id);
+      if (selected) {
+        setPlanId(id);
+        setBasePlan(selected);
+        if (useRemote) void persistPlanSettings(id, schedulePrefs, 1);
+      }
+    },
+    [useRemote, schedulePrefs, persistPlanSettings]
+  );
 
   const handleToggle = useCallback(
-    (dayId: string) => {
+    async (dayId: string) => {
+      if (useRemote) {
+        const isCompleted = progress.completed.includes(dayId);
+        try {
+          const updated = await toggleWorkoutRemote(dayId, !isCompleted);
+          setProgress({
+            completed: updated.completedIds,
+            streak: updated.streak,
+            lastCompletedDate: updated.lastCompletedDate,
+          });
+        } catch {
+          // ignore
+        }
+        return;
+      }
+
       const updated = toggleWorkout(planId, dayId);
       setProgress(updated);
     },
-    [planId]
+    [useRemote, planId, progress.completed]
   );
 
-  const handleReset = useCallback(() => {
+  const handleReset = useCallback(async () => {
     if (
-      confirm(
+      !confirm(
         `Reset all progress for ${basePlan.name} (${basePlan.duration})?`
       )
     ) {
-      resetProgress(planId);
-      setProgress(getProgress(planId));
+      return;
     }
-  }, [planId, basePlan.name, basePlan.duration]);
+
+    if (useRemote) {
+      try {
+        const updated = await resetTrainingPlanRemote();
+        setProgress({
+          completed: updated.completedIds,
+          streak: updated.streak,
+          lastCompletedDate: updated.lastCompletedDate,
+        });
+        setActiveWeek("1");
+      } catch {
+        // ignore
+      }
+      return;
+    }
+
+    resetProgress(planId);
+    setProgress(getProgress(planId));
+  }, [planId, basePlan.name, basePlan.duration, useRemote]);
+
+  const handleWeekChange = useCallback(
+    (week: string) => {
+      setActiveWeek(week);
+      if (useRemote) {
+        void saveTrainingPlan({ currentWeek: Number(week) });
+      }
+    },
+    [useRemote]
+  );
 
   const dayKindLabel = (day: ScheduleDay) => {
     if (day.kind === "run") return "Run";
@@ -136,6 +310,25 @@ export function WeekTracker() {
 
   return (
     <div className="space-y-8">
+      <StravaConnectBanner />
+
+      {isAuthenticated && useRemote && (
+        <div className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-4 py-2 text-sm text-muted-foreground">
+          <Cloud className="size-4 text-primary shrink-0" />
+          Progress synced to your account
+          {syncing && <span className="text-xs">· saving…</span>}
+        </div>
+      )}
+
+      {authStatus === "unauthenticated" && (
+        <p className="text-sm text-muted-foreground text-center">
+          <a href="/login" className="text-primary hover:underline">
+            Sign in
+          </a>{" "}
+          to sync progress across devices.
+        </p>
+      )}
+
       <Tabs value={familyId} onValueChange={handleFamilyChange}>
         <TabsList className="w-full h-auto flex flex-col sm:flex-row gap-1 bg-muted/50 p-1">
           {PLAN_FAMILIES.map((f) => (
@@ -226,7 +419,7 @@ export function WeekTracker() {
         </Card>
       </div>
 
-      <Tabs value={activeWeek} onValueChange={setActiveWeek}>
+      <Tabs value={activeWeek} onValueChange={handleWeekChange}>
         <TabsList className="w-full flex flex-wrap h-auto gap-1 bg-muted/50 p-1 max-h-32 overflow-y-auto">
           {weeks.map((week) => {
             const weekDayIds = week.days

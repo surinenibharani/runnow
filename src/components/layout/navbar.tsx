@@ -15,6 +15,8 @@ const links = [
   { href: "/plan", label: "Training Plans" },
   { href: "/blog", label: "Blog" },
   { href: "/tips", label: "Tips" },
+  { href: "/gear", label: "Gear" },
+  { href: "/teams", label: "Teams" },
   { href: "/injuries", label: "Injuries" },
   { href: "/dashboard", label: "Dashboard" },
 ];
