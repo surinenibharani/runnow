@@ -27,6 +27,12 @@ import { PlanAlignmentCard } from "@/components/dashboard/plan-alignment";
 import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
 import type { RouteComparison, RunSuggestion } from "@/lib/run-analysis";
 import type { PieSlice } from "@/lib/activity-charts";
+import {
+  CHART_TIME_RANGE_OPTIONS,
+  getChartTimeRangeLabel,
+  type ChartTimeRange,
+} from "@/lib/chart-time-range";
+import { cn } from "@/lib/utils";
 
 interface DashboardData {
   user: {
@@ -51,6 +57,7 @@ interface DashboardData {
   streak: { current: number; longest: number; lastRunDate: string | null };
   suggestions: RunSuggestion[];
   routeComparisons: RouteComparison[];
+  chartTimeRange: ChartTimeRange;
   activityBreakdown: PieSlice[];
   heartRateZones: PieSlice[];
   recentRuns: Array<{
@@ -75,18 +82,54 @@ export function DashboardContent() {
   const [age, setAge] = useState("");
   const [message, setMessage] = useState("");
   const [disconnecting, setDisconnecting] = useState(false);
+  const [chartRange, setChartRange] = useState<ChartTimeRange>("month");
+  const [chartsLoading, setChartsLoading] = useState(false);
 
-  const loadDashboard = useCallback(async () => {
-    const res = await fetch("/api/dashboard");
-    if (res.status === 401) {
-      router.push("/login");
-      return;
-    }
-    const json = await res.json();
-    setData(json);
-    setAge(json.user?.age ? String(json.user.age) : "");
-    setLoading(false);
-  }, [router]);
+  const loadDashboard = useCallback(
+    async (range: ChartTimeRange = chartRange) => {
+      const res = await fetch(`/api/dashboard?range=${range}`);
+      if (res.status === 401) {
+        router.push("/login");
+        return;
+      }
+      const json = await res.json();
+      setData(json);
+      setChartRange(json.chartTimeRange ?? range);
+      setAge(json.user?.age ? String(json.user.age) : "");
+      setLoading(false);
+      setChartsLoading(false);
+    },
+    [router, chartRange]
+  );
+
+  const refreshCharts = useCallback(
+    async (range: ChartTimeRange) => {
+      setChartsLoading(true);
+      const res = await fetch(`/api/dashboard?range=${range}`);
+      if (!res.ok) {
+        setChartsLoading(false);
+        return;
+      }
+      const json = await res.json();
+      setData((prev) =>
+        prev
+          ? {
+              ...prev,
+              chartTimeRange: json.chartTimeRange,
+              activityBreakdown: json.activityBreakdown,
+              heartRateZones: json.heartRateZones,
+            }
+          : json
+      );
+      setChartsLoading(false);
+    },
+    []
+  );
+
+  function handleChartRangeChange(value: ChartTimeRange) {
+    setChartRange(value);
+    refreshCharts(value);
+  }
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -327,16 +370,49 @@ export function DashboardContent() {
           </Card>
         </div>
 
-        {data.stravaConnected &&
-          (data.activityBreakdown.length > 0 ||
-            data.heartRateZones.length > 0) && (
+        {data.stravaConnected && (
           <FadeIn>
-            <div className="grid gap-4 lg:grid-cols-2">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <h2 className="text-xl font-bold">Activity insights</h2>
+              <div className="flex items-center gap-2">
+                <Label
+                  htmlFor="chart-range"
+                  className="text-sm text-muted-foreground shrink-0"
+                >
+                  Time frame
+                </Label>
+                <select
+                  id="chart-range"
+                  value={chartRange}
+                  onChange={(e) =>
+                    handleChartRangeChange(e.target.value as ChartTimeRange)
+                  }
+                  disabled={chartsLoading}
+                  className={cn(
+                    "h-8 min-w-[9rem] rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm transition-colors outline-none",
+                    "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+                    "disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30"
+                  )}
+                >
+                  {CHART_TIME_RANGE_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div
+              className={cn(
+                "mt-4 grid gap-4 lg:grid-cols-2 transition-opacity",
+                chartsLoading && "opacity-50 pointer-events-none"
+              )}
+            >
               <Card className="border-border/60">
                 <CardContent className="p-6">
                   <ActivityPieChart
                     title="Activity mix"
-                    subtitle="Synced Strava activities (last 100)"
+                    subtitle={`Synced Strava activities · ${getChartTimeRangeLabel(chartRange)}`}
                     slices={data.activityBreakdown}
                     valueLabel="total"
                   />
@@ -348,8 +424,8 @@ export function DashboardContent() {
                     title="Heart rate zones"
                     subtitle={
                       data.user.age
-                        ? `Estimated from avg HR · max ${220 - data.user.age} bpm`
-                        : "Add your age above for accurate zones (using 35 as default)"
+                        ? `Estimated from avg HR · max ${220 - data.user.age} bpm · ${getChartTimeRangeLabel(chartRange)}`
+                        : `Add your age above for accurate zones (using 35 as default) · ${getChartTimeRangeLabel(chartRange)}`
                     }
                     slices={data.heartRateZones}
                     valueLabel="minutes"

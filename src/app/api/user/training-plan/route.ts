@@ -6,6 +6,40 @@ import {
 } from "@/lib/teams";
 import { parseCompletedIdsFromDb, serializeCompletedIds } from "@/lib/plan-alignment";
 import { getPlanById } from "@/lib/plans";
+import { parseAge, parseFitnessLevel, type FitnessLevel } from "@/lib/plan-personalization";
+
+const VALID_FITNESS_LEVELS: FitnessLevel[] = [
+  "beginner",
+  "returning",
+  "intermediate",
+  "advanced",
+];
+
+function isValidFitnessLevel(value: unknown): value is FitnessLevel {
+  return (
+    typeof value === "string" &&
+    VALID_FITNESS_LEVELS.includes(value as FitnessLevel)
+  );
+}
+
+function serializeTrainingPlan(plan: Awaited<ReturnType<typeof getOrCreateUserTrainingPlan>>) {
+  const planMeta = getPlanById(plan.planId);
+  return {
+    planId: plan.planId,
+    planName: planMeta?.name ?? plan.planId,
+    currentWeek: plan.currentWeek,
+    restDay: plan.restDay,
+    longRunDay: plan.longRunDay,
+    runDaysPerWeek: plan.runDaysPerWeek === 4 ? 4 : 3,
+    age: plan.age,
+    fitnessLevel: parseFitnessLevel(plan.fitnessLevel),
+    goalRaceDate: plan.goalRaceDate?.toISOString() ?? null,
+    completedIds: parseCompletedIdsFromDb(plan.completedIds),
+    streak: plan.streak,
+    lastCompletedDate: plan.lastCompletedDate?.toISOString() ?? null,
+    startedAt: plan.startedAt.toISOString(),
+  };
+}
 
 function isYesterday(date: Date): boolean {
   const yesterday = new Date();
@@ -46,20 +80,8 @@ export async function GET() {
   }
 
   const plan = await getOrCreateUserTrainingPlan(session.user.id);
-  const planMeta = getPlanById(plan.planId);
 
-  return NextResponse.json({
-    planId: plan.planId,
-    planName: planMeta?.name ?? plan.planId,
-    currentWeek: plan.currentWeek,
-    restDay: plan.restDay,
-    longRunDay: plan.longRunDay,
-    runDaysPerWeek: plan.runDaysPerWeek === 4 ? 4 : 3,
-    completedIds: parseCompletedIdsFromDb(plan.completedIds),
-    streak: plan.streak,
-    lastCompletedDate: plan.lastCompletedDate?.toISOString() ?? null,
-    startedAt: plan.startedAt.toISOString(),
-  });
+  return NextResponse.json(serializeTrainingPlan(plan));
 }
 
 export async function PUT(request: Request) {
@@ -75,6 +97,9 @@ export async function PUT(request: Request) {
     restDay,
     longRunDay,
     runDaysPerWeek,
+    age,
+    fitnessLevel,
+    goalRaceDate,
     completedIds,
     streak,
     lastCompletedDate,
@@ -104,6 +129,28 @@ export async function PUT(request: Request) {
     return NextResponse.json({ error: "Invalid long run day" }, { status: 400 });
   }
 
+  if (age !== undefined && age !== null) {
+    const parsedAge = parseAge(age);
+    if (parsedAge === null) {
+      return NextResponse.json({ error: "Invalid age" }, { status: 400 });
+    }
+  }
+
+  if (
+    fitnessLevel !== undefined &&
+    fitnessLevel !== null &&
+    !isValidFitnessLevel(fitnessLevel)
+  ) {
+    return NextResponse.json({ error: "Invalid fitness level" }, { status: 400 });
+  }
+
+  if (goalRaceDate !== undefined && goalRaceDate !== null) {
+    const parsed = new Date(goalRaceDate);
+    if (Number.isNaN(parsed.getTime())) {
+      return NextResponse.json({ error: "Invalid goal race date" }, { status: 400 });
+    }
+  }
+
   if (
     restDay !== undefined &&
     longRunDay !== undefined &&
@@ -122,6 +169,19 @@ export async function PUT(request: Request) {
     restDay,
     longRunDay,
     runDaysPerWeek,
+    age: age === undefined ? undefined : parseAge(age),
+    fitnessLevel:
+      fitnessLevel === undefined
+        ? undefined
+        : fitnessLevel === null
+          ? null
+          : parseFitnessLevel(fitnessLevel),
+    goalRaceDate:
+      goalRaceDate === undefined
+        ? undefined
+        : goalRaceDate === null
+          ? null
+          : new Date(goalRaceDate),
     completedIds,
     lastCompletedDate:
       lastCompletedDate === null
@@ -137,16 +197,7 @@ export async function PUT(request: Request) {
 
   const updated = await updateUserTrainingPlan(session.user.id, updateData);
 
-  return NextResponse.json({
-    planId: updated.planId,
-    currentWeek: updated.currentWeek,
-    restDay: updated.restDay,
-    longRunDay: updated.longRunDay,
-    runDaysPerWeek: updated.runDaysPerWeek === 4 ? 4 : 3,
-    completedIds: parseCompletedIdsFromDb(updated.completedIds),
-    streak: updated.streak,
-    lastCompletedDate: updated.lastCompletedDate?.toISOString() ?? null,
-  });
+  return NextResponse.json(serializeTrainingPlan(updated));
 }
 
 export async function PATCH(request: Request) {

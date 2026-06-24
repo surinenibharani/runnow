@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { DEFAULT_PLAN_ID } from "@/lib/plans";
 import { serializeCompletedIds } from "@/lib/plan-alignment";
+import { parseFitnessLevel } from "@/lib/plan-personalization";
 
 export async function getOrCreateUserTrainingPlan(userId: string) {
   const existing = await prisma.userTrainingPlan.findUnique({ where: { userId } });
@@ -14,6 +15,7 @@ export async function getOrCreateUserTrainingPlan(userId: string) {
       restDay: 7,
       longRunDay: 6,
       runDaysPerWeek: 3,
+      fitnessLevel: "beginner",
       completedIds: "[]",
     },
   });
@@ -27,6 +29,9 @@ export async function updateUserTrainingPlan(
     restDay?: number;
     longRunDay?: number;
     runDaysPerWeek?: number;
+    age?: number | null;
+    fitnessLevel?: string | null;
+    goalRaceDate?: Date | null;
     completedIds?: string[];
     streak?: number;
     lastCompletedDate?: Date | null;
@@ -43,6 +48,15 @@ export async function updateUserTrainingPlan(
       ...(data.longRunDay !== undefined && { longRunDay: data.longRunDay }),
       ...(data.runDaysPerWeek !== undefined && {
         runDaysPerWeek: data.runDaysPerWeek,
+      }),
+      ...(data.age !== undefined && { age: data.age }),
+      ...(data.fitnessLevel !== undefined && {
+        fitnessLevel: data.fitnessLevel
+          ? parseFitnessLevel(data.fitnessLevel)
+          : null,
+      }),
+      ...(data.goalRaceDate !== undefined && {
+        goalRaceDate: data.goalRaceDate,
       }),
       ...(data.completedIds !== undefined && {
         completedIds: serializeCompletedIds(data.completedIds),

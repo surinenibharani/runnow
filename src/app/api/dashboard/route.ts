@@ -11,18 +11,27 @@ import {
   aggregateActivityTypes,
   aggregateHeartRateZones,
 } from "@/lib/activity-charts";
+import {
+  getChartRangeStart,
+  parseChartTimeRange,
+} from "@/lib/chart-time-range";
 import { analyzePlanAlignment } from "@/lib/plan-alignment";
 import { getOrCreateUserTrainingPlan } from "@/lib/teams";
 
-export async function GET() {
+export async function GET(request: Request) {
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const userId = session.user.id;
+  const chartTimeRange = parseChartTimeRange(
+    new URL(request.url).searchParams.get("range")
+  );
+  const chartRangeStart = getChartRangeStart(chartTimeRange);
 
-  const [user, activities, stravaAccount, trainingPlan] = await Promise.all([
+  const [user, activities, chartActivities, stravaAccount, trainingPlan] =
+    await Promise.all([
     prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -38,6 +47,16 @@ export async function GET() {
       where: { userId },
       orderBy: { startDate: "desc" },
       take: 100,
+      select: activitySummarySelect,
+    }),
+    prisma.activity.findMany({
+      where: {
+        userId,
+        ...(chartRangeStart
+          ? { startDate: { gte: chartRangeStart } }
+          : {}),
+      },
+      orderBy: { startDate: "desc" },
       select: activitySummarySelect,
     }),
     prisma.stravaAccount.findUnique({ where: { userId } }),
@@ -60,8 +79,8 @@ export async function GET() {
     completedIds: trainingPlan.completedIds,
     activities,
   });
-  const activityBreakdown = aggregateActivityTypes(activities);
-  const heartRateZones = aggregateHeartRateZones(activities, user.age);
+  const activityBreakdown = aggregateActivityTypes(chartActivities);
+  const heartRateZones = aggregateHeartRateZones(chartActivities, user.age);
 
   const recentRuns = activities.slice(0, 10).map((a) => ({
     id: a.id,
@@ -102,6 +121,7 @@ export async function GET() {
     streak,
     suggestions,
     routeComparisons,
+    chartTimeRange,
     activityBreakdown,
     heartRateZones,
     recentRuns,

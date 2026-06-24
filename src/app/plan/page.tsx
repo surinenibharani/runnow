@@ -26,8 +26,9 @@ export default function PlanPage() {
               Your Training Plans
             </h1>
             <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
-              Pick your distance and timeline, then customize run days, rest day,
-              and long run day. Runs and cross-training shift to fit your schedule.
+              Pick your distance and timeline, then add your age, fitness level, and
+              goal race date for a plan tuned to you. Customize run days, rest day,
+              and long run day — runs and cross-training shift to fit your schedule.
             </p>
           </div>
         </FadeIn>

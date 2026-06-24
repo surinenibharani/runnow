@@ -1,4 +1,6 @@
 import type { RunType, ScheduleDay, Workout } from "@/lib/plan-types";
+import type { PlanPersonalization } from "@/lib/plan-personalization";
+import { weeksUntilDate } from "@/lib/plan-personalization";
 
 type CaptionContext = {
   durationLabel: string;
@@ -6,7 +8,61 @@ type CaptionContext = {
   weekNumber: number;
   runDaysPerWeek: 3 | 4;
   isLongRunDay: boolean;
+  personalization?: PlanPersonalization | null;
 };
+
+function goalDateNote(
+  week: number,
+  totalWeeks: number,
+  runType: RunType,
+  personalization?: PlanPersonalization | null
+): string {
+  if (!personalization?.goalRaceDate || runType === "race") return "";
+
+  const weeksUntil = weeksUntilDate(personalization.goalRaceDate);
+  if (weeksUntil === null) return "";
+
+  const weeksLeftInPlan = totalWeeks - week + 1;
+
+  if (weeksUntil === 0) {
+    return " Race week — trust your training and keep efforts controlled.";
+  }
+
+  if (weeksUntil === 1 && week === totalWeeks - 1) {
+    return " One week to race day — prioritize sleep and easy effort.";
+  }
+
+  if (weeksUntil < weeksLeftInPlan) {
+    return " You're closer to race day than this plan week — stay consistent without cramming volume.";
+  }
+
+  if (weeksUntil === weeksLeftInPlan) {
+    return ` ${weeksUntil} week${weeksUntil === 1 ? "" : "s"} until your goal race — right on schedule.`;
+  }
+
+  return "";
+}
+
+function fitnessNote(
+  run: Workout,
+  personalization?: PlanPersonalization | null
+): string {
+  if (!personalization) return "";
+
+  if (personalization.fitnessLevel === "beginner" && run.runType === "walk-run") {
+    return " Walk breaks are built in — use them every time you need.";
+  }
+
+  if (
+    personalization.age &&
+    personalization.age >= 55 &&
+    (run.runType === "long" || run.runType === "tempo")
+  ) {
+    return " Volume is adjusted for recovery — err on the easier side.";
+  }
+
+  return "";
+}
 
 function timelineNote(week: number, totalWeeks: number, runType: RunType): string {
   if (runType === "race" || week === 1) return "";
@@ -84,6 +140,13 @@ export function getActivityCaption(day: ScheduleDay, ctx: CaptionContext): strin
     const parts = [
       run.description,
       timelineNote(ctx.weekNumber, ctx.durationWeeks, run.runType),
+      goalDateNote(
+        ctx.weekNumber,
+        ctx.durationWeeks,
+        run.runType,
+        ctx.personalization
+      ),
+      fitnessNote(run, ctx.personalization),
       runScheduleNote(run, ctx.runDaysPerWeek, ctx.isLongRunDay),
     ].filter(Boolean);
     return parts.join("");

@@ -127,6 +127,9 @@ model UserTrainingPlan {
   restDay           Int       @default(7)
   longRunDay        Int       @default(6)
   runDaysPerWeek    Int       @default(3)
+  age               Int?
+  fitnessLevel      String?
+  goalRaceDate      DateTime?
   completedIds      String    @default("[]")
   streak            Int       @default(0)
   lastCompletedDate DateTime?

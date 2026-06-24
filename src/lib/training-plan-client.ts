@@ -1,3 +1,5 @@
+import type { FitnessLevel } from "@/lib/plan-personalization";
+
 export type TrainingPlanState = {
   planId: string;
   planName?: string;
@@ -5,6 +7,9 @@ export type TrainingPlanState = {
   restDay: number;
   longRunDay: number;
   runDaysPerWeek: 3 | 4;
+  age: number | null;
+  fitnessLevel: FitnessLevel;
+  goalRaceDate: string | null;
   completedIds: string[];
   streak: number;
   lastCompletedDate: string | null;

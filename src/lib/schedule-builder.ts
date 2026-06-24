@@ -8,6 +8,11 @@ import type {
   Workout,
 } from "@/lib/plan-types";
 import { DAY_NAMES } from "@/lib/plan-types";
+import {
+  deriveSchedulePrefs,
+  personalizePlanWorkouts,
+  type PlanPersonalization,
+} from "@/lib/plan-personalization";
 
 export interface SchedulePreferences {
   restDay: number;
@@ -38,14 +43,21 @@ export function isValidSchedule(prefs: SchedulePreferences): boolean {
 
 export function applyScheduleToPlan(
   plan: TrainingPlan,
-  prefs: SchedulePreferences
+  prefs: SchedulePreferences,
+  personalization?: PlanPersonalization | null
 ): TrainingPlan & { scheduledWeeks: ScheduledWeek[] } {
-  const schedule = isValidSchedule(prefs) ? prefs : DEFAULT_SCHEDULE;
+  const profiledPlan = personalization
+    ? personalizePlanWorkouts(plan, personalization)
+    : plan;
+  const baseSchedule = isValidSchedule(prefs) ? prefs : DEFAULT_SCHEDULE;
+  const schedule = personalization
+    ? deriveSchedulePrefs(baseSchedule, personalization, plan.runsPerWeek)
+    : baseSchedule;
 
   return {
-    ...plan,
-    scheduledWeeks: plan.weeks.map((week) =>
-      scheduleWeek(plan.id, week, schedule)
+    ...profiledPlan,
+    scheduledWeeks: profiledPlan.weeks.map((week) =>
+      scheduleWeek(profiledPlan.id, week, schedule)
     ),
   };
 }

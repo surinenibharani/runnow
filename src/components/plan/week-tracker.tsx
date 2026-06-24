@@ -19,6 +19,13 @@ import {
   getSchedulePreferences,
   saveSchedulePreferences,
 } from "@/lib/schedule-preferences";
+import { getPlanProfile, savePlanProfile } from "@/lib/plan-profile";
+import {
+  DEFAULT_PERSONALIZATION,
+  deriveSchedulePrefs,
+  recommendPlanVariantId,
+  type PlanPersonalization,
+} from "@/lib/plan-personalization";
 import { getProgress, toggleWorkout, resetProgress, type ProgressData } from "@/lib/progress";
 import {
   fetchTrainingPlan,
@@ -30,6 +37,7 @@ import { CrossTrainingDetails, CrossTrainingPreview } from "@/components/plan/cr
 import { getActivityCaption } from "@/lib/workout-caption";
 import { StravaConnectBanner } from "@/components/strava/strava-connect-banner";
 import { SchedulePicker } from "@/components/plan/schedule-picker";
+import { PlanProfilePicker } from "@/components/plan/plan-profile-picker";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -59,6 +67,7 @@ export function WeekTracker() {
   const [planId, setPlanId] = useState(initialPlan.id);
   const [basePlan, setBasePlan] = useState<TrainingPlan>(initialPlan);
   const [schedulePrefs, setSchedulePrefs] = useState<SchedulePreferences>(DEFAULT_SCHEDULE);
+  const [planProfile, setPlanProfile] = useState<PlanPersonalization>(DEFAULT_PERSONALIZATION);
   const [progress, setProgress] = useState<ProgressData>(emptyProgress);
   const [activeWeek, setActiveWeek] = useState("1");
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
@@ -69,8 +78,8 @@ export function WeekTracker() {
   const isAuthenticated = authStatus === "authenticated";
 
   const scheduledPlan = useMemo(
-    () => applyScheduleToPlan(basePlan, schedulePrefs),
-    [basePlan, schedulePrefs]
+    () => applyScheduleToPlan(basePlan, schedulePrefs, planProfile),
+    [basePlan, schedulePrefs, planProfile]
   );
 
   const weeks = scheduledPlan.scheduledWeeks;
@@ -89,6 +98,9 @@ export function WeekTracker() {
     restDay: number;
     longRunDay: number;
     runDaysPerWeek?: number;
+    age?: number | null;
+    fitnessLevel?: string;
+    goalRaceDate?: string | null;
     completedIds: string[];
     streak: number;
     lastCompletedDate: string | null;
@@ -99,6 +111,17 @@ export function WeekTracker() {
       setPlanId(selected.id);
       setBasePlan(selected);
     }
+    const profile: PlanPersonalization = {
+      age: remote.age ?? null,
+      fitnessLevel:
+        remote.fitnessLevel === "returning" ||
+        remote.fitnessLevel === "intermediate" ||
+        remote.fitnessLevel === "advanced"
+          ? remote.fitnessLevel
+          : "beginner",
+      goalRaceDate: remote.goalRaceDate ?? null,
+    };
+    setPlanProfile(profile);
     setSchedulePrefs({
       restDay: remote.restDay,
       longRunDay: remote.longRunDay,
@@ -116,6 +139,7 @@ export function WeekTracker() {
     if (authStatus !== "authenticated") {
       setUseRemote(false);
       setSchedulePrefs(getSchedulePreferences());
+      setPlanProfile(getPlanProfile());
       setProgress(getProgress(planId));
       return;
     }
@@ -140,6 +164,9 @@ export function WeekTracker() {
               restDay: localSchedule.restDay,
               longRunDay: localSchedule.longRunDay,
               runDaysPerWeek: localSchedule.runDaysPerWeek,
+              age: getPlanProfile().age,
+              fitnessLevel: getPlanProfile().fitnessLevel,
+              goalRaceDate: getPlanProfile().goalRaceDate,
               completedIds: localProgress.completed,
               streak: localProgress.streak,
               lastCompletedDate: localProgress.lastCompletedDate,
@@ -157,6 +184,7 @@ export function WeekTracker() {
       } catch {
         setUseRemote(false);
         setSchedulePrefs(getSchedulePreferences());
+        setPlanProfile(getPlanProfile());
         setProgress(getProgress(planId));
       } finally {
         if (!cancelled) setSyncing(false);
@@ -178,7 +206,12 @@ export function WeekTracker() {
   }, [planId, schedulePrefs, isAuthenticated, useRemote]);
 
   const persistPlanSettings = useCallback(
-    async (nextPlanId: string, prefs: SchedulePreferences, week?: number) => {
+    async (
+      nextPlanId: string,
+      prefs: SchedulePreferences,
+      profile: PlanPersonalization,
+      week?: number
+    ) => {
       if (!useRemote) return;
       try {
         const updated = await saveTrainingPlan({
@@ -186,6 +219,9 @@ export function WeekTracker() {
           restDay: prefs.restDay,
           longRunDay: prefs.longRunDay,
           runDaysPerWeek: prefs.runDaysPerWeek,
+          age: profile.age,
+          fitnessLevel: profile.fitnessLevel,
+          goalRaceDate: profile.goalRaceDate,
           ...(week !== undefined && { currentWeek: week }),
         });
         setProgress((p) => ({
@@ -205,26 +241,85 @@ export function WeekTracker() {
     (prefs: SchedulePreferences) => {
       setSchedulePrefs(prefs);
       if (useRemote) {
-        void persistPlanSettings(planId, prefs);
+        void persistPlanSettings(planId, prefs, planProfile);
       } else {
         saveSchedulePreferences(prefs);
       }
     },
-    [useRemote, planId, persistPlanSettings]
+    [useRemote, planId, planProfile, persistPlanSettings]
+  );
+
+  const handleProfileChange = useCallback(
+    (profile: PlanPersonalization) => {
+      setPlanProfile(profile);
+      if (!useRemote) {
+        savePlanProfile(profile);
+      }
+
+      const recommendation = recommendPlanVariantId(familyId, profile);
+      let nextPlanId = planId;
+      let nextPlan = basePlan;
+
+      if (recommendation) {
+        const selected = PLANS.find((p) => p.id === recommendation.planId);
+        if (selected) {
+          nextPlanId = selected.id;
+          nextPlan = selected;
+          setPlanId(selected.id);
+          setBasePlan(selected);
+        }
+      }
+
+      const nextPrefs = deriveSchedulePrefs(
+        schedulePrefs,
+        profile,
+        nextPlan.runsPerWeek
+      );
+      setSchedulePrefs(nextPrefs);
+
+      if (useRemote) {
+        void persistPlanSettings(nextPlanId, nextPrefs, profile);
+      } else {
+        savePlanProfile(profile);
+        saveSchedulePreferences(nextPrefs);
+      }
+    },
+    [
+      useRemote,
+      familyId,
+      planId,
+      basePlan,
+      schedulePrefs,
+      persistPlanSettings,
+    ]
   );
 
   const handleFamilyChange = useCallback(
     (id: string) => {
+      const recommendation = recommendPlanVariantId(id, planProfile);
       const variants = getPlansForFamily(id);
-      const selected = variants[variants.length - 1] ?? variants[0];
+      const selected =
+        PLANS.find((p) => p.id === recommendation?.planId) ??
+        variants[variants.length - 1] ??
+        variants[0];
       if (selected) {
         setFamilyId(id);
         setPlanId(selected.id);
         setBasePlan(selected);
-        if (useRemote) void persistPlanSettings(selected.id, schedulePrefs, 1);
+        const nextPrefs = deriveSchedulePrefs(
+          schedulePrefs,
+          planProfile,
+          selected.runsPerWeek
+        );
+        setSchedulePrefs(nextPrefs);
+        if (useRemote) {
+          void persistPlanSettings(selected.id, nextPrefs, planProfile, 1);
+        } else {
+          saveSchedulePreferences(nextPrefs);
+        }
       }
     },
-    [useRemote, schedulePrefs, persistPlanSettings]
+    [useRemote, schedulePrefs, planProfile, persistPlanSettings]
   );
 
   const handleVariantChange = useCallback(
@@ -233,10 +328,10 @@ export function WeekTracker() {
       if (selected) {
         setPlanId(id);
         setBasePlan(selected);
-        if (useRemote) void persistPlanSettings(id, schedulePrefs, 1);
+        if (useRemote) void persistPlanSettings(id, schedulePrefs, planProfile);
       }
     },
-    [useRemote, schedulePrefs, persistPlanSettings]
+    [useRemote, schedulePrefs, planProfile, persistPlanSettings]
   );
 
   const handleToggle = useCallback(
@@ -389,6 +484,14 @@ export function WeekTracker() {
         })}
       </Tabs>
 
+      <PlanProfilePicker
+        profile={planProfile}
+        familyId={familyId}
+        plan={basePlan}
+        currentWeek={Number(activeWeek)}
+        onChange={handleProfileChange}
+      />
+
       <SchedulePicker
         preferences={schedulePrefs}
         onChange={handleScheduleChange}
@@ -480,6 +583,7 @@ export function WeekTracker() {
                       weekNumber: week.week,
                       runDaysPerWeek: schedulePrefs.runDaysPerWeek,
                       isLongRunDay: false,
+                      personalization: planProfile,
                     })
                   : getActivityCaption(day, {
                       durationLabel: basePlan.duration,
@@ -489,6 +593,7 @@ export function WeekTracker() {
                       isLongRunDay:
                         day.kind === "run" &&
                         day.dayOfWeek === schedulePrefs.longRunDay,
+                      personalization: planProfile,
                     });
 
                 const duration = isCompleteRest
