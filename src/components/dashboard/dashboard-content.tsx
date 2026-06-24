@@ -546,7 +546,7 @@ export function DashboardContent() {
 
         {data.recentRuns.length > 0 && (
           <FadeIn>
-            <h2 className="text-xl font-bold mb-4">Recent runs</h2>
+            <h2 className="text-xl font-bold mb-4">Recent workouts</h2>
             <div className="space-y-2">
               {data.recentRuns.map((run) => (
                 <Card key={run.id} className="border-border/60">

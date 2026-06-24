@@ -37,6 +37,25 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
             {insights.baselineNote} · {insights.runSampleSize} run
             {insights.runSampleSize === 1 ? "" : "s"} in the last 90 days
           </p>
+          <div className="mt-4 space-y-2 text-sm text-muted-foreground leading-relaxed">
+            <p>
+              These are estimated finish times if you raced today, based on how
+              fast you&apos;ve been running on Strava lately — not a promise of
+              what you&apos;ll run on race day.
+            </p>
+            <p>
+              We look at your best recent efforts (especially runs around 5K
+              distance), then use the Riegel formula to project times at longer
+              distances. The pace shown is the average you&apos;d need to hold for
+              that race.
+            </p>
+            <p>
+              <span className="font-medium text-foreground">Confidence</span> reflects
+              how much recent data we have and how close your training is to each
+              distance — marathon estimates are less certain if you haven&apos;t run
+              long lately.
+            </p>
+          </div>
           <div className="mt-5 space-y-3">
             {insights.projections.map((race) => {
               const badge = confidenceBadge(race.confidence);
@@ -67,8 +86,9 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
             })}
           </div>
           <p className="mt-4 text-xs text-muted-foreground leading-relaxed">
-            Estimates use the Riegel formula from your recent efforts. Longer races
-            need more training — treat these as rough guides, not guarantees.
+            Projections update as you sync new runs. Build mileage gradually before
+            racing longer distances — these numbers are guides for pacing, not
+            targets to chase in training every day.
           </p>
         </CardContent>
       </Card>
