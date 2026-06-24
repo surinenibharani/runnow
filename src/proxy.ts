@@ -10,7 +10,7 @@ const blockedPaths = [
   /\.php$/i,
 ];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (blockedPaths.some((pattern) => pattern.test(pathname))) {
