@@ -1,11 +1,10 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: PrismaAdapter(prisma),
+  secret: process.env.AUTH_SECRET,
   trustHost: true,
   session: { strategy: "jwt" },
   pages: {
@@ -21,27 +20,32 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email as string },
-        });
+        try {
+          const user = await prisma.user.findUnique({
+            where: { email: credentials.email as string },
+          });
 
-        if (!user?.passwordHash) return null;
+          if (!user?.passwordHash) return null;
 
-        const valid = await bcrypt.compare(
-          credentials.password as string,
-          user.passwordHash
-        );
+          const valid = await bcrypt.compare(
+            credentials.password as string,
+            user.passwordHash
+          );
 
-        if (!valid) return null;
+          if (!valid) return null;
 
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          image: user.image,
-          role: user.role,
-          subscriptionTier: user.subscriptionTier,
-        };
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            image: user.image,
+            role: user.role,
+            subscriptionTier: user.subscriptionTier,
+          };
+        } catch (error) {
+          console.error("Auth authorize error:", error);
+          return null;
+        }
       },
     }),
   ],
@@ -54,13 +58,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
 
       if (token.id && (user || trigger === "update")) {
-        const dbUser = await prisma.user.findUnique({
-          where: { id: token.id as string },
-          select: { role: true, subscriptionTier: true },
-        });
-        if (dbUser) {
-          token.role = dbUser.role;
-          token.subscriptionTier = dbUser.subscriptionTier;
+        try {
+          const dbUser = await prisma.user.findUnique({
+            where: { id: token.id as string },
+            select: { role: true, subscriptionTier: true },
+          });
+          if (dbUser) {
+            token.role = dbUser.role;
+            token.subscriptionTier = dbUser.subscriptionTier;
+          }
+        } catch (error) {
+          console.error("Auth jwt refresh error:", error);
         }
       }
 

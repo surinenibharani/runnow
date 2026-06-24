@@ -81,7 +81,7 @@ function SignupForm() {
     setLoading(false);
 
     if (result?.error) {
-      router.push("/login");
+      setError("Account created but sign-in failed. Please log in manually.");
       return;
     }
 
