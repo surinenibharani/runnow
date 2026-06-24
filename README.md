@@ -1,4 +1,4 @@
-# RunNow
+# LetsRunNow
 
 A beautiful, beginner-friendly running website built with Next.js, Tailwind CSS, shadcn/ui, and Framer Motion. Help people go from couch to 5K in 8 weeks.
 
@@ -67,8 +67,8 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ```bash
 git add .
-git commit -m "Initial RunNow website"
-git remote add origin https://github.com/YOUR_USERNAME/runnow.git
+git commit -m "Initial LetsRunNow website"
+git remote add origin https://github.com/YOUR_USERNAME/letsrunnow.git
 git push -u origin main
 ```
 
@@ -76,9 +76,9 @@ git push -u origin main
 
 1. Go to [vercel.com](https://vercel.com) and sign in with GitHub
 2. Click **Add New → Project**
-3. Import your `runnow` repository
+3. Import your `letsrunnow` repository
 4. Vercel auto-detects Next.js — click **Deploy**
-5. Your site will be live at `runnow.vercel.app` (or similar)
+5. Your site will be live at `letsrunnow.vercel.app` (or similar)
 
 ### 3. Connect Your Cloudflare Domain
 
@@ -86,7 +86,7 @@ git push -u origin main
 
 1. Go to [dash.cloudflare.com](https://dash.cloudflare.com)
 2. Click **Domain Registration → Register Domains**
-3. Search for your domain (e.g. `runnow.app`, `startrunning.today`)
+3. Search for your domain (e.g. `letsrunnow.app`, `startrunning.today`)
 4. Complete purchase
 
 #### Point domain to Vercel
@@ -94,7 +94,7 @@ git push -u origin main
 **In Vercel:**
 
 1. Open your project → **Settings → Domains**
-2. Add your domain (e.g. `runnow.app` and `www.runnow.app`)
+2. Add your domain (e.g. `letsrunnow.app` and `www.letsrunnow.app`)
 3. Vercel shows the DNS records you need
 
 **In Cloudflare:**
@@ -114,7 +114,7 @@ git push -u origin main
 
 #### Optional: Redirect www to apex
 
-In Vercel domain settings, set `www.runnow.app` to redirect to `runnow.app`.
+In Vercel domain settings, set `www.letsrunnow.app` to redirect to `letsrunnow.app`.
 
 ## Project Structure
 

@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FadeIn } from "@/components/motion/fade-in";
+import { SITE_NAME } from "@/lib/site";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -62,7 +63,7 @@ export default function SignupPage() {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">Create your account</CardTitle>
             <p className="text-sm text-muted-foreground mt-1">
-              Join RunNow — connect Strava for personalized insights
+              Join {SITE_NAME} — connect Strava for personalized insights
             </p>
           </CardHeader>
           <CardContent>

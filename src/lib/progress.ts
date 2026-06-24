@@ -11,6 +11,10 @@ const defaultProgress: ProgressData = {
 };
 
 function storageKey(planId: string): string {
+  return `letsrunnow-progress-${planId}`;
+}
+
+function legacyStorageKey(planId: string): string {
   return `runnow-progress-${planId}`;
 }
 
@@ -18,7 +22,14 @@ export function getProgress(planId: string): ProgressData {
   if (typeof window === "undefined") return defaultProgress;
 
   try {
-    const raw = localStorage.getItem(storageKey(planId));
+    let raw = localStorage.getItem(storageKey(planId));
+    if (!raw) {
+      raw = localStorage.getItem(legacyStorageKey(planId));
+      if (raw) {
+        localStorage.setItem(storageKey(planId), raw);
+        localStorage.removeItem(legacyStorageKey(planId));
+      }
+    }
     if (!raw) return defaultProgress;
     return { ...defaultProgress, ...JSON.parse(raw) };
   } catch {

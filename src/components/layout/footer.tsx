@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Zap } from "lucide-react";
+import { Logo } from "@/components/brand/logo";
 import { Separator } from "@/components/ui/separator";
+import { SITE_NAME } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -8,12 +9,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid gap-8 sm:grid-cols-3">
           <div>
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-              <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Zap className="size-4" />
-              </span>
-              RunNow
-            </Link>
+            <Logo />
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
               Helping beginners lace up and love running — one step at a time.
             </p>
@@ -25,6 +21,11 @@ export function Footer() {
               <li>
                 <Link href="/plan" className="hover:text-foreground transition-colors">
                   Training Plans
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-foreground transition-colors">
+                  Blog
                 </Link>
               </li>
               <li>
@@ -51,7 +52,7 @@ export function Footer() {
         <Separator className="my-8" />
 
         <p className="text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} RunNow. Built to help you move.
+          © {new Date().getFullYear()} {SITE_NAME}. Built to help you move.
         </p>
       </div>
     </footer>

@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/brand/logo";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "/", label: "Home" },
   { href: "/plan", label: "Training Plans" },
+  { href: "/blog", label: "Blog" },
   { href: "/tips", label: "Tips" },
   { href: "/injuries", label: "Injuries" },
   { href: "/dashboard", label: "Dashboard" },
@@ -25,14 +27,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg">
-          <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <Zap className="size-4" />
-          </span>
-          <span>
-            Run<span className="text-primary">Now</span>
-          </span>
-        </Link>
+        <Logo />
 
         <nav className="hidden items-center gap-1 md:flex">
           {links.map((link) => (
