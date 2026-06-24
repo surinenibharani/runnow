@@ -11,6 +11,7 @@ import {
   aggregateActivityTypes,
   aggregateHeartRateZones,
 } from "@/lib/activity-charts";
+import { calculatePaceInsights } from "@/lib/pace-analysis";
 import {
   getChartRangeStart,
   parseChartTimeRange,
@@ -81,6 +82,7 @@ export async function GET(request: Request) {
   });
   const activityBreakdown = aggregateActivityTypes(chartActivities);
   const heartRateZones = aggregateHeartRateZones(chartActivities, user.age);
+  const paceInsights = calculatePaceInsights(activities);
 
   const recentRuns = activities.slice(0, 10).map((a) => ({
     id: a.id,
@@ -124,6 +126,7 @@ export async function GET(request: Request) {
     chartTimeRange,
     activityBreakdown,
     heartRateZones,
+    paceInsights,
     recentRuns,
     totalRuns: activities.length,
   });

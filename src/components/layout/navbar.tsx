@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { useSession, signOut } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -23,10 +23,44 @@ const links = [
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const { data: session } = useSession();
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+
+    function onPointerDown(event: MouseEvent) {
+      const target = event.target;
+      if (
+        target instanceof Node &&
+        headerRef.current &&
+        !headerRef.current.contains(target)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("mousedown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("mousedown", onPointerDown);
+    };
+  }, [open]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg"
+    >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Logo />
 
@@ -73,16 +107,22 @@ export function Navbar() {
         </div>
 
         <button
+          type="button"
           className="md:hidden p-2 rounded-lg hover:bg-muted"
           onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
       </div>
 
       {open && (
-        <nav className="border-t border-border md:hidden animate-in fade-in slide-in-from-top-1 duration-200">
+        <nav
+          id="mobile-nav"
+          className="border-t border-border md:hidden animate-in fade-in slide-in-from-top-1 duration-200"
+        >
           <div className="flex flex-col gap-1 p-4">
             {links.map((link) => (
               <Link

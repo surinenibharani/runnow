@@ -13,6 +13,7 @@ import {
   MapPin,
   RefreshCw,
   TrendingUp,
+  Timer,
   Unplug,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -25,8 +26,10 @@ import { formatDistance, formatDuration, formatPace } from "@/lib/strava";
 import type { PlanAlignmentSummary } from "@/lib/plan-alignment";
 import { PlanAlignmentCard } from "@/components/dashboard/plan-alignment";
 import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
+import { PaceInsightsPanel } from "@/components/dashboard/pace-insights-panel";
 import type { RouteComparison, RunSuggestion } from "@/lib/run-analysis";
 import type { PieSlice } from "@/lib/activity-charts";
+import type { PaceInsights } from "@/lib/pace-analysis";
 import {
   CHART_TIME_RANGE_OPTIONS,
   getChartTimeRangeLabel,
@@ -60,6 +63,7 @@ interface DashboardData {
   chartTimeRange: ChartTimeRange;
   activityBreakdown: PieSlice[];
   heartRateZones: PieSlice[];
+  paceInsights: PaceInsights;
   recentRuns: Array<{
     id: string;
     name: string;
@@ -369,6 +373,16 @@ export function DashboardContent() {
             </CardContent>
           </Card>
         </div>
+
+        {data.stravaConnected && (
+          <FadeIn>
+            <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <Timer className="size-5 text-primary" />
+              Pace & training zones
+            </h2>
+            <PaceInsightsPanel insights={data.paceInsights} />
+          </FadeIn>
+        )}
 
         {data.stravaConnected && (
           <FadeIn>

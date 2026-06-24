@@ -1,26 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  AlertTriangle,
   Clock,
+  CloudRain,
   Droplets,
   Footprints,
   Heart,
   Moon,
   Activity,
   Sun,
+  Users,
   Wind,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { TipsGuideLink } from "@/components/tips/tips-guide-link";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { situationalTips } from "@/lib/tips/situational";
 
 export const metadata: Metadata = pageMetadata({
   title: "Beginner Running Tips",
   description:
-    "Practical advice for new runners — pacing, gear, recovery, and guidance for pregnancy, runners 55+, and common health conditions.",
+    "Practical advice for new runners — pacing, gear, recovery, bad-weather indoor alternatives, and guidance for pregnancy, runners 55+, and common health conditions.",
   path: "/tips",
 });
 
@@ -122,59 +123,21 @@ export default function TipsPage() {
           ))}
         </StaggerChildren>
 
-        <FadeIn className="mt-16 mb-8">
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-center">
-            Running for specific situations
-          </h2>
-          <p className="mt-3 text-muted-foreground text-center max-w-2xl mx-auto">
-            Extra guidance for pregnancy, older runners, and common health
-            conditions. Always defer to your doctor when advice conflicts with a
-            training plan.
-          </p>
-        </FadeIn>
+        <TipsGuideLink
+          href="/tips/bad-weather"
+          title="Bad weather? Stay on track"
+          description="Weather-aware tips for rain, heat, ice, storms, and poor air quality — plus indoor alternatives so you keep moving."
+          icon={CloudRain}
+          iconClassName="bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
+        />
 
-        <FadeIn className="mb-8">
-          <div className="flex gap-3 rounded-xl border border-amber-500/30 bg-amber-500/5 px-4 py-4 text-sm">
-            <AlertTriangle className="size-5 shrink-0 text-amber-600 dark:text-amber-400 mt-0.5" />
-            <p className="text-muted-foreground leading-relaxed">
-              <span className="font-medium text-foreground">Medical disclaimer: </span>
-              LetsRunNow provides general fitness education, not medical advice.
-              Talk to your physician, OB-GYN, or specialist before starting or
-              changing exercise — especially during pregnancy, after illness, or
-              when managing a chronic condition.
-            </p>
-          </div>
-        </FadeIn>
-
-        <StaggerChildren className="grid gap-4 sm:grid-cols-2">
-          {situationalTips.map((tip) => (
-            <StaggerItem key={tip.title}>
-              <Card className="h-full border-border/60">
-                <CardContent className="p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400">
-                      <tip.icon className="size-5" />
-                    </div>
-                    <div className="min-w-0">
-                      <Badge variant="outline" className="mb-2 text-xs">
-                        {tip.audience}
-                      </Badge>
-                      <h2 className="font-semibold text-lg">{tip.title}</h2>
-                      <ul className="mt-3 space-y-2 text-sm text-muted-foreground leading-relaxed list-disc pl-4">
-                        {tip.tips.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                      <p className="mt-4 text-xs text-amber-700 dark:text-amber-400/90 leading-relaxed border-t border-border/60 pt-3">
-                        {tip.caution}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </StaggerItem>
-          ))}
-        </StaggerChildren>
+        <TipsGuideLink
+          href="/tips/specific-situations"
+          title="Running for specific situations"
+          description="Guidance for pregnancy, runners 55+, and common health conditions like diabetes, asthma, and arthritis."
+          icon={Users}
+          iconClassName="bg-sky-500/10 text-sky-600 dark:text-sky-400"
+        />
 
         <FadeIn className="mt-10 text-center text-sm text-muted-foreground">
           <p>
