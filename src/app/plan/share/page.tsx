@@ -24,6 +24,7 @@ export async function generateMetadata({
       title: "Training progress",
       description: "Celebrate a training milestone on Let's Run Now.",
       path: "/plan/share",
+      noindex: true,
     });
   }
 
@@ -38,6 +39,7 @@ export async function generateMetadata({
     title,
     description,
     path: "/plan/share",
+    noindex: true,
   });
 }
 

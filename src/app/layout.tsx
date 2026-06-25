@@ -10,6 +10,7 @@ import { GoogleAnalyticsPageView } from "@/components/analytics/page-view-tracke
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL, SITE_DESCRIPTION, SITE_KEYWORDS } from "@/lib/site";
+import { ogImageMeta } from "@/lib/seo/metadata";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -41,11 +42,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: SITE_NAME,
+    url: SITE_URL,
+    images: ogImageMeta(),
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
+    images: [ogImageMeta()[0].url],
   },
   robots: {
     index: true,

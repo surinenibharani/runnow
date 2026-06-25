@@ -4,6 +4,15 @@ type RateLimitEntry = {
 };
 
 const store = new Map<string, RateLimitEntry>();
+const MAX_STORE_ENTRIES = 10_000;
+
+function pruneStore(now: number) {
+  if (store.size <= MAX_STORE_ENTRIES) return;
+  for (const [key, entry] of store) {
+    if (now > entry.resetAt) store.delete(key);
+    if (store.size <= MAX_STORE_ENTRIES * 0.8) break;
+  }
+}
 
 export function getClientIp(request: Request): string {
   return (
@@ -19,6 +28,7 @@ export function rateLimit(
   windowMs: number
 ): { ok: true } | { ok: false; retryAfter: number } {
   const now = Date.now();
+  pruneStore(now);
   const entry = store.get(key);
 
   if (!entry || now > entry.resetAt) {

@@ -8,7 +8,7 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FadeIn } from "@/components/motion/fade-in";
 import { safeCallbackUrl } from "@/lib/security/callback-url";
 
@@ -79,9 +79,9 @@ function LoginForm() {
       <FadeIn className="mx-auto max-w-md">
         <Card className="border-border/60">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">
+            <h1 className="text-2xl font-heading font-medium">
               {isCoachFlow ? "Log in as coach" : "Welcome back"}
-            </CardTitle>
+            </h1>
             <p className="text-sm text-muted-foreground mt-1">
               {isCoachFlow
                 ? "Sign in to manage your teams or subscribe to the coach plan"

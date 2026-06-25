@@ -8,7 +8,7 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FadeIn } from "@/components/motion/fade-in";
 import {
   TurnstileWidget,
@@ -113,9 +113,9 @@ function SignupForm() {
       <FadeIn className="mx-auto max-w-md">
         <Card className="border-border/60">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">
+            <h1 className="text-2xl font-heading font-medium">
               {isCoachFlow ? "Sign up as coach" : "Create your account"}
-            </CardTitle>
+            </h1>
             <p className="text-sm text-muted-foreground mt-1">
               {isCoachFlow
                 ? "Create your account, then subscribe to the coach plan on the Teams page"

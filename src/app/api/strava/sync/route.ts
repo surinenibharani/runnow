@@ -46,7 +46,7 @@ export async function POST(request: Request) {
           : `Synced ${synced} runs`,
     });
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Sync failed";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("Strava sync error:", err);
+    return NextResponse.json({ error: "Sync failed" }, { status: 500 });
   }
 }

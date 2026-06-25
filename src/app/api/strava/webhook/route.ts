@@ -4,6 +4,7 @@ import {
   findUserIdByStravaAthleteId,
   syncStravaActivitiesForUser,
 } from "@/lib/strava-sync";
+import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -39,6 +40,18 @@ export async function GET(request: Request) {
 
 /** Strava activity / deauth events (POST). */
 export async function POST(request: Request) {
+  const ip = getClientIp(request);
+  const limited = rateLimit(`strava-webhook:${ip}`, 60, 60 * 1000);
+  if (!limited.ok) {
+    return NextResponse.json(
+      { error: "Too many requests" },
+      {
+        status: 429,
+        headers: { "Retry-After": String(limited.retryAfter) },
+      }
+    );
+  }
+
   let event: StravaWebhookEvent;
 
   try {

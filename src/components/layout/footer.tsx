@@ -43,6 +43,11 @@ export function Footer() {
                   Injury Prevention
                 </Link>
               </li>
+              <li>
+                <Link href="/teams" className="hover:text-foreground transition-colors">
+                  Coach Teams
+                </Link>
+              </li>
             </ul>
           </div>
 

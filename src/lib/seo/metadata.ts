@@ -13,6 +13,7 @@ export function pageMetadata(opts: {
   path: string;
   noindex?: boolean;
   ogType?: "website" | "article";
+  titleAbsolute?: boolean;
 }): Metadata {
   const url = `${SITE_URL}${opts.path}`;
   const images = ogImageMeta();
@@ -21,7 +22,7 @@ export function pageMetadata(opts: {
     : `${opts.title} | ${SITE_NAME}`;
 
   return {
-    title: opts.title,
+    title: opts.titleAbsolute ? { absolute: opts.title } : opts.title,
     description: opts.description,
     ...(opts.noindex && {
       robots: { index: false, follow: false, googleBot: { index: false, follow: false } },

@@ -7,6 +7,13 @@ import {
 import { parseCompletedIdsFromDb, serializeCompletedIds } from "@/lib/plan-alignment";
 import { getPlanById } from "@/lib/plans";
 import { parseAge, parseFitnessLevel, type FitnessLevel } from "@/lib/plan-personalization";
+import {
+  buildPlanPersonalization,
+  getScheduledWorkoutIds,
+  resolveSchedulePrefs,
+  sanitizeCompletedIds,
+  isValidWorkoutId,
+} from "@/lib/plan-validation";
 
 const VALID_FITNESS_LEVELS: FitnessLevel[] = [
   "beginner",
@@ -151,6 +158,35 @@ export async function PUT(request: Request) {
     }
   }
 
+  const plan = await getOrCreateUserTrainingPlan(session.user.id);
+  const targetPlanId = planId ?? plan.planId;
+  const schedulePrefs = resolveSchedulePrefs(plan, {
+    restDay,
+    longRunDay,
+    runDaysPerWeek,
+  });
+  const personalization = buildPlanPersonalization(
+    age === undefined ? plan.age : parseAge(age),
+    fitnessLevel === undefined ? plan.fitnessLevel : fitnessLevel,
+    goalRaceDate === undefined
+      ? plan.goalRaceDate
+      : goalRaceDate === null
+        ? null
+        : new Date(goalRaceDate)
+  );
+  const validWorkoutIds = getScheduledWorkoutIds(
+    targetPlanId,
+    schedulePrefs,
+    personalization
+  );
+
+  if (completedIds !== undefined) {
+    const sanitized = sanitizeCompletedIds(completedIds, validWorkoutIds);
+    if (!sanitized) {
+      return NextResponse.json({ error: "Invalid completed workouts" }, { status: 400 });
+    }
+  }
+
   if (
     restDay !== undefined &&
     longRunDay !== undefined &&
@@ -162,7 +198,13 @@ export async function PUT(request: Request) {
     );
   }
 
+  const sanitizedCompleted =
+    completedIds !== undefined
+      ? sanitizeCompletedIds(completedIds, validWorkoutIds)!
+      : undefined;
+
   const allowStreak = completedIds !== undefined;
+
   const updateData: Parameters<typeof updateUserTrainingPlan>[1] = {
     planId,
     currentWeek,
@@ -182,7 +224,7 @@ export async function PUT(request: Request) {
         : goalRaceDate === null
           ? null
           : new Date(goalRaceDate),
-    completedIds,
+    completedIds: sanitizedCompleted,
     lastCompletedDate:
       lastCompletedDate === null
         ? null
@@ -191,8 +233,9 @@ export async function PUT(request: Request) {
           : undefined,
   };
 
-  if (allowStreak && streak !== undefined) {
-    updateData.streak = typeof streak === "number" ? Math.max(0, streak) : 0;
+  if (allowStreak && streak !== undefined && typeof streak === "number") {
+    const maxStreak = sanitizedCompleted?.length ?? plan.streak;
+    updateData.streak = Math.min(365, Math.max(0, streak), maxStreak);
   }
 
   const updated = await updateUserTrainingPlan(session.user.id, updateData);
@@ -214,6 +257,16 @@ export async function PATCH(request: Request) {
   }
 
   const plan = await getOrCreateUserTrainingPlan(session.user.id);
+  const validWorkoutIds = getScheduledWorkoutIds(
+    plan.planId,
+    resolveSchedulePrefs(plan, {}),
+    buildPlanPersonalization(plan.age, plan.fitnessLevel, plan.goalRaceDate)
+  );
+
+  if (!isValidWorkoutId(workoutId, validWorkoutIds)) {
+    return NextResponse.json({ error: "Invalid workout" }, { status: 400 });
+  }
+
   const ids = parseCompletedIdsFromDb(plan.completedIds);
   const next = completed
     ? [...new Set([...ids, workoutId])]

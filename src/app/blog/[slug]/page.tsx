@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) {
     return {
       title: "Post Not Found",
+      description: "This blog post could not be found on LetsRunNow.",
       robots: { index: false, follow: false },
     };
   }

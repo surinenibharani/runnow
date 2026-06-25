@@ -7,12 +7,13 @@ import { Testimonials } from "@/components/landing/testimonials";
 import { CtaSection } from "@/components/landing/cta-section";
 import { TipsTicker } from "@/components/landing/tips-ticker";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { SITE_TAGLINE, SITE_DESCRIPTION } from "@/lib/site";
+import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
-  title: `LetsRunNow — ${SITE_TAGLINE}`,
+  title: `${SITE_NAME} — ${SITE_TAGLINE}`,
   description: SITE_DESCRIPTION,
   path: "/",
+  titleAbsolute: true,
 });
 
 export default function Home() {
