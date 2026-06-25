@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Hero } from "@/components/landing/hero";
 import { Features } from "@/components/landing/features";
 import { HowItWorks } from "@/components/landing/how-it-works";
@@ -17,6 +18,20 @@ export const metadata: Metadata = pageMetadata({
 export default function Home() {
   return (
     <>
+      <div className="border-b border-border/60 bg-muted/30">
+        <div className="mx-auto max-w-6xl px-4 py-2.5 sm:px-6 text-center text-sm">
+          <Link
+            href="/blog/why-letsrunnow"
+            className="font-medium text-primary hover:underline"
+          >
+            Why LetsRunNow?
+          </Link>
+          <span className="text-muted-foreground hidden sm:inline">
+            {" "}
+            — The anti-app app for new runners
+          </span>
+        </div>
+      </div>
       <Hero />
       <Features />
       <HowItWorks />

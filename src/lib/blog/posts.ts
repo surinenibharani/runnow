@@ -913,6 +913,103 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "why-letsrunnow",
+    title: "Why LetsRunNow?",
+    excerpt:
+      "Tired of overwhelming running apps? LetsRunNow is the simple, free, no-signup Couch to 5K and marathon training site for real beginners.",
+    category: "Getting Started",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-06-23",
+    readTime: "5 min",
+    relatedSlugs: [
+      "never-ran-where-to-start",
+      "training-first-5k",
+      "building-a-running-habit",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "“The anti-app app for new runners” — the one you use when big flashy apps feel like too much.",
+          "You’ve decided to start running. That’s awesome.",
+          "Then you open the app store and suddenly you’re drowning in features: GPS tracking, heart rate zones, AI coaching, social challenges, premium subscriptions, and leaderboards full of people who look like they were born running.",
+          "Overwhelming, right?",
+          "That’s exactly why we built LetsRunNow.",
+        ],
+      },
+      {
+        heading: "We're Not Trying to Be Another Fancy Running App",
+        paragraphs: [
+          "Most running apps are designed for people who already run. We built ours for people who are still thinking about running — the ones who get out of breath walking up stairs, who feel intimidated by the sport, or who have tried and quit before.",
+          "Here's the difference:",
+        ],
+        list: [
+          "No account required — Start today. No email, no password, no data collection.",
+          "No pressure, no judgment — Walking is not cheating. It's smart training.",
+          "Dead simple — Three runs a week. Clear walk-run intervals. Check it off and you're done.",
+          "Actually free — Forever. No hidden paywalls or “upgrade to continue” nonsense.",
+        ],
+      },
+      {
+        heading: "What You Actually Get",
+        list: [
+          "Proven plans from Couch to 5K all the way to full marathon",
+          "Quirky run names that make you smile when your alarm goes off (yes, this helps)",
+          "Browser-based progress tracking — streaks, check-offs, and milestones that live in your browser",
+          "Realistic pacing advice — “Slow is fast” isn't just a slogan here. It's the whole philosophy.",
+        ],
+        paragraphs: [
+          "You don't need fancy gear. You don't need to be fast. You just need to show up.",
+        ],
+      },
+      {
+        heading: "Why Beginners Love It",
+        paragraphs: ["Real people, real words from our users:"],
+        subsections: [
+          {
+            heading: "— Kumar, 46, started from zero",
+            variant: "quote",
+            paragraphs: [
+              "I genuinely thought running wasn't for me. Week 4 and I'm actually looking forward to my runs.",
+            ],
+          },
+          {
+            heading: "— Venkat, 42",
+            variant: "quote",
+            paragraphs: [
+              "The walk-run intervals made it feel achievable. No shame in walking — that's the whole point.",
+            ],
+          },
+          {
+            heading: "— Fakruddin, on week 6",
+            variant: "quote",
+            paragraphs: [
+              "Checking off workouts and seeing my streak grow kept me accountable. Simple but it works.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "When Big Apps Feel Like Too Much",
+        list: [
+          "You don't want to carry your phone and track every second",
+          "You don't want guilt-tripping notifications",
+          "You just want a clear, encouraging plan that respects your life and your current fitness level",
+        ],
+        paragraphs: [
+          "That's where LetsRunNow shines. We're the calm, friendly voice in a sea of intense fitness content.",
+        ],
+      },
+      {
+        heading: "Ready to Give It a Try?",
+        paragraphs: [
+          "Your future self will thank you.",
+          "No risk. No commitment. Just lace up and begin.",
+        ],
+        cta: { text: "Start the free Training Plan Now!", href: "/plan" },
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

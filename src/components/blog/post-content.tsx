@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { BlogPost, BlogSection } from "@/lib/blog/types";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { PostShareButtons } from "@/components/blog/post-share-buttons";
 import { BlogComments } from "@/components/blog/blog-comments";
@@ -33,13 +34,34 @@ function SectionBlock({ section }: { section: BlogSection }) {
         </ul>
       )}
       {section.subsections?.map((sub) => (
-        <div key={sub.heading} className="rounded-xl border border-border/60 bg-muted/30 p-4 sm:p-5 space-y-3">
-          <h3 className="font-semibold text-foreground">{sub.heading}</h3>
+        <div
+          key={sub.heading}
+          className={
+            sub.variant === "quote"
+              ? "rounded-xl border border-border/60 border-l-4 border-l-primary/40 bg-muted/20 p-4 sm:p-5 space-y-3"
+              : "rounded-xl border border-border/60 bg-muted/30 p-4 sm:p-5 space-y-3"
+          }
+        >
+          {sub.variant !== "quote" && (
+            <h3 className="font-semibold text-foreground">{sub.heading}</h3>
+          )}
           {sub.paragraphs?.map((p) => (
-            <p key={p} className="text-sm text-muted-foreground leading-relaxed">
-              {p}
+            <p
+              key={p}
+              className={
+                sub.variant === "quote"
+                  ? "text-sm text-foreground leading-relaxed italic"
+                  : "text-sm text-muted-foreground leading-relaxed"
+              }
+            >
+              {sub.variant === "quote" ? `“${p}”` : p}
             </p>
           ))}
+          {sub.variant === "quote" && (
+            <p className="text-sm font-medium text-muted-foreground not-italic">
+              {sub.heading}
+            </p>
+          )}
           {sub.list && (
             <ul className="space-y-1.5">
               {sub.list.map((item) => (
@@ -55,6 +77,16 @@ function SectionBlock({ section }: { section: BlogSection }) {
           )}
         </div>
       ))}
+      {section.cta && (
+        <Button
+          nativeButton={false}
+          render={<Link href={section.cta.href} />}
+          size="lg"
+          className="mt-2"
+        >
+          {section.cta.text}
+        </Button>
+      )}
     </section>
   );
 }
