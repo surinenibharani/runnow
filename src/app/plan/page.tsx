@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { FadeIn } from "@/components/motion/fade-in";
+import { PlanLoading } from "@/components/plan/plan-loading";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 const WeekTracker = dynamic(
   () => import("@/components/plan/week-tracker").then((m) => ({ default: m.WeekTracker })),
-  { loading: () => <div className="text-center text-muted-foreground">Loading plans...</div> }
+  { loading: () => <PlanLoading /> }
 );
 
 export const metadata: Metadata = pageMetadata({
@@ -33,7 +34,7 @@ export default function PlanPage() {
           </div>
         </FadeIn>
 
-        <Suspense fallback={<div className="text-center text-muted-foreground">Loading plans...</div>}>
+        <Suspense fallback={<PlanLoading />}>
           <WeekTracker />
         </Suspense>
       </div>

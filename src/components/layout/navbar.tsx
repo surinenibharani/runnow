@@ -64,7 +64,7 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Logo />
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Main">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -121,6 +121,7 @@ export function Navbar() {
       {open && (
         <nav
           id="mobile-nav"
+          aria-label="Main"
           className="border-t border-border md:hidden animate-in fade-in slide-in-from-top-1 duration-200"
         >
           <div className="flex flex-col gap-1 p-4">

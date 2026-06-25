@@ -38,6 +38,8 @@ import { getActivityCaption } from "@/lib/workout-caption";
 import { StravaConnectBanner } from "@/components/strava/strava-connect-banner";
 import { SchedulePicker } from "@/components/plan/schedule-picker";
 import { PlanProfilePicker } from "@/components/plan/plan-profile-picker";
+import { PlanLoading } from "@/components/plan/plan-loading";
+import { ProgressShare } from "@/components/plan/progress-share";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -73,6 +75,7 @@ export function WeekTracker() {
   const [expandedDay, setExpandedDay] = useState<string | null>(null);
   const [useRemote, setUseRemote] = useState(false);
   const [syncing, setSyncing] = useState(false);
+  const [bootstrapComplete, setBootstrapComplete] = useState(false);
   const migratedRef = useRef(false);
 
   const isAuthenticated = authStatus === "authenticated";
@@ -136,17 +139,21 @@ export function WeekTracker() {
   }, []);
 
   useEffect(() => {
+    if (authStatus === "loading") return;
+
     if (authStatus !== "authenticated") {
       setUseRemote(false);
       setSchedulePrefs(getSchedulePreferences());
       setPlanProfile(getPlanProfile());
       setProgress(getProgress(planId));
+      setBootstrapComplete(true);
       return;
     }
 
     let cancelled = false;
 
     async function loadRemote() {
+      setBootstrapComplete(false);
       setSyncing(true);
       try {
         const remote = await fetchTrainingPlan();
@@ -187,7 +194,10 @@ export function WeekTracker() {
         setPlanProfile(getPlanProfile());
         setProgress(getProgress(planId));
       } finally {
-        if (!cancelled) setSyncing(false);
+        if (!cancelled) {
+          setSyncing(false);
+          setBootstrapComplete(true);
+        }
       }
     }
 
@@ -408,12 +418,45 @@ export function WeekTracker() {
     return "bg-muted text-muted-foreground";
   };
 
+  const shareInput = useMemo(
+    () => ({
+      planId,
+      planName: basePlan.name,
+      planDuration: basePlan.duration,
+      week: Number(activeWeek),
+      totalWeeks: weeks.length,
+      percentComplete,
+      streak: progress.streak,
+      completedCount: completedInPlan,
+      totalWorkouts,
+    }),
+    [
+      planId,
+      basePlan.name,
+      basePlan.duration,
+      activeWeek,
+      weeks.length,
+      percentComplete,
+      progress.streak,
+      completedInPlan,
+      totalWorkouts,
+    ]
+  );
+
+  if (authStatus === "loading" || !bootstrapComplete) {
+    return <PlanLoading />;
+  }
+
   return (
     <div className="space-y-8">
       <StravaConnectBanner />
 
       {isAuthenticated && useRemote && (
-        <div className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-4 py-2 text-sm text-muted-foreground">
+        <div
+          className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-4 py-2 text-sm text-muted-foreground"
+          role="status"
+          aria-live="polite"
+        >
           <Cloud className="size-4 text-primary shrink-0" />
           Progress synced to your account
           {syncing && <span className="text-xs">· saving…</span>}
@@ -430,7 +473,10 @@ export function WeekTracker() {
       )}
 
       <Tabs value={familyId} onValueChange={handleFamilyChange}>
-        <TabsList className="w-full h-auto flex flex-col sm:flex-row gap-1 bg-muted/50 p-1">
+        <TabsList
+          className="w-full h-auto flex flex-col sm:flex-row gap-1 bg-muted/50 p-1"
+          aria-label="Training plan distance"
+        >
           {PLAN_FAMILIES.map((f) => (
             <TabsTrigger
               key={f.id}
@@ -530,13 +576,22 @@ export function WeekTracker() {
               <p className="text-sm text-muted-foreground">Overall progress</p>
               <p className="text-sm font-semibold">{percentComplete}%</p>
             </div>
-            <Progress value={percentComplete} className="h-2" />
+            <Progress
+              value={percentComplete}
+              className="h-2"
+              aria-label={`${percentComplete} percent of plan complete`}
+            />
           </CardContent>
         </Card>
       </div>
 
+      {completedInPlan > 0 && <ProgressShare input={shareInput} />}
+
       <Tabs value={activeWeek} onValueChange={handleWeekChange}>
-        <TabsList className="w-full flex flex-wrap h-auto gap-1 bg-muted/50 p-1 max-h-32 overflow-y-auto">
+        <TabsList
+          className="w-full flex flex-wrap h-auto gap-1 bg-muted/50 p-1 max-h-32 overflow-y-auto"
+          aria-label="Training plan weeks"
+        >
           {weeks.map((week) => {
             const weekDayIds = week.days
               .filter((d) => d.kind !== "rest")

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { SkipLink } from "@/components/layout/skip-link";
 import { Suspense } from "react";
 import { AuthProvider } from "@/components/providers/auth-provider";
 import { GoogleAnalyticsScripts } from "@/components/analytics/google-analytics";
@@ -93,8 +94,11 @@ export default function RootLayout({
           <GoogleAnalyticsPageView />
         </Suspense>
         <AuthProvider>
+          <SkipLink />
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1 outline-none" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
         </AuthProvider>
         <Analytics />

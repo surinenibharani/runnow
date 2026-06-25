@@ -1,10 +1,15 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const fadeUpReduced: Variants = {
+  hidden: { opacity: 1, y: 0 },
   visible: { opacity: 1, y: 0 },
 };
 
@@ -23,7 +28,12 @@ export function FadeIn({
   duration = 0.5,
   as = "div",
 }: FadeInProps) {
+  const prefersReducedMotion = useReducedMotion();
   const Component = motion[as];
+  const variants = prefersReducedMotion ? fadeUpReduced : fadeUp;
+  const transition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration, delay, ease: [0.25, 0.4, 0.25, 1] as const };
 
   return (
     <Component
@@ -31,8 +41,8 @@ export function FadeIn({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
-      variants={fadeUp}
-      transition={{ duration, delay, ease: [0.25, 0.4, 0.25, 1] }}
+      variants={variants}
+      transition={transition}
     >
       {children}
     </Component>
@@ -46,6 +56,12 @@ export function StaggerChildren({
   children: React.ReactNode;
   className?: string;
 }) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={cn(className)}
@@ -69,6 +85,12 @@ export function StaggerItem({
   children: React.ReactNode;
   className?: string;
 }) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
   return (
     <motion.div className={cn(className)} variants={fadeUp}>
       {children}

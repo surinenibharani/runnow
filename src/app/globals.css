@@ -62,7 +62,7 @@
   --secondary: oklch(0.95 0.02 250);
   --secondary-foreground: oklch(0.25 0.05 260);
   --muted: oklch(0.96 0.01 250);
-  --muted-foreground: oklch(0.5 0.03 260);
+  --muted-foreground: oklch(0.44 0.04 260);
   --accent: oklch(0.94 0.04 250);
   --accent-foreground: oklch(0.25 0.05 260);
   --destructive: oklch(0.577 0.245 27.325);
@@ -99,7 +99,7 @@
   --secondary: oklch(0.22 0.04 260);
   --secondary-foreground: oklch(0.96 0.01 250);
   --muted: oklch(0.22 0.04 260);
-  --muted-foreground: oklch(0.65 0.03 250);
+  --muted-foreground: oklch(0.72 0.03 250);
   --accent: oklch(0.24 0.05 260);
   --accent-foreground: oklch(0.96 0.01 250);
   --destructive: oklch(0.704 0.191 22.216);
@@ -132,6 +132,18 @@
   }
   html {
     @apply font-sans scroll-smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
