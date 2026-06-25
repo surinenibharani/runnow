@@ -105,15 +105,58 @@ export function aggregateActivityTypes(
 }
 
 function heartRateZone(
-  avgHr: number,
+  hr: number,
   maxHr: number
 ): keyof typeof ZONE_LABELS {
-  const pct = (avgHr / maxHr) * 100;
+  const pct = (hr / maxHr) * 100;
   if (pct < 60) return "z1";
   if (pct < 70) return "z2";
   if (pct < 80) return "z3";
   if (pct < 90) return "z4";
   return "z5";
+}
+
+function zoneSlicesFromMinutes(minutes: Map<string, number>): PieSlice[] {
+  const colorMap = Object.fromEntries(
+    Object.entries(ZONE_LABELS).map(([key, label]) => [
+      label,
+      ZONE_COLORS[key as keyof typeof ZONE_COLORS],
+    ])
+  );
+
+  const slices = toSlices(minutes, colorMap, "#94a3b8");
+  return slices.map((s) => ({
+    ...s,
+    value: Math.round(s.value * 10) / 10,
+  }));
+}
+
+/** Minutes in each HR zone from per-second Strava heartrate stream data. */
+export function aggregateHeartRateZonesFromStream(
+  heartrates: number[],
+  timeSeconds: number[] | null,
+  age: number | null
+): PieSlice[] {
+  const maxHr = 220 - (age ?? 35);
+  const minutes = new Map<string, number>();
+
+  for (let i = 0; i < heartrates.length; i++) {
+    const hr = heartrates[i];
+    if (!hr || hr <= 0) continue;
+
+    let durationSec = 1;
+    if (timeSeconds && timeSeconds.length === heartrates.length) {
+      durationSec =
+        i === 0
+          ? Math.max(timeSeconds[0], 1)
+          : Math.max(timeSeconds[i] - timeSeconds[i - 1], 0.5);
+    }
+
+    const label = ZONE_LABELS[heartRateZone(hr, maxHr)];
+    minutes.set(label, (minutes.get(label) ?? 0) + durationSec / 60);
+  }
+
+  return zoneSlicesFromMinutes(minutes);
 }
 
 /** Minutes in each HR zone, weighted by activity moving time. */
@@ -132,16 +175,5 @@ export function aggregateHeartRateZones(
     minutes.set(label, (minutes.get(label) ?? 0) + mins);
   }
 
-  const colorMap = Object.fromEntries(
-    Object.entries(ZONE_LABELS).map(([key, label]) => [
-      label,
-      ZONE_COLORS[key as keyof typeof ZONE_COLORS],
-    ])
-  );
-
-  const slices = toSlices(minutes, colorMap, "#94a3b8");
-  return slices.map((s) => ({
-    ...s,
-    value: Math.round(s.value),
-  }));
+  return zoneSlicesFromMinutes(minutes);
 }

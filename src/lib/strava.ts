@@ -168,6 +168,44 @@ export async function fetchStravaAthlete(
   return res.json();
 }
 
+type StravaStreamSeries = {
+  data: number[];
+};
+
+type StravaStreamsByType = {
+  heartrate?: StravaStreamSeries;
+  time?: StravaStreamSeries;
+};
+
+export async function fetchStravaActivityHeartrateStream(
+  accessToken: string,
+  activityId: string | number
+): Promise<{ heartrates: number[]; timeSeconds: number[] | null }> {
+  const params = new URLSearchParams({
+    keys: "heartrate,time",
+    key_by_type: "true",
+  });
+
+  const res = await fetch(
+    `${STRAVA_API}/activities/${activityId}/streams?${params}`,
+    { headers: { Authorization: `Bearer ${accessToken}` } }
+  );
+
+  if (res.status === 404) {
+    return { heartrates: [], timeSeconds: null };
+  }
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch activity streams: ${res.status}`);
+  }
+
+  const json = (await res.json()) as StravaStreamsByType;
+  return {
+    heartrates: json.heartrate?.data ?? [],
+    timeSeconds: json.time?.data ?? null,
+  };
+}
+
 /** Bucket start coords + distance to match recurring routes */
 export function buildRouteKey(
   startLat?: number | null,

@@ -42,6 +42,8 @@ function LoginForm() {
     setLoading(true);
     setError("");
 
+    sessionStorage.setItem(AUTH_WELCOME_STORAGE_KEY, "login");
+
     const result = await signIn("credentials", {
       email,
       password,
@@ -49,6 +51,7 @@ function LoginForm() {
     });
 
     if (!result?.ok) {
+      sessionStorage.removeItem(AUTH_WELCOME_STORAGE_KEY);
       setLoading(false);
       setError(
         result?.error === "CredentialsSignin"
@@ -58,7 +61,6 @@ function LoginForm() {
       return;
     }
 
-    sessionStorage.setItem(AUTH_WELCOME_STORAGE_KEY, "login");
     window.location.assign(callbackUrl);
   }
 

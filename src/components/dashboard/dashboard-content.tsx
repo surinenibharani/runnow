@@ -31,7 +31,6 @@ import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
 import { PaceInsightsPanel } from "@/components/dashboard/pace-insights-panel";
 import type { RouteComparison, RunSuggestion } from "@/lib/run-analysis";
 import type { PieSlice } from "@/lib/activity-charts";
-import { aggregateHeartRateZones } from "@/lib/activity-charts";
 import type { PaceInsights } from "@/lib/pace-analysis";
 import {
   CHART_TIME_RANGE_OPTIONS,
@@ -103,6 +102,10 @@ export function DashboardContent() {
   const [chartRange, setChartRange] = useState<ChartTimeRange>("month");
   const [chartsLoading, setChartsLoading] = useState(false);
   const [selectedHrActivityId, setSelectedHrActivityId] = useState("all");
+  const [activityHrZones, setActivityHrZones] = useState<PieSlice[] | null>(
+    null
+  );
+  const [activityHrZonesLoading, setActivityHrZonesLoading] = useState(false);
 
   const loadDashboard = useCallback(
     async (range: ChartTimeRange = chartRange) => {
@@ -149,18 +152,46 @@ export function DashboardContent() {
   function handleChartRangeChange(value: ChartTimeRange) {
     setChartRange(value);
     setSelectedHrActivityId("all");
+    setActivityHrZones(null);
     refreshCharts(value);
   }
+
+  useEffect(() => {
+    if (!data || selectedHrActivityId === "all") {
+      setActivityHrZones(null);
+      setActivityHrZonesLoading(false);
+      return;
+    }
+
+    let cancelled = false;
+    setActivityHrZonesLoading(true);
+    setActivityHrZones(null);
+
+    fetch(`/api/activities/${selectedHrActivityId}/heart-rate-zones`)
+      .then(async (res) => {
+        const json = await res.json();
+        if (cancelled) return;
+        setActivityHrZones(json.zones ?? []);
+        setActivityHrZonesLoading(false);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setActivityHrZones([]);
+          setActivityHrZonesLoading(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [data, selectedHrActivityId]);
 
   const displayedHeartRateZones = useMemo(() => {
     if (!data) return [];
     if (selectedHrActivityId === "all") return data.heartRateZones;
-
-    const activity = data.hrActivities.find((a) => a.id === selectedHrActivityId);
-    if (!activity?.averageHeartrate || activity.movingTime <= 0) return [];
-
-    return aggregateHeartRateZones([activity], data.user.age);
-  }, [data, selectedHrActivityId]);
+    if (activityHrZonesLoading) return [];
+    return activityHrZones ?? [];
+  }, [data, selectedHrActivityId, activityHrZones, activityHrZonesLoading]);
 
   const heartRateSubtitle = useMemo(() => {
     if (!data) return "";
@@ -182,8 +213,8 @@ export function DashboardContent() {
     }
 
     return data.user.age
-      ? `${activity.name} · ${date} · avg ${Math.round(activity.averageHeartrate)} bpm · max ${maxHr} bpm`
-      : `${activity.name} · ${date} · avg ${Math.round(activity.averageHeartrate)} bpm · using default max HR`;
+      ? `${activity.name} · ${date} · time in each HR zone · max ${maxHr} bpm`
+      : `${activity.name} · ${date} · time in each HR zone · using default max HR`;
   }, [data, selectedHrActivityId, chartRange]);
 
   useEffect(() => {
@@ -514,7 +545,8 @@ export function DashboardContent() {
             <div
               className={cn(
                 "mt-4 grid gap-4 lg:grid-cols-2 transition-opacity",
-                chartsLoading && "opacity-50 pointer-events-none"
+                (chartsLoading || activityHrZonesLoading) &&
+                  "opacity-50 pointer-events-none"
               )}
             >
               <Card className="border-border/60">
@@ -572,9 +604,11 @@ export function DashboardContent() {
                     slices={displayedHeartRateZones}
                     valueLabel="minutes"
                     emptyMessage={
-                      selectedHrActivityId === "all"
-                        ? "No heart rate data on synced activities yet. Use a watch or chest strap during workouts."
-                        : "No heart rate data for this activity."
+                      activityHrZonesLoading
+                        ? "Loading heart rate stream from Strava…"
+                        : selectedHrActivityId === "all"
+                          ? "No heart rate data on synced activities yet. Use a watch or chest strap during workouts."
+                          : "No heart rate stream for this activity. Enable HR recording on your watch or chest strap."
                     }
                   />
                 </CardContent>

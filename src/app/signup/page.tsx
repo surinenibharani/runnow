@@ -80,6 +80,8 @@ function SignupForm() {
       return;
     }
 
+    sessionStorage.setItem(AUTH_WELCOME_STORAGE_KEY, "new");
+
     const result = await signIn("credentials", {
       email,
       password,
@@ -87,12 +89,12 @@ function SignupForm() {
     });
 
     if (!result?.ok) {
+      sessionStorage.removeItem(AUTH_WELCOME_STORAGE_KEY);
       setLoading(false);
       setError("Account created but sign-in failed. Please log in manually.");
       return;
     }
 
-    sessionStorage.setItem(AUTH_WELCOME_STORAGE_KEY, "new");
     window.location.assign(callbackUrl);
   }
 
