@@ -36,6 +36,7 @@ import {
 } from "@/lib/training-plan-client";
 import { remapCompletedIds } from "@/lib/plan-validation";
 import { CrossTrainingDetails, CrossTrainingPreview } from "@/components/plan/cross-training-details";
+import { PlanFamilyIllustration, WorkoutKindAccent } from "@/components/visuals/plan-scenes";
 import { getActivityCaption } from "@/lib/workout-caption";
 import { StravaConnectBanner } from "@/components/strava/strava-connect-banner";
 import { SchedulePicker } from "@/components/plan/schedule-picker";
@@ -481,8 +482,14 @@ export function WeekTracker() {
     ]
   );
 
-  if (authStatus === "loading" || !bootstrapComplete) {
-    return <PlanLoading />;
+  if (authStatus === "loading") {
+    return <PlanLoading variant="auth" />;
+  }
+
+  if (!bootstrapComplete) {
+    return (
+      <PlanLoading variant={isAuthenticated ? "sync" : "bundle"} />
+    );
   }
 
   return (
@@ -532,7 +539,7 @@ export function WeekTracker() {
 
       <Tabs value={familyId} onValueChange={handleFamilyChange}>
         <TabsList
-          className="w-full h-auto flex flex-col sm:flex-row gap-1 bg-muted/50 p-1"
+          className="grid w-full grid-cols-1 gap-1 bg-muted/50 p-1 min-[480px]:grid-cols-3 sm:flex sm:h-auto sm:flex-row"
           aria-label="Training plan distance"
         >
           {PLAN_FAMILIES.map((f) => (
@@ -555,24 +562,33 @@ export function WeekTracker() {
 
           return (
           <TabsContent key={f.id} value={f.id} className="mt-6 space-y-4">
-            <div className="rounded-xl border border-border/60 bg-muted/20 p-4 sm:p-5">
-              <h2 className="font-semibold text-lg">{f.name}</h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                {displayPlan?.description}
-              </p>
-              <Badge variant="outline" className="mt-3">
-                {f.prerequisite}
-              </Badge>
+            <div className="overflow-hidden rounded-xl border border-border/60">
+              <PlanFamilyIllustration familyId={f.id} familyName={f.name} decorative />
+              <div className="bg-muted/20 p-4 sm:p-5">
+                <h2 className="text-lg font-semibold">{f.name}</h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {displayPlan?.description}
+                </p>
+                <Badge variant="outline" className="mt-3">
+                  {f.prerequisite}
+                </Badge>
+              </div>
             </div>
 
-            <div>
-              <p className="text-sm font-medium mb-2">Choose duration</p>
+            <div role="group" aria-labelledby={`${f.id}-duration-label`}>
+              <p id={`${f.id}-duration-label`} className="text-sm font-medium mb-2">
+                Choose duration
+              </p>
               <div className="flex flex-wrap gap-2">
-                {getPlansForFamily(f.id).map((variant) => (
+                {getPlansForFamily(f.id).map((variant) => {
+                  const selected = planId === variant.id;
+                  return (
                   <Button
                     key={variant.id}
-                    variant={planId === variant.id ? "default" : "outline"}
+                    variant={selected ? "default" : "outline"}
                     size="sm"
+                    aria-pressed={selected}
+                    aria-label={`${variant.duration} week plan`}
                     onClick={() => {
                       setFamilyId(f.id);
                       handleVariantChange(variant.id);
@@ -580,7 +596,8 @@ export function WeekTracker() {
                   >
                     {variant.duration}
                   </Button>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </TabsContent>
@@ -601,9 +618,9 @@ export function WeekTracker() {
         onChange={handleScheduleChange}
       />
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 sm:grid-cols-3">
         <Card className="border-border/60">
-          <CardContent className="p-6 flex items-center gap-4">
+          <CardContent className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
             <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <Check className="size-6" />
             </div>
@@ -617,7 +634,7 @@ export function WeekTracker() {
         </Card>
 
         <Card className="border-border/60">
-          <CardContent className="p-6 flex items-center gap-4">
+          <CardContent className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
             <div className="flex size-12 items-center justify-center rounded-xl bg-orange-500/10 text-orange-500">
               <Flame className="size-6" />
             </div>
@@ -629,7 +646,7 @@ export function WeekTracker() {
         </Card>
 
         <Card className="border-border/60">
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             <div className="flex items-center justify-between mb-2">
               <p className="text-sm text-muted-foreground">Overall progress</p>
               <p className="text-sm font-semibold">{percentComplete}%</p>
@@ -647,7 +664,7 @@ export function WeekTracker() {
 
       <Tabs value={activeWeek} onValueChange={handleWeekChange}>
         <TabsList
-          className="w-full flex flex-wrap h-auto gap-1 bg-muted/50 p-1 max-h-32 overflow-y-auto"
+          className="w-full h-auto flex gap-1 bg-muted/50 p-1 overflow-x-auto sm:flex-wrap sm:overflow-y-auto sm:max-h-32 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           aria-label="Training plan weeks"
         >
           {weeks.map((week) => {
@@ -661,7 +678,7 @@ export function WeekTracker() {
               <TabsTrigger
                 key={week.week}
                 value={String(week.week)}
-                className="flex-1 min-w-[3.5rem] data-active:bg-background"
+                className="shrink-0 min-w-[3.25rem] flex-1 data-active:bg-background sm:min-w-[3.5rem]"
               >
                 W{week.week}
                 {weekDone && <Check className="size-3 ml-1 text-primary" />}
@@ -719,11 +736,20 @@ export function WeekTracker() {
                   <Card
                     key={day.id}
                     className={cn(
-                      "border-border/60 transition-all duration-300",
+                      "relative overflow-hidden border-border/60 transition-all duration-300",
                       isDone && "bg-primary/5 border-primary/20",
                       isCompleteRest && "bg-muted/20"
                     )}
                   >
+                    <WorkoutKindAccent
+                      kind={
+                        isCompleteRest
+                          ? "rest"
+                          : day.kind === "run"
+                            ? "run"
+                            : "cross-train"
+                      }
+                    />
                     <CardHeader className="p-4 sm:p-6">
                       <div className="flex items-start gap-4">
                         {!isCompleteRest ? (
@@ -760,14 +786,14 @@ export function WeekTracker() {
                         )}
 
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap">
+                          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                             <Badge
                               variant="outline"
-                              className="text-xs font-mono"
+                              className="text-xs font-mono shrink-0"
                             >
                               {day.dayName}
                             </Badge>
-                            <Badge className={cn("text-xs", dayKindColor(day))}>
+                            <Badge className={cn("text-xs shrink-0", dayKindColor(day))}>
                               {dayKindLabel(day)}
                             </Badge>
                             {day.kind === "cross-train" && day.crossTraining && (
@@ -775,16 +801,18 @@ export function WeekTracker() {
                             )}
                             {day.kind === "run" &&
                               day.dayOfWeek === schedulePrefs.longRunDay && (
-                                <Badge variant="secondary" className="text-xs">
+                                <Badge variant="secondary" className="text-xs shrink-0">
                                   Long run
                                 </Badge>
                               )}
-                            <CardTitle className="text-base sm:text-lg">
-                              {title}
-                            </CardTitle>
-                            <Badge variant="secondary">{duration}</Badge>
+                            <Badge variant="secondary" className="text-xs shrink-0">
+                              {duration}
+                            </Badge>
                           </div>
-                          <p className="text-sm text-muted-foreground mt-1">
+                          <CardTitle className="mt-2 text-base leading-snug sm:text-lg">
+                            {title}
+                          </CardTitle>
+                          <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
                             {description}
                           </p>
                         </div>

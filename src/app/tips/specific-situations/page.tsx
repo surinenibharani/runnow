@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Users } from "lucide-react";
+import { BookOpen, Users } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
-import { TipsBackLink } from "@/components/tips/tips-back-link";
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { SituationalTipsGrid } from "@/components/tips/situational-tips-grid";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -17,7 +18,14 @@ export default function SpecificSituationsTipsPage() {
   return (
     <div className="py-12 sm:py-16">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <TipsBackLink />
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Tips", href: "/tips" },
+            { label: "Specific situations" },
+          ]}
+        />
+        <TipsSectionNav />
 
         <FadeIn className="text-center mb-12">
           <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400">
@@ -40,6 +48,14 @@ export default function SpecificSituationsTipsPage() {
             Dealing with pain from running? See our{" "}
             <Link href="/injuries" className="text-primary hover:underline">
               injury prevention guide
+            </Link>
+            . For a longer read on medical considerations, see{" "}
+            <Link
+              href="/blog/running-with-health-conditions"
+              className="inline-flex items-center gap-1 text-primary hover:underline"
+            >
+              <BookOpen className="size-3.5" />
+              running with health conditions
             </Link>
             .
           </p>

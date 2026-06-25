@@ -17,6 +17,7 @@ export type BlogPost = {
   slug: string;
   title: string;
   excerpt: string;
+  whyItMatters?: string;
   category: string;
   author: string;
   publishedAt: string;

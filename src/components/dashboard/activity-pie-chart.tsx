@@ -1,4 +1,5 @@
 import type { PieSlice } from "@/lib/activity-charts";
+import { chartDataSummary } from "@/lib/a11y/labels";
 
 type ActivityPieChartProps = {
   title: string;
@@ -50,7 +51,14 @@ export function ActivityPieChart({
             background: `conic-gradient(${gradientStops.join(", ")})`,
           }}
           role="img"
-          aria-label={`${title} pie chart`}
+          aria-label={chartDataSummary(
+            slices.map((s) => ({
+              label: s.label,
+              value: s.value,
+              percent: s.percent,
+            })),
+            title
+          )}
         >
           <div className="absolute inset-6 flex flex-col items-center justify-center rounded-full bg-background text-center">
             <span className="text-2xl font-bold">{total}</span>
@@ -67,6 +75,7 @@ export function ActivityPieChart({
                 <span
                   className="size-3 shrink-0 rounded-full"
                   style={{ backgroundColor: slice.color }}
+                  aria-hidden
                 />
                 <span className="truncate">{slice.label}</span>
               </span>

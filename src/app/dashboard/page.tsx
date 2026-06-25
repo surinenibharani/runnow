@@ -1,6 +1,7 @@
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 const DashboardContent = dynamic(
@@ -20,12 +21,21 @@ export const metadata: Metadata = pageMetadata({
 
 export default function DashboardPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="py-20 text-center text-muted-foreground">Loading…</div>
-      }
-    >
-      <DashboardContent />
-    </Suspense>
+    <div className="py-10 px-4 sm:px-6">
+      <div className="mx-auto max-w-5xl">
+        <Breadcrumbs
+          items={[{ label: "Home", href: "/" }, { label: "Dashboard" }]}
+        />
+        <Suspense
+          fallback={
+            <div className="py-20 text-center text-muted-foreground">
+              Loading…
+            </div>
+          }
+        >
+          <DashboardContent />
+        </Suspense>
+      </div>
+    </div>
   );
 }

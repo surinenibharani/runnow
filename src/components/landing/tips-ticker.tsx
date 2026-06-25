@@ -15,11 +15,11 @@ export function TipsTicker() {
             <span key={`${item.href}-${index}`} className="flex shrink-0 items-center">
               <Link
                 href={item.href}
-                className="whitespace-nowrap px-4 text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+                className="whitespace-nowrap px-4 text-sm font-medium text-foreground/90 transition-colors hover:text-primary"
               >
                 {item.title}
               </Link>
-              <span className="text-muted-foreground/40" aria-hidden>
+              <span className="text-muted-foreground/60" aria-hidden>
                 ·
               </span>
             </span>

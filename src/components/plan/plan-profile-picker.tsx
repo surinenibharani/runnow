@@ -108,8 +108,10 @@ export function PlanProfilePicker({
         </div>
       </div>
 
-      <div>
-        <p className="text-sm font-medium mb-2">Current fitness level</p>
+      <div role="group" aria-labelledby="plan-fitness-label">
+        <p id="plan-fitness-label" className="text-sm font-medium mb-2">
+          Current fitness level
+        </p>
         <div className="grid gap-2 sm:grid-cols-2">
           {FITNESS_LEVEL_OPTIONS.map((option) => {
             const selected = profile.fitnessLevel === option.value;
@@ -120,6 +122,8 @@ export function PlanProfilePicker({
                 onClick={() =>
                   onChange({ ...profile, fitnessLevel: option.value })
                 }
+                aria-pressed={selected}
+                aria-label={`Fitness level: ${option.label}`}
                 className={cn(
                   "rounded-lg border px-3 py-2.5 text-left transition-colors",
                   selected

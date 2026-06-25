@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog/posts";
+import { getPlanSitemapEntries } from "@/lib/seo/plans";
 import { SITE_URL } from "@/lib/site";
 
 const staticRoutes = [
@@ -12,6 +13,8 @@ const staticRoutes = [
   { path: "/gear", priority: 0.8, changeFrequency: "weekly" as const },
   { path: "/teams", priority: 0.7, changeFrequency: "weekly" as const },
   { path: "/injuries", priority: 0.8, changeFrequency: "monthly" as const },
+  { path: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },
+  { path: "/terms", priority: 0.3, changeFrequency: "yearly" as const },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -24,6 +27,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route.priority,
   }));
 
+  const planPages = getPlanSitemapEntries().map((entry) => ({
+    url: entry.url,
+    lastModified: now,
+    changeFrequency: entry.changeFrequency,
+    priority: entry.priority,
+  }));
+
   const posts = blogPosts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.publishedAt),
@@ -31,5 +41,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...pages, ...posts];
+  return [...pages, ...planPages, ...posts];
 }

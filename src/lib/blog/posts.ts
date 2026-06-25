@@ -1,4 +1,5 @@
 import type { BlogPost } from "./types";
+import { getWhyItMatters } from "./why-it-matters";
 
 export const BLOG_AUTHOR = "B";
 
@@ -1010,16 +1011,204 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "breathing-while-running",
+    title: "How to Breathe While Running (Without Overthinking It)",
+    excerpt:
+      "Gasping on mile one? A simple rhythm, slower pace, and a few posture cues fix most beginner breathing problems.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-06-28",
+    readTime: "5 min",
+    relatedSlugs: ["how-to-pace-yourself", "mental-side-of-running", "avoiding-injuries"],
+    sections: [
+      {
+        paragraphs: [
+          "New runners often worry they're breathing wrong. You're not broken — your body is just asking for an easier effort. Fix the pace first; breathing usually follows.",
+        ],
+      },
+      {
+        heading: "The 3:3 rhythm",
+        paragraphs: [
+          "Try inhaling for three foot strikes and exhaling for three. On easy runs, 3:3 or 4:4 feels natural. Faster efforts might drop to 2:2. If you can't maintain a rhythm, slow down or walk until it returns.",
+        ],
+      },
+      {
+        heading: "Nose vs mouth",
+        paragraphs: [
+          "Mouth breathing during exercise is normal and efficient — don't force nasal-only breathing on hard efforts. In cold, dry air, a buff over your mouth can warm and humidify air before it hits your lungs.",
+        ],
+      },
+      {
+        heading: "Posture and tension",
+        list: [
+          "Relax your shoulders — tension steals oxygen",
+          "Stand tall; slouching compresses your diaphragm",
+          "Shake out your hands on easy days if you grip too tight",
+          "Breathe into your belly, not just your chest",
+        ],
+      },
+      {
+        heading: "When to see a doctor",
+        paragraphs: [
+          "Chest pain, dizziness, or wheezing that doesn't improve with rest needs medical attention — especially if you have asthma or heart risk factors. Exercise-induced breathing issues are common and often manageable with a plan from your doctor.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "running-in-bad-weather",
+    title: "Running in Bad Weather: When to Go Out and When to Stay In",
+    excerpt:
+      "Rain, heat, ice, storms, wind, and poor air quality — practical rules for staying safe without losing your training habit.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-06-28",
+    readTime: "7 min",
+    relatedSlugs: ["what-to-do-on-rest-days", "importance-of-cross-training", "avoiding-injuries"],
+    sections: [
+      {
+        paragraphs: [
+          "Perfect weather is rare. Beginners who learn to adapt — or swap to smart indoor options — stick with running longer than those who quit after one rainy week.",
+        ],
+      },
+      {
+        heading: "Rain",
+        paragraphs: [
+          "Light rain is fine with a brimmed hat and a thin water-resistant layer. Shorten the run on slick footing. Change out of wet clothes quickly afterward. Never run in thunderstorms, flooded paths, or when visibility is dangerously low.",
+        ],
+        list: [
+          "Indoor swap: treadmill, stairs, or elliptical for the same duration",
+          "Match effort, not pace — weather days aren't PR days",
+        ],
+      },
+      {
+        heading: "Heat and humidity",
+        paragraphs: [
+          "Run early or near sunset. Slow 30–90 seconds per mile. Pre-hydrate and carry water on sessions over 30 minutes. Heat advisories mean treadmill or rest — overheating is not toughness.",
+        ],
+      },
+      {
+        heading: "Cold, ice, and snow",
+        paragraphs: [
+          "Layer with moisture-wicking base, insulating mid, and wind shell. Warm up indoors first. Traction helps on packed snow. When sidewalks are pure ice, treadmill or bike beats a fall.",
+        ],
+      },
+      {
+        heading: "Storms and lightning",
+        paragraphs: [
+          "If you hear thunder, you're close enough to be at risk. Head inside immediately. Wait 30 minutes after the last thunderclap before going back out. Rescheduling one run does not ruin your plan.",
+        ],
+      },
+      {
+        heading: "Wind and air quality",
+        paragraphs: [
+          "Start into the wind so the return leg is easier. Check local AQI — above 150, move indoors. Wildfire smoke and hazardous air mean rest or filtered indoor cardio, not heroics outside.",
+        ],
+      },
+      {
+        heading: "The habit matters more than the venue",
+        paragraphs: [
+          "Twenty minutes indoors counts as showing up. Open your training plan, match today's intended effort (easy, cross-train, or rest), and log it. Consistency beats perfection.",
+        ],
+        cta: { text: "See weather tips with indoor swaps", href: "/tips/bad-weather" },
+      },
+    ],
+  },
+  {
+    slug: "running-with-health-conditions",
+    title: "Running With Health Conditions: What to Know Before You Start",
+    excerpt:
+      "Pregnancy, age 55+, diabetes, asthma, arthritis, heart issues, and osteoporosis — general guidance and when to get medical clearance first.",
+    category: "Health",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-06-28",
+    readTime: "8 min",
+    relatedSlugs: ["never-ran-where-to-start", "avoiding-injuries", "what-to-do-on-rest-days"],
+    sections: [
+      {
+        paragraphs: [
+          "Running can support health at many ages and with many conditions — but the right approach is individual. This article is general education, not medical advice. Your doctor's guidance always wins over any training plan.",
+        ],
+      },
+      {
+        heading: "Pregnancy",
+        paragraphs: [
+          "Get OB or midwife clearance first. Many active people run into the second trimester if they ran before pregnancy, but intensity and duration usually decrease. Use the talk test. Stop for pain, dizziness, contractions, or calf swelling. Return postpartum gradually — pelvic floor recovery matters.",
+        ],
+      },
+      {
+        heading: "Runners 55 and beyond",
+        paragraphs: [
+          "You can build fitness at any age. Prioritize easy pace, extra recovery, and strength work 2× per week for hips, glutes, and calves. Walk-run plans are excellent entry points. Fall prevention matters — even surfaces, good lighting, and balance work support confident running.",
+        ],
+      },
+      {
+        heading: "Diabetes",
+        list: [
+          "Discuss exercise timing with your care team, especially on insulin",
+          "Check glucose before and after until patterns are clear",
+          "Carry fast-acting carbs on every run",
+          "Foot care and proper shoes reduce blister and ulcer risk",
+        ],
+        paragraphs: [
+          "Do not run with very high or very low blood sugar. Your diabetes plan overrides any generic schedule.",
+        ],
+      },
+      {
+        heading: "Asthma",
+        paragraphs: [
+          "Confirm an action plan with your doctor. Cold, dry air and poor air quality trigger many people — treadmill days beat pushing through bad air. Start slower than you think. Stop for chest tightness or wheezing that doesn't ease with your plan.",
+        ],
+      },
+      {
+        heading: "Arthritis and joint pain",
+        paragraphs: [
+          "Mild osteoarthritis doesn't always mean stopping — softer surfaces and lower volume help many people. Rheumatoid flares may require rest instead of impact. Pain lasting more than 48 hours after a run is a signal to reduce load. Strength work for quads and hips often helps knees more than stretching alone.",
+        ],
+      },
+      {
+        heading: "Heart disease and hypertension",
+        paragraphs: [
+          "Cardiac clearance is essential after heart attack, stent, arrhythmia, or uncontrolled blood pressure. Easy, conversational pace is the default until a cardiologist says otherwise. Some medications affect heart rate — perceived effort may not match watch zones. Stop for chest pressure, arm or jaw pain, or unusual shortness of breath.",
+        ],
+      },
+      {
+        heading: "Osteoporosis",
+        paragraphs: [
+          "Weight-bearing activity can help bone health, but high-impact running may not suit everyone with low bone density or fracture history. Ask whether impact is safe for your T-score. If cleared, stay on predictable surfaces. Balance training reduces fall risk.",
+        ],
+        cta: { text: "Browse situation-specific tips", href: "/tips/specific-situations" },
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
-  return blogPosts.find((p) => p.slug === slug);
+  const post = blogPosts.find((p) => p.slug === slug);
+  if (!post) return undefined;
+  return {
+    ...post,
+    whyItMatters: post.whyItMatters ?? getWhyItMatters(slug),
+  };
 }
 
 export function getRelatedPosts(post: BlogPost): BlogPost[] {
-  if (!post.relatedSlugs?.length) return [];
-  return post.relatedSlugs
+  const fromSlugs = (post.relatedSlugs ?? [])
     .map((slug) => getPostBySlug(slug))
+    .filter((p): p is BlogPost => p !== undefined);
+
+  if (fromSlugs.length >= 3) return fromSlugs.slice(0, 3);
+
+  const seen = new Set([post.slug, ...fromSlugs.map((p) => p.slug)]);
+  const sameCategory = blogPosts
+    .filter((p) => p.category === post.category && !seen.has(p.slug))
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    );
+
+  return [...fromSlugs, ...sameCategory.map((p) => getPostBySlug(p.slug)!)]
     .filter((p): p is BlogPost => p !== undefined)
     .slice(0, 3);
 }

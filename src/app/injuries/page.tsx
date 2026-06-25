@@ -11,6 +11,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -180,6 +181,10 @@ export default function InjuriesPage() {
   return (
     <div className="py-12 sm:py-16">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
+        <Breadcrumbs
+          items={[{ label: "Home", href: "/" }, { label: "Injuries" }]}
+        />
+
         <FadeIn className="text-center mb-12">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Common Running Injuries

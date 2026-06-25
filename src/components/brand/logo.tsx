@@ -31,7 +31,11 @@ export function Logo({ className, showWordmark = true, href = "/" }: LogoProps) 
   }
 
   return (
-    <Link href={href} className={cn("flex items-center gap-2 font-bold text-lg", className)}>
+    <Link
+      href={href}
+      aria-label="LetsRunNow home"
+      className={cn("flex items-center gap-2 font-bold text-lg", className)}
+    >
       {content}
     </Link>
   );

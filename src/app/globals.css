@@ -63,7 +63,7 @@
   --secondary: oklch(0.95 0.02 250);
   --secondary-foreground: oklch(0.25 0.05 260);
   --muted: oklch(0.96 0.01 250);
-  --muted-foreground: oklch(0.44 0.04 260);
+  --muted-foreground: oklch(0.42 0.04 260);
   --accent: oklch(0.94 0.04 250);
   --accent-foreground: oklch(0.25 0.05 260);
   --destructive: oklch(0.577 0.245 27.325);
@@ -170,6 +170,28 @@
       oklch(0.72 0.2 35),
       oklch(0.65 0.18 20)
     );
+  }
+
+  /* Fluid landing typography — scales smoothly on small screens */
+  .text-display {
+    font-size: clamp(2.125rem, 5vw + 1rem, 4.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+  }
+
+  .text-lead {
+    font-size: clamp(1.0625rem, 1.5vw + 0.75rem, 1.3125rem);
+    line-height: 1.65;
+  }
+
+  .text-stat-value {
+    font-size: clamp(1.5rem, 3vw + 0.75rem, 1.875rem);
+  }
+
+  /* Minimum 44px touch target for primary mobile actions */
+  .touch-target {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
   }
 
   .finish-line-checker {

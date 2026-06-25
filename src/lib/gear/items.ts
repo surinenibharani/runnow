@@ -18,11 +18,18 @@ export type GearSuggestion = {
   note: string;
 };
 
+export type GearTier = "start-here" | "level-up";
+
 export type GearCategory = {
   slug: string;
   title: string;
   icon: LucideIcon;
   group: "Apparel" | "Hydration & Fuel" | "Accessories" | "Tracking & Apps";
+  tier: GearTier;
+  /** Typical spend for a solid beginner pick, e.g. "$25–45" or "Free" */
+  priceRange: string;
+  /** Body types, conditions, or situations this category suits best */
+  bestFor: string[];
   summary: string;
   whenYouNeedIt: string;
   whatToLookFor: string[];
@@ -31,12 +38,126 @@ export type GearCategory = {
   cons?: string[];
 };
 
+export type GearTierSuggestion = {
+  name: string;
+  note: string;
+  price: string;
+  /** Links to the full category card on this page */
+  categorySlug: string;
+};
+
+export const gearTierMeta: Record<
+  GearTier,
+  {
+    title: string;
+    description: string;
+    suggestionsIntro: string;
+    suggestions: GearTierSuggestion[];
+  }
+> = {
+  "start-here": {
+    title: "Start Here (Under $100)",
+    description:
+      "Budget-friendly essentials and free tools — most picks stay under $100. Add these as real needs show up.",
+    suggestionsIntro:
+      "A sensible first kit — roughly $100 total if you grab the basics below (Strava is free).",
+    suggestions: [
+      {
+        name: "Strava (phone-only)",
+        note: "Record every run before spending on anything else.",
+        price: "Free",
+        categorySlug: "strava-app",
+      },
+      {
+        name: "Nike Dri-FIT Miler",
+        note: "Light, breathable top — skip cotton from day one.",
+        price: "$25–35",
+        categorySlug: "shirts",
+      },
+      {
+        name: "Nike Challenger Shorts",
+        note: "Built-in liner, small pocket — no fuss for early miles.",
+        price: "$30–40",
+        categorySlug: "bottoms",
+      },
+      {
+        name: "Goodr",
+        note: "Affordable shades that stay put on sweaty runs.",
+        price: "$25",
+        categorySlug: "goggles",
+      },
+      {
+        name: "Body Glide",
+        note: "Apply before long or hot runs — cheap insurance.",
+        price: "$8–12",
+        categorySlug: "chafing-creams",
+      },
+      {
+        name: "Nuun Sport",
+        note: "Add once runs hit an hour or temps climb.",
+        price: "$7–10",
+        categorySlug: "hydration-tablets",
+      },
+    ],
+  },
+  "level-up": {
+    title: "Level Up",
+    description:
+      "Worth the investment once you're running regularly — shoes, cold-weather layers, hydration systems, and GPS watches.",
+    suggestionsIntro:
+      "Buy in this order once you're running 2–3 times a week and know the habit is sticking.",
+    suggestions: [
+      {
+        name: "Brooks Ghost",
+        note: "Forgiving daily trainer — the shoe most coaches suggest first.",
+        price: "$140",
+        categorySlug: "shoes",
+      },
+      {
+        name: "Coros Pace 3",
+        note: "Best value GPS watch — weeks of battery, clean interface.",
+        price: "$229",
+        categorySlug: "coros",
+      },
+      {
+        name: "Garmin Forerunner 165",
+        note: "Colour screen Garmin if you want training metrics on your wrist.",
+        price: "$249",
+        categorySlug: "garmin",
+      },
+      {
+        name: "Nike Pro Warm Tights",
+        note: "When shorts aren't enough below ~50°F (10°C).",
+        price: "$60–80",
+        categorySlug: "tights",
+      },
+      {
+        name: "Salomon Active Skin 8",
+        note: "Hands-free water for 90+ minute runs and trail days.",
+        price: "$120–140",
+        categorySlug: "hydration-packs",
+      },
+      {
+        name: "Apple Watch SE (2nd gen)",
+        note: "If you want one watch for runs and everyday life on iPhone.",
+        price: "$249",
+        categorySlug: "apple-watch",
+      },
+    ],
+  },
+};
+
+export const gearTiers: GearTier[] = ["start-here", "level-up"];
+
 export const gearCategories: GearCategory[] = [
   {
     slug: "shoes",
     title: "Running Shoes",
     icon: Footprints,
     group: "Apparel",
+    tier: "level-up",
+    priceRange: "$100–150",
+    bestFor: ["Beginners", "Wide feet", "Neutral gait", "Extra cushioning"],
     summary:
       "The single most important purchase. Running shoes are built for forward motion, impact, and breathability — not gym training or casual walking.",
     whenYouNeedIt: "Before your first run. Everything else can wait.",
@@ -70,6 +191,9 @@ export const gearCategories: GearCategory[] = [
     title: "Shirts & Tops",
     icon: Shirt,
     group: "Apparel",
+    tier: "start-here",
+    priceRange: "$20–45",
+    bestFor: ["Hot weather", "Sensitive skin", "All builds"],
     summary:
       "Skip cotton — it holds sweat and causes chafing. Technical fabrics wick moisture and dry fast.",
     whenYouNeedIt: "As soon as you run more than a walk around the block.",
@@ -103,6 +227,9 @@ export const gearCategories: GearCategory[] = [
     title: "Shorts & Bottoms",
     icon: Zap,
     group: "Apparel",
+    tier: "start-here",
+    priceRange: "$30–55",
+    bestFor: ["Thigh chafing", "Warm weather", "Most builds"],
     summary:
       "Running shorts are lightweight with a built-in liner so you don't need extra layers underneath.",
     whenYouNeedIt: "When gym shorts start feeling heavy or rubbing.",
@@ -136,6 +263,9 @@ export const gearCategories: GearCategory[] = [
     title: "Tights & Leggings",
     icon: Zap,
     group: "Apparel",
+    tier: "level-up",
+    priceRange: "$60–120",
+    bestFor: ["Cold weather", "Muscular thighs", "Long legs"],
     summary:
       "Full or ¾-length tights keep muscles warm in cool weather and reduce wind chill on your legs.",
     whenYouNeedIt: "Below ~50°F (10°C) or when shorts feel too cold.",
@@ -169,6 +299,9 @@ export const gearCategories: GearCategory[] = [
     title: "Caps & Headwear",
     icon: Sun,
     group: "Accessories",
+    tier: "start-here",
+    priceRange: "$25–40",
+    bestFor: ["Sunny runs", "Sweaty hair", "Most head sizes"],
     summary:
       "Keeps sun off your face, absorbs sweat, and holds hair out of your eyes. A simple running cap beats a fashion hat every time.",
     whenYouNeedIt: "Sunny days, sweaty summer runs, or anytime glare is an issue.",
@@ -202,6 +335,9 @@ export const gearCategories: GearCategory[] = [
     title: "Sunglasses & Eye Protection",
     icon: Glasses,
     group: "Accessories",
+    tier: "start-here",
+    priceRange: "$25–35",
+    bestFor: ["Bright roads", "Light-sensitive eyes", "Small faces"],
     summary:
       "Running sunglasses stay put, block UV, and cut glare on bright roads and trails. Regular fashion shades often bounce and slip.",
     whenYouNeedIt: "Daytime outdoor runs — especially on roads, snow, or open trails.",
@@ -235,6 +371,9 @@ export const gearCategories: GearCategory[] = [
     title: "Sunscreen",
     icon: Shield,
     group: "Accessories",
+    tier: "start-here",
+    priceRange: "$10–18",
+    bestFor: ["Fair skin", "Long outdoor runs", "Sensitive skin"],
     summary:
       "UV exposure adds up mile by mile — especially on long runs, midday sessions, and reflective roads. A sport sunscreen stays on when you sweat.",
     whenYouNeedIt: "Any daytime outdoor run longer than 20 minutes, year-round on exposed skin.",
@@ -268,6 +407,9 @@ export const gearCategories: GearCategory[] = [
     title: "Chafing Creams & Balms",
     icon: Package,
     group: "Accessories",
+    tier: "start-here",
+    priceRange: "$8–15",
+    bestFor: ["Thigh rub", "Long runs", "Sensitive skin"],
     summary:
       "Friction happens — thighs, nipples, armpits, sports bra lines. A good anti-chafe product prevents hot spots before they become bloody disasters.",
     whenYouNeedIt: "Before long runs, hot weather, or any time you've felt rubbing.",
@@ -301,6 +443,9 @@ export const gearCategories: GearCategory[] = [
     title: "Hydration Tablets",
     icon: Tablet,
     group: "Hydration & Fuel",
+    tier: "start-here",
+    priceRange: "$7–12",
+    bestFor: ["Heavy sweaters", "Hot & humid runs", "Runs over 60 min"],
     summary:
       "Electrolyte tablets replace sodium, potassium, and minerals lost in sweat — especially on hot days or runs over an hour.",
     whenYouNeedIt: "Runs over 60 minutes, hot/humid weather, or if you cramp easily.",
@@ -334,6 +479,9 @@ export const gearCategories: GearCategory[] = [
     title: "Energy Gels",
     icon: Zap,
     group: "Hydration & Fuel",
+    tier: "start-here",
+    priceRange: "$24–36",
+    bestFor: ["Half marathon prep", "Runs 90+ min", "Sensitive stomach"],
     summary:
       "Concentrated carbs in a small packet — fast fuel when your body runs low on glycogen during longer efforts.",
     whenYouNeedIt: "Runs over 75–90 minutes, half marathon training, and race day.",
@@ -367,6 +515,9 @@ export const gearCategories: GearCategory[] = [
     title: "Hydration Packs & Vests",
     icon: Droplets,
     group: "Hydration & Fuel",
+    tier: "level-up",
+    priceRange: "$80–150",
+    bestFor: ["Trail runners", "Runs 90+ min", "No water on route"],
     summary:
       "Hands-free water carry for long runs, trails, and hot days when looping back to a fountain isn't practical.",
     whenYouNeedIt: "Runs over 90 minutes, trail runs, or summer long runs without water stops.",
@@ -400,6 +551,9 @@ export const gearCategories: GearCategory[] = [
     title: "Apple Watch",
     icon: Watch,
     group: "Tracking & Apps",
+    tier: "level-up",
+    priceRange: "$249–799",
+    bestFor: ["iPhone users", "All-in-one lifestyle", "Heart rate tracking"],
     summary:
       "The do-everything wrist computer. Great if you already live in the Apple ecosystem and want running data alongside texts, music, and daily health tracking.",
     whenYouNeedIt:
@@ -444,6 +598,9 @@ export const gearCategories: GearCategory[] = [
     title: "Garmin",
     icon: Watch,
     group: "Tracking & Apps",
+    tier: "level-up",
+    priceRange: "$199–499",
+    bestFor: ["Marathon prep", "Data-driven training", "Android & iPhone"],
     summary:
       "The gold standard for dedicated running watches. Built for athletes who want deep metrics, long battery life, and data that actually helps training.",
     whenYouNeedIt:
@@ -488,6 +645,9 @@ export const gearCategories: GearCategory[] = [
     title: "Coros",
     icon: Watch,
     group: "Tracking & Apps",
+    tier: "level-up",
+    priceRange: "$149–349",
+    bestFor: ["Budget-conscious athletes", "Long battery life", "Structured plans"],
     summary:
       "The fast-rising challenger — premium running watch features at a lower price than Garmin, with exceptional battery life and a clean, simple interface.",
     whenYouNeedIt:
@@ -532,6 +692,9 @@ export const gearCategories: GearCategory[] = [
     title: "Strava App",
     icon: Smartphone,
     group: "Tracking & Apps",
+    tier: "start-here",
+    priceRange: "Free",
+    bestFor: ["Day-one tracking", "Social motivation", "All phone types"],
     summary:
       "The social network for runners. Record with your phone or sync from any watch — then analyse pace, routes, segments, and progress over time.",
     whenYouNeedIt:
@@ -579,3 +742,7 @@ export const gearGroups = [
   "Accessories",
   "Hydration & Fuel",
 ] as const;
+
+export function getGearByTier(tier: GearTier): GearCategory[] {
+  return gearCategories.filter((item) => item.tier === tier);
+}

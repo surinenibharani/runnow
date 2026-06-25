@@ -1,7 +1,6 @@
 import { AlertTriangle } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { TipDetailCard } from "@/components/tips/tip-detail-card";
 import { situationalTips } from "@/lib/tips/situational";
 
 export function SituationalTipsGrid() {
@@ -20,32 +19,23 @@ export function SituationalTipsGrid() {
         </div>
       </FadeIn>
 
-      <StaggerChildren className="grid gap-4 sm:grid-cols-2">
+      <StaggerChildren className="grid gap-5 sm:grid-cols-2">
         {situationalTips.map((tip) => (
           <StaggerItem key={tip.title}>
-            <Card className="h-full border-border/60">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-sky-500/10 text-sky-600 dark:text-sky-400">
-                    <tip.icon className="size-5" />
-                  </div>
-                  <div className="min-w-0">
-                    <Badge variant="outline" className="mb-2 text-xs">
-                      {tip.audience}
-                    </Badge>
-                    <h2 className="font-semibold text-lg">{tip.title}</h2>
-                    <ul className="mt-3 space-y-2 text-sm text-muted-foreground leading-relaxed list-disc pl-4">
-                      {tip.tips.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                    <p className="mt-4 text-xs text-amber-700 dark:text-amber-400/90 leading-relaxed border-t border-border/60 pt-3">
-                      {tip.caution}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <TipDetailCard
+              illustration={tip.illustration}
+              icon={tip.icon}
+              iconClassName="bg-sky-500/10 text-sky-600 dark:text-sky-400"
+              badge={tip.audience}
+              title={tip.title}
+              footer={tip.caution}
+            >
+              <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-relaxed text-muted-foreground">
+                {tip.tips.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </TipDetailCard>
           </StaggerItem>
         ))}
       </StaggerChildren>

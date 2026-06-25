@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FadeIn } from "@/components/motion/fade-in";
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import {
   TurnstileWidget,
   isTurnstileEnabled,
@@ -31,9 +32,22 @@ import {
 
 export default function SignupPage() {
   return (
-    <Suspense fallback={<div className="py-16 text-center text-muted-foreground">Loading…</div>}>
-      <SignupForm />
-    </Suspense>
+    <div className="py-12 px-4">
+      <div className="mx-auto max-w-md">
+        <Breadcrumbs
+          items={[{ label: "Home", href: "/" }, { label: "Sign up" }]}
+        />
+        <Suspense
+          fallback={
+            <div className="py-16 text-center text-muted-foreground">
+              Loading…
+            </div>
+          }
+        >
+          <SignupForm />
+        </Suspense>
+      </div>
+    </div>
   );
 }
 
@@ -139,9 +153,8 @@ function SignupForm() {
   const passwordValid = isValidPassword(password);
 
   return (
-    <div className="py-16 px-4">
-      <FadeIn className="mx-auto max-w-md">
-        <Card className="border-border/60">
+    <FadeIn>
+      <Card className="border-border/60">
           <CardHeader className="text-center">
             <h1 className="text-2xl font-heading font-medium">
               {isCoachFlow ? "Sign up as coach" : "Create your account"}
@@ -253,6 +266,5 @@ function SignupForm() {
           </CardContent>
         </Card>
       </FadeIn>
-    </div>
   );
 }

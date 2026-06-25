@@ -8,9 +8,11 @@ import {
   Sun,
   Wind,
 } from "lucide-react";
+import type { TipIllustrationId } from "@/lib/tips/tips";
 
 export type WeatherTip = {
   icon: LucideIcon;
+  illustration: TipIllustrationId;
   condition: string;
   title: string;
   outdoorTips: string[];
@@ -21,6 +23,7 @@ export type WeatherTip = {
 export const weatherTips: WeatherTip[] = [
   {
     icon: CloudRain,
+    illustration: "rain",
     condition: "Rain",
     title: "Rainy days",
     outdoorTips: [
@@ -40,6 +43,7 @@ export const weatherTips: WeatherTip[] = [
   },
   {
     icon: Sun,
+    illustration: "heat",
     condition: "Heat & humidity",
     title: "Hot and humid days",
     outdoorTips: [
@@ -59,6 +63,7 @@ export const weatherTips: WeatherTip[] = [
   },
   {
     icon: Snowflake,
+    illustration: "cold",
     condition: "Cold & ice",
     title: "Cold, ice, and snow",
     outdoorTips: [
@@ -78,6 +83,7 @@ export const weatherTips: WeatherTip[] = [
   },
   {
     icon: CloudLightning,
+    illustration: "storm",
     condition: "Storms",
     title: "Thunderstorms & lightning",
     outdoorTips: [
@@ -96,6 +102,7 @@ export const weatherTips: WeatherTip[] = [
   },
   {
     icon: Wind,
+    illustration: "wind",
     condition: "High wind",
     title: "Windy days",
     outdoorTips: [
@@ -112,6 +119,7 @@ export const weatherTips: WeatherTip[] = [
   },
   {
     icon: Flame,
+    illustration: "air-quality",
     condition: "Poor air quality",
     title: "Smoke, pollution, or high pollen",
     outdoorTips: [
@@ -131,6 +139,7 @@ export const weatherTips: WeatherTip[] = [
   },
   {
     icon: Home,
+    illustration: "indoor",
     condition: "No safe option outside",
     title: "Stuck inside? Keep the habit",
     outdoorTips: [

@@ -330,7 +330,12 @@ export function DashboardContent() {
 
   if (status === "loading" || loading) {
     return (
-      <div className="py-20 text-center text-muted-foreground">
+      <div
+        className="py-20 text-center text-muted-foreground"
+        role="status"
+        aria-busy="true"
+        aria-live="polite"
+      >
         Loading your dashboard…
       </div>
     );
@@ -341,8 +346,7 @@ export function DashboardContent() {
   const bmiValue = hrProfile ? getBmi(hrProfile) : null;
 
   return (
-    <div className="py-10 px-4 sm:px-6">
-      <div className="mx-auto max-w-5xl space-y-8">
+    <div className="space-y-8">
         <FadeIn>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
@@ -600,6 +604,8 @@ export function DashboardContent() {
                 (chartsLoading || activityHrZonesLoading) &&
                   "opacity-50 pointer-events-none"
               )}
+              aria-busy={chartsLoading || activityHrZonesLoading}
+              aria-live="polite"
             >
               <Card className="border-border/60">
                 <CardContent className="p-6">
@@ -836,7 +842,6 @@ export function DashboardContent() {
           {" · "}
           Strava runs auto-match your plan when synced
         </p>
-      </div>
     </div>
   );
 }

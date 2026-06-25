@@ -9,9 +9,11 @@ import {
   Wind,
   Activity,
 } from "lucide-react";
+import type { TipIllustrationId } from "@/lib/tips/tips";
 
 export type SituationalTip = {
   icon: LucideIcon;
+  illustration: TipIllustrationId;
   audience: string;
   title: string;
   tips: string[];
@@ -21,6 +23,7 @@ export type SituationalTip = {
 export const situationalTips: SituationalTip[] = [
   {
     icon: Baby,
+    illustration: "pregnancy",
     audience: "Pregnancy",
     title: "Running while pregnant",
     tips: [
@@ -35,6 +38,7 @@ export const situationalTips: SituationalTip[] = [
   },
   {
     icon: User,
+    illustration: "senior",
     audience: "Age 55+",
     title: "Starting or continuing in your 50s and beyond",
     tips: [
@@ -49,6 +53,7 @@ export const situationalTips: SituationalTip[] = [
   },
   {
     icon: Users,
+    illustration: "senior",
     audience: "Age 65+",
     title: "Running safely in your 60s and beyond",
     tips: [
@@ -63,6 +68,7 @@ export const situationalTips: SituationalTip[] = [
   },
   {
     icon: Activity,
+    illustration: "health",
     audience: "Diabetes",
     title: "Running with type 1 or type 2 diabetes",
     tips: [
@@ -77,6 +83,7 @@ export const situationalTips: SituationalTip[] = [
   },
   {
     icon: Wind,
+    illustration: "breathing",
     audience: "Asthma",
     title: "Running with asthma",
     tips: [
@@ -91,6 +98,7 @@ export const situationalTips: SituationalTip[] = [
   },
   {
     icon: Bone,
+    illustration: "health",
     audience: "Arthritis & joint pain",
     title: "Running with arthritis or chronic joint issues",
     tips: [
@@ -105,6 +113,7 @@ export const situationalTips: SituationalTip[] = [
   },
   {
     icon: HeartPulse,
+    illustration: "health",
     audience: "Heart & blood pressure",
     title: "Running with heart disease or hypertension",
     tips: [
@@ -119,6 +128,7 @@ export const situationalTips: SituationalTip[] = [
   },
   {
     icon: Shield,
+    illustration: "health",
     audience: "Osteoporosis",
     title: "Running with low bone density",
     tips: [

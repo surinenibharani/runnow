@@ -10,14 +10,28 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FadeIn } from "@/components/motion/fade-in";
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { safeCallbackUrl } from "@/lib/security/callback-url";
 import { AUTH_WELCOME_STORAGE_KEY } from "@/lib/auth-messages";
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="py-16 text-center text-muted-foreground">Loading…</div>}>
-      <LoginForm />
-    </Suspense>
+    <div className="py-12 px-4">
+      <div className="mx-auto max-w-md">
+        <Breadcrumbs
+          items={[{ label: "Home", href: "/" }, { label: "Log in" }]}
+        />
+        <Suspense
+          fallback={
+            <div className="py-16 text-center text-muted-foreground">
+              Loading…
+            </div>
+          }
+        >
+          <LoginForm />
+        </Suspense>
+      </div>
+    </div>
   );
 }
 
@@ -79,9 +93,8 @@ function LoginForm() {
   }
 
   return (
-    <div className="py-16 px-4">
-      <FadeIn className="mx-auto max-w-md">
-        <Card className="border-border/60">
+    <FadeIn>
+      <Card className="border-border/60">
           <CardHeader className="text-center">
             <h1 className="text-2xl font-heading font-medium">
               {isCoachFlow ? "Log in as coach" : "Welcome back"}
@@ -135,6 +148,5 @@ function LoginForm() {
           </CardContent>
         </Card>
       </FadeIn>
-    </div>
   );
 }

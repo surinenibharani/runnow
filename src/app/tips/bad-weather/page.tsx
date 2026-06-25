@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CloudRain } from "lucide-react";
+import { BookOpen, CloudRain } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
-import { TipsBackLink } from "@/components/tips/tips-back-link";
+import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { WeatherTipsGrid } from "@/components/tips/weather-tips-grid";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -17,7 +18,14 @@ export default function BadWeatherTipsPage() {
   return (
     <div className="py-12 sm:py-16">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <TipsBackLink />
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Tips", href: "/tips" },
+            { label: "Bad weather" },
+          ]}
+        />
+        <TipsSectionNav />
 
         <FadeIn className="text-center mb-12">
           <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
@@ -39,6 +47,14 @@ export default function BadWeatherTipsPage() {
             Need a structured plan for rest and cross-training days?{" "}
             <Link href="/plan" className="text-primary hover:underline">
               Open your training plan
+            </Link>
+            . Want the full breakdown?{" "}
+            <Link
+              href="/blog/running-in-bad-weather"
+              className="inline-flex items-center gap-1 text-primary hover:underline"
+            >
+              <BookOpen className="size-3.5" />
+              Read the bad-weather article
             </Link>
             .
           </p>
