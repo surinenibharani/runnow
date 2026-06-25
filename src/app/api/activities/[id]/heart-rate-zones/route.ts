@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { aggregateHeartRateZonesFromStream } from "@/lib/activity-charts";
+import { type HrProfile } from "@/lib/hr-zones";
 import {
   fetchStravaActivityHeartrateStream,
   getValidAccessToken,
@@ -33,7 +34,7 @@ export async function GET(request: Request, context: RouteContext) {
 
   const { id } = await context.params;
 
-  const [activity, user] = await Promise.all([
+  const [activity, user, latestWellness] = await Promise.all([
     prisma.activity.findFirst({
       where: { id, userId: session.user.id },
       select: {
@@ -46,13 +47,28 @@ export async function GET(request: Request, context: RouteContext) {
     }),
     prisma.user.findUnique({
       where: { id: session.user.id },
-      select: { age: true },
+      select: { age: true, weightKg: true, heightCm: true },
+    }),
+    prisma.dailyWellness.findFirst({
+      where: {
+        userId: session.user.id,
+        restingHeartRate: { not: null },
+      },
+      orderBy: { date: "desc" },
+      select: { restingHeartRate: true },
     }),
   ]);
 
   if (!activity) {
     return NextResponse.json({ error: "Activity not found" }, { status: 404 });
   }
+
+  const hrProfile: HrProfile = {
+    age: user?.age ?? null,
+    restingHeartRate: latestWellness?.restingHeartRate ?? null,
+    weightKg: user?.weightKg ?? null,
+    heightCm: user?.heightCm ?? null,
+  };
 
   try {
     const accessToken = await getValidAccessToken(session.user.id);
@@ -73,7 +89,7 @@ export async function GET(request: Request, context: RouteContext) {
     const zones = aggregateHeartRateZonesFromStream(
       heartrates,
       timeSeconds,
-      user?.age ?? null
+      hrProfile
     );
 
     return NextResponse.json({
@@ -81,6 +97,7 @@ export async function GET(request: Request, context: RouteContext) {
       source: "stream",
       sampleCount: heartrates.length,
       activityName: activity.name,
+      hrZoneMethod: hrProfile.restingHeartRate ? "karvonen" : "percent_max",
     });
   } catch (err) {
     console.error("Activity HR zones error:", err);

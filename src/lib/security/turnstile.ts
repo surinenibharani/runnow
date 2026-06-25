@@ -11,6 +11,11 @@ export async function verifyTurnstile(
   token: string | undefined,
   remoteIp?: string
 ): Promise<boolean> {
+  // Captcha is optional in local development (Turnstile widgets must list localhost)
+  if (process.env.NODE_ENV === "development") {
+    return true;
+  }
+
   // Skip when Turnstile is not fully configured
   if (!isTurnstileConfigured()) {
     if (process.env.NODE_ENV === "production") {

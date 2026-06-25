@@ -1,5 +1,6 @@
 import type { User } from "@prisma/client";
 import type { ActivitySummary } from "@/lib/activity-fields";
+import { estimateMaxHeartRate } from "@/lib/hr-zones";
 import {
   formatDistance,
   formatDuration,
@@ -135,7 +136,7 @@ export function generateSuggestions(
 
   const latest = runs[0];
   const age = user.age ?? 35;
-  const maxHrEstimate = 220 - age;
+  const maxHrEstimate = estimateMaxHeartRate(user.age);
 
   if (latest.averageHeartrate) {
     const hrPercent = (latest.averageHeartrate / maxHrEstimate) * 100;

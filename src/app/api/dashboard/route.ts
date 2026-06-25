@@ -18,11 +18,31 @@ import {
 } from "@/lib/chart-time-range";
 import { analyzePlanAlignment } from "@/lib/plan-alignment";
 import { calculateRecoveryReadiness, toDateKey } from "@/lib/recovery-readiness";
+import { type HrProfile } from "@/lib/hr-zones";
 import { getOrCreateUserTrainingPlan } from "@/lib/teams";
 
 function isRunActivity(type: string): boolean {
   const t = type.toLowerCase();
   return t.includes("run") || t === "trailrun" || t === "virtualrun";
+}
+
+function buildHrProfile(
+  user: {
+    age: number | null;
+    weightKg: number | null;
+    heightCm: number | null;
+  },
+  wellness: Array<{ restingHeartRate: number | null }>
+): HrProfile {
+  const restingHeartRate =
+    wellness.find((w) => w.restingHeartRate != null)?.restingHeartRate ?? null;
+
+  return {
+    age: user.age,
+    restingHeartRate,
+    weightKg: user.weightKg,
+    heightCm: user.heightCm,
+  };
 }
 
 export async function GET(request: Request) {
@@ -46,6 +66,9 @@ export async function GET(request: Request) {
         name: true,
         email: true,
         age: true,
+        gender: true,
+        weightKg: true,
+        heightCm: true,
         role: true,
         subscriptionTier: true,
       },
@@ -91,8 +114,16 @@ export async function GET(request: Request) {
     completedIds: trainingPlan.completedIds,
     activities,
   });
+  const wellness = wellnessRows.map((w) => ({
+    date: toDateKey(w.date),
+    sleepMinutes: w.sleepMinutes,
+    restingHeartRate: w.restingHeartRate,
+    source: w.source,
+  }));
+
+  const hrProfile = buildHrProfile(user, wellness);
   const activityBreakdown = aggregateActivityTypes(chartActivities);
-  const heartRateZones = aggregateHeartRateZones(chartActivities, user.age);
+  const heartRateZones = aggregateHeartRateZones(chartActivities, hrProfile);
   const paceInsights = calculatePaceInsights(activities);
 
   const hrActivities = activities.map((a) => ({
@@ -102,13 +133,6 @@ export async function GET(request: Request) {
     startDate: a.startDate.toISOString(),
     averageHeartrate: a.averageHeartrate,
     movingTime: a.movingTime,
-  }));
-
-  const wellness = wellnessRows.map((w) => ({
-    date: toDateKey(w.date),
-    sleepMinutes: w.sleepMinutes,
-    restingHeartRate: w.restingHeartRate,
-    source: w.source,
   }));
 
   const recovery = calculateRecoveryReadiness(wellness, activities);
@@ -132,6 +156,9 @@ export async function GET(request: Request) {
       name: user.name,
       email: user.email,
       age: user.age,
+      gender: user.gender,
+      weightKg: user.weightKg,
+      heightCm: user.heightCm,
       role: user.role,
       subscriptionTier: user.subscriptionTier,
     },
@@ -155,6 +182,7 @@ export async function GET(request: Request) {
     chartTimeRange,
     activityBreakdown,
     heartRateZones,
+    hrZoneMethod: hrProfile.restingHeartRate ? "karvonen" : "percent_max",
     hrActivities,
     recovery,
     paceInsights,

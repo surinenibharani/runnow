@@ -1,4 +1,11 @@
 import type { ActivitySummary } from "@/lib/activity-fields";
+import {
+  buildZoneColorMap,
+  classifyHeartRateZone,
+  getZoneLabel,
+  resolveHrZoneMethod,
+  type HrProfile,
+} from "@/lib/hr-zones";
 
 export type PieSlice = {
   label: string;
@@ -24,22 +31,6 @@ const ACTIVITY_COLORS: Record<string, string> = {
   "Paddle Sports": "#0891b2",
   "Virtual Ride": "#7c3aed",
   Other: "#94a3b8",
-};
-
-const ZONE_COLORS = {
-  z1: "#3b82f6",
-  z2: "#22c55e",
-  z3: "#eab308",
-  z4: "#f97316",
-  z5: "#ef4444",
-};
-
-const ZONE_LABELS = {
-  z1: "Zone 1 · Easy (<60%)",
-  z2: "Zone 2 · Aerobic (60–70%)",
-  z3: "Zone 3 · Tempo (70–80%)",
-  z4: "Zone 4 · Threshold (80–90%)",
-  z5: "Zone 5 · Max (90%+)",
 };
 
 function prettifyStravaType(type: string): string {
@@ -104,26 +95,12 @@ export function aggregateActivityTypes(
   return toSlices(counts, ACTIVITY_COLORS, ACTIVITY_COLORS.Other);
 }
 
-function heartRateZone(
-  hr: number,
-  maxHr: number
-): keyof typeof ZONE_LABELS {
-  const pct = (hr / maxHr) * 100;
-  if (pct < 60) return "z1";
-  if (pct < 70) return "z2";
-  if (pct < 80) return "z3";
-  if (pct < 90) return "z4";
-  return "z5";
-}
-
-function zoneSlicesFromMinutes(minutes: Map<string, number>): PieSlice[] {
-  const colorMap = Object.fromEntries(
-    Object.entries(ZONE_LABELS).map(([key, label]) => [
-      label,
-      ZONE_COLORS[key as keyof typeof ZONE_COLORS],
-    ])
-  );
-
+function zoneSlicesFromMinutes(
+  minutes: Map<string, number>,
+  profile: HrProfile
+): PieSlice[] {
+  const method = resolveHrZoneMethod(profile);
+  const colorMap = buildZoneColorMap(method);
   const slices = toSlices(minutes, colorMap, "#94a3b8");
   return slices.map((s) => ({
     ...s,
@@ -131,13 +108,23 @@ function zoneSlicesFromMinutes(minutes: Map<string, number>): PieSlice[] {
   }));
 }
 
+function accumulateZoneMinutes(
+  minutes: Map<string, number>,
+  hr: number,
+  durationSec: number,
+  profile: HrProfile
+): void {
+  const zone = classifyHeartRateZone(hr, profile);
+  const label = getZoneLabel(zone, resolveHrZoneMethod(profile));
+  minutes.set(label, (minutes.get(label) ?? 0) + durationSec / 60);
+}
+
 /** Minutes in each HR zone from per-second Strava heartrate stream data. */
 export function aggregateHeartRateZonesFromStream(
   heartrates: number[],
   timeSeconds: number[] | null,
-  age: number | null
+  profile: HrProfile
 ): PieSlice[] {
-  const maxHr = 220 - (age ?? 35);
   const minutes = new Map<string, number>();
 
   for (let i = 0; i < heartrates.length; i++) {
@@ -152,28 +139,28 @@ export function aggregateHeartRateZonesFromStream(
           : Math.max(timeSeconds[i] - timeSeconds[i - 1], 0.5);
     }
 
-    const label = ZONE_LABELS[heartRateZone(hr, maxHr)];
-    minutes.set(label, (minutes.get(label) ?? 0) + durationSec / 60);
+    accumulateZoneMinutes(minutes, hr, durationSec, profile);
   }
 
-  return zoneSlicesFromMinutes(minutes);
+  return zoneSlicesFromMinutes(minutes, profile);
 }
 
 /** Minutes in each HR zone, weighted by activity moving time. */
 export function aggregateHeartRateZones(
   activities: Pick<ActivitySummary, "averageHeartrate" | "movingTime">[],
-  age: number | null
+  profile: HrProfile
 ): PieSlice[] {
-  const maxHr = 220 - (age ?? 35);
   const minutes = new Map<string, number>();
 
   for (const activity of activities) {
     if (!activity.averageHeartrate || activity.movingTime <= 0) continue;
-    const zone = heartRateZone(activity.averageHeartrate, maxHr);
-    const label = ZONE_LABELS[zone];
-    const mins = activity.movingTime / 60;
-    minutes.set(label, (minutes.get(label) ?? 0) + mins);
+    accumulateZoneMinutes(
+      minutes,
+      activity.averageHeartrate,
+      activity.movingTime,
+      profile
+    );
   }
 
-  return zoneSlicesFromMinutes(minutes);
+  return zoneSlicesFromMinutes(minutes, profile);
 }

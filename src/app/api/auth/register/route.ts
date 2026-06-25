@@ -8,6 +8,9 @@ import {
   isValidEmail,
   isValidPassword,
   parseAge,
+  parseGender,
+  parseHeightCm,
+  parseWeightKg,
 } from "@/lib/security/validation";
 
 export async function POST(request: Request) {
@@ -25,7 +28,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, email, password, age, turnstileToken, website } = body;
+    const { name, email, password, age, gender, weightKg, heightCm, turnstileToken, website } = body;
 
     if (isHoneypotTriggered(website)) {
       return NextResponse.json({ error: "Invalid submission" }, { status: 400 });
@@ -64,6 +67,36 @@ export async function POST(request: Request) {
       );
     }
 
+    const parsedGender = parseGender(gender);
+    if (
+      gender !== undefined &&
+      gender !== null &&
+      gender !== "" &&
+      parsedGender === null
+    ) {
+      return NextResponse.json({ error: "Invalid gender" }, { status: 400 });
+    }
+
+    const parsedWeightKg = parseWeightKg(weightKg);
+    if (
+      weightKg !== undefined &&
+      weightKg !== null &&
+      weightKg !== "" &&
+      parsedWeightKg === null
+    ) {
+      return NextResponse.json({ error: "Invalid weight" }, { status: 400 });
+    }
+
+    const parsedHeightCm = parseHeightCm(heightCm);
+    if (
+      heightCm !== undefined &&
+      heightCm !== null &&
+      heightCm !== "" &&
+      parsedHeightCm === null
+    ) {
+      return NextResponse.json({ error: "Invalid height" }, { status: 400 });
+    }
+
     const existing = await prisma.user.findUnique({ where: { email: cleanEmail } });
     if (existing) {
       return NextResponse.json(
@@ -83,6 +116,9 @@ export async function POST(request: Request) {
         email: cleanEmail,
         passwordHash,
         age: parsedAge,
+        gender: parsedGender,
+        weightKg: parsedWeightKg,
+        heightCm: parsedHeightCm,
       },
     });
 

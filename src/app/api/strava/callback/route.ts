@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import { exchangeStravaCode, STRAVA_SCOPES } from "@/lib/strava";
+import { exchangeStravaCode, fetchStravaAthlete, STRAVA_SCOPES } from "@/lib/strava";
 import { syncStravaActivitiesForUser } from "@/lib/strava-sync";
 import { SITE_URL } from "@/lib/site";
 
@@ -57,6 +57,18 @@ export async function GET(request: Request) {
           name: `${tokens.athlete.firstname} ${tokens.athlete.lastname ?? ""}`.trim(),
         },
       });
+    }
+
+    try {
+      const athlete = await fetchStravaAthlete(tokens.access_token);
+      if (athlete.weight && athlete.weight > 0) {
+        await prisma.user.updateMany({
+          where: { id: userId, weightKg: null },
+          data: { weightKg: athlete.weight },
+        });
+      }
+    } catch {
+      // Weight import is optional
     }
 
     let synced = 0;

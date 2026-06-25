@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, User, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { useSession, signOut } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useProfileModal } from "@/components/profile/profile-modal";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -25,6 +26,10 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const { data: session } = useSession();
+  const { openProfile } = useProfileModal();
+
+  const displayName =
+    session?.user?.name?.split(" ")[0] || session?.user?.email?.split("@")[0];
 
   useEffect(() => {
     setOpen(false);
@@ -87,6 +92,15 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-2">
           {session ? (
             <>
+              {displayName && (
+                <span className="text-sm text-muted-foreground max-w-[8rem] truncate">
+                  {displayName}
+                </span>
+              )}
+              <Button variant="outline" size="sm" onClick={openProfile}>
+                <User className="size-4" />
+                Profile
+              </Button>
               <Button nativeButton={false} render={<Link href="/dashboard" />} variant="outline" size="sm">
                 Dashboard
               </Button>
@@ -141,13 +155,31 @@ export function Navbar() {
               </Link>
             ))}
             {session ? (
-              <Button
-                variant="ghost"
-                className="mt-2 justify-start"
-                onClick={() => signOut({ callbackUrl: "/" })}
-              >
-                Sign out
-              </Button>
+              <>
+                {displayName && (
+                  <p className="px-4 py-2 text-sm font-medium text-foreground">
+                    {displayName}
+                  </p>
+                )}
+                <Button
+                  variant="outline"
+                  className="mx-4 justify-start"
+                  onClick={() => {
+                    setOpen(false);
+                    openProfile();
+                  }}
+                >
+                  <User className="size-4" />
+                  Profile
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="mt-2 justify-start"
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                >
+                  Sign out
+                </Button>
+              </>
             ) : (
               <>
                 <Button nativeButton={false} render={<Link href="/login" />} variant="outline" className="mt-2" onClick={() => setOpen(false)}>

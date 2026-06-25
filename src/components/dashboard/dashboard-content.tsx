@@ -20,13 +20,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FadeIn } from "@/components/motion/fade-in";
 import { formatDistance, formatDuration, formatPace } from "@/lib/strava";
 import type { PlanAlignmentSummary } from "@/lib/plan-alignment";
 import { PlanAlignmentCard } from "@/components/dashboard/plan-alignment";
 import { RecoveryReadinessCard } from "@/components/dashboard/recovery-readiness-card";
+import { useProfileModal } from "@/components/profile/profile-modal";
 import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
 import { PaceInsightsPanel } from "@/components/dashboard/pace-insights-panel";
 import type { RouteComparison, RunSuggestion } from "@/lib/run-analysis";
@@ -38,6 +38,14 @@ import {
   type ChartTimeRange,
 } from "@/lib/chart-time-range";
 import type { RecoveryReadiness } from "@/lib/recovery-readiness";
+import { formatGenderLabel } from "@/lib/gender";
+import {
+  cmToFeetInches,
+  formatBmi,
+  formatHrZoneSubtitle,
+  kgToLbs,
+  type HrProfile,
+} from "@/lib/hr-zones";
 import { cn } from "@/lib/utils";
 
 interface DashboardData {
@@ -46,6 +54,9 @@ interface DashboardData {
     name: string | null;
     email: string;
     age: number | null;
+    gender: string | null;
+    weightKg: number | null;
+    heightCm: number | null;
     role?: string;
     subscriptionTier?: string;
   };
@@ -66,6 +77,7 @@ interface DashboardData {
   chartTimeRange: ChartTimeRange;
   activityBreakdown: PieSlice[];
   heartRateZones: PieSlice[];
+  hrZoneMethod?: "karvonen" | "percent_max";
   hrActivities: Array<{
     id: string;
     name: string;
@@ -89,14 +101,13 @@ interface DashboardData {
 }
 
 export function DashboardContent() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
+  const { openProfile } = useProfileModal();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
-  const [age, setAge] = useState("");
-  const [editingAge, setEditingAge] = useState(false);
   const [message, setMessage] = useState("");
   const [disconnecting, setDisconnecting] = useState(false);
   const [chartRange, setChartRange] = useState<ChartTimeRange>("month");
@@ -117,7 +128,6 @@ export function DashboardContent() {
       const json = await res.json();
       setData(json);
       setChartRange(json.chartTimeRange ?? range);
-      setAge(json.user?.age ? String(json.user.age) : "");
       setLoading(false);
       setChartsLoading(false);
     },
@@ -193,15 +203,22 @@ export function DashboardContent() {
     return activityHrZones ?? [];
   }, [data, selectedHrActivityId, activityHrZones, activityHrZonesLoading]);
 
+  const hrProfile = useMemo((): HrProfile | null => {
+    if (!data) return null;
+    return {
+      age: data.user.age,
+      restingHeartRate: data.recovery.todayRestingHeartRate,
+      weightKg: data.user.weightKg,
+      heightCm: data.user.heightCm,
+    };
+  }, [data]);
+
   const heartRateSubtitle = useMemo(() => {
-    if (!data) return "";
-    const maxHr = 220 - (data.user.age ?? 35);
+    if (!data || !hrProfile) return "";
     const rangeLabel = getChartTimeRangeLabel(chartRange);
 
     if (selectedHrActivityId === "all") {
-      return data.user.age
-        ? `All activities with HR data · max ${maxHr} bpm · ${rangeLabel}`
-        : `Add your age above for accurate zones (using 35 as default) · ${rangeLabel}`;
+      return formatHrZoneSubtitle(hrProfile, `All activities · ${rangeLabel}`);
     }
 
     const activity = data.hrActivities.find((a) => a.id === selectedHrActivityId);
@@ -212,10 +229,19 @@ export function DashboardContent() {
       return `${activity.name} · ${date} · no heart rate recorded`;
     }
 
-    return data.user.age
-      ? `${activity.name} · ${date} · time in each HR zone · max ${maxHr} bpm`
-      : `${activity.name} · ${date} · time in each HR zone · using default max HR`;
-  }, [data, selectedHrActivityId, chartRange]);
+    return formatHrZoneSubtitle(
+      hrProfile,
+      `${activity.name} · ${date} · time in each zone`
+    );
+  }, [data, hrProfile, selectedHrActivityId, chartRange]);
+
+  useEffect(() => {
+    function onProfileUpdated() {
+      loadDashboard();
+    }
+    window.addEventListener("profile-updated", onProfileUpdated);
+    return () => window.removeEventListener("profile-updated", onProfileUpdated);
+  }, [loadDashboard]);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -288,27 +314,6 @@ export function DashboardContent() {
     } else {
       setMessage(json.error || "Sync failed");
     }
-  }
-
-  async function saveAge() {
-    await fetch("/api/user/profile", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ age: age ? parseInt(age, 10) : null }),
-    });
-    setMessage("Profile updated");
-    setEditingAge(false);
-    loadDashboard();
-  }
-
-  function startEditingAge() {
-    setAge(data?.user.age ? String(data.user.age) : "");
-    setEditingAge(true);
-  }
-
-  function cancelEditingAge() {
-    setAge(data?.user.age ? String(data.user.age) : "");
-    setEditingAge(false);
   }
 
   if (status === "loading" || loading) {
@@ -418,7 +423,7 @@ export function DashboardContent() {
           </Card>
         )}
 
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           <Card className="border-border/60">
             <CardContent className="p-6 flex items-center gap-4">
               <div className="flex size-12 items-center justify-center rounded-xl bg-orange-500/10 text-orange-500">
@@ -444,54 +449,89 @@ export function DashboardContent() {
               </div>
             </CardContent>
           </Card>
-          <Card className="border-border/60">
-            <CardContent className="p-6">
-              <Label htmlFor="dash-age" className="text-sm text-muted-foreground">
-                Your age (HR zones)
-              </Label>
-              {data.user.age != null && !editingAge ? (
-                <div className="flex items-center gap-2 mt-2">
-                  <p className="text-2xl font-bold">{data.user.age}</p>
-                  <Button
-                    type="button"
-                    size="sm"
-                    variant="ghost"
-                    className="h-8 px-2 text-muted-foreground"
-                    onClick={startEditingAge}
-                  >
-                    <Pencil className="size-3.5 mr-1" />
-                    Edit
-                  </Button>
-                </div>
-              ) : (
-                <div className="flex gap-2 mt-2">
-                  <Input
-                    id="dash-age"
-                    type="number"
-                    min={13}
-                    max={100}
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                    className="h-8 max-w-[5rem] [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                  />
-                  <Button size="sm" variant="secondary" onClick={saveAge}>
-                    Save
-                  </Button>
-                  {data.user.age != null && (
-                    <Button
-                      type="button"
-                      size="sm"
-                      variant="ghost"
-                      onClick={cancelEditingAge}
-                    >
-                      Cancel
-                    </Button>
-                  )}
-                </div>
-              )}
-            </CardContent>
-          </Card>
         </div>
+
+        <Card className="border-border/60">
+          <CardContent className="p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-medium flex items-center gap-2">
+                  <Heart className="size-4 text-primary" />
+                  Heart rate zone profile
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Age drives max HR (Tanaka). Log resting HR in recovery for
+                  Karvonen zones. Weight and height add BMI context.
+                </p>
+              </div>
+              <Button
+                type="button"
+                size="sm"
+                variant="ghost"
+                className="h-8 px-2 text-muted-foreground shrink-0"
+                onClick={openProfile}
+              >
+                <Pencil className="size-3.5 mr-1" />
+                Edit profile
+              </Button>
+            </div>
+
+            <dl className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5 text-sm">
+              <div>
+                <dt className="text-muted-foreground">Gender</dt>
+                <dd className="font-semibold text-lg">
+                  {formatGenderLabel(data.user.gender) ?? "—"}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Age</dt>
+                <dd className="font-semibold text-lg">
+                  {data.user.age ?? "—"}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Weight</dt>
+                <dd className="font-semibold text-lg">
+                  {data.user.weightKg != null
+                    ? `${Math.round(kgToLbs(data.user.weightKg))} lbs`
+                    : "—"}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Height</dt>
+                <dd className="font-semibold text-lg">
+                  {data.user.heightCm != null
+                    ? (() => {
+                        const { feet, inches } = cmToFeetInches(
+                          data.user.heightCm!
+                        );
+                        return `${feet}' ${inches}"`;
+                      })()
+                    : "—"}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">BMI</dt>
+                <dd className="font-semibold text-lg">
+                  {data.user.weightKg != null && data.user.heightCm != null
+                    ? formatBmi(data.user.weightKg, data.user.heightCm) ?? "—"
+                    : "—"}
+                </dd>
+              </div>
+            </dl>
+
+            {hrProfile && (
+              <p className="text-xs text-muted-foreground mt-4 border-t border-border/60 pt-3">
+                {formatHrZoneSubtitle(hrProfile)}
+                {data.hrZoneMethod === "karvonen"
+                  ? " · Karvonen zones active"
+                  : data.recovery.todayRestingHeartRate == null
+                    ? " · Log resting HR for personalized zones"
+                    : ""}
+              </p>
+            )}
+          </CardContent>
+        </Card>
 
         <FadeIn>
           <RecoveryReadinessCard

@@ -17,6 +17,12 @@ import {
 import { safeCallbackUrl } from "@/lib/security/callback-url";
 import { AUTH_WELCOME_STORAGE_KEY } from "@/lib/auth-messages";
 import { SITE_NAME } from "@/lib/site";
+import { BodyMetricsFields } from "@/components/profile/body-metrics-fields";
+import {
+  bodyMetricsToStored,
+  emptyBodyMetricsForm,
+  type BodyMetricsFormValues,
+} from "@/lib/body-metrics-form";
 
 export default function SignupPage() {
   return (
@@ -34,7 +40,9 @@ function SignupForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [age, setAge] = useState("");
+  const [bodyMetrics, setBodyMetrics] = useState<BodyMetricsFormValues>(
+    emptyBodyMetricsForm
+  );
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [honeypot, setHoneypot] = useState("");
   const [error, setError] = useState("");
@@ -59,6 +67,8 @@ function SignupForm() {
       return;
     }
 
+    const metrics = bodyMetricsToStored(bodyMetrics);
+
     const res = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -66,7 +76,10 @@ function SignupForm() {
         name,
         email,
         password,
-        age,
+        age: metrics.age,
+        gender: metrics.gender,
+        weightKg: metrics.weightKg,
+        heightCm: metrics.heightCm,
         turnstileToken,
         website: honeypot,
       }),
@@ -163,17 +176,20 @@ function SignupForm() {
                   autoComplete="new-password"
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="age">Age (for heart rate zones)</Label>
-                <Input
-                  id="age"
-                  type="number"
-                  min={13}
-                  max={100}
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  placeholder="e.g. 32"
-                />
+              <div className="rounded-lg border border-border/60 bg-muted/30 p-4 space-y-1">
+                <p className="text-sm font-medium">Body metrics</p>
+                <p className="text-xs text-muted-foreground">
+                  Optional — improves heart rate zone accuracy. You can add or
+                  change these anytime from your profile.
+                </p>
+                <div className="pt-3">
+                  <BodyMetricsFields
+                    idPrefix="signup"
+                    values={bodyMetrics}
+                    onChange={setBodyMetrics}
+                    optional
+                  />
+                </div>
               </div>
               <input
                 type="text"

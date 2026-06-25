@@ -68,6 +68,7 @@ function loadTurnstileScript(): Promise<void> {
     const script = document.createElement("script");
     script.src = TURNSTILE_SCRIPT;
     script.async = true;
+    script.defer = true;
     script.onload = () => {
       waitForTurnstile().then(resolve).catch(reject);
     };
@@ -87,6 +88,7 @@ export function TurnstileWidget({
   const widgetIdRef = useRef<string | null>(null);
   const [ready, setReady] = useState(false);
   const [loadError, setLoadError] = useState(false);
+  const [widgetError, setWidgetError] = useState(false);
   const [loadAttempt, setLoadAttempt] = useState(0);
   const onVerifyRef = useRef(onVerify);
   const onExpireRef = useRef(onExpire);
@@ -98,7 +100,7 @@ export function TurnstileWidget({
   onErrorRef.current = onError;
   onLoadErrorRef.current = onLoadError;
 
-  const handleLoadFailure = useCallback(() => {
+  const handleScriptLoadFailure = useCallback(() => {
     setLoadError(true);
     setReady(false);
     onLoadErrorRef.current?.();
@@ -114,10 +116,11 @@ export function TurnstileWidget({
         await loadTurnstileScript();
         if (!cancelled) {
           setLoadError(false);
+          setWidgetError(false);
           setReady(true);
         }
       } catch {
-        if (!cancelled) handleLoadFailure();
+        if (!cancelled) handleScriptLoadFailure();
       }
     }
 
@@ -125,21 +128,27 @@ export function TurnstileWidget({
     return () => {
       cancelled = true;
     };
-  }, [loadAttempt, handleLoadFailure]);
+  }, [loadAttempt, handleScriptLoadFailure]);
 
   useEffect(() => {
     if (!SITE_KEY || !ready || !containerRef.current || !window.turnstile) return;
 
+    const container = containerRef.current;
+
     if (widgetIdRef.current) {
       window.turnstile.remove(widgetIdRef.current);
+      widgetIdRef.current = null;
     }
 
-    widgetIdRef.current = window.turnstile.render(containerRef.current, {
+    widgetIdRef.current = window.turnstile.render(container, {
       sitekey: SITE_KEY,
-      callback: (token) => onVerifyRef.current(token),
+      callback: (token) => {
+        setWidgetError(false);
+        onVerifyRef.current(token);
+      },
       "expired-callback": () => onExpireRef.current?.(),
       "error-callback": () => {
-        handleLoadFailure();
+        setWidgetError(true);
         onErrorRef.current?.();
       },
       theme: "auto",
@@ -147,11 +156,15 @@ export function TurnstileWidget({
 
     return () => {
       if (widgetIdRef.current && window.turnstile) {
-        window.turnstile.remove(widgetIdRef.current);
+        try {
+          window.turnstile.remove(widgetIdRef.current);
+        } catch {
+          // Widget may already be gone during fast remounts
+        }
         widgetIdRef.current = null;
       }
     };
-  }, [ready, loadAttempt, handleLoadFailure]);
+  }, [ready, loadAttempt]);
 
   if (!SITE_KEY || !isTurnstileEnabled()) {
     return null;
@@ -164,12 +177,27 @@ export function TurnstileWidget({
           Captcha failed to load. Disable ad blockers for this site, check your
           connection, then try again.
         </p>
+        <p className="text-xs text-muted-foreground">
+          For production, add this site&apos;s domain (e.g.{" "}
+          {typeof window !== "undefined" ? window.location.hostname : "yourdomain.com"}
+          ) under Hostname in your{" "}
+          <a
+            href="https://dash.cloudflare.com/?to=/:account/turnstile"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline"
+          >
+            Cloudflare Turnstile
+          </a>{" "}
+          widget settings.
+        </p>
         <Button
           type="button"
           variant="outline"
           size="sm"
           onClick={() => {
             setLoadError(false);
+            setWidgetError(false);
             setLoadAttempt((attempt) => attempt + 1);
           }}
         >
@@ -179,10 +207,25 @@ export function TurnstileWidget({
     );
   }
 
-  return <div ref={containerRef} className={cn("min-h-[65px]", className)} />;
+  return (
+    <div className={cn("space-y-2", className)}>
+      <div ref={containerRef} className="min-h-[65px]" />
+      {widgetError && (
+        <p className="text-xs text-destructive">
+          Captcha challenge failed. Retry or check that this domain is allowed in
+          Cloudflare Turnstile.
+        </p>
+      )}
+    </div>
+  );
 }
 
 export function isTurnstileEnabled(): boolean {
+  // Local dev: skip widget (verifyTurnstile also skips server-side in development)
+  if (process.env.NODE_ENV === "development") {
+    return false;
+  }
+
   return (
     process.env.NEXT_PUBLIC_TURNSTILE_CONFIGURED === "true" &&
     Boolean(SITE_KEY)
