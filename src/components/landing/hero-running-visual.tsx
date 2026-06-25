@@ -4,40 +4,13 @@ type HeroRunningVisualProps = {
   className?: string;
 };
 
-/** Side-view running shoe (sole + upper). */
-function RunningShoeGraphic() {
-  return (
-    <>
-      <path
-        d="M2 16 C2 9 8 5 16 5 H40 C48 5 54 9 54 16 V20 H2 Z"
-        className="fill-primary/70 stroke-primary/85 dark:fill-primary/60 dark:stroke-primary/75"
-        strokeWidth="1.25"
-      />
-      <path
-        d="M12 9 H38 M14 12 H36"
-        className="stroke-primary/45"
-        strokeWidth="1"
-        strokeLinecap="round"
-      />
-      <path
-        d="M8 20 Q28 22 48 20"
-        className="stroke-orange-500/55"
-        strokeWidth="1.75"
-        fill="none"
-        strokeLinecap="round"
-      />
-      <ellipse
-        cx="18"
-        cy="18"
-        rx="5"
-        ry="2"
-        className="fill-orange-400/25"
-      />
-    </>
-  );
-}
+const raceMarkers = [
+  { cx: 130, cy: 159, label: "5K", nudge: "translate-x-[1in]" },
+  { cx: 400, cy: 158, label: "Half marathon" },
+  { cx: 610, cy: 153, label: "Full marathon", nudge: "-translate-x-[1cm]" },
+] as const;
 
-/** Wide rectangular trail scene — shoes in stride on the left, under hero copy. */
+/** Wide rectangular trail scene with distance markers along the road. */
 export function HeroRunningVisual({ className }: HeroRunningVisualProps) {
   return (
     <div
@@ -105,66 +78,59 @@ export function HeroRunningVisual({ className }: HeroRunningVisualProps) {
             strokeDasharray="12 8"
           />
 
-          {/* Mile markers */}
-          {[
-            [120, 160],
-            [280, 158],
-            [440, 159],
-            [600, 154],
-          ].map(([cx, cy], i) => (
-            <g key={i}>
-              <circle
-                cx={cx}
-                cy={cy}
-                r="5"
-                className="fill-background/70 stroke-primary/35"
-                strokeWidth="1.5"
-              />
-              <circle cx={cx} cy={cy} r="2" className="fill-primary/55" />
-            </g>
-          ))}
+          {/* Distance markers along the trail */}
+          {raceMarkers.map((marker) => {
+            const signWidth = marker.label === "5K" ? 40 : 78;
+            const fontSize = marker.label === "5K" ? 10 : 7.5;
 
-          {/* Trees — left tree tucked further left for shoe clearance */}
+            return (
+              <g
+                key={marker.label}
+                transform={`translate(${marker.cx}, ${marker.cy})`}
+                className={marker.nudge}
+              >
+                <circle
+                  r="4"
+                  className="fill-primary/50 stroke-primary/55"
+                  strokeWidth="1.2"
+                />
+                <line
+                  x1={0}
+                  y1={0}
+                  x2={0}
+                  y2={-18}
+                  className="stroke-primary/45"
+                  strokeWidth="1.25"
+                  strokeLinecap="round"
+                />
+                <rect
+                  x={-signWidth / 2}
+                  y={-36}
+                  width={signWidth}
+                  height={16}
+                  rx={4}
+                  className="fill-background/90 stroke-primary/35"
+                  strokeWidth="1"
+                />
+                <text
+                  y={-25}
+                  textAnchor="middle"
+                  fontSize={fontSize}
+                  fontWeight="600"
+                  fontFamily="system-ui, sans-serif"
+                  className="fill-primary/90"
+                >
+                  {marker.label}
+                </text>
+              </g>
+            );
+          })}
+
+          {/* Trees */}
           <g className="stroke-emerald-700/30" strokeWidth="1.25" fill="none">
             <path d="M28 138 L28 112 M14 124 Q28 96 42 124" />
             <path d="M728 124 L728 98 M714 110 Q728 82 742 110" />
             <path d="M180 132 L180 114 M172 122 Q180 104 188 122" />
-          </g>
-
-          {/* Running shoes — left side of road (clear of centered headline) */}
-          <g className="translate-x-[1.5in] opacity-95">
-            <g className="stroke-primary/35" strokeWidth="2" strokeLinecap="round" fill="none">
-              <path d="M8 154 L28 154" />
-              <path d="M4 162 L26 162" />
-              <path d="M12 170 L30 170" />
-            </g>
-            <g transform="translate(34 158) rotate(-14)">
-              <g>
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  values="0,0; 5,-4; 0,0"
-                  dur="0.9s"
-                  repeatCount="indefinite"
-                  begin="0.45s"
-                />
-                <RunningShoeGraphic />
-              </g>
-            </g>
-            <g transform="translate(78 146) rotate(8)">
-              <g>
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  values="0,0; 5,-4; 0,0"
-                  dur="0.9s"
-                  repeatCount="indefinite"
-                />
-                <RunningShoeGraphic />
-              </g>
-            </g>
-            <circle cx="22" cy="166" r="2" className="fill-primary/25" />
-            <circle cx="30" cy="172" r="1.5" className="fill-primary/20" />
           </g>
 
           {/* Finish line / ribbon */}
