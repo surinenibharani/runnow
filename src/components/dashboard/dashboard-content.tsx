@@ -15,6 +15,7 @@ import {
   TrendingUp,
   Timer,
   Unplug,
+  Pencil,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -84,6 +85,7 @@ export function DashboardContent() {
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
   const [age, setAge] = useState("");
+  const [editingAge, setEditingAge] = useState(false);
   const [message, setMessage] = useState("");
   const [disconnecting, setDisconnecting] = useState(false);
   const [chartRange, setChartRange] = useState<ChartTimeRange>("month");
@@ -215,7 +217,18 @@ export function DashboardContent() {
       body: JSON.stringify({ age: age ? parseInt(age, 10) : null }),
     });
     setMessage("Profile updated");
+    setEditingAge(false);
     loadDashboard();
+  }
+
+  function startEditingAge() {
+    setAge(data?.user.age ? String(data.user.age) : "");
+    setEditingAge(true);
+  }
+
+  function cancelEditingAge() {
+    setAge(data?.user.age ? String(data.user.age) : "");
+    setEditingAge(false);
   }
 
   if (status === "loading" || loading) {
@@ -356,20 +369,46 @@ export function DashboardContent() {
               <Label htmlFor="dash-age" className="text-sm text-muted-foreground">
                 Your age (HR zones)
               </Label>
-              <div className="flex gap-2 mt-2">
-                <Input
-                  id="dash-age"
-                  type="number"
-                  min={13}
-                  max={100}
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  className="h-8"
-                />
-                <Button size="sm" variant="secondary" onClick={saveAge}>
-                  Save
-                </Button>
-              </div>
+              {data.user.age != null && !editingAge ? (
+                <div className="flex items-center gap-2 mt-2">
+                  <p className="text-2xl font-bold">{data.user.age}</p>
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="ghost"
+                    className="h-8 px-2 text-muted-foreground"
+                    onClick={startEditingAge}
+                  >
+                    <Pencil className="size-3.5 mr-1" />
+                    Edit
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex gap-2 mt-2">
+                  <Input
+                    id="dash-age"
+                    type="number"
+                    min={13}
+                    max={100}
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                    className="h-8 max-w-[5rem] [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                  />
+                  <Button size="sm" variant="secondary" onClick={saveAge}>
+                    Save
+                  </Button>
+                  {data.user.age != null && (
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      onClick={cancelEditingAge}
+                    >
+                      Cancel
+                    </Button>
+                  )}
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
