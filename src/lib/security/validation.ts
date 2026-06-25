@@ -6,8 +6,59 @@ export function isValidEmail(email: string): boolean {
   return EMAIL_RE.test(email) && email.length <= 254;
 }
 
+export const PASSWORD_MIN_LENGTH = 8;
+export const PASSWORD_MAX_LENGTH = 128;
+
+export type PasswordRequirement = {
+  id: string;
+  label: string;
+  met: boolean;
+};
+
+export function getPasswordRequirements(password: string): PasswordRequirement[] {
+  return [
+    {
+      id: "length",
+      label: "At least 8 characters",
+      met: password.length >= PASSWORD_MIN_LENGTH,
+    },
+    {
+      id: "upper",
+      label: "One uppercase letter",
+      met: /[A-Z]/.test(password),
+    },
+    {
+      id: "lower",
+      label: "One lowercase letter",
+      met: /[a-z]/.test(password),
+    },
+    {
+      id: "number",
+      label: "One number",
+      met: /\d/.test(password),
+    },
+    {
+      id: "special",
+      label: "One symbol (e.g. !@#$%)",
+      met: /[^A-Za-z0-9]/.test(password),
+    },
+  ];
+}
+
 export function isValidPassword(password: string): boolean {
-  return password.length >= 8 && password.length <= 128;
+  if (
+    password.length < PASSWORD_MIN_LENGTH ||
+    password.length > PASSWORD_MAX_LENGTH
+  ) {
+    return false;
+  }
+  return getPasswordRequirements(password).every((req) => req.met);
+}
+
+export function passwordValidationMessage(password: string): string | null {
+  const unmet = getPasswordRequirements(password).filter((req) => !req.met);
+  if (unmet.length === 0) return null;
+  return `Choose a stronger password: ${unmet.map((req) => req.label.toLowerCase()).join(", ")}.`;
 }
 
 export function parseAge(age: unknown): number | null {

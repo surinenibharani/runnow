@@ -1,4 +1,9 @@
 import type { ActivitySummary } from "@/lib/activity-fields";
+import {
+  getBmi,
+  resolveAge,
+  type AthleteProfile,
+} from "@/lib/athlete-profile";
 import { formatPace } from "@/lib/strava";
 
 const MILE_METERS = 1609.34;
@@ -202,23 +207,28 @@ const ZONE_COLORS = {
   repetition: "#a855f7",
 };
 
-function buildPaceZones(fiveKPaceSecPerMile: number): PaceZone[] {
+function buildPaceZones(
+  fiveKPaceSecPerMile: number,
+  profile?: Pick<AthleteProfile, "age" | "gender" | "weightKg" | "heightCm">
+): PaceZone[] {
+  const age = profile ? resolveAge(profile) : 35;
+  const ageEaseOffset = age > 40 ? Math.floor((age - 40) / 10) * 4 : 0;
   const p = fiveKPaceSecPerMile;
   const defs: Array<Omit<PaceZone, "paceRange">> = [
     {
       id: "recovery",
       label: "Recovery",
       description: "Very easy — full conversation, active rest",
-      minSecondsPerMile: p + 105,
-      maxSecondsPerMile: p + 135,
+      minSecondsPerMile: p + 105 + ageEaseOffset,
+      maxSecondsPerMile: p + 135 + ageEaseOffset,
       color: ZONE_COLORS.recovery,
     },
     {
       id: "easy",
       label: "Easy",
       description: "Aerobic base — conversational effort",
-      minSecondsPerMile: p + 75,
-      maxSecondsPerMile: p + 105,
+      minSecondsPerMile: p + 75 + ageEaseOffset,
+      maxSecondsPerMile: p + 105 + ageEaseOffset,
       color: ZONE_COLORS.easy,
     },
     {
@@ -262,7 +272,8 @@ function buildPaceZones(fiveKPaceSecPerMile: number): PaceZone[] {
 }
 
 export function calculatePaceInsights(
-  activities: ActivitySummary[]
+  activities: ActivitySummary[],
+  profile?: Pick<AthleteProfile, "age" | "gender" | "weightKg" | "heightCm">
 ): PaceInsights {
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - LOOKBACK_DAYS);
@@ -302,11 +313,31 @@ export function calculatePaceInsights(
   const fiveK = projections.find((p) => p.id === "5k");
   const fiveKPaceSecPerMile =
     fiveK!.projectedTimeSeconds / (FIVE_K_METERS / MILE_METERS);
-  const zones = buildPaceZones(fiveKPaceSecPerMile);
+  const zones = buildPaceZones(fiveKPaceSecPerMile, profile);
+
+  const profileNotes: string[] = [];
+  if (profile?.age != null && profile.age > 40) {
+    profileNotes.push("easy/recovery paces widened slightly for your age");
+  }
+  const bmi =
+    profile?.weightKg && profile?.heightCm
+      ? getBmi({
+          age: profile.age ?? null,
+          gender: profile.gender ?? null,
+          weightKg: profile.weightKg,
+          heightCm: profile.heightCm,
+          restingHeartRate: null,
+        })
+      : null;
+  if (bmi != null && bmi >= 30) {
+    profileNotes.push("build volume gradually given your BMI");
+  }
+
+  const baselineNote = [baseline.note, ...profileNotes].filter(Boolean).join(" · ");
 
   return {
     available: true,
-    baselineNote: baseline.note,
+    baselineNote,
     runSampleSize: runs.length,
     projections,
     zones,

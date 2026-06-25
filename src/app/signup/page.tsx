@@ -23,6 +23,11 @@ import {
   emptyBodyMetricsForm,
   type BodyMetricsFormValues,
 } from "@/lib/body-metrics-form";
+import { PasswordRequirements } from "@/components/auth/password-requirements";
+import {
+  isValidPassword,
+  passwordValidationMessage,
+} from "@/lib/security/validation";
 
 export default function SignupPage() {
   return (
@@ -63,6 +68,12 @@ function SignupForm() {
 
     if (captchaRequired && !turnstileToken) {
       setError("Please complete the captcha");
+      setLoading(false);
+      return;
+    }
+
+    if (!isValidPassword(password)) {
+      setError(passwordValidationMessage(password) ?? "Choose a stronger password.");
       setLoading(false);
       return;
     }
@@ -125,6 +136,8 @@ function SignupForm() {
     );
   }
 
+  const passwordValid = isValidPassword(password);
+
   return (
     <div className="py-16 px-4">
       <FadeIn className="mx-auto max-w-md">
@@ -164,7 +177,7 @@ function SignupForm() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password (8+ characters)</Label>
+                <Label htmlFor="password">Create a strong password</Label>
                 <Input
                   id="password"
                   type="password"
@@ -174,7 +187,15 @@ function SignupForm() {
                   minLength={8}
                   maxLength={128}
                   autoComplete="new-password"
+                  aria-describedby="password-requirements"
                 />
+                <div
+                  id="password-requirements"
+                  className="rounded-lg border border-border/60 bg-muted/30 p-3"
+                >
+                  <p className="text-xs font-medium mb-2">Your password must include:</p>
+                  <PasswordRequirements password={password} />
+                </div>
               </div>
               <div className="rounded-lg border border-border/60 bg-muted/30 p-4 space-y-1">
                 <p className="text-sm font-medium">Body metrics</p>
@@ -214,7 +235,11 @@ function SignupForm() {
               <Button
                 type="submit"
                 className="w-full"
-                disabled={loading || (captchaRequired && !turnstileToken)}
+                disabled={
+                  loading ||
+                  !passwordValid ||
+                  (captchaRequired && !turnstileToken)
+                }
               >
                 {loading ? "Creating account…" : "Create account"}
               </Button>

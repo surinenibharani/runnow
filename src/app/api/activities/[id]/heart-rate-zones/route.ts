@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { aggregateHeartRateZonesFromStream } from "@/lib/activity-charts";
-import { type HrProfile } from "@/lib/hr-zones";
+import { buildAthleteProfile } from "@/lib/athlete-profile";
 import {
   fetchStravaActivityHeartrateStream,
   getValidAccessToken,
@@ -47,7 +47,7 @@ export async function GET(request: Request, context: RouteContext) {
     }),
     prisma.user.findUnique({
       where: { id: session.user.id },
-      select: { age: true, weightKg: true, heightCm: true },
+      select: { age: true, gender: true, weightKg: true, heightCm: true },
     }),
     prisma.dailyWellness.findFirst({
       where: {
@@ -63,12 +63,15 @@ export async function GET(request: Request, context: RouteContext) {
     return NextResponse.json({ error: "Activity not found" }, { status: 404 });
   }
 
-  const hrProfile: HrProfile = {
-    age: user?.age ?? null,
-    restingHeartRate: latestWellness?.restingHeartRate ?? null,
-    weightKg: user?.weightKg ?? null,
-    heightCm: user?.heightCm ?? null,
-  };
+  const hrProfile = buildAthleteProfile(
+    {
+      age: user?.age ?? null,
+      gender: user?.gender ?? null,
+      weightKg: user?.weightKg ?? null,
+      heightCm: user?.heightCm ?? null,
+    },
+    latestWellness?.restingHeartRate ?? null
+  );
 
   try {
     const accessToken = await getValidAccessToken(session.user.id);

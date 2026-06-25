@@ -1,4 +1,11 @@
 import type { ActivitySummary } from "@/lib/activity-fields";
+import {
+  buildAthleteProfile,
+  estimateExpectedRestingHr,
+  getSleepTarget,
+  getTrainingLoadMultiplier,
+  type AthleteProfile,
+} from "@/lib/athlete-profile";
 
 export type WellnessSnapshot = {
   date: string;
@@ -48,6 +55,7 @@ function daysAgo(n: number): Date {
 
 function scoreSleep(
   minutes: number | null,
+  profile: AthleteProfile,
   source?: string | null
 ): RecoveryFactor {
   if (minutes == null || minutes <= 0) {
@@ -68,22 +76,23 @@ function scoreSleep(
         : "";
 
   const hours = minutes / 60;
+  const target = getSleepTarget(profile);
   let score: number;
   let detail: string;
 
-  if (hours >= 7 && hours <= 9) {
+  if (hours >= target.minHours && hours <= target.maxHours) {
     score = 100;
-    detail = `${formatSleep(minutes)}${sourceNote} — solid recovery sleep.`;
-  } else if (hours >= 6 && hours < 7) {
+    detail = `${formatSleep(minutes)}${sourceNote} — solid recovery sleep for your profile.`;
+  } else if (hours >= target.minHours - 1 && hours < target.minHours) {
     score = 75;
     detail = `${formatSleep(minutes)}${sourceNote} — a bit short; an easy day may help.`;
-  } else if (hours > 9 && hours <= 10) {
+  } else if (hours > target.maxHours && hours <= target.maxHours + 1) {
     score = 88;
     detail = `${formatSleep(minutes)}${sourceNote} — extra rest; listen to how you feel.`;
-  } else if (hours >= 5 && hours < 6) {
+  } else if (hours >= target.minHours - 2 && hours < target.minHours - 1) {
     score = 50;
     detail = `${formatSleep(minutes)}${sourceNote} — under-slept; keep today's effort easy.`;
-  } else if (hours < 5) {
+  } else if (hours < target.minHours - 2) {
     score = 25;
     detail = `${formatSleep(minutes)}${sourceNote} — very low sleep; prioritize rest.`;
   } else {
@@ -103,6 +112,7 @@ function formatSleep(minutes: number): string {
 function scoreRestingHr(
   todayRhr: number | null,
   baselineRhr: number | null,
+  profile: AthleteProfile,
   source: "manual" | "estimated" | null
 ): RecoveryFactor {
   if (todayRhr == null) {
@@ -124,16 +134,27 @@ function scoreRestingHr(
         : "";
 
   if (baselineRhr == null) {
+    const expected = estimateExpectedRestingHr(profile);
+    const vsExpected = todayRhr - expected;
+    let detail = `${todayRhr} bpm${sourceNote}`;
+    if (vsExpected <= 3) {
+      detail += ` — near your sex/age expected ~${expected} bpm.`;
+    } else if (vsExpected <= 8) {
+      detail += ` — slightly above expected ~${expected} bpm for your profile.`;
+    } else {
+      detail += ` — elevated vs expected ~${expected} bpm; log more days for a personal baseline.`;
+    }
     return {
       id: "restingHr",
       label: "Resting heart rate",
-      score: 70,
-      detail: `${todayRhr} bpm${sourceNote} — log a few more days for trend comparison.`,
+      score: vsExpected <= 5 ? 75 : vsExpected <= 10 ? 60 : 45,
+      detail,
       available: true,
     };
   }
 
   const diff = todayRhr - baselineRhr;
+  const expected = estimateExpectedRestingHr(profile);
   let score: number;
   let detail: string;
 
@@ -152,6 +173,11 @@ function scoreRestingHr(
   } else {
     score = 20;
     detail = `${todayRhr} bpm${sourceNote} — well above ${Math.round(baselineRhr)} bpm; rest or very light movement.`;
+  }
+
+  if (todayRhr > expected + 12) {
+    score = Math.min(score, 35);
+    detail += ` Also above typical ~${expected} bpm for your age/sex.`;
   }
 
   return {
@@ -178,13 +204,19 @@ function runMinutesInRange(
     .reduce((sum, a) => sum + a.movingTime / 60, 0);
 }
 
-function scoreTrainingLoad(activities: ActivitySummary[]): RecoveryFactor {
+function scoreTrainingLoad(
+  activities: ActivitySummary[],
+  profile: AthleteProfile
+): RecoveryFactor {
   const now = new Date();
   const acuteStart = daysAgo(6);
   const chronicStart = daysAgo(27);
+  const loadMultiplier = getTrainingLoadMultiplier(profile);
 
-  const acuteMinutes = runMinutesInRange(activities, acuteStart, now);
-  const chronicMinutes = runMinutesInRange(activities, chronicStart, now);
+  const acuteMinutes =
+    runMinutesInRange(activities, acuteStart, now) * loadMultiplier;
+  const chronicMinutes =
+    runMinutesInRange(activities, chronicStart, now) * loadMultiplier;
   const chronicWeekly = chronicMinutes / 4;
 
   if (acuteMinutes === 0 && chronicWeekly === 0) {
@@ -379,15 +411,31 @@ function buildSummary(score: number, factors: RecoveryFactor[]): string {
 
 export function calculateRecoveryReadiness(
   wellness: WellnessSnapshot[],
-  activities: ActivitySummary[]
+  activities: ActivitySummary[],
+  user?: {
+    age: number | null;
+    gender?: string | null;
+    weightKg?: number | null;
+    heightCm?: number | null;
+  }
 ): RecoveryReadiness {
   const sleep = resolveLastNightSleep(wellness);
   const { rhr, source } = resolveTodayRhr(wellness, activities);
   const baselineRhr = resolveBaselineRhr(wellness, activities);
 
-  const sleepFactor = scoreSleep(sleep.minutes, sleep.source);
-  const rhrFactor = scoreRestingHr(rhr, baselineRhr, source);
-  const loadFactor = scoreTrainingLoad(activities);
+  const profile = buildAthleteProfile(
+    {
+      age: user?.age ?? null,
+      gender: user?.gender ?? null,
+      weightKg: user?.weightKg ?? null,
+      heightCm: user?.heightCm ?? null,
+    },
+    rhr
+  );
+
+  const sleepFactor = scoreSleep(sleep.minutes, profile, sleep.source);
+  const rhrFactor = scoreRestingHr(rhr, baselineRhr, profile, source);
+  const loadFactor = scoreTrainingLoad(activities, profile);
   const factors = [sleepFactor, rhrFactor, loadFactor];
 
   const available = factors.filter((f) => f.available);

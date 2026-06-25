@@ -11,6 +11,7 @@ import {
   parseGender,
   parseHeightCm,
   parseWeightKg,
+  passwordValidationMessage,
 } from "@/lib/security/validation";
 
 export async function POST(request: Request) {
@@ -54,7 +55,11 @@ export async function POST(request: Request) {
 
     if (!password || !isValidPassword(String(password))) {
       return NextResponse.json(
-        { error: "Password must be 8–128 characters" },
+        {
+          error:
+            passwordValidationMessage(String(password)) ??
+            "Choose a stronger password with uppercase, lowercase, a number, and a symbol.",
+        },
         { status: 400 }
       );
     }

@@ -1,6 +1,12 @@
 import type { User } from "@prisma/client";
 import type { ActivitySummary } from "@/lib/activity-fields";
-import { estimateMaxHeartRate } from "@/lib/hr-zones";
+import {
+  buildAthleteProfile,
+  estimateMaxHeartRate,
+  getEasyHeartRateRange,
+  getWeeklyMileageCaps,
+  hasPersonalizationData,
+} from "@/lib/athlete-profile";
 import {
   formatDistance,
   formatDuration,
@@ -116,8 +122,9 @@ export function calculateRunStreak(activities: ActivitySummary[]): RunStreak {
 }
 
 export function generateSuggestions(
-  user: Pick<User, "age">,
-  activities: ActivitySummary[]
+  user: Pick<User, "age" | "gender" | "weightKg" | "heightCm">,
+  activities: ActivitySummary[],
+  restingHeartRate: number | null = null
 ): RunSuggestion[] {
   const suggestions: RunSuggestion[] = [];
   const runs = activities
@@ -135,8 +142,9 @@ export function generateSuggestions(
   }
 
   const latest = runs[0];
-  const age = user.age ?? 35;
-  const maxHrEstimate = estimateMaxHeartRate(user.age);
+  const profile = buildAthleteProfile(user, restingHeartRate);
+  const maxHrEstimate = estimateMaxHeartRate(profile);
+  const easyHr = getEasyHeartRateRange(profile);
 
   if (latest.averageHeartrate) {
     const hrPercent = (latest.averageHeartrate / maxHrEstimate) * 100;
@@ -144,7 +152,7 @@ export function generateSuggestions(
     if (hrPercent > 85) {
       suggestions.push({
         title: "Ease the pace on easy days",
-        detail: `Your last run averaged ${Math.round(latest.averageHeartrate)} bpm (~${Math.round(hrPercent)}% of estimated max). For recovery and easy runs, aim for 65–75% (${Math.round(maxHrEstimate * 0.65)}–${Math.round(maxHrEstimate * 0.75)} bpm).`,
+        detail: `Your last run averaged ${Math.round(latest.averageHeartrate)} bpm (~${Math.round(hrPercent)}% of your estimated max). For recovery and easy runs, aim for ${easyHr.min}–${easyHr.max} bpm (${easyHr.method === "karvonen" ? "heart-rate reserve" : "% max"} zones).`,
         priority: "high",
       });
     } else if (hrPercent < 60 && latest.distance > 5000) {
@@ -185,12 +193,19 @@ export function generateSuggestions(
   );
   const totalMiles7 =
     last7.reduce((s, r) => s + r.distance, 0) / 1609.34;
+  const { softCap, hardCap } = getWeeklyMileageCaps(profile);
 
-  if (totalMiles7 > 30 && age > 40) {
+  if (totalMiles7 > hardCap) {
     suggestions.push({
       title: "Watch weekly volume",
-      detail: `You've logged ${totalMiles7.toFixed(1)} miles in 7 days. At ${age}, consider capping increases at ~10% per week to reduce injury risk.`,
+      detail: `You've logged ${totalMiles7.toFixed(1)} miles in 7 days — above ~${hardCap} mi suggested for your age, sex, and BMI profile. Consider capping increases at ~10% per week.`,
       priority: "high",
+    });
+  } else if (totalMiles7 > softCap) {
+    suggestions.push({
+      title: "High weekly mileage",
+      detail: `${totalMiles7.toFixed(1)} miles this week is near your profile's ~${softCap} mi comfort zone — extra sleep and easy days help you absorb the load.`,
+      priority: "medium",
     });
   } else if (totalMiles7 < 5 && runs.length >= 2) {
     suggestions.push({
@@ -217,11 +232,18 @@ export function generateSuggestions(
     }
   }
 
-  if (!user.age) {
+  if (!hasPersonalizationData(profile)) {
+    suggestions.push({
+      title: "Complete your profile",
+      detail:
+        "Add age, sex, weight, and height in your profile for heart rate zones, recovery scoring, and mileage guidance tuned to you.",
+      priority: "medium",
+    });
+  } else if (!user.age) {
     suggestions.push({
       title: "Add your age",
       detail:
-        "Update your profile age for more accurate heart rate zone recommendations (Strava doesn't share age via API).",
+        "Age sharpens max heart rate estimates — update it in your profile for better zone accuracy.",
       priority: "medium",
     });
   }

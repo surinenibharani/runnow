@@ -18,7 +18,7 @@ import {
 } from "@/lib/chart-time-range";
 import { analyzePlanAlignment } from "@/lib/plan-alignment";
 import { calculateRecoveryReadiness, toDateKey } from "@/lib/recovery-readiness";
-import { type HrProfile } from "@/lib/hr-zones";
+import { buildAthleteProfile } from "@/lib/athlete-profile";
 import { getOrCreateUserTrainingPlan } from "@/lib/teams";
 
 function isRunActivity(type: string): boolean {
@@ -26,23 +26,10 @@ function isRunActivity(type: string): boolean {
   return t.includes("run") || t === "trailrun" || t === "virtualrun";
 }
 
-function buildHrProfile(
-  user: {
-    age: number | null;
-    weightKg: number | null;
-    heightCm: number | null;
-  },
+function resolveRestingHeartRate(
   wellness: Array<{ restingHeartRate: number | null }>
-): HrProfile {
-  const restingHeartRate =
-    wellness.find((w) => w.restingHeartRate != null)?.restingHeartRate ?? null;
-
-  return {
-    age: user.age,
-    restingHeartRate,
-    weightKg: user.weightKg,
-    heightCm: user.heightCm,
-  };
+): number | null {
+  return wellness.find((w) => w.restingHeartRate != null)?.restingHeartRate ?? null;
 }
 
 export async function GET(request: Request) {
@@ -102,8 +89,17 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
+  const wellness = wellnessRows.map((w) => ({
+    date: toDateKey(w.date),
+    sleepMinutes: w.sleepMinutes,
+    restingHeartRate: w.restingHeartRate,
+    source: w.source,
+  }));
+
   const streak = calculateRunStreak(activities);
-  const suggestions = generateSuggestions(user, activities);
+  const restingHeartRate = resolveRestingHeartRate(wellness);
+  const athleteProfile = buildAthleteProfile(user, restingHeartRate);
+  const suggestions = generateSuggestions(user, activities, restingHeartRate);
   const routeComparisons = findRouteComparisons(activities);
   const alignment = analyzePlanAlignment({
     planId: trainingPlan.planId,
@@ -114,17 +110,11 @@ export async function GET(request: Request) {
     completedIds: trainingPlan.completedIds,
     activities,
   });
-  const wellness = wellnessRows.map((w) => ({
-    date: toDateKey(w.date),
-    sleepMinutes: w.sleepMinutes,
-    restingHeartRate: w.restingHeartRate,
-    source: w.source,
-  }));
 
-  const hrProfile = buildHrProfile(user, wellness);
+  const hrProfile = athleteProfile;
   const activityBreakdown = aggregateActivityTypes(chartActivities);
   const heartRateZones = aggregateHeartRateZones(chartActivities, hrProfile);
-  const paceInsights = calculatePaceInsights(activities);
+  const paceInsights = calculatePaceInsights(activities, user);
 
   const hrActivities = activities.map((a) => ({
     id: a.id,
@@ -135,7 +125,7 @@ export async function GET(request: Request) {
     movingTime: a.movingTime,
   }));
 
-  const recovery = calculateRecoveryReadiness(wellness, activities);
+  const recovery = calculateRecoveryReadiness(wellness, activities, user);
 
   const recentRuns = activities.slice(0, 10).map((a) => ({
     id: a.id,

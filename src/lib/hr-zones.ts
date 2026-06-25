@@ -1,13 +1,13 @@
-export type HrProfile = {
-  age: number | null;
-  restingHeartRate: number | null;
-  weightKg?: number | null;
-  heightCm?: number | null;
-};
+import {
+  estimateMaxHeartRate as estimateMaxHrFromProfile,
+  formatProfileContext,
+  getBmi,
+  type AthleteProfile,
+} from "@/lib/athlete-profile";
+
+export type HrProfile = AthleteProfile;
 
 export type HrZoneMethod = "karvonen" | "percent_max";
-
-const DEFAULT_AGE = 35;
 
 const ZONE_COLORS = {
   z1: "#3b82f6",
@@ -35,25 +35,16 @@ const ZONE_LABELS_KARVONEN = {
 
 export type HrZoneKey = keyof typeof ZONE_COLORS;
 
-/** Tanaka et al. — more accurate than 220 − age for most adults. */
-export function estimateMaxHeartRate(age: number | null): number {
-  const a = age ?? DEFAULT_AGE;
-  return Math.round(208 - 0.7 * a);
-}
+export { estimateMaxHrFromProfile as estimateMaxHeartRate };
 
-export function resolveHrZoneMethod(
-  profile: HrProfile
-): HrZoneMethod {
+export function resolveHrZoneMethod(profile: HrProfile): HrZoneMethod {
   return profile.restingHeartRate != null && profile.restingHeartRate > 0
     ? "karvonen"
     : "percent_max";
 }
 
-export function classifyHeartRateZone(
-  hr: number,
-  profile: HrProfile
-): HrZoneKey {
-  const maxHr = estimateMaxHeartRate(profile.age);
+export function classifyHeartRateZone(hr: number, profile: HrProfile): HrZoneKey {
+  const maxHr = estimateMaxHrFromProfile(profile);
 
   if (
     profile.restingHeartRate != null &&
@@ -77,10 +68,7 @@ export function classifyHeartRateZone(
   return "z5";
 }
 
-export function getZoneLabel(
-  zone: HrZoneKey,
-  method: HrZoneMethod
-): string {
+export function getZoneLabel(zone: HrZoneKey, method: HrZoneMethod): string {
   return method === "karvonen"
     ? ZONE_LABELS_KARVONEN[zone]
     : ZONE_LABELS_PERCENT_MAX[zone];
@@ -100,34 +88,11 @@ export function buildZoneColorMap(method: HrZoneMethod): Record<string, string> 
 }
 
 export function formatBmi(weightKg: number, heightCm: number): number | null {
-  if (weightKg <= 0 || heightCm <= 0) return null;
-  const heightM = heightCm / 100;
-  return Math.round((weightKg / (heightM * heightM)) * 10) / 10;
+  return getBmi({ age: null, gender: null, weightKg, heightCm, restingHeartRate: null });
 }
 
-export function formatHrZoneSubtitle(
-  profile: HrProfile,
-  extra?: string
-): string {
-  const maxHr = estimateMaxHeartRate(profile.age);
-  const method = resolveHrZoneMethod(profile);
-  const parts: string[] = [];
-
-  if (method === "karvonen" && profile.restingHeartRate) {
-    parts.push(
-      `Heart-rate reserve · resting ${Math.round(profile.restingHeartRate)} bpm · max ${maxHr} bpm`
-    );
-  } else if (profile.age != null) {
-    parts.push(`Estimated max ${maxHr} bpm (Tanaka formula)`);
-  } else {
-    parts.push(`Using default age ${DEFAULT_AGE} · max ${maxHr} bpm`);
-  }
-
-  if (profile.weightKg && profile.heightCm) {
-    const bmi = formatBmi(profile.weightKg, profile.heightCm);
-    if (bmi) parts.push(`BMI ${bmi}`);
-  }
-
+export function formatHrZoneSubtitle(profile: HrProfile, extra?: string): string {
+  const parts = formatProfileContext(profile);
   if (extra) parts.push(extra);
   return parts.join(" · ");
 }

@@ -207,6 +207,7 @@ export function DashboardContent() {
     if (!data) return null;
     return {
       age: data.user.age,
+      gender: data.user.gender,
       restingHeartRate: data.recovery.todayRestingHeartRate,
       weightKg: data.user.weightKg,
       heightCm: data.user.heightCm,
