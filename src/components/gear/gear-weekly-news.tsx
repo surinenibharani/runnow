@@ -7,10 +7,12 @@ import { formatGearUpdatedAt } from "@/lib/gear/updates";
 
 type GearWeeklyNewsProps = {
   updates: GearUpdates;
+  limit?: number;
 };
 
-export function GearWeeklyNews({ updates }: GearWeeklyNewsProps) {
+export function GearWeeklyNews({ updates, limit = 5 }: GearWeeklyNewsProps) {
   const updatedLabel = formatGearUpdatedAt(updates.updatedAt);
+  const headlines = updates.items.slice(0, limit);
 
   return (
     <section aria-labelledby="gear-weekly-heading" className="scroll-mt-24">
@@ -34,13 +36,13 @@ export function GearWeeklyNews({ updates }: GearWeeklyNewsProps) {
           </p>
         </CardHeader>
         <CardContent className="pt-0">
-          {updates.items.length === 0 ? (
+          {headlines.length === 0 ? (
             <p className="text-sm text-muted-foreground">
               Fresh gear news will appear here after the next Friday update.
             </p>
           ) : (
             <ul className="space-y-3">
-              {updates.items.map((item) => (
+              {headlines.map((item) => (
                 <li
                   key={item.url}
                   className="rounded-xl border border-border/60 bg-muted/20 p-4"

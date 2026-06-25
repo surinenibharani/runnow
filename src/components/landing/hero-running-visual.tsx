@@ -132,7 +132,7 @@ export function HeroRunningVisual({ className }: HeroRunningVisualProps) {
           </g>
 
           {/* Running shoes — left side of road (clear of centered headline) */}
-          <g className="opacity-95">
+          <g className="translate-x-[1.5in] opacity-95">
             <g className="stroke-primary/35" strokeWidth="2" strokeLinecap="round" fill="none">
               <path d="M8 154 L28 154" />
               <path d="M4 162 L26 162" />

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, ShoppingBag, Sparkles } from "lucide-react";
+import { ArrowUpRight, Footprints, ShoppingBag, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -89,20 +89,15 @@ export default function GearPage() {
         <FadeIn className="mb-10">
           <Card className="border-primary/20 bg-primary/5">
             <CardContent className="flex gap-4 p-6">
-              <ShoppingBag className="mt-0.5 size-6 shrink-0 text-primary" />
+              <Footprints className="mt-0.5 size-6 shrink-0 text-primary" />
               <div className="text-sm leading-relaxed">
                 <p className="font-medium text-foreground">
-                  Start with Strava and budget basics. Level up when mileage grows.
+                  Shoes are all you need to start. Add the rest as you go.
                 </p>
                 <p className="mt-1 text-muted-foreground">
-                  Most items in{" "}
-                  <strong className="font-medium text-foreground">
-                    Start Here
-                  </strong>{" "}
-                  stay under $100. Save{" "}
-                  <strong className="font-medium text-foreground">Level Up</strong>{" "}
-                  for shoes, cold-weather gear, hydration vests, and watches — buy
-                  when a real need shows up, not because an ad told you to.
+                  You don&apos;t need everything on day one. Buy gear when a real
+                  need shows up — heat, distance, chafing, or weather — not
+                  because an ad told you to.
                 </p>
               </div>
             </CardContent>
@@ -169,7 +164,7 @@ export default function GearPage() {
                           item.suggestions
                         )}
                         afterCard={
-                          item.slug === "hydration-packs" ? (
+                          item.slug === "coros" ? (
                             <GearWeeklyNews updates={gearUpdates} />
                           ) : undefined
                         }
