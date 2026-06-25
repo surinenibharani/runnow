@@ -81,8 +81,12 @@ export function WeekTracker() {
   const [bootstrapComplete, setBootstrapComplete] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const migratedRef = useRef(false);
+  const migrationPlanIdRef = useRef(initialPlan.id);
 
   const isAuthenticated = authStatus === "authenticated";
+  const urlPlanId = searchParams.get("plan");
+  const explicitUrlPlanId =
+    urlPlanId && PLANS.some((p) => p.id === urlPlanId) ? urlPlanId : null;
 
   const scheduledPlan = useMemo(
     () => applyScheduleToPlan(basePlan, schedulePrefs, planProfile),
@@ -177,7 +181,10 @@ export function WeekTracker() {
 
           if (hasLocalProgress && !hasRemoteProgress) {
             const merged = await saveTrainingPlan({
-              planId: remote.planId !== DEFAULT_PLAN_ID ? remote.planId : planId,
+              planId:
+                remote.planId !== DEFAULT_PLAN_ID
+                  ? remote.planId
+                  : migrationPlanIdRef.current,
               restDay: localSchedule.restDay,
               longRunDay: localSchedule.longRunDay,
               runDaysPerWeek: localSchedule.runDaysPerWeek,
@@ -189,10 +196,40 @@ export function WeekTracker() {
               lastCompletedDate: localProgress.lastCompletedDate,
             });
             applyRemotePlan(merged);
+          } else if (explicitUrlPlanId && explicitUrlPlanId !== remote.planId) {
+            const selected = PLANS.find((p) => p.id === explicitUrlPlanId)!;
+            setFamilyId(selected.familyId);
+            setPlanId(selected.id);
+            setBasePlan(selected);
+            const profile = getPlanProfile();
+            const nextPrefs = deriveSchedulePrefs(
+              getSchedulePreferences(),
+              profile,
+              selected.runsPerWeek
+            );
+            setPlanProfile(profile);
+            setSchedulePrefs(nextPrefs);
+            setProgress(getProgress(explicitUrlPlanId));
+            setActiveWeek("1");
           } else {
             applyRemotePlan(remote);
           }
           migratedRef.current = true;
+        } else if (explicitUrlPlanId && explicitUrlPlanId !== remote.planId) {
+          const selected = PLANS.find((p) => p.id === explicitUrlPlanId)!;
+          setFamilyId(selected.familyId);
+          setPlanId(selected.id);
+          setBasePlan(selected);
+          const profile = getPlanProfile();
+          const nextPrefs = deriveSchedulePrefs(
+            getSchedulePreferences(),
+            profile,
+            selected.runsPerWeek
+          );
+          setPlanProfile(profile);
+          setSchedulePrefs(nextPrefs);
+          setProgress(getProgress(explicitUrlPlanId));
+          setActiveWeek("1");
         } else {
           applyRemotePlan(remote);
         }
@@ -215,7 +252,7 @@ export function WeekTracker() {
     return () => {
       cancelled = true;
     };
-  }, [authStatus, applyRemotePlan, planId]);
+  }, [authStatus, applyRemotePlan]);
 
   useEffect(() => {
     if (!isAuthenticated || !useRemote) {
@@ -256,6 +293,48 @@ export function WeekTracker() {
     },
     [useRemote]
   );
+
+  const applyPlanSelection = useCallback(
+    (id: string, options?: { resetWeek?: boolean }) => {
+      const selected = PLANS.find((p) => p.id === id);
+      if (!selected || selected.id === planId) return;
+
+      setFamilyId(selected.familyId);
+      setPlanId(selected.id);
+      setBasePlan(selected);
+      const nextPrefs = deriveSchedulePrefs(
+        schedulePrefs,
+        planProfile,
+        selected.runsPerWeek
+      );
+      setSchedulePrefs(nextPrefs);
+
+      if (options?.resetWeek !== false) {
+        setActiveWeek("1");
+        setExpandedDay(null);
+      }
+
+      if (useRemote) {
+        void persistPlanSettings(
+          selected.id,
+          nextPrefs,
+          planProfile,
+          options?.resetWeek !== false ? 1 : undefined
+        );
+      } else {
+        saveSchedulePreferences(nextPrefs);
+        setProgress(getProgress(selected.id));
+      }
+    },
+    [planId, schedulePrefs, planProfile, useRemote, persistPlanSettings]
+  );
+
+  useEffect(() => {
+    if (!bootstrapComplete || !urlPlanId) return;
+    if (!PLANS.some((p) => p.id === urlPlanId)) return;
+    if (urlPlanId === planId) return;
+    applyPlanSelection(urlPlanId, { resetWeek: true });
+  }, [urlPlanId, bootstrapComplete, planId, applyPlanSelection]);
 
   const handleScheduleChange = useCallback(
     (prefs: SchedulePreferences) => {
@@ -344,14 +423,9 @@ export function WeekTracker() {
 
   const handleVariantChange = useCallback(
     (id: string) => {
-      const selected = PLANS.find((p) => p.id === id);
-      if (selected) {
-        setPlanId(id);
-        setBasePlan(selected);
-        if (useRemote) void persistPlanSettings(id, schedulePrefs, planProfile);
-      }
+      applyPlanSelection(id, { resetWeek: false });
     },
-    [useRemote, schedulePrefs, planProfile, persistPlanSettings]
+    [applyPlanSelection]
   );
 
   const workoutToggleContext = useMemo<WorkoutToggleContext>(

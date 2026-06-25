@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Calendar, ChevronDown, ChevronUp, Footprints, Route, Timer } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -44,13 +44,33 @@ export function PlanCatalogExplorer({
   plans,
   selectedPlanId,
 }: PlanCatalogExplorerProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const activePlanId = searchParams.get("plan") ?? selectedPlanId;
+
   const [activeFilters, setActiveFilters] = useState<PlanFilter[]>([]);
   const [expandedId, setExpandedId] = useState<string | null>(
-    selectedPlanId ?? plans[0]?.id ?? null
+    activePlanId ?? plans[0]?.id ?? null
   );
   const [previewMode, setPreviewMode] = useState<Record<string, "week1" | "peak">>(
     {}
   );
+
+  useEffect(() => {
+    if (activePlanId) setExpandedId(activePlanId);
+  }, [activePlanId]);
+
+  const selectPlan = (planId: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("plan", planId);
+    router.push(`/plan?${params.toString()}#plan-tracker`, { scroll: false });
+    requestAnimationFrame(() => {
+      document.getElementById("plan-tracker")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  };
 
   const filteredPlans = useMemo(
     () => plans.filter((plan) => planMatchesFilters(plan.id, activeFilters)),
@@ -121,7 +141,7 @@ export function PlanCatalogExplorer({
         <ul className="space-y-4">
           {filteredPlans.map((plan) => {
             const isExpanded = expandedId === plan.id;
-            const isSelected = selectedPlanId === plan.id;
+            const isSelected = activePlanId === plan.id;
             const preview =
               previewMode[plan.id] === "peak" ? plan.peakWeek : plan.sampleWeek;
 
@@ -167,12 +187,10 @@ export function PlanCatalogExplorer({
 
                         <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-stretch">
                           <Button
-                            nativeButton={false}
-                            render={
-                              <Link href={`/plan?plan=${plan.id}#plan-tracker`} />
-                            }
+                            type="button"
                             size="sm"
                             className="w-full sm:min-w-[8rem] inline-flex items-center justify-center gap-1"
+                            onClick={() => selectPlan(plan.id)}
                           >
                             {isSelected ? "Open tracker" : "Select plan"}
                           </Button>
