@@ -4,11 +4,18 @@ type HeroRunningVisualProps = {
   className?: string;
 };
 
-const raceMarkers = [
+type RaceMarker = {
+  cx: number;
+  cy: number;
+  label: string;
+  nudge?: string;
+};
+
+const raceMarkers: RaceMarker[] = [
   { cx: 130, cy: 159, label: "5K", nudge: "translate-x-[1in]" },
   { cx: 400, cy: 158, label: "Half marathon" },
   { cx: 610, cy: 153, label: "Full marathon", nudge: "-translate-x-[1cm]" },
-] as const;
+];
 
 /** Wide rectangular trail scene with distance markers along the road. */
 export function HeroRunningVisual({ className }: HeroRunningVisualProps) {
