@@ -7,7 +7,6 @@ import {
   buildRouteKey,
   fetchStravaActivities,
   getValidAccessToken,
-  isRunType,
 } from "@/lib/strava";
 import { getOrCreateUserTrainingPlan, updateUserTrainingPlan } from "@/lib/teams";
 
@@ -22,15 +21,13 @@ export async function syncStravaActivitiesForUser(
   const accessToken = await getValidAccessToken(userId);
   let page = 1;
   let synced = 0;
-  const maxPages = 5;
+  const maxPages = 20;
 
   while (page <= maxPages) {
     const activities = await fetchStravaActivities(accessToken, page, 50);
     if (activities.length === 0) break;
 
     for (const activity of activities) {
-      if (!isRunType(activity.type)) continue;
-
       const startLat = activity.start_latlng?.[0];
       const startLng = activity.start_latlng?.[1];
       const routeKey = buildRouteKey(startLat, startLng, activity.distance);

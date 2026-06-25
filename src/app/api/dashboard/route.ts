@@ -17,7 +17,13 @@ import {
   parseChartTimeRange,
 } from "@/lib/chart-time-range";
 import { analyzePlanAlignment } from "@/lib/plan-alignment";
+import { calculateRecoveryReadiness, toDateKey } from "@/lib/recovery-readiness";
 import { getOrCreateUserTrainingPlan } from "@/lib/teams";
+
+function isRunActivity(type: string): boolean {
+  const t = type.toLowerCase();
+  return t.includes("run") || t === "trailrun" || t === "virtualrun";
+}
 
 export async function GET(request: Request) {
   const session = await auth();
@@ -31,7 +37,7 @@ export async function GET(request: Request) {
   );
   const chartRangeStart = getChartRangeStart(chartTimeRange);
 
-  const [user, activities, chartActivities, stravaAccount, trainingPlan] =
+  const [user, activities, chartActivities, stravaAccount, trainingPlan, wellnessRows] =
     await Promise.all([
     prisma.user.findUnique({
       where: { id: userId },
@@ -47,7 +53,7 @@ export async function GET(request: Request) {
     prisma.activity.findMany({
       where: { userId },
       orderBy: { startDate: "desc" },
-      take: 100,
+      take: 500,
       select: activitySummarySelect,
     }),
     prisma.activity.findMany({
@@ -62,6 +68,11 @@ export async function GET(request: Request) {
     }),
     prisma.stravaAccount.findUnique({ where: { userId } }),
     getOrCreateUserTrainingPlan(userId),
+    prisma.dailyWellness.findMany({
+      where: { userId },
+      orderBy: { date: "desc" },
+      take: 30,
+    }),
   ]);
 
   if (!user) {
@@ -83,6 +94,24 @@ export async function GET(request: Request) {
   const activityBreakdown = aggregateActivityTypes(chartActivities);
   const heartRateZones = aggregateHeartRateZones(chartActivities, user.age);
   const paceInsights = calculatePaceInsights(activities);
+
+  const hrActivities = activities.map((a) => ({
+    id: a.id,
+    name: a.name,
+    type: a.type,
+    startDate: a.startDate.toISOString(),
+    averageHeartrate: a.averageHeartrate,
+    movingTime: a.movingTime,
+  }));
+
+  const wellness = wellnessRows.map((w) => ({
+    date: toDateKey(w.date),
+    sleepMinutes: w.sleepMinutes,
+    restingHeartRate: w.restingHeartRate,
+    source: w.source,
+  }));
+
+  const recovery = calculateRecoveryReadiness(wellness, activities);
 
   const recentRuns = activities.slice(0, 10).map((a) => ({
     id: a.id,
@@ -126,8 +155,11 @@ export async function GET(request: Request) {
     chartTimeRange,
     activityBreakdown,
     heartRateZones,
+    hrActivities,
+    recovery,
     paceInsights,
     recentRuns,
-    totalRuns: activities.length,
+    totalRuns: activities.filter((a) => isRunActivity(a.type)).length,
+    totalActivities: activities.length,
   });
 }

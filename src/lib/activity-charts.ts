@@ -16,6 +16,13 @@ const ACTIVITY_COLORS: Record<string, string> = {
   Hike: "#78716c",
   Swim: "#06b6d4",
   Workout: "#f43f5e",
+  Yoga: "#a855f7",
+  Strength: "#64748b",
+  Elliptical: "#14b8a6",
+  Rowing: "#0284c7",
+  Ski: "#38bdf8",
+  "Paddle Sports": "#0891b2",
+  "Virtual Ride": "#7c3aed",
   Other: "#94a3b8",
 };
 
@@ -35,17 +42,36 @@ const ZONE_LABELS = {
   z5: "Zone 5 · Max (90%+)",
 };
 
+function prettifyStravaType(type: string): string {
+  return type
+    .replace(/_/g, " ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .trim();
+}
+
 function formatActivityType(type: string): string {
   const t = type.toLowerCase();
   if (t.includes("virtual") && t.includes("run")) return "Virtual Run";
-  if (t === "trailrun" || t.includes("trail")) return "Trail Run";
+  if (t === "trailrun" || (t.includes("trail") && t.includes("run")))
+    return "Trail Run";
+  if (t.includes("virtual") && (t.includes("ride") || t.includes("bike")))
+    return "Virtual Ride";
   if (t.includes("run")) return "Run";
-  if (t.includes("ride") || t.includes("cycl")) return "Ride";
+  if (t.includes("ride") || t.includes("bike") || t.includes("cycl")) return "Ride";
   if (t.includes("walk")) return "Walk";
   if (t.includes("hike")) return "Hike";
   if (t.includes("swim")) return "Swim";
-  if (t.includes("workout") || t.includes("weight")) return "Workout";
-  return "Other";
+  if (t.includes("yoga")) return "Yoga";
+  if (t.includes("weight") || t.includes("strength")) return "Strength";
+  if (t.includes("workout") || t.includes("crossfit") || t.includes("hiit"))
+    return "Workout";
+  if (t.includes("elliptical")) return "Elliptical";
+  if (t.includes("row")) return "Rowing";
+  if (t.includes("ski")) return "Ski";
+  if (t.includes("paddle") || t.includes("kayak") || t.includes("canoe"))
+    return "Paddle Sports";
+  const pretty = prettifyStravaType(type);
+  return pretty || "Other";
 }
 
 function toSlices(
@@ -92,7 +118,7 @@ function heartRateZone(
 
 /** Minutes in each HR zone, weighted by activity moving time. */
 export function aggregateHeartRateZones(
-  activities: ActivitySummary[],
+  activities: Pick<ActivitySummary, "averageHeartrate" | "movingTime">[],
   age: number | null
 ): PieSlice[] {
   const maxHr = 220 - (age ?? 35);

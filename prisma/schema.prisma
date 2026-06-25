@@ -25,6 +25,7 @@ model User {
   sessions                 Session[]
   stravaAccount            StravaAccount?
   activities               Activity[]
+  dailyWellness            DailyWellness[]
   blogComments             BlogComment[]
   trainingPlan             UserTrainingPlan?
   coachedTeams             Team[]            @relation("CoachTeams")
@@ -105,6 +106,21 @@ model Activity {
 
   @@index([userId, routeKey])
   @@index([userId, startDate])
+}
+
+model DailyWellness {
+  id               String   @id @default(cuid())
+  userId           String
+  date             DateTime @db.Date
+  sleepMinutes     Int?
+  restingHeartRate Int?
+  source           String   @default("manual")
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([userId, date])
+  @@index([userId, date])
 }
 
 model BlogComment {

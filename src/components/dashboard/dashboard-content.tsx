@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -26,16 +26,19 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { formatDistance, formatDuration, formatPace } from "@/lib/strava";
 import type { PlanAlignmentSummary } from "@/lib/plan-alignment";
 import { PlanAlignmentCard } from "@/components/dashboard/plan-alignment";
+import { RecoveryReadinessCard } from "@/components/dashboard/recovery-readiness-card";
 import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
 import { PaceInsightsPanel } from "@/components/dashboard/pace-insights-panel";
 import type { RouteComparison, RunSuggestion } from "@/lib/run-analysis";
 import type { PieSlice } from "@/lib/activity-charts";
+import { aggregateHeartRateZones } from "@/lib/activity-charts";
 import type { PaceInsights } from "@/lib/pace-analysis";
 import {
   CHART_TIME_RANGE_OPTIONS,
   getChartTimeRangeLabel,
   type ChartTimeRange,
 } from "@/lib/chart-time-range";
+import type { RecoveryReadiness } from "@/lib/recovery-readiness";
 import { cn } from "@/lib/utils";
 
 interface DashboardData {
@@ -64,6 +67,14 @@ interface DashboardData {
   chartTimeRange: ChartTimeRange;
   activityBreakdown: PieSlice[];
   heartRateZones: PieSlice[];
+  hrActivities: Array<{
+    id: string;
+    name: string;
+    type: string;
+    startDate: string;
+    averageHeartrate: number | null;
+    movingTime: number;
+  }>;
   paceInsights: PaceInsights;
   recentRuns: Array<{
     id: string;
@@ -75,6 +86,7 @@ interface DashboardData {
     startDate: string;
   }>;
   totalRuns: number;
+  recovery: RecoveryReadiness;
 }
 
 export function DashboardContent() {
@@ -90,6 +102,7 @@ export function DashboardContent() {
   const [disconnecting, setDisconnecting] = useState(false);
   const [chartRange, setChartRange] = useState<ChartTimeRange>("month");
   const [chartsLoading, setChartsLoading] = useState(false);
+  const [selectedHrActivityId, setSelectedHrActivityId] = useState("all");
 
   const loadDashboard = useCallback(
     async (range: ChartTimeRange = chartRange) => {
@@ -124,6 +137,7 @@ export function DashboardContent() {
               chartTimeRange: json.chartTimeRange,
               activityBreakdown: json.activityBreakdown,
               heartRateZones: json.heartRateZones,
+              hrActivities: json.hrActivities,
             }
           : json
       );
@@ -134,8 +148,43 @@ export function DashboardContent() {
 
   function handleChartRangeChange(value: ChartTimeRange) {
     setChartRange(value);
+    setSelectedHrActivityId("all");
     refreshCharts(value);
   }
+
+  const displayedHeartRateZones = useMemo(() => {
+    if (!data) return [];
+    if (selectedHrActivityId === "all") return data.heartRateZones;
+
+    const activity = data.hrActivities.find((a) => a.id === selectedHrActivityId);
+    if (!activity?.averageHeartrate || activity.movingTime <= 0) return [];
+
+    return aggregateHeartRateZones([activity], data.user.age);
+  }, [data, selectedHrActivityId]);
+
+  const heartRateSubtitle = useMemo(() => {
+    if (!data) return "";
+    const maxHr = 220 - (data.user.age ?? 35);
+    const rangeLabel = getChartTimeRangeLabel(chartRange);
+
+    if (selectedHrActivityId === "all") {
+      return data.user.age
+        ? `All activities with HR data · max ${maxHr} bpm · ${rangeLabel}`
+        : `Add your age above for accurate zones (using 35 as default) · ${rangeLabel}`;
+    }
+
+    const activity = data.hrActivities.find((a) => a.id === selectedHrActivityId);
+    if (!activity) return rangeLabel;
+
+    const date = new Date(activity.startDate).toLocaleDateString();
+    if (!activity.averageHeartrate) {
+      return `${activity.name} · ${date} · no heart rate recorded`;
+    }
+
+    return data.user.age
+      ? `${activity.name} · ${date} · avg ${Math.round(activity.averageHeartrate)} bpm · max ${maxHr} bpm`
+      : `${activity.name} · ${date} · avg ${Math.round(activity.averageHeartrate)} bpm · using default max HR`;
+  }, [data, selectedHrActivityId, chartRange]);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -413,6 +462,13 @@ export function DashboardContent() {
           </Card>
         </div>
 
+        <FadeIn>
+          <RecoveryReadinessCard
+            recovery={data.recovery}
+            onSaved={() => loadDashboard()}
+          />
+        </FadeIn>
+
         {data.stravaConnected && (
           <FadeIn>
             <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
@@ -465,7 +521,7 @@ export function DashboardContent() {
                 <CardContent className="p-6">
                   <ActivityPieChart
                     title="Activity mix"
-                    subtitle={`Synced Strava activities · ${getChartTimeRangeLabel(chartRange)}`}
+                    subtitle={`All synced Strava activities · ${getChartTimeRangeLabel(chartRange)}`}
                     slices={data.activityBreakdown}
                     valueLabel="total"
                   />
@@ -473,16 +529,53 @@ export function DashboardContent() {
               </Card>
               <Card className="border-border/60">
                 <CardContent className="p-6">
+                  {data.hrActivities.length > 0 && (
+                    <div className="mb-4 flex items-center gap-2">
+                      <Label
+                        htmlFor="hr-activity"
+                        className="text-sm text-muted-foreground shrink-0"
+                      >
+                        Activity
+                      </Label>
+                      <select
+                        id="hr-activity"
+                        value={selectedHrActivityId}
+                        onChange={(e) => setSelectedHrActivityId(e.target.value)}
+                        disabled={chartsLoading}
+                        className={cn(
+                          "h-8 min-w-0 flex-1 rounded-lg border border-input bg-transparent px-2.5 py-1 text-sm transition-colors outline-none",
+                          "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+                          "disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30"
+                        )}
+                      >
+                        <option value="all">All activities</option>
+                        {data.hrActivities.map((activity) => {
+                          const date = new Date(
+                            activity.startDate
+                          ).toLocaleDateString();
+                          const hrLabel = activity.averageHeartrate
+                            ? ` · ${Math.round(activity.averageHeartrate)} bpm`
+                            : "";
+                          return (
+                            <option key={activity.id} value={activity.id}>
+                              {date} · {activity.name}
+                              {hrLabel}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  )}
                   <ActivityPieChart
                     title="Heart rate zones"
-                    subtitle={
-                      data.user.age
-                        ? `Estimated from avg HR · max ${220 - data.user.age} bpm · ${getChartTimeRangeLabel(chartRange)}`
-                        : `Add your age above for accurate zones (using 35 as default) · ${getChartTimeRangeLabel(chartRange)}`
-                    }
-                    slices={data.heartRateZones}
+                    subtitle={heartRateSubtitle}
+                    slices={displayedHeartRateZones}
                     valueLabel="minutes"
-                    emptyMessage="No heart rate data on synced activities yet. Use a watch or chest strap on your runs."
+                    emptyMessage={
+                      selectedHrActivityId === "all"
+                        ? "No heart rate data on synced activities yet. Use a watch or chest strap during workouts."
+                        : "No heart rate data for this activity."
+                    }
                   />
                 </CardContent>
               </Card>
