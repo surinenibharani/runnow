@@ -1,0 +1,33 @@
+---
+description: Do not push Garmin integration to production unless explicitly requested
+alwaysApply: true
+---
+
+# Garmin integration — production hold
+
+**Do not push Garmin Connect integration to production** unless the user explicitly says to push Garmin integration (e.g. "push garmin integration").
+
+## Git / deploy
+
+- Never include Garmin-related changes in routine commits, pushes, or PRs to `main`/production by default.
+- When the user asks to commit or push other work, **exclude** Garmin files unless they explicitly include Garmin in that request.
+
+## Garmin-related paths (hold from production)
+
+Garmin code is **not in the repo** until explicitly re-added. When re-implementing, exclude from routine pushes:
+
+- `src/lib/garmin.ts`, `src/lib/garmin-sync.ts`
+- `src/app/api/garmin/**`
+- `prisma/migrations/*garmin*`
+- `GarminAccount` schema
+- Garmin env vars (`GARMIN_CLIENT_ID`, `GARMIN_CLIENT_SECRET`)
+
+## Allowed without explicit Garmin push approval
+
+- Manual wellness logging and recovery readiness **without** Garmin auto-sync
+- Strava and other non-Garmin features
+- Local development of Garmin code on a feature branch
+
+## When user says "push garmin integration"
+
+Only then: commit Garmin changes, push to remote, deploy, and document Garmin env + webhook setup for production.
