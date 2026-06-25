@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FadeIn } from "@/components/motion/fade-in";
 import { safeCallbackUrl } from "@/lib/security/callback-url";
+import { AUTH_WELCOME_STORAGE_KEY } from "@/lib/auth-messages";
 
 export default function LoginPage() {
   return (
@@ -57,6 +58,7 @@ function LoginForm() {
       return;
     }
 
+    sessionStorage.setItem(AUTH_WELCOME_STORAGE_KEY, "login");
     window.location.assign(callbackUrl);
   }
 
