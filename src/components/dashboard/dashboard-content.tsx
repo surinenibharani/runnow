@@ -39,9 +39,9 @@ import {
 } from "@/lib/chart-time-range";
 import type { RecoveryReadiness } from "@/lib/recovery-readiness";
 import { formatGenderLabel } from "@/lib/gender";
+import { formatBmiWithCategory, getBmi } from "@/lib/athlete-profile";
 import {
   cmToFeetInches,
-  formatBmi,
   formatHrZoneSubtitle,
   kgToLbs,
   type HrProfile,
@@ -327,6 +327,8 @@ export function DashboardContent() {
 
   if (!data) return null;
 
+  const bmiValue = hrProfile ? getBmi(hrProfile) : null;
+
   return (
     <div className="py-10 px-4 sm:px-6">
       <div className="mx-auto max-w-5xl space-y-8">
@@ -514,9 +516,7 @@ export function DashboardContent() {
               <div>
                 <dt className="text-muted-foreground">BMI</dt>
                 <dd className="font-semibold text-lg">
-                  {data.user.weightKg != null && data.user.heightCm != null
-                    ? formatBmi(data.user.weightKg, data.user.heightCm) ?? "—"
-                    : "—"}
+                  {bmiValue != null ? formatBmiWithCategory(bmiValue) : "—"}
                 </dd>
               </div>
             </dl>

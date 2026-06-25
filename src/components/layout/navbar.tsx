@@ -101,9 +101,6 @@ export function Navbar() {
                 <User className="size-4" />
                 Profile
               </Button>
-              <Button nativeButton={false} render={<Link href="/dashboard" />} variant="outline" size="sm">
-                Dashboard
-              </Button>
               <Button variant="ghost" size="sm" onClick={() => signOut({ callbackUrl: "/" })}>
                 Sign out
               </Button>

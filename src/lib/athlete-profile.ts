@@ -37,6 +37,19 @@ export function getBmi(profile: AthleteProfile): number | null {
   return Math.round((profile.weightKg / (heightM * heightM)) * 10) / 10;
 }
 
+export type BmiCategory = "Underweight" | "Normal" | "Overweight" | "Obese";
+
+export function getBmiCategory(bmi: number): BmiCategory {
+  if (bmi < 18.5) return "Underweight";
+  if (bmi < 25) return "Normal";
+  if (bmi < 30) return "Overweight";
+  return "Obese";
+}
+
+export function formatBmiWithCategory(bmi: number): string {
+  return `${bmi} · ${getBmiCategory(bmi)}`;
+}
+
 /**
  * Gulati for women; Tanaka for men and unspecified/other.
  * @see Gulati et al. 2010; Tanaka et al. 2001
@@ -183,7 +196,7 @@ export function formatProfileContext(profile: AthleteProfile): string[] {
   }
 
   const bmi = getBmi(profile);
-  if (bmi != null) parts.push(`BMI ${bmi}`);
+  if (bmi != null) parts.push(formatBmiWithCategory(bmi));
 
   if (profile.gender) {
     const label =
