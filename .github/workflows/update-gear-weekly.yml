@@ -1,0 +1,37 @@
+name: Update gear guide weekly
+
+on:
+  schedule:
+    # Fridays at 14:00 UTC (~9–10am US Eastern)
+    - cron: "0 14 * * 5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-gear:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch gear RSS and update JSON
+        run: npm run gear:update
+
+      - name: Commit weekly gear data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: weekly gear guide RSS update"
+          file_pattern: src/data/gear-updates.json
+          commit_user_name: github-actions[bot]
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
