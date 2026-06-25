@@ -32,7 +32,9 @@ import {
   saveTrainingPlan,
   toggleWorkoutRemote,
   resetTrainingPlanRemote,
+  type WorkoutToggleContext,
 } from "@/lib/training-plan-client";
+import { remapCompletedIds } from "@/lib/plan-validation";
 import { CrossTrainingDetails, CrossTrainingPreview } from "@/components/plan/cross-training-details";
 import { getActivityCaption } from "@/lib/workout-caption";
 import { StravaConnectBanner } from "@/components/strava/strava-connect-banner";
@@ -76,6 +78,7 @@ export function WeekTracker() {
   const [useRemote, setUseRemote] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [bootstrapComplete, setBootstrapComplete] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const migratedRef = useRef(false);
 
   const isAuthenticated = authStatus === "authenticated";
@@ -124,14 +127,20 @@ export function WeekTracker() {
           : "beginner",
       goalRaceDate: remote.goalRaceDate ?? null,
     };
-    setPlanProfile(profile);
-    setSchedulePrefs({
+    const prefs = {
       restDay: remote.restDay,
       longRunDay: remote.longRunDay,
-      runDaysPerWeek: remote.runDaysPerWeek === 4 ? 4 : 3,
-    });
+      runDaysPerWeek: (remote.runDaysPerWeek === 4 ? 4 : 3) as 3 | 4,
+    };
+    setPlanProfile(profile);
+    setSchedulePrefs(prefs);
     setProgress({
-      completed: remote.completedIds,
+      completed: remapCompletedIds(
+        remote.completedIds,
+        remote.planId,
+        prefs,
+        profile
+      ),
       streak: remote.streak,
       lastCompletedDate: remote.lastCompletedDate,
     });
@@ -344,19 +353,48 @@ export function WeekTracker() {
     [useRemote, schedulePrefs, planProfile, persistPlanSettings]
   );
 
+  const workoutToggleContext = useMemo<WorkoutToggleContext>(
+    () => ({
+      planId,
+      restDay: schedulePrefs.restDay,
+      longRunDay: schedulePrefs.longRunDay,
+      runDaysPerWeek: schedulePrefs.runDaysPerWeek,
+      age: planProfile.age,
+      fitnessLevel: planProfile.fitnessLevel,
+      goalRaceDate: planProfile.goalRaceDate,
+    }),
+    [planId, schedulePrefs, planProfile]
+  );
+
   const handleToggle = useCallback(
     async (dayId: string) => {
+      setSaveError(null);
+
       if (useRemote) {
         const isCompleted = progress.completed.includes(dayId);
+        const previous = progress;
+        const optimistic: ProgressData = {
+          ...progress,
+          completed: isCompleted
+            ? progress.completed.filter((id) => id !== dayId)
+            : [...progress.completed, dayId],
+        };
+        setProgress(optimistic);
+
         try {
-          const updated = await toggleWorkoutRemote(dayId, !isCompleted);
+          const updated = await toggleWorkoutRemote(
+            dayId,
+            !isCompleted,
+            workoutToggleContext
+          );
           setProgress({
             completed: updated.completedIds,
             streak: updated.streak,
             lastCompletedDate: updated.lastCompletedDate,
           });
         } catch {
-          // ignore
+          setProgress(previous);
+          setSaveError("Could not save workout progress. Please try again.");
         }
         return;
       }
@@ -364,7 +402,7 @@ export function WeekTracker() {
       const updated = toggleWorkout(planId, dayId);
       setProgress(updated);
     },
-    [useRemote, planId, progress.completed]
+    [useRemote, planId, progress, workoutToggleContext]
   );
 
   const handleReset = useCallback(async () => {
@@ -458,8 +496,28 @@ export function WeekTracker() {
           aria-live="polite"
         >
           <Cloud className="size-4 text-primary shrink-0" />
-          Progress synced to your account
-          {syncing && <span className="text-xs">· saving…</span>}
+          Tap the circle next to each workout to mark it complete — progress saves
+          to your account
+          {syncing && <span className="text-xs">· loading…</span>}
+        </div>
+      )}
+
+      {isAuthenticated && !useRemote && (
+        <div
+          className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-900 dark:text-amber-200"
+          role="alert"
+        >
+          Progress is only stored in this browser right now. Refresh the page or
+          sign in again to sync to your account.
+        </div>
+      )}
+
+      {saveError && (
+        <div
+          className="rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-2 text-sm text-destructive"
+          role="alert"
+        >
+          {saveError}
         </div>
       )}
 
@@ -468,7 +526,7 @@ export function WeekTracker() {
           <a href="/login" className="text-primary hover:underline">
             Sign in
           </a>{" "}
-          to sync progress across devices.
+          to save workout progress to your account and sync across devices.
         </p>
       )}
 
@@ -678,7 +736,9 @@ export function WeekTracker() {
                                 : "border-border hover:border-primary hover:bg-primary/5"
                             )}
                             aria-label={
-                              isDone ? "Mark incomplete" : "Mark complete"
+                              isDone
+                                ? `Mark ${title} incomplete`
+                                : `Mark ${title} complete`
                             }
                           >
                             <AnimatePresence mode="wait">

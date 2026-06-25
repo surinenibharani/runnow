@@ -9,10 +9,10 @@ import { getPlanById } from "@/lib/plans";
 import { parseAge, parseFitnessLevel, type FitnessLevel } from "@/lib/plan-personalization";
 import {
   buildPlanPersonalization,
-  getScheduledWorkoutIds,
+  remapCompletedIds,
   resolveSchedulePrefs,
+  resolveWorkoutDayId,
   sanitizeCompletedIds,
-  isValidWorkoutId,
 } from "@/lib/plan-validation";
 
 const VALID_FITNESS_LEVELS: FitnessLevel[] = [
@@ -174,14 +174,14 @@ export async function PUT(request: Request) {
         ? null
         : new Date(goalRaceDate)
   );
-  const validWorkoutIds = getScheduledWorkoutIds(
-    targetPlanId,
-    schedulePrefs,
-    personalization
-  );
 
   if (completedIds !== undefined) {
-    const sanitized = sanitizeCompletedIds(completedIds, validWorkoutIds);
+    const sanitized = sanitizeCompletedIds(
+      completedIds,
+      targetPlanId,
+      schedulePrefs,
+      personalization
+    );
     if (!sanitized) {
       return NextResponse.json({ error: "Invalid completed workouts" }, { status: 400 });
     }
@@ -200,7 +200,12 @@ export async function PUT(request: Request) {
 
   const sanitizedCompleted =
     completedIds !== undefined
-      ? sanitizeCompletedIds(completedIds, validWorkoutIds)!
+      ? sanitizeCompletedIds(
+          completedIds,
+          targetPlanId,
+          schedulePrefs,
+          personalization
+        )!
       : undefined;
 
   const allowStreak = completedIds !== undefined;
@@ -250,27 +255,91 @@ export async function PATCH(request: Request) {
   }
 
   const body = await request.json();
-  const { workoutId, completed } = body as { workoutId?: string; completed?: boolean };
+  const {
+    workoutId,
+    completed,
+    planId: bodyPlanId,
+    restDay,
+    longRunDay,
+    runDaysPerWeek,
+    age,
+    fitnessLevel,
+    goalRaceDate,
+  } = body as {
+    workoutId?: string;
+    completed?: boolean;
+    planId?: string;
+    restDay?: number;
+    longRunDay?: number;
+    runDaysPerWeek?: number;
+    age?: number | null;
+    fitnessLevel?: string | null;
+    goalRaceDate?: string | null;
+  };
 
   if (!workoutId || typeof completed !== "boolean") {
     return NextResponse.json({ error: "workoutId and completed required" }, { status: 400 });
   }
 
+  if (bodyPlanId !== undefined && !getPlanById(bodyPlanId)) {
+    return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
+  }
+
+  if (restDay !== undefined && (restDay < 1 || restDay > 7)) {
+    return NextResponse.json({ error: "Invalid rest day" }, { status: 400 });
+  }
+
+  if (longRunDay !== undefined && (longRunDay < 1 || longRunDay > 7)) {
+    return NextResponse.json({ error: "Invalid long run day" }, { status: 400 });
+  }
+
+  if (
+    runDaysPerWeek !== undefined &&
+    runDaysPerWeek !== 3 &&
+    runDaysPerWeek !== 4
+  ) {
+    return NextResponse.json({ error: "Invalid run days per week" }, { status: 400 });
+  }
+
   const plan = await getOrCreateUserTrainingPlan(session.user.id);
-  const validWorkoutIds = getScheduledWorkoutIds(
-    plan.planId,
-    resolveSchedulePrefs(plan, {}),
-    buildPlanPersonalization(plan.age, plan.fitnessLevel, plan.goalRaceDate)
+  const targetPlanId = bodyPlanId ?? plan.planId;
+  const schedulePrefs = resolveSchedulePrefs(plan, {
+    restDay,
+    longRunDay,
+    runDaysPerWeek,
+  });
+  const personalization = buildPlanPersonalization(
+    age === undefined ? plan.age : parseAge(age),
+    fitnessLevel === undefined ? plan.fitnessLevel : fitnessLevel,
+    goalRaceDate === undefined
+      ? plan.goalRaceDate
+      : goalRaceDate === null
+        ? null
+        : new Date(goalRaceDate)
   );
 
-  if (!isValidWorkoutId(workoutId, validWorkoutIds)) {
+  const canonicalId = resolveWorkoutDayId(
+    workoutId,
+    targetPlanId,
+    schedulePrefs,
+    personalization
+  );
+
+  if (!canonicalId) {
     return NextResponse.json({ error: "Invalid workout" }, { status: 400 });
   }
 
-  const ids = parseCompletedIdsFromDb(plan.completedIds);
+  const existingIds = parseCompletedIdsFromDb(plan.completedIds);
+  const remappedIds = remapCompletedIds(
+    existingIds,
+    targetPlanId,
+    schedulePrefs,
+    personalization
+  );
+
   const next = completed
-    ? [...new Set([...ids, workoutId])]
-    : ids.filter((id) => id !== workoutId);
+    ? [...new Set([...remappedIds, canonicalId])]
+    : remappedIds.filter((id) => id !== canonicalId);
 
   const { streak, lastCompletedDate } = computeStreak(
     completed,
@@ -279,6 +348,19 @@ export async function PATCH(request: Request) {
   );
 
   const updated = await updateUserTrainingPlan(session.user.id, {
+    ...(bodyPlanId !== undefined && { planId: bodyPlanId }),
+    ...(restDay !== undefined && { restDay }),
+    ...(longRunDay !== undefined && { longRunDay }),
+    ...(runDaysPerWeek !== undefined && { runDaysPerWeek }),
+    ...(age !== undefined && { age: parseAge(age) }),
+    ...(fitnessLevel !== undefined && {
+      fitnessLevel:
+        fitnessLevel === null ? null : parseFitnessLevel(fitnessLevel),
+    }),
+    ...(goalRaceDate !== undefined && {
+      goalRaceDate:
+        goalRaceDate === null ? null : new Date(goalRaceDate),
+    }),
     completedIds: next,
     streak,
     lastCompletedDate,

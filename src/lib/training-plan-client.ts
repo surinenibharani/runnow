@@ -16,6 +16,17 @@ export type TrainingPlanState = {
   startedAt?: string;
 };
 
+export type WorkoutToggleContext = Pick<
+  TrainingPlanState,
+  | "planId"
+  | "restDay"
+  | "longRunDay"
+  | "runDaysPerWeek"
+  | "age"
+  | "fitnessLevel"
+  | "goalRaceDate"
+>;
+
 export async function fetchTrainingPlan(): Promise<TrainingPlanState | null> {
   const res = await fetch("/api/user/training-plan");
   if (res.status === 401) return null;
@@ -37,12 +48,13 @@ export async function saveTrainingPlan(
 
 export async function toggleWorkoutRemote(
   workoutId: string,
-  completed: boolean
+  completed: boolean,
+  context: WorkoutToggleContext
 ): Promise<Pick<TrainingPlanState, "completedIds" | "streak" | "lastCompletedDate">> {
   const res = await fetch("/api/user/training-plan", {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ workoutId, completed }),
+    body: JSON.stringify({ workoutId, completed, ...context }),
   });
   if (!res.ok) throw new Error("Failed to update workout");
   return res.json();
