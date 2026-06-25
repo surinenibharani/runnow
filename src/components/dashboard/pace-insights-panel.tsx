@@ -34,8 +34,20 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
         <CardContent className="p-6">
           <h3 className="font-semibold text-lg">Race pace projections</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            {insights.baselineNote} · {insights.runSampleSize} run
-            {insights.runSampleSize === 1 ? "" : "s"} in the last 90 days
+            {insights.baselineNote}
+            {insights.runSampleSize + insights.crossTrainSampleSize > 0 && (
+              <>
+                {" "}
+                · {insights.runSampleSize} run
+                {insights.runSampleSize === 1 ? "" : "s"}
+                {insights.crossTrainSampleSize > 0 && (
+                  <>
+                    , {insights.crossTrainSampleSize} cross-training
+                  </>
+                )}{" "}
+                in the last 90 days
+              </>
+            )}
           </p>
           <div className="mt-4 space-y-2 text-sm text-muted-foreground leading-relaxed">
             <p>
@@ -44,10 +56,15 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
               what you&apos;ll run on race day.
             </p>
             <p>
-              We look at your best recent efforts (especially runs around 5K
-              distance), then use the Riegel formula to project times at longer
-              distances. The pace shown is the average you&apos;d need to hold for
-              that race.
+              We analyze recent runs plus cross-training (rides, elliptical,
+              rowing, brisk hikes) — converted to run-equivalent effort — and
+              use your age, sex, weight, and height when available to tune easy
+              zones. Heart rate on activities helps weight harder efforts.
+            </p>
+            <p>
+              Projections use the Riegel formula from your blended fitness
+              baseline. The pace shown is the average you&apos;d need to hold
+              for that race.
             </p>
             <p>
               <span className="font-medium text-foreground">Confidence</span> reflects
@@ -97,8 +114,8 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
         <CardContent className="p-6">
           <h3 className="font-semibold text-lg">Training pace zones</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Derived from your projected 5K pace — use on easy days, workouts, and
-            long runs.
+            Derived from your projected 5K pace and profile — includes runs and
+            cross-training when synced from Strava.
           </p>
           <ul className="mt-5 space-y-2.5">
             {insights.zones.map((zone) => (

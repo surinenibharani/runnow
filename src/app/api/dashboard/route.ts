@@ -11,6 +11,7 @@ import {
   aggregateActivityTypes,
   aggregateHeartRateZones,
 } from "@/lib/activity-charts";
+import { formatActivityType } from "@/lib/activity-types";
 import { calculatePaceInsights } from "@/lib/pace-analysis";
 import {
   getChartRangeStart,
@@ -114,15 +115,26 @@ export async function GET(request: Request) {
   const hrProfile = athleteProfile;
   const activityBreakdown = aggregateActivityTypes(chartActivities);
   const heartRateZones = aggregateHeartRateZones(chartActivities, hrProfile);
-  const paceInsights = calculatePaceInsights(activities, user);
+  const paceInsights = calculatePaceInsights(activities, athleteProfile);
 
-  const hrActivities = activities.map((a) => ({
+  const hrActivities = chartActivities.map((a) => ({
     id: a.id,
     name: a.name,
     type: a.type,
+    activityLabel: formatActivityType(a.type, a.name),
     startDate: a.startDate.toISOString(),
     averageHeartrate: a.averageHeartrate,
     movingTime: a.movingTime,
+  }));
+
+  const activityList = chartActivities.map((a) => ({
+    id: a.id,
+    name: a.name,
+    type: a.type,
+    activityLabel: formatActivityType(a.type, a.name),
+    startDate: a.startDate.toISOString(),
+    movingTime: a.movingTime,
+    distance: a.distance,
   }));
 
   const recovery = calculateRecoveryReadiness(wellness, activities, user);
@@ -174,6 +186,7 @@ export async function GET(request: Request) {
     heartRateZones,
     hrZoneMethod: hrProfile.restingHeartRate ? "karvonen" : "percent_max",
     hrActivities,
+    activityList,
     recovery,
     paceInsights,
     recentRuns,

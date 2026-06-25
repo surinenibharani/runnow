@@ -82,9 +82,19 @@ interface DashboardData {
     id: string;
     name: string;
     type: string;
+    activityLabel: string;
     startDate: string;
     averageHeartrate: number | null;
     movingTime: number;
+  }>;
+  activityList: Array<{
+    id: string;
+    name: string;
+    type: string;
+    activityLabel: string;
+    startDate: string;
+    movingTime: number;
+    distance: number;
   }>;
   paceInsights: PaceInsights;
   recentRuns: Array<{
@@ -151,6 +161,7 @@ export function DashboardContent() {
               activityBreakdown: json.activityBreakdown,
               heartRateZones: json.heartRateZones,
               hrActivities: json.hrActivities,
+              activityList: json.activityList,
             }
           : json
       );
@@ -631,7 +642,7 @@ export function DashboardContent() {
                             : "";
                           return (
                             <option key={activity.id} value={activity.id}>
-                              {date} · {activity.name}
+                              {date} · {activity.activityLabel} · {activity.name}
                               {hrLabel}
                             </option>
                           );
@@ -655,6 +666,39 @@ export function DashboardContent() {
                 </CardContent>
               </Card>
             </div>
+            {data.activityList.length > 0 && (
+              <Card className="mt-4 border-border/60">
+                <CardContent className="p-6">
+                  <h3 className="text-sm font-semibold mb-1">
+                    Activities in this period
+                  </h3>
+                  <p className="text-xs text-muted-foreground mb-4">
+                    {data.activityList.length} workout
+                    {data.activityList.length === 1 ? "" : "s"} ·{" "}
+                    {getChartTimeRangeLabel(chartRange)}
+                  </p>
+                  <ul className="max-h-64 space-y-2 overflow-y-auto text-sm">
+                    {data.activityList.map((activity) => (
+                      <li
+                        key={activity.id}
+                        className="flex items-start justify-between gap-3 rounded-lg border border-border/50 px-3 py-2"
+                      >
+                        <div className="min-w-0">
+                          <p className="font-medium truncate">{activity.name}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {new Date(activity.startDate).toLocaleDateString()}{" "}
+                            · {activity.activityLabel}
+                          </p>
+                        </div>
+                        <span className="shrink-0 text-xs text-muted-foreground">
+                          {formatDuration(activity.movingTime)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )}
           </FadeIn>
         )}
 

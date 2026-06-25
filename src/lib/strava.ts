@@ -24,6 +24,7 @@ export interface StravaActivity {
   id: number;
   name: string;
   type: string;
+  sport_type?: string;
   distance: number;
   moving_time: number;
   elapsed_time: number;

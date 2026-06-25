@@ -1,5 +1,9 @@
 import type { ActivitySummary } from "@/lib/activity-fields";
 import {
+  ACTIVITY_COLORS,
+  formatActivityType,
+} from "@/lib/activity-types";
+import {
   buildZoneColorMap,
   classifyHeartRateZone,
   getZoneLabel,
@@ -14,56 +18,7 @@ export type PieSlice = {
   color: string;
 };
 
-const ACTIVITY_COLORS: Record<string, string> = {
-  Run: "#ea580c",
-  "Trail Run": "#16a34a",
-  "Virtual Run": "#0ea5e9",
-  Ride: "#8b5cf6",
-  Walk: "#eab308",
-  Hike: "#78716c",
-  Swim: "#06b6d4",
-  Workout: "#f43f5e",
-  Yoga: "#a855f7",
-  Strength: "#64748b",
-  Elliptical: "#14b8a6",
-  Rowing: "#0284c7",
-  Ski: "#38bdf8",
-  "Paddle Sports": "#0891b2",
-  "Virtual Ride": "#7c3aed",
-  Other: "#94a3b8",
-};
-
-function prettifyStravaType(type: string): string {
-  return type
-    .replace(/_/g, " ")
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .trim();
-}
-
-function formatActivityType(type: string): string {
-  const t = type.toLowerCase();
-  if (t.includes("virtual") && t.includes("run")) return "Virtual Run";
-  if (t === "trailrun" || (t.includes("trail") && t.includes("run")))
-    return "Trail Run";
-  if (t.includes("virtual") && (t.includes("ride") || t.includes("bike")))
-    return "Virtual Ride";
-  if (t.includes("run")) return "Run";
-  if (t.includes("ride") || t.includes("bike") || t.includes("cycl")) return "Ride";
-  if (t.includes("walk")) return "Walk";
-  if (t.includes("hike")) return "Hike";
-  if (t.includes("swim")) return "Swim";
-  if (t.includes("yoga")) return "Yoga";
-  if (t.includes("weight") || t.includes("strength")) return "Strength";
-  if (t.includes("workout") || t.includes("crossfit") || t.includes("hiit"))
-    return "Workout";
-  if (t.includes("elliptical")) return "Elliptical";
-  if (t.includes("row")) return "Rowing";
-  if (t.includes("ski")) return "Ski";
-  if (t.includes("paddle") || t.includes("kayak") || t.includes("canoe"))
-    return "Paddle Sports";
-  const pretty = prettifyStravaType(type);
-  return pretty || "Other";
-}
+export { formatActivityType, ACTIVITY_COLORS };
 
 function toSlices(
   entries: Map<string, number>,
@@ -83,13 +38,13 @@ function toSlices(
     }));
 }
 
-/** Activity count by Strava type (last synced batch). */
+/** Activity count by type (all activities in the selected period). */
 export function aggregateActivityTypes(
   activities: ActivitySummary[]
 ): PieSlice[] {
   const counts = new Map<string, number>();
   for (const activity of activities) {
-    const label = formatActivityType(activity.type);
+    const label = formatActivityType(activity.type, activity.name);
     counts.set(label, (counts.get(label) ?? 0) + 1);
   }
   return toSlices(counts, ACTIVITY_COLORS, ACTIVITY_COLORS.Other);

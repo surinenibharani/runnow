@@ -8,6 +8,7 @@ import {
   fetchStravaActivities,
   getValidAccessToken,
 } from "@/lib/strava";
+import { resolveStravaActivityType } from "@/lib/activity-types";
 import { getOrCreateUserTrainingPlan, updateUserTrainingPlan } from "@/lib/teams";
 
 export type StravaSyncResult = {
@@ -31,6 +32,7 @@ export async function syncStravaActivitiesForUser(
       const startLat = activity.start_latlng?.[0];
       const startLng = activity.start_latlng?.[1];
       const routeKey = buildRouteKey(startLat, startLng, activity.distance);
+      const activityType = resolveStravaActivityType(activity);
 
       await prisma.activity.upsert({
         where: { stravaId: String(activity.id) },
@@ -38,7 +40,7 @@ export async function syncStravaActivitiesForUser(
           stravaId: String(activity.id),
           userId,
           name: activity.name,
-          type: activity.type,
+          type: activityType,
           distance: activity.distance,
           movingTime: activity.moving_time,
           elapsedTime: activity.elapsed_time,
@@ -53,7 +55,7 @@ export async function syncStravaActivitiesForUser(
         },
         update: {
           name: activity.name,
-          type: activity.type,
+          type: activityType,
           distance: activity.distance,
           movingTime: activity.moving_time,
           elapsedTime: activity.elapsed_time,
