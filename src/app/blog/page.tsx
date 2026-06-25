@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Clock, User } from "lucide-react";
+import { Clock, MessageSquare, User } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 import { JsonLd } from "@/components/seo/json-ld";
 import { blogIndexJsonLd } from "@/lib/seo";
+import { getCommentCountsBySlug } from "@/lib/blog/comment-counts";
 import { blogPosts } from "@/lib/blog/posts";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { SITE_NAME } from "@/lib/site";
@@ -21,7 +22,9 @@ const sortedPosts = [...blogPosts].sort(
   (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
 );
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const commentCounts = await getCommentCountsBySlug();
+
   return (
     <div className="py-12 sm:py-16">
       <JsonLd data={blogIndexJsonLd(blogPosts.length)} />
@@ -37,7 +40,10 @@ export default function BlogPage() {
         </FadeIn>
 
         <StaggerChildren className="space-y-4">
-          {sortedPosts.map((post) => (
+          {sortedPosts.map((post) => {
+            const commentCount = commentCounts[post.slug] ?? 0;
+
+            return (
             <StaggerItem key={post.slug}>
               <Link href={`/blog/${post.slug}`} className="block group">
                 <Card className="border-border/60 hover:border-primary/30 hover:shadow-md transition-all duration-300">
@@ -50,6 +56,12 @@ export default function BlogPage() {
                         <Clock className="size-3" />
                         {post.readTime}
                       </span>
+                      {commentCount > 0 && (
+                        <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          <MessageSquare className="size-3" />
+                          {commentCount} comment{commentCount === 1 ? "" : "s"}
+                        </span>
+                      )}
                     </div>
                     <h2 className="text-xl font-semibold group-hover:text-primary transition-colors sm:text-2xl">
                       {post.title}
@@ -74,7 +86,8 @@ export default function BlogPage() {
                 </Card>
               </Link>
             </StaggerItem>
-          ))}
+            );
+          })}
         </StaggerChildren>
 
         <FadeIn className="mt-12 text-center">

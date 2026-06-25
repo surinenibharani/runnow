@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 declare global {
@@ -22,49 +23,109 @@ declare global {
   }
 }
 
+const TURNSTILE_SCRIPT =
+  "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+
 type TurnstileWidgetProps = {
   onVerify: (token: string) => void;
   onExpire?: () => void;
   onError?: () => void;
+  onLoadError?: () => void;
   className?: string;
 };
 
 const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
+function waitForTurnstile(timeoutMs = 10000): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (window.turnstile) {
+      resolve();
+      return;
+    }
+
+    const started = Date.now();
+    const tick = () => {
+      if (window.turnstile) {
+        resolve();
+        return;
+      }
+      if (Date.now() - started > timeoutMs) {
+        reject(new Error("Turnstile timed out"));
+        return;
+      }
+      window.requestAnimationFrame(tick);
+    };
+    tick();
+  });
+}
+
+function loadTurnstileScript(): Promise<void> {
+  if (document.querySelector(`script[src="${TURNSTILE_SCRIPT}"]`)) {
+    return waitForTurnstile();
+  }
+
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = TURNSTILE_SCRIPT;
+    script.async = true;
+    script.onload = () => {
+      waitForTurnstile().then(resolve).catch(reject);
+    };
+    script.onerror = () => reject(new Error("Turnstile script failed to load"));
+    document.head.appendChild(script);
+  });
+}
+
 export function TurnstileWidget({
   onVerify,
   onExpire,
   onError,
+  onLoadError,
   className,
 }: TurnstileWidgetProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const [ready, setReady] = useState(false);
   const [loadError, setLoadError] = useState(false);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const onVerifyRef = useRef(onVerify);
   const onExpireRef = useRef(onExpire);
   const onErrorRef = useRef(onError);
+  const onLoadErrorRef = useRef(onLoadError);
 
   onVerifyRef.current = onVerify;
   onExpireRef.current = onExpire;
   onErrorRef.current = onError;
+  onLoadErrorRef.current = onLoadError;
+
+  const handleLoadFailure = useCallback(() => {
+    setLoadError(true);
+    setReady(false);
+    onLoadErrorRef.current?.();
+  }, []);
 
   useEffect(() => {
-    if (!SITE_KEY) return;
+    if (!SITE_KEY || !isTurnstileEnabled()) return;
 
-    const existing = document.querySelector('script[src*="turnstile"]');
-    if (existing) {
-      setReady(true);
-      return;
+    let cancelled = false;
+
+    async function boot() {
+      try {
+        await loadTurnstileScript();
+        if (!cancelled) {
+          setLoadError(false);
+          setReady(true);
+        }
+      } catch {
+        if (!cancelled) handleLoadFailure();
+      }
     }
 
-    const script = document.createElement("script");
-    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-    script.async = true;
-    script.onload = () => setReady(true);
-    script.onerror = () => setLoadError(true);
-    document.head.appendChild(script);
-  }, []);
+    boot();
+    return () => {
+      cancelled = true;
+    };
+  }, [loadAttempt, handleLoadFailure]);
 
   useEffect(() => {
     if (!SITE_KEY || !ready || !containerRef.current || !window.turnstile) return;
@@ -78,7 +139,7 @@ export function TurnstileWidget({
       callback: (token) => onVerifyRef.current(token),
       "expired-callback": () => onExpireRef.current?.(),
       "error-callback": () => {
-        setLoadError(true);
+        handleLoadFailure();
         onErrorRef.current?.();
       },
       theme: "auto",
@@ -90,17 +151,31 @@ export function TurnstileWidget({
         widgetIdRef.current = null;
       }
     };
-  }, [ready]);
+  }, [ready, loadAttempt, handleLoadFailure]);
 
-  if (!SITE_KEY) {
+  if (!SITE_KEY || !isTurnstileEnabled()) {
     return null;
   }
 
   if (loadError) {
     return (
-      <p className="text-sm text-destructive rounded-lg border border-destructive/30 bg-destructive/5 p-3">
-        Captcha failed to load. Check your connection or disable ad blockers, then refresh.
-      </p>
+      <div className="space-y-3 rounded-lg border border-destructive/30 bg-destructive/5 p-3">
+        <p className="text-sm text-destructive">
+          Captcha failed to load. Disable ad blockers for this site, check your
+          connection, then try again.
+        </p>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={() => {
+            setLoadError(false);
+            setLoadAttempt((attempt) => attempt + 1);
+          }}
+        >
+          Retry captcha
+        </Button>
+      </div>
     );
   }
 
@@ -108,5 +183,8 @@ export function TurnstileWidget({
 }
 
 export function isTurnstileEnabled(): boolean {
-  return Boolean(SITE_KEY);
+  return (
+    process.env.NEXT_PUBLIC_TURNSTILE_CONFIGURED === "true" &&
+    Boolean(SITE_KEY)
+  );
 }

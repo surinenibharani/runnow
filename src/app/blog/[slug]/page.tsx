@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
 import { PostContent } from "@/components/blog/post-content";
-import { BlogComments } from "@/components/blog/blog-comments";
 import { JsonLd } from "@/components/seo/json-ld";
+import { getCommentCount } from "@/lib/blog/comment-counts";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { ogImageMeta } from "@/lib/seo/metadata";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -69,6 +69,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) notFound();
 
   const related = getRelatedPosts(post);
+  const commentCount = await getCommentCount(slug);
 
   return (
     <div className="py-12 sm:py-16">
@@ -92,8 +93,11 @@ export default async function BlogPostPage({ params }: PageProps) {
             Back to blog
           </Link>
 
-          <PostContent post={post} related={related} />
-          <BlogComments postSlug={slug} />
+          <PostContent
+            post={post}
+            related={related}
+            commentCount={commentCount}
+          />
 
           {slug === "avoiding-injuries" && (
             <p className="mt-8 text-sm text-muted-foreground">

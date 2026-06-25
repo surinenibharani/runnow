@@ -3,6 +3,7 @@ import type { BlogPost, BlogSection } from "@/lib/blog/types";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { PostShareButtons } from "@/components/blog/post-share-buttons";
+import { BlogComments } from "@/components/blog/blog-comments";
 import { SITE_URL } from "@/lib/site";
 
 function SectionBlock({ section }: { section: BlogSection }) {
@@ -61,9 +62,14 @@ function SectionBlock({ section }: { section: BlogSection }) {
 type PostContentProps = {
   post: BlogPost;
   related?: BlogPost[];
+  commentCount?: number;
 };
 
-export function PostContent({ post, related = [] }: PostContentProps) {
+export function PostContent({
+  post,
+  related = [],
+  commentCount = 0,
+}: PostContentProps) {
   return (
     <article>
       <header className="mb-10">
@@ -90,6 +96,15 @@ export function PostContent({ post, related = [] }: PostContentProps) {
           </time>
           <span aria-hidden>·</span>
           <span>{post.readTime} read</span>
+          <span aria-hidden>·</span>
+          <Link
+            href="#comments"
+            className="text-primary hover:underline"
+          >
+            {commentCount === 0
+              ? "Leave a comment"
+              : `${commentCount} comment${commentCount === 1 ? "" : "s"}`}
+          </Link>
         </div>
         <PostShareButtons
           title={post.title}
@@ -103,6 +118,8 @@ export function PostContent({ post, related = [] }: PostContentProps) {
           <SectionBlock key={section.heading ?? section.paragraphs?.[0]} section={section} />
         ))}
       </div>
+
+      <BlogComments postSlug={post.slug} initialCount={commentCount} />
 
       {related.length > 0 && (
         <>

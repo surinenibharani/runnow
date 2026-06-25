@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,11 +22,13 @@ type Comment = {
 
 type BlogCommentsProps = {
   postSlug: string;
+  initialCount?: number;
 };
 
-export function BlogComments({ postSlug }: BlogCommentsProps) {
+export function BlogComments({ postSlug, initialCount = 0 }: BlogCommentsProps) {
   const { data: session } = useSession();
   const [comments, setComments] = useState<Comment[]>([]);
+  const [commentCount, setCommentCount] = useState(initialCount);
   const [loading, setLoading] = useState(true);
   const [authorName, setAuthorName] = useState("");
   const [content, setContent] = useState("");
@@ -33,6 +36,7 @@ export function BlogComments({ postSlug }: BlogCommentsProps) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [honeypot, setHoneypot] = useState("");
+  const [captchaUnavailable, setCaptchaUnavailable] = useState(false);
 
   const captchaRequired = isTurnstileEnabled() && !session?.user;
 
@@ -42,6 +46,7 @@ export function BlogComments({ postSlug }: BlogCommentsProps) {
       if (!res.ok) return;
       const data = await res.json();
       setComments(data.comments ?? []);
+      setCommentCount(data.comments?.length ?? 0);
     } finally {
       setLoading(false);
     }
@@ -88,20 +93,31 @@ export function BlogComments({ postSlug }: BlogCommentsProps) {
     }
 
     setComments((prev) => [data.comment, ...prev]);
+    setCommentCount((count) => count + 1);
     setContent("");
     setTurnstileToken(null);
   }
 
   return (
-    <section className="mt-12">
+    <section
+      id="comments"
+      className="mt-12 scroll-mt-24"
+      aria-labelledby={`comments-heading-${postSlug}`}
+    >
       <Separator className="mb-8" />
       <div className="flex items-center gap-2 mb-6">
-        <MessageSquare className="size-5 text-primary" />
-        <h2 className="text-xl font-bold">Comments</h2>
-        <span className="text-sm text-muted-foreground">({comments.length})</span>
+        <MessageSquare className="size-5 text-primary" aria-hidden />
+        <h2 id={`comments-heading-${postSlug}`} className="text-xl font-bold">
+          Comments
+        </h2>
+        <span className="text-sm text-muted-foreground">({commentCount})</span>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4 mb-8 rounded-xl border border-border/60 bg-muted/20 p-4 sm:p-5">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-4 mb-8 rounded-xl border border-border/60 bg-muted/20 p-4 sm:p-5"
+        aria-label="Post a comment"
+      >
         {!session?.user && (
           <div className="space-y-2">
             <Label htmlFor={`comment-name-${postSlug}`}>Name</Label>
@@ -138,30 +154,58 @@ export function BlogComments({ postSlug }: BlogCommentsProps) {
           autoComplete="off"
           aria-hidden
         />
-        {captchaRequired && (
+        {isTurnstileEnabled() && !session?.user && (
           <TurnstileWidget
             onVerify={setTurnstileToken}
             onExpire={() => setTurnstileToken(null)}
             onError={() => setTurnstileToken(null)}
+            onLoadError={() => setCaptchaUnavailable(true)}
           />
         )}
-        {error && <p className="text-sm text-destructive">{error}</p>}
+        {captchaUnavailable && !session?.user && (
+          <p className="text-sm text-muted-foreground">
+            Can&apos;t load captcha?{" "}
+            <Link href="/login" className="text-primary hover:underline">
+              Sign in
+            </Link>{" "}
+            to comment without it, or use Retry captcha above.
+          </p>
+        )}
+        {!session?.user && isTurnstileEnabled() && (
+          <p className="text-xs text-muted-foreground">
+            Signed-in users skip captcha.{" "}
+            <Link href="/login" className="text-primary hover:underline">
+              Log in
+            </Link>
+          </p>
+        )}
+        {error && (
+          <p className="text-sm text-destructive" role="alert">
+            {error}
+          </p>
+        )}
         <Button
           type="submit"
-          disabled={submitting || (captchaRequired && !turnstileToken)}
+          disabled={
+            submitting ||
+            (captchaRequired && !turnstileToken) ||
+            (captchaUnavailable && !session?.user)
+          }
         >
           {submitting ? "Posting…" : "Post comment"}
         </Button>
       </form>
 
       {loading ? (
-        <p className="text-sm text-muted-foreground">Loading comments…</p>
+        <p className="text-sm text-muted-foreground" role="status" aria-live="polite">
+          Loading comments…
+        </p>
       ) : comments.length === 0 ? (
         <p className="text-sm text-muted-foreground">
           No comments yet. Be the first to share your thoughts.
         </p>
       ) : (
-        <ul className="space-y-4">
+        <ul className="space-y-4" aria-label="Comments">
           {comments.map((comment) => (
             <li
               key={comment.id}

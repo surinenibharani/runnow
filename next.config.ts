@@ -2,6 +2,11 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === "development";
 
+const turnstileConfigured = Boolean(
+  process.env.TURNSTILE_SECRET_KEY &&
+    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+);
+
 const contentSecurityPolicy = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com https://www.googletagmanager.com",
@@ -44,6 +49,9 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  env: {
+    NEXT_PUBLIC_TURNSTILE_CONFIGURED: turnstileConfigured ? "true" : "",
+  },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
