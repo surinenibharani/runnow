@@ -9,7 +9,7 @@ import { GoogleAnalyticsScripts } from "@/components/analytics/google-analytics"
 import { GoogleAnalyticsPageView } from "@/components/analytics/page-view-tracker";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
-import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_TAGLINE, SITE_URL, SITE_DESCRIPTION, SITE_KEYWORDS } from "@/lib/site";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -31,24 +31,13 @@ export const metadata: Metadata = {
     default: `${SITE_NAME} — ${SITE_TAGLINE}`,
     template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Your friendly guide to becoming a runner. Free 5K, half marathon, and marathon plans with progress tracking.",
-  keywords: [
-    "running",
-    "beginner runner",
-    "couch to 5k",
-    "half marathon plan",
-    "marathon training",
-    "running plan",
-    "running blog",
-    "beginner running tips",
-  ],
+  description: SITE_DESCRIPTION,
+  keywords: [...SITE_KEYWORDS],
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
   openGraph: {
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
-    description:
-      "From zero to your first 5K in 8 weeks. Free, simple, and built for beginners.",
+    description: SITE_DESCRIPTION,
     type: "website",
     locale: "en_US",
     siteName: SITE_NAME,
@@ -56,8 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
-    description:
-      "Free beginner running plans from 5K to marathon. Training, nutrition, and injury prevention.",
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,

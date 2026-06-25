@@ -1,0 +1,509 @@
+{
+  "updatedAt": "2026-06-25T01:55:27.608Z",
+  "sourcesChecked": 5,
+  "feedCount": 5,
+  "categories": [
+    {
+      "slug": "shoes",
+      "title": "Running Shoes"
+    },
+    {
+      "slug": "shirts",
+      "title": "Shirts & Tops"
+    },
+    {
+      "slug": "bottoms",
+      "title": "Shorts & Bottoms"
+    },
+    {
+      "slug": "tights",
+      "title": "Tights & Leggings"
+    },
+    {
+      "slug": "apple-watch",
+      "title": "Apple Watch"
+    },
+    {
+      "slug": "garmin",
+      "title": "Garmin"
+    },
+    {
+      "slug": "coros",
+      "title": "Coros"
+    },
+    {
+      "slug": "strava-app",
+      "title": "Strava App"
+    },
+    {
+      "slug": "cap",
+      "title": "Caps & Headwear"
+    },
+    {
+      "slug": "goggles",
+      "title": "Sunglasses"
+    },
+    {
+      "slug": "sunscreen",
+      "title": "Sunscreen"
+    },
+    {
+      "slug": "chafing-creams",
+      "title": "Chafing Creams"
+    },
+    {
+      "slug": "hydration-tablets",
+      "title": "Hydration Tablets"
+    },
+    {
+      "slug": "gels",
+      "title": "Energy Gels"
+    },
+    {
+      "slug": "hydration-packs",
+      "title": "Hydration Packs"
+    }
+  ],
+  "items": [
+    {
+      "title": "There’s an IKEA Marathon Happening This Year—and You May Have to Self-Assemble Your Medal (Of Course)",
+      "url": "https://www.runnersworld.com/news/a71679229/ikea-marathon/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-24T21:24:37.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "These Top-Rated Nike Shoe Deals Are Giving Prime Day a Run For Its Money",
+      "url": "https://www.runnersworld.com/gear/a71716534/nike-running-shoes-sale-june-2026/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-24T20:45:17.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "Running His Own Race: Hayden Hawks’ Pre-2026 Western States 100 Interview",
+      "url": "https://www.irunfar.com/running-his-own-race-hayden-hawks-pre-2026-western-states-100-interview",
+      "source": "iRunFar",
+      "publishedAt": "2026-06-24T19:18:05.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The 8 Carbon-Plated Shoes for Running Your Strongest Race",
+      "url": "https://www.runnersworld.com/gear/g44064559/best-carbon-plate-shoes/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-24T16:50:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "Asics Metaspeed Sky Tokyo Helped Me Run a Sub-3 Marathon. The Metaspeed Edge Was the Obvious Choice for Conquering 13.1.",
+      "url": "https://www.runnersworld.com/gear/a71626774/asics-metaspeed-tokyo-review/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-24T16:03:25.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "This Hip-Hop Playlist Is Built Around a Runner’s Natural Rhythm—And Will Help You Hold a Steadier Cadence",
+      "url": "https://www.runnersworld.com/runners-stories/a61440098/hip-hop-running-songs/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-24T15:03:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "As a Competitive Runner, I Was Skeptical of This Underrated Tool My Coach Harped on Using—Until I Saw Results",
+      "url": "https://www.runnersworld.com/runners-stories/a71431570/recovery-tool-sleep-napping/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-24T14:15:37.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The Garmin Forerunner 265 and 965 Are Both on Sale for Prime Day—Here’s How to Pick the Right One",
+      "url": "https://www.runnersworld.com/gear/a71692540/garmin-forerunner-265-and-965-prime-day-deal-2026/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-24T12:31:11.000Z",
+      "categorySlug": "garmin",
+      "categoryTitle": "Garmin"
+    },
+    {
+      "title": "The Act C1 shows promise for green running gear, with some growing pains",
+      "url": "https://believeintherun.com/shoe-reviews/act-c1-review/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-06-24T12:00:17.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The Apple Watch Series 11 is 30% Off For Prime Day 2026",
+      "url": "https://www.runnersworld.com/gear/a71691989/apple-watch-series-11-prime-day-deal-2026/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-24T11:43:14.000Z",
+      "categorySlug": "apple-watch",
+      "categoryTitle": "Apple Watch"
+    },
+    {
+      "title": "This Coach Says the Number-One Way to Log More Miles Is Running Ridiculously Easy. Here’s How It Pays Off in Performance.",
+      "url": "https://www.runnersworld.com/training/a71677605/easy-runs-build-volume/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-23T16:22:03.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "Tons of Editor-Favorite Running Shoes Are Discounted for Prime Day—Save Up to 53% Now",
+      "url": "https://www.runnersworld.com/gear/g70222395/best-running-shoe-deals-2026/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-23T15:43:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "Brooks Cascadia 19 Review: A Dependable Trail Workhorse for Big Miles",
+      "url": "https://www.runnersworld.com/gear/a71677406/brooks-cascadia-19-review/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-23T15:27:13.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "These 10 Brooks Running Shoes Will Help You Run Your Best Miles Yet",
+      "url": "https://www.runnersworld.com/gear/a20866339/best-brooks-running-shoes/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-23T14:52:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The Apple Watch Ultra 3 Is One of the Best Prime Day Deals We’ve Found",
+      "url": "https://www.runnersworld.com/gear/a71676778/apple-watch-ultra-3-prime-day-deal-2026/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-23T14:40:25.000Z",
+      "categorySlug": "apple-watch",
+      "categoryTitle": "Apple Watch"
+    },
+    {
+      "title": "Garmin’s Famed Fenix 8 is The Lowest Price Ever for Prime Day",
+      "url": "https://www.runnersworld.com/gear/a71667649/garmins-fenix-8-prime-day-deals-2026/",
+      "source": "Runner's World",
+      "publishedAt": "2026-06-23T14:31:52.000Z",
+      "categorySlug": "garmin",
+      "categoryTitle": "Garmin"
+    }
+  ],
+  "suggestionsByCategory": {
+    "shoes": [
+      {
+        "name": "Brooks Ghost",
+        "note": "Reliable daily trainer — soft, forgiving, great for beginners.",
+        "weekly": false
+      },
+      {
+        "name": "ASICS Gel-Nimbus",
+        "note": "Extra cushioning if you want maximum impact protection.",
+        "weekly": false
+      },
+      {
+        "name": "Saucony Ride",
+        "note": "Balanced feel — not too soft, not too firm. Good all-rounder.",
+        "weekly": false
+      },
+      {
+        "name": "New Balance Fresh Foam 880",
+        "note": "Comfortable neutral shoe; wide widths available.",
+        "weekly": false
+      }
+    ],
+    "shirts": [
+      {
+        "name": "Nike Dri-FIT Miler",
+        "note": "Classic beginner top — light, breathable, affordable.",
+        "weekly": false
+      },
+      {
+        "name": "Under Armour Tech 2.0",
+        "note": "Soft feel, good value, widely available.",
+        "weekly": false
+      },
+      {
+        "name": "Patagonia Capilene Cool",
+        "note": "Great for hot weather and sustainability-minded runners.",
+        "weekly": false
+      },
+      {
+        "name": "Merino base layer (Icebreaker / Smartwool)",
+        "note": "Odour-resistant and comfortable for cool-weather runs.",
+        "weekly": false
+      }
+    ],
+    "bottoms": [
+      {
+        "name": "Nike Challenger Shorts",
+        "note": "Simple 5\" inseam with liner — a safe first pick.",
+        "weekly": false
+      },
+      {
+        "name": "Tracksmith Session Shorts",
+        "note": "Premium feel with a classic look if you want to invest.",
+        "weekly": false
+      },
+      {
+        "name": "Lululemon Pace Breaker",
+        "note": "Comfortable liner and phone pocket; popular for everyday runs.",
+        "weekly": false
+      },
+      {
+        "name": "SOAR Running Split Shorts",
+        "note": "Light and fast — better once you're running regularly.",
+        "weekly": false
+      }
+    ],
+    "tights": [
+      {
+        "name": "Nike Pro Warm Tights",
+        "note": "Solid cold-weather staple with good warmth-to-weight ratio.",
+        "weekly": false
+      },
+      {
+        "name": "Lululemon Fast and Free Tight",
+        "note": "Multiple pockets and a comfortable high waist.",
+        "weekly": false
+      },
+      {
+        "name": "Under Armour ColdGear Leggings",
+        "note": "Brushed interior for winter mornings.",
+        "weekly": false
+      },
+      {
+        "name": "2XU Compression Tights",
+        "note": "Snug fit — some runners like the supported feel on long runs.",
+        "weekly": false
+      }
+    ],
+    "cap": [
+      {
+        "name": "Ciele GOCap",
+        "note": "The cult favourite — light, stylish, great sweat management.",
+        "weekly": false
+      },
+      {
+        "name": "Nike Featherlight Cap",
+        "note": "Budget-friendly and does the job well.",
+        "weekly": false
+      },
+      {
+        "name": "Buff UV Headband (winter alternative)",
+        "note": "Covers ears in cold weather without overheating your head.",
+        "weekly": false
+      },
+      {
+        "name": "Smartwool Merino Beanie",
+        "note": "For freezing temps when a cap isn't enough.",
+        "weekly": false
+      }
+    ],
+    "goggles": [
+      {
+        "name": "Goodr",
+        "note": "Affordable, fun colours, no-slip fit — perfect starter shades.",
+        "weekly": false
+      },
+      {
+        "name": "Tifosi Swank",
+        "note": "Light, budget-friendly, solid UV protection.",
+        "weekly": false
+      },
+      {
+        "name": "Oakley Sutro Lite",
+        "note": "Premium option with excellent clarity and stability.",
+        "weekly": false
+      },
+      {
+        "name": "Julbo Fury",
+        "note": "Great for trail runners who want wraparound coverage.",
+        "weekly": false
+      }
+    ],
+    "sunscreen": [
+      {
+        "name": "Neutrogena Sport Face SPF 70",
+        "note": "Sweat-resistant and less likely to sting eyes than body formulas.",
+        "weekly": false
+      },
+      {
+        "name": "Banana Boat Sport Ultra SPF 50",
+        "note": "Budget-friendly, widely available, solid for arms and legs.",
+        "weekly": false
+      },
+      {
+        "name": "Supergoop! Play Everyday Lotion SPF 50",
+        "note": "Light feel, no white cast — good for daily training.",
+        "weekly": false
+      },
+      {
+        "name": "Sun Bum Original SPF 50",
+        "note": "Popular sport formula with a pleasant scent; reapply on long runs.",
+        "weekly": false
+      }
+    ],
+    "chafing-creams": [
+      {
+        "name": "Body Glide",
+        "note": "The classic stick — apply to thighs, feet, and anywhere that rubs.",
+        "weekly": false
+      },
+      {
+        "name": "Squirrel's Nut Butter",
+        "note": "Natural anti-chafe balm; popular with trail runners.",
+        "weekly": false
+      },
+      {
+        "name": "Bandelettes or Nip Guards",
+        "note": "Physical barriers for nipple chafing on long runs.",
+        "weekly": false
+      },
+      {
+        "name": "Vaseline",
+        "note": "Cheap and works in a pinch — not ideal for fabric stains.",
+        "weekly": false
+      }
+    ],
+    "hydration-tablets": [
+      {
+        "name": "Nuun Sport",
+        "note": "Light, fizzy, easy on the stomach — great starter electrolyte.",
+        "weekly": false
+      },
+      {
+        "name": "LMNT",
+        "note": "Higher sodium — popular for heavy sweaters and hot climates.",
+        "weekly": false
+      },
+      {
+        "name": "Precision Fuel & Hydration",
+        "note": "Customizable sodium levels to match your sweat rate.",
+        "weekly": false
+      },
+      {
+        "name": "SaltStick FastChews",
+        "note": "Chewable electrolytes if you prefer not to mix drinks.",
+        "weekly": false
+      }
+    ],
+    "gels": [
+      {
+        "name": "Maurten Gel 100",
+        "note": "Gentle on the stomach — popular with marathoners.",
+        "weekly": false
+      },
+      {
+        "name": "GU Energy Gel",
+        "note": "Wide flavour range; easy to find at races and shops.",
+        "weekly": false
+      },
+      {
+        "name": "Huma Gel",
+        "note": "Made with chia and fruit — good if standard gels upset your gut.",
+        "weekly": false
+      },
+      {
+        "name": "Spring Energy",
+        "note": "Whole-food style fuel for runners who want real-ingredient options.",
+        "weekly": false
+      }
+    ],
+    "hydration-packs": [
+      {
+        "name": "Salomon Active Skin 8",
+        "note": "Light race vest — popular for half and full marathon training.",
+        "weekly": false
+      },
+      {
+        "name": "Nathan VaporHowe 2.0",
+        "note": "Comfortable women's-specific fit with good storage.",
+        "weekly": false
+      },
+      {
+        "name": "Osprey Dyna LT",
+        "note": "Hybrid pack/vest — great for trail beginners.",
+        "weekly": false
+      },
+      {
+        "name": "FlipBelt or handheld bottle",
+        "note": "Simpler option for shorter long runs — no vest needed yet.",
+        "weekly": false
+      }
+    ],
+    "apple-watch": [
+      {
+        "name": "Apple Watch SE (2nd gen)",
+        "note": "Best value — full GPS running features without the premium price.",
+        "weekly": true
+      },
+      {
+        "name": "Apple Watch Series 9 / 10",
+        "note": "Brighter always-on display; easier to read mid-run.",
+        "weekly": true
+      },
+      {
+        "name": "Apple Watch Ultra",
+        "note": "Overkill for beginners — consider only for trail ultras and multi-day battery needs.",
+        "weekly": false
+      }
+    ],
+    "garmin": [
+      {
+        "name": "Garmin Forerunner 165",
+        "note": "Colour AMOLED screen, beginner-friendly — great first Garmin.",
+        "weekly": true
+      },
+      {
+        "name": "Garmin Forerunner 255 / 265",
+        "note": "The sweet spot for half and full marathon training.",
+        "weekly": true
+      },
+      {
+        "name": "Garmin Forerunner 55",
+        "note": "Cheapest entry point — basic but reliable GPS tracking.",
+        "weekly": false
+      }
+    ],
+    "coros": [
+      {
+        "name": "Coros Pace 3",
+        "note": "Best beginner pick — light, accurate GPS, weeks of battery.",
+        "weekly": false
+      },
+      {
+        "name": "Coros Pace 2",
+        "note": "Still solid if you find it discounted — slightly older but capable.",
+        "weekly": false
+      },
+      {
+        "name": "Coros Apex 2",
+        "note": "Step up for trail runners who want maps and sapphire glass.",
+        "weekly": false
+      }
+    ],
+    "strava-app": [
+      {
+        "name": "Phone-only tracking",
+        "note": "Start here — just open Strava and hit Record before your run.",
+        "weekly": false
+      },
+      {
+        "name": "Strava + Apple Watch / Garmin / Coros",
+        "note": "Record on your watch; sync automatically when done.",
+        "weekly": false
+      },
+      {
+        "name": "LetsRunNow dashboard",
+        "note": "Connect Strava in your account for streaks, route comparisons, and HR tips.",
+        "weekly": false
+      }
+    ]
+  }
+}

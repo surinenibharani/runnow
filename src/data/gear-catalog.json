@@ -1,0 +1,88 @@
+{
+  "shoes": [
+    { "name": "Brooks Ghost", "note": "Reliable daily trainer — soft, forgiving, great for beginners." },
+    { "name": "ASICS Gel-Nimbus", "note": "Extra cushioning if you want maximum impact protection." },
+    { "name": "Saucony Ride", "note": "Balanced feel — not too soft, not too firm. Good all-rounder." },
+    { "name": "New Balance Fresh Foam 880", "note": "Comfortable neutral shoe; wide widths available." }
+  ],
+  "shirts": [
+    { "name": "Nike Dri-FIT Miler", "note": "Classic beginner top — light, breathable, affordable." },
+    { "name": "Under Armour Tech 2.0", "note": "Soft feel, good value, widely available." },
+    { "name": "Patagonia Capilene Cool", "note": "Great for hot weather and sustainability-minded runners." },
+    { "name": "Merino base layer (Icebreaker / Smartwool)", "note": "Odour-resistant and comfortable for cool-weather runs." }
+  ],
+  "bottoms": [
+    { "name": "Nike Challenger Shorts", "note": "Simple 5\" inseam with liner — a safe first pick." },
+    { "name": "Tracksmith Session Shorts", "note": "Premium feel with a classic look if you want to invest." },
+    { "name": "Lululemon Pace Breaker", "note": "Comfortable liner and phone pocket; popular for everyday runs." },
+    { "name": "SOAR Running Split Shorts", "note": "Light and fast — better once you're running regularly." }
+  ],
+  "tights": [
+    { "name": "Nike Pro Warm Tights", "note": "Solid cold-weather staple with good warmth-to-weight ratio." },
+    { "name": "Lululemon Fast and Free Tight", "note": "Multiple pockets and a comfortable high waist." },
+    { "name": "Under Armour ColdGear Leggings", "note": "Brushed interior for winter mornings." },
+    { "name": "2XU Compression Tights", "note": "Snug fit — some runners like the supported feel on long runs." }
+  ],
+  "cap": [
+    { "name": "Ciele GOCap", "note": "The cult favourite — light, stylish, great sweat management." },
+    { "name": "Nike Featherlight Cap", "note": "Budget-friendly and does the job well." },
+    { "name": "Buff UV Headband (winter alternative)", "note": "Covers ears in cold weather without overheating your head." },
+    { "name": "Smartwool Merino Beanie", "note": "For freezing temps when a cap isn't enough." }
+  ],
+  "goggles": [
+    { "name": "Goodr", "note": "Affordable, fun colours, no-slip fit — perfect starter shades." },
+    { "name": "Tifosi Swank", "note": "Light, budget-friendly, solid UV protection." },
+    { "name": "Oakley Sutro Lite", "note": "Premium option with excellent clarity and stability." },
+    { "name": "Julbo Fury", "note": "Great for trail runners who want wraparound coverage." }
+  ],
+  "sunscreen": [
+    { "name": "Neutrogena Sport Face SPF 70", "note": "Sweat-resistant and less likely to sting eyes than body formulas." },
+    { "name": "Banana Boat Sport Ultra SPF 50", "note": "Budget-friendly, widely available, solid for arms and legs." },
+    { "name": "Supergoop! Play Everyday Lotion SPF 50", "note": "Light feel, no white cast — good for daily training." },
+    { "name": "Sun Bum Original SPF 50", "note": "Popular sport formula with a pleasant scent; reapply on long runs." }
+  ],
+  "chafing-creams": [
+    { "name": "Body Glide", "note": "The classic stick — apply to thighs, feet, and anywhere that rubs." },
+    { "name": "Squirrel's Nut Butter", "note": "Natural anti-chafe balm; popular with trail runners." },
+    { "name": "Bandelettes or Nip Guards", "note": "Physical barriers for nipple chafing on long runs." },
+    { "name": "Vaseline", "note": "Cheap and works in a pinch — not ideal for fabric stains." }
+  ],
+  "hydration-tablets": [
+    { "name": "Nuun Sport", "note": "Light, fizzy, easy on the stomach — great starter electrolyte." },
+    { "name": "LMNT", "note": "Higher sodium — popular for heavy sweaters and hot climates." },
+    { "name": "Precision Fuel & Hydration", "note": "Customizable sodium levels to match your sweat rate." },
+    { "name": "SaltStick FastChews", "note": "Chewable electrolytes if you prefer not to mix drinks." }
+  ],
+  "gels": [
+    { "name": "Maurten Gel 100", "note": "Gentle on the stomach — popular with marathoners." },
+    { "name": "GU Energy Gel", "note": "Wide flavour range; easy to find at races and shops." },
+    { "name": "Huma Gel", "note": "Made with chia and fruit — good if standard gels upset your gut." },
+    { "name": "Spring Energy", "note": "Whole-food style fuel for runners who want real-ingredient options." }
+  ],
+  "hydration-packs": [
+    { "name": "Salomon Active Skin 8", "note": "Light race vest — popular for half and full marathon training." },
+    { "name": "Nathan VaporHowe 2.0", "note": "Comfortable women's-specific fit with good storage." },
+    { "name": "Osprey Dyna LT", "note": "Hybrid pack/vest — great for trail beginners." },
+    { "name": "FlipBelt or handheld bottle", "note": "Simpler option for shorter long runs — no vest needed yet." }
+  ],
+  "apple-watch": [
+    { "name": "Apple Watch SE (2nd gen)", "note": "Best value — full GPS running features without the premium price." },
+    { "name": "Apple Watch Series 9 / 10", "note": "Brighter always-on display; easier to read mid-run." },
+    { "name": "Apple Watch Ultra", "note": "Overkill for beginners — consider only for trail ultras and multi-day battery needs." }
+  ],
+  "garmin": [
+    { "name": "Garmin Forerunner 165", "note": "Colour AMOLED screen, beginner-friendly — great first Garmin." },
+    { "name": "Garmin Forerunner 255 / 265", "note": "The sweet spot for half and full marathon training." },
+    { "name": "Garmin Forerunner 55", "note": "Cheapest entry point — basic but reliable GPS tracking." }
+  ],
+  "coros": [
+    { "name": "Coros Pace 3", "note": "Best beginner pick — light, accurate GPS, weeks of battery." },
+    { "name": "Coros Pace 2", "note": "Still solid if you find it discounted — slightly older but capable." },
+    { "name": "Coros Apex 2", "note": "Step up for trail runners who want maps and sapphire glass." }
+  ],
+  "strava-app": [
+    { "name": "Phone-only tracking", "note": "Start here — just open Strava and hit Record before your run." },
+    { "name": "Strava + Apple Watch / Garmin / Coros", "note": "Record on your watch; sync automatically when done." },
+    { "name": "LetsRunNow dashboard", "note": "Connect Strava in your account for streaks, route comparisons, and HR tips." }
+  ]
+}

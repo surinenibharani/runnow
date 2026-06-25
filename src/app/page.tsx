@@ -5,13 +5,13 @@ import { Features } from "@/components/landing/features";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import { Testimonials } from "@/components/landing/testimonials";
 import { CtaSection } from "@/components/landing/cta-section";
+import { TipsTicker } from "@/components/landing/tips-ticker";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { SITE_TAGLINE } from "@/lib/site";
+import { SITE_TAGLINE, SITE_DESCRIPTION } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: `LetsRunNow — ${SITE_TAGLINE}`,
-  description:
-    "Your friendly guide to becoming a runner. Free 5K, half marathon, and marathon plans with progress tracking.",
+  description: SITE_DESCRIPTION,
   path: "/",
 });
 
@@ -32,6 +32,7 @@ export default function Home() {
           </span>
         </div>
       </div>
+      <TipsTicker />
       <Hero />
       <Features />
       <HowItWorks />

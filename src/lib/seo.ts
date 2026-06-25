@@ -1,5 +1,5 @@
 import type { BlogPost } from "@/lib/blog/types";
-import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_TAGLINE, SITE_URL, SITE_DESCRIPTION } from "@/lib/site";
 
 export function organizationJsonLd() {
   return {
@@ -8,7 +8,7 @@ export function organizationJsonLd() {
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/icon.svg`,
-    description: `${SITE_NAME} — ${SITE_TAGLINE}. Free beginner running plans from 5K to marathon.`,
+    description: SITE_DESCRIPTION,
   };
 }
 
@@ -18,7 +18,7 @@ export function websiteJsonLd() {
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
-    description: "Beginner-friendly running plans, tips, and training guides.",
+    description: SITE_DESCRIPTION,
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,

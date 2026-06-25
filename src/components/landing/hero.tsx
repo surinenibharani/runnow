@@ -63,7 +63,7 @@ export function Hero() {
           >
             {[
               { value: "3", label: "Distance plans" },
-              { value: "4×", label: "Runs per week (max)" },
+              { value: "3–4×", label: "Runs per week (max)" },
               { value: "0", label: "Experience needed" },
             ].map((stat) => (
               <div

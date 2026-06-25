@@ -5,6 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 import { gearCategories, gearGroups } from "@/lib/gear/items";
+import { getGearUpdates, formatGearUpdatedAt, getMergedSuggestions } from "@/lib/gear/updates";
+import { GearWeeklyNews } from "@/components/gear/gear-weekly-news";
+import { GearSuggestionsList } from "@/components/gear/gear-suggestions-list";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -15,6 +18,8 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function GearPage() {
+  const gearUpdates = getGearUpdates();
+
   return (
     <div className="py-12 sm:py-16">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
@@ -25,6 +30,12 @@ export default function GearPage() {
           <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
             What to wear, carry, and fuel with — from your first 5K to your first
             marathon. Suggestions, not sponsorships.
+          </p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Guide refreshed weekly — last updated{" "}
+            <time dateTime={gearUpdates.updatedAt}>
+              {formatGearUpdatedAt(gearUpdates.updatedAt)}
+            </time>
           </p>
         </FadeIn>
 
@@ -57,6 +68,7 @@ export default function GearPage() {
                   .filter((item) => item.group === group)
                   .map((item) => (
                     <StaggerItem key={item.slug}>
+                      <div className="space-y-6">
                       <Card
                         id={item.slug}
                         className="border-border/60 hover:shadow-md transition-shadow duration-300 scroll-mt-24"
@@ -99,19 +111,16 @@ export default function GearPage() {
                               <h3 className="text-sm font-semibold mb-2">
                                 Suggestions
                               </h3>
-                              <ul className="space-y-2">
-                                {item.suggestions.map((pick) => (
-                                  <li key={pick.name} className="text-sm">
-                                    <span className="font-medium text-foreground">
-                                      {pick.name}
-                                    </span>
-                                    <span className="text-muted-foreground">
-                                      {" "}
-                                      — {pick.note}
-                                    </span>
-                                  </li>
-                                ))}
-                              </ul>
+                              <p className="text-xs text-muted-foreground mb-2">
+                                Direct product picks — refreshed weekly from our
+                                catalog and recent gear coverage.
+                              </p>
+                              <GearSuggestionsList
+                                picks={getMergedSuggestions(
+                                  item.slug,
+                                  item.suggestions
+                                )}
+                              />
                             </div>
                           </div>
                           {item.pros && item.cons && (
@@ -156,6 +165,10 @@ export default function GearPage() {
                           )}
                         </CardContent>
                       </Card>
+                      {item.slug === "hydration-packs" && (
+                        <GearWeeklyNews updates={gearUpdates} />
+                      )}
+                      </div>
                     </StaggerItem>
                   ))}
               </StaggerChildren>

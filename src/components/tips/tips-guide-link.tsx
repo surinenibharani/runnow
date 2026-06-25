@@ -6,6 +6,7 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { cn } from "@/lib/utils";
 
 type TipsGuideLinkProps = {
+  id?: string;
   href: string;
   title: string;
   description: string;
@@ -14,6 +15,7 @@ type TipsGuideLinkProps = {
 };
 
 export function TipsGuideLink({
+  id,
   href,
   title,
   description,
@@ -22,6 +24,7 @@ export function TipsGuideLink({
 }: TipsGuideLinkProps) {
   return (
     <FadeIn className="mt-16">
+      <div id={id} className={id ? "scroll-mt-24" : undefined}>
       <Link href={href} className="group block rounded-xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
         <Card className="border-border/60 transition-all duration-300 group-hover:border-primary/40 group-hover:shadow-md">
           <CardContent className="p-6 sm:p-8">
@@ -50,6 +53,7 @@ export function TipsGuideLink({
           </CardContent>
         </Card>
       </Link>
+      </div>
     </FadeIn>
   );
 }

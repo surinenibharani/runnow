@@ -10,6 +10,7 @@
     "strava:webhook": "node scripts/strava-webhook-setup.mjs",
     "start": "next start",
     "lint": "eslint",
+    "gear:update": "node scripts/update-gear-from-rss.mjs",
     "postinstall": "prisma generate"
   },
   "dependencies": {
@@ -41,6 +42,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "prisma": "^5.22.0",
+    "rss-parser": "^3.13.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

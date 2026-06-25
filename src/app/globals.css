@@ -48,6 +48,7 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --animate-tips-ticker: tips-ticker 45s linear infinite;
 }
 
 :root {
@@ -207,5 +208,51 @@
         transparent 75%,
         oklch(0.72 0.2 35) 75%
       );
+  }
+
+  @keyframes tips-ticker {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .tips-ticker-track {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+
+  .tips-ticker-content {
+    animation: var(--animate-tips-ticker);
+  }
+
+  .tips-ticker-track:hover .tips-ticker-content {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tips-ticker-track {
+      mask-image: none;
+      overflow-x: auto;
+    }
+
+    .tips-ticker-content {
+      animation: none;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+      gap: 0.25rem 0;
+      padding-inline: 1rem;
+    }
   }
 }
