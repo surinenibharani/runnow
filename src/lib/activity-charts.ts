@@ -23,17 +23,23 @@ export { formatActivityType, ACTIVITY_COLORS };
 function toSlices(
   entries: Map<string, number>,
   colorMap: Record<string, string>,
-  defaultColor: string
+  defaultColor: string,
+  percentDecimals = 0
 ): PieSlice[] {
   const total = [...entries.values()].reduce((sum, v) => sum + v, 0);
   if (total === 0) return [];
+
+  const percentFactor = 10 ** percentDecimals;
 
   return [...entries.entries()]
     .sort((a, b) => b[1] - a[1])
     .map(([label, value]) => ({
       label,
       value,
-      percent: Math.round((value / total) * 100),
+      percent:
+        percentDecimals > 0
+          ? Math.round((value / total) * 100 * percentFactor) / percentFactor
+          : Math.round((value / total) * 100),
       color: colorMap[label] ?? defaultColor,
     }));
 }
@@ -56,7 +62,7 @@ function zoneSlicesFromMinutes(
 ): PieSlice[] {
   const method = resolveHrZoneMethod(profile);
   const colorMap = buildZoneColorMap(method);
-  const slices = toSlices(minutes, colorMap, "#94a3b8");
+  const slices = toSlices(minutes, colorMap, "#94a3b8", 1);
   return slices.map((s) => ({
     ...s,
     value: Math.round(s.value * 10) / 10,

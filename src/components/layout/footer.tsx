@@ -7,6 +7,7 @@ import {
   footerTrainLinks,
 } from "@/lib/navigation";
 import { SITE_NAME } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export function Footer() {
   return (
@@ -43,9 +44,17 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="transition-colors hover:text-foreground"
+                    className={cn(
+                      "inline-flex items-center gap-1.5 transition-colors hover:text-foreground",
+                      link.comingSoon && "text-muted-foreground/55"
+                    )}
                   >
                     {link.label}
+                    {link.comingSoon && (
+                      <span className="rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                        Soon
+                      </span>
+                    )}
                   </Link>
                 </li>
               ))}

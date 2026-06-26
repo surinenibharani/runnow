@@ -277,4 +277,36 @@
       padding-inline: 1rem;
     }
   }
+
+  /* Hero trail — race marker spotlight (state driven in HeroRaceMarkers) */
+  .hero-race-marker {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    opacity: 0.42;
+    transform: scale(1);
+    transition:
+      opacity 0.45s ease-in-out,
+      transform 0.45s ease-in-out;
+  }
+
+  .hero-race-marker-focused {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .hero-race-marker-faded,
+  .hero-race-marker-settled {
+    opacity: 0.52;
+    transform: scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-race-marker {
+      transition: none;
+    }
+
+    .hero-race-marker-settled {
+      opacity: 0.75;
+    }
+  }
 }

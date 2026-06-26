@@ -1,3 +1,5 @@
+import { TEAMS_ROLLOUT_ENABLED } from "@/lib/teams/rollout";
+
 export type NavLink = {
   href: string;
   label: string;
@@ -5,6 +7,8 @@ export type NavLink = {
   matchPrefix?: boolean;
   /** Hide unless the user is signed in */
   authRequired?: boolean;
+  /** Grey out in nav and show a coming-soon label */
+  comingSoon?: boolean;
 };
 
 export type NavGroup = {
@@ -40,9 +44,22 @@ export const mainNavGroups: NavGroup[] = [
     ],
   },
   {
-    links: [{ href: "/teams", label: "Teams", matchPrefix: true }],
+    links: [
+      {
+        href: "/teams",
+        label: "Teams",
+        matchPrefix: true,
+        comingSoon: !TEAMS_ROLLOUT_ENABLED,
+      },
+    ],
   },
 ];
+
+export type FooterLink = {
+  href: string;
+  label: string;
+  comingSoon?: boolean;
+};
 
 export const tipsSectionNav = [
   { href: "/tips", label: "All tips" },
@@ -55,13 +72,17 @@ export const footerTrainLinks = [
   { href: "/dashboard", label: "Dashboard" },
 ] as const;
 
-export const footerLearnLinks = [
+export const footerLearnLinks: FooterLink[] = [
   { href: "/blog", label: "Blog" },
   { href: "/tips", label: "Running Tips" },
   { href: "/gear", label: "Gear Guide" },
   { href: "/injuries", label: "Injury Prevention" },
-  { href: "/teams", label: "Coach Teams" },
-] as const;
+  {
+    href: "/teams",
+    label: "Coach Teams",
+    comingSoon: !TEAMS_ROLLOUT_ENABLED,
+  },
+];
 
 export const footerTipsLinks = [
   { href: "/tips", label: "All tips" },

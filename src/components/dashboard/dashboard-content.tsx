@@ -32,6 +32,7 @@ import { PaceInsightsPanel } from "@/components/dashboard/pace-insights-panel";
 import type { RouteComparison, RunSuggestion } from "@/lib/run-analysis";
 import type { PieSlice } from "@/lib/activity-charts";
 import type { PaceInsights } from "@/lib/pace-analysis";
+import { TEAMS_ROLLOUT_ENABLED } from "@/lib/teams/rollout";
 import {
   CHART_TIME_RANGE_OPTIONS,
   getChartTimeRangeLabel,
@@ -661,6 +662,7 @@ export function DashboardContent() {
                     subtitle={heartRateSubtitle}
                     slices={displayedHeartRateZones}
                     valueLabel="minutes"
+                    maxDecimals={1}
                     emptyMessage={
                       activityHrZonesLoading
                         ? "Loading heart rate stream from Strava…"
@@ -836,9 +838,18 @@ export function DashboardContent() {
             View training plans
           </Link>
           {" · "}
-          <Link href="/teams" className="text-primary hover:underline">
-            Teams
-          </Link>
+          {TEAMS_ROLLOUT_ENABLED ? (
+            <Link href="/teams" className="text-primary hover:underline">
+              Teams
+            </Link>
+          ) : (
+            <Link
+              href="/teams"
+              className="text-muted-foreground hover:text-foreground"
+            >
+              Teams <span className="text-xs uppercase">(coming soon)</span>
+            </Link>
+          )}
           {" · "}
           Strava runs auto-match your plan when synced
         </p>

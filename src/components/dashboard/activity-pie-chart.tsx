@@ -7,7 +7,16 @@ type ActivityPieChartProps = {
   slices: PieSlice[];
   valueLabel?: string;
   emptyMessage?: string;
+  /** Show values and percents with up to this many decimal places (e.g. HR zone minutes). */
+  maxDecimals?: number;
 };
+
+function formatUpToDecimals(value: number, maxDecimals: number): string {
+  if (maxDecimals <= 0) return String(value);
+  const factor = 10 ** maxDecimals;
+  const rounded = Math.round(value * factor) / factor;
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(maxDecimals);
+}
 
 export function ActivityPieChart({
   title,
@@ -15,6 +24,7 @@ export function ActivityPieChart({
   slices,
   valueLabel = "activities",
   emptyMessage = "No data yet",
+  maxDecimals = 0,
 }: ActivityPieChartProps) {
   const total = slices.reduce((sum, s) => sum + s.value, 0);
 
@@ -61,7 +71,9 @@ export function ActivityPieChart({
           )}
         >
           <div className="absolute inset-6 flex flex-col items-center justify-center rounded-full bg-background text-center">
-            <span className="text-2xl font-bold">{total}</span>
+            <span className="text-2xl font-bold">
+              {formatUpToDecimals(total, maxDecimals)}
+            </span>
             <span className="text-xs text-muted-foreground">{valueLabel}</span>
           </div>
         </div>
@@ -80,7 +92,8 @@ export function ActivityPieChart({
                 <span className="truncate">{slice.label}</span>
               </span>
               <span className="shrink-0 text-muted-foreground tabular-nums">
-                {slice.value} ({slice.percent}%)
+                {formatUpToDecimals(slice.value, maxDecimals)} (
+                {formatUpToDecimals(slice.percent, maxDecimals)}%)
               </span>
             </li>
           ))}

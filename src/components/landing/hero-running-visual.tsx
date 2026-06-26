@@ -1,21 +1,9 @@
 import { cn } from "@/lib/utils";
+import { HeroRaceMarkers } from "@/components/landing/hero-race-markers";
 
 type HeroRunningVisualProps = {
   className?: string;
 };
-
-type RaceMarker = {
-  cx: number;
-  cy: number;
-  label: string;
-  nudge?: string;
-};
-
-const raceMarkers: RaceMarker[] = [
-  { cx: 130, cy: 159, label: "5K", nudge: "translate-x-[1in]" },
-  { cx: 400, cy: 158, label: "Half marathon" },
-  { cx: 610, cy: 153, label: "Full marathon", nudge: "-translate-x-[1cm]" },
-];
 
 /** Wide rectangular trail scene with distance markers along the road. */
 export function HeroRunningVisual({ className }: HeroRunningVisualProps) {
@@ -85,53 +73,7 @@ export function HeroRunningVisual({ className }: HeroRunningVisualProps) {
             strokeDasharray="12 8"
           />
 
-          {/* Distance markers along the trail */}
-          {raceMarkers.map((marker) => {
-            const signWidth = marker.label === "5K" ? 40 : 78;
-            const fontSize = marker.label === "5K" ? 10 : 7.5;
-
-            return (
-              <g
-                key={marker.label}
-                transform={`translate(${marker.cx}, ${marker.cy})`}
-                className={marker.nudge}
-              >
-                <circle
-                  r="4"
-                  className="fill-primary/50 stroke-primary/55"
-                  strokeWidth="1.2"
-                />
-                <line
-                  x1={0}
-                  y1={0}
-                  x2={0}
-                  y2={-18}
-                  className="stroke-primary/45"
-                  strokeWidth="1.25"
-                  strokeLinecap="round"
-                />
-                <rect
-                  x={-signWidth / 2}
-                  y={-36}
-                  width={signWidth}
-                  height={16}
-                  rx={4}
-                  className="fill-background/90 stroke-primary/35"
-                  strokeWidth="1"
-                />
-                <text
-                  y={-25}
-                  textAnchor="middle"
-                  fontSize={fontSize}
-                  fontWeight="600"
-                  fontFamily="system-ui, sans-serif"
-                  className="fill-primary/90"
-                >
-                  {marker.label}
-                </text>
-              </g>
-            );
-          })}
+          <HeroRaceMarkers />
 
           {/* Trees */}
           <g className="stroke-emerald-700/30" strokeWidth="1.25" fill="none">

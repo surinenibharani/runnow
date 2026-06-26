@@ -36,19 +36,28 @@ function NavItem({
       aria-current={active ? "page" : undefined}
       className={cn(
         "relative rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-        active
-          ? "text-foreground"
-          : "text-muted-foreground hover:text-foreground",
+        link.comingSoon && "text-muted-foreground/55 hover:text-muted-foreground/70",
+        !link.comingSoon &&
+          (active
+            ? "text-foreground"
+            : "text-muted-foreground hover:text-foreground"),
         className
       )}
     >
-      {active && (
+      {active && !link.comingSoon && (
         <span
           className="absolute inset-x-1 bottom-0 h-0.5 rounded-full bg-primary"
           aria-hidden
         />
       )}
-      <span className="relative z-10">{link.label}</span>
+      <span className="relative z-10 inline-flex items-center gap-1.5">
+        {link.label}
+        {link.comingSoon && (
+          <span className="rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+            Soon
+          </span>
+        )}
+      </span>
     </Link>
   );
 }
