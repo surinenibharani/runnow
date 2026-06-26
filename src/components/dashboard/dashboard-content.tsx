@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   Activity,
+  ChevronDown,
   ExternalLink,
   Flame,
   Heart,
@@ -48,6 +49,8 @@ import {
   type HrProfile,
 } from "@/lib/hr-zones";
 import { cn } from "@/lib/utils";
+
+const DASHBOARD_LIST_PREVIEW_COUNT = 2;
 
 interface DashboardData {
   user: {
@@ -128,6 +131,8 @@ export function DashboardContent() {
     null
   );
   const [activityHrZonesLoading, setActivityHrZonesLoading] = useState(false);
+  const [routeComparisonsExpanded, setRouteComparisonsExpanded] = useState(false);
+  const [recentWorkoutsExpanded, setRecentWorkoutsExpanded] = useState(false);
 
   const loadDashboard = useCallback(
     async (range: ChartTimeRange = chartRange) => {
@@ -760,7 +765,10 @@ export function DashboardContent() {
               Same route comparisons
             </h2>
             <div className="space-y-4">
-              {data.routeComparisons.map((cmp) => (
+              {(routeComparisonsExpanded
+                ? data.routeComparisons
+                : data.routeComparisons.slice(0, DASHBOARD_LIST_PREVIEW_COUNT)
+              ).map((cmp) => (
                 <Card key={cmp.routeKey} className="border-border/60">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-base">{cmp.routeLabel}</CardTitle>
@@ -800,6 +808,27 @@ export function DashboardContent() {
                 </Card>
               ))}
             </div>
+            {data.routeComparisons.length > DASHBOARD_LIST_PREVIEW_COUNT && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="mt-3 w-full text-muted-foreground"
+                onClick={() => setRouteComparisonsExpanded((expanded) => !expanded)}
+                aria-expanded={routeComparisonsExpanded}
+              >
+                {routeComparisonsExpanded
+                  ? "Show less"
+                  : `Show ${data.routeComparisons.length - DASHBOARD_LIST_PREVIEW_COUNT} more`}
+                <ChevronDown
+                  className={cn(
+                    "ml-1 size-4 transition-transform",
+                    routeComparisonsExpanded && "rotate-180"
+                  )}
+                  aria-hidden
+                />
+              </Button>
+            )}
           </FadeIn>
         )}
 
@@ -807,7 +836,10 @@ export function DashboardContent() {
           <FadeIn>
             <h2 className="text-xl font-bold mb-4">Recent workouts</h2>
             <div className="space-y-2">
-              {data.recentRuns.map((run) => (
+              {(recentWorkoutsExpanded
+                ? data.recentRuns
+                : data.recentRuns.slice(0, DASHBOARD_LIST_PREVIEW_COUNT)
+              ).map((run) => (
                 <Card key={run.id} className="border-border/60">
                   <CardContent className="p-4 flex flex-wrap items-center justify-between gap-2">
                     <div>
@@ -830,6 +862,27 @@ export function DashboardContent() {
                 </Card>
               ))}
             </div>
+            {data.recentRuns.length > DASHBOARD_LIST_PREVIEW_COUNT && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="mt-3 w-full text-muted-foreground"
+                onClick={() => setRecentWorkoutsExpanded((expanded) => !expanded)}
+                aria-expanded={recentWorkoutsExpanded}
+              >
+                {recentWorkoutsExpanded
+                  ? "Show less"
+                  : `Show ${data.recentRuns.length - DASHBOARD_LIST_PREVIEW_COUNT} more`}
+                <ChevronDown
+                  className={cn(
+                    "ml-1 size-4 transition-transform",
+                    recentWorkoutsExpanded && "rotate-180"
+                  )}
+                  aria-hidden
+                />
+              </Button>
+            )}
           </FadeIn>
         )}
 
