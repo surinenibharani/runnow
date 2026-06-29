@@ -3,20 +3,18 @@ import type { TrainingPlan } from "@/lib/plan-types";
 import { PLANS, PLAN_FAMILIES } from "@/lib/plans";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { PLAN_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
 const PLAN_KEYWORDS = [
-  "couch to 5k",
+  ...PLAN_SEO_KEYWORDS,
   "5k training plan",
   "half marathon training plan",
   "marathon training plan",
-  "beginner running plan",
-  "free running plan",
-  "cross-training schedule",
   SITE_NAME,
 ] as const;
 
 export const PLAN_INDEX_DESCRIPTION =
-  "Free Couch to 5K, half marathon, and marathon training plans from 4 to 16 weeks. Pick your duration, customize run days and cross-training, and track progress — signup optional.";
+  "Free couch to 5K plan for beginners — 8-week running schedule in your browser, no app required. Half marathon and marathon plans from 4–16 weeks with cross-training, rest days, and progress tracking.";
 
 function truncateDescription(text: string, max = 158): string {
   if (text.length <= max) return text;
@@ -26,42 +24,46 @@ function truncateDescription(text: string, max = 158): string {
 }
 
 export function getPlanMetaDescription(plan: TrainingPlan): string {
+  const lead =
+    plan.familyId === "5k"
+      ? `Free couch to 5K plan (${plan.duration}) — beginner running schedule, no app.`
+      : `Free ${plan.name} plan (${plan.duration}) — beginner running schedule in your browser.`;
+
   return truncateDescription(
-    `Free ${plan.name} plan (${plan.duration}): ${plan.description} ${plan.runsPerWeek} runs per week with cross-training, rest days, and browser progress tracking.`
+    `${lead} ${plan.description} ${plan.runsPerWeek} runs per week with cross-training, rest days, and progress tracking.`
   );
 }
 
 export function getPlanPageTitle(plan: TrainingPlan): string {
-  return `${plan.name} Training Plan (${plan.duration})`;
+  if (plan.id === "5k-8w") {
+    return "Free Couch to 5K Plan (8 Weeks) for Beginners";
+  }
+  return `Free ${plan.name} Training Plan (${plan.duration})`;
 }
 
 export function buildPlanPageMetadata(planId?: string | null): Metadata {
   const plan = planId ? PLANS.find((p) => p.id === planId) : undefined;
 
   if (plan) {
-    return {
-      ...pageMetadata({
-        title: getPlanPageTitle(plan),
-        description: getPlanMetaDescription(plan),
-        path: `/plan?plan=${plan.id}`,
-      }),
+    return pageMetadata({
+      title: getPlanPageTitle(plan),
+      description: getPlanMetaDescription(plan),
+      path: `/plan?plan=${plan.id}`,
       keywords: [
         plan.name.toLowerCase(),
         `${plan.duration} training plan`,
         plan.familyId.replace("-", " "),
         ...PLAN_KEYWORDS,
       ],
-    };
+    });
   }
 
-  return {
-    ...pageMetadata({
-      title: "Free Running Training Plans",
-      description: PLAN_INDEX_DESCRIPTION,
-      path: "/plan",
-    }),
+  return pageMetadata({
+    title: "Free Running Training Plans — Couch to 5K, Half & Marathon",
+    description: PLAN_INDEX_DESCRIPTION,
+    path: "/plan",
     keywords: [...PLAN_KEYWORDS],
-  };
+  });
 }
 
 function organizationRef() {

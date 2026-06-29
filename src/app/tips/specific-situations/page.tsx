@@ -6,12 +6,14 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { SituationalTipsGrid } from "@/components/tips/situational-tips-grid";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { SITUATIONAL_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Running for Specific Situations",
+  title: "Running for Pregnancy, 55+, & Health Conditions",
   description:
-    "Running guidance for pregnancy, runners 55+, and common health conditions including diabetes, asthma, arthritis, and more.",
+    "Beginner running guidance for pregnancy, runners 55+, diabetes, asthma, arthritis, and more — when to get clearance and how to start safely.",
   path: "/tips/specific-situations",
+  keywords: [...SITUATIONAL_SEO_KEYWORDS, ...TIPS_SEO_KEYWORDS.slice(0, 3)],
 });
 
 export default function SpecificSituationsTipsPage() {

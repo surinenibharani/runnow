@@ -7,13 +7,16 @@ import { Testimonials } from "@/components/landing/testimonials";
 import { CtaSection } from "@/components/landing/cta-section";
 import { TipsTicker } from "@/components/landing/tips-ticker";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION } from "@/lib/site";
+import { HOME_SEO_KEYWORDS } from "@/lib/seo/keywords";
+import { SITE_NAME, SITE_TAGLINE } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: `${SITE_NAME} — ${SITE_TAGLINE}`,
-  description: SITE_DESCRIPTION,
+  description:
+    "Free couch to 5K plan for beginners — 8-week running schedule in your browser, no app download. Half marathon and marathon plans, cross-training, and optional Strava sync.",
   path: "/",
   titleAbsolute: true,
+  keywords: [...HOME_SEO_KEYWORDS],
 });
 
 export default function Home() {

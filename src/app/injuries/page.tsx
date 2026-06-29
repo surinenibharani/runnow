@@ -13,12 +13,14 @@ import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { INJURIES_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Common Running Injuries",
+  title: "Common Running Injuries — Prevention & Recovery for Beginners",
   description:
-    "Learn how to prevent and recover from shin splints, runner's knee, IT band pain, plantar fasciitis, and more.",
+    "Shin splints, runner's knee, IT band pain, and plantar fasciitis — how beginners can prevent, recover from, and avoid common running injuries.",
   path: "/injuries",
+  keywords: [...INJURIES_SEO_KEYWORDS],
 });
 
 const injuries = [

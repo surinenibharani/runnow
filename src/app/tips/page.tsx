@@ -7,13 +7,15 @@ import { TipsGuideLink } from "@/components/tips/tips-guide-link";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { getPostBySlug } from "@/lib/blog/posts";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { runnerTips, tipsPageGuides } from "@/lib/tips/tips";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Beginner Running Tips",
+  title: "Beginner Running Tips — Pace, Gear, Recovery & More",
   description:
-    "Practical advice for new runners — pacing, gear, recovery, bad-weather indoor alternatives, and guidance for pregnancy, runners 55+, and common health conditions.",
+    "Beginner running tips for couch to 5K starters: easy pace, shoes, hydration, rest days, and bad-weather alternatives — no app, no paywall.",
   path: "/tips",
+  keywords: [...TIPS_SEO_KEYWORDS],
 });
 
 export default function TipsPage() {

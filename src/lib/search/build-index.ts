@@ -1,0 +1,208 @@
+import { blogPosts, getPublishedBlogPosts } from "@/lib/blog/posts";
+import { gearCategories } from "@/lib/gear/items";
+import { PLANS } from "@/lib/plans";
+import {
+  runnerTips,
+  slugifyTipTitle,
+  tipsPageGuides,
+} from "@/lib/tips/tips";
+import { situationalTips } from "@/lib/tips/situational";
+import { weatherTips } from "@/lib/tips/weather";
+import type { SiteSearchResult } from "./types";
+
+const STATIC_PAGES: SiteSearchResult[] = [
+  {
+    id: "page-home",
+    title: "Home",
+    description:
+      "Free couch to 5K and marathon training plans for beginners — no app required.",
+    href: "/",
+    kind: "page",
+    category: "Plans",
+  },
+  {
+    id: "page-plan",
+    title: "Training plans",
+    description:
+      "Free couch to 5K, half marathon, and marathon schedules you can customize in your browser.",
+    href: "/plan",
+    kind: "page",
+    category: "Plans",
+  },
+  {
+    id: "page-blog",
+    title: "Running blog",
+    description: "Beginner running articles on training, gear, recovery, and mindset.",
+    href: "/blog",
+    kind: "page",
+    category: "Blog",
+  },
+  {
+    id: "page-tips",
+    title: "Running tips",
+    description: "Quick tips for pacing, shoes, habits, hydration, and recovery.",
+    href: "/tips",
+    kind: "page",
+    category: "Tips",
+  },
+  {
+    id: "page-gear",
+    title: "Gear guide",
+    description: "Shoes, apparel, hydration, and tracking gear for new runners.",
+    href: "/gear",
+    kind: "page",
+    category: "Gear",
+  },
+  {
+    id: "page-injuries",
+    title: "Injury prevention",
+    description: "Common running injuries — how to avoid them and when to see a specialist.",
+    href: "/injuries",
+    kind: "page",
+    category: "Health",
+  },
+];
+
+const INJURY_ENTRIES: SiteSearchResult[] = [
+  {
+    id: "injury-shin-splints",
+    title: "Shin splints",
+    description:
+      "Pain along the shinbone when mileage increases too fast — prevention and recovery.",
+    href: "/injuries",
+    kind: "injury",
+    category: "Injuries",
+  },
+  {
+    id: "injury-runners-knee",
+    title: "Runner's knee (PFPS)",
+    description: "Kneecap pain on stairs and longer runs — strengthening and pacing tips.",
+    href: "/injuries",
+    kind: "injury",
+    category: "Injuries",
+  },
+  {
+    id: "injury-it-band",
+    title: "IT band syndrome",
+    description: "Outer knee or hip pain, often from volume spikes or weak hips.",
+    href: "/injuries",
+    kind: "injury",
+    category: "Injuries",
+  },
+  {
+    id: "injury-plantar",
+    title: "Plantar fasciitis",
+    description: "Heel pain worst in the morning — calf tightness and gradual return to running.",
+    href: "/injuries",
+    kind: "injury",
+    category: "Injuries",
+  },
+  {
+    id: "injury-achilles",
+    title: "Achilles tendinitis",
+    description: "Stiffness or pain at the back of the heel — avoid sudden speed and hill jumps.",
+    href: "/injuries",
+    kind: "injury",
+    category: "Injuries",
+  },
+  {
+    id: "injury-stress-fracture",
+    title: "Stress fractures",
+    description: "Localized bone pain from overtraining — rest is non-negotiable.",
+    href: "/injuries",
+    kind: "injury",
+    category: "Injuries",
+  },
+];
+
+function buildIndex(): SiteSearchResult[] {
+  const publishedSlugs = new Set(
+    getPublishedBlogPosts().map((post) => post.slug)
+  );
+
+  const blog: SiteSearchResult[] = blogPosts
+    .filter((post) => publishedSlugs.has(post.slug))
+    .map((post) => ({
+      id: `blog-${post.slug}`,
+      title: post.title,
+      description: post.excerpt,
+      href: `/blog/${post.slug}`,
+      kind: "blog" as const,
+      category: post.category,
+    }));
+
+  const plans: SiteSearchResult[] = PLANS.map((plan) => ({
+    id: `plan-${plan.id}`,
+    title: `${plan.name} (${plan.duration})`,
+    description: plan.description,
+    href: `/plan?plan=${plan.id}`,
+    kind: "plan" as const,
+    category: "Training plan",
+  }));
+
+  const tips: SiteSearchResult[] = runnerTips.map((tip) => ({
+    id: `tip-${tip.slug}`,
+    title: tip.title,
+    description: tip.content,
+    href: tip.blogSlug ? `/blog/${tip.blogSlug}` : `/tips#${tip.slug}`,
+    kind: "tip" as const,
+    category: tip.category,
+  }));
+
+  const guides: SiteSearchResult[] = tipsPageGuides.map((guide) => ({
+    id: `guide-${guide.slug}`,
+    title: guide.title,
+    description: guide.description,
+    href: `/blog/${guide.blogSlug}`,
+    kind: "guide" as const,
+    category: "Tips guide",
+  }));
+
+  const weather: SiteSearchResult[] = weatherTips.map((tip) => ({
+    id: `weather-${slugifyTipTitle(tip.title)}`,
+    title: tip.title,
+    description: [tip.condition, ...tip.outdoorTips.slice(0, 2)].join(" · "),
+    href: "/tips/bad-weather",
+    kind: "tip" as const,
+    category: "Bad weather",
+  }));
+
+  const situational: SiteSearchResult[] = situationalTips.map((tip) => ({
+    id: `situational-${slugifyTipTitle(tip.title)}`,
+    title: tip.title,
+    description: `${tip.audience} — ${tip.tips[0] ?? ""}`,
+    href: "/tips/specific-situations",
+    kind: "tip" as const,
+    category: tip.audience,
+  }));
+
+  const gear: SiteSearchResult[] = gearCategories.map((cat) => ({
+    id: `gear-${cat.slug}`,
+    title: cat.title,
+    description: [cat.summary, cat.whenYouNeedIt].filter(Boolean).join(" "),
+    href: `/gear#${cat.slug}`,
+    kind: "gear" as const,
+    category: cat.group,
+  }));
+
+  return [
+    ...STATIC_PAGES,
+    ...plans,
+    ...blog,
+    ...tips,
+    ...guides,
+    ...weather,
+    ...situational,
+    ...gear,
+    ...INJURY_ENTRIES,
+  ];
+}
+
+let cachedIndex: SiteSearchResult[] | null = null;
+
+export function getSiteSearchIndex(): SiteSearchResult[] {
+  if (!cachedIndex) {
+    cachedIndex = buildIndex();
+  }
+  return cachedIndex;
+}

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Menu, User, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
+import { SiteSearch } from "@/components/search/site-search";
 import { useSession, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { useProfileModal } from "@/components/profile/profile-modal";
@@ -110,7 +111,7 @@ export function Navbar() {
       ref={headerRef}
       className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg"
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:gap-3 sm:px-6">
         <Logo />
 
         <nav
@@ -144,6 +145,11 @@ export function Navbar() {
             );
           })}
         </nav>
+
+        <SiteSearch
+          className="min-w-0 flex-1 sm:max-w-xs lg:flex-none lg:w-52 xl:w-60"
+          inputClassName="bg-background/80"
+        />
 
         <div className="hidden shrink-0 items-center gap-2 lg:flex">
           {session ? (

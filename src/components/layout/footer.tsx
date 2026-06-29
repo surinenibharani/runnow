@@ -58,6 +58,14 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/search"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Search site
+                </Link>
+              </li>
               <li className="pt-1">
                 <p className="mb-1.5 text-xs font-medium uppercase tracking-wide text-foreground/70">
                   Tips guides

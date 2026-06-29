@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { getCommentCount } from "@/lib/blog/comment-counts";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { ogImageMeta } from "@/lib/seo/metadata";
+import { blogPostKeywords } from "@/lib/seo/keywords";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
   blogPosts,
@@ -58,7 +59,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
-    keywords: [post.category, "running", "beginner runner", SITE_NAME],
+    keywords: blogPostKeywords(slug, post.category),
     authors: [{ name: post.author }],
     ...(scheduled && preview
       ? { robots: { index: false, follow: false } }

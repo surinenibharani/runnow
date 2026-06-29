@@ -18,15 +18,17 @@ import { isBlogPostScheduled } from "@/lib/blog/preview";
 import { BlogPreviewBanner } from "@/components/blog/blog-preview-banner";
 import { blogIndexJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { BLOG_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { SITE_NAME } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Running Blog",
+  title: "Beginner Running Blog — Couch to 5K Tips & Training Advice",
   description:
-    "Beginner-friendly articles on training, nutrition, recovery, and mindset — written for runners starting from zero.",
+    "Beginner running blog with couch to 5K tips, pacing, gear, injury prevention, and mindset — practical articles for first-time runners, no jargon.",
   path: "/blog",
+  keywords: [...BLOG_SEO_KEYWORDS],
 });
 
 type BlogPageProps = {

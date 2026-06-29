@@ -1490,7 +1490,7 @@ export const blogPosts: BlogPost[] = [
       "Nervous about run one? Pace, route, shoes, and what to expect — the essentials that keep your first jog from becoming your last.",
     category: "Getting Started",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-07-20",
+    publishedAt: "2026-06-29",
     readTime: "6 min",
     relatedSlugs: [
       "never-ran-where-to-start",

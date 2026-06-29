@@ -16,13 +16,15 @@ import {
 } from "@/lib/gear/items";
 import { getGearUpdates, formatGearUpdatedAt, getMergedSuggestions } from "@/lib/gear/updates";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { GEAR_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Running Gear Guide",
+  title: "Beginner Running Gear Guide — Shoes, Socks & Essentials",
   description:
-    "Beginner-friendly gear picks for shoes, apparel, hydration, tracking watches, Strava, and more — what to buy and when you actually need it.",
+    "Beginner running gear guide: first shoes, socks, what to wear, budget picks under $50, and when you actually need a watch — couch to 5K starter kit.",
   path: "/gear",
+  keywords: [...GEAR_SEO_KEYWORDS],
 });
 
 const tierSectionId = (tier: GearTier) =>

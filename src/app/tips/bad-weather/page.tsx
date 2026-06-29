@@ -6,12 +6,14 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { WeatherTipsGrid } from "@/components/tips/weather-tips-grid";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { BAD_WEATHER_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Bad Weather Running Tips",
+  title: "Running in Bad Weather — Rain, Heat, Ice & Indoor Swaps",
   description:
-    "Weather-aware running tips and indoor alternatives for rain, heat, cold, storms, wind, and poor air quality.",
+    "Bad weather running tips for beginners: when to run in rain or heat, when to stay in, and indoor cross-training swaps so your couch to 5K plan stays on track.",
   path: "/tips/bad-weather",
+  keywords: [...BAD_WEATHER_SEO_KEYWORDS, ...TIPS_SEO_KEYWORDS.slice(0, 3)],
 });
 
 export default function BadWeatherTipsPage() {

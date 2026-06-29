@@ -1,0 +1,119 @@
+import { SITE_NAME } from "@/lib/site";
+
+/** Site-wide long-tail terms for beginners searching without an app. */
+export const GLOBAL_SEO_KEYWORDS = [
+  "couch to 5k free plan",
+  "beginner running schedule no app",
+  "free 5k training plan beginner",
+  "couch to 5k no app",
+  "beginner running plan free",
+  "how to start running beginner",
+  "free marathon training plan beginner",
+  "half marathon training plan free",
+  "running plan in browser",
+  SITE_NAME.toLowerCase(),
+] as const;
+
+export const HOME_SEO_KEYWORDS = [
+  ...GLOBAL_SEO_KEYWORDS,
+  "start running today",
+  "beginner runner training schedule",
+  "free running plan no download",
+  "couch to 5k for beginners",
+] as const;
+
+export const PLAN_SEO_KEYWORDS = [
+  ...GLOBAL_SEO_KEYWORDS,
+  "8 week couch to 5k plan",
+  "12 week half marathon plan",
+  "16 week marathon plan beginner",
+  "running schedule 3 days a week",
+  "cross training running plan",
+  "customize run days",
+] as const;
+
+export const BLOG_SEO_KEYWORDS = [
+  ...GLOBAL_SEO_KEYWORDS,
+  "beginner running tips",
+  "first time runner advice",
+  "running blog for beginners",
+] as const;
+
+export const TIPS_SEO_KEYWORDS = [
+  ...GLOBAL_SEO_KEYWORDS,
+  "beginner running tips",
+  "how to pace yourself running",
+  "running tips for new runners",
+  "easy running pace beginner",
+] as const;
+
+export const GEAR_SEO_KEYWORDS = [
+  "beginner running gear",
+  "first running shoes",
+  "running gear for beginners",
+  "what to wear running beginner",
+  "cheap running gear starter kit",
+] as const;
+
+export const INJURIES_SEO_KEYWORDS = [
+  "beginner running injuries",
+  "shin splints prevention running",
+  "runner knee beginner",
+  "how to avoid running injuries",
+  "plantar fasciitis running",
+] as const;
+
+export const BAD_WEATHER_SEO_KEYWORDS = [
+  "running in rain tips",
+  "running in heat beginner",
+  "indoor running alternatives",
+  "bad weather running plan",
+] as const;
+
+export const SITUATIONAL_SEO_KEYWORDS = [
+  "running while pregnant",
+  "running over 55 beginner",
+  "running with asthma",
+  "running with diabetes beginner",
+] as const;
+
+/** Extra keywords for individual blog posts by slug. */
+export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
+  "never-ran-where-to-start": [
+    "never ran before where to start",
+    "how to start running from zero",
+  ],
+  "training-first-5k": ["first 5k training plan", "train for first 5k beginner"],
+  "first-run-tips": ["first run tips beginner", "what to know before first run"],
+  "why-walking-is-not-cheating": [
+    "walk run method beginner",
+    "couch to 5k walk run intervals",
+  ],
+  "beginner-gear-guide-under-50": [
+    "running gear under 50 dollars",
+    "cheap beginner running gear",
+  ],
+  "what-to-wear-running": [
+    "what to wear for running beginner",
+    "running clothes for beginners",
+  ],
+  "building-a-running-habit": [
+    "how to stick to running habit",
+    "running consistency beginner",
+  ],
+  "how-to-pace-yourself": [
+    "how to pace yourself running beginner",
+    "easy run pace beginner",
+  ],
+};
+
+export function blogPostKeywords(slug: string, category: string): string[] {
+  const extra = BLOG_POST_KEYWORDS[slug] ?? [];
+  return [
+    category.toLowerCase(),
+    "beginner running",
+    "running tips",
+    ...extra,
+    ...GLOBAL_SEO_KEYWORDS.slice(0, 4),
+  ];
+}

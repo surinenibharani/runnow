@@ -1,11 +1,18 @@
 export const SITE_NAME = "LetsRunNow";
-export const SITE_TAGLINE = "Start Running Today";
+export const SITE_TAGLINE = "Free Couch to 5K Plans for Beginners";
 export const SITE_DESCRIPTION =
-  "Tired of overwhelming running apps? LetsRunNow is the simple, free, no-signup Couch to 5K & marathon training site for real beginners.";
+  "Free couch to 5K, half marathon, and marathon training plans — a beginner running schedule in your browser, no app required. Pick a plan, track progress, and optional Strava sync.";
 export const SITE_KEYWORDS = [
-  "beginner running",
-  "couch to 5k",
-  "free training plan",
+  "couch to 5k free plan",
+  "beginner running schedule no app",
+  "free 5k training plan beginner",
+  "couch to 5k no app",
+  "beginner running plan free",
+  "free marathon training plan beginner",
+  "half marathon training plan free",
+  "how to start running beginner",
+  "running plan in browser",
+  "LetsRunNow",
 ] as const;
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ||
