@@ -11,21 +11,26 @@ import { ogImageMeta } from "@/lib/seo/metadata";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
   blogPosts,
-  getPostBySlug,
+  getPublishedPostBySlug,
   getRelatedPosts,
+  isBlogPostPublished,
 } from "@/lib/blog/posts";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return blogPosts
+    .filter((post) => isBlogPostPublished(post.publishedAt))
+    .map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPublishedPostBySlug(slug);
   if (!post) {
     return {
       title: "Post Not Found",
@@ -66,7 +71,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPublishedPostBySlug(slug);
   if (!post) notFound();
 
   const related = getRelatedPosts(post);

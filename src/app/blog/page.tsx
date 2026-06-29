@@ -10,11 +10,12 @@ import { BlogPostCards } from "@/components/blog/blog-post-cards";
 import { JsonLd } from "@/components/seo/json-ld";
 import { filterPostsByCategory, paramToCategory } from "@/lib/blog/categories";
 import { getCommentCountsBySlug } from "@/lib/blog/comment-counts";
-import { blogPosts } from "@/lib/blog/posts";
-import { getWhyItMatters } from "@/lib/blog/why-it-matters";
+import { getPublishedBlogPosts } from "@/lib/blog/posts";
 import { blogIndexJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { SITE_NAME } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = pageMetadata({
   title: "Running Blog",
@@ -23,29 +24,23 @@ export const metadata: Metadata = pageMetadata({
   path: "/blog",
 });
 
-const sortedPosts = [...blogPosts]
-  .map((post) => ({
-    ...post,
-    whyItMatters: post.whyItMatters ?? getWhyItMatters(post.slug),
-  }))
-  .sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
-
 type BlogPageProps = {
   searchParams: Promise<{ category?: string }>;
 };
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const { category: categoryParam } = await searchParams;
+  const sortedPosts = getPublishedBlogPosts().sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
   const commentCounts = await getCommentCountsBySlug();
   const activeCategory = paramToCategory(categoryParam);
   const filteredPosts = filterPostsByCategory(sortedPosts, categoryParam);
 
   return (
     <div className="py-12 sm:py-16">
-      <JsonLd data={blogIndexJsonLd(blogPosts.length)} />
+      <JsonLd data={blogIndexJsonLd(sortedPosts.length)} />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
 

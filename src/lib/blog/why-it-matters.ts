@@ -36,6 +36,14 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Running can support health at many ages and with many conditions — but the wrong approach can do harm. Understanding your limits before you start protects you long-term.",
   "performance-goals-over-aesthetics":
     "Aesthetic-only goals feel urgent but progress is hard to measure — and easy to obsess over. Performance targets give you wins you can actually track and celebrate.",
+  "why-walking-is-not-cheating":
+    "Beginners who refuse to walk often quit within weeks — gasping, sore, and convinced they're 'not cut out for it.' Walk-run is how most people actually become runners.",
+  "what-to-do-when-you-miss-a-run":
+    "One skipped run feels like failure, so many beginners quit entirely. How you respond in the 48 hours after a miss matters more than the miss itself.",
+  "beginner-gear-guide-under-50":
+    "You don't need a $200 watch to start. A few smart basics under $50 prevent blisters and keep you comfortable while you build the habit.",
+  "how-to-not-hate-hills":
+    "Hills feel like punishment until you learn pacing and posture. A few mental and physical tricks turn climbs from dread into honest strength work.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

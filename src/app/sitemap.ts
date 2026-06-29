@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
-import { blogPosts } from "@/lib/blog/posts";
+import { getPublishedBlogPosts } from "@/lib/blog/posts";
 import { getPlanSitemapEntries } from "@/lib/seo/plans";
 import { SITE_URL } from "@/lib/site";
+
+export const dynamic = "force-dynamic";
 
 const staticRoutes = [
   { path: "", priority: 1, changeFrequency: "weekly" as const },
@@ -34,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: entry.priority,
   }));
 
-  const posts = blogPosts.map((post) => ({
+  const posts = getPublishedBlogPosts().map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.publishedAt),
     changeFrequency: "monthly" as const,

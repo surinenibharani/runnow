@@ -1245,27 +1245,299 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "why-walking-is-not-cheating",
+    title: "Why Walking Is Not Cheating — How the Walk-Run Method Builds Real Fitness",
+    excerpt:
+      "How the walk-run method builds real fitness — and why your ego is lying to you when it says walking doesn't count.",
+    category: "Getting Started",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-02",
+    readTime: "6 min",
+    relatedSlugs: [
+      "never-ran-where-to-start",
+      "how-to-pace-yourself",
+      "training-first-5k",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Somewhere along the way, beginners internalized a toxic rule: if you're walking, you're failing. Social media clips of nonstop sprints don't help. Neither does the voice in your head that treats every walk break like a confession.",
+          "Here's the truth elite coaches have known for decades: walk-run intervals are not a shortcut. They're a proven on-ramp to aerobic fitness — and for most new runners, they're the smartest way to start.",
+        ],
+      },
+      {
+        heading: "Your ego is not a coach",
+        paragraphs: [
+          "Ego wants you to suffer loudly so you feel like you \"really worked.\" Fitness wants you to repeat sessions often enough that your heart, lungs, and tendons adapt. Those goals conflict on day one.",
+          "When you refuse to walk, you usually run too fast, cut sessions short, and wake up dreading the next one. Walking keeps effort in a zone where you can finish the workout, show up again, and actually get better.",
+        ],
+      },
+      {
+        heading: "What walk-run actually builds",
+        list: [
+          "Aerobic base — your engine learns to use oxygen efficiently",
+          "Tendon and joint tolerance — tissues adapt gradually instead of revolting",
+          "Confidence — finishing a session matters more than how it looks on paper",
+          "Pacing sense — you learn what sustainable effort feels like before you need it on race day",
+        ],
+      },
+      {
+        heading: "A simple progression",
+        paragraphs: [
+          "You don't need a gadget or a PhD. Alternate short jogs with walk breaks from the first session. Keep jogs slow enough to talk. Add one minute of running per week, not one mile of pride per run.",
+        ],
+        list: [
+          "Weeks 1–2: 1 min jog / 2 min walk, repeat 20–25 min",
+          "Weeks 3–4: 2 min jog / 2 min walk, repeat 25–30 min",
+          "Weeks 5–6: 3 min jog / 1 min walk, repeat 25–30 min",
+          "Week 7+: experiment with longer continuous jogs — still slow",
+        ],
+      },
+      {
+        heading: "When walking on a run day is still a win",
+        paragraphs: [
+          "Bad sleep, heat, stress, or soreness? A brisk walk keeps your habit alive without digging a recovery hole. That's not cheating — that's training like someone who plans to still be running six months from now.",
+        ],
+        cta: { text: "Start the free 8-week 5K plan", href: "/plan" },
+      },
+    ],
+  },
+  {
+    slug: "what-to-do-when-you-miss-a-run",
+    title: "What to Do When You Miss a Run",
+    excerpt:
+      "Spoiler: don't quit. Here's how to get back on track without guilt — and without the 'make-up' mileage trap.",
+    category: "Mindset",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-06",
+    readTime: "5 min",
+    relatedSlugs: [
+      "building-a-running-habit",
+      "what-to-do-on-rest-days",
+      "performance-goals-over-aesthetics",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "You missed a run. Maybe work exploded, the kids were sick, or you simply didn't want to. The shame spiral arrives fast: \"I've ruined everything. Might as well stop.\"",
+          "Spoiler: you haven't ruined anything. One missed run is a blip. Quitting because of one missed run is the actual problem — and it's optional.",
+        ],
+      },
+      {
+        heading: "Step 1: Drop the guilt, keep the habit",
+        paragraphs: [
+          "Guilt feels productive but rarely gets you out the door. Replace \"I'm bad at this\" with \"I'm someone who runs on Tuesdays and Thursdays — and today wasn't that day.\" Identity survives a single miss.",
+        ],
+      },
+      {
+        heading: "Step 2: Don't \"make up\" the run",
+        list: [
+          "No doubling tomorrow's mileage to \"balance the ledger\"",
+          "No squeezing two runs into one day unless your plan explicitly allows it",
+          "No punishing speed work because you feel behind",
+        ],
+        paragraphs: [
+          "Make-up mileage is how beginners get shin splints. The plan assumes life happens. Just do the next scheduled run as written — usually at easy pace.",
+        ],
+      },
+      {
+        heading: "Step 3: Ask why you missed it (briefly)",
+        list: [
+          "Schedule conflict → block the next run on your calendar like a meeting",
+          "Fatigue or illness → rest was correct; return when symptoms improve",
+          "Motivation dip → shrink the goal to shoes-on and five minutes out the door",
+          "Pain → treat as a body signal, not a character flaw; adjust or rest",
+        ],
+      },
+      {
+        heading: "Step 4: Show up for the next one",
+        paragraphs: [
+          "The comeback run should feel almost easy. You're rebuilding trust with yourself, not proving a point. Check off the next workout on your plan and move on.",
+          "Missed a whole week? Don't restart at week one unless you were injured. Repeat the current week or drop back one week — then keep going. Consistency over perfection, always.",
+        ],
+        cta: { text: "Open your training plan", href: "/plan" },
+      },
+    ],
+  },
+  {
+    slug: "beginner-gear-guide-under-50",
+    title: "Beginner Gear Guide Under $50",
+    excerpt:
+      "Shoes, socks, and the one app you actually need — a sensible starter kit that won't drain your wallet before your first 5K.",
+    category: "Gear",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-10",
+    readTime: "5 min",
+    relatedSlugs: [
+      "choosing-running-shoes",
+      "never-ran-where-to-start",
+      "why-letsrunnow",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Running Instagram wants you to believe you need carbon plates, compression everything, and a watch that predicts the weather. You don't — not yet.",
+          "Here's a honest under-$50 starter kit that covers what actually matters for your first few months. Shoes are the big ticket; everything else is cheap insurance against blisters and boredom.",
+        ],
+      },
+      {
+        heading: "Shoes: spend here first",
+        paragraphs: [
+          "This is the one place where \"under $50\" might mean last-season sales or outlet deals — not random fashion sneakers. Running shoes protect your joints and make jogging feel possible.",
+          "Visit a running store if you can and ask for last year's model on clearance. Online outlets work if you know your size from a prior fitting. Prioritize comfort and room in the toe box over brand hype.",
+        ],
+      },
+      {
+        heading: "Socks: the underrated upgrade ($10–15)",
+        paragraphs: [
+          "Cotton gym socks hold sweat and cause hot spots. A pair of running-specific socks with moisture-wicking fabric prevents blisters better than almost any gadget.",
+          "You don't need a drawer full — two or three pairs you rotate through the week are enough.",
+        ],
+      },
+      {
+        heading: "What you already own",
+        list: [
+          "T-shirt and shorts or leggings — no cotton is nice, not required on day one",
+          "Phone for time tracking — the clock app works fine",
+          "Water bottle for longer sessions or hot days",
+          "Reflective gear or bright colors if you run near traffic at dawn or dusk",
+        ],
+      },
+      {
+        heading: "The one app you actually need: free",
+        paragraphs: [
+          "Strava (or any simple tracker) helps you log runs, see progress, and stay honest about consistency. The free tier is plenty for beginners — GPS, pace, distance, and history.",
+          "Pair it with a structured plan so you're not guessing each week. LetsRunNow gives you the schedule; Strava (optional) gives you the receipts.",
+        ],
+        list: [
+          "Skip for now: $400 watches, heart-rate chest straps, gels, and race belts",
+          "Skip for now: multiple shoe rotations before you've worn out pair one",
+          "Skip for now: gadgets that measure everything except whether you showed up",
+        ],
+        cta: { text: "Browse the full gear guide", href: "/gear" },
+      },
+    ],
+  },
+  {
+    slug: "how-to-not-hate-hills",
+    title: "How to Not Hate Hills",
+    excerpt:
+      "Climbs don't have to wreck your mood or your pace. Posture, effort, and a few mental tricks make hills your secret strength session.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-14",
+    readTime: "6 min",
+    relatedSlugs: [
+      "how-to-pace-yourself",
+      "breathing-while-running",
+      "training-first-5k",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Hills are where beginner dreams go to die — or so it feels the first time your neighborhood turns upward and your legs turn to concrete. Everyone else seems to float; you seem to stop.",
+          "Good news: hills aren't a test of worthiness. They're a skill. And with a few adjustments, they become short strength sessions that make flat ground feel like a gift.",
+        ],
+      },
+      {
+        heading: "Slow down before the hill slows you down",
+        paragraphs: [
+          "The #1 hill mistake is charging the bottom at the same pace as flat ground. By halfway up, you're in oxygen debt and mentally checked out.",
+          "Ease off at the base. Aim for the same effort — not the same speed. Your pace will drop; that's correct. Think \"jogging in place up an escalator\" rather than \"sprinting the stairs at work.\"",
+        ],
+      },
+      {
+        heading: "Posture and form on the climb",
+        list: [
+          "Lean slightly from the ankles, not the waist — don't fold over",
+          "Shorten your stride; quick, light steps beat long lunges uphill",
+          "Drive arms a little more — they set rhythm when legs burn",
+          "Look ahead a few meters, not at your feet — chest open, breathing easier",
+        ],
+      },
+      {
+        heading: "Breathing and walk breaks",
+        paragraphs: [
+          "Power-hiking a steep section is not failure — trail runners do it on purpose. Walk with purpose: tall posture, brisk steps, keep moving.",
+          "Exhale on a steady rhythm. If you can't speak a short phrase, slow down or walk until you can. The top of the hill is not going anywhere.",
+        ],
+      },
+      {
+        heading: "Mental tricks that actually work",
+        list: [
+          "\"One more mailbox\" — shrink the climb into tiny finish lines",
+          "\"This is making flat runs free speed later\" — hills build leg strength and cardio",
+          "Celebrate the descent — easy reward on the way down, but control speed so knees stay happy",
+          "Repeat the same hill weekly — familiarity kills dread faster than avoidance",
+        ],
+      },
+      {
+        heading: "Put hills in your plan on purpose",
+        paragraphs: [
+          "Once a week, finish an easy run with a short uphill repeat or a hilly loop at conversational effort. You're not racing the hill — you're teaching your body it survives them.",
+        ],
+        cta: { text: "See pacing tips for easy runs", href: "/blog/how-to-pace-yourself" },
+      },
+    ],
+  },
 ];
+
+function withWhyItMatters(post: BlogPost): BlogPost {
+  return {
+    ...post,
+    whyItMatters: post.whyItMatters ?? getWhyItMatters(post.slug),
+  };
+}
+
+/** Posts are visible on or after their publish date (UTC calendar day). */
+export function isBlogPostPublished(
+  publishedAt: string,
+  now: Date = new Date()
+): boolean {
+  const today = now.toISOString().slice(0, 10);
+  return publishedAt.slice(0, 10) <= today;
+}
+
+export function getPublishedBlogPosts(now: Date = new Date()): BlogPost[] {
+  return blogPosts
+    .filter((post) => isBlogPostPublished(post.publishedAt, now))
+    .map(withWhyItMatters);
+}
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return undefined;
-  return {
-    ...post,
-    whyItMatters: post.whyItMatters ?? getWhyItMatters(slug),
-  };
+  return withWhyItMatters(post);
+}
+
+export function getPublishedPostBySlug(
+  slug: string,
+  now: Date = new Date()
+): BlogPost | undefined {
+  const post = getPostBySlug(slug);
+  if (!post || !isBlogPostPublished(post.publishedAt, now)) return undefined;
+  return post;
 }
 
 export function getRelatedPosts(post: BlogPost): BlogPost[] {
   const fromSlugs = (post.relatedSlugs ?? [])
     .map((slug) => getPostBySlug(slug))
-    .filter((p): p is BlogPost => p !== undefined);
+    .filter(
+      (p): p is BlogPost =>
+        p !== undefined && isBlogPostPublished(p.publishedAt)
+    );
 
   if (fromSlugs.length >= 3) return fromSlugs.slice(0, 3);
 
   const seen = new Set([post.slug, ...fromSlugs.map((p) => p.slug)]);
   const sameCategory = blogPosts
-    .filter((p) => p.category === post.category && !seen.has(p.slug))
+    .filter(
+      (p) =>
+        p.category === post.category &&
+        !seen.has(p.slug) &&
+        isBlogPostPublished(p.publishedAt)
+    )
     .sort(
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
