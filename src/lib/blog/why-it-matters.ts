@@ -44,6 +44,12 @@ export const whyItMattersBySlug: Record<string, string> = {
     "You don't need a $200 watch to start. A few smart basics under $50 prevent blisters and keep you comfortable while you build the habit.",
   "how-to-not-hate-hills":
     "Hills feel like punishment until you learn pacing and posture. A few mental and physical tricks turn climbs from dread into honest strength work.",
+  "first-run-tips":
+    "Run one is where bad habits get baked in — too fast, wrong shoes, no plan. A few simple rules make the difference between 'never again' and 'when's run two?'",
+  "what-to-wear-running":
+    "Chafing, freezing, or overheating on run one can convince you running isn't for you. The right basics are cheap and mostly already in your closet.",
+  "post-run-recovery":
+    "What you do in the hour after a run shapes how sore you feel tomorrow — and whether you show up for the next one.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

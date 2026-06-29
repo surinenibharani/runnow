@@ -10,7 +10,12 @@ import { BlogPostCards } from "@/components/blog/blog-post-cards";
 import { JsonLd } from "@/components/seo/json-ld";
 import { filterPostsByCategory, paramToCategory } from "@/lib/blog/categories";
 import { getCommentCountsBySlug } from "@/lib/blog/comment-counts";
-import { getPublishedBlogPosts } from "@/lib/blog/posts";
+import {
+  getVisibleBlogPosts,
+  resolveBlogPreview,
+} from "@/lib/blog/posts";
+import { isBlogPostScheduled } from "@/lib/blog/preview";
+import { BlogPreviewBanner } from "@/components/blog/blog-preview-banner";
 import { blogIndexJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { SITE_NAME } from "@/lib/site";
@@ -25,15 +30,16 @@ export const metadata: Metadata = pageMetadata({
 });
 
 type BlogPageProps = {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ category?: string; preview?: string }>;
 };
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const { category: categoryParam } = await searchParams;
-  const sortedPosts = getPublishedBlogPosts().sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  );
+  const { category: categoryParam, preview: previewToken } = await searchParams;
+  const preview = resolveBlogPreview(previewToken);
+  const sortedPosts = getVisibleBlogPosts(preview);
+  const scheduledCount = preview
+    ? sortedPosts.filter((post) => isBlogPostScheduled(post.publishedAt)).length
+    : 0;
   const commentCounts = await getCommentCountsBySlug();
   const activeCategory = paramToCategory(categoryParam);
   const filteredPosts = filterPostsByCategory(sortedPosts, categoryParam);
@@ -58,6 +64,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           <BlogCategoryFilter className="mb-10" />
         </Suspense>
 
+        {preview && scheduledCount > 0 && (
+          <BlogPreviewBanner scheduledCount={scheduledCount} />
+        )}
+
         {activeCategory && (
           <FadeIn className="mb-6 text-center text-sm text-muted-foreground">
             Showing{" "}
@@ -67,7 +77,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           </FadeIn>
         )}
 
-        <BlogPostCards posts={filteredPosts} commentCounts={commentCounts} />
+        <BlogPostCards
+          posts={filteredPosts}
+          commentCounts={commentCounts}
+          previewToken={preview ? previewToken : undefined}
+        />
 
         <FadeIn className="mt-12 text-center">
           <p className="text-sm text-muted-foreground">

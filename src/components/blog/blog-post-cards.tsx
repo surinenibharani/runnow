@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { Clock, Lightbulb, MessageSquare, User } from "lucide-react";
 import type { BlogPost } from "@/lib/blog/types";
+import { compareBlogPostsNewestFirst } from "@/lib/blog/posts";
+import {
+  buildBlogPostHref,
+  formatBlogPostPublishSchedule,
+  isBlogPostScheduled,
+} from "@/lib/blog/preview";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
@@ -8,10 +14,17 @@ import { StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 type BlogPostCardsProps = {
   posts: BlogPost[];
   commentCounts: Record<string, number>;
+  previewToken?: string;
 };
 
-export function BlogPostCards({ posts, commentCounts }: BlogPostCardsProps) {
-  if (posts.length === 0) {
+export function BlogPostCards({
+  posts,
+  commentCounts,
+  previewToken,
+}: BlogPostCardsProps) {
+  const orderedPosts = [...posts].sort(compareBlogPostsNewestFirst);
+
+  if (orderedPosts.length === 0) {
     return (
       <p className="py-12 text-center text-muted-foreground">
         No posts in this category yet.{" "}
@@ -25,18 +38,30 @@ export function BlogPostCards({ posts, commentCounts }: BlogPostCardsProps) {
 
   return (
     <StaggerChildren className="space-y-4">
-      {posts.map((post) => {
+      {orderedPosts.map((post) => {
         const commentCount = commentCounts[post.slug] ?? 0;
+        const scheduled = isBlogPostScheduled(post.publishedAt);
 
         return (
           <StaggerItem key={post.slug}>
-            <Link href={`/blog/${post.slug}`} className="group block">
+            <Link
+              href={buildBlogPostHref(post.slug, previewToken)}
+              className="group block"
+            >
               <Card className="border-border/60 transition-all duration-300 hover:border-primary/30 hover:shadow-md">
                 <CardContent className="p-6 sm:p-8">
                   <div className="mb-3 flex flex-wrap items-center gap-2">
                     <Badge variant="secondary" className="text-xs">
                       {post.category}
                     </Badge>
+                    {scheduled && (
+                      <Badge
+                        variant="outline"
+                        className="border-amber-500/50 text-xs text-amber-800 dark:text-amber-200"
+                      >
+                        Scheduled · {formatBlogPostPublishSchedule(post.publishedAt)}
+                      </Badge>
+                    )}
                     <span className="flex items-center gap-1 text-xs text-muted-foreground">
                       <Clock className="size-3" />
                       {post.readTime}

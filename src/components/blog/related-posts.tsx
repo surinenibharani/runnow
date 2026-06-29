@@ -3,13 +3,19 @@ import { Clock } from "lucide-react";
 import type { BlogPost } from "@/lib/blog/types";
 import { Badge } from "@/components/ui/badge";
 import { categoryToParam } from "@/lib/blog/categories";
+import { buildBlogPostHref, getBlogPreviewHrefSuffix, appendBlogPreviewParam } from "@/lib/blog/preview";
 
 type RelatedPostsProps = {
   posts: BlogPost[];
   category?: string;
+  previewToken?: string;
 };
 
-export function RelatedPosts({ posts, category }: RelatedPostsProps) {
+export function RelatedPosts({
+  posts,
+  category,
+  previewToken,
+}: RelatedPostsProps) {
   if (posts.length === 0) return null;
 
   return (
@@ -24,7 +30,7 @@ export function RelatedPosts({ posts, category }: RelatedPostsProps) {
         {posts.map((post) => (
           <li key={post.slug}>
             <Link
-              href={`/blog/${post.slug}`}
+              href={buildBlogPostHref(post.slug, previewToken)}
               className="group block rounded-xl border border-border/60 p-5 transition-colors hover:border-primary/30 hover:bg-muted/30"
             >
               <div className="flex flex-wrap items-center gap-2">
@@ -50,7 +56,10 @@ export function RelatedPosts({ posts, category }: RelatedPostsProps) {
         <p className="mt-6 text-sm text-muted-foreground">
           Browse more by topic on the{" "}
           <Link
-            href={`/blog?category=${categoryToParam(category)}`}
+            href={appendBlogPreviewParam(
+              `/blog?category=${categoryToParam(category)}`,
+              previewToken
+            )}
             className="text-primary hover:underline"
           >
             {category}

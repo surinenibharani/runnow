@@ -72,6 +72,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `STRIPE_SECRET_KEY` | Stripe secret key (`sk_test_...` or `sk_live_...`) |
 | `STRIPE_WEBHOOK_SECRET` | From Stripe webhook endpoint (`whsec_...`) |
 | `STRIPE_COACH_PRICE_ID` | Recurring price ID for coach plan (`price_...`) |
+| `BLOG_PREVIEW_SECRET` | Optional. Secret for `?preview=` links to read scheduled blog posts on production |
 
 ### Strava setup
 

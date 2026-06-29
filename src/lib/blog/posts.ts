@@ -1,5 +1,7 @@
 import type { BlogPost } from "./types";
 import { getWhyItMatters } from "./why-it-matters";
+import { canPreviewBlogPosts, isBlogPostVisible } from "./preview";
+import { isBlogPostPublishedAt } from "./publish-schedule";
 
 export const BLOG_AUTHOR = "B";
 
@@ -1481,6 +1483,213 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "first-run-tips",
+    title: "First Run Tips: What to Know Before You Head Out the Door",
+    excerpt:
+      "Nervous about run one? Pace, route, shoes, and what to expect — the essentials that keep your first jog from becoming your last.",
+    category: "Getting Started",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-20",
+    readTime: "6 min",
+    relatedSlugs: [
+      "never-ran-where-to-start",
+      "why-walking-is-not-cheating",
+      "how-to-pace-yourself",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Your first run doesn't need to be heroic. It needs to be repeatable. The goal isn't to prove fitness — it's to finish feeling like you could do it again within a few days.",
+          "These tips apply whether you're doing walk-run intervals or jogging the whole way. Get these right and run two gets much easier.",
+        ],
+      },
+      {
+        heading: "Before you leave the house",
+        list: [
+          "Eat something light 1–2 hours ahead if you're hungry — a banana or toast is plenty",
+          "Use the bathroom; you'll thank yourself at minute eight",
+          "Tie shoes snugly with room in the toe box — blisters start on run one",
+          "Tell someone where you're going or stick to a familiar loop if running alone",
+          "Charge your phone or wear a watch if you're tracking time",
+        ],
+      },
+      {
+        heading: "Pace: slow enough to talk",
+        paragraphs: [
+          "If you can't speak in short sentences, you're going too fast. Walk breaks are not failure — they're part of the workout for most beginners.",
+          "Ignore other runners on the path. Your pace is your pace. Comparison on day one is useless and discouraging.",
+        ],
+      },
+      {
+        heading: "Pick a simple route",
+        list: [
+          "Flat or gently rolling — save hills for later",
+          "Out-and-back so you know exactly how far you've gone",
+          "Well-lit and low-traffic if you're running near roads",
+          "Avoid trails with roots and rocks until you're confident on pavement",
+        ],
+      },
+      {
+        heading: "During the run",
+        list: [
+          "Start with 5 minutes of brisk walking to warm up",
+          "Check in at 10 minutes: still okay? keep going. Miserable? walk home without guilt",
+          "Breathe naturally — don't hold your breath on uphills",
+          "Carry water on hot days or runs longer than 30 minutes",
+        ],
+      },
+      {
+        heading: "Right after you finish",
+        paragraphs: [
+          "Walk 3–5 minutes to cool down. Stretch only if it feels good — gentle calf and quad stretches, nothing aggressive.",
+          "Note how you feel and what worked. That's data for run two, not a grade on your worth as a human.",
+        ],
+        cta: { text: "Start the free 8-week 5K plan", href: "/plan" },
+      },
+    ],
+  },
+  {
+    slug: "what-to-wear-running",
+    title: "What to Wear for Running (Without Overthinking It)",
+    excerpt:
+      "You don't need a race kit on day one. Here's what to wear in heat, cold, and everything in between — plus what to skip.",
+    category: "Gear",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-24",
+    readTime: "5 min",
+    relatedSlugs: [
+      "beginner-gear-guide-under-50",
+      "choosing-running-shoes",
+      "running-in-bad-weather",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Running clothes don't need to be expensive or branded. They need to keep you comfortable, visible, and blister-free. Most beginners overbuy gadgets and underthink fabric and fit.",
+        ],
+      },
+      {
+        heading: "The non-negotiables",
+        list: [
+          "Running shoes that fit — not old court sneakers or stiff fashion trainers",
+          "Moisture-wicking socks — cotton holds sweat and causes hot spots",
+          "Top and bottoms that don't rub — seams and tags matter on longer runs",
+        ],
+      },
+      {
+        heading: "Warm weather (above 65°F / 18°C)",
+        list: [
+          "Light synthetic or merino tee — avoid heavy cotton",
+          "Shorts or light leggings — whatever you won't adjust every mile",
+          "Hat or visor and sunscreen on exposed skin",
+          "Sunglasses if glare bothers you",
+          "Light-colored or reflective gear if you're near traffic",
+        ],
+      },
+      {
+        heading: "Cool weather (45–65°F / 7–18°C)",
+        paragraphs: [
+          "Dress like it's 10–15°F warmer than the thermometer says — you'll heat up within 10 minutes.",
+        ],
+        list: [
+          "Long sleeve tech tee or thin base layer",
+          "Shorts or tights depending on leg preference",
+          "Light gloves and ear cover optional below 50°F",
+          "Zip-up you can tie around your waist if you over-layer",
+        ],
+      },
+      {
+        heading: "Cold or wet weather",
+        list: [
+          "Base layer + wind-resistant outer shell — avoid cotton entirely",
+          "Tights or lined pants below 40°F",
+          "Brimmed cap or beanie — pick one, not both unless truly freezing",
+          "Reflective vest or bright jacket when it's dim or rainy",
+        ],
+        paragraphs: [
+          "See our bad-weather tips for when to run outside vs swap to an indoor cross-training day.",
+        ],
+      },
+      {
+        heading: "What you can skip for now",
+        list: [
+          "Compression sleeves, belts, and hydration packs for short beginner runs",
+          "Brand-new outfit every season — rotate two tops and two bottoms",
+          "Cotton hoodies and sweatpants — they get heavy and cold when wet",
+        ],
+        cta: { text: "Browse the gear guide", href: "/gear" },
+      },
+    ],
+  },
+  {
+    slug: "post-run-recovery",
+    title: "Post-Run Recovery: What Actually Helps After a Run",
+    excerpt:
+      "Cool-down, fuel, sleep, and soreness — the simple recovery habits that keep beginners showing up three times a week.",
+    category: "Recovery",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-29",
+    readTime: "6 min",
+    relatedSlugs: [
+      "what-to-do-on-rest-days",
+      "nutrition-for-runners",
+      "avoiding-injuries",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Recovery isn't just for elites with ice baths and massage guns. Beginners need it more — your muscles, tendons, and joints are adapting to impact they haven't handled before.",
+          "Good post-run habits reduce soreness, prevent injury, and make the next run feel possible instead of dreaded.",
+        ],
+      },
+      {
+        heading: "The first 10 minutes after you stop",
+        list: [
+          "Keep moving — walk 3–5 minutes instead of collapsing on the couch",
+          "Gentle calf, quad, and hip stretches if tight — 20–30 seconds each, no bouncing",
+          "Change out of damp clothes quickly in cold weather",
+          "Rehydrate — water first; sports drink only after long or very sweaty runs",
+        ],
+      },
+      {
+        heading: "Fuel within 1–2 hours",
+        paragraphs: [
+          "You don't need a protein shake ritual. Eat a normal balanced meal or snack with carbs and some protein — yogurt and fruit, eggs and toast, or whatever you'd eat after a workout.",
+          "Skimping on food after hard efforts slows recovery and can leave you wiped out the next day.",
+        ],
+      },
+      {
+        heading: "Soreness: normal vs warning signs",
+        list: [
+          "Normal: general leg stiffness 24–48 hours after a harder or longer run",
+          "Normal: calves and quads feel tired walking downstairs",
+          "Caution: sharp pain in one spot that changes your gait",
+          "Stop and rest: pain that worsens during a run or keeps you up at night",
+        ],
+        paragraphs: [
+          "Light walking or easy cross-training on sore days is fine. Running through sharp pain is not.",
+        ],
+      },
+      {
+        heading: "Sleep and rest days",
+        paragraphs: [
+          "Most adaptation happens while you sleep. Shortchanging sleep while adding running stress is a common beginner mistake.",
+          "Rest days in your plan are workouts too — they're when your body rebuilds. Don't fill every rest day with extra miles to \"get ahead.\"",
+        ],
+      },
+      {
+        heading: "Simple extras that help (optional)",
+        list: [
+          "Foam rolling tight calves and quads — 2–3 minutes, not a torture session",
+          "Elevating legs for 10 minutes after a long run",
+          "Ice on a specific hot spot for 10–15 minutes if something feels inflamed",
+          "Two short strength sessions per week — glutes, calves, core",
+        ],
+        cta: { text: "Read what to do on rest days", href: "/blog/what-to-do-on-rest-days" },
+      },
+    ],
+  },
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {
@@ -1490,19 +1699,33 @@ function withWhyItMatters(post: BlogPost): BlogPost {
   };
 }
 
-/** Posts are visible on or after their publish date (UTC calendar day). */
+/** Posts are visible from 7:00 AM US Eastern on their publish date. */
 export function isBlogPostPublished(
   publishedAt: string,
   now: Date = new Date()
 ): boolean {
-  const today = now.toISOString().slice(0, 10);
-  return publishedAt.slice(0, 10) <= today;
+  return isBlogPostPublishedAt(publishedAt, now);
+}
+
+/** Newest publish date first; same-day posts keep newest-added order. */
+export function compareBlogPostsNewestFirst(a: BlogPost, b: BlogPost): number {
+  const dateCompare = b.publishedAt.localeCompare(a.publishedAt);
+  if (dateCompare !== 0) return dateCompare;
+  return blogPosts.indexOf(b) - blogPosts.indexOf(a);
+}
+
+export function getVisibleBlogPosts(
+  preview = false,
+  now: Date = new Date()
+): BlogPost[] {
+  return blogPosts
+    .filter((post) => isBlogPostVisible(post.publishedAt, preview, now))
+    .map(withWhyItMatters)
+    .sort(compareBlogPostsNewestFirst);
 }
 
 export function getPublishedBlogPosts(now: Date = new Date()): BlogPost[] {
-  return blogPosts
-    .filter((post) => isBlogPostPublished(post.publishedAt, now))
-    .map(withWhyItMatters);
+  return getVisibleBlogPosts(false, now);
 }
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
@@ -1511,21 +1734,39 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
   return withWhyItMatters(post);
 }
 
+export function getVisiblePostBySlug(
+  slug: string,
+  preview = false,
+  now: Date = new Date()
+): BlogPost | undefined {
+  const post = getPostBySlug(slug);
+  if (!post || !isBlogPostVisible(post.publishedAt, preview, now)) return undefined;
+  return post;
+}
+
 export function getPublishedPostBySlug(
   slug: string,
   now: Date = new Date()
 ): BlogPost | undefined {
-  const post = getPostBySlug(slug);
-  if (!post || !isBlogPostPublished(post.publishedAt, now)) return undefined;
-  return post;
+  return getVisiblePostBySlug(slug, false, now);
 }
 
-export function getRelatedPosts(post: BlogPost): BlogPost[] {
+export function resolveBlogPreview(previewToken?: string | null): boolean {
+  return canPreviewBlogPosts(previewToken);
+}
+
+export function getRelatedPosts(
+  post: BlogPost,
+  preview = false,
+  now: Date = new Date()
+): BlogPost[] {
+  const isVisible = (publishedAt: string) =>
+    isBlogPostVisible(publishedAt, preview, now);
+
   const fromSlugs = (post.relatedSlugs ?? [])
     .map((slug) => getPostBySlug(slug))
     .filter(
-      (p): p is BlogPost =>
-        p !== undefined && isBlogPostPublished(p.publishedAt)
+      (p): p is BlogPost => p !== undefined && isVisible(p.publishedAt)
     );
 
   if (fromSlugs.length >= 3) return fromSlugs.slice(0, 3);
@@ -1536,12 +1777,9 @@ export function getRelatedPosts(post: BlogPost): BlogPost[] {
       (p) =>
         p.category === post.category &&
         !seen.has(p.slug) &&
-        isBlogPostPublished(p.publishedAt)
+        isVisible(p.publishedAt)
     )
-    .sort(
-      (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-    );
+    .sort(compareBlogPostsNewestFirst);
 
   return [...fromSlugs, ...sameCategory.map((p) => getPostBySlug(p.slug)!)]
     .filter((p): p is BlogPost => p !== undefined)

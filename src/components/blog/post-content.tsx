@@ -7,6 +7,7 @@ import { PostShareButtons } from "@/components/blog/post-share-buttons";
 import { BlogComments } from "@/components/blog/blog-comments";
 import { RelatedPosts } from "@/components/blog/related-posts";
 import { categoryToParam } from "@/lib/blog/categories";
+import { appendBlogPreviewParam } from "@/lib/blog/preview";
 import { SITE_URL } from "@/lib/site";
 
 function SectionBlock({ section }: { section: BlogSection }) {
@@ -97,12 +98,16 @@ type PostContentProps = {
   post: BlogPost;
   related?: BlogPost[];
   commentCount?: number;
+  previewToken?: string;
+  scheduled?: boolean;
 };
 
 export function PostContent({
   post,
   related = [],
   commentCount = 0,
+  previewToken,
+  scheduled = false,
 }: PostContentProps) {
   return (
     <article>
@@ -111,7 +116,12 @@ export function PostContent({
           variant="secondary"
           className="mb-4"
           render={
-            <Link href={`/blog?category=${categoryToParam(post.category)}`} />
+            <Link
+              href={appendBlogPreviewParam(
+                `/blog?category=${categoryToParam(post.category)}`,
+                previewToken
+              )}
+            />
           }
         >
           {post.category}
@@ -170,9 +180,15 @@ export function PostContent({
         ))}
       </div>
 
-      <RelatedPosts posts={related} category={post.category} />
+      <RelatedPosts
+        posts={related}
+        category={post.category}
+        previewToken={previewToken}
+      />
 
-      <BlogComments postSlug={post.slug} initialCount={commentCount} />
+      {!scheduled && (
+        <BlogComments postSlug={post.slug} initialCount={commentCount} />
+      )}
     </article>
   );
 }
