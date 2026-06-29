@@ -1182,6 +1182,69 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "performance-goals-over-aesthetics",
+    title: "Why Performance Goals Beat 'Looking Better' for Lasting Fitness",
+    excerpt:
+      "Chasing aesthetics alone can backfire. Performance goals — a faster 5K, a longer run, showing up on hard days — build motivation and confidence that last.",
+    category: "Mindset",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-06-30",
+    readTime: "6 min",
+    relatedSlugs: [
+      "building-a-running-habit",
+      "mental-side-of-running",
+      "training-first-5k",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "In fitness, aesthetic goals — losing fat, building muscle, achieving a certain look — are incredibly common and completely valid. Many of us start wanting to feel more confident in our bodies or fit into certain clothes. That's human.",
+          "But as many runners learn the hard way, relying solely on how you look can quickly lead to frustration, obsession, and a sense that you're never quite enough.",
+        ],
+      },
+      {
+        heading: "When aesthetics are your only metric",
+        paragraphs: [
+          "Progress feels elusive. Your body might change slower than expected — or once you hit one milestone, another perceived flaw appears. Compliments provide temporary highs, but the goalpost keeps shifting: leaner, more toned, better.",
+          "Over time, fitness stops feeling empowering and starts breeding anxiety. The mirror becomes a judge, not a friend.",
+        ],
+      },
+      {
+        heading: "The power of performance goals",
+        paragraphs: [
+          "Performance goals shift the focus from how you look to what your body can do. For runners, that might mean finishing a 5K, running a mile without walking, or simply showing up three times this week. This simple change makes progress tangible and worth celebrating.",
+        ],
+        list: [
+          "Small wins are easier to notice: running a little longer, holding a faster pace on your easy loop, recovering faster, or showing up on a tough day",
+          "The goalpost moves in an exciting way: your first 5K leads to wanting to run it faster; consistency builds into a streak you don't want to break",
+          "Aesthetics often follow naturally: when you prioritize endurance or strength, physical changes often happen as a byproduct — without constant mirror scrutiny",
+          "It builds transferable confidence: the discipline of showing up and keeping promises to yourself spills into work, relationships, and everything else hard",
+        ],
+      },
+      {
+        heading: "How to get started",
+        paragraphs: [
+          "You don't have to abandon aesthetic aspirations if they motivate you. Layer in performance goals instead — especially ones you can measure without a scale.",
+        ],
+        list: [
+          "Set specific, measurable targets (e.g. \"Run 5K without walking\" or \"Complete three runs this week\")",
+          "Track non-scale victories: energy levels, how you feel on stairs, pace at the same heart rate, or clothes fitting differently from stronger legs",
+          "Celebrate consistency as much as outcomes — showing up when you don't feel like it is a huge win",
+          "Use a plan so progress is visible: checking off runs on a calendar beats guessing whether you're \"doing enough\"",
+        ],
+      },
+      {
+        heading: "Fitness should make you feel capable",
+        paragraphs: [
+          "The point isn't to ignore how you look forever. It's to build a relationship with movement where you feel resilient and proud — not anxious or never-enough.",
+          "By balancing (or prioritizing) performance goals, you create a sustainable journey filled with small, motivating victories that compound into real transformation.",
+          "What performance goal are you setting for yourself? Share it in the comments — let's cheer each other on.",
+        ],
+        cta: { text: "Pick a training plan and set your first goal", href: "/plan" },
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

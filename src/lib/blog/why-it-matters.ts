@@ -34,6 +34,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "One bad weather week shouldn't end a streak. Knowing when to adapt, when to move indoors, and when to rest keeps consistency alive through every season.",
   "running-with-health-conditions":
     "Running can support health at many ages and with many conditions — but the wrong approach can do harm. Understanding your limits before you start protects you long-term.",
+  "performance-goals-over-aesthetics":
+    "Aesthetic-only goals feel urgent but progress is hard to measure — and easy to obsess over. Performance targets give you wins you can actually track and celebrate.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {
