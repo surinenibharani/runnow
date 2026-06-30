@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 import { sanitizeText } from "@/lib/security/sanitize";
 
 export async function POST(request: Request) {
@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   }
 
   const ip = getClientIp(request);
-  const limit = rateLimit(`team-join:${ip}`, 20, 60 * 60 * 1000);
+  const limit = await rateLimitAsync(`team-join:${ip}`, 20, 60 * 60 * 1000);
   if (!limit.ok) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }

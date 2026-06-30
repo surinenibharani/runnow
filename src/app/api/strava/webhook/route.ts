@@ -4,7 +4,7 @@ import {
   findUserIdByStravaAthleteId,
   syncStravaActivitiesForUser,
 } from "@/lib/strava-sync";
-import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 
 export const runtime = "nodejs";
 
@@ -41,7 +41,7 @@ export async function GET(request: Request) {
 /** Strava activity / deauth events (POST). */
 export async function POST(request: Request) {
   const ip = getClientIp(request);
-  const limited = rateLimit(`strava-webhook:${ip}`, 60, 60 * 1000);
+  const limited = await rateLimitAsync(`strava-webhook:${ip}`, 60, 60 * 1000);
   if (!limited.ok) {
     return NextResponse.json(
       { error: "Too many requests" },
@@ -62,8 +62,8 @@ export async function POST(request: Request) {
 
   const expectedSubId = process.env.STRAVA_WEBHOOK_SUBSCRIPTION_ID;
 
-  if (process.env.NODE_ENV === "production" && !expectedSubId) {
-    console.error("STRAVA_WEBHOOK_SUBSCRIPTION_ID is not set in production");
+  if (process.env.NODE_ENV !== "development" && !expectedSubId) {
+    console.error("STRAVA_WEBHOOK_SUBSCRIPTION_ID is not set");
     return NextResponse.json({ error: "Webhook not configured" }, { status: 503 });
   }
 

@@ -1,4 +1,9 @@
 import { SITE_URL } from "@/lib/site";
+import {
+  maybeReencryptStravaTokens,
+  readStoredTokenPair,
+  writeStoredTokenPair,
+} from "@/lib/strava-tokens";
 
 const STRAVA_AUTH_URL = "https://www.strava.com/oauth/authorize";
 const STRAVA_TOKEN_URL = "https://www.strava.com/oauth/token";
@@ -117,21 +122,28 @@ export async function getValidAccessToken(userId: string): Promise<string> {
   }
 
   const now = new Date();
+  const tokens = readStoredTokenPair(account);
+
   if (account.expiresAt > now) {
-    return account.accessToken;
+    await maybeReencryptStravaTokens(userId);
+    return tokens.accessToken;
   }
 
-  const tokens = await refreshStravaToken(account.refreshToken);
+  const refreshed = await refreshStravaToken(tokens.refreshToken);
+  const encrypted = writeStoredTokenPair({
+    accessToken: refreshed.access_token,
+    refreshToken: refreshed.refresh_token,
+  });
   await prisma.stravaAccount.update({
     where: { userId },
     data: {
-      accessToken: tokens.access_token,
-      refreshToken: tokens.refresh_token,
-      expiresAt: new Date(tokens.expires_at * 1000),
+      accessToken: encrypted.accessToken,
+      refreshToken: encrypted.refreshToken,
+      expiresAt: new Date(refreshed.expires_at * 1000),
     },
   });
 
-  return tokens.access_token;
+  return refreshed.access_token;
 }
 
 export async function fetchStravaActivities(

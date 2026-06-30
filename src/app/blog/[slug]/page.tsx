@@ -15,8 +15,12 @@ import {
   getRelatedPosts,
   getVisiblePostBySlug,
   isBlogPostPublished,
-  resolveBlogPreview,
 } from "@/lib/blog/posts";
+import {
+  bootstrapBlogPreview,
+  hasBlogPreviewAccess,
+  isValidPreviewSecret,
+} from "@/lib/blog/preview-server";
 import {
   formatBlogPostPublishSchedule,
   isBlogPostScheduled,
@@ -42,7 +46,9 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const { preview: previewToken } = await searchParams;
-  const preview = resolveBlogPreview(previewToken);
+  const preview =
+    (await hasBlogPreviewAccess()) ||
+    isValidPreviewSecret(previewToken);
   const post = getVisiblePostBySlug(slug, preview);
   if (!post) {
     return {
@@ -89,17 +95,13 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params, searchParams }: PageProps) {
   const { slug } = await params;
   const { preview: previewToken } = await searchParams;
-  const preview = resolveBlogPreview(previewToken);
+  const preview = await bootstrapBlogPreview(previewToken, `/blog/${slug}`);
   const post = getVisiblePostBySlug(slug, preview);
   if (!post) notFound();
 
   const scheduled = isBlogPostScheduled(post.publishedAt);
   const related = getRelatedPosts(post, preview);
   const commentCount = await getCommentCount(slug);
-  const previewSuffix =
-    preview && previewToken
-      ? `?preview=${encodeURIComponent(previewToken)}`
-      : "";
 
   return (
     <div className="py-12 sm:py-16">
@@ -108,8 +110,8 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
           articleJsonLd(post),
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
-            { name: "Blog", path: `/blog${previewSuffix}` },
-            { name: post.title, path: `/blog/${slug}${previewSuffix}` },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${slug}` },
           ]),
         ]}
       />
@@ -118,7 +120,7 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Blog", href: `/blog${previewSuffix}` },
+              { label: "Blog", href: "/blog" },
               { label: post.title },
             ]}
           />
@@ -133,7 +135,6 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
             post={post}
             related={related}
             commentCount={commentCount}
-            previewToken={preview ? previewToken : undefined}
             scheduled={preview && scheduled}
           />
 

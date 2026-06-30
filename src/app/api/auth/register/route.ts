@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
-import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 import { isHoneypotTriggered, sanitizeText } from "@/lib/security/sanitize";
 import { verifyTurnstile } from "@/lib/security/turnstile";
 import {
@@ -17,7 +17,7 @@ import {
 export async function POST(request: Request) {
   try {
     const ip = getClientIp(request);
-    const limit = rateLimit(`register:${ip}`, 5, 60 * 60 * 1000);
+    const limit = await rateLimitAsync(`register:${ip}`, 5, 60 * 60 * 1000);
     if (!limit.ok) {
       return NextResponse.json(
         { error: "Too many registration attempts. Please try again later." },
@@ -127,11 +127,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({
-      id: user.id,
-      email: user.email,
-      name: user.name,
-    });
+    return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json(
       { error: "Failed to create account" },

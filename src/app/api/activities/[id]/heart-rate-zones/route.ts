@@ -7,7 +7,7 @@ import {
   fetchStravaActivityHeartrateStream,
   getValidAccessToken,
 } from "@/lib/strava";
-import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 
 type RouteContext = {
   params: Promise<{ id: string }>;
@@ -20,7 +20,7 @@ export async function GET(request: Request, context: RouteContext) {
   }
 
   const ip = getClientIp(request);
-  const limited = rateLimit(
+  const limited = await rateLimitAsync(
     `activity-hr-zones:${session.user.id}:${ip}`,
     30,
     60 * 1000

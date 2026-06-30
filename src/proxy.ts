@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { auth } from "@/lib/auth";
 import { safeCallbackUrl } from "@/lib/security/callback-url";
-import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
+import {
+  createContentSecurityPolicy,
+  generateCspNonce,
+} from "@/lib/security/csp";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 
 const blockedPaths = [
   /\.env/i,
@@ -23,11 +27,26 @@ function isProtectedRoute(pathname: string): boolean {
   return false;
 }
 
-export const proxy = auth((request) => {
+function withCsp(response: NextResponse, nonce: string): NextResponse {
+  response.headers.set("Content-Security-Policy", createContentSecurityPolicy(nonce));
+  return response;
+}
+
+function nextWithNonce(request: NextRequest, nonce: string): NextResponse {
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-nonce", nonce);
+  return withCsp(
+    NextResponse.next({ request: { headers: requestHeaders } }),
+    nonce
+  );
+}
+
+export const proxy = auth(async (request) => {
   const { pathname } = request.nextUrl;
+  const nonce = generateCspNonce();
 
   if (blockedPaths.some((pattern) => pattern.test(pathname))) {
-    return new NextResponse(null, { status: 404 });
+    return withCsp(new NextResponse(null, { status: 404 }), nonce);
   }
 
   if (
@@ -35,14 +54,17 @@ export const proxy = auth((request) => {
     pathname === "/api/auth/callback/credentials"
   ) {
     const ip = getClientIp(request);
-    const limited = rateLimit(`auth:${ip}`, 15, 15 * 60 * 1000);
+    const limited = await rateLimitAsync(`auth:${ip}`, 15, 15 * 60 * 1000);
     if (!limited.ok) {
-      return NextResponse.json(
-        { error: "Too many login attempts. Try again later." },
-        {
-          status: 429,
-          headers: { "Retry-After": String(limited.retryAfter) },
-        }
+      return withCsp(
+        NextResponse.json(
+          { error: "Too many login attempts. Try again later." },
+          {
+            status: 429,
+            headers: { "Retry-After": String(limited.retryAfter) },
+          }
+        ),
+        nonce
       );
     }
   }
@@ -52,17 +74,20 @@ export const proxy = auth((request) => {
       request.nextUrl.searchParams.get("callbackUrl"),
       "/dashboard"
     );
-    return NextResponse.redirect(new URL(callbackUrl, request.url));
+    return withCsp(
+      NextResponse.redirect(new URL(callbackUrl, request.url)),
+      nonce
+    );
   }
 
   if (isProtectedRoute(pathname) && !request.auth?.user) {
     const login = new URL("/login", request.url);
     login.searchParams.set("callbackUrl", pathname);
-    return NextResponse.redirect(login);
+    return withCsp(NextResponse.redirect(login), nonce);
   }
 
   if (pathname.startsWith("/api/")) {
-    const response = NextResponse.next();
+    const response = nextWithNonce(request, nonce);
     const isPublicCommentsGet =
       request.method === "GET" &&
       /^\/api\/blog\/[^/]+\/comments$/.test(pathname);
@@ -76,7 +101,7 @@ export const proxy = auth((request) => {
     return response;
   }
 
-  return NextResponse.next();
+  return nextWithNonce(request, nonce);
 });
 
 export const config = {

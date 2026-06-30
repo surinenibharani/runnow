@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { blogPosts } from "@/lib/blog/posts";
-import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 import { isHoneypotTriggered, sanitizeText } from "@/lib/security/sanitize";
 import { verifyTurnstile } from "@/lib/security/turnstile";
 import { isValidPostSlug } from "@/lib/security/validation";
@@ -44,7 +44,7 @@ export async function POST(request: Request, context: RouteContext) {
     }
 
     const ip = getClientIp(request);
-    const limit = rateLimit(`comment:${ip}:${slug}`, 5, 60 * 60 * 1000);
+    const limit = await rateLimitAsync(`comment:${ip}:${slug}`, 5, 60 * 60 * 1000);
     if (!limit.ok) {
       return NextResponse.json(
         { error: "Too many comments. Please try again later." },
@@ -63,8 +63,25 @@ export async function POST(request: Request, context: RouteContext) {
     }
 
     const session = await auth();
+    if (session?.user?.id) {
+      const userLimit = await rateLimitAsync(
+        `comment:user:${session.user.id}`,
+        20,
+        60 * 60 * 1000
+      );
+      if (!userLimit.ok) {
+        return NextResponse.json(
+          { error: "Too many comments. Please try again later." },
+          {
+            status: 429,
+            headers: { "Retry-After": String(userLimit.retryAfter) },
+          }
+        );
+      }
+    }
+
     const captchaOk = await verifyTurnstile(turnstileToken, ip);
-    if (!captchaOk && !session?.user) {
+    if (!captchaOk) {
       return NextResponse.json(
         { error: "Captcha verification failed" },
         { status: 400 }

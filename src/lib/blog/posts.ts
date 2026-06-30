@@ -1,6 +1,6 @@
 import type { BlogPost } from "./types";
 import { getWhyItMatters } from "./why-it-matters";
-import { canPreviewBlogPosts, isBlogPostVisible } from "./preview";
+import { isBlogPostVisible } from "./preview";
 import { isBlogPostPublishedAt } from "./publish-schedule";
 
 export const BLOG_AUTHOR = "B";
@@ -2994,8 +2994,8 @@ export function getPublishedPostBySlug(
   return getVisiblePostBySlug(slug, false, now);
 }
 
-export function resolveBlogPreview(previewToken?: string | null): boolean {
-  return canPreviewBlogPosts(previewToken);
+export function resolveBlogPreview(_previewToken?: string | null): boolean {
+  return process.env.NODE_ENV === "development";
 }
 
 export function getRelatedPosts(

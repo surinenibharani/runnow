@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { isCoach, uniqueTeamSlug } from "@/lib/teams";
 import { sanitizeText } from "@/lib/security/sanitize";
-import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 
 export async function GET() {
   const session = await auth();
@@ -49,7 +49,7 @@ export async function POST(request: Request) {
   }
 
   const ip = getClientIp(request);
-  const limit = rateLimit(`team-create:${ip}`, 10, 60 * 60 * 1000);
+  const limit = await rateLimitAsync(`team-create:${ip}`, 10, 60 * 60 * 1000);
   if (!limit.ok) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }

@@ -5,16 +5,6 @@ import {
 
 const PUBLISH_TIME_ZONE = "America/New_York";
 
-/** Local dev shows all posts. Production requires `?preview=` matching BLOG_PREVIEW_SECRET. */
-export function canPreviewBlogPosts(previewToken?: string | null): boolean {
-  if (process.env.NODE_ENV === "development") return true;
-
-  const secret = process.env.BLOG_PREVIEW_SECRET?.trim();
-  if (!secret || !previewToken) return false;
-
-  return previewToken === secret;
-}
-
 export function isBlogPostVisible(
   publishedAt: string,
   preview: boolean,
@@ -31,29 +21,17 @@ export function isBlogPostScheduled(
   return !isBlogPostPublishedAt(publishedAt, now);
 }
 
-/** Append to blog links in production preview so navigation stays in preview mode. */
-export function getBlogPreviewHrefSuffix(previewToken?: string | null): string {
-  if (process.env.NODE_ENV === "development") return "";
-  if (!previewToken || !canPreviewBlogPosts(previewToken)) return "";
-  return `?preview=${encodeURIComponent(previewToken)}`;
+/** Preview navigation uses a session cookie — no query suffix needed. */
+export function getBlogPreviewHrefSuffix(_previewToken?: string | null): string {
+  return "";
 }
 
-export function buildBlogPostHref(
-  slug: string,
-  previewToken?: string | null
-): string {
-  return `/blog/${slug}${getBlogPreviewHrefSuffix(previewToken)}`;
+export function buildBlogPostHref(slug: string, _previewToken?: string | null): string {
+  return `/blog/${slug}`;
 }
 
-export function appendBlogPreviewParam(
-  href: string,
-  previewToken?: string | null
-): string {
-  const suffix = getBlogPreviewHrefSuffix(previewToken);
-  if (!suffix) return href;
-  return href.includes("?")
-    ? `${href}&${suffix.slice(1)}`
-    : `${href}${suffix}`;
+export function appendBlogPreviewParam(href: string, _previewToken?: string | null): string {
+  return href;
 }
 
 export function formatBlogPostPublishSchedule(publishedAt: string): string {
@@ -68,4 +46,9 @@ export function formatBlogPostPublishSchedule(publishedAt: string): string {
     minute: "2-digit",
     timeZoneName: "short",
   });
+}
+
+/** @deprecated Preview mode is cookie-based; use server helpers in `./preview-server`. */
+export function canPreviewBlogPosts(_previewToken?: string | null): boolean {
+  return process.env.NODE_ENV === "development";
 }

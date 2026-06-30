@@ -72,7 +72,10 @@ Open [http://localhost:3000](http://localhost:3000).
 | `STRIPE_SECRET_KEY` | Stripe secret key (`sk_test_...` or `sk_live_...`) |
 | `STRIPE_WEBHOOK_SECRET` | From Stripe webhook endpoint (`whsec_...`) |
 | `STRIPE_COACH_PRICE_ID` | Recurring price ID for coach plan (`price_...`) |
-| `BLOG_PREVIEW_SECRET` | Optional. Secret for `?preview=` links to read scheduled blog posts on production |
+| `BLOG_PREVIEW_SECRET` | Optional. Secret for blog preview — open `/api/blog/preview?token=YOUR_SECRET` once to start a 24h HttpOnly preview session |
+| `TOKEN_ENCRYPTION_KEY` | Required in production. 32-byte base64 key for encrypting Strava OAuth tokens at rest — `openssl rand -base64 32` |
+| `UPSTASH_REDIS_REST_URL` | Optional. Upstash Redis REST URL for shared rate limiting across serverless instances |
+| `UPSTASH_REDIS_REST_TOKEN` | Optional. Upstash Redis REST token (pairs with URL above) |
 | `RESEND_API_KEY` | [Resend](https://resend.com) API key for newsletter emails |
 | `EMAIL_FROM` | Sender address, e.g. `LetsRunNow <hello@yourdomain.com>` (must match verified Resend domain) |
 | `CRON_SECRET` | Random string for `/api/cron/newsletter` — `openssl rand -base64 32` |

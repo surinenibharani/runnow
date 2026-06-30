@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { DM_Sans, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -67,18 +68,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
+
   return (
     <html
       lang="en"
       className={`${dmSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <GoogleAnalyticsScripts />
+        <GoogleAnalyticsScripts nonce={nonce} />
       </head>
       <body className="min-h-full flex flex-col">
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />

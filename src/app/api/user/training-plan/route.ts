@@ -108,8 +108,6 @@ export async function PUT(request: Request) {
     fitnessLevel,
     goalRaceDate,
     completedIds,
-    streak,
-    lastCompletedDate,
   } = body;
 
   if (currentWeek !== undefined && (currentWeek < 1 || currentWeek > 52)) {
@@ -208,8 +206,6 @@ export async function PUT(request: Request) {
         )!
       : undefined;
 
-  const allowStreak = completedIds !== undefined;
-
   const updateData: Parameters<typeof updateUserTrainingPlan>[1] = {
     planId,
     currentWeek,
@@ -230,18 +226,7 @@ export async function PUT(request: Request) {
           ? null
           : new Date(goalRaceDate),
     completedIds: sanitizedCompleted,
-    lastCompletedDate:
-      lastCompletedDate === null
-        ? null
-        : lastCompletedDate
-          ? new Date(lastCompletedDate)
-          : undefined,
   };
-
-  if (allowStreak && streak !== undefined && typeof streak === "number") {
-    const maxStreak = sanitizedCompleted?.length ?? plan.streak;
-    updateData.streak = Math.min(365, Math.max(0, streak), maxStreak);
-  }
 
   const updated = await updateUserTrainingPlan(session.user.id, updateData);
 

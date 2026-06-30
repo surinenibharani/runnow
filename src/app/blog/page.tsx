@@ -12,8 +12,8 @@ import { filterPostsByCategory, paramToCategory } from "@/lib/blog/categories";
 import { getCommentCountsBySlug } from "@/lib/blog/comment-counts";
 import {
   getVisibleBlogPosts,
-  resolveBlogPreview,
 } from "@/lib/blog/posts";
+import { bootstrapBlogPreview, hasBlogPreviewAccess, isValidPreviewSecret } from "@/lib/blog/preview-server";
 import { isBlogPostScheduled } from "@/lib/blog/preview";
 import { BlogPreviewBanner } from "@/components/blog/blog-preview-banner";
 import { blogIndexJsonLd } from "@/lib/seo";
@@ -37,7 +37,13 @@ type BlogPageProps = {
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const { category: categoryParam, preview: previewToken } = await searchParams;
-  const preview = resolveBlogPreview(previewToken);
+  const categoryQuery = categoryParam
+    ? `?category=${encodeURIComponent(categoryParam)}`
+    : "";
+  const preview = await bootstrapBlogPreview(
+    previewToken,
+    `/blog${categoryQuery}`
+  );
   const sortedPosts = getVisibleBlogPosts(preview);
   const scheduledCount = preview
     ? sortedPosts.filter((post) => isBlogPostScheduled(post.publishedAt)).length
@@ -82,7 +88,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         <BlogPostCards
           posts={filteredPosts}
           commentCounts={commentCounts}
-          previewToken={preview ? previewToken : undefined}
         />
 
         <FadeIn className="mt-12">

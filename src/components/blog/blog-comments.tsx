@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -38,7 +37,7 @@ export function BlogComments({ postSlug, initialCount = 0 }: BlogCommentsProps) 
   const [honeypot, setHoneypot] = useState("");
   const [captchaUnavailable, setCaptchaUnavailable] = useState(false);
 
-  const captchaRequired = isTurnstileEnabled() && !session?.user;
+  const captchaRequired = isTurnstileEnabled();
 
   const loadComments = useCallback(async () => {
     try {
@@ -154,7 +153,7 @@ export function BlogComments({ postSlug, initialCount = 0 }: BlogCommentsProps) 
           autoComplete="off"
           aria-hidden
         />
-        {isTurnstileEnabled() && !session?.user && (
+        {isTurnstileEnabled() && (
           <TurnstileWidget
             onVerify={setTurnstileToken}
             onExpire={() => setTurnstileToken(null)}
@@ -162,21 +161,9 @@ export function BlogComments({ postSlug, initialCount = 0 }: BlogCommentsProps) 
             onLoadError={() => setCaptchaUnavailable(true)}
           />
         )}
-        {captchaUnavailable && !session?.user && (
+        {captchaUnavailable && (
           <p className="text-sm text-muted-foreground">
-            Can&apos;t load captcha?{" "}
-            <Link href="/login" className="text-primary hover:underline">
-              Sign in
-            </Link>{" "}
-            to comment without it, or use Retry captcha above.
-          </p>
-        )}
-        {!session?.user && isTurnstileEnabled() && (
-          <p className="text-xs text-muted-foreground">
-            Signed-in users skip captcha.{" "}
-            <Link href="/login" className="text-primary hover:underline">
-              Log in
-            </Link>
+            Captcha failed to load. Use Retry captcha above or try again later.
           </p>
         )}
         {error && (
@@ -189,7 +176,7 @@ export function BlogComments({ postSlug, initialCount = 0 }: BlogCommentsProps) 
           disabled={
             submitting ||
             (captchaRequired && !turnstileToken) ||
-            (captchaUnavailable && !session?.user)
+            captchaUnavailable
           }
         >
           {submitting ? "Posting…" : "Post comment"}

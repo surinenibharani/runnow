@@ -2,7 +2,8 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
-import { rateLimit } from "@/lib/security/rate-limit";
+import { safeCallbackUrl } from "@/lib/security/callback-url";
+import { rateLimitAsync } from "@/lib/security/rate-limit";
 
 const AUTH_FAIL_DELAY_MS = 400;
 
@@ -27,7 +28,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           request?.headers?.get("x-forwarded-for")?.split(",")[0]?.trim() ||
           request?.headers?.get("x-real-ip") ||
           "unknown";
-        const limited = rateLimit(`login:${ip}`, 20, 15 * 60 * 1000);
+        const limited = await rateLimitAsync(`login:${ip}`, 20, 15 * 60 * 1000);
         if (!limited.ok) return null;
 
         try {
@@ -66,6 +67,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) {
+        return `${baseUrl}${safeCallbackUrl(url, "/dashboard")}`;
+      }
+      if (url.startsWith(baseUrl)) {
+        const relative = url.slice(baseUrl.length) || "/";
+        return `${baseUrl}${safeCallbackUrl(relative, "/dashboard")}`;
+      }
+      return baseUrl;
+    },
     async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;

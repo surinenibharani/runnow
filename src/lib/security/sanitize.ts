@@ -2,6 +2,8 @@ export function sanitizeText(input: unknown, maxLength: number): string {
   if (typeof input !== "string") return "";
 
   return input
+    .replace(/\0/g, "")
+    .replace(/[\u0001-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "")
     .replace(/<[^>]*>/g, "")
     .replace(/[<>]/g, "")
     .replace(/\s+/g, " ")

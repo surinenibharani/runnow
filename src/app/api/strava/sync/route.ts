@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { syncStravaActivitiesForUser } from "@/lib/strava-sync";
 import { isStravaConfigured } from "@/lib/strava";
-import { getClientIp, rateLimit } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 
 export async function POST(request: Request) {
   const session = await auth();
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
   }
 
   const ip = getClientIp(request);
-  const limited = rateLimit(`strava-sync:${session.user.id}:${ip}`, 5, 60 * 1000);
+  const limited = await rateLimitAsync(`strava-sync:${session.user.id}:${ip}`, 5, 60 * 1000);
   if (!limited.ok) {
     return NextResponse.json(
       { error: "Too many sync requests. Try again shortly." },

@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
 import { runNewsletterCron } from "@/lib/newsletter/send";
+import { timingSafeStringEqual } from "@/lib/security/timing-safe";
 
 function isAuthorized(request: Request): boolean {
   const secret = process.env.CRON_SECRET?.trim();
   if (!secret) return false;
 
   const auth = request.headers.get("authorization");
-  return auth === `Bearer ${secret}`;
+  if (!auth?.startsWith("Bearer ")) return false;
+
+  return timingSafeStringEqual(auth.slice("Bearer ".length), secret);
 }
 
 export async function GET(request: Request) {

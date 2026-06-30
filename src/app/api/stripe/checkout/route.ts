@@ -1,12 +1,25 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 import { getCoachPriceId, getSiteUrl, getStripe } from "@/lib/stripe";
 
-export async function POST() {
+export async function POST(request: Request) {
   const session = await auth();
   if (!session?.user?.id || !session.user.email) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const ip = getClientIp(request);
+  const limited = await rateLimitAsync(`stripe-checkout:${session.user.id}:${ip}`, 10, 60 * 60 * 1000);
+  if (!limited.ok) {
+    return NextResponse.json(
+      { error: "Too many checkout attempts. Please try again later." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(limited.retryAfter) },
+      }
+    );
   }
 
   const stripe = getStripe();

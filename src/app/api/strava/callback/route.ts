@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { exchangeStravaCode, fetchStravaAthlete, STRAVA_SCOPES } from "@/lib/strava";
+import { writeStoredTokenPair } from "@/lib/strava-tokens";
 import { syncStravaActivitiesForUser } from "@/lib/strava-sync";
 import { SITE_URL } from "@/lib/site";
 
@@ -30,21 +31,25 @@ export async function GET(request: Request) {
 
   try {
     const tokens = await exchangeStravaCode(code);
+    const encrypted = writeStoredTokenPair({
+      accessToken: tokens.access_token,
+      refreshToken: tokens.refresh_token,
+    });
 
     await prisma.stravaAccount.upsert({
       where: { userId },
       create: {
         userId,
         athleteId: String(tokens.athlete.id),
-        accessToken: tokens.access_token,
-        refreshToken: tokens.refresh_token,
+        accessToken: encrypted.accessToken,
+        refreshToken: encrypted.refreshToken,
         expiresAt: new Date(tokens.expires_at * 1000),
         scope: STRAVA_SCOPES,
       },
       update: {
         athleteId: String(tokens.athlete.id),
-        accessToken: tokens.access_token,
-        refreshToken: tokens.refresh_token,
+        accessToken: encrypted.accessToken,
+        refreshToken: encrypted.refreshToken,
         expiresAt: new Date(tokens.expires_at * 1000),
         scope: STRAVA_SCOPES,
       },
