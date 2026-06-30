@@ -1,4 +1,7 @@
-import { MessageCircle } from "lucide-react";
+"use client";
+
+import { useCallback, useState } from "react";
+import { Check, Copy, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type PostShareButtonsProps = {
@@ -47,20 +50,48 @@ export function PostShareButtons({
   className,
   compact = false,
 }: PostShareButtonsProps) {
+  const [copied, setCopied] = useState(false);
   const links = buildShareLinks(title, url);
   const readableUrl = displayUrl ?? url.replace(/^https?:\/\//, "");
+
+  const onCopyLink = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // clipboard unavailable
+    }
+  }, [url]);
 
   return (
     <div className={cn("space-y-3", className)}>
       <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
         {shareLabel}
       </p>
-      <a
-        href={url}
-        className="block truncate rounded-lg border border-border/60 bg-muted/30 px-3 py-2 text-sm text-foreground hover:bg-muted/50"
-      >
-        {readableUrl}
-      </a>
+      <div className="flex items-stretch overflow-hidden rounded-lg border border-border/60 bg-muted/30">
+        <a
+          href={url}
+          className="min-w-0 flex-1 truncate px-3 py-2 text-sm text-foreground hover:bg-muted/50"
+        >
+          {readableUrl}
+        </a>
+        <button
+          type="button"
+          onClick={onCopyLink}
+          className="inline-flex shrink-0 items-center justify-center border-l border-border/60 px-3 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+          aria-label={copied ? "Link copied" : "Copy link"}
+        >
+          {copied ? (
+            <Check className="size-4 text-primary" aria-hidden />
+          ) : (
+            <Copy className="size-4" aria-hidden />
+          )}
+        </button>
+      </div>
+      <div className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {copied ? "Link copied to clipboard" : ""}
+      </div>
       <div className={cn("flex flex-wrap items-center gap-2", compact && "gap-1.5")}>
         <a
           href={links.whatsapp}
