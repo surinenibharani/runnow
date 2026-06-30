@@ -148,8 +148,10 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "how to run on track etiquette",
   ],
   "group-running-coach-and-pacer": [
-    "group running training etiquette",
-    "how to follow workout pacer running club",
+    "running coach for beginners",
+    "how to listen to running coach",
+    "group running training coach",
+    "couch to 5k coach clinic",
     "listening to running coach beginner",
   ],
 };

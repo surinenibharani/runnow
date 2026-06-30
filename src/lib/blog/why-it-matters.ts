@@ -69,7 +69,7 @@ export const whyItMattersBySlug: Record<string, string> = {
   "runner-etiquette-trails-roads-track":
     "Nobody teaches trail yield rules or track lane etiquette on day one — learning them early keeps you safe and welcome on shared paths.",
   "group-running-coach-and-pacer":
-    "Group training only works if you follow the session plan — not the fastest person in the parking lot. Learning to listen to your coach and workout pacer early saves months of junk miles.",
+    "Group training pays off when you trust the coach's plan — not the loudest runner in the parking lot. Learning how to listen early saves months of junk miles and awkward pace-group mistakes.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

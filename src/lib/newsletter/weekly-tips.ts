@@ -321,9 +321,9 @@ export const newsletterWeeklyTips: NewsletterTip[] = [
   ),
   tip(
     "Community",
-    "Let someone else be the overeager rabbit",
+    "Trust the coach, not the parking-lot sprinter",
     "A group run can teach pacing",
-    "Running with a club or coached workout teaches you what easy pace actually feels like. Let someone else set the speed while you focus on form.",
+    "In a coached club or clinic, easy days stay easy because someone planned them that way. Listen at the briefing and stick with the pace group your coach assigns.",
     { blogSlug: "group-running-coach-and-pacer" }
   ),
   tip(
