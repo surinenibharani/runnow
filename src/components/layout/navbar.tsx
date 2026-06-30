@@ -112,11 +112,11 @@ export function Navbar() {
       ref={headerRef}
       className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg"
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:gap-5">
-        <Logo className="mr-1 shrink-0 sm:mr-2" />
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:gap-4 sm:px-6">
+        <Logo className="shrink-0" />
 
         <nav
-          className="hidden min-w-0 flex-1 items-center justify-center gap-2 lg:flex xl:gap-3"
+          className="hidden shrink-0 items-center gap-2 lg:ml-5 lg:flex xl:ml-8 xl:gap-3"
           aria-label="Main"
         >
           {mainNavGroups.map((group, groupIndex) => {
@@ -147,8 +147,10 @@ export function Navbar() {
           })}
         </nav>
 
+        <div className="hidden min-w-4 flex-1 lg:block" aria-hidden />
+
         <SiteSearch
-          className="min-w-0 flex-1 sm:mx-2 md:max-w-xs lg:mx-3 lg:w-44 lg:flex-none lg:shrink-0 lg:max-w-none xl:w-52"
+          className="min-w-0 flex-1 sm:max-w-xs lg:mx-2 lg:w-44 lg:flex-none lg:shrink-0 lg:max-w-none xl:mx-3 xl:w-52"
           inputClassName="bg-background/80"
         />
 
