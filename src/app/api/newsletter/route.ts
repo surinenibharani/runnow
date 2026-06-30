@@ -27,27 +27,35 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
   }
 
-  const subscriber = await prisma.newsletterSubscriber.upsert({
-    where: { email },
-    create: {
-      email,
-      weeklyTips: true,
-      newPosts: true,
-      progressReminders: false,
-      unsubscribedAt: null,
-    },
-    update: {
-      weeklyTips: true,
-      newPosts: true,
-      unsubscribedAt: null,
-    },
-  });
+  try {
+    const subscriber = await prisma.newsletterSubscriber.upsert({
+      where: { email },
+      create: {
+        email,
+        weeklyTips: true,
+        newPosts: true,
+        progressReminders: false,
+        unsubscribedAt: null,
+      },
+      update: {
+        weeklyTips: true,
+        newPosts: true,
+        unsubscribedAt: null,
+      },
+    });
 
-  const emailed = await sendWelcomeNewsletter(subscriber.email);
+    const emailed = await sendWelcomeNewsletter(subscriber.email);
 
-  return NextResponse.json({
-    message: emailed
-      ? "You're subscribed! Check your inbox for a welcome email."
-      : "You're subscribed! Weekly tips and new posts are on the way.",
-  });
+    return NextResponse.json({
+      message: emailed
+        ? "You're subscribed! Check your inbox for a welcome email."
+        : "You're subscribed! Weekly tips and new posts are on the way.",
+    });
+  } catch (error) {
+    console.error("[newsletter] subscribe failed:", error);
+    return NextResponse.json(
+      { error: "Could not save your subscription. Please try again." },
+      { status: 500 }
+    );
+  }
 }
