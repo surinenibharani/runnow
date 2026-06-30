@@ -36,6 +36,12 @@ type TurnstileWidgetProps = {
 
 const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
+function isLocalHost(): boolean {
+  if (typeof window === "undefined") return false;
+  const host = window.location.hostname;
+  return host === "localhost" || host === "127.0.0.1" || host === "[::1]";
+}
+
 function waitForTurnstile(timeoutMs = 10000): Promise<void> {
   return new Promise((resolve, reject) => {
     if (window.turnstile) {
@@ -86,6 +92,7 @@ export function TurnstileWidget({
 }: TurnstileWidgetProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
+  const unmountingRef = useRef(false);
   const [ready, setReady] = useState(false);
   const [loadError, setLoadError] = useState(false);
   const [widgetError, setWidgetError] = useState(false);
@@ -99,6 +106,12 @@ export function TurnstileWidget({
   onExpireRef.current = onExpire;
   onErrorRef.current = onError;
   onLoadErrorRef.current = onLoadError;
+
+  const retryWidget = useCallback(() => {
+    setLoadError(false);
+    setWidgetError(false);
+    setLoadAttempt((attempt) => attempt + 1);
+  }, []);
 
   const handleScriptLoadFailure = useCallback(() => {
     setLoadError(true);
@@ -133,12 +146,19 @@ export function TurnstileWidget({
   useEffect(() => {
     if (!SITE_KEY || !ready || !containerRef.current || !window.turnstile) return;
 
+    unmountingRef.current = false;
     const container = containerRef.current;
 
     if (widgetIdRef.current) {
-      window.turnstile.remove(widgetIdRef.current);
+      try {
+        window.turnstile.remove(widgetIdRef.current);
+      } catch {
+        // Widget may already be gone during fast remounts
+      }
       widgetIdRef.current = null;
     }
+
+    setWidgetError(false);
 
     widgetIdRef.current = window.turnstile.render(container, {
       sitekey: SITE_KEY,
@@ -148,6 +168,7 @@ export function TurnstileWidget({
       },
       "expired-callback": () => onExpireRef.current?.(),
       "error-callback": () => {
+        if (unmountingRef.current) return;
         setWidgetError(true);
         onErrorRef.current?.();
       },
@@ -155,6 +176,7 @@ export function TurnstileWidget({
     });
 
     return () => {
+      unmountingRef.current = true;
       if (widgetIdRef.current && window.turnstile) {
         try {
           window.turnstile.remove(widgetIdRef.current);
@@ -191,16 +213,7 @@ export function TurnstileWidget({
           </a>{" "}
           widget settings.
         </p>
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={() => {
-            setLoadError(false);
-            setWidgetError(false);
-            setLoadAttempt((attempt) => attempt + 1);
-          }}
-        >
+        <Button type="button" variant="outline" size="sm" onClick={retryWidget}>
           Retry captcha
         </Button>
       </div>
@@ -211,18 +224,29 @@ export function TurnstileWidget({
     <div className={cn("space-y-2", className)}>
       <div ref={containerRef} className="min-h-[65px]" />
       {widgetError && (
-        <p className="text-xs text-destructive">
-          Captcha challenge failed. Retry or check that this domain is allowed in
-          Cloudflare Turnstile.
-        </p>
+        <div className="space-y-2">
+          <p className="text-xs text-destructive">
+            Captcha challenge failed. Add{" "}
+            <span className="font-medium">
+              {typeof window !== "undefined" ? window.location.hostname : "this domain"}
+            </span>{" "}
+            to your Cloudflare Turnstile widget hostnames, then retry.
+          </p>
+          <Button type="button" variant="outline" size="sm" onClick={retryWidget}>
+            Retry captcha
+          </Button>
+        </div>
       )}
     </div>
   );
 }
 
 export function isTurnstileEnabled(): boolean {
-  // Local dev: skip widget (verifyTurnstile also skips server-side in development)
   if (process.env.NODE_ENV === "development") {
+    return false;
+  }
+
+  if (isLocalHost()) {
     return false;
   }
 

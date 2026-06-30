@@ -24,7 +24,15 @@ export function EmailSignup({ className, compact = false }: EmailSignupProps) {
     "idle"
   );
   const [message, setMessage] = useState("");
+  const [captchaRequested, setCaptchaRequested] = useState(false);
   const captchaRequired = isTurnstileEnabled();
+  const showCaptcha = captchaRequired && captchaRequested;
+
+  function requestCaptcha() {
+    if (captchaRequired) {
+      setCaptchaRequested(true);
+    }
+  }
 
   async function onSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -32,6 +40,7 @@ export function EmailSignup({ className, compact = false }: EmailSignupProps) {
     setMessage("");
 
     if (captchaRequired && !turnstileToken) {
+      setCaptchaRequested(true);
       setStatus("error");
       setMessage("Please complete the captcha.");
       return;
@@ -89,6 +98,7 @@ export function EmailSignup({ className, compact = false }: EmailSignupProps) {
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
+          onFocus={requestCaptcha}
           placeholder="you@example.com"
           required
           autoComplete="email"
@@ -117,7 +127,7 @@ export function EmailSignup({ className, compact = false }: EmailSignupProps) {
         aria-hidden
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
-      {captchaRequired && (
+      {showCaptcha && (
         <TurnstileWidget
           onVerify={setTurnstileToken}
           onExpire={() => setTurnstileToken(null)}

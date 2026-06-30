@@ -7,6 +7,7 @@ import { SkipLink } from "@/components/layout/skip-link";
 import { Suspense } from "react";
 import { AuthProvider } from "@/components/providers/auth-provider";
 import { GoogleAnalyticsScripts } from "@/components/analytics/google-analytics";
+import { TurnstileScripts } from "@/components/security/turnstile-scripts";
 import { GoogleAnalyticsPageView } from "@/components/analytics/page-view-tracker";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -82,6 +83,7 @@ export default async function RootLayout({
     >
       <head>
         <GoogleAnalyticsScripts nonce={nonce} />
+        <TurnstileScripts nonce={nonce} />
       </head>
       <body className="min-h-full flex flex-col">
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
