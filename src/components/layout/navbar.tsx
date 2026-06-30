@@ -37,7 +37,7 @@ function NavItem({
       onClick={onNavigate}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "relative rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+        "relative shrink-0 whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-medium transition-colors lg:px-3",
         link.comingSoon && "text-muted-foreground/55 hover:text-muted-foreground/70",
         !link.comingSoon &&
           (active
@@ -112,11 +112,11 @@ export function Navbar() {
       ref={headerRef}
       className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg"
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:gap-3 sm:px-6">
-        <Logo />
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:gap-5">
+        <Logo className="mr-1 shrink-0 sm:mr-2" />
 
         <nav
-          className="hidden min-w-0 flex-1 items-center justify-center gap-1 lg:flex"
+          className="hidden min-w-0 flex-1 items-center justify-center gap-2 lg:flex xl:gap-3"
           aria-label="Main"
         >
           {mainNavGroups.map((group, groupIndex) => {
@@ -129,12 +129,12 @@ export function Navbar() {
               <Fragment key={group.ariaLabel ?? `nav-group-${groupIndex}`}>
                 {groupIndex > 0 && (
                   <span
-                    className="mx-0.5 hidden h-4 w-px shrink-0 bg-border lg:block"
+                    className="mx-1 hidden h-4 w-px shrink-0 bg-border lg:block xl:mx-1.5"
                     aria-hidden
                   />
                 )}
                 <div
-                  className="flex items-center gap-0.5"
+                  className="flex items-center gap-0.5 xl:gap-1"
                   role={group.ariaLabel ? "group" : undefined}
                   aria-label={group.ariaLabel}
                 >
@@ -148,11 +148,11 @@ export function Navbar() {
         </nav>
 
         <SiteSearch
-          className="min-w-0 flex-1 sm:max-w-xs lg:flex-none lg:w-52 xl:w-60"
+          className="min-w-0 flex-1 sm:mx-2 md:max-w-xs lg:mx-3 lg:w-44 lg:flex-none lg:shrink-0 lg:max-w-none xl:w-52"
           inputClassName="bg-background/80"
         />
 
-        <div className="hidden shrink-0 items-center gap-2 lg:flex">
+        <div className="hidden shrink-0 items-center gap-2 lg:ml-1 lg:flex xl:gap-2.5">
           <StartPlanCta variant="button" />
           {session ? (
             <>
@@ -196,7 +196,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="rounded-lg p-2 hover:bg-muted lg:hidden"
+          className="ml-1 shrink-0 rounded-lg p-2 hover:bg-muted lg:hidden"
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}

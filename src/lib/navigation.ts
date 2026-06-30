@@ -17,11 +17,8 @@ export type NavGroup = {
   links: NavLink[];
 };
 
-/** Primary header navigation — grouped for scanability. */
+/** Primary header navigation — grouped for scanability. Logo links home; no separate Home item. */
 export const mainNavGroups: NavGroup[] = [
-  {
-    links: [{ href: "/", label: "Home" }],
-  },
   {
     ariaLabel: "Training",
     links: [
