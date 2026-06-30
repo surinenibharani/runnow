@@ -61,6 +61,9 @@ export const INJURIES_SEO_KEYWORDS = [
   "runner knee beginner",
   "how to avoid running injuries",
   "plantar fasciitis running",
+  "running injuries women",
+  "pelvic floor running leakage",
+  "RED-S running female",
 ] as const;
 
 export const BAD_WEATHER_SEO_KEYWORDS = [

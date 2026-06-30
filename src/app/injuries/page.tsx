@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -184,9 +185,20 @@ export default function InjuriesPage() {
   return (
     <div className="py-12 sm:py-16">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <Breadcrumbs
-          items={[{ label: "Home", href: "/" }, { label: "Injuries" }]}
-        />
+        <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
+          <Breadcrumbs
+            items={[{ label: "Home", href: "/" }, { label: "Injuries" }]}
+          />
+          <Button
+            nativeButton={false}
+            render={<Link href="/injuries/for-women-runners" />}
+            variant="outline"
+            size="sm"
+            className="border-violet-500/30 text-violet-700 hover:bg-violet-500/10 dark:text-violet-300"
+          >
+            Women runner injuries
+          </Button>
+        </div>
 
         <FadeIn className="text-center mb-12">
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -231,7 +243,11 @@ export default function InjuriesPage() {
           </ul>
         </FadeIn>
 
-        <StaggerChildren className="space-y-6">
+        <FadeIn className="mb-6">
+          <h2 className="text-xl font-bold">Common injuries (all runners)</h2>
+        </FadeIn>
+
+        <StaggerChildren className="space-y-6 mb-12">
           {injuries.map((injury) => (
             <StaggerItem key={injury.title}>
               <Card className="border-border/60 hover:shadow-md transition-shadow duration-300">
@@ -320,6 +336,10 @@ export default function InjuriesPage() {
             {" · "}
             <Link href="/tips" className="text-primary hover:underline">
               Beginner tips
+            </Link>
+            {" · "}
+            <Link href="/blog/running-guide-for-women" className="text-primary hover:underline">
+              Women&apos;s running guide
             </Link>
           </p>
         </FadeIn>

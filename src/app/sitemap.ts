@@ -15,6 +15,11 @@ const staticRoutes = [
   { path: "/tips/specific-situations", priority: 0.75, changeFrequency: "monthly" as const },
   { path: "/gear", priority: 0.85, changeFrequency: "weekly" as const },
   { path: "/injuries", priority: 0.8, changeFrequency: "monthly" as const },
+  {
+    path: "/injuries/for-women-runners",
+    priority: 0.75,
+    changeFrequency: "monthly" as const,
+  },
   { path: "/stories", priority: 0.75, changeFrequency: "monthly" as const },
   { path: "/teams", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/privacy", priority: 0.2, changeFrequency: "yearly" as const },
