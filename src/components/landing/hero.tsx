@@ -48,8 +48,9 @@ export function Hero() {
           </div>
 
           <p className="text-lead relative z-10 mt-5 max-w-2xl text-muted-foreground text-balance sm:mt-6">
-            {SITE_NAME} walks you from couch to marathon with proven plans,
-            quirky run names, and progress tracking that keeps you showing up.
+            {SITE_NAME} is your one stop for couch-to-marathon plans, running
+            tips, gear picks, injury guidance, and progress tracking — with
+            quirky run names so it never feels like homework.
           </p>
 
           <div className="relative z-10 mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:justify-center">
