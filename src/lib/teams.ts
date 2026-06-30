@@ -21,6 +21,10 @@ export async function getOrCreateUserTrainingPlan(userId: string) {
   });
 }
 
+export async function deleteUserTrainingPlan(userId: string) {
+  await prisma.userTrainingPlan.deleteMany({ where: { userId } });
+}
+
 export async function updateUserTrainingPlan(
   userId: string,
   data: {

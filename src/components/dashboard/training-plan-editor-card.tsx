@@ -9,6 +9,7 @@ import {
   ExternalLink,
   Pencil,
   Sparkles,
+  Trash2,
   X,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -40,10 +41,12 @@ import {
   type TrainingPlanDisplay,
 } from "@/lib/training-plan-display";
 import {
+  deleteTrainingPlan,
   fetchTrainingPlan,
   saveTrainingPlan,
   type TrainingPlanState,
 } from "@/lib/training-plan-client";
+import { PLAN_DELETED_MESSAGE, type PlanDeletedMessage } from "@/lib/plan-messages";
 import { cn } from "@/lib/utils";
 
 type TrainingPlanEditorCardProps = {
@@ -86,8 +89,12 @@ export function TrainingPlanEditorCard({
   const [editing, setEditing] = useState(false);
   const [loadingDraft, setLoadingDraft] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [savedMessage, setSavedMessage] = useState<string | null>(null);
+  const [deletedNotice, setDeletedNotice] = useState<PlanDeletedMessage | null>(
+    null
+  );
 
   const [familyId, setFamilyId] = useState(plan.familyId || "5k");
   const [planId, setPlanId] = useState(plan.planId);
@@ -166,6 +173,7 @@ export function TrainingPlanEditorCard({
   const openEditor = useCallback(async () => {
     setSaveError(null);
     setSavedMessage(null);
+    setDeletedNotice(null);
     setLoadingDraft(true);
     try {
       const remote = await fetchTrainingPlan();
@@ -258,6 +266,7 @@ export function TrainingPlanEditorCard({
     setSaving(true);
     setSaveError(null);
     setSavedMessage(null);
+    setDeletedNotice(null);
 
     try {
       const remappedCompleted = remapCompletedIds(
@@ -298,6 +307,56 @@ export function TrainingPlanEditorCard({
     profile,
     onPlanUpdated,
   ]);
+
+  const applyDisplayPlan = useCallback(
+    (nextDisplay: TrainingPlanDisplay, completed: string[] = []) => {
+      setDisplayPlan(nextDisplay);
+      onPlanUpdated(nextDisplay);
+      setCompletedIds(completed);
+      setFamilyId(nextDisplay.familyId || "5k");
+      setPlanId(nextDisplay.planId);
+      setBasePlan(getPlanById(nextDisplay.planId) ?? getPlanById("5k-8w")!);
+      setCurrentWeek(nextDisplay.currentWeek);
+      setProfile({
+        age: nextDisplay.age,
+        fitnessLevel: nextDisplay.fitnessLevel,
+        goalRaceDate: nextDisplay.goalRaceDate,
+      });
+      setSchedulePrefs({
+        restDay: nextDisplay.restDay,
+        longRunDay: nextDisplay.longRunDay,
+        runDaysPerWeek: nextDisplay.runDaysPerWeek,
+      });
+    },
+    [onPlanUpdated]
+  );
+
+  const handleDelete = useCallback(async () => {
+    if (
+      !confirm(
+        "Delete your saved plan? This clears your goal race, profile settings, schedule, and workout progress. You'll start fresh with the default 5K plan."
+      )
+    ) {
+      return;
+    }
+
+    setDeleting(true);
+    setSaveError(null);
+    setSavedMessage(null);
+    setDeletedNotice(null);
+
+    try {
+      const fresh = await deleteTrainingPlan();
+      const nextDisplay = displayFromTrainingPlanState(fresh);
+      applyDisplayPlan(nextDisplay, fresh.completedIds);
+      setEditing(false);
+      setDeletedNotice(PLAN_DELETED_MESSAGE);
+    } catch {
+      setSaveError("Could not delete your plan. Please try again.");
+    } finally {
+      setDeleting(false);
+    }
+  }, [applyDisplayPlan]);
 
   const activePlan = editing ? previewDisplay : displayPlan;
   const activeWeekPreview = editing ? previewWeek : displayPlan.weekPreview;
@@ -367,6 +426,17 @@ export function TrainingPlanEditorCard({
                   <ExternalLink className="size-4" />
                   Open tracker
                 </Button>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="outline"
+                  className="border-destructive/30 text-destructive hover:bg-destructive/10"
+                  onClick={handleDelete}
+                  disabled={deleting || loadingDraft}
+                >
+                  <Trash2 className="size-4" />
+                  {deleting ? "Deleting…" : "Delete plan"}
+                </Button>
               </>
             ) : (
               <>
@@ -388,6 +458,18 @@ export function TrainingPlanEditorCard({
             )}
           </div>
         </div>
+
+        {deletedNotice && !editing && (
+          <div
+            className="mt-5 rounded-xl border border-primary/25 bg-background/70 px-4 py-4"
+            role="status"
+          >
+            <p className="font-semibold text-foreground">{deletedNotice.title}</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {deletedNotice.body}
+            </p>
+          </div>
+        )}
 
         {!editing && activePlan.totalWorkouts > 0 && (
           <div className="mt-5 border-t border-primary/15 pt-5">

@@ -2,10 +2,16 @@ import type { ActivitySummary } from "@/lib/activity-fields";
 import {
   buildAthleteProfile,
   estimateExpectedRestingHr,
+  estimateMaxHeartRate,
+  formatRecoveryProfileSummary,
+  getRecoveryCapacityPoints,
   getSleepTarget,
   getTrainingLoadMultiplier,
+  getWeeklyMileageCaps,
+  resolveAge,
   type AthleteProfile,
 } from "@/lib/athlete-profile";
+import { formatActivityType } from "@/lib/activity-types";
 
 export type WellnessSnapshot = {
   date: string;
@@ -15,7 +21,7 @@ export type WellnessSnapshot = {
 };
 
 export type RecoveryFactor = {
-  id: "sleep" | "restingHr" | "trainingLoad";
+  id: "sleep" | "restingHr" | "trainingLoad" | "recentWorkouts";
   label: string;
   score: number;
   detail: string;
@@ -26,6 +32,7 @@ export type RecoveryReadiness = {
   score: number | null;
   label: "Excellent" | "Good" | "Moderate" | "Low" | "Unknown";
   summary: string;
+  profileSummary: string;
   factors: RecoveryFactor[];
   todayRestingHeartRate: number | null;
   restingHeartRateSource: "manual" | "estimated" | null;
@@ -36,6 +43,56 @@ export type RecoveryReadiness = {
 function isRunActivity(type: string): boolean {
   const t = type.toLowerCase();
   return t.includes("run") || t === "trailrun" || t === "virtualrun";
+}
+
+function isTrainingActivity(type: string): boolean {
+  const t = type.toLowerCase();
+  if (isRunActivity(t)) return true;
+  return (
+    t.includes("ride") ||
+    t.includes("bike") ||
+    t.includes("walk") ||
+    t.includes("hike") ||
+    t.includes("weight") ||
+    t.includes("workout") ||
+    t.includes("swim") ||
+    t === "yoga" ||
+    t === "crossfit"
+  );
+}
+
+function activityTypeLoadFactor(type: string): number {
+  const t = type.toLowerCase();
+  if (isRunActivity(t)) return 1.15;
+  if (t.includes("ride") || t.includes("bike")) return 0.75;
+  if (t.includes("hike") || t.includes("walk")) return 0.55;
+  if (t.includes("weight") || t.includes("workout") || t === "crossfit") return 0.9;
+  if (t.includes("swim")) return 0.8;
+  if (t === "yoga") return 0.35;
+  return 0.7;
+}
+
+function activityEffortPoints(
+  activity: ActivitySummary,
+  profile: AthleteProfile
+): number {
+  const minutes = activity.movingTime / 60;
+  if (minutes <= 0) return 0;
+
+  let intensity = activityTypeLoadFactor(activity.type);
+
+  if (activity.averageHeartrate != null && activity.averageHeartrate > 0) {
+    const maxHr = estimateMaxHeartRate(profile);
+    const pct = activity.averageHeartrate / maxHr;
+    if (pct >= 0.88) intensity *= 1.45;
+    else if (pct >= 0.8) intensity *= 1.25;
+    else if (pct >= 0.72) intensity *= 1.05;
+    else if (pct < 0.62) intensity *= 0.85;
+  } else if (minutes >= 75 && isRunActivity(activity.type)) {
+    intensity *= 1.15;
+  }
+
+  return minutes * intensity * getTrainingLoadMultiplier(profile);
 }
 
 function toDateKey(date: Date): string {
@@ -82,7 +139,7 @@ function scoreSleep(
 
   if (hours >= target.minHours && hours <= target.maxHours) {
     score = 100;
-    detail = `${formatSleep(minutes)}${sourceNote} — solid recovery sleep for your profile.`;
+    detail = `${formatSleep(minutes)}${sourceNote} — solid recovery sleep for your profile (target ${target.minHours}–${target.maxHours}h at age ${resolveAge(profile)}).`;
   } else if (hours >= target.minHours - 1 && hours < target.minHours) {
     score = 75;
     detail = `${formatSleep(minutes)}${sourceNote} — a bit short; an easy day may help.`;
@@ -189,6 +246,21 @@ function scoreRestingHr(
   };
 }
 
+function trainingMinutesInRange(
+  activities: ActivitySummary[],
+  start: Date,
+  end: Date
+): number {
+  return activities
+    .filter(
+      (a) =>
+        isTrainingActivity(a.type) &&
+        a.startDate >= start &&
+        a.startDate <= end
+    )
+    .reduce((sum, a) => sum + a.movingTime / 60, 0);
+}
+
 function runMinutesInRange(
   activities: ActivitySummary[],
   start: Date,
@@ -212,28 +284,37 @@ function scoreTrainingLoad(
   const acuteStart = daysAgo(6);
   const chronicStart = daysAgo(27);
   const loadMultiplier = getTrainingLoadMultiplier(profile);
+  const mileageCaps = getWeeklyMileageCaps(profile);
+  const age = resolveAge(profile);
 
-  const acuteMinutes =
+  const acuteRunMinutes =
     runMinutesInRange(activities, acuteStart, now) * loadMultiplier;
-  const chronicMinutes =
+  const acuteTrainingMinutes =
+    trainingMinutesInRange(activities, acuteStart, now) * loadMultiplier;
+  const chronicRunMinutes =
     runMinutesInRange(activities, chronicStart, now) * loadMultiplier;
-  const chronicWeekly = chronicMinutes / 4;
+  const chronicWeekly = chronicRunMinutes / 4;
 
-  if (acuteMinutes === 0 && chronicWeekly === 0) {
+  const profileNote =
+    age >= 45
+      ? ` Weekly volume guidance ~${mileageCaps.softCap} mi for age ${age}.`
+      : "";
+
+  if (acuteRunMinutes === 0 && chronicWeekly === 0) {
     return {
       id: "trainingLoad",
       label: "Training load",
       score: 80,
-      detail: "No recent run load — good to build gradually.",
+      detail: `No recent run load — good to build gradually.${profileNote}`,
       available: true,
     };
   }
 
   if (chronicWeekly < 30) {
     const detail =
-      acuteMinutes > 0
-        ? `${Math.round(acuteMinutes)} run min this week — still building your base.`
-        : "Light recent load — room to add easy miles.";
+      acuteTrainingMinutes > 0
+        ? `${Math.round(acuteTrainingMinutes)} training min this week (${Math.round(acuteRunMinutes)} run min) — still building your base.${profileNote}`
+        : `Light recent load — room to add easy miles.${profileNote}`;
     return {
       id: "trainingLoad",
       label: "Training load",
@@ -243,28 +324,33 @@ function scoreTrainingLoad(
     };
   }
 
-  const ratio = acuteMinutes / chronicWeekly;
+  const ratio = acuteRunMinutes / chronicWeekly;
   let score: number;
   let detail: string;
 
   if (ratio >= 0.8 && ratio <= 1.2) {
     score = 100;
-    detail = `Balanced load (${Math.round(acuteMinutes)} min this week vs ~${Math.round(chronicWeekly)} min/week avg).`;
+    detail = `Balanced load (${Math.round(acuteRunMinutes)} run min this week vs ~${Math.round(chronicWeekly)} min/week avg).${profileNote}`;
   } else if (ratio > 1.2 && ratio <= 1.5) {
     score = 70;
-    detail = `Ramping up (${Math.round(acuteMinutes)} min this week) — watch fatigue.`;
+    detail = `Ramping up (${Math.round(acuteRunMinutes)} run min this week) — watch fatigue.${profileNote}`;
   } else if (ratio > 1.5 && ratio <= 2) {
     score = 45;
-    detail = `High acute load (${Math.round(acuteMinutes)} min) vs your usual — extra recovery helps.`;
+    detail = `High acute load (${Math.round(acuteRunMinutes)} run min) vs your usual — extra recovery helps.${profileNote}`;
   } else if (ratio > 2) {
     score = 20;
-    detail = `Spike in training (${Math.round(acuteMinutes)} min this week) — prioritize rest.`;
+    detail = `Spike in training (${Math.round(acuteRunMinutes)} run min this week) — prioritize rest.${profileNote}`;
   } else if (ratio < 0.8) {
     score = 90;
-    detail = `Lighter week (${Math.round(acuteMinutes)} min) — good for absorbing training.`;
+    detail = `Lighter week (${Math.round(acuteRunMinutes)} run min) — good for absorbing training.${profileNote}`;
   } else {
     score = 75;
-    detail = `${Math.round(acuteMinutes)} run min this week.`;
+    detail = `${Math.round(acuteRunMinutes)} run min this week.${profileNote}`;
+  }
+
+  if (acuteRunMinutes > mileageCaps.softCap * 12) {
+    score = Math.min(score, 40);
+    detail += ` Above the suggested weekly load for your age/sex profile.`;
   }
 
   return {
@@ -274,6 +360,90 @@ function scoreTrainingLoad(
     detail,
     available: true,
   };
+}
+
+function scoreRecentWorkouts(
+  activities: ActivitySummary[],
+  profile: AthleteProfile
+): RecoveryFactor {
+  const now = new Date();
+  const since48h = daysAgo(2);
+  const recent = activities.filter(
+    (a) => isTrainingActivity(a.type) && a.startDate >= since48h && a.startDate <= now
+  );
+
+  if (recent.length === 0) {
+    return {
+      id: "recentWorkouts",
+      label: "Recent workouts",
+      score: 95,
+      detail:
+        "No workouts logged in the last 48 hours — legs should be fresh if sleep and HR look good.",
+      available: true,
+    };
+  }
+
+  const effortPoints = recent.reduce(
+    (sum, activity) => sum + activityEffortPoints(activity, profile),
+    0
+  );
+  const capacity = getRecoveryCapacityPoints(profile);
+  const ratio = effortPoints / capacity;
+  const age = resolveAge(profile);
+
+  const workoutLines = recent.slice(0, 3).map((activity) => {
+    const label = formatActivityType(activity.type, activity.name);
+    const when = formatRelativeWorkoutTime(activity.startDate, now);
+    const minutes = Math.round(activity.movingTime / 60);
+    return `${label} (${minutes}m, ${when})`;
+  });
+
+  let score: number;
+  let detail: string;
+
+  if (ratio <= 0.45) {
+    score = 100;
+    detail = `Light recent block: ${workoutLines.join("; ")}.`;
+  } else if (ratio <= 0.75) {
+    score = 85;
+    detail = `Moderate recent training: ${workoutLines.join("; ")}.`;
+  } else if (ratio <= 1) {
+    score = 68;
+    detail = `Busy 48h — ${workoutLines.join("; ")}. Ease into today if legs feel heavy.`;
+  } else if (ratio <= 1.35) {
+    score = 45;
+    detail = `Hard recent load: ${workoutLines.join("; ")}. Extra recovery recommended.`;
+  } else {
+    score = 25;
+    detail = `Stacked sessions: ${workoutLines.join("; ")}. Treat today as recovery.`;
+  }
+
+  if (age >= 45) {
+    detail += ` Age ${age} extends typical bounce-back time.`;
+  } else if (profile.gender === "female") {
+    detail += ` Recovery window tuned for female athletes.`;
+  }
+
+  if (recent.length > 3) {
+    detail += ` +${recent.length - 3} more workout${recent.length - 3 === 1 ? "" : "s"} in 48h.`;
+  }
+
+  return {
+    id: "recentWorkouts",
+    label: "Recent workouts",
+    score,
+    detail,
+    available: true,
+  };
+}
+
+function formatRelativeWorkoutTime(startDate: Date, now: Date): string {
+  const diffMs = now.getTime() - startDate.getTime();
+  const hours = Math.floor(diffMs / (1000 * 60 * 60));
+  if (hours < 1) return "just now";
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return days === 1 ? "yesterday" : `${days}d ago`;
 }
 
 /** Lowest easy-effort HR from recent activities — proxy when no watch RHR is logged. */
@@ -436,7 +606,9 @@ export function calculateRecoveryReadiness(
   const sleepFactor = scoreSleep(sleep.minutes, profile, sleep.source);
   const rhrFactor = scoreRestingHr(rhr, baselineRhr, profile, source);
   const loadFactor = scoreTrainingLoad(activities, profile);
-  const factors = [sleepFactor, rhrFactor, loadFactor];
+  const recentFactor = scoreRecentWorkouts(activities, profile);
+  const factors = [sleepFactor, rhrFactor, loadFactor, recentFactor];
+  const profileSummary = formatRecoveryProfileSummary(profile);
 
   const available = factors.filter((f) => f.available);
   if (available.length === 0) {
@@ -445,6 +617,7 @@ export function calculateRecoveryReadiness(
       label: "Unknown",
       summary:
         "Log sleep and resting heart rate from your watch to unlock a recovery readiness score.",
+      profileSummary,
       factors,
       todayRestingHeartRate: rhr,
       restingHeartRateSource: source,
@@ -453,7 +626,12 @@ export function calculateRecoveryReadiness(
     };
   }
 
-  const weights = { sleep: 0.35, restingHr: 0.35, trainingLoad: 0.3 };
+  const weights = {
+    sleep: 0.28,
+    restingHr: 0.28,
+    trainingLoad: 0.22,
+    recentWorkouts: 0.22,
+  };
   let weightSum = 0;
   let weighted = 0;
 
@@ -470,6 +648,7 @@ export function calculateRecoveryReadiness(
     score,
     label: overallLabel(score),
     summary: buildSummary(score, factors),
+    profileSummary,
     factors,
     todayRestingHeartRate: rhr,
     restingHeartRateSource: source,

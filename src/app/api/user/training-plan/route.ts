@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import {
+  deleteUserTrainingPlan,
   getOrCreateUserTrainingPlan,
   updateUserTrainingPlan,
 } from "@/lib/teams";
@@ -358,10 +359,18 @@ export async function PATCH(request: Request) {
   });
 }
 
-export async function DELETE() {
+export async function DELETE(request: Request) {
   const session = await auth();
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const reset = new URL(request.url).searchParams.get("reset");
+
+  if (reset === "all") {
+    await deleteUserTrainingPlan(session.user.id);
+    const plan = await getOrCreateUserTrainingPlan(session.user.id);
+    return NextResponse.json(serializeTrainingPlan(plan));
   }
 
   const updated = await updateUserTrainingPlan(session.user.id, {

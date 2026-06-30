@@ -1,3 +1,5 @@
+import { formatGenderLabel } from "@/lib/gender";
+
 export const DEFAULT_AGE = 35;
 
 export type AthleteProfile = {
@@ -107,6 +109,40 @@ export function getTrainingLoadMultiplier(profile: AthleteProfile): number {
   if (!profile.weightKg || profile.weightKg <= 0) return 1;
   const referenceKg = profile.gender === "female" ? 62 : 72;
   return Math.min(1.35, Math.max(0.85, profile.weightKg / referenceKg));
+}
+
+/**
+ * Age/sex-adjusted effort budget for a 48-hour recovery window.
+ * Higher = tolerates more recent training before readiness drops.
+ */
+export function getRecoveryCapacityPoints(
+  profile: Pick<AthleteProfile, "age" | "gender">
+): number {
+  const age = resolveAge(profile);
+  let points = 100;
+
+  if (age >= 55) points = 62;
+  else if (age >= 45) points = 76;
+  else if (age >= 35) points = 88;
+
+  if (profile.gender === "female") points *= 0.94;
+
+  return Math.round(points);
+}
+
+export function formatRecoveryProfileSummary(
+  profile: Pick<AthleteProfile, "age" | "gender">
+): string {
+  const parts: string[] = [];
+  if (profile.age != null) parts.push(`age ${profile.age}`);
+  const gender = formatGenderLabel(profile.gender);
+  if (gender && profile.gender !== "prefer_not_to_say") {
+    parts.push(gender.toLowerCase());
+  }
+  if (parts.length === 0) {
+    return `Using typical recovery norms for age ${DEFAULT_AGE} until your profile is filled in.`;
+  }
+  return `Personalized for ${parts.join(", ")} — sleep targets, heart rate, and recent workout recovery.`;
 }
 
 export function getWeeklyMileageCaps(profile: AthleteProfile): {

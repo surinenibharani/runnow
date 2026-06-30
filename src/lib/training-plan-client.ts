@@ -60,8 +60,18 @@ export async function toggleWorkoutRemote(
   return res.json();
 }
 
-export async function resetTrainingPlanRemote(): Promise<TrainingPlanState> {
-  const res = await fetch("/api/user/training-plan", { method: "DELETE" });
+export async function resetTrainingPlanRemote(): Promise<
+  Pick<TrainingPlanState, "completedIds" | "streak" | "lastCompletedDate" | "currentWeek">
+> {
+  const res = await fetch("/api/user/training-plan?reset=progress", {
+    method: "DELETE",
+  });
   if (!res.ok) throw new Error("Failed to reset training plan");
+  return res.json();
+}
+
+export async function deleteTrainingPlan(): Promise<TrainingPlanState> {
+  const res = await fetch("/api/user/training-plan?reset=all", { method: "DELETE" });
+  if (!res.ok) throw new Error("Failed to delete training plan");
   return res.json();
 }

@@ -110,9 +110,10 @@ export function RecoveryReadinessCard({
           Recovery readiness
         </CardTitle>
         <p className="text-sm text-muted-foreground font-normal">
-          Combines sleep, resting heart rate, and training load. Log values from
-          your watch each morning, or let us estimate resting HR from easy Strava
-          activities.
+          Combines sleep, resting heart rate, weekly training load, and workouts
+          from the last 48 hours — adjusted for your age and sex from profile.
+          Log values from your watch each morning, or let us estimate resting HR
+          from easy Strava activities.
         </p>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -138,6 +139,9 @@ export function RecoveryReadinessCard({
 
           <div className="flex-1 space-y-4 min-w-0">
             <p className="text-sm leading-relaxed">{recovery.summary}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              {recovery.profileSummary}
+            </p>
             <div className="grid gap-4">
               {recovery.factors.map((factor) => (
                 <FactorBar key={factor.id} factor={factor} />
