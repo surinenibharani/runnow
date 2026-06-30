@@ -17,7 +17,7 @@ import {
   getChartRangeStart,
   parseChartTimeRange,
 } from "@/lib/chart-time-range";
-import { analyzePlanAlignment } from "@/lib/plan-alignment";
+import { analyzePlanAlignment, parseCompletedIdsFromDb } from "@/lib/plan-alignment";
 import { calculateRecoveryReadiness, toDateKey } from "@/lib/recovery-readiness";
 import { buildAthleteProfile } from "@/lib/athlete-profile";
 import { getOrCreateUserTrainingPlan } from "@/lib/teams";
@@ -171,7 +171,20 @@ export async function GET(request: Request) {
     stravaProfileUrl: stravaAccount
       ? `https://www.strava.com/athletes/${stravaAccount.athleteId}`
       : null,
-    trainingPlan: buildTrainingPlanDisplay(trainingPlan),
+    trainingPlan: buildTrainingPlanDisplay(
+      {
+        planId: trainingPlan.planId,
+        currentWeek: trainingPlan.currentWeek,
+        restDay: trainingPlan.restDay,
+        longRunDay: trainingPlan.longRunDay,
+        runDaysPerWeek: trainingPlan.runDaysPerWeek,
+        age: trainingPlan.age,
+        fitnessLevel: trainingPlan.fitnessLevel,
+        goalRaceDate: trainingPlan.goalRaceDate,
+        startedAt: trainingPlan.startedAt,
+      },
+      parseCompletedIdsFromDb(trainingPlan.completedIds)
+    ),
     alignment,
     streak,
     suggestions,

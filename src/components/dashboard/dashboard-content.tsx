@@ -26,7 +26,7 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { formatDistance, formatDuration, formatPace } from "@/lib/strava";
 import type { PlanAlignmentSummary } from "@/lib/plan-alignment";
 import { PlanAlignmentCard } from "@/components/dashboard/plan-alignment";
-import { TrainingPlanSummaryCard } from "@/components/dashboard/training-plan-summary-card";
+import { TrainingPlanEditorCard } from "@/components/dashboard/training-plan-editor-card";
 import { RecoveryReadinessCard } from "@/components/dashboard/recovery-readiness-card";
 import { useProfileModal } from "@/components/profile/profile-modal";
 import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
@@ -420,7 +420,13 @@ export function DashboardContent() {
         </FadeIn>
 
         <FadeIn>
-          <TrainingPlanSummaryCard plan={data.trainingPlan} />
+          <TrainingPlanEditorCard
+            plan={data.trainingPlan}
+            onPlanUpdated={(plan) => {
+              setData((prev) => (prev ? { ...prev, trainingPlan: plan } : prev));
+              void loadDashboard();
+            }}
+          />
         </FadeIn>
 
         {!data.stravaConnected && (
