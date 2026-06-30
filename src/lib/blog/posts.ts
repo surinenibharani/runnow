@@ -2383,7 +2383,7 @@ export const blogPosts: BlogPost[] = [
       "Where to run, who yields to whom, and how not to be That Runner — a practical guide to sharing roads, multi-use paths, singletrack, and track lanes.",
     category: "Getting Started",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-09-03",
+    publishedAt: "2026-06-30",
     readTime: "8 min",
     relatedSlugs: [
       "first-run-tips",
