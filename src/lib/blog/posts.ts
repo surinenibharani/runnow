@@ -920,7 +920,7 @@ export const blogPosts: BlogPost[] = [
     slug: "why-letsrunnow",
     title: "Why LetsRunNow?",
     excerpt:
-      "Tired of overwhelming running apps? LetsRunNow is the simple, free, no-signup Couch to 5K and marathon training site for real beginners.",
+      "Tired of overwhelming running apps? LetsRunNow is your one stop for couch-to-marathon plans, running tips, gear picks, injury guidance, and progress tracking — free and beginner-friendly.",
     category: "Getting Started",
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-23",
@@ -955,14 +955,18 @@ export const blogPosts: BlogPost[] = [
       },
       {
         heading: "What You Actually Get",
+        paragraphs: [
+          "LetsRunNow is your one stop for couch-to-marathon plans, running tips, gear picks, injury guidance, and progress tracking — with quirky run names so it never feels like homework.",
+          "You don't need fancy gear. You don't need to be fast. You just need to show up.",
+        ],
         list: [
           "Proven plans from Couch to 5K all the way to full marathon",
+          "Running tips for pacing, breathing, bad weather, and real-life situations",
+          "Weekly gear picks — honest recommendations without the affiliate noise",
+          "Injury guidance for prevention, recovery, and women-specific concerns",
+          "Browser-based progress tracking — streaks, check-offs, and milestones",
           "Quirky run names that make you smile when your alarm goes off (yes, this helps)",
-          "Browser-based progress tracking — streaks, check-offs, and milestones that live in your browser",
-          "Realistic pacing advice — “Slow is fast” isn't just a slogan here. It's the whole philosophy.",
-        ],
-        paragraphs: [
-          "You don't need fancy gear. You don't need to be fast. You just need to show up.",
+          "Realistic pacing advice — \"Slow is fast\" isn't just a slogan here. It's the whole philosophy.",
         ],
       },
       {
