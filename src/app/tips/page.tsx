@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TipCard } from "@/components/tips/tip-card";
 import { TipsGuideLink } from "@/components/tips/tips-guide-link";
@@ -91,6 +92,10 @@ export default function TipsPage() {
             </Link>
             .
           </p>
+        </FadeIn>
+
+        <FadeIn className="mt-8">
+          <StartPlanCta variant="compact" />
         </FadeIn>
       </div>
     </div>

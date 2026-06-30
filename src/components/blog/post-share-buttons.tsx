@@ -4,7 +4,10 @@ import { cn } from "@/lib/utils";
 type PostShareButtonsProps = {
   title: string;
   url: string;
+  displayUrl?: string;
+  shareLabel?: string;
   className?: string;
+  compact?: boolean;
 };
 
 function buildShareLinks(title: string, url: string) {
@@ -36,42 +39,70 @@ function WhatsAppIcon({ className }: { className?: string }) {
 const linkClass =
   "inline-flex items-center gap-2 rounded-lg border border-border/60 px-3 py-2 text-sm font-medium transition-colors hover:bg-muted/50";
 
-export function PostShareButtons({ title, url, className }: PostShareButtonsProps) {
+export function PostShareButtons({
+  title,
+  url,
+  displayUrl,
+  shareLabel = "Share this post",
+  className,
+  compact = false,
+}: PostShareButtonsProps) {
   const links = buildShareLinks(title, url);
+  const readableUrl = displayUrl ?? url.replace(/^https?:\/\//, "");
 
   return (
-    <div className={cn("flex flex-wrap items-center gap-2", className)}>
-      <span className="text-sm text-muted-foreground w-full sm:w-auto sm:mr-1">
-        Share
-      </span>
+    <div className={cn("space-y-3", className)}>
+      <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+        {shareLabel}
+      </p>
       <a
-        href={links.whatsapp}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cn(linkClass, "hover:border-[#25D366]/40 hover:text-[#25D366]")}
-        aria-label="Share on WhatsApp"
+        href={url}
+        className="block truncate rounded-lg border border-border/60 bg-muted/30 px-3 py-2 text-sm text-foreground hover:bg-muted/50"
       >
-        <WhatsAppIcon className="size-4" />
-        WhatsApp
+        {readableUrl}
       </a>
-      <a
-        href={links.facebook}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cn(linkClass, "hover:border-[#1877F2]/40 hover:text-[#1877F2]")}
-        aria-label="Share on Facebook"
-      >
-        <FacebookIcon className="size-4" />
-        Facebook
-      </a>
-      <a
-        href={links.imessage}
-        className={cn(linkClass, "hover:border-primary/40 hover:text-primary")}
-        aria-label="Share via iMessage"
-      >
-        <MessageCircle className="size-4" />
-        iMessage
-      </a>
+      <div className={cn("flex flex-wrap items-center gap-2", compact && "gap-1.5")}>
+        <a
+          href={links.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(
+            linkClass,
+            compact && "px-2.5 py-1.5 text-xs",
+            "hover:border-[#25D366]/40 hover:text-[#25D366]"
+          )}
+          aria-label="Share on WhatsApp"
+        >
+          <WhatsAppIcon className="size-4" />
+          WhatsApp
+        </a>
+        <a
+          href={links.facebook}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(
+            linkClass,
+            compact && "px-2.5 py-1.5 text-xs",
+            "hover:border-[#1877F2]/40 hover:text-[#1877F2]"
+          )}
+          aria-label="Share on Facebook"
+        >
+          <FacebookIcon className="size-4" />
+          Facebook
+        </a>
+        <a
+          href={links.imessage}
+          className={cn(
+            linkClass,
+            compact && "px-2.5 py-1.5 text-xs",
+            "hover:border-primary/40 hover:text-primary"
+          )}
+          aria-label="Share via iMessage"
+        >
+          <MessageCircle className="size-4" />
+          iMessage
+        </a>
+      </div>
     </div>
   );
 }

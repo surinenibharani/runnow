@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" fill="none" role="img" aria-label="Running cadence diagram">
+  <rect width="320" height="240" fill="#faf8f6"/>
+  <line x1="30" y1="180" x2="290" y2="180" stroke="#d4d4d8" stroke-width="2"/>
+  <text x="24" y="32" fill="#18181b" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Quicker, shorter steps</text>
+  <g opacity="0.9">
+    <ellipse cx="80" cy="186" rx="10" ry="4" fill="#fb923c" fill-opacity="0.5" stroke="#ea580c" stroke-width="1.5"/>
+    <ellipse cx="120" cy="186" rx="10" ry="4" fill="#fb923c" fill-opacity="0.5" stroke="#ea580c" stroke-width="1.5"/>
+    <ellipse cx="160" cy="186" rx="10" ry="4" fill="#fb923c" fill-opacity="0.5" stroke="#ea580c" stroke-width="1.5"/>
+    <ellipse cx="200" cy="186" rx="10" ry="4" fill="#fb923c" fill-opacity="0.5" stroke="#ea580c" stroke-width="1.5"/>
+    <ellipse cx="240" cy="186" rx="10" ry="4" fill="#fb923c" fill-opacity="0.5" stroke="#ea580c" stroke-width="1.5"/>
+  </g>
+  <path d="M70 120 Q160 90 250 120" stroke="#16a34a" stroke-width="2" fill="none"/>
+  <text x="108" y="108" fill="#16a34a" font-family="system-ui,sans-serif" font-size="11" font-weight="600">~170-180 steps/min goal</text>
+  <rect x="44" y="200" width="232" height="28" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="56" y="218" fill="#92400e" font-family="system-ui,sans-serif" font-size="11">Count one foot for 30 sec x 2, or use a metronome app</text>
+</svg>

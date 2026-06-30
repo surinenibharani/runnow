@@ -43,6 +43,12 @@ import { SchedulePicker } from "@/components/plan/schedule-picker";
 import { PlanProfilePicker } from "@/components/plan/plan-profile-picker";
 import { PlanLoading } from "@/components/plan/plan-loading";
 import { ProgressShare } from "@/components/plan/progress-share";
+import {
+  detectProgressMilestone,
+  isWeekComplete,
+  percentComplete as computePercentComplete,
+  type MilestoneHighlight,
+} from "@/lib/milestones";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -80,8 +86,11 @@ export function WeekTracker() {
   const [syncing, setSyncing] = useState(false);
   const [bootstrapComplete, setBootstrapComplete] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [milestoneHighlight, setMilestoneHighlight] =
+    useState<MilestoneHighlight | null>(null);
   const migratedRef = useRef(false);
   const migrationPlanIdRef = useRef(initialPlan.id);
+  const shareSectionRef = useRef<HTMLElement>(null);
 
   const isAuthenticated = authStatus === "authenticated";
   const urlPlanId = searchParams.get("plan");
@@ -441,6 +450,41 @@ export function WeekTracker() {
     [planId, schedulePrefs, planProfile]
   );
 
+  const checkMilestone = useCallback(
+    (previous: ProgressData, next: ProgressData) => {
+      const prevPercent = computePercentComplete(
+        previous.completed,
+        planDayIds,
+        totalWorkouts
+      );
+      const nextPercent = computePercentComplete(
+        next.completed,
+        planDayIds,
+        totalWorkouts
+      );
+      const weekNumber = Number(activeWeek);
+      const milestone = detectProgressMilestone(
+        prevPercent,
+        nextPercent,
+        isWeekComplete(weeks, weekNumber, previous.completed),
+        isWeekComplete(weeks, weekNumber, next.completed),
+        weekNumber
+      );
+      if (milestone) {
+        setMilestoneHighlight(milestone);
+      }
+    },
+    [activeWeek, planDayIds, totalWorkouts, weeks]
+  );
+
+  useEffect(() => {
+    if (!milestoneHighlight || !shareSectionRef.current) return;
+    shareSectionRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+    });
+  }, [milestoneHighlight]);
+
   const handleToggle = useCallback(
     async (dayId: string) => {
       setSaveError(null);
@@ -462,11 +506,13 @@ export function WeekTracker() {
             !isCompleted,
             workoutToggleContext
           );
-          setProgress({
+          const nextProgress = {
             completed: updated.completedIds,
             streak: updated.streak,
             lastCompletedDate: updated.lastCompletedDate,
-          });
+          };
+          checkMilestone(progress, nextProgress);
+          setProgress(nextProgress);
         } catch {
           setProgress(previous);
           setSaveError("Could not save workout progress. Please try again.");
@@ -475,9 +521,10 @@ export function WeekTracker() {
       }
 
       const updated = toggleWorkout(planId, dayId);
+      checkMilestone(progress, updated);
       setProgress(updated);
     },
-    [useRemote, planId, progress, workoutToggleContext]
+    [useRemote, planId, progress, workoutToggleContext, checkMilestone]
   );
 
   const handleReset = useCallback(async () => {
@@ -734,7 +781,13 @@ export function WeekTracker() {
         </Card>
       </div>
 
-      {completedInPlan > 0 && <ProgressShare input={shareInput} />}
+      {completedInPlan > 0 && (
+        <ProgressShare
+          input={shareInput}
+          highlight={milestoneHighlight}
+          sectionRef={shareSectionRef}
+        />
+      )}
 
       <Tabs value={activeWeek} onValueChange={handleWeekChange}>
         <TabsList

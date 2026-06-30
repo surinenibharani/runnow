@@ -59,7 +59,7 @@ export function Hero() {
               size="lg"
               className={heroButtonClass}
             >
-              Start Training
+              Start Plan
               <ArrowRight className="size-4 shrink-0" />
             </Button>
             <Button

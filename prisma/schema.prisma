@@ -186,3 +186,21 @@ model TeamMember {
   @@unique([teamId, userId])
   @@index([userId, status])
 }
+
+model NewsletterSubscriber {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  weeklyTips        Boolean   @default(true)
+  newPosts          Boolean   @default(true)
+  progressReminders Boolean   @default(false)
+  unsubscribedAt    DateTime?
+  lastWeeklyTipAt   DateTime?
+  unsubscribeToken  String    @unique @default(cuid())
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
+
+model NewsletterPostSent {
+  postSlug String   @id
+  sentAt   DateTime @default(now())
+}

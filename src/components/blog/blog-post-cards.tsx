@@ -1,14 +1,8 @@
 import Link from "next/link";
-import { Clock, Lightbulb, MessageSquare, User } from "lucide-react";
 import type { BlogPost } from "@/lib/blog/types";
 import { compareBlogPostsNewestFirst } from "@/lib/blog/posts";
-import {
-  buildBlogPostHref,
-  formatBlogPostPublishSchedule,
-  isBlogPostScheduled,
-} from "@/lib/blog/preview";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { isBlogPostScheduled } from "@/lib/blog/preview";
+import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 
 type BlogPostCardsProps = {
@@ -38,72 +32,16 @@ export function BlogPostCards({
 
   return (
     <StaggerChildren className="space-y-4">
-      {orderedPosts.map((post) => {
-        const commentCount = commentCounts[post.slug] ?? 0;
-        const scheduled = isBlogPostScheduled(post.publishedAt);
-
-        return (
-          <StaggerItem key={post.slug}>
-            <Link
-              href={buildBlogPostHref(post.slug, previewToken)}
-              className="group block"
-            >
-              <Card className="border-border/60 transition-all duration-300 hover:border-primary/30 hover:shadow-md">
-                <CardContent className="p-6 sm:p-8">
-                  <div className="mb-3 flex flex-wrap items-center gap-2">
-                    <Badge variant="secondary" className="text-xs">
-                      {post.category}
-                    </Badge>
-                    {scheduled && (
-                      <Badge
-                        variant="outline"
-                        className="border-amber-500/50 text-xs text-amber-800 dark:text-amber-200"
-                      >
-                        Scheduled · {formatBlogPostPublishSchedule(post.publishedAt)}
-                      </Badge>
-                    )}
-                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                      <Clock className="size-3" />
-                      {post.readTime}
-                    </span>
-                    {commentCount > 0 && (
-                      <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <MessageSquare className="size-3" />
-                        {commentCount} comment{commentCount === 1 ? "" : "s"}
-                      </span>
-                    )}
-                  </div>
-                  <h2 className="text-xl font-semibold transition-colors group-hover:text-primary sm:text-2xl">
-                    {post.title}
-                  </h2>
-                  <p className="mt-2 leading-relaxed text-muted-foreground">
-                    {post.excerpt}
-                  </p>
-                  {post.whyItMatters && (
-                    <p className="mt-3 flex gap-2 text-sm leading-relaxed text-muted-foreground/90">
-                      <Lightbulb className="mt-0.5 size-3.5 shrink-0 text-primary/70" />
-                      <span>{post.whyItMatters}</span>
-                    </p>
-                  )}
-                  <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1.5">
-                      <User className="size-3.5" />
-                      {post.author}
-                    </span>
-                    <time dateTime={post.publishedAt}>
-                      {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </time>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          </StaggerItem>
-        );
-      })}
+      {orderedPosts.map((post) => (
+        <StaggerItem key={post.slug}>
+          <BlogPostCard
+            post={post}
+            commentCount={commentCounts[post.slug] ?? 0}
+            scheduled={isBlogPostScheduled(post.publishedAt)}
+            previewToken={previewToken}
+          />
+        </StaggerItem>
+      ))}
     </StaggerChildren>
   );
 }

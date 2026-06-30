@@ -105,6 +105,53 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "how to pace yourself running beginner",
     "easy run pace beginner",
   ],
+  "nutrition-basics-for-beginners": [
+    "beginner runner nutrition",
+    "what to eat when you start running",
+  ],
+  "bodyweight-strength-for-runners": [
+    "bodyweight strength training for runners",
+    "strength exercises for beginner runners",
+  ],
+  "running-form-101": [
+    "beginner running form",
+    "how to run with good form",
+    "running cadence beginner",
+  ],
+  "running-guide-for-women": [
+    "running tips for women beginners",
+    "women beginner running guide",
+    "running during menstrual cycle",
+  ],
+  "dumbbell-strength-at-home-for-runners": [
+    "dumbbell workout for runners at home",
+    "strength training runners home dumbbells",
+  ],
+  "advanced-strength-training-for-runners": [
+    "advanced strength training for runners",
+    "plyometrics for runners",
+    "runner weight training program",
+  ],
+  "running-vs-biking": [
+    "running vs cycling for runners",
+    "cycling cross training for runners",
+    "bike or run beginner fitness",
+  ],
+  "hiking-instead-of-long-run": [
+    "hiking instead of long run training",
+    "trail hiking for runners cross training",
+    "does hiking help running",
+  ],
+  "runner-etiquette-trails-roads-track": [
+    "running etiquette for beginners",
+    "trail running etiquette rules",
+    "how to run on track etiquette",
+  ],
+  "group-running-coach-and-pacer": [
+    "group running training etiquette",
+    "how to follow workout pacer running club",
+    "listening to running coach beginner",
+  ],
 };
 
 export function blogPostKeywords(slug: string, category: string): string[] {

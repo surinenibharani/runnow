@@ -267,7 +267,7 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-03-05",
     readTime: "5 min",
-    relatedSlugs: ["what-to-do-on-rest-days", "training-first-5k", "avoiding-injuries"],
+    relatedSlugs: ["what-to-do-on-rest-days", "training-first-5k", "avoiding-injuries", "running-vs-biking"],
     sections: [
       {
         paragraphs: [
@@ -1687,6 +1687,942 @@ export const blogPosts: BlogPost[] = [
           "Two short strength sessions per week — glutes, calves, core",
         ],
         cta: { text: "Read what to do on rest days", href: "/blog/what-to-do-on-rest-days" },
+      },
+    ],
+  },
+  {
+    slug: "nutrition-basics-for-beginners",
+    title: "Nutrition Basics for Beginners: What to Eat When You Start Running",
+    excerpt:
+      "You don't need a perfect diet to start running. Simple daily habits, easy pre-run snacks, and post-run meals that support energy without overwhelm.",
+    category: "Nutrition",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-08-02",
+    readTime: "7 min",
+    relatedSlugs: [
+      "nutrition-for-runners",
+      "training-first-5k",
+      "post-run-recovery",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Nutrition advice online sounds like a chemistry exam — macros, timing windows, supplement stacks. Beginners need something simpler: eat enough, hydrate, and don't experiment on race day.",
+          "This guide covers daily basics. For distance-specific fueling (5K vs half vs marathon), see our full runner's nutrition guide.",
+        ],
+      },
+      {
+        heading: "The three rules that matter most",
+        list: [
+          "Eat regular meals — skipping lunch then wondering why evening runs feel awful is a pattern, not a mystery",
+          "Include carbs, protein, and some healthy fat at most meals — you need fuel and recovery building blocks",
+          "Drink water through the day — chugging right before a run often leads to sloshing, not hydration",
+        ],
+      },
+      {
+        heading: "Before a run (30–90 minutes out)",
+        list: [
+          "Small, familiar snack if hungry: banana, toast with peanut butter, or yogurt",
+          "Avoid heavy, greasy, or high-fiber meals right before you head out",
+          "Coffee is fine if it's your normal — don't try espresso for the first time pre-run",
+          "Short easy runs under 45 minutes rarely need special fuel beyond normal eating",
+        ],
+      },
+      {
+        heading: "After a run",
+        list: [
+          "Eat within 1–2 hours — carbs plus protein (eggs and toast, rice bowl, smoothie with fruit)",
+          "Rehydrate with water; sports drinks are optional after sweaty or long efforts",
+          "You don't need a recovery shake — real food works fine",
+        ],
+      },
+      {
+        heading: "What beginners can ignore (for now)",
+        list: [
+          "Exact macro tracking and calorie apps",
+          "Gels and chews for runs under an hour",
+          "Keto, fasted running, or cutting carbs while building mileage",
+          "Expensive supplements marketed to runners",
+        ],
+      },
+      {
+        heading: "Red flags worth paying attention to",
+        list: [
+          "Dizziness or heavy fatigue on easy runs — could be under-fueling or dehydration",
+          "Frequent stomach issues — log what you ate and adjust timing or fiber",
+          "Lost period or persistent low energy — talk to a doctor; under-fueling affects health, not just pace",
+        ],
+        cta: {
+          text: "Read distance-specific fueling guide",
+          href: "/blog/nutrition-for-runners",
+        },
+      },
+    ],
+  },
+  {
+    slug: "bodyweight-strength-for-runners",
+    title: "Simple Bodyweight Strength Routines for Runners",
+    excerpt:
+      "Two short sessions per week — no gym required. Glutes, calves, and core work that keeps beginners injury-free and climbing hills with less dread.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-08-06",
+    readTime: "8 min",
+    relatedSlugs: [
+      "importance-of-cross-training",
+      "avoiding-injuries",
+      "how-to-not-hate-hills",
+      "dumbbell-strength-at-home-for-runners",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Running builds endurance, not balanced strength. Weak glutes and calves are behind many beginner shin and knee issues — and they make hills feel harder than they need to be.",
+          "The good news: you don't need a gym membership. Two 15–20 minute bodyweight sessions per week on non-running days (or after easy runs) is enough to start.",
+        ],
+      },
+      {
+        heading: "Session A — Glutes & hips (15–20 min)",
+        paragraphs: [
+          "Do 2 rounds. Rest 30–45 seconds between exercises. Move with control — sloppy reps don't help.",
+        ],
+        list: [
+          "Glute bridges — 12 reps. Squeeze at the top for 2 seconds",
+          "Clamshells — 10 each side. Keep hips stacked, don't roll back",
+          "Reverse lunges — 8 each leg. Short steps, torso tall",
+          "Side plank — 20–30 seconds each side",
+          "Calf raises — 15 slow reps. Pause at the top, lower slowly",
+        ],
+      },
+      {
+        heading: "Session B — Core & stability (15–20 min)",
+        list: [
+          "Dead bug — 8 each side. Lower back pressed to floor",
+          "Bird dog — 8 each side. Reach long, don't wobble",
+          "Plank — 20–40 seconds. Hips level, don't sag",
+          "Single-leg Romanian deadlift (bodyweight) — 8 each leg. Soft knee, hinge at hip",
+          "Wall sit — 30–45 seconds. Thighs parallel if comfortable",
+        ],
+      },
+      {
+        heading: "When to schedule strength",
+        list: [
+          "After easy runs or on rest days — not right before intervals or long runs",
+          "Same two days each week beats random 'when I remember'",
+          "If you're sore for 2+ days after strength, reduce reps or skip a round",
+        ],
+      },
+      {
+        heading: "Progression without complexity",
+        paragraphs: [
+          "After 3–4 weeks, add a third round or slow down each rep for more time under tension. That's enough for months of beginner training.",
+          "Our plans already include cross-training days — treat one of those as your strength session.",
+        ],
+        cta: {
+          text: "See why cross-training matters",
+          href: "/blog/importance-of-cross-training",
+        },
+      },
+    ],
+  },
+  {
+    slug: "running-form-101",
+    title: "Running Form 101: Posture, Footstrike & Cadence for Beginners",
+    excerpt:
+      "You don't need a coach on day one. A few visual cues for posture, where your feet land, arm swing, and step rate make running feel smoother and safer.",
+    category: "Getting Started",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-08-10",
+    readTime: "7 min",
+    relatedSlugs: [
+      "breathing-while-running",
+      "how-to-pace-yourself",
+      "first-run-tips",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Beginners often worry they're running 'wrong.' Most form fixes are simple: stand tall, don't overstride, and keep arms relaxed. You don't need to obsess — small adjustments beat a complete overhaul mid-run.",
+        ],
+      },
+      {
+        heading: "Posture: tall and slightly forward",
+        paragraphs: [
+          "Imagine a string pulling the top of your head up. Lean slightly from the ankles — not bending at the waist. Look ahead about 10–20 feet, not at your shoes.",
+        ],
+        figures: [
+          {
+            src: "/blog/running-form/posture.svg",
+            alt: "Diagram showing tall running posture with a slight forward lean from the ankles",
+            caption: "Stay tall through the chest. Lean comes from the ankles, not a hunched waist.",
+          },
+        ],
+      },
+      {
+        heading: "Where your feet land",
+        paragraphs: [
+          "Land with your foot roughly under your hips — not way out in front. Overstriding acts like a brake and increases impact on knees and shins.",
+          "Heel, midfoot, or forefoot matters less than not reaching. Quicker, shorter steps usually fix overstriding automatically.",
+        ],
+        figures: [
+          {
+            src: "/blog/running-form/footstrike.svg",
+            alt: "Diagram comparing landing under the hips versus overstriding with the foot landing far in front",
+            caption: "Shorter steps help you land under your body instead of reaching forward.",
+          },
+        ],
+      },
+      {
+        heading: "Arms and shoulders",
+        paragraphs: [
+          "Keep shoulders low and loose. Arms bend about 90° and swing forward and back — not across your chest like you're twisting a towel.",
+        ],
+        figures: [
+          {
+            src: "/blog/running-form/arms.svg",
+            alt: "Diagram showing relaxed arm swing with elbows bent near 90 degrees",
+            caption: "Relaxed shoulders, elbows bent, arms driving forward and back.",
+          },
+        ],
+      },
+      {
+        heading: "Cadence: steps per minute",
+        paragraphs: [
+          "Many beginners run around 150–160 steps per minute. A slightly quicker cadence — often 170–180 for easy running — can reduce overstriding and feel smoother.",
+          "Count one foot for 30 seconds and double it, or use a free metronome app at 170 bpm for a few minutes during an easy run.",
+        ],
+        figures: [
+          {
+            src: "/blog/running-form/cadence.svg",
+            alt: "Diagram illustrating quicker shorter running steps and a target cadence around 170 to 180 steps per minute",
+            caption: "Quicker, shorter steps — not sprinting. Aim for roughly 170–180 steps per minute on easy runs.",
+          },
+        ],
+      },
+      {
+        heading: "What not to fix on run one",
+        list: [
+          "Don't force a forefoot strike if it feels unnatural — fix overstriding first",
+          "Don't stare at the ground — it collapses posture",
+          "Don't tense your jaw and fists — relaxation saves energy",
+          "Film yourself only if curious; feeling smooth matters more than looking Olympic",
+        ],
+        cta: { text: "Read breathing basics", href: "/blog/breathing-while-running" },
+      },
+    ],
+  },
+  {
+    slug: "running-guide-for-women",
+    title: "A Beginner Running Guide for Women",
+    excerpt:
+      "Sports bras, training through your cycle, bone health, and when to get clearance — practical advice for women starting a running habit.",
+    category: "Health",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-08-14",
+    readTime: "8 min",
+    relatedSlugs: [
+      "running-with-health-conditions",
+      "nutrition-basics-for-beginners",
+      "avoiding-injuries",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Most beginner running advice is written as if everyone's body responds the same. Women starting out often have specific questions — about gear, energy shifts across the month, bone health, and training during pregnancy or after.",
+          "This isn't medical advice. When in doubt, talk to your doctor. These are practical starting points that help many women run consistently and safely.",
+        ],
+      },
+      {
+        heading: "Gear that actually matters",
+        list: [
+          "A supportive sports bra — less bounce means less discomfort and better focus on pace",
+          "Shoes that fit your feet, not a friend's recommendation",
+          "For urinary leakage on impact: pelvic floor physio helps; some runners use light liners — you're not alone",
+          "High-waist leggings or shorts that don't dig in — comfort beats trends",
+        ],
+      },
+      {
+        heading: "Training and your menstrual cycle",
+        paragraphs: [
+          "Energy and recovery can shift across your cycle. Some women feel strongest mid-cycle; others feel sluggish before a period. Track how you feel for 2–3 months instead of fighting every bad day.",
+        ],
+        list: [
+          "Hard days feeling off? Swap intervals for an easy walk-run — consistency beats heroics",
+          "Cramping or heavy flow days: easy movement or rest is valid",
+          "Lost or irregular periods while training hard — under-fueling may be a factor; see a clinician",
+        ],
+      },
+      {
+        heading: "Bone health and impact",
+        paragraphs: [
+          "Running can support bone density when built gradually — but too much too soon, especially with low calorie intake, works against you. Calcium and vitamin D from food matter; supplements only if your doctor recommends them.",
+        ],
+        list: [
+          "Increase weekly mileage slowly — the 10% rule is a decent guardrail",
+          "Include strength work 2× per week for hips and glutes",
+          "Don't stack aggressive dieting with a new marathon plan",
+        ],
+      },
+      {
+        heading: "Pregnancy and postpartum",
+        paragraphs: [
+          "Many women run during pregnancy with medical clearance and modified intensity. Postpartum return should be gradual — pelvic floor recovery often matters more than cardio fitness.",
+        ],
+        list: [
+          "Get provider clearance before running during pregnancy or after birth",
+          "Prioritize pelvic floor and core rehab if recommended before high-impact mileage",
+          "See our situational tips guide for more on pregnancy and health conditions",
+        ],
+        cta: {
+          text: "Running for specific situations",
+          href: "/tips/specific-situations",
+        },
+      },
+      {
+        heading: "Safety and confidence",
+        list: [
+          "Tell someone your route or share live location if running alone",
+          "Bright or reflective gear in low light; vary routes when possible",
+          "Headphones low enough to hear traffic — or one earbud out",
+          "You belong on the path as much as anyone — pace and walk breaks don't make you less of a runner",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "dumbbell-strength-at-home-for-runners",
+    title: "Basic Dumbbell Workouts at Home for Runners",
+    excerpt:
+      "One pair of dumbbells, two short sessions per week. Simple at-home lifts that build leg drive, posture, and injury resistance without a gym membership.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-08-18",
+    readTime: "8 min",
+    relatedSlugs: [
+      "bodyweight-strength-for-runners",
+      "importance-of-cross-training",
+      "avoiding-injuries",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Bodyweight work gets you far. Once you can hold a plank, lunge, and glute bridge with good form, light dumbbells add load without complexity — perfect for a living room or garage setup.",
+          "This is beginner-friendly strength, not bodybuilding. The goal is stronger hips, legs, and core so running feels smoother and injuries stay rare.",
+        ],
+      },
+      {
+        heading: "What you need",
+        list: [
+          "One pair of dumbbells — adjustable 5–25 lb (2–12 kg) sets work well for most beginners",
+          "Or fixed pairs: many women start with 8–15 lb; many men with 15–25 lb for lower-body moves",
+          "Exercise mat or carpet for floor work",
+          "15–20 minutes, twice per week, on rest days or after easy runs",
+        ],
+      },
+      {
+        heading: "Session A — Lower body & glutes (2 rounds)",
+        paragraphs: [
+          "Rest 45–60 seconds between exercises. Choose a weight where the last 2 reps feel challenging but your form stays clean.",
+        ],
+        list: [
+          "Goblet squat — 10 reps. Hold one dumbbell at your chest, sit back, knees track over toes",
+          "Romanian deadlift — 10 reps. Soft knees, hinge at hips, dumbbells slide down your thighs",
+          "Reverse lunges — 8 each leg. Hold dumbbells at your sides, short controlled steps",
+          "Calf raises — 15 reps. Hold dumbbells, pause at the top, lower slowly",
+          "Glute bridge (dumbbell on hips) — 12 reps. Squeeze 2 seconds at the top",
+        ],
+      },
+      {
+        heading: "Session B — Upper body & core (2 rounds)",
+        list: [
+          "Dumbbell row — 10 each arm. Hinge forward, flat back, pull elbow to hip",
+          "Floor press or bench press — 10 reps. Lie on floor, press dumbbells up without flaring elbows wildly",
+          "Farmer carry — 30–40 seconds. Walk tall holding dumbbells at your sides",
+          "Dead bug — 8 each side. Press lower back into floor while moving opposite arm and leg",
+          "Side plank — 20–30 seconds each side. Optional: hold light dumbbell on top hip",
+        ],
+      },
+      {
+        heading: "How heavy should you go?",
+        list: [
+          "Last 2 reps of each set should feel hard — not sloppy",
+          "If you can't finish with good form, drop weight or reps",
+          "Lower body usually tolerates more load than shoulders — that's normal",
+          "Add 2–5 lb every few weeks only if form stays solid",
+        ],
+      },
+      {
+        heading: "Common mistakes",
+        list: [
+          "Lifting the day before intervals or a long run — schedule strength after easy days",
+          "Rushing reps — slow eccentrics (lowering phase) build strength safely",
+          "Skipping warm-up — 3 minutes of marching, leg swings, and arm circles is enough",
+          "Chasing soreness — mild next-day stiffness is fine; limping is not",
+        ],
+        cta: {
+          text: "Start with bodyweight first",
+          href: "/blog/bodyweight-strength-for-runners",
+        },
+      },
+    ],
+  },
+  {
+    slug: "advanced-strength-training-for-runners",
+    title: "Advanced Strength Training for Runners: Build Power Without Burning Out",
+    excerpt:
+      "For experienced runners with a solid base: periodized lifting, single-leg power, and plyometrics that support half-marathon and marathon training — not replace it.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-08-22",
+    readTime: "9 min",
+    relatedSlugs: [
+      "dumbbell-strength-at-home-for-runners",
+      "training-first-half-marathon",
+      "training-first-full-marathon",
+      "importance-of-cross-training",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "If you've been running consistently for a year or more — and you've done basic strength work — you can layer in harder training that improves hill power, finishing kick, and injury resilience.",
+          "This is not about becoming a weightlifter. It's about targeted overload during base and early build phases, then maintaining strength as mileage peaks.",
+        ],
+      },
+      {
+        heading: "Who this is for (and who should wait)",
+        list: [
+          "Good fit: runners logging 20+ miles per week with no current injury flare-up",
+          "Good fit: you've completed 8+ weeks of bodyweight or dumbbell strength already",
+          "Wait if: you're in your first 6 months of running or returning from injury",
+          "Wait if: strength sessions leave you too sore to hit prescribed easy runs",
+        ],
+      },
+      {
+        heading: "Weekly structure (3 sessions)",
+        paragraphs: [
+          "Place the heavy day after an easy run or rest day. Keep plyometrics fresh — not the day after a long run. During peak race weeks, cut to one maintenance session.",
+        ],
+        subsections: [
+          {
+            heading: "Day 1 — Heavy strength",
+            list: [
+              "Back or goblet squat — 4×6 at RPE 7–8 (2 reps left in the tank)",
+              "Romanian deadlift — 4×8",
+              "Bulgarian split squat — 3×8 each leg",
+              "Standing calf raise (weighted) — 3×12 slow",
+            ],
+          },
+          {
+            heading: "Day 2 — Power & plyometrics",
+            list: [
+              "Box step-ups (explosive) — 3×6 each leg",
+              "Jump squats or squat jumps — 3×5, land softly",
+              "Single-leg hops in place — 3×8 each leg",
+              "Medicine ball or dumbbell push press — 3×8 (optional)",
+            ],
+          },
+          {
+            heading: "Day 3 — Posterior chain & core",
+            list: [
+              "Single-leg Romanian deadlift — 3×10 each leg",
+              "Hip thrust or glute bridge (barbell or heavy dumbbell) — 4×10",
+              "Pallof press or band anti-rotation — 3×12 each side",
+              "Copenhagen plank or side plank with row — 3×30 sec each side",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Periodize with your running plan",
+        list: [
+          "Base phase (8–12 weeks out): full 3-day strength, progressive load",
+          "Build phase (4–8 weeks out): keep heavy day, trim plyo volume by 30%",
+          "Peak / taper (2–3 weeks out): one maintenance session — squats, RDL, core only",
+          "Race week: skip lifting or do 15 minutes of mobility and activation",
+        ],
+      },
+      {
+        heading: "At home vs gym",
+        paragraphs: [
+          "A home setup can work with adjustable dumbbells, a bench, and resistance bands. A gym helps for barbell squats, trap-bar deadlifts, and heavier hip thrusts — but isn't mandatory.",
+          "Prioritize single-leg work and hip extension. Those transfer directly to uphill running and late-race form.",
+        ],
+      },
+      {
+        heading: "Recovery rules advanced runners break",
+        list: [
+          "Lifting legs to failure the day before tempo — schedule around quality runs",
+          "Adding plyometrics during an injury flare — back off to isometrics and PT",
+          "Chasing gym PRs during marathon peak — maintain, don't max out",
+          "Skipping sleep and protein while stacking mileage and lifting — recovery is the limiter",
+        ],
+        cta: {
+          text: "Basic dumbbell routines at home",
+          href: "/blog/dumbbell-strength-at-home-for-runners",
+        },
+      },
+    ],
+  },
+  {
+    slug: "running-vs-biking",
+    title: "Running vs Biking: Why You Don't Have to Choose",
+    excerpt:
+      "Running builds impact tolerance and race-specific fitness. Cycling builds aerobic engine without pounding. Here's how to use both — especially as a beginner.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-08-26",
+    readTime: "7 min",
+    relatedSlugs: [
+      "importance-of-cross-training",
+      "what-to-do-on-rest-days",
+      "avoiding-injuries",
+      "training-first-5k",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Runners and cyclists love a friendly rivalry: knees vs quads, pavement vs pedals, 5K PRs vs century rides. The better question isn't which sport wins — it's how each one makes you fitter for the other.",
+          "For beginners especially, pairing easy cycling with a run plan can keep you consistent when joints need a break, weather turns ugly, or motivation dips.",
+        ],
+      },
+      {
+        heading: "What running does better",
+        list: [
+          "Builds bone density and connective-tissue strength through impact (when progressed gradually)",
+          "Trains the exact muscles and movement patterns you'll use on race day",
+          "Teaches pacing by feel — breathing, footstrike, fatigue cues",
+          "Requires minimal gear — shoes and a route beat a bike tune-up for spontaneity",
+        ],
+      },
+      {
+        heading: "What cycling does better",
+        list: [
+          "Cardiovascular training with almost zero impact on knees and shins",
+          "Long aerobic sessions with less muscle soreness the next day",
+          "Controlled resistance — hills on the bike build leg strength without a run's pounding",
+          "A backup option when you're nursing a minor niggle or the sidewalks are icy",
+        ],
+      },
+      {
+        heading: "How they complement each other",
+        subsections: [
+          {
+            heading: "Extra aerobic work without extra miles",
+            paragraphs: [
+              "Heart and lungs don't know whether you're running or pedaling. An easy 30–45 minute bike ride after a hard run day adds fitness while your legs recover from impact.",
+            ],
+          },
+          {
+            heading: "Active recovery that still feels like training",
+            paragraphs: [
+              "Spinning easy on a rest day keeps blood moving through sore muscles better than the couch — without turning recovery into another run.",
+            ],
+          },
+          {
+            heading: "Injury prevention and comeback tool",
+            paragraphs: [
+              "Shin or knee acting up? Easy cycling maintains fitness while you reduce run volume. Many runners return stronger by swapping one or two runs for rides until symptoms settle — with a physio's input when pain persists.",
+            ],
+          },
+          {
+            heading: "Mental freshness",
+            paragraphs: [
+              "Doing the same thing every day breeds boredom. A bike day can reset your head so the next run feels like a choice, not a chore.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "A simple week for beginners",
+        paragraphs: [
+          "You don't need a triathlon setup. Two or three runs plus one easy bike session is plenty when you're building a habit.",
+        ],
+        list: [
+          "Mon — easy run",
+          "Tue — rest or gentle walk",
+          "Wed — run (intervals or walk-run)",
+          "Thu — easy cycling 30–40 min, conversational effort",
+          "Fri — rest",
+          "Sat — long run (or long easy walk-run)",
+          "Sun — optional yoga, walk, or easy spin",
+        ],
+      },
+      {
+        heading: "How hard should the bike be?",
+        list: [
+          "Most bike cross-training should feel easy — you could hold a conversation",
+          "If your legs are trashed from a long run, flat spinning beats hill repeats",
+          "Save hard cycling intervals for when you're not also building run mileage fast",
+          "Outdoor ride or stationary bike both count — consistency matters more than equipment",
+        ],
+      },
+      {
+        heading: "What cycling won't replace",
+        paragraphs: [
+          "You can't bike your way to a 5K PR without running. Impact tolerance, running economy, and race-day pacing come from time on your feet. Use the bike to support running — not substitute for every session on your plan.",
+        ],
+        list: [
+          "Don't swap your long run for a long ride every week and expect the same race readiness",
+          "Don't hammer bike intervals the day before a quality run",
+          "Don't ignore pain that returns the moment you're back on the road — get it checked",
+        ],
+        cta: {
+          text: "See how our plans use cross-training",
+          href: "/blog/importance-of-cross-training",
+        },
+      },
+    ],
+  },
+  {
+    slug: "hiking-instead-of-long-run",
+    title: "Can a Hard Hike Replace Your Long Run?",
+    excerpt:
+      "A tough trail day can build endurance, hill strength, and time on your feet — but it isn't a perfect swap. Here's when hiking helps training and when to lace up instead.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-08-30",
+    readTime: "7 min",
+    relatedSlugs: [
+      "how-to-not-hate-hills",
+      "running-vs-biking",
+      "importance-of-cross-training",
+      "training-first-half-marathon",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Your training plan says long run. The forecast is perfect and your friend texts about a ridge trail three towns over. Can you swap the pavement for peaks and still move your fitness forward?",
+          "Sometimes yes — especially if you treat the hike with the same respect you'd give a long run. Sometimes no — if the hike is so brutal it wrecks your legs for days or you never run on roads before race day.",
+        ],
+      },
+      {
+        heading: "What a difficult hike gives runners",
+        list: [
+          "Hours on your feet — mental and muscular endurance similar to a long easy run",
+          "Hill work disguised as scenery — quads, glutes, and calves under load",
+          "Lower impact than asphalt for many people — joints often thank you",
+          "A motivation boost when another loop of the same neighborhood feels stale",
+          "Balance and proprioception on uneven ground — useful for trail races, handy on cambered roads",
+        ],
+      },
+      {
+        heading: "What hiking doesn't fully replace",
+        list: [
+          "Running-specific impact — bones and tendons adapt to pounding by, well, pounding (gradually)",
+          "Road-race pacing and cadence on flat, smooth surfaces",
+          "The exact muscle firing pattern of a steady jog — hiking uses different stride mechanics",
+          "Confidence that you can hold a target pace for 13.1 or 26.2 on race morning",
+        ],
+      },
+      {
+        heading: "When swapping makes sense",
+        subsections: [
+          {
+            heading: "You're building base fitness",
+            paragraphs: [
+              "Early in a plan, a 2–3 hour moderate hike with hills can substitute for an easy long run if your legs feel good the next day. You're banking aerobic time without another day of repetitive impact.",
+            ],
+          },
+          {
+            heading: "You need a mental reset",
+            paragraphs: [
+              "Burnout is real. One scenic hike can refill the tank better than forcing another grim lap — as long as you return to scheduled runs that week.",
+            ],
+          },
+          {
+            heading: "You're easing a minor ache",
+            paragraphs: [
+              "A dull shin or tight Achilles might tolerate hiking when running feels sharp. That's a temporary tool, not a diagnosis — persistent pain still deserves a professional look.",
+            ],
+          },
+          {
+            heading: "Your goal race has serious hills",
+            paragraphs: [
+              "Trail half or hilly road marathon? Hard hikes are sport-specific prep. Flat 5K in eight weeks? Keep most long work as running.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "How to plan a hike that actually helps",
+        list: [
+          "Match duration, not just distance — 2 hours hiking often equals 90 minutes of easy running for fatigue",
+          "Keep most of the hike conversational; save one sustained climb as your 'work' segment",
+          "Use poles if steep descents trash your knees — no bonus points for suffering",
+          "Wear broken-in trail shoes or runners with grip; blisters don't count as cross-training",
+          "Pack water and snacks like a long run — bonking on a mountain is worse than on a bike path",
+          "Log how your legs feel 24–48 hours later — that's your feedback for next time",
+        ],
+      },
+      {
+        heading: "When not to swap",
+        list: [
+          "Within 3–4 weeks of a goal race — prioritize run-specific long efforts",
+          "If the hike leaves you too sore to complete easy runs that week",
+          "If you've already cut runs all month for adventures — consistency beats peak bagging",
+          "If elevation or heat on the trail is far harder than anything your plan prescribes",
+        ],
+      },
+      {
+        heading: "A practical rule of thumb",
+        paragraphs: [
+          "One hard hike every 2–4 weeks in place of a long run? Often fine for beginners building general fitness. Every weekend on trails with zero road long runs before a road race? You'll feel strong uphill and uncertain on flat mile 10.",
+          "Use hikes to complement your plan — not quietly replace the work that makes race day predictable.",
+        ],
+        cta: {
+          text: "Read our hill-running tips",
+          href: "/blog/how-to-not-hate-hills",
+        },
+      },
+    ],
+  },
+  {
+    slug: "runner-etiquette-trails-roads-track",
+    title: "Runner's Etiquette: Roads, Trails (Paved & Dirt), and the Track",
+    excerpt:
+      "Where to run, who yields to whom, and how not to be That Runner — a practical guide to sharing roads, multi-use paths, singletrack, and track lanes.",
+    category: "Getting Started",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-09-03",
+    readTime: "8 min",
+    relatedSlugs: [
+      "first-run-tips",
+      "running-form-101",
+      "hiking-instead-of-long-run",
+      "how-to-not-hate-hills",
+      "group-running-coach-and-pacer",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Nobody gives you a handbook when you become a runner. You learn that sidewalks end, cyclists appear from nowhere, and track lanes have rules — usually by almost colliding with someone.",
+          "Good etiquette isn't about being perfect. It's about keeping everyone safe, reducing awkward moments, and making the running community somewhere you'd want to belong on day one.",
+        ],
+      },
+      {
+        heading: "Universal basics (every surface)",
+        list: [
+          "Pass on the left when you can — announce with \"On your left\" or a friendly \"Behind you\"",
+          "Don't block the full width — run single file when others are around",
+          "Headphones low enough to hear bikes, cars, and other runners",
+          "Leash dogs unless local rules say otherwise; short leash near crowds",
+          "If you spit or blow your nose, check nobody is in the blast zone",
+          "A nod, wave, or quick \"morning\" costs nothing and builds goodwill",
+        ],
+      },
+      {
+        heading: "Running on roads and sidewalks",
+        paragraphs: [
+          "Road running is where most beginners start. A few habits keep you and drivers on predictable terms.",
+        ],
+        list: [
+          "Use sidewalks when they exist — that's what they're for",
+          "No sidewalk? Run facing traffic so you see what's coming",
+          "Cross at crosswalks; make eye contact with drivers before stepping out",
+          "Wear bright or reflective gear at dawn, dusk, and night",
+          "Assume drivers don't see you — even with the right of way",
+          "Run behind a friend when in a group; don't fan across the whole shoulder",
+          "Skip busy highways without shoulders — find a quieter loop",
+        ],
+      },
+      {
+        heading: "Paved trails and multi-use paths",
+        paragraphs: [
+          "Rail-trails, river paths, and park loops are beginner-friendly — and shared with walkers, strollers, skaters, and fast cyclists.",
+        ],
+        list: [
+          "Stay to the right, pass on the left — same as slow traffic on a road",
+          "Call out before passing — a bike bell or verbal warning prevents heart attacks",
+          "Slower traffic has the right of way; faster traffic passes safely",
+          "Don't stop suddenly in the middle of the path — step to the side",
+          "Leash pets and keep kids close when faster users approach",
+          "Easy pace days are perfect here; save sprint repeats for the track or empty roads",
+        ],
+      },
+      {
+        heading: "Unpaved trails (dirt, gravel, singletrack)",
+        paragraphs: [
+          "Natural trails add roots, mud, and hikers. Etiquette here protects the trail and the people on it.",
+        ],
+        list: [
+          "Hikers generally have right of way — step aside on the downhill side when safe",
+          "Uphill runners often yield to downhill on narrow singletrack (momentum is harder to stop) — when in doubt, communicate",
+          "Stay on the trail — cutting switchbacks erodes paths and annoys land managers",
+          "Muddy trail? Run through the puddle or choose a different route — widening the trail kills vegetation",
+          "Downhill runners: control speed around blind corners — announce before passing",
+          "Pack out wrappers; gel tabs belong in your pocket, not the forest",
+          "Headphones off or one earbud out — you need to hear bikes and wildlife",
+        ],
+      },
+      {
+        heading: "Running on a track",
+        paragraphs: [
+          "A standard 400 m track is great for intervals — but it's a shared, measured space with unwritten rules.",
+        ],
+        list: [
+          "Lane 1 is for the fastest workout traffic — don't jog laps in the inside lane during a club session",
+          "Warm-up and cool-down counterclockwise in outer lanes unless everyone agrees otherwise",
+          "Before stepping onto the track, look both directions — sprinters move fast",
+          "Never stop on a curve — pull to the infield or outer straightaway",
+          "Respect school or facility hours; some tracks lock outside public times",
+          "One full lap is ~400 m — useful for beginners learning distance without GPS",
+        ],
+      },
+      {
+        heading: "Etiquette mistakes beginners regret",
+        list: [
+          "Sprinting intervals on a crowded family path",
+          "Running three abreast on a narrow sidewalk",
+          "Passing without warning and startling someone hard of hearing",
+          "Blasting music and missing a cyclist's \"on your left\"",
+          "Using a muddy trail the day after rain when rangers ask people to stay off",
+        ],
+      },
+      {
+        heading: "Pick the right surface for the workout",
+        paragraphs: [
+          "Easy runs and walk-run intervals work almost anywhere. Hard efforts belong where you won't endanger or annoy others — track, quiet road loop, or empty trail section.",
+          "When you're new, a paved path or neighborhood loop beats learning etiquette and navigation on technical singletrack at the same time.",
+        ],
+        cta: {
+          text: "First run tips",
+          href: "/blog/first-run-tips",
+        },
+      },
+    ],
+  },
+  {
+    slug: "group-running-coach-and-pacer",
+    title: "Group Running: Following Your Coach and Workout Pacer",
+    excerpt:
+      "Club runs, track nights, and long-run groups work when you listen to the coach and stick with the workout pacer — not when everyone races the warm-up.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-09-07",
+    readTime: "8 min",
+    relatedSlugs: [
+      "runner-etiquette-trails-roads-track",
+      "how-to-pace-yourself",
+      "building-a-running-habit",
+      "importance-of-cross-training",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Solo runs build discipline. Group training builds consistency — if you actually follow the plan. Tuesday track night, Saturday long-run crew, couch-to-5K clinic at the park: someone is usually leading the workout or holding a target pace. That's your coach or workout pacer.",
+          "This post is about training sessions, not race morning. A race pacer is a different job (and a different article). Here we're talking about the person calling intervals on the track and the runner keeping the long-run group at 10:30/mile.",
+        ],
+      },
+      {
+        heading: "Coach vs workout pacer — who's who?",
+        paragraphs: [
+          "In many clubs the roles blur, but the jobs are different.",
+        ],
+        list: [
+          "Coach — designs the week, explains the workout, adjusts for injuries, tells you when to back off",
+          "Workout pacer — leads a pace group during a specific run (long run, tempo, track reps) and keeps splits honest",
+          "Run leader / captain — may not be a certified coach but knows the route, regroup points, and club rules",
+          "You might have all three on one morning — listen to whoever is running that piece of the session",
+        ],
+      },
+      {
+        heading: "Why group training helps beginners",
+        list: [
+          "Accountability — someone expects you at 6 a.m.",
+          "Pacing you wouldn't hold alone on easy days",
+          "Real-time answers from more experienced runners",
+          "Safety in numbers on dark or remote routes",
+          "Proof that every pace and body type belongs in the sport",
+        ],
+      },
+      {
+        heading: "Before you show up",
+        list: [
+          "Know the posted pace, distance, and meet-up spot — pick the group you'll actually finish with",
+          "Arrive early for the coach's briefing — that's when effort and route get explained",
+          "Bring water if the route has no fountains; tell the leader if you need to peel off early",
+          "Leave headphones at home — you need to hear instructions and traffic",
+          "Read club rules (dogs, strollers, minimum pace) before you go",
+        ],
+      },
+      {
+        heading: "Behavior during group training",
+        list: [
+          "Run single file or two abreast max on narrow paths",
+          "Announce stops — \"slowing\" or \"water stop\" prevents pile-ups",
+          "Regroup where the coach or pacer says — don't scatter without a plan",
+          "Don't race the warm-up or cool-down — the workout hasn't started yet",
+          "Thank volunteer leaders; many clubs run on donated time",
+        ],
+      },
+      {
+        heading: "Listening to your coach during training",
+        paragraphs: [
+          "A coach's job is the whole season — not validating today's urge to sprint. Group programs work because easy days stay easy and hard days have structure.",
+        ],
+        list: [
+          "Listen at the pre-workout briefing — effort, reps, rest, and where to regroup",
+          "Understand the purpose of each session — easy runs build base; they are not \"junk miles\" to skip",
+          "Do the prescribed reps and recoveries — shortening rest turns intervals into random fast running",
+          "When the coach says walk, walk — ego jogging on recovery is how groups get injured",
+          "Ask form and strategy questions after the set or at designated Q&A — not mid-rep while they're watching twelve people",
+          "Report pain early in the session — a good coach shortens or swaps the workout; hiding a shin issue helps nobody",
+          "Don't negotiate every workout in front of the group — trust the block, then give feedback privately if it's not working",
+          "If the coach moves you down a pace group for a day, it's training — not a punishment",
+        ],
+      },
+      {
+        heading: "Following your workout pacer during training",
+        paragraphs: [
+          "A workout pacer isn't a race-day balloon holder. They're the runner (or coach on a bike) keeping your long run, tempo, or track set at the right effort — usually week after week so the group learns to trust the pace.",
+        ],
+        list: [
+          "Start the workout beside or slightly behind the pacer — not ahead from step one",
+          "Ask the plan at the start: even effort whole way? Negative split second half? Walk breaks at mile markers?",
+          "Hold conversation pace on easy long runs — if you can't talk, you're ahead of the group you signed up for",
+          "On tempo or interval days, hit the pacer's rep targets and full recoveries — don't cherry-pick the fast laps",
+          "Stay through the regroup — pacers often pause to count heads and give the next instruction",
+          "Tell them early if you're struggling — \"I may need to drop at the water stop\" lets them adjust without losing the group",
+          "Don't sprint the last quarter mile to \"prove\" you didn't need them — that teaches bad pacing for race day",
+          "If you feel great every week and leave the pacer behind, move up a group with the coach's okay — don't ghost upward without asking",
+        ],
+      },
+      {
+        heading: "What coaches and pacers wish you'd do",
+        list: [
+          "Show up in the right pace group — suffering two bands too fast slows everyone down",
+          "Follow the route — shortcuts break trust and confuse regroup points",
+          "Repeat instructions back if you're unsure — \"So we turn left at the bridge?\" beats getting lost",
+          "Stay for the cool-down or mobility the coach leads — it's part of the session",
+          "Give honest feedback after — \"That tempo felt too hot\" helps next week's plan",
+        ],
+      },
+      {
+        heading: "When to speak up during training",
+        list: [
+          "Sharp pain, dizziness, or chest discomfort — stop and tell the coach or pacer immediately",
+          "You're lost or the group missed a turn",
+          "A car, cyclist, or hazard the leader hasn't seen",
+          "You need to drop off — say so at a regroup so nobody searches later",
+          "The pace feels wrong for the prescribed effort — speak up early, not after you're wrecked",
+        ],
+      },
+      {
+        heading: "Group training mistakes to avoid",
+        list: [
+          "Joining a faster group \"just to see\" every week",
+          "Racing strangers on recovery days",
+          "Ignoring the pacer to chase a Strava segment",
+          "Showing up late and missing the coach's instructions",
+          "Treating the workout pacer like background noise instead of the pace you're supposed to learn",
+        ],
+        paragraphs: [
+          "Race-day pacing is its own skill — we'll cover that in our race-day guide. In training, the win is showing up, listening, and finishing the session as prescribed. The best group runners are coachable week after week, not just flashy on one rep.",
+        ],
+        cta: {
+          text: "Read road and trail etiquette",
+          href: "/blog/runner-etiquette-trails-roads-track",
+        },
       },
     ],
   },

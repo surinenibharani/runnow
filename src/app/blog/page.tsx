@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Suspense } from "react";
 import { FadeIn } from "@/components/motion/fade-in";
+import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import {
   BlogCategoryFilter,
@@ -85,13 +85,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           previewToken={preview ? previewToken : undefined}
         />
 
-        <FadeIn className="mt-12 text-center">
-          <p className="text-sm text-muted-foreground">
-            Ready to put it into practice?{" "}
-            <Link href="/plan" className="text-primary hover:underline">
-              Pick a training plan
-            </Link>
-          </p>
+        <FadeIn className="mt-12">
+          <StartPlanCta variant="compact" />
         </FadeIn>
       </div>
     </div>

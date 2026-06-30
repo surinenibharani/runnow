@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, Footprints, ShoppingBag, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { GearCategoryCard } from "@/components/gear/gear-category-card";
 import { GearTierSuggestions } from "@/components/gear/gear-tier-suggestions";
@@ -194,6 +195,10 @@ export default function GearPage() {
               connect Strava
             </Link>
           </p>
+        </FadeIn>
+
+        <FadeIn className="mt-8">
+          <StartPlanCta variant="compact" />
         </FadeIn>
       </div>
     </div>

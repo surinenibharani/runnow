@@ -73,6 +73,9 @@ Open [http://localhost:3000](http://localhost:3000).
 | `STRIPE_WEBHOOK_SECRET` | From Stripe webhook endpoint (`whsec_...`) |
 | `STRIPE_COACH_PRICE_ID` | Recurring price ID for coach plan (`price_...`) |
 | `BLOG_PREVIEW_SECRET` | Optional. Secret for `?preview=` links to read scheduled blog posts on production |
+| `RESEND_API_KEY` | [Resend](https://resend.com) API key for newsletter emails |
+| `EMAIL_FROM` | Sender address, e.g. `LetsRunNow <hello@yourdomain.com>` (must match verified Resend domain) |
+| `CRON_SECRET` | Random string for `/api/cron/newsletter` — `openssl rand -base64 32` |
 
 ### Strava setup
 

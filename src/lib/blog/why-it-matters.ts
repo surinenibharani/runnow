@@ -50,6 +50,26 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Chafing, freezing, or overheating on run one can convince you running isn't for you. The right basics are cheap and mostly already in your closet.",
   "post-run-recovery":
     "What you do in the hour after a run shapes how sore you feel tomorrow — and whether you show up for the next one.",
+  "nutrition-basics-for-beginners":
+    "Under-eating is one of the fastest ways for new runners to feel exhausted, get hurt, or quit. Simple daily habits beat complicated diets every time.",
+  "bodyweight-strength-for-runners":
+    "Running alone doesn't build the glute and calf strength that keeps shins and knees happy. Fifteen minutes twice a week is cheap insurance.",
+  "running-form-101":
+    "Small form fixes — posture, shorter steps, relaxed arms — reduce impact and make easy runs actually feel easy. You don't need a lab analysis on day one.",
+  "running-guide-for-women":
+    "Women starting out often have questions men-focused guides skip — gear, cycles, bone health, and safe return after pregnancy. Getting those right keeps you on the road.",
+  "dumbbell-strength-at-home-for-runners":
+    "A single pair of dumbbells at home can build the hip and leg strength running demands — without a gym contract or complicated programs.",
+  "advanced-strength-training-for-runners":
+    "Experienced runners hit plateaus when they only add miles. Smart lifting and plyometrics support power on hills and protect you when training peaks.",
+  "running-vs-biking":
+    "Cycling isn't cheating on your run plan — it's how many beginners stay consistent when impact, weather, or soreness would otherwise sideline them.",
+  "hiking-instead-of-long-run":
+    "A hard hike can build hill strength and hours on your feet — but swap too often and race day on flat pavement surprises you. Knowing when to trade matters.",
+  "runner-etiquette-trails-roads-track":
+    "Nobody teaches trail yield rules or track lane etiquette on day one — learning them early keeps you safe and welcome on shared paths.",
+  "group-running-coach-and-pacer":
+    "Group training only works if you follow the session plan — not the fastest person in the parking lot. Learning to listen to your coach and workout pacer early saves months of junk miles.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

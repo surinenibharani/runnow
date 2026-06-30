@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import {
   SiteSearch,
   SiteSearchResultLink,
@@ -62,6 +63,10 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             )}
           </div>
         )}
+
+        <div className="mt-12">
+          <StartPlanCta variant="compact" />
+        </div>
       </div>
     </div>
   );

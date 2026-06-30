@@ -1,24 +1,46 @@
+"use client";
+
 import Link from "next/link";
+import { InstagramIcon } from "@/components/icons/instagram";
 import { Logo } from "@/components/brand/logo";
+import { StartPlanCta } from "@/components/cta/start-plan-cta";
+import { EmailSignup } from "@/components/newsletter/email-signup";
 import { Separator } from "@/components/ui/separator";
 import {
   footerLearnLinks,
   footerTipsLinks,
   footerTrainLinks,
 } from "@/lib/navigation";
-import { SITE_NAME } from "@/lib/site";
+import { INSTAGRAM_URL, SITE_NAME } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-muted/30">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+        <div className="mb-10">
+          <StartPlanCta
+            variant="compact"
+            headline="Start your free training plan"
+            description="Couch to 5K in your browser — check off workouts, build a streak, no app required."
+          />
+        </div>
+
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
             <Logo />
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Helping beginners lace up and love running — one step at a time.
             </p>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary"
+            >
+              <InstagramIcon className="size-4" />
+              Follow on Instagram
+            </a>
           </div>
 
           <div>
@@ -34,6 +56,14 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/stories"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Success Stories
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -87,25 +117,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-3 text-sm font-semibold">Get started</h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              No sign-up required. Jump into a plan and track progress in your
-              browser.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Link
-                href="/plan"
-                className="inline-flex rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-              >
-                Open training plans
-              </Link>
-              <Link
-                href="/signup"
-                className="inline-flex rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-              >
-                Create account
-              </Link>
-            </div>
+            <EmailSignup compact />
           </div>
         </div>
 

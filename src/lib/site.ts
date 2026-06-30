@@ -18,3 +18,8 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.AUTH_URL ||
   "http://localhost:3000";
+
+/** Public Instagram profile — set NEXT_PUBLIC_INSTAGRAM_URL in production. */
+export const INSTAGRAM_URL =
+  process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim() ||
+  "https://www.instagram.com/letsrunnow";

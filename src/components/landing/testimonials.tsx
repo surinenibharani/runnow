@@ -1,26 +1,7 @@
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
-
-const testimonials = [
-  {
-    quote:
-      "I genuinely thought running wasn't for me. Week 4 and I'm actually looking forward to my runs.",
-    name: "Kumar",
-    detail: "Age 46 · started from zero",
-  },
-  {
-    quote:
-      "The walk-run intervals made it feel achievable. No shame in walking — that's the whole point.",
-    name: "Venkat",
-    detail: "Age 42 · completed the 8-week plan",
-  },
-  {
-    quote:
-      "Checking off workouts and seeing my streak grow kept me accountable. Simple but it works.",
-    name: "Fakruddin",
-    detail: "Age 44 · on week 6 and counting",
-  },
-];
+import { successStories } from "@/lib/testimonials";
 
 export function Testimonials() {
   return (
@@ -31,12 +12,15 @@ export function Testimonials() {
             Real beginners, real progress
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            You&apos;re not alone on this journey.
+            You&apos;re not alone on this journey.{" "}
+            <Link href="/stories" className="text-primary hover:underline">
+              Read success stories
+            </Link>
           </p>
         </FadeIn>
 
         <StaggerChildren className="grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
+          {successStories.map((t) => (
             <StaggerItem key={t.name}>
               <Card className="h-full border-border/60">
                 <CardContent className="p-6 sm:p-8 flex flex-col h-full">

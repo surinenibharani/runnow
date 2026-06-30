@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Menu, User, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
+import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { SiteSearch } from "@/components/search/site-search";
 import { useSession, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
@@ -152,6 +153,7 @@ export function Navbar() {
         />
 
         <div className="hidden shrink-0 items-center gap-2 lg:flex">
+          <StartPlanCta variant="button" />
           {session ? (
             <>
               {displayName && (
@@ -211,6 +213,9 @@ export function Navbar() {
           className="border-t border-border animate-in fade-in slide-in-from-top-1 duration-200 lg:hidden"
         >
           <div className="flex flex-col gap-1 p-4">
+            <div className="mb-2 px-1">
+              <StartPlanCta variant="button" className="w-full justify-center" />
+            </div>
             {mobileLinks.map((link) => {
               const active = isNavLinkActive(
                 pathname,

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen, Users } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
+import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { SituationalTipsGrid } from "@/components/tips/situational-tips-grid";
@@ -61,6 +62,10 @@ export default function SpecificSituationsTipsPage() {
             </Link>
             .
           </p>
+        </FadeIn>
+
+        <FadeIn className="mt-8">
+          <StartPlanCta variant="compact" />
         </FadeIn>
       </div>
     </div>

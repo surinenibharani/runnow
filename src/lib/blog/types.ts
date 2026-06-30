@@ -1,3 +1,9 @@
+export type BlogFigure = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
 export type BlogSubsection = {
   heading: string;
   paragraphs?: string[];
@@ -9,6 +15,7 @@ export type BlogSection = {
   heading?: string;
   paragraphs?: string[];
   list?: string[];
+  figures?: BlogFigure[];
   subsections?: BlogSubsection[];
   cta?: { text: string; href: string };
 };

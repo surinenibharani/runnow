@@ -11,6 +11,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { INJURIES_SEO_KEYWORDS } from "@/lib/seo/keywords";
@@ -321,6 +322,10 @@ export default function InjuriesPage() {
               Beginner tips
             </Link>
           </p>
+        </FadeIn>
+
+        <FadeIn className="mt-8">
+          <StartPlanCta variant="compact" />
         </FadeIn>
       </div>
     </div>
