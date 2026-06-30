@@ -26,6 +26,7 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { formatDistance, formatDuration, formatPace } from "@/lib/strava";
 import type { PlanAlignmentSummary } from "@/lib/plan-alignment";
 import { PlanAlignmentCard } from "@/components/dashboard/plan-alignment";
+import { TrainingPlanSummaryCard } from "@/components/dashboard/training-plan-summary-card";
 import { RecoveryReadinessCard } from "@/components/dashboard/recovery-readiness-card";
 import { useProfileModal } from "@/components/profile/profile-modal";
 import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
@@ -40,6 +41,7 @@ import {
   type ChartTimeRange,
 } from "@/lib/chart-time-range";
 import type { RecoveryReadiness } from "@/lib/recovery-readiness";
+import type { TrainingPlanDisplay } from "@/lib/training-plan-display";
 import { formatGenderLabel } from "@/lib/gender";
 import { formatBmiWithCategory, getBmi } from "@/lib/athlete-profile";
 import {
@@ -68,13 +70,7 @@ interface DashboardData {
   stravaLastSyncedAt: string | null;
   stravaProfileUrl: string | null;
   alignment: PlanAlignmentSummary | null;
-  trainingPlan: {
-    planId: string;
-    currentWeek: number;
-    restDay: number;
-    longRunDay: number;
-    runDaysPerWeek: 3 | 4;
-  };
+  trainingPlan: TrainingPlanDisplay;
   streak: { current: number; longest: number; lastRunDate: string | null };
   suggestions: RunSuggestion[];
   routeComparisons: RouteComparison[];
@@ -421,6 +417,10 @@ export function DashboardContent() {
           {message && (
             <p className="text-sm text-primary mt-3">{message}</p>
           )}
+        </FadeIn>
+
+        <FadeIn>
+          <TrainingPlanSummaryCard plan={data.trainingPlan} />
         </FadeIn>
 
         {!data.stravaConnected && (

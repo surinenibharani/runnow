@@ -21,6 +21,7 @@ import { analyzePlanAlignment } from "@/lib/plan-alignment";
 import { calculateRecoveryReadiness, toDateKey } from "@/lib/recovery-readiness";
 import { buildAthleteProfile } from "@/lib/athlete-profile";
 import { getOrCreateUserTrainingPlan } from "@/lib/teams";
+import { buildTrainingPlanDisplay } from "@/lib/training-plan-display";
 
 function isRunActivity(type: string): boolean {
   const t = type.toLowerCase();
@@ -170,13 +171,7 @@ export async function GET(request: Request) {
     stravaProfileUrl: stravaAccount
       ? `https://www.strava.com/athletes/${stravaAccount.athleteId}`
       : null,
-    trainingPlan: {
-      planId: trainingPlan.planId,
-      currentWeek: trainingPlan.currentWeek,
-      restDay: trainingPlan.restDay,
-      longRunDay: trainingPlan.longRunDay,
-      runDaysPerWeek: trainingPlan.runDaysPerWeek === 4 ? 4 : 3,
-    },
+    trainingPlan: buildTrainingPlanDisplay(trainingPlan),
     alignment,
     streak,
     suggestions,
