@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import {
   deleteUserTrainingPlan,
   getOrCreateUserTrainingPlan,
+  getUserTrainingPlan,
   updateUserTrainingPlan,
 } from "@/lib/teams";
 import { parseCompletedIdsFromDb, serializeCompletedIds } from "@/lib/plan-alignment";
@@ -87,7 +88,10 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const plan = await getOrCreateUserTrainingPlan(session.user.id);
+  const plan = await getUserTrainingPlan(session.user.id);
+  if (!plan) {
+    return NextResponse.json({ error: "No training plan" }, { status: 404 });
+  }
 
   return NextResponse.json(serializeTrainingPlan(plan));
 }
@@ -287,7 +291,10 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Invalid run days per week" }, { status: 400 });
   }
 
-  const plan = await getOrCreateUserTrainingPlan(session.user.id);
+  const plan = await getUserTrainingPlan(session.user.id);
+  if (!plan) {
+    return NextResponse.json({ error: "No training plan" }, { status: 404 });
+  }
   const targetPlanId = bodyPlanId ?? plan.planId;
   const schedulePrefs = resolveSchedulePrefs(plan, {
     restDay,
@@ -369,8 +376,12 @@ export async function DELETE(request: Request) {
 
   if (reset === "all") {
     await deleteUserTrainingPlan(session.user.id);
-    const plan = await getOrCreateUserTrainingPlan(session.user.id);
-    return NextResponse.json(serializeTrainingPlan(plan));
+    return NextResponse.json({ deleted: true });
+  }
+
+  const existing = await getUserTrainingPlan(session.user.id);
+  if (!existing) {
+    return NextResponse.json({ error: "No training plan" }, { status: 404 });
   }
 
   const updated = await updateUserTrainingPlan(session.user.id, {

@@ -27,6 +27,7 @@ import { formatDistance, formatDuration, formatPace } from "@/lib/strava";
 import type { PlanAlignmentSummary } from "@/lib/plan-alignment";
 import { PlanAlignmentCard } from "@/components/dashboard/plan-alignment";
 import { TrainingPlanEditorCard } from "@/components/dashboard/training-plan-editor-card";
+import { TrainingPlanSignupCard } from "@/components/dashboard/training-plan-signup-card";
 import { RecoveryReadinessCard } from "@/components/dashboard/recovery-readiness-card";
 import { useProfileModal } from "@/components/profile/profile-modal";
 import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
@@ -42,6 +43,7 @@ import {
 } from "@/lib/chart-time-range";
 import type { RecoveryReadiness } from "@/lib/recovery-readiness";
 import type { TrainingPlanDisplay } from "@/lib/training-plan-display";
+import type { PlanDeletedMessage } from "@/lib/plan-messages";
 import { formatGenderLabel } from "@/lib/gender";
 import { formatBmiWithCategory, getBmi } from "@/lib/athlete-profile";
 import {
@@ -70,7 +72,8 @@ interface DashboardData {
   stravaLastSyncedAt: string | null;
   stravaProfileUrl: string | null;
   alignment: PlanAlignmentSummary | null;
-  trainingPlan: TrainingPlanDisplay;
+  hasTrainingPlan: boolean;
+  trainingPlan: TrainingPlanDisplay | null;
   streak: { current: number; longest: number; lastRunDate: string | null };
   suggestions: RunSuggestion[];
   routeComparisons: RouteComparison[];
@@ -129,6 +132,8 @@ export function DashboardContent() {
   const [activityHrZonesLoading, setActivityHrZonesLoading] = useState(false);
   const [routeComparisonsExpanded, setRouteComparisonsExpanded] = useState(false);
   const [recentWorkoutsExpanded, setRecentWorkoutsExpanded] = useState(false);
+  const [planDeletedNotice, setPlanDeletedNotice] =
+    useState<PlanDeletedMessage | null>(null);
 
   const loadDashboard = useCallback(
     async (range: ChartTimeRange = chartRange) => {
@@ -420,13 +425,33 @@ export function DashboardContent() {
         </FadeIn>
 
         <FadeIn>
-          <TrainingPlanEditorCard
-            plan={data.trainingPlan}
-            onPlanUpdated={(plan) => {
-              setData((prev) => (prev ? { ...prev, trainingPlan: plan } : prev));
-              void loadDashboard();
-            }}
-          />
+          {data.hasTrainingPlan && data.trainingPlan ? (
+            <TrainingPlanEditorCard
+              plan={data.trainingPlan}
+              onPlanUpdated={(plan) => {
+                setPlanDeletedNotice(null);
+                setData((prev) =>
+                  prev ? { ...prev, hasTrainingPlan: true, trainingPlan: plan } : prev
+                );
+                void loadDashboard();
+              }}
+              onPlanRemoved={(notice) => {
+                setPlanDeletedNotice(notice ?? null);
+                setData((prev) =>
+                  prev
+                    ? {
+                        ...prev,
+                        hasTrainingPlan: false,
+                        trainingPlan: null,
+                        alignment: null,
+                      }
+                    : prev
+                );
+              }}
+            />
+          ) : (
+            <TrainingPlanSignupCard deletedNotice={planDeletedNotice} />
+          )}
         </FadeIn>
 
         {!data.stravaConnected && (

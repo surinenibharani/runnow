@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, ChevronDown, Cloud, Flame, Moon, RotateCcw } from "lucide-react";
+import { Check, ChevronDown, Cloud, Flame, Moon, RotateCcw, Sparkles } from "lucide-react";
 import {
   PLAN_FAMILIES,
   PLANS,
@@ -85,6 +85,7 @@ export function WeekTracker() {
   const [useRemote, setUseRemote] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [bootstrapComplete, setBootstrapComplete] = useState(false);
+  const [enrolling, setEnrolling] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [milestoneHighlight, setMilestoneHighlight] =
     useState<MilestoneHighlight | null>(null);
@@ -180,7 +181,15 @@ export function WeekTracker() {
       setSyncing(true);
       try {
         const remote = await fetchTrainingPlan();
-        if (!remote || cancelled) return;
+        if (cancelled) return;
+
+        if (!remote) {
+          setUseRemote(false);
+          setSchedulePrefs(getSchedulePreferences());
+          setPlanProfile(getPlanProfile());
+          setProgress(getProgress(planId));
+          return;
+        }
 
         if (!migratedRef.current) {
           const localProgress = getProgress(remote.planId);
@@ -485,6 +494,38 @@ export function WeekTracker() {
     });
   }, [milestoneHighlight]);
 
+  const handleStartPlan = useCallback(async () => {
+    setEnrolling(true);
+    setSaveError(null);
+
+    try {
+      const saved = await saveTrainingPlan({
+        planId,
+        currentWeek: Number(activeWeek) || 1,
+        restDay: schedulePrefs.restDay,
+        longRunDay: schedulePrefs.longRunDay,
+        runDaysPerWeek: schedulePrefs.runDaysPerWeek,
+        age: planProfile.age,
+        fitnessLevel: planProfile.fitnessLevel,
+        goalRaceDate: planProfile.goalRaceDate,
+        completedIds: progress.completed,
+      });
+      applyRemotePlan(saved);
+      setUseRemote(true);
+    } catch {
+      setSaveError("Could not save your plan. Please try again.");
+    } finally {
+      setEnrolling(false);
+    }
+  }, [
+    planId,
+    activeWeek,
+    schedulePrefs,
+    planProfile,
+    progress,
+    applyRemotePlan,
+  ]);
+
   const handleToggle = useCallback(
     async (dayId: string) => {
       setSaveError(null);
@@ -631,12 +672,26 @@ export function WeekTracker() {
       )}
 
       {isAuthenticated && !useRemote && (
-        <div
-          className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-900 dark:text-amber-200"
-          role="alert"
-        >
-          Progress is only stored in this browser right now. Refresh the page or
-          sign in again to sync to your account.
+        <div className="rounded-xl border border-primary/25 bg-primary/5 px-4 py-5 sm:px-6 sm:py-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="space-y-1">
+              <p className="font-semibold text-foreground">Start this plan on your account</p>
+              <p className="text-sm text-muted-foreground">
+                Save your distance, schedule, and goal race to track progress here and on
+                your dashboard.
+              </p>
+            </div>
+            <Button
+              type="button"
+              size="lg"
+              className="h-12 w-full gap-2 px-6 text-base sm:w-auto sm:min-w-[12rem]"
+              onClick={() => void handleStartPlan()}
+              disabled={enrolling || syncing}
+            >
+              <Sparkles className="size-4" />
+              {enrolling ? "Saving plan…" : "Start this plan"}
+            </Button>
+          </div>
         </div>
       )}
 

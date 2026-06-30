@@ -52,6 +52,7 @@ import { cn } from "@/lib/utils";
 type TrainingPlanEditorCardProps = {
   plan: TrainingPlanDisplay;
   onPlanUpdated: (plan: TrainingPlanDisplay) => void;
+  onPlanRemoved?: (notice?: PlanDeletedMessage) => void;
 };
 
 function stateToDraft(state: TrainingPlanState) {
@@ -84,6 +85,7 @@ function dayKindClass(kind: "run" | "cross-train" | "rest") {
 export function TrainingPlanEditorCard({
   plan,
   onPlanUpdated,
+  onPlanRemoved,
 }: TrainingPlanEditorCardProps) {
   const [displayPlan, setDisplayPlan] = useState(plan);
   const [editing, setEditing] = useState(false);
@@ -92,9 +94,6 @@ export function TrainingPlanEditorCard({
   const [deleting, setDeleting] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [savedMessage, setSavedMessage] = useState<string | null>(null);
-  const [deletedNotice, setDeletedNotice] = useState<PlanDeletedMessage | null>(
-    null
-  );
 
   const [familyId, setFamilyId] = useState(plan.familyId || "5k");
   const [planId, setPlanId] = useState(plan.planId);
@@ -173,7 +172,6 @@ export function TrainingPlanEditorCard({
   const openEditor = useCallback(async () => {
     setSaveError(null);
     setSavedMessage(null);
-    setDeletedNotice(null);
     setLoadingDraft(true);
     try {
       const remote = await fetchTrainingPlan();
@@ -266,7 +264,6 @@ export function TrainingPlanEditorCard({
     setSaving(true);
     setSaveError(null);
     setSavedMessage(null);
-    setDeletedNotice(null);
 
     try {
       const remappedCompleted = remapCompletedIds(
@@ -334,7 +331,7 @@ export function TrainingPlanEditorCard({
   const handleDelete = useCallback(async () => {
     if (
       !confirm(
-        "Delete your saved plan? This clears your goal race, profile settings, schedule, and workout progress. You'll start fresh with the default 5K plan."
+        "Delete your saved plan? This clears your goal race, profile settings, schedule, and workout progress."
       )
     ) {
       return;
@@ -343,20 +340,17 @@ export function TrainingPlanEditorCard({
     setDeleting(true);
     setSaveError(null);
     setSavedMessage(null);
-    setDeletedNotice(null);
 
     try {
-      const fresh = await deleteTrainingPlan();
-      const nextDisplay = displayFromTrainingPlanState(fresh);
-      applyDisplayPlan(nextDisplay, fresh.completedIds);
+      await deleteTrainingPlan();
       setEditing(false);
-      setDeletedNotice(PLAN_DELETED_MESSAGE);
+      onPlanRemoved?.(PLAN_DELETED_MESSAGE);
     } catch {
       setSaveError("Could not delete your plan. Please try again.");
     } finally {
       setDeleting(false);
     }
-  }, [applyDisplayPlan]);
+  }, [onPlanRemoved]);
 
   const activePlan = editing ? previewDisplay : displayPlan;
   const activeWeekPreview = editing ? previewWeek : displayPlan.weekPreview;
@@ -458,18 +452,6 @@ export function TrainingPlanEditorCard({
             )}
           </div>
         </div>
-
-        {deletedNotice && !editing && (
-          <div
-            className="mt-5 rounded-xl border border-primary/25 bg-background/70 px-4 py-4"
-            role="status"
-          >
-            <p className="font-semibold text-foreground">{deletedNotice.title}</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              {deletedNotice.body}
-            </p>
-          </div>
-        )}
 
         {!editing && activePlan.totalWorkouts > 0 && (
           <div className="mt-5 border-t border-primary/15 pt-5">

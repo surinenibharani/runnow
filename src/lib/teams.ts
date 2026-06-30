@@ -3,8 +3,12 @@ import { DEFAULT_PLAN_ID } from "@/lib/plans";
 import { serializeCompletedIds } from "@/lib/plan-alignment";
 import { parseFitnessLevel } from "@/lib/plan-personalization";
 
+export async function getUserTrainingPlan(userId: string) {
+  return prisma.userTrainingPlan.findUnique({ where: { userId } });
+}
+
 export async function getOrCreateUserTrainingPlan(userId: string) {
-  const existing = await prisma.userTrainingPlan.findUnique({ where: { userId } });
+  const existing = await getUserTrainingPlan(userId);
   if (existing) return existing;
 
   return prisma.userTrainingPlan.create({

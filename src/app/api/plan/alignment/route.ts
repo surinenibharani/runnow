@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { activitySummarySelect } from "@/lib/activity-fields";
 import { analyzePlanAlignment } from "@/lib/plan-alignment";
-import { getOrCreateUserTrainingPlan } from "@/lib/teams";
+import { getUserTrainingPlan } from "@/lib/teams";
 
 export async function GET() {
   const session = await auth();
@@ -13,7 +13,7 @@ export async function GET() {
 
   const userId = session.user.id;
   const [trainingPlan, activities] = await Promise.all([
-    getOrCreateUserTrainingPlan(userId),
+    getUserTrainingPlan(userId),
     prisma.activity.findMany({
       where: { userId },
       orderBy: { startDate: "desc" },
@@ -21,6 +21,10 @@ export async function GET() {
       select: activitySummarySelect,
     }),
   ]);
+
+  if (!trainingPlan) {
+    return NextResponse.json({ alignment: null });
+  }
 
   const alignment = analyzePlanAlignment({
     planId: trainingPlan.planId,

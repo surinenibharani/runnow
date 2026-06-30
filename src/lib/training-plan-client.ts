@@ -29,7 +29,7 @@ export type WorkoutToggleContext = Pick<
 
 export async function fetchTrainingPlan(): Promise<TrainingPlanState | null> {
   const res = await fetch("/api/user/training-plan");
-  if (res.status === 401) return null;
+  if (res.status === 401 || res.status === 404) return null;
   if (!res.ok) throw new Error("Failed to load training plan");
   return res.json();
 }
@@ -70,8 +70,7 @@ export async function resetTrainingPlanRemote(): Promise<
   return res.json();
 }
 
-export async function deleteTrainingPlan(): Promise<TrainingPlanState> {
+export async function deleteTrainingPlan(): Promise<void> {
   const res = await fetch("/api/user/training-plan?reset=all", { method: "DELETE" });
   if (!res.ok) throw new Error("Failed to delete training plan");
-  return res.json();
 }

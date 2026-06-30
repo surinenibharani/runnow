@@ -9,7 +9,7 @@ import {
   getValidAccessToken,
 } from "@/lib/strava";
 import { resolveStravaActivityType } from "@/lib/activity-types";
-import { getOrCreateUserTrainingPlan, updateUserTrainingPlan } from "@/lib/teams";
+import { getUserTrainingPlan, updateUserTrainingPlan } from "@/lib/teams";
 
 export type StravaSyncResult = {
   synced: number;
@@ -85,14 +85,14 @@ export async function syncStravaActivitiesForUser(
 
 /** Mark plan workouts complete when Strava activities match scheduled days. */
 export async function mergeStravaPlanCompletions(userId: string): Promise<number> {
-  const [trainingPlan, activities] = await Promise.all([
-    getOrCreateUserTrainingPlan(userId),
-    prisma.activity.findMany({
-      where: { userId },
-      orderBy: { startDate: "desc" },
-      take: 100,
-    }),
-  ]);
+  const trainingPlan = await getUserTrainingPlan(userId);
+  if (!trainingPlan) return 0;
+
+  const activities = await prisma.activity.findMany({
+    where: { userId },
+    orderBy: { startDate: "desc" },
+    take: 100,
+  });
 
   const alignment = analyzePlanAlignment({
     planId: trainingPlan.planId,
