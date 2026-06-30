@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { FormatBlogText } from "@/components/blog/format-blog-text";
 import type { BlogSection } from "@/lib/blog/types";
 import { cn } from "@/lib/utils";
 
@@ -14,7 +15,7 @@ export function BlogSectionBlock({ section }: { section: BlogSection }) {
       )}
       {section.paragraphs?.map((p) => (
         <p key={p} className="text-muted-foreground leading-relaxed">
-          {p}
+          <FormatBlogText text={p} />
         </p>
       ))}
       {section.figures && section.figures.length > 0 && (
@@ -64,7 +65,7 @@ export function BlogSectionBlock({ section }: { section: BlogSection }) {
               className="flex gap-2 text-muted-foreground leading-relaxed text-sm sm:text-base"
             >
               <span className="text-primary shrink-0 mt-1.5">·</span>
-              {item}
+              <FormatBlogText text={item} />
             </li>
           ))}
         </ul>
@@ -90,7 +91,13 @@ export function BlogSectionBlock({ section }: { section: BlogSection }) {
                   : "text-sm text-muted-foreground leading-relaxed"
               }
             >
-              {sub.variant === "quote" ? `“${p}”` : p}
+              {sub.variant === "quote" ? (
+                <>
+                  “<FormatBlogText text={p} />”
+                </>
+              ) : (
+                <FormatBlogText text={p} />
+              )}
             </p>
           ))}
           {sub.variant === "quote" && (
@@ -106,7 +113,7 @@ export function BlogSectionBlock({ section }: { section: BlogSection }) {
                   className="flex gap-2 text-sm text-muted-foreground leading-relaxed"
                 >
                   <span className="text-primary shrink-0">·</span>
-                  {item}
+                  <FormatBlogText text={item} />
                 </li>
               ))}
             </ul>

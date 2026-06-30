@@ -154,6 +154,20 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "couch to 5k coach clinic",
     "listening to running coach beginner",
   ],
+  "mortons-neuroma-running": [
+    "mortons neuroma running",
+    "forefoot pain running numb toes",
+    "wide toe box running shoes",
+    "metatarsal pad running",
+    "ball of foot pain runner",
+  ],
+  "achilles-tendinitis-running": [
+    "achilles tendinitis running",
+    "achilles pain runner mileage",
+    "calf raises achilles tendinopathy",
+    "isometric calf raises running injury",
+    "return to running achilles pain",
+  ],
 };
 
 export function blogPostKeywords(slug: string, category: string): string[] {

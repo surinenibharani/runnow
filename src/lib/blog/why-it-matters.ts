@@ -70,6 +70,10 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Nobody teaches trail yield rules or track lane etiquette on day one — learning them early keeps you safe and welcome on shared paths.",
   "group-running-coach-and-pacer":
     "Group training pays off when you trust the coach's plan — not the loudest runner in the parking lot. Learning how to listen early saves months of junk miles and awkward pace-group mistakes.",
+  "mortons-neuroma-running":
+    "Forefoot burning that feels like a pebble in your shoe is easy to ignore until every run hurts. Catching it early — and fixing shoe fit before chasing quick fixes — keeps small nerve irritation from becoming a season-ender.",
+  "achilles-tendinitis-running":
+    "Achilles pain isn't only a beginner problem — a mileage spike can sideline experienced runners too. Loading the tendon patiently with calf work and smart plyometrics often beats resting until you're afraid to lace up.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

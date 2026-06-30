@@ -1130,7 +1130,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
-          "Running can support health at many ages and with many conditions — but the right approach is individual. This article is general education, not medical advice. Your doctor's guidance always wins over any training plan.",
+          "Running can support health at many ages and with many conditions — but the right approach is individual. **This article is general education, not medical advice. Your doctor's guidance always wins over any training plan.**",
         ],
       },
       {
@@ -1929,7 +1929,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "Most beginner running advice is written as if everyone's body responds the same. Women starting out often have specific questions — about gear, energy shifts across the month, bone health, and training during pregnancy or after.",
-          "This isn't medical advice. When in doubt, talk to your doctor. These are practical starting points that help many women run consistently and safely.",
+          "**This isn't medical advice. When in doubt, talk to your doctor.** These are practical starting points that help many women run consistently and safely.",
         ],
       },
       {
@@ -2630,6 +2630,286 @@ export const blogPosts: BlogPost[] = [
         cta: {
           text: "Read road and trail etiquette",
           href: "/blog/runner-etiquette-trails-roads-track",
+        },
+      },
+    ],
+  },
+  {
+    slug: "mortons-neuroma-running",
+    title: "Morton's Neuroma and Running: Symptoms, Treatments, and What Actually Helped",
+    excerpt:
+      "Burning or numbness between your toes isn't normal — Morton's neuroma is common in runners. One friend's story: injections and acupuncture didn't fix it; a metatarsal pad helped a little; wider toe-box shoes (like Topo) finally did.",
+    category: "Health",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-09-03",
+    readTime: "8 min",
+    relatedSlugs: [
+      "choosing-running-shoes",
+      "avoiding-injuries",
+      "first-run-tips",
+      "what-to-wear-running",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "You're three miles in and feel like there's a wrinkle in your sock — or a small pebble under the ball of your foot. You stop, shake out your shoe, keep running, and the feeling comes back. Sometimes it's burning. Sometimes it's numbness between the third and fourth toes. That pattern is worth paying attention to.",
+          "Morton's neuroma is a thickening of tissue around a nerve in the forefoot — often between the third and fourth toes. It's not a tumor, and it's not rare in runners. Tight shoes, high impact, and lots of miles can irritate the nerve until every step stings.",
+          "**This article is practical context for beginners, not medical advice. If your foot hurts, see a podiatrist or sports medicine clinician.** What follows is what the condition is, what treatments people try, and a real story from a close friend who dealt with it while still wanting to run.",
+        ],
+      },
+      {
+        heading: "Symptoms runners notice",
+        list: [
+          "Burning, tingling, or numbness in the ball of the foot — often between the third and fourth toes",
+          "Feeling like you're stepping on a pebble or folded sock when there isn't one",
+          "Pain that gets worse in tight shoes or toward the end of a run",
+          "Relief when you take shoes off, massage the forefoot, or spread your toes",
+          "Occasional sharp zaps when the nerve is really irritated",
+          "Symptoms that may ease on softer surfaces and flare on hard pavement or downhill",
+        ],
+        paragraphs: [
+          "Not every forefoot ache is a neuroma — stress reactions, metatarsalgia, and tendon issues can feel similar. That's why a professional exam matters if pain lasts more than a week or two.",
+        ],
+      },
+      {
+        heading: "Why runners get it",
+        list: [
+          "Shoes that squeeze the forefoot — narrow toe boxes, pointed shapes, or sizes too small",
+          "High heels or stiff work shoes all day, then running in snug trainers",
+          "Sudden mileage or intensity jumps without recovery",
+          "Repetitive impact on hard surfaces",
+          "Foot mechanics that load the front of the foot heavily (every body is different)",
+        ],
+      },
+      {
+        heading: "What doctors often suggest",
+        paragraphs: [
+          "Treatment usually starts conservative and escalates only if needed. Most runners want the fastest fix; the sustainable one is often boring shoe and load changes.",
+        ],
+        list: [
+          "Reduce or pause running briefly while the nerve calms down",
+          "Wider shoes with a roomy toe box — toes should splay, not overlap",
+          "Metatarsal pads or domes to offload pressure from the irritated spot",
+          "Corticosteroid injections to reduce inflammation around the nerve",
+          "Physical therapy, toe spacers, and gait adjustments",
+          "Acupuncture or other complementary approaches some clinics offer",
+          "Surgery in persistent cases — usually a last resort after months of failed conservative care",
+        ],
+      },
+      {
+        heading: "A friend's story: injections, acupuncture, pad, then shoes",
+        paragraphs: [
+          "A close friend of mine developed classic neuroma symptoms mid training block — burning between the toes, that phantom-pebble feeling, and dread lacing up for easy runs. They did the right thing first: saw a podiatrist and got a clear diagnosis.",
+          "They tried corticosteroid injections. Relief was partial and temporary; the burning came back within a few weeks. They also tried acupuncture over several sessions. They liked the appointments, felt looser afterward, but the neuroma pain was still there on runs.",
+          "A metatarsal pad (sometimes called a metatarsal dome or met dorsal pad) helped a little — enough to finish some shorter runs with less sting, but not enough to feel \"fixed.\" It offloaded the hot spot, which confirmed the problem was pressure and irritation in that exact zone.",
+          "What finally moved the needle was switching to wider toe-box shoes. They landed on Topo Athletic models with a genuinely roomy forefoot — toes could spread on the ground instead of being squeezed together. Combined with slightly looser lacing in the forefoot and keeping easy days truly easy, symptoms faded over several weeks. They're not preaching one brand for everyone; the lesson was toe box width and shape, not a magic logo.",
+          "Your feet aren't their feet. Their story isn't a treatment plan — it's a reminder that if injections and adjunct therapies only help briefly, the shoe may still be the main problem.",
+        ],
+      },
+      {
+        heading: "Shoe changes that help neuroma-prone feet",
+        list: [
+          "Look for \"wide\" or \"foot-shaped\" toe boxes — brands like Topo, Altra, and some wide versions of mainstream trainers",
+          "Size up half a size if your toes touch the front when standing",
+          "Try on shoes in the afternoon when feet are slightly swollen, like on a run",
+          "Lace to secure the heel and midfoot while leaving the forefoot less compressed — skip the tight top-eyelet pull if it pinches",
+          "Rotate two pairs if you run most days so foam can rebound",
+          "Avoid zero-drop overnight if you're not used to it — transition gradually if you change stack or drop",
+        ],
+        cta: {
+          text: "Read our shoe guide",
+          href: "/blog/choosing-running-shoes",
+        },
+      },
+      {
+        heading: "Metatarsal pads — how they help (a little or a lot)",
+        paragraphs: [
+          "A metatarsal pad sits behind the ball of the foot and lifts the metatarsal heads slightly, spreading pressure away from the irritated nerve. For my friend, it was a useful experiment: modest relief meant the diagnosis made sense and footwear was still the bigger lever.",
+        ],
+        list: [
+          "Start with a reusable gel pad or a podiatrist-fitted orthotic — placement matters",
+          "Too far forward and it hurts more; too far back and it does nothing",
+          "Combine with wider shoes — pads alone rarely fix a narrow toe box",
+          "If a pad helps even slightly, that's data — not a reason to skip professional follow-up",
+        ],
+      },
+      {
+        heading: "When to back off running",
+        list: [
+          "Sharp or worsening pain that changes your gait",
+          "Numbness that doesn't resolve after rest",
+          "Pain that spikes at night or at rest — not just on runs",
+          "No improvement after 2–3 weeks of shoe changes and reduced volume",
+          "Any foot issue if you have diabetes or circulation concerns — get seen sooner",
+        ],
+        paragraphs: [
+          "A short pause beats a long injury. Cross-train on the bike or in the pool if your clinician says it's OK. Come back with easier pace, softer surfaces, and better shoes.",
+        ],
+      },
+      {
+        heading: "Returning to running after symptoms ease",
+        list: [
+          "Walk-run for a week before straight jogging — re-test toe space and pad placement",
+          "Keep early runs short and flat; save hills until forefoot stays quiet",
+          "Log shoes and symptoms — if the old pair brings burning back in 10 minutes, retire it for daily training",
+          "Stay on top of mileage increases — neuromas love revenge when you spike volume",
+          "Keep follow-up with your podiatrist if symptoms flicker again",
+        ],
+        paragraphs: [
+          "Most runners who respect toe space and load come back stronger. The ones who struggle usually repeat the same tight shoe in a new color and wonder why the burning returned.",
+        ],
+        cta: {
+          text: "Injury prevention basics",
+          href: "/blog/avoiding-injuries",
+        },
+      },
+    ],
+  },
+  {
+    slug: "achilles-tendinitis-running",
+    title: "Achilles Tendinitis for Runners: How a Mileage Spike Got Me — and What Fixed It",
+    excerpt:
+      "Achilles pain isn't just a beginner injury. I spiked mileage as a seasoned runner and paid for it. Slow calf raises, then isometric holds, then air skipping — that progression is what finally got me back.",
+    category: "Health",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-09-06",
+    readTime: "9 min",
+    relatedSlugs: [
+      "avoiding-injuries",
+      "bodyweight-strength-for-runners",
+      "post-run-recovery",
+      "mortons-neuroma-running",
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "The first steps out of bed felt wrong — stiff, tight, a dull ache low on the back of my leg. I told myself it was normal soreness. I'd been running for years. I knew my body. I was wrong.",
+          "Within a week, every easy run started with a wince. The pain sat right on the Achilles — sometimes at the heel, sometimes a few inches above it. Classic Achilles tendinitis (doctors often say tendinopathy when it's been hanging around). And it didn't care that I wasn't a couch-to-5K beginner.",
+          "This article is what I learned from my own flare-up: how it happened, what didn't help, and the slow rehab path that actually worked — calf raises, then isometric calf raises, then air skipping. **It's not medical advice. If your Achilles hurts, see a sports medicine doctor or physical therapist.** But if you're a runner trying to understand the pattern, this might save you a few frustrated months.",
+        ],
+      },
+      {
+        heading: "How it happened — even as a seasoned runner",
+        paragraphs: [
+          "I didn't trip, fall, or twist anything. I just added too much, too fast. A good stretch of weather, a race on the calendar, and the confidence that comes from years of consistent miles — I stacked an extra long run, bumped weekday volume, and kept the pace honest on tired legs.",
+          "The 10% weekly mileage rule is for beginners, I thought. Experienced runners bend rules all the time. Tendons don't read Strava comments. They respond to load, and mine had crossed the line from challenged to irritated.",
+          "The warning signs were there if I'd listened: morning stiffness that eased after 10 minutes of walking, tenderness when I squeezed the tendon, and pain that warmed up during runs but bit harder the next morning. I kept running through it for another week. That week cost me more than the extra miles were worth.",
+        ],
+        list: [
+          "Sudden mileage jump — not a gradual build over several weeks",
+          "More intensity on top of more volume (long runs + faster weekdays)",
+          "Insufficient recovery between hard days",
+          "Ignoring stiffness because \"I've handled worse\"",
+          "Old shoes with slightly compressed heel foam — a smaller factor, but real",
+        ],
+      },
+      {
+        heading: "Symptoms to take seriously",
+        list: [
+          "Pain and stiffness at the back of the heel or along the Achilles, especially first thing in the morning",
+          "Tenderness when you pinch or press the tendon",
+          "Pain at the start of a run that may ease mid-run but returns afterward",
+          "Swelling or thickening along the tendon",
+          "Pain that worsens week over week instead of settling",
+          "Sharp or sudden pop — stop and get evaluated immediately (rupture is different from tendinitis)",
+        ],
+        paragraphs: [
+          "Achilles issues can overlap with plantar fasciitis, ankle impingement, or calf strain. If you're unsure, get it checked. Imaging isn't always needed, but a good exam beats guessing.",
+        ],
+      },
+      {
+        heading: "What I tried first (and what didn't work)",
+        list: [
+          "Running through it — made mornings worse",
+          "Aggressive static stretching into pain — felt good for five minutes, angry by evening",
+          "Complete rest for two weeks — pain calmed, then returned on the first run back",
+          "Ice after runs — soothing, not a fix on its own",
+          "Random YouTube exercises with no progression — busy work without a plan",
+        ],
+        paragraphs: [
+          "Rest alone doesn't rebuild a tendon that's lost tolerance to load. You need to reduce running volume while deliberately strengthening the calf-Achilles unit — slowly, with a progression that respects pain levels.",
+        ],
+      },
+      {
+        heading: "Phase 1: Slow calf raises",
+        paragraphs: [
+          "I started with both feet on flat ground, hands on a wall for balance, rising onto my toes and lowering over a full three-count. No bouncing. No heroics. The goal was to wake up the calf and tendon without provoking sharp pain — mild discomfort at the tight spot was OK; wincing was not.",
+          "After a few days, I moved to a step: balls of both feet on the edge, heels hanging off, rising up and lowering slowly below parallel on the injured side (both legs up, injured leg down on the eccentric). That's the classic heavy-slow loading idea — tendons respond to controlled tension, not panic stretching.",
+        ],
+        list: [
+          "Week 1: 2 sets of 12–15 slow raises, both legs, flat ground, every other day",
+          "Week 2: 3 sets on a step with slow lowering on the affected leg",
+          "Pain rule: no worse pain during the set; no spike in morning stiffness the next day",
+          "If a session flares you up, repeat the previous level — progression isn't linear",
+        ],
+      },
+      {
+        heading: "Phase 2: Isometric calf raises",
+        paragraphs: [
+          "Once basic raises felt manageable, I shifted to isometrics — holding a raised position without moving up and down. Research and rehab clinics use these to calm tendon pain while still loading the tissue. For me, it was the bridge between \"I can do reps\" and \"I can run again.\"",
+          "I'd rise onto both toes on a step, hold the top position for 30–45 seconds, rest, and repeat. Some days I held at mid-range instead of full height if the top position stirred things up. The hold should feel like work, not agony.",
+        ],
+        list: [
+          "3–5 holds of 30–45 seconds, once or twice daily",
+          "Hold at the height that produces mild tension in the tendon, not sharp pain",
+          "Breathe normally — no white-knuckle gripping",
+          "Combine with reduced running: shorter, flatter, slower until morning stiffness fades",
+          "Progress to single-leg isometric holds only when double-leg feels boring, not painful",
+        ],
+        cta: {
+          text: "Bodyweight strength for runners",
+          href: "/blog/bodyweight-strength-for-runners",
+        },
+      },
+      {
+        heading: "Phase 3: Air skipping",
+        paragraphs: [
+          "This was the piece that made running feel possible again. Air skipping is exactly what it sounds like — the motion of jumping rope without a rope, or very small hops in place with minimal ground contact. It's a gentle plyometric: the Achilles stores and releases elastic energy without the full impact of bounding or sprinting.",
+          "I started with 20–30 seconds on a soft surface, focusing on quick light feet and staying tall. Not max height. Not racing a clock. Over two weeks I built to a few sets of 45 seconds with rest between. The tendon started tolerating spring again instead of just surviving slow raises.",
+          "When air skipping stayed quiet — no next-morning revenge stiffness — I added easy jog intervals. Walk-run came back before straight continuous miles. The skipping didn't replace running; it proved the tendon could handle load faster than running alone would have allowed.",
+        ],
+        list: [
+          "Start on grass, track infield, or gym mat — not concrete",
+          "20–30 seconds per set, 3–4 sets, every other day at first",
+          "Land softly; think \"quiet feet,\" not \"highest jump\"",
+          "Stop the set if pain shifts from dull work to sharp pull",
+          "Graduate to easy running only after skipping and isometrics stay symptom-stable for a week",
+        ],
+      },
+      {
+        heading: "Returning to running without repeating the mistake",
+        list: [
+          "Cap weekly mileage increase at 10% — yes, even for veterans",
+          "Keep one truly easy day between harder efforts",
+          "Avoid back-to-back hilly or fast sessions while the tendon is rebuilding trust",
+          "Replace worn shoes before the heel stack is dead",
+          "Keep calf raises and isometrics in maintenance — 2× per week even when healthy",
+          "Treat morning stiffness as data, not something to run off",
+        ],
+        paragraphs: [
+          "I got back to normal training, but I didn't forget the lesson. Experience doesn't grant immunity from load errors. Tendons are patient creditors — they always collect.",
+        ],
+        cta: {
+          text: "Injury prevention basics",
+          href: "/blog/avoiding-injuries",
+        },
+      },
+      {
+        heading: "When to see a professional",
+        list: [
+          "Pain lasting more than 2–3 weeks despite reducing mileage",
+          "Swelling, redness, or warmth along the tendon",
+          "Inability to walk without a limp",
+          "Night pain that wakes you up",
+          "Any sudden pop, gap, or inability to push off the foot",
+          "Diabetes, blood flow issues, or prior Achilles rupture — don't self-treat",
+        ],
+        paragraphs: [
+          "A good physical therapist can tailor loading progressions, check gait, and rule out other issues. Corticosteroid injections near the Achilles are controversial and often avoided — ask questions before any quick fix.",
+        ],
+        cta: {
+          text: "Post-run recovery habits",
+          href: "/blog/post-run-recovery",
         },
       },
     ],
