@@ -1918,7 +1918,7 @@ export const blogPosts: BlogPost[] = [
       "Sports bras, training through your cycle, bone health, and when to get clearance — practical advice for women starting a running habit.",
     category: "Health",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-14",
+    publishedAt: "2026-06-23",
     readTime: "8 min",
     relatedSlugs: [
       "running-with-health-conditions",
@@ -1976,6 +1976,21 @@ export const blogPosts: BlogPost[] = [
         cta: {
           text: "Running for specific situations",
           href: "/tips/specific-situations",
+        },
+      },
+      {
+        heading: "Injuries that show up more in women runners",
+        paragraphs: [
+          "RED-S, pelvic floor symptoms, and pregnancy return-to-run questions come up constantly in women's training searches. They're not inevitable — early signs and the right specialist beat pushing through.",
+        ],
+        list: [
+          "Lost or irregular periods while training hard — possible under-fueling; see a clinician",
+          "Leakage or heaviness on impact — pelvic floor physio helps many runners",
+          "Bone pain that worsens with mileage — don't run through it; imaging may be needed",
+        ],
+        cta: {
+          text: "Women runner injuries guide",
+          href: "/injuries/for-women-runners",
         },
       },
       {
