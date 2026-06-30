@@ -125,6 +125,17 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "running tips for women beginners",
     "women beginner running guide",
     "running during menstrual cycle",
+    "sports bra for running women",
+    "running after pregnancy beginner",
+    "RED-S female runners",
+  ],
+  "running-guide-for-men": [
+    "running tips for men beginners",
+    "men beginner running guide",
+    "chest pain running men",
+    "RED-S male runners",
+    "sports hernia running",
+    "running after 40 men",
   ],
   "dumbbell-strength-at-home-for-runners": [
     "dumbbell workout for runners at home",

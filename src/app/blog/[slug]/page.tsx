@@ -63,7 +63,7 @@ export async function generateMetadata({
   const images = ogImageMeta();
 
   return {
-    title: post.title,
+    title: post.metaTitle ?? post.title,
     description: post.excerpt,
     keywords: blogPostKeywords(slug, post.category),
     authors: [{ name: post.author }],
@@ -71,7 +71,7 @@ export async function generateMetadata({
       ? { robots: { index: false, follow: false } }
       : {}),
     openGraph: {
-      title: post.title,
+      title: post.metaTitle ?? post.title,
       description: post.excerpt,
       type: "article",
       publishedTime: post.publishedAt,
@@ -82,7 +82,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: post.metaTitle ?? post.title,
       description: post.excerpt,
       images: images.map((i) => i.url),
     },

@@ -7,7 +7,10 @@ import { cn } from "@/lib/utils";
 
 export function BlogSectionBlock({ section }: { section: BlogSection }) {
   return (
-    <section className="space-y-4">
+    <section
+      id={section.id}
+      className={cn(section.id && "scroll-mt-24", "space-y-4")}
+    >
       {section.heading && (
         <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
           {section.heading}

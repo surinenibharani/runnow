@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getPublishedBlogPosts } from "@/lib/blog/posts";
+import { commonInjurySlugs } from "@/lib/injuries/common-injuries";
+import { menRunnerConcernSlugs } from "@/lib/injuries/men-runner-concerns";
+import { womenRunnerConcernSlugs } from "@/lib/injuries/women-runner-concerns";
 import { getPlanSitemapEntries } from "@/lib/seo/plans";
 import { SITE_URL } from "@/lib/site";
 
@@ -17,6 +20,11 @@ const staticRoutes = [
   { path: "/injuries", priority: 0.8, changeFrequency: "monthly" as const },
   {
     path: "/injuries/for-women-runners",
+    priority: 0.75,
+    changeFrequency: "monthly" as const,
+  },
+  {
+    path: "/injuries/for-men-runners",
     priority: 0.75,
     changeFrequency: "monthly" as const,
   },
@@ -52,7 +60,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...pages, ...planPages, ...posts].sort(
+  const injuryDetails: MetadataRoute.Sitemap = [
+    ...commonInjurySlugs.map((slug) => `/injuries/${slug}`),
+    ...womenRunnerConcernSlugs.map((slug) => `/injuries/for-women-runners/${slug}`),
+    ...menRunnerConcernSlugs.map((slug) => `/injuries/for-men-runners/${slug}`),
+  ].map((path) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...pages, ...planPages, ...posts, ...injuryDetails].sort(
     (a, b) => (b.priority ?? 0) - (a.priority ?? 0)
   );
 }

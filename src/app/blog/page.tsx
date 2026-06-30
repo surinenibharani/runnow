@@ -16,6 +16,7 @@ import {
 import { bootstrapBlogPreview, hasBlogPreviewAccess, isValidPreviewSecret } from "@/lib/blog/preview-server";
 import { isBlogPostScheduled } from "@/lib/blog/preview";
 import { BlogPreviewBanner } from "@/components/blog/blog-preview-banner";
+import { BlogPageHero } from "@/components/visuals/content-scenes";
 import { blogIndexJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { BLOG_SEO_KEYWORDS } from "@/lib/seo/keywords";
@@ -58,14 +59,17 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
 
-        <FadeIn className="mb-10 text-center">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            The {SITE_NAME} Blog
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Practical guides for beginners — from your first jog to your first
-            marathon. Written by runners who remember what day one felt like.
-          </p>
+        <FadeIn className="mb-10">
+          <BlogPageHero className="mb-8" />
+          <div className="text-center">
+            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              The {SITE_NAME} Blog
+            </h1>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+              Practical guides for beginners — from your first jog to your first
+              marathon. Written by runners who remember what day one felt like.
+            </p>
+          </div>
         </FadeIn>
 
         <Suspense fallback={null}>

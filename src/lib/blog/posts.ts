@@ -1701,7 +1701,7 @@ export const blogPosts: BlogPost[] = [
       "You don't need a perfect diet to start running. Simple daily habits, easy pre-run snacks, and post-run meals that support energy without overwhelm.",
     category: "Nutrition",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-02",
+    publishedAt: "2026-06-24",
     readTime: "7 min",
     relatedSlugs: [
       "nutrition-for-runners",
@@ -1712,7 +1712,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "Nutrition advice online sounds like a chemistry exam — macros, timing windows, supplement stacks. Beginners need something simpler: eat enough, hydrate, and don't experiment on race day.",
-          "This guide covers daily basics. For distance-specific fueling (5K vs half vs marathon), see our full runner's nutrition guide.",
+          "This guide covers daily basics. For distance-specific fueling (5K vs half vs marathon), see our [full runner's nutrition guide](/blog/nutrition-for-runners).",
         ],
       },
       {
@@ -1770,7 +1770,7 @@ export const blogPosts: BlogPost[] = [
       "Two short sessions per week — no gym required. Glutes, calves, and core work that keeps beginners injury-free and climbing hills with less dread.",
     category: "Training",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-06",
+    publishedAt: "2026-06-24",
     readTime: "8 min",
     relatedSlugs: [
       "importance-of-cross-training",
@@ -1918,79 +1918,289 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "running-guide-for-women",
     title: "A Beginner Running Guide for Women",
+    metaTitle:
+      "Beginner Running Guide for Women: Bras, Cycle, Pregnancy & More",
     excerpt:
-      "Sports bras, training through your cycle, bone health, and when to get clearance — practical advice for women starting a running habit.",
+      "Sports bras, training through your cycle, bone health, pregnancy return, and confidence on the road — practical advice for women starting a running habit.",
     category: "Health",
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-23",
-    readTime: "8 min",
+    readTime: "18 min",
     relatedSlugs: [
       "running-with-health-conditions",
       "nutrition-basics-for-beginners",
       "avoiding-injuries",
+      "choosing-running-shoes",
+      "bodyweight-strength-for-runners",
+    ],
+    closingQuestion:
+      "What's your biggest question about running as a woman? Share below — your experience might help another beginner.",
+    faq: [
+      {
+        question: "Can I run on my period?",
+        answer:
+          "Yes for most women — easy runs or walk-run are fine if cramps aren't severe. Hydrate well and don't force intervals on heavy-flow days. See our [menstrual cycle section](#menstrual-cycle) for phase-based adjustments.",
+      },
+      {
+        question: "How do I know if my sports bra fits correctly?",
+        answer:
+          "The band should stay level around your ribcage without riding up; cups contain tissue without spillage; and you can take a deep breath without the band digging. Jump in place — minimal bounce means good support for running.",
+      },
+      {
+        question: "Is it normal to leak a little when I run after having kids?",
+        answer:
+          "Common, but not something you have to accept long-term. Many women improve with pelvic floor physio. Read our [women runner injuries guide](/injuries/for-women-runners#pelvic-floor) before ramping mileage.",
+      },
+      {
+        question: "When can I start running again after giving birth?",
+        answer:
+          "Usually not before 6 weeks minimum — often 8–12+ depending on delivery type and clearance. You should walk 30–45 minutes comfortably and do basic core work without pain or bulging before run-walk. Always get provider clearance first.",
+      },
+      {
+        question: "Can running cause me to lose my period?",
+        answer:
+          "Training hard without eating enough can disrupt cycles (RED-S). A missed period while mileage increases is a medical signal, not a badge of discipline. See a clinician and review fueling before adding more miles.",
+      },
+      {
+        question: "Do I need special shoes as a woman?",
+        answer:
+          "You need shoes that fit **your** feet — not a gender label. Read our [choosing running shoes](/blog/choosing-running-shoes) guide and get fitted if possible.",
+      },
     ],
     sections: [
       {
         paragraphs: [
-          "Most beginner running advice is written as if everyone's body responds the same. Women starting out often have specific questions — about gear, energy shifts across the month, bone health, and training during pregnancy or after.",
-          "**This isn't medical advice. When in doubt, talk to your doctor.** These are practical starting points that help many women run consistently and safely.",
+          "Most beginner running advice is written as if every body responds the same. Women starting out often have specific questions — about gear, energy shifts across the month, bone health, pregnancy, and feeling like they belong on the path.",
+          "Hormonal fluctuations, pelvic anatomy, lower average peak bone density, and pregnancy or postpartum history all shape how training feels. That doesn't mean running isn't for you — it means smart setup beats generic advice.",
+          "Guidelines vary by country — follow your national screening advice for breast, prostate, and heart checks.",
+          "**This isn't medical advice. When in doubt, talk to your doctor or a women's health specialist.** What follows are practical starting points that help many women run consistently and safely.",
         ],
       },
       {
-        heading: "Gear that actually matters",
-        list: [
-          "A supportive sports bra — less bounce means less discomfort and better focus on pace",
-          "Shoes that fit your feet, not a friend's recommendation",
-          "For urinary leakage on impact: pelvic floor physio helps; some runners use light liners — you're not alone",
-          "High-waist leggings or shorts that don't dig in — comfort beats trends",
-        ],
-      },
-      {
-        heading: "Training and your menstrual cycle",
+        id: "gear",
+        heading: "Gear that actually matters for women",
         paragraphs: [
-          "Energy and recovery can shift across your cycle. Some women feel strongest mid-cycle; others feel sluggish before a period. Track how you feel for 2–3 months instead of fighting every bad day.",
+          "You don't need a closet full of tech wear. A few pieces chosen for **your** body make the first months much more comfortable.",
         ],
-        list: [
-          "Hard days feeling off? Swap intervals for an easy walk-run — consistency beats heroics",
-          "Cramping or heavy flow days: easy movement or rest is valid",
-          "Lost or irregular periods while training hard — under-fueling may be a factor; see a clinician",
-        ],
-      },
-      {
-        heading: "Bone health and impact",
-        paragraphs: [
-          "Running can support bone density when built gradually — but too much too soon, especially with low calorie intake, works against you. Calcium and vitamin D from food matter; supplements only if your doctor recommends them.",
-        ],
-        list: [
-          "Increase weekly mileage slowly — the 10% rule is a decent guardrail",
-          "Include strength work 2× per week for hips and glutes",
-          "Don't stack aggressive dieting with a new marathon plan",
-        ],
-      },
-      {
-        heading: "Pregnancy and postpartum",
-        paragraphs: [
-          "Many women run during pregnancy with medical clearance and modified intensity. Postpartum return should be gradual — pelvic floor recovery often matters more than cardio fitness.",
-        ],
-        list: [
-          "Get provider clearance before running during pregnancy or after birth",
-          "Prioritize pelvic floor and core rehab if recommended before high-impact mileage",
-          "See our situational tips guide for more on pregnancy and health conditions",
+        subsections: [
+          {
+            heading: "Sports bras: high-impact vs everyday",
+            paragraphs: [
+              "Running is high-impact. A yoga bra or low-support crop top won't cut it for most women once you progress past walk-run.",
+            ],
+            list: [
+              "**Encapsulation** — separate cups support each breast; best for larger cup sizes and long runs",
+              "**Compression** — presses tissue against the chest; works for smaller sizes or as a layer under encapsulation bras",
+              "**High-impact rating** — look for running-specific bras, not 'medium support' training bras",
+              "**Measure the band** — under bust, snug but breathable; cup size follows brand charts (sizes vary wildly)",
+              "Replace when elasticity fades — usually every 6–12 months of regular use",
+            ],
+          },
+          {
+            heading: "Chafing prevention",
+            paragraphs: [
+              "Friction hits thighs, sports bra bands, nipples, and underarms. Prevention beats treating bloody hot spots later.",
+            ],
+            list: [
+              "Anti-chafe balm (Body Glide, Squirrel's Nut Butter, or similar) on bra lines and inner thighs before long runs",
+              "Technical fabric tops and bottoms — skip cotton for anything longer than 20 minutes",
+              "Seamless or flat-seam leggings reduce inner-thigh rub",
+              "See our [gear guide](/gear#chafing-creams) for chafing creams and apparel picks",
+            ],
+          },
+          {
+            heading: "Period-friendly gear",
+            list: [
+              "Dark-colored shorts or leggings if you're anxious about visibility — most runners are focused on their own pace, not you",
+              "Leak-proof period underwear or a backup liner on heavy days can ease mental load",
+              "High-waist leggings that don't dig into a bloated belly on luteal-phase days",
+            ],
+          },
+          {
+            heading: "Modest and practical options",
+            list: [
+              "Longer running skirts or looser tunics over leggings if coverage matters for your comfort or culture",
+              "Layer a light zip jacket for easy temperature control — you can tie it around your waist once warm",
+              "A cap or visor plus sunglasses if you prefer less attention on bad-hair days",
+            ],
+          },
         ],
         cta: {
-          text: "Running for specific situations",
+          text: "Browse the gear guide",
+          href: "/gear",
+        },
+      },
+      {
+        id: "menstrual-cycle",
+        heading: "Training with your menstrual cycle",
+        paragraphs: [
+          "Energy and recovery shift across the month. Tracking how you feel for 2–3 cycles beats fighting every sluggish day — or forcing PR attempts when your body wants rest.",
+        ],
+        subsections: [
+          {
+            heading: "The four phases (simplified)",
+            list: [
+              "**Menstrual (days 1–5)** — often lower energy; cramps possible. Easy runs, walk-run, or rest are all valid",
+              "**Follicular (after period → ovulation)** — rising estrogen; many women feel strongest here. Good window for intervals or strength",
+              "**Ovulation (~mid-cycle)** — peak energy for some; some women feel less stable on max efforts — ease in if joints feel off",
+              "**Luteal (after ovulation → next period)** — progesterone rises; you may need more recovery time, carbs, and sleep. Back off hero workouts if RPE feels high",
+            ],
+          },
+          {
+            heading: "Practical adjustments",
+            list: [
+              "Luteal phase: add an extra rest day or swap intervals for easy miles — consistency over months beats one hard week",
+              "Heavy flow days: shorter loops near home; pack a liner if it helps your confidence",
+              "Track with Clue, Flo, or a simple journal: cycle day + run quality. Patterns emerge fast",
+            ],
+          },
+          {
+            heading: "Iron deficiency — very common",
+            paragraphs: [
+              "Heavy periods plus running can drain iron stores. Fatigue that doesn't match training load deserves a blood test — not another coffee.",
+            ],
+            list: [
+              "Symptoms: breathlessness on easy runs, restless legs, pale skin, brain fog",
+              "Food sources: lean red meat, lentils, spinach, fortified cereals — pair plant iron with vitamin C",
+              "Don't supplement iron without testing — excess iron causes problems too",
+            ],
+          },
+          {
+            heading: "Hormonal contraceptives and training",
+            list: [
+              "Combined pill: some women feel bloated or sluggish on active pills — adjust hard workout timing if needed",
+              "Progestin-only (mini-pill, implant, hormonal IUD): irregular bleeding is common early on; usually stabilizes",
+              "Depo injection: long-term use may affect bone density — discuss with your doctor if you're high-mileage",
+              "Copper IUD: no hormones — cycles often stay natural; heavier periods possible",
+              "Track 2–3 months after any method change before judging energy on runs",
+            ],
+          },
+        ],
+        cta: {
+          text: "Women runner health topics",
+          href: "/injuries/for-women-runners#menstrual-cycle",
+        },
+      },
+      {
+        id: "bone-health",
+        heading: "Bone health and nutrition",
+        paragraphs: [
+          "Running can build bone when progressed gradually — but under-fueling, missed periods, and too much too soon work against you. The link between **RED-S**, **amenorrhea**, and **stress fractures** is well documented.",
+        ],
+        subsections: [
+          {
+            heading: "RED-S and the Female Athlete Triad",
+            paragraphs: [
+              "Relative Energy Deficiency in Sport (RED-S) means training outpaces fueling. The older term **Female Athlete Triad** — low energy, menstrual dysfunction, low bone density — describes the same risk pattern many clinicians still use.",
+            ],
+            list: [
+              "Missed or irregular periods while mileage climbs = stop adding miles; see a clinician",
+              "Low estrogen from under-fueling accelerates bone loss — even in your 20s",
+              "Full guide: [RED-S & bone health for women runners](/injuries/for-women-runners#red-s-bone-health)",
+            ],
+          },
+          {
+            heading: "Nutrition basics",
+            list: [
+              "**Calcium** — yogurt, cheese, fortified plant milks, leafy greens, sardines with bones",
+              "**Vitamin D** — sunlight, fatty fish, fortified foods; test before high-dose supplements",
+              "**Protein** — roughly 1.2–1.6 g/kg body weight for active women; spread across meals",
+              "Pre-run snack (60–90 min before): banana + peanut butter or toast with jam",
+              "Post-run: protein + carbs within 1–2 hours — recovery drives bone repair too",
+              "More detail: [nutrition basics for beginners](/blog/nutrition-basics-for-beginners)",
+            ],
+          },
+          {
+            heading: "Strength training for bone",
+            list: [
+              "2× per week, non-consecutive days: squats, lunges, hip thrusts/glute bridges, planks",
+              "Bodyweight is enough to start — see [bodyweight strength for runners](/blog/bodyweight-strength-for-runners)",
+              "Add dumbbells when form is solid: [home dumbbell routine](/blog/dumbbell-strength-at-home-for-runners)",
+              "Increase running mileage slowly — the 10% weekly rule is a reasonable guardrail",
+            ],
+          },
+        ],
+      },
+      {
+        id: "pregnancy-postpartum",
+        heading: "Pregnancy and postpartum return",
+        paragraphs: [
+          "Many women run during pregnancy with medical clearance. Postpartum return needs more patience than your pre-baby Strava stats suggest — pelvic floor recovery often matters more than cardio fitness.",
+        ],
+        subsections: [
+          {
+            heading: "During pregnancy (by trimester)",
+            list: [
+              "**First trimester** — nausea and fatigue are real; walk-run counts. Get OB/midwife clearance before starting or continuing",
+              "**Second trimester** — many women run longest here with modified intensity; use the talk test",
+              "**Third trimester** — shorter, flatter routes; avoid long supine core work; stop for contractions, bleeding, dizziness, or calf swelling",
+              "Hydrate more than pre-pregnancy; overheating risk rises — run cooler times of day",
+            ],
+          },
+          {
+            heading: "Postpartum timeline",
+            list: [
+              "**4–6 week check-up** — ask explicitly about return to impact, not just 'exercise'",
+              "**6–12+ weeks** — typical minimum before running; C-section often needs longer for core healing",
+              "Walk 30–45 minutes comfortably before run-walk intervals",
+              "Rebuild walk-run before continuous miles; hills and speed come later",
+              "Detailed guide: [pregnancy & postpartum injuries section](/injuries/for-women-runners#pregnancy-postpartum)",
+            ],
+          },
+          {
+            heading: "Diastasis recti — quick self-check",
+            list: [
+              "Lie on your back, knees bent. Lift head slightly and feel along your midline above the navel",
+              "A gap or doming/bulging during core work is a warning sign — avoid sit-ups and planks until assessed",
+              "A women's health physio can measure the gap and guide safe return to impact",
+            ],
+          },
+          {
+            heading: "Breastfeeding and running",
+            list: [
+              "Feed or pump before running if full breasts are uncomfortable — high-support, adjustable bras essential",
+              "Extra 300–500 kcal/day while breastfeeding — under-fueling tanks energy and milk supply",
+              "Hydrate consistently; keep loops short until you know how your body responds",
+            ],
+          },
+          {
+            heading: "C-section vs vaginal birth",
+            list: [
+              "**Vaginal** — pelvic floor assessment before high mileage; tearing or episiotomy may need extra rehab",
+              "**C-section** — abdominal incision healing before hills and speed; scar tissue mobility matters; ask when impact is safe",
+            ],
+          },
+        ],
+        cta: {
+          text: "Pregnancy & health situation tips",
           href: "/tips/specific-situations",
         },
       },
       {
-        heading: "Injuries that show up more in women runners",
+        id: "menopause",
+        heading: "Menopause and perimenopause",
         paragraphs: [
-          "RED-S, pelvic floor symptoms, and pregnancy return-to-run questions come up constantly in women's training searches. They're not inevitable — early signs and the right specialist beat pushing through.",
+          "Hormonal shifts in your 40s and 50s change recovery, sleep, joint comfort, and bone density. Running still helps — but the setup may need adjusting.",
         ],
         list: [
-          "Lost or irregular periods while training hard — possible under-fueling; see a clinician",
-          "Leakage or heaviness on impact — pelvic floor physio helps many runners",
+          "Joint aches and longer warm-ups — easy miles and mobility before intensity",
+          "Hot flashes: dress in layers; carry water; morning runs may feel easier than midday heat",
+          "Bone density: ask about DEXA scans; strength training and adequate calcium/vitamin D matter more",
+          "Recovery takes longer — space hard days further apart",
+          "See [bone health (perimenopause+)](/injuries/for-women-runners#osteoporosis-risk) on our injuries guide",
+        ],
+      },
+      {
+        id: "injuries",
+        heading: "Common injuries women face",
+        paragraphs: [
+          "RED-S, pelvic floor symptoms, and pregnancy return questions dominate women's training searches. They're not inevitable — early signs and the right specialist beat pushing through.",
+        ],
+        list: [
+          "Lost or irregular periods while training hard — possible under-fueling (RED-S); see a clinician",
+          "Leakage or heaviness on impact — [pelvic floor guide](/injuries/for-women-runners#pelvic-floor)",
           "Bone pain that worsens with mileage — don't run through it; imaging may be needed",
+          "General injury prevention: [avoiding injuries](/blog/avoiding-injuries) and [full injuries index](/injuries)",
         ],
         cta: {
           text: "Women runner injuries guide",
@@ -1998,13 +2208,390 @@ export const blogPosts: BlogPost[] = [
         },
       },
       {
-        heading: "Safety and confidence",
+        id: "mental-health",
+        heading: "Mental health and body image",
+        paragraphs: [
+          "Social media shows fast, lean runners with perfect gear. Real beginners walk, jog, and restart weekly — that still counts.",
+        ],
+        subsections: [
+          {
+            heading: "Comparison and pressure",
+            list: [
+              "You don't need to 'look like a runner' — if you're moving, you are one",
+              "Walk breaks aren't failure; they're how most couch-to-5K plans work",
+              "Unfollow accounts that make you feel behind; follow people at your stage",
+            ],
+          },
+          {
+            variant: "quote",
+            heading: "Anonymous beginner",
+            paragraphs: [
+              "I almost quit because everyone on Instagram looked effortless. Then I ran my first 20 minutes without stopping — in old leggings and a hand-me-down bra. Nobody cared what I looked like. I wish I'd started sooner.",
+            ],
+          },
+        ],
+        cta: {
+          text: "Read beginner success stories",
+          href: "/stories",
+        },
+      },
+      {
+        id: "hydration-nutrition",
+        heading: "Hydration and nutrition specifics for women",
+        paragraphs: [
+          "Women often have higher iron needs and smaller average body size — generic 'drink when thirsty' advice skips nuance.",
+        ],
+        list: [
+          "Hydrate through the day, not just on run days — pale yellow urine is a rough guide",
+          "Electrolytes on hot runs over 45–60 minutes, especially if you're a heavy sweater",
+          "Iron: heavy periods + running = monitor ferritin with your doctor if fatigue persists",
+          "Don't stack aggressive dieting with a new marathon block — fuel the work",
+          "Deep dive: [nutrition basics for beginners](/blog/nutrition-basics-for-beginners)",
+        ],
+      },
+      {
+        id: "safety",
+        heading: "Safety and running confidence",
         list: [
           "Tell someone your route or share live location if running alone",
           "Bright or reflective gear in low light; vary routes when possible",
           "Headphones low enough to hear traffic — or one earbud out",
+          "Trust your gut if a path feels unsafe — treadmill, loop, or daylight run instead",
           "You belong on the path as much as anyone — pace and walk breaks don't make you less of a runner",
         ],
+      },
+      {
+        id: "checklist",
+        heading: "Quick checklist for your first month",
+        paragraphs: [
+          "Print this mentally and tick items off as you go — no rush to finish in week one.",
+        ],
+        list: [
+          "☐ High-impact sports bra that passes the jump test",
+          "☐ Shoes that fit your feet — [fitting guide](/blog/choosing-running-shoes)",
+          "☐ Anti-chafe balm in your kit bag",
+          "☐ Pick a beginner plan and stick to easy days — [start a free plan](/plan?plan=5k-8w)",
+          "☐ Track cycle day + run feel for 2–3 months (app or notebook)",
+          "☐ Strength 2× per week — even 15 minutes counts",
+          "☐ Know red flags: missed period, bone pain, leakage, dizziness — when to call a pro",
+          "☐ Join the community — [success stories](/stories) from real beginners",
+        ],
+      },
+      {
+        id: "encouragement",
+        heading: "Final encouragement",
+        paragraphs: [
+          "The best running guide for women is the one that keeps you coming back. Gear, cycle awareness, and bone health aren't extras — they're how you stay on the road for years, not weeks.",
+          "Start where you are. Walk-run is real running. And when questions get medical — periods stopping, pain that worsens, postpartum heaviness — a clinician beats a blog every time.",
+        ],
+        subsections: [
+          {
+            variant: "quote",
+            heading: "Return runner, age 34",
+            paragraphs: [
+              "After my second kid I thought my running days were over because I leaked on every jog. Pelvic physio plus a slower build got me to my first 5K in a year. I'm slower than before — and I don't care.",
+            ],
+          },
+        ],
+        cta: {
+          text: "Start your free training plan",
+          href: "/plan?plan=5k-8w",
+        },
+      },
+    ],
+  },
+  {
+    slug: "running-guide-for-men",
+    title: "A Beginner Running Guide for Men",
+    metaTitle:
+      "Beginner Running Guide for Men: Gear, Fueling, Heart Health & More",
+    excerpt:
+      "Shoes, anti-chafe gear, fueling and RED-S, heart awareness, groin prevention, training load, and confidence on the road — practical advice for men starting a running habit.",
+    category: "Health",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-06-24",
+    readTime: "14 min",
+    relatedSlugs: [
+      "running-guide-for-women",
+      "running-with-health-conditions",
+      "nutrition-basics-for-beginners",
+      "avoiding-injuries",
+      "choosing-running-shoes",
+      "bodyweight-strength-for-runners",
+    ],
+    closingQuestion:
+      "What's your biggest question about running as a man? Share below — your experience might help another beginner.",
+    faq: [
+      {
+        question: "Do men get RED-S too?",
+        answer:
+          "Yes. Low energy availability affects bone health, immunity, libido, and performance in men — there's just no period to flag it. Fatigue plus recurring bone pain while mileage climbs deserves a [RED-S workup](/injuries/for-men-runners#red-s-fueling).",
+      },
+      {
+        question: "Should I see a doctor before starting to run?",
+        answer:
+          "If you're sedentary and over 40, or have heart disease risk factors, a pre-participation check is smart. If you feel healthy and start with walk-run, most men under 40 can begin gradually — but **new chest pain during exercise always means stop and get checked.**",
+      },
+      {
+        question: "How do I stop nipple chafing on long runs?",
+        answer:
+          "Nipple guards, medical tape, or anti-chafe balm before runs over 45–60 minutes. Technical shirts beat cotton. It's common and preventable — not something to push through.",
+      },
+      {
+        question: "Is it normal to need the bathroom every mile when I'm older?",
+        answer:
+          "Urinary frequency on runs becomes common for many men in their 50s and beyond. Plan loops with restrooms and discuss symptoms with your GP — don't just dehydrate yourself. See our [prostate & urinary section](/injuries/for-men-runners#prostate-urinary).",
+      },
+      {
+        question: "How fast should I increase mileage?",
+        answer:
+          "Many men do best adding **5–10% per week** at most, with a recovery week every 3–4 weeks. Ego miles and Strava comparisons cause more injuries than slow progression.",
+      },
+      {
+        question: "Do I need different shoes as a man?",
+        answer:
+          "You need shoes that fit **your** feet — not a gender label. Read our [choosing running shoes](/blog/choosing-running-shoes) guide and get fitted if possible.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Most beginner running content assumes one generic body and a willingness to push through discomfort. Men starting out often have specific questions — about gear, eating enough, chest symptoms, groin pain, and whether it's weak to take a rest day.",
+          "Higher average cardiovascular risk in middle age, greater sweat rates, sports hernia risk with sudden speed work, and RED-S that hides without period tracking all shape how training feels. That doesn't mean running isn't for you — it means smart setup beats bravado.",
+          "Guidelines vary by country — follow your national screening advice for breast, prostate, and heart checks.",
+          "**This isn't medical advice. When in doubt, talk to your doctor, cardiologist, or sports medicine specialist.** What follows are practical starting points that help many men run consistently and safely.",
+        ],
+      },
+      {
+        id: "gear",
+        heading: "Gear that actually matters for men",
+        paragraphs: [
+          "You don't need the most expensive kit. A few choices reduce friction and keep you showing up.",
+        ],
+        subsections: [
+          {
+            heading: "Shoes and socks",
+            list: [
+              "Get fitted if possible — width and arch matter more than brand hype",
+              "Rotate two pairs if you run 4+ days per week — foam recovers between sessions",
+              "Moisture-wicking socks reduce blister risk — skip cotton for long runs",
+              "More detail: [choosing running shoes](/blog/choosing-running-shoes)",
+            ],
+          },
+          {
+            heading: "Shorts, support, and chafing",
+            list: [
+              "Liner shorts or supportive briefs if bouncing causes discomfort",
+              "Anti-chafe balm on inner thighs, waistband, and nipples before long runs",
+              "Nipple guards or tape for runs over an hour — bloody shirts are preventable",
+              "Technical fabric tops — cotton holds sweat and rubs",
+              "See our [gear guide](/gear#chafing-creams) for anti-chafe picks",
+            ],
+          },
+          {
+            heading: "Safety basics",
+            list: [
+              "ID bracelet or phone with emergency contact if you run roads alone",
+              "Reflective gear or light for dawn/dusk",
+              "Tell someone your route on trail or remote runs",
+            ],
+          },
+        ],
+        cta: {
+          text: "Browse the gear guide",
+          href: "/gear",
+        },
+      },
+      {
+        id: "fueling",
+        heading: "Fueling and RED-S in men",
+        paragraphs: [
+          "Under-eating while training hard doesn't build discipline — it breaks bone, hormones, and consistency. RED-S in men is under-diagnosed because there's no missed period waving a red flag.",
+        ],
+        subsections: [
+          {
+            heading: "Signs you might be under-fueling",
+            list: [
+              "Recurring stress fractures or shin pain at similar mileage",
+              "Low libido, irritability, or flat mood during hard blocks",
+              "Getting sick every time you add intensity",
+              "Easy runs feel heavy despite 'doing everything right'",
+            ],
+          },
+          {
+            heading: "Practical eating",
+            list: [
+              "Many active men need 2,400–3,200+ kcal/day — under-eating by 300–500 kcal daily adds up",
+              "Pre-run snack 60–90 min before: toast with peanut butter, banana, or oatmeal",
+              "Post-run within 1–2 hours: protein + carbs — eggs on toast, chicken and rice, recovery shake",
+              "Rest days need full meals — repair happens off the road",
+              "Full guide: [RED-S & fueling for men](/injuries/for-men-runners#red-s-fueling)",
+            ],
+          },
+        ],
+        cta: {
+          text: "Nutrition basics for beginners",
+          href: "/blog/nutrition-basics-for-beginners",
+        },
+      },
+      {
+        id: "heart-health",
+        heading: "Heart health and chest symptoms",
+        paragraphs: [
+          "Running strengthens the heart for most people — but new chest symptoms during exercise need immediate attention, not a faster finish.",
+        ],
+        subsections: [
+          {
+            heading: "Stop and seek care if you notice",
+            list: [
+              "Chest pressure, tightness, or pain during or after runs",
+              "Unusual breathlessness for the pace",
+              "Dizziness, palpitations, or pain radiating to jaw or arm",
+              "Fainting or near-fainting in heat or on hills",
+            ],
+          },
+          {
+            heading: "Before big training jumps (especially 40+)",
+            list: [
+              "Discuss blood pressure, lipids, and family history with your GP",
+              "Build aerobic base gradually — sedentary-to-sprint is higher risk than slow progression",
+              "Treat sleep apnea if you snore and wake tired — it affects heart and recovery",
+              "Deep dive: [heart & chest for men runners](/injuries/for-men-runners#heart-chest)",
+            ],
+          },
+        ],
+      },
+      {
+        id: "groin-core",
+        heading: "Groin, core, and sports hernia prevention",
+        paragraphs: [
+          "Hills and speed work load the groin and lower abdominal wall. Weak deep core muscles and sudden mileage spikes are common setup for adductor strains and athletic pubalgia.",
+        ],
+        subsections: [
+          {
+            heading: "Reduce risk",
+            list: [
+              "Build easy base before intervals and hill repeats",
+              "Planks, dead bugs, and Copenhagen side planks 2× per week",
+              "Adductor strengthening — side lunges, banded abduction",
+              "Don't run through sharp groin pain — cross-train and rehab first",
+            ],
+          },
+          {
+            heading: "Testicular pain",
+            paragraphs: [
+              "Sudden severe testicular pain or swelling is urgent — don't wait until after the run. Most groin aches are strains, but some conditions need emergency care.",
+            ],
+          },
+        ],
+        cta: {
+          text: "Groin & core injury guide",
+          href: "/injuries/for-men-runners#groin-core",
+        },
+      },
+      {
+        id: "training-load",
+        heading: "Training load, recovery, and ego miles",
+        paragraphs: [
+          "Strava makes it easy to compare. Your job is to build a habit that survives six months — not win Tuesday's segment.",
+        ],
+        subsections: [
+          {
+            heading: "Smarter progression",
+            list: [
+              "5–10% weekly mileage increase max — many men do better at the low end",
+              "Recovery week every 3–4 weeks: cut volume 30–40%",
+              "One full rest day per week minimum",
+              "Most miles easy — hard days only 1–2× per week when structured",
+            ],
+          },
+          {
+            heading: "Overtraining signals",
+            list: [
+              "Resting heart rate up 5–10 bpm for a week",
+              "Dreading runs you used to enjoy",
+              "Stacking minor injuries without a clear cause",
+              "More: [overtraining & hormones](/injuries/for-men-runners#overtraining-hormones)",
+            ],
+          },
+        ],
+        cta: {
+          text: "Start a structured plan",
+          href: "/plan?plan=5k-8w",
+        },
+      },
+      {
+        id: "age-and-return",
+        heading: "Returning at 40+ and urinary planning",
+        paragraphs: [
+          "Many men come back to running in their 40s and 50s after years off. Cardiovascular screening, realistic pace expectations, and route planning for restrooms all matter.",
+        ],
+        subsections: [
+          {
+            heading: "Coming back after time off",
+            list: [
+              "Walk-run for the first weeks — tendons adapt slower than lungs",
+              "See your GP before marathon training if you have heart disease risk factors",
+              "Strength train — muscle mass supports joints and bone",
+              "Tips for older runners: [specific situations](/tips/specific-situations)",
+            ],
+          },
+          {
+            heading: "Urinary frequency on long runs",
+            list: [
+              "Plan loops past restrooms — don't severely restrict fluids",
+              "Discuss new urinary symptoms with your GP or urologist",
+              "Full guide: [prostate & urinary for runners](/injuries/for-men-runners#prostate-urinary)",
+            ],
+          },
+        ],
+      },
+      {
+        id: "heat",
+        heading: "Heat, sweat, and hydration",
+        paragraphs: [
+          "Men often sweat heavily — which helps cooling but increases fluid and sodium losses. Acclimate to heat gradually.",
+        ],
+        list: [
+          "Shorten pace and distance the first week of hot weather",
+          "Use electrolytes on runs over 90 minutes in heat",
+          "Drink to thirst — over-drinking plain water can cause hyponatremia",
+          "More: [heat & hydration for men](/injuries/for-men-runners#heat-hydration)",
+        ],
+      },
+      {
+        id: "mental-health",
+        heading: "Performance pressure and mental health",
+        paragraphs: [
+          "Running helps mood for many men — but using mileage to punish yourself or prove toughness can backfire. Rest isn't weakness; it's part of training.",
+        ],
+        list: [
+          "Keep one run per week watch-free — no pace target",
+          "Talk to a GP or therapist if low mood lasts 2+ weeks",
+          "A bad run is data, not a verdict on your character",
+          "Read: [mental health for men runners](/injuries/for-men-runners#mental-health)",
+        ],
+      },
+      {
+        heading: "Pre-run checklist for men",
+        list: [
+          "Shoes in good shape; anti-chafe applied if needed",
+          "Ate something if it's been 3+ hours since last meal",
+          "Route planned — restrooms if you're prone to urgency",
+          "No new chest symptoms at rest before heading out",
+          "Phone charged; someone knows your route if remote",
+        ],
+      },
+      {
+        heading: "You've got this",
+        paragraphs: [
+          "Starting smart — fueling enough, respecting chest symptoms, building core strength, and ignoring ego miles — keeps you on the road longer than any single heroic week.",
+          "For injury-specific prevention and when to see a specialist, bookmark our [men runner health guide](/injuries/for-men-runners). Women runners have a parallel guide at [for women runners](/injuries/for-women-runners) and [women's running guide](/blog/running-guide-for-women).",
+        ],
+        cta: {
+          text: "Men runner health topics",
+          href: "/injuries/for-men-runners",
+        },
       },
     ],
   },
@@ -2015,7 +2602,7 @@ export const blogPosts: BlogPost[] = [
       "One pair of dumbbells, two short sessions per week. Simple at-home lifts that build leg drive, posture, and injury resistance without a gym membership.",
     category: "Training",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-18",
+    publishedAt: "2026-06-28",
     readTime: "8 min",
     relatedSlugs: [
       "bodyweight-strength-for-runners",

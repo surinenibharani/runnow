@@ -1,4 +1,5 @@
 import { blogPosts, getPublishedBlogPosts } from "@/lib/blog/posts";
+import { commonInjuries } from "@/lib/injuries/common-injuries";
 import { gearCategories } from "@/lib/gear/items";
 import { PLANS } from "@/lib/plans";
 import {
@@ -63,57 +64,14 @@ const STATIC_PAGES: SiteSearchResult[] = [
   },
 ];
 
-const INJURY_ENTRIES: SiteSearchResult[] = [
-  {
-    id: "injury-shin-splints",
-    title: "Shin splints",
-    description:
-      "Pain along the shinbone when mileage increases too fast — prevention and recovery.",
-    href: "/injuries",
-    kind: "injury",
-    category: "Injuries",
-  },
-  {
-    id: "injury-runners-knee",
-    title: "Runner's knee (PFPS)",
-    description: "Kneecap pain on stairs and longer runs — strengthening and pacing tips.",
-    href: "/injuries",
-    kind: "injury",
-    category: "Injuries",
-  },
-  {
-    id: "injury-it-band",
-    title: "IT band syndrome",
-    description: "Outer knee or hip pain, often from volume spikes or weak hips.",
-    href: "/injuries",
-    kind: "injury",
-    category: "Injuries",
-  },
-  {
-    id: "injury-plantar",
-    title: "Plantar fasciitis",
-    description: "Heel pain worst in the morning — calf tightness and gradual return to running.",
-    href: "/injuries",
-    kind: "injury",
-    category: "Injuries",
-  },
-  {
-    id: "injury-achilles",
-    title: "Achilles tendinitis",
-    description: "Stiffness or pain at the back of the heel — avoid sudden speed and hill jumps.",
-    href: "/injuries",
-    kind: "injury",
-    category: "Injuries",
-  },
-  {
-    id: "injury-stress-fracture",
-    title: "Stress fractures",
-    description: "Localized bone pain from overtraining — rest is non-negotiable.",
-    href: "/injuries",
-    kind: "injury",
-    category: "Injuries",
-  },
-];
+const INJURY_ENTRIES: SiteSearchResult[] = commonInjuries.map((injury) => ({
+  id: `injury-${injury.slug}`,
+  title: injury.title,
+  description: injury.symptoms,
+  href: `/injuries/${injury.slug}`,
+  kind: "injury" as const,
+  category: "Injuries",
+}));
 
 function buildIndex(): SiteSearchResult[] {
   const publishedSlugs = new Set(

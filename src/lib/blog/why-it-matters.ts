@@ -58,6 +58,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Small form fixes — posture, shorter steps, relaxed arms — reduce impact and make easy runs actually feel easy. You don't need a lab analysis on day one.",
   "running-guide-for-women":
     "Women starting out often have questions men-focused guides skip — gear, cycles, bone health, and safe return after pregnancy. Getting those right keeps you on the road.",
+  "running-guide-for-men":
+    "Men starting out face different blind spots — heart symptoms, under-fueling without period cues, groin load, and push-through culture. Addressing those early keeps training sustainable.",
   "dumbbell-strength-at-home-for-runners":
     "A single pair of dumbbells at home can build the hip and leg strength running demands — without a gym contract or complicated programs.",
   "advanced-strength-training-for-runners":

@@ -13,6 +13,7 @@
     "gear:update": "node scripts/update-gear-from-rss.mjs",
     "gear:refresh-suggestions": "node scripts/refresh-gear-suggestions.mjs",
     "gear:validate": "node scripts/validate-gear-catalog.mjs",
+    "validate:links": "node scripts/validate-content-links.mjs",
     "strava:encrypt-tokens": "node scripts/encrypt-strava-tokens.mjs",
     "postinstall": "prisma generate"
   },

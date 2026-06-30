@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BookOpen, Users } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { SituationalTipsGrid } from "@/components/tips/situational-tips-grid";
+import { SpecificSituationsTipsPageHero } from "@/components/visuals/content-scenes";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { SITUATIONAL_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
@@ -30,18 +31,18 @@ export default function SpecificSituationsTipsPage() {
         />
         <TipsSectionNav />
 
-        <FadeIn className="text-center mb-12">
-          <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400">
-            <Users className="size-7" />
+        <FadeIn className="mb-12">
+          <SpecificSituationsTipsPageHero className="mb-8" />
+          <div className="text-center">
+            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Running for specific situations
+            </h1>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+              Extra guidance for pregnancy, older runners, and common health
+              conditions. Always defer to your doctor when advice conflicts with a
+              training plan.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Running for specific situations
-          </h1>
-          <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
-            Extra guidance for pregnancy, older runners, and common health
-            conditions. Always defer to your doctor when advice conflicts with a
-            training plan.
-          </p>
         </FadeIn>
 
         <SituationalTipsGrid />

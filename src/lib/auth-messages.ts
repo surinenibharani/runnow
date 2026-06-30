@@ -4,7 +4,7 @@ export type AuthWelcomeMessage = {
 };
 
 export const NEW_RUNNER_WELCOME: AuthWelcomeMessage = {
-  title: "Welcome to the Church of Chafing!",
+  title: "Welcome to the Temple of Chafing!",
   body: "You just joined a worldwide cult where the hymns are heavy breathing and the communion is electrolytes. Your training plan is ready. Your legs are not — yet.",
 };
 

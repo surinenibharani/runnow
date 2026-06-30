@@ -151,7 +151,7 @@ export const tipsPageGuides = [
     href: "/tips/specific-situations",
     title: "Running for specific situations",
     description:
-      "Guidance for pregnancy, runners 55+, and common health conditions like diabetes, asthma, and arthritis.",
+      "Guidance for pregnancy, older runners (55+), and common health conditions like diabetes, asthma, and arthritis.",
     icon: Users,
     iconClassName: "bg-sky-500/10 text-sky-600 dark:text-sky-400",
     illustration: "health" as TipIllustrationId,

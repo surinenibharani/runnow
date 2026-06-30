@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Lightbulb } from "lucide-react";
 import type { BlogPost } from "@/lib/blog/types";
+import { BlogFaq } from "@/components/blog/blog-faq";
 import { BlogSectionBlock } from "@/components/blog/blog-section";
+import { BlogTableOfContents } from "@/components/blog/blog-table-of-contents";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { PostShareButtons } from "@/components/blog/post-share-buttons";
 import { BlogComments } from "@/components/blog/blog-comments";
@@ -89,14 +91,33 @@ export function PostContent({
         />
       </header>
 
+      <BlogTableOfContents
+        sections={post.sections}
+        extra={
+          post.faq?.length
+            ? [{ id: "faq", label: "Frequently asked questions" }]
+            : []
+        }
+        className="mb-10"
+      />
+
       <div className="space-y-10">
         {post.sections.map((section) => (
           <BlogSectionBlock
-            key={section.heading ?? section.paragraphs?.[0]}
+            key={section.id ?? section.heading ?? section.paragraphs?.[0]}
             section={section}
           />
         ))}
       </div>
+
+      {post.faq && post.faq.length > 0 && <BlogFaq items={post.faq} />}
+
+      {post.closingQuestion && !scheduled && (
+        <p className="mt-10 rounded-xl border border-primary/20 bg-primary/5 px-4 py-4 text-sm leading-relaxed text-muted-foreground sm:px-5">
+          <span className="font-semibold text-foreground">Join the conversation: </span>
+          {post.closingQuestion}
+        </p>
+      )}
 
       <RelatedPosts
         posts={related}

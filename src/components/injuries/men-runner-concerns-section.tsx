@@ -4,35 +4,35 @@ import {
   runnerConcernNavPillClass,
 } from "@/components/injuries/runner-concern-card";
 import {
-  womenRunnerConcerns,
-  womenRunnerNavSections,
-  womenRunnerPageIntro,
-} from "@/lib/injuries/women-runner-concerns";
+  menRunnerConcerns,
+  menRunnerNavSections,
+  menRunnerPageIntro,
+} from "@/lib/injuries/men-runner-concerns";
 
-const BASE_PATH = "/injuries/for-women-runners";
+const BASE_PATH = "/injuries/for-men-runners";
 
-export function WomenRunnerConcernsSection() {
+export function MenRunnerConcernsSection() {
   return (
     <>
       <FadeIn className="mb-8">
         <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          {womenRunnerPageIntro.whyUnique}{" "}
+          {menRunnerPageIntro.whyUnique}{" "}
           <span className="font-medium text-foreground">
-            {womenRunnerPageIntro.disclaimer}
+            {menRunnerPageIntro.disclaimer}
           </span>
         </p>
       </FadeIn>
 
       <FadeIn className="mb-10">
         <nav
-          aria-label="Women runner health topics"
+          aria-label="Men runner health topics"
           className="flex flex-wrap justify-center gap-2"
         >
-          {womenRunnerNavSections.map((section) => (
+          {menRunnerNavSections.map((section) => (
             <a
               key={section.id}
               href={`#${section.id}`}
-              className={runnerConcernNavPillClass("violet")}
+              className={runnerConcernNavPillClass("sky")}
             >
               {section.label}
             </a>
@@ -41,15 +41,14 @@ export function WomenRunnerConcernsSection() {
       </FadeIn>
 
       <StaggerChildren className="mb-12 space-y-8">
-        {womenRunnerConcerns.map((concern) => (
+        {menRunnerConcerns.map((concern) => (
           <StaggerItem key={concern.id}>
             <RunnerConcernCard
               concern={concern}
-              theme="violet"
+              theme="sky"
               basePath={BASE_PATH}
               linkTitle
               showShare
-              showIllustration
             />
           </StaggerItem>
         ))}

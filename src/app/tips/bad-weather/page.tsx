@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BookOpen, CloudRain } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { WeatherTipsGrid } from "@/components/tips/weather-tips-grid";
+import { BadWeatherTipsPageHero } from "@/components/visuals/content-scenes";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { BAD_WEATHER_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
@@ -30,17 +31,17 @@ export default function BadWeatherTipsPage() {
         />
         <TipsSectionNav />
 
-        <FadeIn className="text-center mb-12">
-          <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
-            <CloudRain className="size-7" />
+        <FadeIn className="mb-12">
+          <BadWeatherTipsPageHero className="mb-8" />
+          <div className="text-center">
+            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Bad weather? Stay on track
+            </h1>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+              Weather-aware tips for when conditions aren&apos;t ideal — plus indoor
+              alternatives so you keep moving without skipping your habit.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Bad weather? Stay on track
-          </h1>
-          <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
-            Weather-aware tips for when conditions aren&apos;t ideal — plus indoor
-            alternatives so you keep moving without skipping your habit.
-          </p>
         </FadeIn>
 
         <WeatherTipsGrid />

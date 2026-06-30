@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TipCard } from "@/components/tips/tip-card";
 import { TipsGuideLink } from "@/components/tips/tips-guide-link";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
+import { TipsPageHero } from "@/components/visuals/content-scenes";
 import { getPostBySlug } from "@/lib/blog/posts";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
@@ -26,14 +27,17 @@ export default function TipsPage() {
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Tips" }]} />
         <TipsSectionNav />
 
-        <FadeIn className="text-center mb-12">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Tips for New Runners
-          </h1>
-          <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
-            The stuff nobody tells you when you&apos;re starting out.
-            Bookmark this page and come back whenever you need a reminder.
-          </p>
+        <FadeIn className="mb-12">
+          <TipsPageHero className="mb-8" />
+          <div className="text-center">
+            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Tips for New Runners
+            </h1>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+              The stuff nobody tells you when you&apos;re starting out.
+              Bookmark this page and come back whenever you need a reminder.
+            </p>
+          </div>
         </FadeIn>
 
         <StaggerChildren className="grid gap-5 sm:grid-cols-2">

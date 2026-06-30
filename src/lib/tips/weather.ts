@@ -124,7 +124,7 @@ export const weatherTips: WeatherTip[] = [
     title: "Smoke, pollution, or high pollen",
     outdoorTips: [
       "Check local air quality index (AQI) — many apps show it by hour.",
-      "Below AQI 100 is usually okay for healthy adults; above 150, move indoors.",
+      "AQI 0–100 is often fine for healthy adults; above 150, move indoors.",
       "Run early when ozone and pollen counts are often lower.",
       "A buff can help with pollen; it won't fix heavy smoke.",
     ],

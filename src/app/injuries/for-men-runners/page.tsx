@@ -6,21 +6,21 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
-import { WomenRunnersInjuriesPageHero } from "@/components/visuals/content-scenes";
-import { WomenRunnerConcernsSection } from "@/components/injuries/women-runner-concerns-section";
-import { womenRunnerOverwhelmedBox } from "@/lib/injuries/women-runner-concerns";
+import { MenRunnersInjuriesPageHero } from "@/components/visuals/content-scenes";
+import { MenRunnerConcernsSection } from "@/components/injuries/men-runner-concerns-section";
+import { menRunnerOverwhelmedBox } from "@/lib/injuries/men-runner-concerns";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { INJURIES_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Running Injuries for Women — RED-S, Pelvic Floor & Postpartum",
+  title: "Running Injuries for Men — Heart, RED-S, Groin & Overtraining",
   description:
-    "RED-S, pelvic floor leakage, pregnancy return-to-run, menstrual cycle training, bone health, and breast support — prevention, recovery, and when to see a specialist.",
-  path: "/injuries/for-women-runners",
+    "RED-S in men, chest pain while running, groin and sports hernia, overtraining, prostate and urinary symptoms, heat hydration, and mental health — prevention, recovery, and when to see a specialist.",
+  path: "/injuries/for-men-runners",
   keywords: [...INJURIES_SEO_KEYWORDS],
 });
 
-export default function ForWomenRunnersInjuriesPage() {
+export default function ForMenRunnersInjuriesPage() {
   return (
     <div className="py-12 sm:py-16">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
@@ -28,19 +28,19 @@ export default function ForWomenRunnersInjuriesPage() {
           items={[
             { label: "Home", href: "/" },
             { label: "Injuries", href: "/injuries" },
-            { label: "For women runners" },
+            { label: "For men runners" },
           ]}
         />
 
         <FadeIn className="mb-12">
-          <WomenRunnersInjuriesPageHero className="mb-8" />
+          <MenRunnersInjuriesPageHero className="mb-8" />
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              For women runners
+              For men runners
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              Injury and health concerns that show up often in women&apos;s
-              training — hormonal shifts, bone health, pelvic floor, pregnancy,
+              Injury and health concerns that show up often in men&apos;s
+              training — heart symptoms, under-fueling, groin issues, overtraining,
               and more. How to spot them early, what to do, and when to get help.
             </p>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground">
@@ -51,29 +51,29 @@ export default function ForWomenRunnersInjuriesPage() {
         </FadeIn>
 
         <FadeIn className="mb-10">
-          <Card className="border-violet-500/20 bg-violet-500/[0.03] hover:shadow-md transition-shadow duration-300">
+          <Card className="border-sky-500/20 bg-sky-500/[0.03] transition-shadow duration-300 hover:shadow-md">
             <CardContent className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex gap-4">
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-violet-500/15 text-violet-700 dark:text-violet-300">
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-sky-500/15 text-sky-700 dark:text-sky-300">
                   <BookOpen className="size-5" />
                 </div>
                 <div>
                   <h2 className="text-base font-semibold text-foreground">
-                    Women&apos;s running guide
+                    Men&apos;s running guide
                   </h2>
                   <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                    Sports bras, training through your cycle, bone health, and
-                    when to get clearance — practical advice for women starting
-                    a running habit.
+                    Shoes, anti-chafe gear, fueling, heart awareness, groin
+                    prevention, and training load — practical advice for men
+                    starting a running habit.
                   </p>
                 </div>
               </div>
               <Button
                 nativeButton={false}
-                render={<Link href="/blog/running-guide-for-women" />}
+                render={<Link href="/blog/running-guide-for-men" />}
                 variant="outline"
                 size="sm"
-                className="shrink-0 border-violet-500/30 text-violet-700 hover:bg-violet-500/10 dark:text-violet-300"
+                className="shrink-0 border-sky-500/30 text-sky-700 hover:bg-sky-500/10 dark:text-sky-300"
               >
                 Read guide
                 <ArrowRight className="size-4" />
@@ -82,7 +82,7 @@ export default function ForWomenRunnersInjuriesPage() {
           </Card>
         </FadeIn>
 
-        <WomenRunnerConcernsSection />
+        <MenRunnerConcernsSection />
 
         <FadeIn className="mb-12">
           <Card className="border-primary/20 bg-primary/5">
@@ -90,13 +90,13 @@ export default function ForWomenRunnersInjuriesPage() {
               <HeartHandshake className="mt-0.5 size-6 shrink-0 text-primary" />
               <div>
                 <h2 className="text-base font-semibold text-foreground">
-                  {womenRunnerOverwhelmedBox.title}
+                  {menRunnerOverwhelmedBox.title}
                 </h2>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {womenRunnerOverwhelmedBox.body}
+                  {menRunnerOverwhelmedBox.body}
                 </p>
                 <p className="mt-3 text-sm">
-                  {womenRunnerOverwhelmedBox.links.map((link, index) => (
+                  {menRunnerOverwhelmedBox.links.map((link, index) => (
                     <span key={link.href}>
                       {index > 0 && " · "}
                       <Link
@@ -128,24 +128,24 @@ export default function ForWomenRunnersInjuriesPage() {
             </Link>
             {" · "}
             <Link
-              href="/blog/running-guide-for-women"
+              href="/blog/running-guide-for-men"
               className="text-primary hover:underline"
             >
-              Women&apos;s running guide
+              Men&apos;s running guide
+            </Link>
+            {" · "}
+            <Link
+              href="/injuries/for-women-runners"
+              className="text-primary hover:underline"
+            >
+              Women runner health
             </Link>
             {" · "}
             <Link
               href="/tips/specific-situations"
               className="text-primary hover:underline"
             >
-              Pregnancy & health tips
-            </Link>
-            {" · "}
-            <Link
-              href="/injuries/for-men-runners"
-              className="text-primary hover:underline"
-            >
-              Men runner health
+              Health & situation tips
             </Link>
           </p>
         </FadeIn>
