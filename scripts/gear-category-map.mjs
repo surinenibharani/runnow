@@ -23,7 +23,19 @@ export const GEAR_CATEGORY_MAP = [
   {
     slug: "shirts",
     title: "Shirts & Tops",
-    keywords: ["shirt", "shirts", "top", "tee", "jersey", "singlet", "apparel"],
+    keywords: [
+      "shirt",
+      "shirts",
+      "top",
+      "tee",
+      "jersey",
+      "singlet",
+      "apparel",
+      "sports bra",
+      "run bra",
+      "oiselle",
+      "women's",
+    ],
   },
   {
     slug: "bottoms",
@@ -104,6 +116,8 @@ export const GEAR_CATEGORY_MAP = [
     ],
   },
 ];
+
+export const GEAR_CATEGORY_SLUGS = GEAR_CATEGORY_MAP.map((category) => category.slug);
 
 const DEFAULT_CATEGORY = GEAR_CATEGORY_MAP[0];
 

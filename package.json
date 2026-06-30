@@ -11,6 +11,8 @@
     "start": "next start",
     "lint": "eslint",
     "gear:update": "node scripts/update-gear-from-rss.mjs",
+    "gear:refresh-suggestions": "node scripts/refresh-gear-suggestions.mjs",
+    "gear:validate": "node scripts/validate-gear-catalog.mjs",
     "postinstall": "prisma generate"
   },
   "dependencies": {

@@ -283,6 +283,74 @@
         "weekly": false
       }
     ],
+    "apple-watch": [
+      {
+        "name": "Apple Watch SE (2nd gen)",
+        "note": "Best value — full GPS running features without the premium price.",
+        "weekly": true
+      },
+      {
+        "name": "Apple Watch Series 9 / 10",
+        "note": "Brighter always-on display; easier to read mid-run.",
+        "weekly": true
+      },
+      {
+        "name": "Apple Watch Ultra",
+        "note": "Overkill for beginners — consider only for trail ultras and multi-day battery needs.",
+        "weekly": false
+      }
+    ],
+    "garmin": [
+      {
+        "name": "Garmin Forerunner 165",
+        "note": "Colour AMOLED screen, beginner-friendly — great first Garmin.",
+        "weekly": true
+      },
+      {
+        "name": "Garmin Forerunner 255 / 265",
+        "note": "The sweet spot for half and full marathon training.",
+        "weekly": true
+      },
+      {
+        "name": "Garmin Forerunner 55",
+        "note": "Cheapest entry point — basic but reliable GPS tracking.",
+        "weekly": false
+      }
+    ],
+    "coros": [
+      {
+        "name": "Coros Pace 2",
+        "note": "Still solid if you find it discounted — slightly older but capable.",
+        "weekly": false
+      },
+      {
+        "name": "Coros Apex 2",
+        "note": "Step up for trail runners who want maps and sapphire glass.",
+        "weekly": false
+      },
+      {
+        "name": "Coros Pace 3",
+        "note": "Best beginner pick — light, accurate GPS, weeks of battery.",
+        "weekly": false
+      }
+    ],
+    "strava-app": [
+      {
+        "name": "Strava + Apple Watch / Garmin / Coros",
+        "note": "Record on your watch; sync automatically when done.",
+        "weekly": false
+      },
+      {
+        "name": "LetsRunNow dashboard",
+        "note": "Connect Strava in your account for streaks, route comparisons, and HR tips.",
+        "weekly": false
+      },
+      {
+        "name": "Phone-only tracking",
+        "note": "Start here — just open Strava and hit Record before your run.",
+        "weekly": false
+      }
+    ],
     "cap": [
       {
         "name": "Nike Featherlight Cap",
@@ -436,72 +504,316 @@
         "note": "Light race vest — popular for half and full marathon training.",
         "weekly": false
       }
+    ]
+  },
+  "womenSuggestionsByCategory": {
+    "shoes": [
+      {
+        "name": "ASICS Gel-Cumulus (women's)",
+        "note": "Soft daily trainer; popular for higher arches and narrower heels.",
+        "weekly": false
+      },
+      {
+        "name": "New Balance Fresh Foam 880 (wide)",
+        "note": "Extra forefoot room if standard women's widths feel tight.",
+        "weekly": false
+      },
+      {
+        "name": "Hoka Clifton (women's)",
+        "note": "Plush cushioning with a roomy toe box — good for longer easy miles.",
+        "weekly": false
+      },
+      {
+        "name": "Brooks Ghost (women's)",
+        "note": "Same forgiving ride with a women's-specific last — try both standard and wide.",
+        "weekly": false
+      }
+    ],
+    "shirts": [
+      {
+        "name": "Lululemon Energy Longline Bra",
+        "note": "Medium support for smaller frames; comfortable under tanks.",
+        "weekly": false
+      },
+      {
+        "name": "Nike Dri-FIT Swoosh Women's Tank",
+        "note": "Light, breezy top with a flattering cut — easy first technical shirt.",
+        "weekly": false
+      },
+      {
+        "name": "Oiselle Flyout Tank",
+        "note": "Women's running brand — soft fabric and a relaxed race-day feel.",
+        "weekly": false
+      },
+      {
+        "name": "Brooks Drive 3 Pocket Run Bra",
+        "note": "High-support sports bra with a phone pocket — reduces bounce on easy and long runs.",
+        "weekly": false
+      }
+    ],
+    "bottoms": [
+      {
+        "name": "Oiselle Roga Short",
+        "note": "Women's-specific cut with a comfortable brief liner.",
+        "weekly": false
+      },
+      {
+        "name": "Athleta Ultimate Lined Short",
+        "note": "Mid-rise option with a secure waistband for longer runs.",
+        "weekly": false
+      },
+      {
+        "name": "Nike Tempo Women's Short",
+        "note": "Classic curved-hem running short — widely available and affordable.",
+        "weekly": false
+      },
+      {
+        "name": "Lululemon Hotty Hot High-Rise",
+        "note": "Light 4\" short with liner and pockets — a common women's starter pick.",
+        "weekly": false
+      }
+    ],
+    "tights": [
+      {
+        "name": "Athleta Ultimate Stash Tight",
+        "note": "Soft, squat-proof fabric with side pockets — great for cold commutes.",
+        "weekly": false
+      },
+      {
+        "name": "Sweaty Betty Power Leggings",
+        "note": "Comfortable compression feel without feeling restrictive.",
+        "weekly": false
+      },
+      {
+        "name": "Brooks Method 7/8 Tight",
+        "note": "Running-specific fit with reflective details for dawn and dusk.",
+        "weekly": false
+      },
+      {
+        "name": "Lululemon Fast and Free High-Rise Tight",
+        "note": "High waist stays put; multiple pockets for phone and gels.",
+        "weekly": false
+      }
     ],
     "apple-watch": [
       {
-        "name": "Apple Watch SE (2nd gen)",
-        "note": "Best value — full GPS running features without the premium price.",
+        "name": "Apple Watch SE (40mm)",
+        "note": "Smaller case fits narrower wrists without overpowering your arm.",
         "weekly": true
       },
       {
-        "name": "Apple Watch Series 9 / 10",
-        "note": "Brighter always-on display; easier to read mid-run.",
+        "name": "Apple Watch Series 9 / 10 (41mm)",
+        "note": "Compact size with a brighter screen for glancing at pace mid-run.",
         "weekly": true
       },
       {
-        "name": "Apple Watch Ultra",
-        "note": "Overkill for beginners — consider only for trail ultras and multi-day battery needs.",
+        "name": "Sport Loop or Solo Loop (small)",
+        "note": "Flexible bands that fit smaller wrists without extra tail flapping.",
         "weekly": false
       }
     ],
     "garmin": [
       {
         "name": "Garmin Forerunner 165",
-        "note": "Colour AMOLED screen, beginner-friendly — great first Garmin.",
+        "note": "43mm case suits smaller wrists; quick-release bands for a secure fit.",
         "weekly": true
       },
       {
-        "name": "Garmin Forerunner 255 / 265",
-        "note": "The sweet spot for half and full marathon training.",
+        "name": "Garmin Forerunner 265S",
+        "note": "Smaller \"S\" size — same features with a narrower case and band.",
         "weekly": true
       },
       {
-        "name": "Garmin Forerunner 55",
-        "note": "Cheapest entry point — basic but reliable GPS tracking.",
+        "name": "Garmin silicone band (small)",
+        "note": "Stock bands run long — size down so the watch doesn't slide on sweaty runs.",
         "weekly": false
       }
     ],
     "coros": [
       {
-        "name": "Coros Pace 2",
-        "note": "Still solid if you find it discounted — slightly older but capable.",
+        "name": "Coros Pace 3 nylon band",
+        "note": "Softer, lower-profile strap if the stock band feels stiff or long.",
         "weekly": false
       },
       {
-        "name": "Coros Apex 2",
-        "note": "Step up for trail runners who want maps and sapphire glass.",
+        "name": "Coros Apex 2 (42mm)",
+        "note": "Smaller case option if you want maps without a bulky watch face.",
         "weekly": false
       },
       {
         "name": "Coros Pace 3",
-        "note": "Best beginner pick — light, accurate GPS, weeks of battery.",
+        "note": "Light 30g case works well on smaller wrists — silicone band in S/M.",
         "weekly": false
       }
     ],
     "strava-app": [
       {
-        "name": "Strava + Apple Watch / Garmin / Coros",
-        "note": "Record on your watch; sync automatically when done.",
+        "name": "Strava privacy zones",
+        "note": "Hide start/end near home — useful if you often run solo from the same address.",
         "weekly": false
       },
       {
-        "name": "LetsRunNow dashboard",
-        "note": "Connect Strava in your account for streaks, route comparisons, and HR tips.",
+        "name": "Strava + sports watch (40–43mm)",
+        "note": "Smaller watches pair the same way — record on wrist, review on phone after.",
         "weekly": false
       },
       {
-        "name": "Phone-only tracking",
-        "note": "Start here — just open Strava and hit Record before your run.",
+        "name": "FlipBelt or armband (phone carry)",
+        "note": "If you run phone-only, waist belts often sit better over high-rise shorts than pockets.",
+        "weekly": false
+      }
+    ],
+    "cap": [
+      {
+        "name": "Nike AeroBill Featherlight (women's)",
+        "note": "Light cap with a lower profile that fits smaller head sizes.",
+        "weekly": false
+      },
+      {
+        "name": "Buff Coolnet UV+ Headband",
+        "note": "Keeps hair off your face on hot runs without full hat hair.",
+        "weekly": false
+      },
+      {
+        "name": "Smartwool Merino Headband",
+        "note": "Covers ears in winter while leaving room for a ponytail or braid.",
+        "weekly": false
+      },
+      {
+        "name": "Ciele TRKCap",
+        "note": "Ponytail-friendly opening in back — no awkward bun stuffing.",
+        "weekly": false
+      }
+    ],
+    "goggles": [
+      {
+        "name": "Tifosi Swank (XS)",
+        "note": "Extra-small size option for petite faces.",
+        "weekly": false
+      },
+      {
+        "name": "Oakley Revolver",
+        "note": "Women's-specific fit with secure temples for sweaty miles.",
+        "weekly": false
+      },
+      {
+        "name": "100% Speedcraft SL (narrow)",
+        "note": "Lightweight with a slimmer temple if standard sport frames feel wide.",
+        "weekly": false
+      },
+      {
+        "name": "Goodr Circle G",
+        "note": "Smaller frame and nose bridge — fits narrower faces without sliding.",
+        "weekly": false
+      }
+    ],
+    "sunscreen": [
+      {
+        "name": "Supergoop! Unseen Sunscreen SPF 40",
+        "note": "Invisible finish that won't clash with sports bra straps or tank lines.",
+        "weekly": false
+      },
+      {
+        "name": "Neutrogena Sport Face Oil-Free SPF 70",
+        "note": "Sweat-resistant without a greasy feel on forehead and shoulders.",
+        "weekly": false
+      },
+      {
+        "name": "Banana Boat Light as Air SPF 50",
+        "note": "Thin body lotion for arms and legs — absorbs quickly before you lace up.",
+        "weekly": false
+      },
+      {
+        "name": "EltaMD UV Clear SPF 46",
+        "note": "Lightweight face formula — popular under ponytails and visors.",
+        "weekly": false
+      }
+    ],
+    "chafing-creams": [
+      {
+        "name": "Shefit Ultimate Sports Bra",
+        "note": "Adjustable zip-front bra — dial in support to cut bounce-related rubbing.",
+        "weekly": false
+      },
+      {
+        "name": "Bandelettes thigh bands",
+        "note": "Lace-free barrier when shorts liners aren't enough for thigh rub.",
+        "weekly": false
+      },
+      {
+        "name": "Monistat Chafing Relief Powder Gel",
+        "note": "Drugstore option many runners use along bra lines and inner thighs.",
+        "weekly": false
+      },
+      {
+        "name": "Body Glide (sports bra band & underarms)",
+        "note": "Apply along bra band, straps, and underarm seams before long runs.",
+        "weekly": false
+      }
+    ],
+    "hydration-tablets": [
+      {
+        "name": "Precision Fuel PF 30 Electrolyte",
+        "note": "Sweat-test kits help match sodium needs across cycle phases.",
+        "weekly": false
+      },
+      {
+        "name": "SaltStick FastChews",
+        "note": "Easy to dose on long runs without carrying a full bottle mix.",
+        "weekly": false
+      },
+      {
+        "name": "LMNT (half packet in 16 oz)",
+        "note": "High sodium for heavy sweaters — start with a lighter mix if new to electrolytes.",
+        "weekly": false
+      },
+      {
+        "name": "Nuun Sport (lower-sugar flavours)",
+        "note": "Gentle on the stomach — useful if gels and sweet drinks feel heavy.",
+        "weekly": false
+      }
+    ],
+    "gels": [
+      {
+        "name": "Maurten Gel 100",
+        "note": "Lower osmolality can sit better during hard efforts.",
+        "weekly": false
+      },
+      {
+        "name": "GU Roctane (caffeine-free flavours)",
+        "note": "Test caffeine-free first if you're sensitive during your cycle.",
+        "weekly": false
+      },
+      {
+        "name": "Spring Energy Canaberry",
+        "note": "Mild, fruit-forward taste — good starter gel for long runs.",
+        "weekly": false
+      },
+      {
+        "name": "Huma Gel",
+        "note": "Real-food ingredients — often easier on sensitive stomachs.",
+        "weekly": false
+      }
+    ],
+    "hydration-packs": [
+      {
+        "name": "Osprey Dyna 15 (women's)",
+        "note": "Hydration pack sized for narrower shoulders and shorter backs.",
+        "weekly": false
+      },
+      {
+        "name": "Salomon Active Skin 8 (S/M women's)",
+        "note": "Race vest with front flasks — check size chart for bust fit.",
+        "weekly": false
+      },
+      {
+        "name": "FlipBelt",
+        "note": "Waist belt option if vests chafe under sports bra bands.",
+        "weekly": false
+      },
+      {
+        "name": "Nathan VaporHowe 2.0",
+        "note": "Women's-specific cut — shorter torso and shaped sternum straps.",
         "weekly": false
       }
     ]

@@ -10,6 +10,11 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import Parser from "rss-parser";
 import { categorizeGearText, GEAR_CATEGORY_MAP } from "./gear-category-map.mjs";
+import {
+  buildSuggestionsMaps,
+  countSuggestionPicks,
+  validateGearCatalog,
+} from "./gear-catalog-utils.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUTPUT = join(__dirname, "../src/data/gear-updates.json");
@@ -17,8 +22,6 @@ const CATALOG_PATH = join(__dirname, "../src/data/gear-catalog.json");
 const MAX_AGE_DAYS = 14;
 const MAX_NEWS_ITEMS = 16;
 const MAX_SCAN_ITEMS = 80;
-const MAX_SUGGESTIONS_PER_CATEGORY = 4;
-const MAX_FEATURED_PER_CATEGORY = 2;
 
 const FEEDS = [
   { name: "Believe in the Run", url: "https://believeintherun.com/feed/" },
@@ -53,72 +56,18 @@ function isGearRelated(title, content) {
   return GEAR_SIGNAL.test(text);
 }
 
-function getWeekIndex() {
-  const now = new Date();
-  const start = new Date(now.getFullYear(), 0, 1);
-  return Math.floor((now.getTime() - start.getTime()) / (7 * 24 * 60 * 60 * 1000));
-}
-
 function loadCatalog() {
-  return JSON.parse(readFileSync(CATALOG_PATH, "utf8"));
-}
-
-function productMentioned(product, text) {
-  const lower = text.toLowerCase();
-  const name = product.name.toLowerCase();
-  if (lower.includes(name)) return true;
-
-  const tokens = name
-    .split(/[\s/()]+/)
-    .map((part) => part.replace(/[^a-z0-9]/g, ""))
-    .filter((part) => part.length > 3);
-
-  const hits = tokens.filter((token) => lower.includes(token));
-  return hits.length >= Math.min(2, tokens.length);
-}
-
-function buildSuggestionsByCategory(categorizedItems, catalog) {
-  const weekIndex = getWeekIndex();
-  const suggestionsByCategory = {};
-
-  for (const [slug, products] of Object.entries(catalog)) {
-    const mentioned = new Set();
-
-    for (const item of categorizedItems) {
-      if (item.categorySlug !== slug) continue;
-      const text = `${item.title} ${item.contentSnippet ?? ""}`;
-      for (const product of products) {
-        if (productMentioned(product, text)) {
-          mentioned.add(product.name);
-        }
-      }
-    }
-
-    const featured = products
-      .filter((product) => mentioned.has(product.name))
-      .slice(0, MAX_FEATURED_PER_CATEGORY)
-      .map((product) => ({
-        name: product.name,
-        note: product.note,
-        weekly: true,
-      }));
-
-    const offset = products.length ? weekIndex % products.length : 0;
-    const rotated = [...products.slice(offset), ...products.slice(0, offset)];
-    const seen = new Set(featured.map((pick) => pick.name));
-    const picks = [...featured];
-
-    for (const product of rotated) {
-      if (picks.length >= MAX_SUGGESTIONS_PER_CATEGORY) break;
-      if (seen.has(product.name)) continue;
-      picks.push({ name: product.name, note: product.note, weekly: false });
-      seen.add(product.name);
-    }
-
-    suggestionsByCategory[slug] = picks;
+  const catalog = JSON.parse(readFileSync(CATALOG_PATH, "utf8"));
+  const { missing, emptySuggestions } = validateGearCatalog(catalog);
+  if (missing.length) {
+    throw new Error(`gear-catalog.json missing categories: ${missing.join(", ")}`);
   }
-
-  return suggestionsByCategory;
+  if (emptySuggestions.length) {
+    throw new Error(
+      `gear-catalog.json has empty suggestions for: ${emptySuggestions.join(", ")}`
+    );
+  }
+  return catalog;
 }
 
 async function fetchFeed(feed) {
@@ -177,11 +126,13 @@ async function main() {
 
   const items = categorizedItems.slice(0, MAX_NEWS_ITEMS);
   const catalog = loadCatalog();
-  const suggestionsByCategory = buildSuggestionsByCategory(categorizedItems, catalog);
-  const weeklySuggestionCount = Object.values(suggestionsByCategory).reduce(
-    (total, picks) => total + picks.length,
-    0
+  const { suggestionsByCategory, womenSuggestionsByCategory } = buildSuggestionsMaps(
+    categorizedItems,
+    catalog
   );
+  const weeklySuggestionCount =
+    countSuggestionPicks(suggestionsByCategory) +
+    countSuggestionPicks(womenSuggestionsByCategory);
 
   const payload = {
     updatedAt: new Date().toISOString(),
@@ -190,6 +141,7 @@ async function main() {
     categories: GEAR_CATEGORY_MAP.map((c) => ({ slug: c.slug, title: c.title })),
     items,
     suggestionsByCategory,
+    womenSuggestionsByCategory,
   };
 
   writeFileSync(OUTPUT, `${JSON.stringify(payload, null, 2)}\n`, "utf8");

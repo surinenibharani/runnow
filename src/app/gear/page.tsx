@@ -166,6 +166,15 @@ export default function GearPage() {
                           item.slug,
                           item.suggestions
                         )}
+                        womenPicks={
+                          item.womenSuggestions
+                            ? getMergedSuggestions(
+                                item.slug,
+                                item.womenSuggestions,
+                                "women"
+                              )
+                            : undefined
+                        }
                         afterCard={
                           item.slug === "coros" ? (
                             <GearWeeklyNews updates={gearUpdates} />

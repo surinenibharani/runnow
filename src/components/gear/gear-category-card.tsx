@@ -9,12 +9,14 @@ import { cn } from "@/lib/utils";
 type GearCategoryCardProps = {
   item: GearCategory;
   suggestions: GearSuggestionPick[];
+  womenPicks?: GearSuggestionPick[];
   afterCard?: React.ReactNode;
 };
 
 export function GearCategoryCard({
   item,
   suggestions,
+  womenPicks,
   afterCard,
 }: GearCategoryCardProps) {
   const Icon = item.icon;
@@ -86,21 +88,17 @@ export function GearCategoryCard({
               <GearSuggestionsList picks={suggestions} />
             </div>
           </div>
-          {item.womenSuggestions && item.womenSuggestions.length > 0 && (
+          {womenPicks && womenPicks.length > 0 && (
             <div className="mt-4 rounded-xl border border-violet-500/20 bg-violet-500/5 p-4">
               <h3 className="mb-2 text-sm font-semibold text-violet-800 dark:text-violet-300">
                 Women-specific picks
               </h3>
               <p className="mb-2 text-xs text-muted-foreground">
                 Fits, cuts, and products many women runners look for first — try
-                what matches your support, size, and comfort needs.
+                what matches your support, size, and comfort needs. Rotates
+                weekly with our gear feed.
               </p>
-              <GearSuggestionsList
-                picks={item.womenSuggestions.map((pick) => ({
-                  ...pick,
-                  weekly: false,
-                }))}
-              />
+              <GearSuggestionsList picks={womenPicks} />
             </div>
           )}
           {item.pros && item.cons && (

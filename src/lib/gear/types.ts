@@ -19,4 +19,5 @@ export type GearUpdates = {
   feedCount?: number;
   items: GearNewsItem[];
   suggestionsByCategory?: Record<string, GearSuggestionPick[]>;
+  womenSuggestionsByCategory?: Record<string, GearSuggestionPick[]>;
 };

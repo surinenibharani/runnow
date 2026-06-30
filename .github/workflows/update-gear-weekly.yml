@@ -28,6 +28,9 @@ jobs:
       - name: Fetch gear RSS and update JSON
         run: npm run gear:update
 
+      - name: Validate gear catalog coverage
+        run: npm run gear:validate
+
       - name: Commit weekly gear data
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
