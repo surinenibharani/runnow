@@ -22,6 +22,13 @@ import { calculateRecoveryReadiness, toDateKey } from "@/lib/recovery-readiness"
 import { buildAthleteProfile } from "@/lib/athlete-profile";
 import { getUserTrainingPlan } from "@/lib/teams";
 import { buildTrainingPlanDisplay } from "@/lib/training-plan-display";
+import {
+  formatBestEffortsForDisplay,
+  parseBestEffortsCache,
+  selectBestEffortBaseline,
+} from "@/lib/strava-best-efforts";
+
+const MILE_METERS = 1609.34;
 
 function isRunActivity(type: string): boolean {
   const t = type.toLowerCase();
@@ -118,7 +125,25 @@ export async function GET(request: Request) {
   const hrProfile = athleteProfile;
   const activityBreakdown = aggregateActivityTypes(chartActivities);
   const heartRateZones = aggregateHeartRateZones(chartActivities, hrProfile);
-  const paceInsights = calculatePaceInsights(activities, athleteProfile);
+
+  const cachedBestEfforts = stravaAccount
+    ? parseBestEffortsCache(stravaAccount.bestEffortsCache)
+    : [];
+  const bestEffortBaseline = selectBestEffortBaseline(cachedBestEfforts);
+  const athleteStats =
+    stravaAccount?.recentRunDistance != null
+      ? {
+          recentRunMiles: stravaAccount.recentRunDistance / MILE_METERS,
+          recentRunCount: stravaAccount.recentRunCount ?? 0,
+          ytdRunMiles: (stravaAccount.ytdRunDistance ?? 0) / MILE_METERS,
+        }
+      : undefined;
+
+  const paceInsights = calculatePaceInsights(activities, athleteProfile, {
+    bestEffortBaseline,
+    athleteStats,
+    bestEfforts: formatBestEffortsForDisplay(cachedBestEfforts),
+  });
 
   const hrActivities = chartActivities.map((a) => ({
     id: a.id,
@@ -151,6 +176,10 @@ export async function GET(request: Request) {
     movingTime: a.movingTime,
     averageHeartrate: a.averageHeartrate,
     maxHeartrate: a.maxHeartrate,
+    elevationGain: a.elevationGain,
+    averageCadence: a.averageCadence,
+    sufferScore: a.sufferScore,
+    workoutType: a.workoutType,
     startDate: a.startDate.toISOString(),
     routeKey: a.routeKey,
   }));

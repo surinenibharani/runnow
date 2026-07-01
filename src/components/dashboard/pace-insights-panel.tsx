@@ -29,6 +29,75 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
   }
 
   return (
+    <div className="space-y-4">
+      {insights.athleteStats && (
+        <Card className="border-primary/20 bg-primary/5">
+          <CardContent className="p-5">
+            <h3 className="font-semibold">Strava running totals</h3>
+            <div className="mt-3 grid gap-3 sm:grid-cols-3 text-sm">
+              <div>
+                <p className="text-muted-foreground">Last 4 weeks</p>
+                <p className="font-semibold text-lg tabular-nums">
+                  {insights.athleteStats.recentRunMiles.toFixed(1)} mi
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {insights.athleteStats.recentRunCount} run
+                  {insights.athleteStats.recentRunCount === 1 ? "" : "s"}
+                </p>
+              </div>
+              <div>
+                <p className="text-muted-foreground">Year to date</p>
+                <p className="font-semibold text-lg tabular-nums">
+                  {insights.athleteStats.ytdRunMiles.toFixed(1)} mi
+                </p>
+              </div>
+              <div>
+                <p className="text-muted-foreground">Projection source</p>
+                <p className="font-medium capitalize">
+                  {insights.baselineSource === "best_effort"
+                    ? "Strava PR"
+                    : "Blended recent training"}
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {insights.bestEfforts && insights.bestEfforts.length > 0 && (
+        <Card className="border-border/60">
+          <CardContent className="p-5">
+            <h3 className="font-semibold">Recent best efforts</h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Pulled from Strava on sync — sharpens race projections when available.
+            </p>
+            <ul className="mt-3 space-y-2">
+              {insights.bestEfforts.map((effort) => (
+                <li
+                  key={`${effort.name}-${effort.startDate}`}
+                  className="flex items-center justify-between gap-3 rounded-lg border border-border/50 px-3 py-2 text-sm"
+                >
+                  <div className="min-w-0">
+                    <p className="font-medium">{effort.name}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {new Date(effort.startDate).toLocaleDateString()}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    {effort.isPr && (
+                      <Badge variant="secondary" className="text-xs">
+                        PR
+                      </Badge>
+                    )}
+                    <span className="font-semibold tabular-nums">{effort.time}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      )}
+
     <div className="grid gap-4 lg:grid-cols-2">
       <Card className="border-border/60">
         <CardContent className="p-6">
@@ -62,9 +131,9 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
               zones. Heart rate on activities helps weight harder efforts.
             </p>
             <p>
-              Projections use the Riegel formula from your blended fitness
-              baseline. The pace shown is the average you&apos;d need to hold
-              for that race.
+              Projections use your Strava best efforts when available, otherwise a
+              blended recent-training baseline with the Riegel formula. The pace shown
+              is the average you&apos;d need to hold for that race.
             </p>
             <p>
               <span className="font-medium text-foreground">Confidence</span> reflects
@@ -152,6 +221,7 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
           </p>
         </CardContent>
       </Card>
+    </div>
     </div>
   );
 }

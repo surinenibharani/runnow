@@ -36,9 +36,63 @@ export interface StravaActivity {
   average_speed?: number;
   average_heartrate?: number;
   max_heartrate?: number;
+  total_elevation_gain?: number;
+  average_cadence?: number;
+  suffer_score?: number;
+  workout_type?: number;
   start_date: string;
   start_latlng?: [number, number];
   map?: { summary_polyline?: string };
+}
+
+export interface StravaActivityLap {
+  name: string;
+  distance: number;
+  moving_time: number;
+  elapsed_time: number;
+  average_speed?: number;
+  average_heartrate?: number;
+  lap_index: number;
+}
+
+export interface StravaSplit {
+  distance: number;
+  elapsed_time: number;
+  moving_time: number;
+  average_speed?: number;
+  average_heartrate?: number;
+  elevation_difference?: number;
+  pace_zone?: number;
+}
+
+export interface StravaBestEffort {
+  name: string;
+  distance: number;
+  elapsed_time: number;
+  moving_time: number;
+  start_date: string;
+  pr_rank?: number | null;
+}
+
+export interface StravaActivityDetail extends StravaActivity {
+  laps?: StravaActivityLap[];
+  splits_metric?: StravaSplit[];
+  splits_standard?: StravaSplit[];
+  best_efforts?: StravaBestEffort[];
+}
+
+export interface StravaActivityTotals {
+  count: number;
+  distance: number;
+  moving_time: number;
+  elapsed_time: number;
+  elevation_gain: number;
+}
+
+export interface StravaAthleteStats {
+  recent_run_totals: StravaActivityTotals;
+  ytd_run_totals: StravaActivityTotals;
+  all_run_totals: StravaActivityTotals;
 }
 
 export interface StravaAthlete {
@@ -179,6 +233,76 @@ export async function fetchStravaAthlete(
   }
 
   return res.json();
+}
+
+export async function fetchStravaActivityDetail(
+  accessToken: string,
+  activityId: string | number
+): Promise<StravaActivityDetail> {
+  const res = await fetch(`${STRAVA_API}/activities/${activityId}`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch activity detail: ${res.status}`);
+  }
+
+  return res.json();
+}
+
+export async function fetchStravaAthleteStats(
+  accessToken: string,
+  athleteId: string | number
+): Promise<StravaAthleteStats> {
+  const res = await fetch(`${STRAVA_API}/athletes/${athleteId}/stats`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch athlete stats: ${res.status}`);
+  }
+
+  return res.json();
+}
+
+export async function fetchStravaActivityStreams(
+  accessToken: string,
+  activityId: string | number,
+  keys: string[] = ["heartrate", "velocity_smooth", "time"]
+): Promise<{
+  heartrates: number[];
+  velocities: number[];
+  timeSeconds: number[];
+}> {
+  const params = new URLSearchParams({
+    keys: keys.join(","),
+    key_by_type: "true",
+  });
+
+  const res = await fetch(
+    `${STRAVA_API}/activities/${activityId}/streams?${params}`,
+    { headers: { Authorization: `Bearer ${accessToken}` } }
+  );
+
+  if (res.status === 404) {
+    return { heartrates: [], velocities: [], timeSeconds: [] };
+  }
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch activity streams: ${res.status}`);
+  }
+
+  const json = (await res.json()) as {
+    heartrate?: { data: number[] };
+    velocity_smooth?: { data: number[] };
+    time?: { data: number[] };
+  };
+
+  return {
+    heartrates: json.heartrate?.data ?? [],
+    velocities: json.velocity_smooth?.data ?? [],
+    timeSeconds: json.time?.data ?? [],
+  };
 }
 
 type StravaStreamSeries = {

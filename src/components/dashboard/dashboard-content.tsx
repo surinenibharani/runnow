@@ -32,6 +32,7 @@ import { RecoveryReadinessCard } from "@/components/dashboard/recovery-readiness
 import { useProfileModal } from "@/components/profile/profile-modal";
 import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
 import { PaceInsightsPanel } from "@/components/dashboard/pace-insights-panel";
+import { ActivityDetailPanel } from "@/components/dashboard/activity-detail-panel";
 import type { RouteComparison, RunSuggestion } from "@/lib/run-analysis";
 import type { PieSlice } from "@/lib/activity-charts";
 import type { PaceInsights } from "@/lib/pace-analysis";
@@ -107,6 +108,10 @@ interface DashboardData {
     distance: number;
     movingTime: number;
     averageHeartrate: number | null;
+    elevationGain?: number | null;
+    averageCadence?: number | null;
+    sufferScore?: number | null;
+    workoutType?: number | null;
     startDate: string;
   }>;
   totalRuns: number;
@@ -134,6 +139,7 @@ export function DashboardContent() {
   const [recentWorkoutsExpanded, setRecentWorkoutsExpanded] = useState(false);
   const [planDeletedNotice, setPlanDeletedNotice] =
     useState<PlanDeletedMessage | null>(null);
+  const [selectedActivityId, setSelectedActivityId] = useState<string | null>(null);
 
   const loadDashboard = useCallback(
     async (range: ChartTimeRange = chartRange) => {
@@ -866,29 +872,42 @@ export function DashboardContent() {
         {data.recentRuns.length > 0 && (
           <FadeIn>
             <h2 className="text-xl font-bold mb-4">Recent workouts</h2>
+            <p className="mb-3 text-sm text-muted-foreground">
+              Tap a workout for mile splits, laps, and aerobic decoupling from Strava.
+            </p>
             <div className="space-y-2">
               {(recentWorkoutsExpanded
                 ? data.recentRuns
                 : data.recentRuns.slice(0, DASHBOARD_LIST_PREVIEW_COUNT)
               ).map((run) => (
                 <Card key={run.id} className="border-border/60">
-                  <CardContent className="p-4 flex flex-wrap items-center justify-between gap-2">
-                    <div>
-                      <p className="font-medium">{run.name}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {new Date(run.startDate).toLocaleDateString()} · {run.type}
-                      </p>
-                    </div>
-                    <div className="text-sm text-right">
-                      <p>
-                        {formatDistance(run.distance)} · {formatDuration(run.movingTime)}
-                      </p>
-                      <p className="text-muted-foreground">
-                        {formatPace(run.distance / run.movingTime)}
-                        {run.averageHeartrate &&
-                          ` · ${Math.round(run.averageHeartrate)} bpm`}
-                      </p>
-                    </div>
+                  <CardContent className="p-0">
+                    <button
+                      type="button"
+                      className="flex w-full flex-wrap items-center justify-between gap-2 p-4 text-left transition-colors hover:bg-muted/30"
+                      onClick={() => setSelectedActivityId(run.id)}
+                    >
+                      <div>
+                        <p className="font-medium">{run.name}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {new Date(run.startDate).toLocaleDateString()} · {run.type}
+                        </p>
+                      </div>
+                      <div className="text-sm text-right">
+                        <p>
+                          {formatDistance(run.distance)} · {formatDuration(run.movingTime)}
+                        </p>
+                        <p className="text-muted-foreground">
+                          {formatPace(run.distance / run.movingTime)}
+                          {run.averageHeartrate &&
+                            ` · ${Math.round(run.averageHeartrate)} bpm`}
+                          {run.sufferScore != null && run.sufferScore > 0 &&
+                            ` · effort ${run.sufferScore}`}
+                          {run.elevationGain != null && run.elevationGain > 0 &&
+                            ` · ${Math.round(run.elevationGain * 3.28084)} ft`}
+                        </p>
+                      </div>
+                    </button>
                   </CardContent>
                 </Card>
               ))}
@@ -937,6 +956,11 @@ export function DashboardContent() {
           {" · "}
           Strava runs auto-match your plan when synced
         </p>
+
+        <ActivityDetailPanel
+          activityId={selectedActivityId}
+          onClose={() => setSelectedActivityId(null)}
+        />
     </div>
   );
 }

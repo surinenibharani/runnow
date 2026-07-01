@@ -1,4 +1,5 @@
 import type { ActivitySummary } from "@/lib/activity-fields";
+import type { BestEffortBaseline } from "@/lib/strava-best-efforts";
 import {
   estimateMaxHeartRate,
   getBmi,
@@ -41,10 +42,23 @@ export type PaceInsights = {
   available: boolean;
   reason?: string;
   baselineNote?: string;
+  baselineSource?: "best_effort" | "blended" | "riegel";
   runSampleSize: number;
   crossTrainSampleSize: number;
   projections: RaceProjection[];
   zones: PaceZone[];
+  athleteStats?: {
+    recentRunMiles: number;
+    recentRunCount: number;
+    ytdRunMiles: number;
+  };
+  bestEfforts?: Array<{
+    name: string;
+    time: string;
+    distanceLabel: string;
+    startDate: string;
+    isPr: boolean;
+  }>;
 };
 
 type PaceSample = {
@@ -453,9 +467,32 @@ function buildPaceZones(
   }));
 }
 
+function buildProjectionsFromBaseline(baseline: Baseline): RaceProjection[] {
+  return buildProjections(baseline);
+}
+
+function baselineFromBestEffort(effort: BestEffortBaseline): Baseline {
+  let confidence: ProjectionConfidence =
+    effort.confidence === "high" ? "high" : "medium";
+  const daysOld = daysAgo(effort.startDate);
+  if (daysOld > 60) confidence = confidence === "high" ? "medium" : "low";
+
+  return {
+    distanceMeters: effort.distanceMeters,
+    movingTimeSeconds: effort.movingTimeSeconds,
+    confidence,
+    note: `Based on Strava ${effort.source} from ${effort.startDate.toLocaleDateString()}`,
+  };
+}
+
 export function calculatePaceInsights(
   activities: ActivitySummary[],
-  profile?: AthleteProfile
+  profile?: AthleteProfile,
+  options?: {
+    bestEffortBaseline?: BestEffortBaseline | null;
+    athleteStats?: PaceInsights["athleteStats"];
+    bestEfforts?: PaceInsights["bestEfforts"];
+  }
 ): PaceInsights {
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - LOOKBACK_DAYS);
@@ -477,7 +514,7 @@ export function calculatePaceInsights(
     else crossTrainCount++;
   }
 
-  if (samples.length === 0) {
+  if (samples.length === 0 && !options?.bestEffortBaseline) {
     const hasAnyActivity = recent.some((a) => getActivityPaceRule(a.type) != null);
     return {
       available: false,
@@ -488,10 +525,15 @@ export function calculatePaceInsights(
       crossTrainSampleSize: 0,
       projections: [],
       zones: [],
+      athleteStats: options?.athleteStats,
+      bestEfforts: options?.bestEfforts,
     };
   }
 
-  const baseline = selectBaseline(samples, runCount, crossTrainCount);
+  const baseline =
+    options?.bestEffortBaseline != null
+      ? baselineFromBestEffort(options.bestEffortBaseline)
+      : selectBaseline(samples, runCount, crossTrainCount);
   if (!baseline) {
     return {
       available: false,
@@ -500,10 +542,12 @@ export function calculatePaceInsights(
       crossTrainSampleSize: crossTrainCount,
       projections: [],
       zones: [],
+      athleteStats: options?.athleteStats,
+      bestEfforts: options?.bestEfforts,
     };
   }
 
-  const projections = buildProjections(baseline);
+  const projections = buildProjectionsFromBaseline(baseline);
   const fiveK = projections.find((p) => p.id === "5k");
   const fiveKPaceSecPerMile =
     fiveK!.projectedTimeSeconds / (FIVE_K_METERS / MILE_METERS);
@@ -524,10 +568,13 @@ export function calculatePaceInsights(
   return {
     available: true,
     baselineNote,
+    baselineSource: options?.bestEffortBaseline ? "best_effort" : "blended",
     runSampleSize: runCount,
     crossTrainSampleSize: crossTrainCount,
     projections,
     zones,
+    athleteStats: options?.athleteStats,
+    bestEfforts: options?.bestEfforts,
   };
 }
 

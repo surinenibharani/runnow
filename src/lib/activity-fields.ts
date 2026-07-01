@@ -10,6 +10,10 @@ export const activitySummarySelect = {
   elapsedTime: true,
   averageHeartrate: true,
   maxHeartrate: true,
+  elevationGain: true,
+  averageCadence: true,
+  sufferScore: true,
+  workoutType: true,
   startDate: true,
   routeKey: true,
 } as const;
@@ -25,6 +29,10 @@ export type ActivitySummary = {
   elapsedTime: number;
   averageHeartrate: number | null;
   maxHeartrate: number | null;
+  elevationGain: number | null;
+  averageCadence: number | null;
+  sufferScore: number | null;
+  workoutType: number | null;
   startDate: Date;
   routeKey: string | null;
 };

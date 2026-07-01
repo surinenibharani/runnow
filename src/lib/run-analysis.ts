@@ -12,6 +12,11 @@ import {
   formatDuration,
   formatPace,
 } from "@/lib/strava";
+import {
+  formatElevationFeet,
+  weeklyElevationFeet,
+  WORKOUT_TYPE_LABELS,
+} from "@/lib/strava-training-load";
 
 export interface RunStreak {
   current: number;
@@ -230,6 +235,55 @@ export function generateSuggestions(
         priority: "high",
       });
     }
+  }
+
+  const weekElevationFt = weeklyElevationFeet(runs, 7);
+  if (weekElevationFt >= 2000) {
+    suggestions.push({
+      title: "Big climbing week",
+      detail: `About ${Math.round(weekElevationFt).toLocaleString()} ft of gain in 7 days — downhill soreness peaks 24–48h later. Keep the next run easy and flat if legs feel beat up.`,
+      priority: "high",
+    });
+  } else if (weekElevationFt >= 1200) {
+    suggestions.push({
+      title: "Hilly week",
+      detail: `${Math.round(weekElevationFt).toLocaleString()} ft climbed this week. Hills count as extra load even at easy pace — favor recovery sleep.`,
+      priority: "medium",
+    });
+  }
+
+  const highSuffer = last7.filter((r) => (r.sufferScore ?? 0) >= 80);
+  if (highSuffer.length >= 2) {
+    suggestions.push({
+      title: "Stacked hard efforts",
+      detail: `${highSuffer.length} high-effort sessions this week (Strava relative effort). Slot an extra easy or rest day before the next workout.`,
+      priority: "high",
+    });
+  }
+
+  if (latest.workoutType === 3 && latest.averageHeartrate) {
+    suggestions.push({
+      title: "Workout day logged",
+      detail: `Your latest run was tagged as a ${WORKOUT_TYPE_LABELS[3]} — follow with easy miles or cross-training, not back-to-back intensity.`,
+      priority: "medium",
+    });
+  }
+
+  if (latest.averageCadence != null && latest.averageCadence > 0 && latest.averageCadence < 160) {
+    suggestions.push({
+      title: "Cadence check",
+      detail: `Last run cadence was ~${Math.round(latest.averageCadence)} spm. Many beginners benefit from slightly quicker steps (165–175 on easy runs) to reduce overstriding.`,
+      priority: "low",
+    });
+  }
+
+  const latestElev = formatElevationFeet(latest.elevationGain);
+  if (latestElev && (latest.elevationGain ?? 0) > 150) {
+    suggestions.push({
+      title: "Hill run recovery",
+      detail: `Latest run had ${latestElev} of climbing — quads and calves need extra mobility and hydration tomorrow.`,
+      priority: "medium",
+    });
   }
 
   if (!hasPersonalizationData(profile)) {

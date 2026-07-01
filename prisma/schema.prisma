@@ -79,8 +79,13 @@ model StravaAccount {
   refreshToken String
   expiresAt    DateTime
   scope        String?
-  lastSyncedAt DateTime?
-  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lastSyncedAt        DateTime?
+  recentRunDistance   Float?
+  recentRunCount      Int?
+  ytdRunDistance      Float?
+  statsFetchedAt      DateTime?
+  bestEffortsCache    Json?
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
@@ -99,6 +104,10 @@ model Activity {
   averageSpeed     Float?
   averageHeartrate Float?
   maxHeartrate     Float?
+  elevationGain    Float?
+  averageCadence   Float?
+  sufferScore      Int?
+  workoutType      Int?
   startDate        DateTime
   startLat         Float?
   startLng         Float?
