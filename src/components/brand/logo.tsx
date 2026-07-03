@@ -1,31 +1,32 @@
+import Image from "next/image";
 import Link from "next/link";
-import { StrideMark } from "@/components/brand/stride-mark";
+import { BRAND_LOGO_PATH } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
 type LogoProps = {
   className?: string;
+  /** @deprecated Full logo image always includes the wordmark and tagline. */
   showWordmark?: boolean;
   href?: string;
 };
 
-export function Logo({ className, showWordmark = true, href = "/" }: LogoProps) {
-  const content = (
-    <>
-      <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-        <StrideMark className="size-4" />
-      </span>
-      {showWordmark && (
-        <span className="text-base sm:text-lg tracking-tight">
-          Lets<span className="text-primary">RunNow</span>
-        </span>
-      )}
-    </>
+export function Logo({ className, href = "/" }: LogoProps) {
+  const image = (
+    <Image
+      src={BRAND_LOGO_PATH}
+      alt="LetsRunNow"
+      width={665}
+      height={548}
+      className="h-11 w-auto bg-transparent object-contain sm:h-12"
+      priority
+      unoptimized
+    />
   );
 
   if (!href) {
     return (
-      <span className={cn("flex items-center gap-2 font-bold text-lg", className)}>
-        {content}
+      <span className={cn("inline-flex items-center bg-transparent", className)}>
+        {image}
       </span>
     );
   }
@@ -34,9 +35,9 @@ export function Logo({ className, showWordmark = true, href = "/" }: LogoProps) 
     <Link
       href={href}
       aria-label="LetsRunNow home"
-      className={cn("flex items-center gap-2 font-bold text-lg", className)}
+      className={cn("inline-flex items-center bg-transparent", className)}
     >
-      {content}
+      {image}
     </Link>
   );
 }

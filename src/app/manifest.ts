@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { BRAND_APPLE_ICON_PATH, BRAND_ICON_PATH } from "@/lib/brand";
 import { SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
@@ -11,8 +12,8 @@ export default function manifest(): MetadataRoute.Manifest {
     background_color: "#ffffff",
     theme_color: "#ea580c",
     icons: [
-      { src: "/icon.svg", type: "image/svg+xml", sizes: "any" },
-      { src: "/apple-icon.svg", type: "image/svg+xml", sizes: "any" },
+      { src: BRAND_ICON_PATH, type: "image/png", sizes: "512x512" },
+      { src: BRAND_APPLE_ICON_PATH, type: "image/png", sizes: "180x180" },
     ],
   };
 }

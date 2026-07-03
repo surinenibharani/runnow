@@ -2606,6 +2606,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "8 min",
     relatedSlugs: [
       "bodyweight-strength-for-runners",
+      "full-body-dumbbell-workout-at-home",
       "importance-of-cross-training",
       "avoiding-injuries",
     ],
@@ -2614,6 +2615,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Bodyweight work gets you far. Once you can hold a plank, lunge, and glute bridge with good form, light dumbbells add load without complexity — perfect for a living room or garage setup.",
           "This is beginner-friendly strength, not bodybuilding. The goal is stronger hips, legs, and core so running feels smoother and injuries stay rare.",
+          "Want a longer full-body session twice a week? See [the 60–90 minute home dumbbell routine](/blog/full-body-dumbbell-workout-at-home) — what worked when I picked up weights for the first time at 45.",
         ],
       },
       {
@@ -2669,6 +2671,355 @@ export const blogPosts: BlogPost[] = [
           text: "Start with bodyweight first",
           href: "/blog/bodyweight-strength-for-runners",
         },
+      },
+    ],
+  },
+  {
+    slug: "full-body-dumbbell-workout-at-home",
+    title:
+      "The Covers Came Off After Five Years. Then Muscles Showed Up.",
+    metaTitle:
+      "Full-Body Dumbbell Workout at Home (60–90 Min) — Started Lifting at 45",
+    excerpt:
+      "I never touched weights in 45 years. A dumbbell set I'd bought five years back — covers still on until a few months ago — two full-body sessions per week, and slow consistency. Here's the routine that finally made strength stick.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-06-23",
+    readTime: "16 min",
+    relatedSlugs: [
+      "dumbbell-strength-at-home-for-runners",
+      "bodyweight-strength-for-runners",
+      "importance-of-cross-training",
+      "running-guide-for-women",
+      "running-guide-for-men",
+    ],
+    closingQuestion:
+      "When did you start lifting — and what surprised you most in the first few months?",
+    faq: [
+      {
+        question: "Is 60–90 minutes too long for a beginner?",
+        answer:
+          "It can be if you rush or use too much weight. This workout is built around controlled sets and honest rest — you're not trying to collapse at the end. If you're wiped after 60 minutes, stop there. Add the optional finisher only when recovery feels good the next day.",
+      },
+      {
+        question: "How often should I do this full-body session?",
+        answer:
+          "Twice per week — same full-body workout both days, on non-consecutive days (e.g. Tuesday and Friday). That spacing lets muscles recover while you still build strength fast enough to notice. If week one leaves you very sore, do one session that week, then commit to two from week two. Skip the second session the day before a long run or hard intervals.",
+      },
+      {
+        question: "What dumbbell weight should a complete beginner buy?",
+        answer:
+          "Adjustable dumbbells (roughly 5–50 lb per hand) are the best long-term buy — you add 2.5–5 lb as you get stronger without cluttering the garage. A fixed set works too: start with 8, 15, and 25 lb pairs, or a 5–30 lb hex set. Most beginners go heavier on squats and deadlifts than on shoulder press, so adjustables or multiple fixed pairs matter more than one heavy pair alone.",
+      },
+      {
+        question: "Adjustable dumbbells or a fixed dumbbell set?",
+        answer:
+          "Adjustables win on space and long-term value — one dial or pin change between exercises. Fixed hex or rubber sets win on simplicity, no moving parts, and often a lower upfront cost if you only buy 2–3 pairs. Either works; gradual progression depends on having light, medium, and heavy options for different moves, not on which style you pick.",
+      },
+      {
+        question: "Will lifting make me too sore to run?",
+        answer:
+          "Some soreness is normal the first few weeks. Schedule this workout after an easy run or on a rest day — not the day before intervals or a long run. If soreness changes your running form or lasts more than 48 hours, cut one set per exercise next time.",
+      },
+      {
+        question: "What weights should women start with?",
+        answer:
+          "Same exercises and schedule as men — usually lighter starting bells. In the [workout list](#workout), each exercise shows men and women ranges on the same line (e.g. goblet squat 15–25 lb men · 10–15 lb women). Most women new to lifting do well with a 5–40 lb adjustable set or fixed pairs at 5, 8, and 12 lb plus one 15–20 lb bell for goblet squats. Progress 2.5–5 lb when 3×15 feels smooth two weeks in a row.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "I ran. I biked. I hiked. I walked. But weights? Never. Not in school, not in my twenties, not in my thirties. By 45 I figured my body was basically done accepting new tricks.",
+          "Then I peeled the covers off a dumbbell set I'd bought five years back — it had been sitting there while I told myself I'd start \"next month.\" The gym felt like a project anyway — commute, crowds, mirrors, the whole performance. I wanted something I could do in the basement at my own random convenient time, with no audience and no plan to become a \"gym person.\"",
+          "Six months later, something unexpected happened: muscles started showing up. Not bodybuilder showing up — I'm not posting shirtless transformation photos. But shoulders looked a little rounder. Arms stopped being purely decorative.",
+          "This is the full-body dumbbell workout I actually stuck with — 13 exercises in order, same session twice a week, 60 to 90 minutes each time, on non-consecutive days. Big muscles first (1–3 legs, 4–5 back, 6–7 chest/shoulders), small muscles last (8–13). Every exercise: 3 sets of 15 reps. No fancy equipment. No jargon you need a YouTube degree to decode.",
+        ],
+      },
+      {
+        heading: "Why this worked when other fitness phases didn't",
+        list: [
+          "Two sessions per week felt doable alongside running — enough stimulus to change, not a daily grind",
+          "The dumbbell set I'd already owned meant I could start tonight — no shopping trip, no excuses left",
+          "Full-body both days — legs and back first while you're fresh, arms and core last, every time",
+          "Longer sessions let me rest properly between sets instead of rushing like a HIIT video",
+          "Visible changes came from consistency over months, not heroic single workouts",
+        ],
+        paragraphs: [
+          "The mental shift mattered as much as the exercises. I wasn't trying to punish myself. I was trying to teach my body a new skill slowly enough that it would stay.",
+        ],
+      },
+      {
+        heading: "Adjustable dumbbells vs a fixed dumbbell set",
+        paragraphs: [
+          "You don't need a full gym rack. You need enough weight spread across light, medium, and heavy so every exercise isn't the same pair of dumbbells. I used adjustables; a friend used three fixed pairs and got the same results — what mattered was progressing slowly, not the brand on the handle.",
+          "If you only own one pair today, start light and earn heavier weight. Exercise-by-exercise starting ranges for men and women are in the [workout list](#workout) — each line shows both (e.g. overhead press 8–15 lb/hand men · 5–8 lb/hand women).",
+          "Everything else: exercise mat or carpet, water, a towel, and a phone timer. A sturdy bench or ottoman is nice for press; the floor works fine for months.",
+        ],
+        subsections: [
+          {
+            heading: "Option A — Adjustable dumbbells",
+            list: [
+              "Look for roughly 5–50 lb per hand (2.5–25 kg) — enough for a year or more of beginner progression",
+              "Dial, pin, or plate-loaded styles all work; pick what you'll actually twist at 9 PM when you're tired",
+              "One pair replaces 10–15 fixed pairs — huge win for a garage or spare room",
+              "Easy to jump 2.5–5 lb per exercise when you're ready — that's the heart of gradual progression",
+              "Downside: upfront cost, and some models feel loose or wide at heavy settings — try reviews before buying",
+            ],
+          },
+          {
+            heading: "Option B — Fixed dumbbell set (hex or rubber)",
+            list: [
+              "General starter trio: 8 lb, 15 lb, and 25 lb pairs (3.5, 7, and 11 kg)",
+              "Women starting from zero: 5 lb, 8 lb, and 12 lb pairs, plus one 15–20 lb single bell for goblet squats",
+              "Or a small set: 5, 10, 15, 20, 25 lb pairs if you have space and budget",
+              "Pros: grab-and-go, no adjustment between sets, often cheaper to start",
+              "Cons: you'll outgrow the light pair on legs while shoulders still need it — that's normal; use different pairs per exercise",
+              "When you max out a weight, buy the next pair up (usually 2.5–5 lb jumps for upper body, 5 lb for legs) rather than skipping ahead",
+            ],
+          },
+          {
+            heading: "Which exercises need which weight?",
+            list: [
+              "Light (3–8 lb per hand): reverse fly, tricep extensions, curls when starting, overhead press for many women",
+              "Medium (8–15 lb per hand): floor press, rows, hammer curls as you progress",
+              "Heavy (one bell 15–25 lb, or 10–20 lb per hand): goblet squat, Romanian deadlift, lunges, farmer carry",
+              "Rule of thumb: pick a weight where reps 13–15 feel hard but form stays clean for 3 sets — then progress",
+            ],
+          },
+        ],
+      },
+      {
+        id: "schedule",
+        heading: "Twice-a-week schedule",
+        paragraphs: [
+          "Same full-body workout both days. Space sessions with at least one rest day between — muscles grow on recovery, not on back-to-back hammering.",
+        ],
+        list: [
+          "Example A: lift Tuesday + Friday (easy runs or rest those evenings)",
+          "Example B: lift Monday + Thursday (long run Saturday, speed work Wednesday if your plan has it)",
+          "Never stack both lifts before a long run or interval day — protect running quality first",
+          "Week 1 only: if you're very sore after session one, wait until the next scheduled day for session two; don't force back-to-back days",
+          "Optional finisher: add on one day per week at first, both days once recovery feels solid",
+        ],
+      },
+      {
+        heading: "Before you start: medical clearance",
+        paragraphs: [
+          "If you have heart conditions, uncontrolled blood pressure, joint replacements, or haven't been active in years, check with your doctor before starting resistance training. This article is what worked for me — not a prescription for you.",
+        ],
+      },
+      {
+        id: "progression",
+        heading: "Gradual progression — 12-week roadmap",
+        paragraphs: [
+          "Muscle showing up at 45 wasn't from one killer workout. It was from showing up every week and nudging weight or reps when the last session felt almost easy. Use this roadmap whether you have adjustables or a fixed set — swap in the next pair up when a column says \"add weight.\"",
+          "The golden rule: hit 3 sets of 15 reps with clean form in two workouts (same week at the same weight) → then add a little weight. One great day is not a reason to jump 10 lb.",
+          "How to progress when you can't finish 15 reps: drop weight until 3×15 is doable, then stay there until it feels almost easy. Example: 3×15 goblet squats at 25 lb feel smooth for two sessions → next week use 30 lb and work back to 3×15 (even if that means 30 lb for 3×12 at first). Never sacrifice form to chase rep 15.",
+        ],
+        subsections: [
+          {
+            heading: "Weeks 1–2 — Learn the movements",
+            list: [
+              "Frequency: 2 full-body sessions per week, non-consecutive days — see [twice-a-week schedule](#schedule)",
+              "Sets × reps: 2 × 15 per exercise (not 3 yet) — big muscles first, same order as the workout",
+              "Weight: use starting ranges in the [workout list](#workout) — men and women on each line (weeks 1–2: 2×15 at those weights)",
+              "If week 1 is brutal: one session only, then 2× from week 2",
+              "Skip the optional finisher entirely",
+              "Goal: memorize form and the big-to-small exercise order, not impress the garage wall",
+            ],
+          },
+          {
+            heading: "Weeks 3–4 — Full 3 × 15",
+            list: [
+              "Frequency: 2× per week, same days each week",
+              "Sets × reps: 3 × 15 on every weighted exercise — legs and back first, arms and core last",
+              "Weight: same as weeks 1–2 unless both sessions in week 4 felt easy — then goblet squat men 20–25 lb · women 15–20 lb; RDL men 25–30 lb total · women 15–20 lb total",
+              "Optional finisher: still skip",
+            ],
+          },
+          {
+            heading: "Weeks 5–8 — First real weight jumps",
+            list: [
+              "Frequency: 2× per week — same workout both days",
+              "Sets × reps: stay at 3 × 15 — don't drop reps to go heavier",
+              "Weight: add 2.5–5 lb every 1–2 weeks on lower body first, then rows, then press — shoulders progress slowest",
+              "Typical week 8 targets (3×15): 1) Goblet squat — men 20–30 lb · women 15–25 lb",
+              "2) RDL — men 25–35 lb total · women 15–25 lb total · 3) Lunges — men 15–20 lb/hand · women 8–10 lb/hand",
+              "4–5) Rows — men 20–25 lb/arm · women 12–15 lb/arm · 6) Floor press — men 12–18 lb/hand · women 10–12 lb/hand",
+              "7) Overhead press — men 10–15 lb/hand · women 8–10 lb/hand · 8–9) Curls & triceps — men 12–15 lb · women 8 lb",
+              "10) Reverse fly — men 8–10 lb · women 5–8 lb · 11) Calf raises — men 20–25 lb held · women 15–20 lb · 13) Farmer carry — men 20–25 lb/hand · women 15–20 lb/hand",
+              "Fixed set: swap from 15s to 25s on legs when both weekly sessions hit 3×15; keep 15s for press until the same bar is met",
+              "Optional finisher: add on one day in week 7, both days in week 8 if recovery is good",
+            ],
+          },
+          {
+            heading: "Weeks 9–12 — Small jumps, same 3 × 15",
+            list: [
+              "Frequency: 2 full-body sessions per week — this is the long-term rhythm",
+              "Sets × reps: 3 × 15 on every exercise — consistency beats mixing rep schemes",
+              "Weight: 2.5–5 lb bumps only when both sessions in a week complete 3×15 with clean form",
+              "Week 12: deload — 2 × 15 per exercise, one lift day that week only",
+              "By here, most consistent beginners see visible arm/shoulder changes and feel stronger on hills",
+            ],
+          },
+        ],
+      },
+      {
+        id: "warmup",
+        heading: "Warm-up (10 minutes) — don't skip this",
+        paragraphs: [
+          "Cold muscles and heavy dumbbells are a bad combination. I learned this the boring way (tight hamstrings for three days). Move through this once, unweighted, before touching the bells.",
+        ],
+        list: [
+          "2 min — march in place or easy step-ups on the bottom stair",
+          "10 arm circles forward + 10 backward",
+          "10 bodyweight good-mornings (hands on hips, hinge at hips)",
+          "10 bodyweight squats — slow, full range if comfortable",
+          "10 hip hinges — hands slide down thighs, feel hamstrings",
+          "10 walking lunges — no weight, short steps",
+          "30 sec plank + 30 sec dead bug",
+        ],
+      },
+      {
+        id: "workout",
+        heading: "The full-body workout (about 60–75 minutes)",
+        paragraphs: [
+          "Do exercises 1 through 13 in order — finish all sets of one move before starting the next. Always train big muscles first, small muscles last. That order matters when you're 45 and fresh. Do this same session twice per week (see [schedule](#schedule)). Every weighted exercise is 3 sets × 15 reps (weeks 1–2: 2 × 15 while you learn — see [gradual progression](#progression)).",
+          "Rest 60–90 seconds between sets — set a timer so you don't rush. Rest 2 minutes before the next exercise if you're still breathing hard.",
+          "Starting weights and week 8 targets for men and women are on the same line in the list below and in the [12-week roadmap](#progression).",
+          "Position matters most on a handful of moves — see [where form counts](#form) before you add weight.",
+        ],
+        list: [
+          "1. Goblet squat — 3 × 15. Hold one dumbbell at your chest, elbows inside knees, sit between your hips. Start: 15–25 lb (men) · 10–15 lb (women)",
+          "2. Romanian deadlift — 3 × 15. Soft knees, push hips back, dumbbells trace your thighs. Start: 20–35 lb total (men) · 10–15 lb total (women)",
+          "3. Walking lunges — 3 × 15 each leg. Dumbbells at sides, torso tall. Start: 10–20 lb/hand (men) · 5–8 lb/hand (women)",
+          "4. Bent-over dumbbell row — 3 × 15 each arm. Hinge forward, flat back, pull elbow to hip. Start: 15–25 lb (men) · 8–12 lb (women)",
+          "5. Single-arm row — 3 × 15 each arm. Squeeze shoulder blade at the top. Start: 15–25 lb (men) · 8–12 lb (women)",
+          "6. Dumbbell floor press — 3 × 15. Lie on floor, press up, elbows at ~45°. Start: 10–20 lb/hand (men) · 8–12 lb/hand (women)",
+          "7. Standing overhead press — 3 × 15. Core tight, don't lean back. Start: 8–15 lb/hand (men) · 5–8 lb/hand (women)",
+          "8. Hammer curls — 3 × 15. Neutral grip, elbows pinned to sides. Start: 10–15 lb (men) · 5–8 lb (women)",
+          "9. Overhead tricep extension — 3 × 15. One or two dumbbells, elbows stay narrow. Start: 10–15 lb (men) · 5–8 lb (women)",
+          "10. Reverse fly — 3 × 15. Light weight, slight hinge. Start: 5–10 lb (men) · 3–5 lb (women)",
+          "11. Calf raises — 3 × 15. Pause 1 sec at top. Start: hold 15–25 lb (men) · 10–12 lb (women)",
+          "12. Dead bug — 3 × 15 each side. Lower back glued to floor. Bodyweight",
+          "13. Farmer carry — 3 × 15 steps each hand. Start: 15–25 lb/hand (men) · 10–15 lb/hand (women)",
+        ],
+      },
+      {
+        id: "printable-sheet",
+        heading: "Printable sheets (save as PDF)",
+        paragraphs: [
+          "Tape these to the basement wall or pull them up on your phone between sets. Use your browser's print dialog and choose \"Save as PDF.\"",
+          "[Workout sheet with all 13 exercises and form diagrams](/blog/full-body-dumbbell-workout-at-home/printable) — one shared form sheet plus a men/women weight chart · [12-week schedule with progression table, weight charts, and weekly tracker](/blog/full-body-dumbbell-workout-at-home/printable/schedule)",
+        ],
+        cta: {
+          text: "Open printable workout sheet",
+          href: "/blog/full-body-dumbbell-workout-at-home/printable",
+        },
+      },
+      {
+        id: "form",
+        heading: "Where position matters most (and what to watch)",
+        paragraphs: [
+          "You don't need a mirror maze or a coach yelling cues. You do need to know which exercises punish sloppy alignment — especially at 45 when warm-up isn't automatic and the basement lighting is whatever the bulb survived.",
+          "Film yourself on your phone for one set of anything in the \"take the most care\" list. I thought my RDLs looked fine until video showed me folding like a lawn chair.",
+          "Red flags to stop mid-set: sharp joint pain (knee, shoulder, lower back), tingling, or form that only works if you hold your breath and pray. Drop weight, fix position, or skip the exercise that day. Sore muscles tomorrow are fine; something \"catching\" in a joint is not.",
+        ],
+        subsections: [
+          {
+            heading: "Take the most care here — exercises 1–7 (back and shoulders on the line)",
+            list: [
+              "1. Goblet squat — elbows inside knees, sit between hips (not straight down onto toes). Heels stay down, chest up. Knees follow toes — if they cave in, go lighter and pause at the bottom to reset.",
+              "2. Romanian deadlift — #1 priority for spine safety. Soft knees, hips push back (not down), dumbbells skim your thighs, chest proud. Lower back stays flat — if it rounds, drop weight. You should feel hamstrings, not a pinch in your spine.",
+              "3. Walking lunges — short-ish steps, front knee tracks over mid-foot (not collapsing inward), torso tall. Back knee drops toward floor — don't slam it.",
+              "4. Bent-over row — hinge at hips until torso is roughly 45° or flatter, neck neutral, core braced. Pull elbow to hip pocket; don't yank with a rounded back.",
+              "7. Standing overhead press — ribs down, glutes tight, no leaning back to cheat the weight up. Bell path stays close to your face; lockout overhead without shrugging into your ears.",
+            ],
+          },
+          {
+            heading: "Important — exercises 5–6 and 9–13 (brace and control)",
+            list: [
+              "5. Single-arm row — support hand firm on bench/knee, pull without twisting your torso open. Shoulder blade squeezes toward spine at the top.",
+              "6. Dumbbell floor press — shoulders pinned to floor, elbows ~45° from ribs (not flared straight out). Stop at the floor — don't bounce.",
+              "9. Overhead tricep extension — elbows stay narrow and point at the ceiling; only forearms move. Go light before your elbows complain.",
+              "12. Dead bug — lower back pressed into floor the whole rep; if it arches off, shorten range or slow down.",
+              "13. Farmer carry — stand tall, shoulders packed down and back, walk smooth steps. Don't let bells pull you into a shrug or lean.",
+            ],
+          },
+          {
+            heading: "Lower risk — exercises 8, 10, and 11 (still use control, not momentum)",
+            list: [
+              "8. Hammer curls — elbows fixed at sides, no swinging hips to hoist the bell",
+              "10. Reverse fly — slight hinge, soft elbows, lift with rear delts not traps",
+              "11. Calf raises — full range, pause at top, lower slowly — bounce cheats the rep",
+            ],
+          },
+        ],
+      },
+      {
+        id: "finisher",
+        heading: "Optional finisher (+10–15 min → 90 minutes total)",
+        paragraphs: [
+          "Only add this when the main workout feels manageable — not when you're already destroyed. This is gravy, not homework.",
+        ],
+        list: [
+          "Goblet squat hold — 3 × 15 sec at bottom of squat (light weight)",
+          "Push-up (bodyweight) — 3 × 15 (knees down if needed)",
+          "Glute bridge with dumbbell on hips — 3 × 15, 2-sec squeeze at top",
+        ],
+      },
+      {
+        heading: "Cool-down (5–8 minutes)",
+        list: [
+          "Slow walking around the room — 2 min",
+          "Quad stretch — 30 sec each leg",
+          "Figure-4 glute stretch — 30 sec each side",
+          "Chest doorway stretch — 30 sec",
+          "Child's pose or gentle cat-cow — 1 min",
+        ],
+        paragraphs: [
+          "You don't need to turn into a yoga influencer. Just don't sit on the couch stiff as a board thirty seconds after your last set.",
+        ],
+      },
+      {
+        heading: "How to fit this with running",
+        paragraphs: [
+          "I do this on a rest day or after a very easy run — never the day before speed work or a long run. Strength and running share legs; respect that negotiation.",
+          "If LetsRunNow has you on a 6-day schedule, treat this as cross-training with purpose: you're building the hips, calves, and core that keep running sustainable. See [cross-training for runners](/blog/importance-of-cross-training) for where it slots in.",
+        ],
+        list: [
+          "Twice per week, non-consecutive days — e.g. Tuesday + Friday",
+          "Week 1–2: 2× per week at 2 × 15; week 3+: 2× per week at 3 × 15",
+          "Place lifts after easy runs or on rest days — never the day before speed work or a long run",
+          "Week 5–8: add weight slowly; both sessions in a week should feel solid before you bump bells",
+          "Race week: one short session or skip — freshness beats vanity",
+        ],
+      },
+      {
+        heading: "Progression without getting hurt",
+        list: [
+          "Two workouts in the same week completing 3 × 15 with clean form → then add 2.5–5 lb (adjustable) or grab the next fixed pair up",
+          "Can't hit 15 reps? Drop weight until 3 × 15 is doable — then progress weight, not reps below 15",
+          "Big muscles first every session, in order: 1–3 legs → 4–5 back → 6–7 chest/shoulders → 8–13 arms/calves/core",
+          "Lower body usually progresses fastest; shoulders and triceps slowest — that's normal, not failure",
+          "If lower back complains on deadlifts, drop weight and film yourself — you're probably bending, not hinging",
+          "Soreness at 24 hours: normal early on. Pain at 48+ hours or sharp joint pain: repeat last week's weights",
+          "Sleep and protein matter more after 40 than they did at 25 — I won't lecture you on macros, just don't skip dinner",
+          "Deload every 6–8 weeks: 2 × 15 per exercise, same or 5–10% lighter weight",
+        ],
+        paragraphs: [
+          "With a fixed set, progression looks like rotating pairs while staying at 3×15: weeks on 15s for press, then 20s when 3×15 is easy twice, while legs move from 25s to 30s. With adjustables, it's smaller clicks — same 15-rep target every time. Either way, gradual beats heroic.",
+        ],
+      },
+      {
+        heading: "What changed for me (besides the mirror)",
+        paragraphs: [
+          "Hills on runs felt less like personal attacks. I'd never done a single push-up in my life — until a few weeks back, mid-conversation with a friend, I dropped and knocked out five. That was proof the weight training was actually working.",
+          "I didn't become a different person. I became someone who lifts twice a week, every week, without negotiating with myself. That identity shift mattered more than any single PR.",
+          "If you've never touched a weight and you're north of 40: you're not too late. You're just early enough to be smart about it.",
+        ],
+        cta: { text: "Build your running plan", href: "/plan" },
       },
     ],
   },

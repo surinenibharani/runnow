@@ -113,10 +113,16 @@ export function PostContent({
       {post.faq && post.faq.length > 0 && <BlogFaq items={post.faq} />}
 
       {post.closingQuestion && !scheduled && (
-        <p className="mt-10 rounded-xl border border-primary/20 bg-primary/5 px-4 py-4 text-sm leading-relaxed text-muted-foreground sm:px-5">
+        <Link
+          href="#comments"
+          className="mt-10 block rounded-xl border border-primary/20 bg-primary/5 px-4 py-4 text-sm leading-relaxed text-muted-foreground transition-colors hover:border-primary/30 hover:bg-primary/10 sm:px-5"
+        >
           <span className="font-semibold text-foreground">Join the conversation: </span>
           {post.closingQuestion}
-        </p>
+          <span className="mt-2 block text-sm font-medium text-primary">
+            Leave a comment below ↓
+          </span>
+        </Link>
       )}
 
       <RelatedPosts

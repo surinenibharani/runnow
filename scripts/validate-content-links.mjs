@@ -90,7 +90,22 @@ for (const file of collectFiles(path.join(root, "src"))) {
     const rel = path.relative(root, file);
 
     if (pathname.startsWith("/blog/")) {
-      const slug = pathname.slice("/blog/".length);
+      const rest = pathname.slice("/blog/".length);
+      if (rest.endsWith("/printable/schedule")) {
+        const slug = rest.slice(0, -"/printable/schedule".length);
+        if (!blogSlugs.has(slug)) {
+          issues.push(`${rel}: unknown blog slug ${pathname}`);
+        }
+        continue;
+      }
+      if (rest.endsWith("/printable")) {
+        const slug = rest.slice(0, -"/printable".length);
+        if (!blogSlugs.has(slug)) {
+          issues.push(`${rel}: unknown blog slug ${pathname}`);
+        }
+        continue;
+      }
+      const slug = rest;
       if (!blogSlugs.has(slug)) {
         issues.push(`${rel}: unknown blog slug ${pathname}`);
       }

@@ -1,4 +1,5 @@
 import type { BlogPost } from "@/lib/blog/types";
+import { BRAND_ICON_PATH, BRAND_LOGO_PATH } from "@/lib/brand";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL, SITE_DESCRIPTION } from "@/lib/site";
 
 export function organizationJsonLd() {
@@ -7,7 +8,8 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/icon.svg`,
+    logo: `${SITE_URL}${BRAND_LOGO_PATH}`,
+    image: `${SITE_URL}${BRAND_ICON_PATH}`,
     description: SITE_DESCRIPTION,
   };
 }
@@ -48,7 +50,7 @@ export function articleJsonLd(post: BlogPost) {
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/icon.svg`,
+        url: `${SITE_URL}${BRAND_LOGO_PATH}`,
       },
     },
     mainEntityOfPage: {

@@ -141,6 +141,16 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "dumbbell workout for runners at home",
     "strength training runners home dumbbells",
   ],
+  "full-body-dumbbell-workout-at-home": [
+    "full body dumbbell workout at home",
+    "beginner dumbbell workout over 40",
+    "60 minute dumbbell workout",
+    "first time lifting dumbbells at home",
+    "adjustable dumbbells vs fixed set",
+    "gradual dumbbell progression beginner",
+    "dumbbell workout for women beginners",
+    "starting weights women dumbbells",
+  ],
   "advanced-strength-training-for-runners": [
     "advanced strength training for runners",
     "plyometrics for runners",
