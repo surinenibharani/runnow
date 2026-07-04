@@ -30,8 +30,8 @@ export default async function OpenGraphImage() {
         <img
           src={logoSrc}
           alt=""
-          width={340}
-          height={430}
+          width={420}
+          height={290}
           style={{ objectFit: "contain" }}
         />
       </div>

@@ -2,6 +2,7 @@ import { blogPosts, getPublishedBlogPosts } from "@/lib/blog/posts";
 import { commonInjuries } from "@/lib/injuries/common-injuries";
 import { gearCategories } from "@/lib/gear/items";
 import { PLANS } from "@/lib/plans";
+import { SITE_DESCRIPTION } from "@/lib/site";
 import {
   runnerTips,
   slugifyTipTitle,
@@ -15,8 +16,7 @@ const STATIC_PAGES: SiteSearchResult[] = [
   {
     id: "page-home",
     title: "Home",
-    description:
-      "Free couch to 5K and marathon training plans for beginners — no app required.",
+    description: SITE_DESCRIPTION,
     href: "/",
     kind: "page",
     category: "Plans",

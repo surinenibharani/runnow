@@ -16,8 +16,8 @@ export function Logo({ className, href = "/" }: LogoProps) {
     <Image
       src={BRAND_LOGO_PATH}
       alt={`${SITE_NAME} — ${BRAND_CAPTION}`}
-      width={627}
-      height={795}
+      width={651}
+      height={449}
       className="h-12 w-auto bg-transparent object-contain sm:h-14"
       priority
       unoptimized

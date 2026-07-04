@@ -92,7 +92,7 @@ export function emailLayout({
           <tr>
             <td>
               <p style="margin:0 0 20px;">
-                <img src="${SITE_URL.replace(/\/$/, "")}${BRAND_LOGO_PATH}" alt="${SITE_NAME} — ${BRAND_CAPTION}" width="120" height="152" style="display:block;width:120px;height:auto;border:0;" />
+                <img src="${SITE_URL.replace(/\/$/, "")}${BRAND_LOGO_PATH}" alt="${SITE_NAME} — ${BRAND_CAPTION}" width="140" height="97" style="display:block;width:140px;height:auto;border:0;" />
               </p>
               ${body}
               ${footer}
