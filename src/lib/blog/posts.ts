@@ -2606,7 +2606,6 @@ export const blogPosts: BlogPost[] = [
     readTime: "8 min",
     relatedSlugs: [
       "bodyweight-strength-for-runners",
-      "full-body-dumbbell-workout-at-home",
       "importance-of-cross-training",
       "avoiding-injuries",
     ],
@@ -2615,7 +2614,6 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Bodyweight work gets you far. Once you can hold a plank, lunge, and glute bridge with good form, light dumbbells add load without complexity — perfect for a living room or garage setup.",
           "This is beginner-friendly strength, not bodybuilding. The goal is stronger hips, legs, and core so running feels smoother and injuries stay rare.",
-          "Want a longer full-body session twice a week? See [the 60–90 minute home dumbbell routine](/blog/full-body-dumbbell-workout-at-home) — what worked when I picked up weights for the first time at 45.",
         ],
       },
       {
@@ -2684,7 +2682,8 @@ export const blogPosts: BlogPost[] = [
       "I never touched weights in 45 years. A dumbbell set I'd bought five years back — covers still on until a few months ago — two full-body sessions per week, and slow consistency. Here's the routine that finally made strength stick.",
     category: "Training",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-06-23",
+    // Draft — not public until this date (preview cookie / local dev only).
+    publishedAt: "2099-01-01",
     readTime: "16 min",
     relatedSlugs: [
       "dumbbell-strength-at-home-for-runners",
