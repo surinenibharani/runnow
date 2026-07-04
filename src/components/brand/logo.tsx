@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BRAND_LOGO_PATH } from "@/lib/brand";
+import { BRAND_CAPTION, BRAND_LOGO_PATH } from "@/lib/brand";
+import { SITE_NAME } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type LogoProps = {
@@ -14,10 +15,10 @@ export function Logo({ className, href = "/" }: LogoProps) {
   const image = (
     <Image
       src={BRAND_LOGO_PATH}
-      alt="LetsRunNow"
-      width={665}
-      height={548}
-      className="h-11 w-auto bg-transparent object-contain sm:h-12"
+      alt={`${SITE_NAME} — ${BRAND_CAPTION}`}
+      width={627}
+      height={1014}
+      className="h-12 w-auto bg-transparent object-contain sm:h-14"
       priority
       unoptimized
     />

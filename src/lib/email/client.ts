@@ -1,4 +1,4 @@
-import { BRAND_LOGO_PATH } from "@/lib/brand";
+import { BRAND_CAPTION, BRAND_LOGO_PATH } from "@/lib/brand";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export type SendEmailInput = {
@@ -92,7 +92,7 @@ export function emailLayout({
           <tr>
             <td>
               <p style="margin:0 0 20px;">
-                <img src="${SITE_URL.replace(/\/$/, "")}${BRAND_LOGO_PATH}" alt="${SITE_NAME}" width="160" height="132" style="display:block;width:160px;height:auto;border:0;" />
+                <img src="${SITE_URL.replace(/\/$/, "")}${BRAND_LOGO_PATH}" alt="${SITE_NAME} — ${BRAND_CAPTION}" width="120" height="194" style="display:block;width:120px;height:auto;border:0;" />
               </p>
               ${body}
               ${footer}

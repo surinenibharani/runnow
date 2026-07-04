@@ -1,7 +1,10 @@
+import { BRAND_CAPTION } from "@/lib/brand";
+
 export const SITE_NAME = "LetsRunNow";
-export const SITE_TAGLINE = "Free Couch to 5K Plans for Beginners";
+/** Matches the logo caption. */
+export const SITE_TAGLINE = BRAND_CAPTION;
 export const SITE_DESCRIPTION =
-  "Free couch to 5K, half marathon, and marathon training plans — a beginner running schedule in your browser, no app required. Pick a plan, track progress, and optional Strava sync.";
+  "Free couch to 5K, half marathon, and marathon training plans — a beginner running schedule in your browser, no app required. Pick a plan, track progress, and optional Strava sync. Run with us.";
 export const SITE_KEYWORDS = [
   "couch to 5k free plan",
   "beginner running schedule no app",

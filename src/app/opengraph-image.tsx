@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { BRAND_CAPTION } from "@/lib/brand";
+import { BRAND_CAPTION, BRAND_LOGO_PATH } from "@/lib/brand";
 import { SITE_NAME } from "@/lib/site";
 
 export const alt = `${SITE_NAME} — ${BRAND_CAPTION}`;
@@ -10,7 +10,7 @@ export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
   const logoBytes = await readFile(
-    join(process.cwd(), "public/brand/letsrunnow-logo-stacked-tagline.png")
+    join(process.cwd(), "public", BRAND_LOGO_PATH.replace(/^\//, ""))
   );
   const logoSrc = `data:image/png;base64,${logoBytes.toString("base64")}`;
 
@@ -23,15 +23,15 @@ export default async function OpenGraphImage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#fafafa",
+          background: "#f9fcff",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={logoSrc}
           alt=""
-          width={520}
-          height={428}
+          width={340}
+          height={550}
           style={{ objectFit: "contain" }}
         />
       </div>

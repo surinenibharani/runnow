@@ -12,8 +12,8 @@ export function StrideMark({ className }: StrideMarkProps) {
     <Image
       src={BRAND_MARK_PATH}
       alt=""
-      width={510}
-      height={510}
+      width={671}
+      height={671}
       className={cn("h-full w-full object-contain", className)}
       unoptimized
       aria-hidden

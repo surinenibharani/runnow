@@ -10,6 +10,7 @@ export function organizationJsonLd() {
     url: SITE_URL,
     logo: `${SITE_URL}${BRAND_LOGO_PATH}`,
     image: `${SITE_URL}${BRAND_ICON_PATH}`,
+    slogan: SITE_TAGLINE,
     description: SITE_DESCRIPTION,
   };
 }
@@ -19,6 +20,7 @@ export function websiteJsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE_NAME,
+    alternateName: `${SITE_NAME} — ${SITE_TAGLINE}`,
     url: SITE_URL,
     description: SITE_DESCRIPTION,
     publisher: {

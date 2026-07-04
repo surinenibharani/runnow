@@ -6,6 +6,8 @@ import {
   dumbbellWorkoutExercises,
   dumbbellWorkoutSchedulePrintablePath,
 } from "@/lib/blog/dumbbell-workout-sheet";
+import { BRAND_CAPTION } from "@/lib/brand";
+import { SITE_NAME } from "@/lib/site";
 
 type DumbbellWorkoutPrintSheetProps = {
   articleHref: string;
@@ -36,7 +38,7 @@ export function DumbbellWorkoutPrintSheet({ articleHref }: DumbbellWorkoutPrintS
 
         <header className="print-header mb-8 border-b border-border pb-6">
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            LetsRunNow · Printable workout sheet
+            {SITE_NAME} · {BRAND_CAPTION} · Printable workout sheet
           </p>
           <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
             Full-body dumbbell workout

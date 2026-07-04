@@ -10,6 +10,8 @@ import {
   dumbbellWorkoutExercises,
   dumbbellWorkoutPrintablePath,
 } from "@/lib/blog/dumbbell-workout-sheet";
+import { BRAND_CAPTION } from "@/lib/brand";
+import { SITE_NAME } from "@/lib/site";
 
 const WEEK_DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
 
@@ -44,7 +46,7 @@ export function DumbbellWorkoutSchedulePrintSheet({
 
       <header className="print-header mb-8 border-b border-border pb-6">
         <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-          LetsRunNow · Printable schedule
+          {SITE_NAME} · {BRAND_CAPTION} · Printable schedule
         </p>
         <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
           12-week dumbbell schedule
