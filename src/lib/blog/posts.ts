@@ -2606,6 +2606,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "8 min",
     relatedSlugs: [
       "bodyweight-strength-for-runners",
+      "beginner-dumbbell-workout-at-home",
       "importance-of-cross-training",
       "avoiding-injuries",
     ],
@@ -2668,6 +2669,208 @@ export const blogPosts: BlogPost[] = [
         cta: {
           text: "Start with bodyweight first",
           href: "/blog/bodyweight-strength-for-runners",
+        },
+      },
+    ],
+  },
+  {
+    slug: "beginner-dumbbell-workout-at-home",
+    title: "Beginner Dumbbell Workout at Home: Full Routine + Warm-Up",
+    metaTitle:
+      "Beginner Dumbbell Workout at Home — 8 Exercises, 45–60 Minutes",
+    excerpt:
+      "A complete at-home dumbbell session for first-time lifters: warm-up, eight exercises in the right order, sets and reps, and how to progress safely without a gym.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-06",
+    readTime: "10 min",
+    relatedSlugs: [
+      "dumbbell-strength-at-home-for-runners",
+      "bodyweight-strength-for-runners",
+      "importance-of-cross-training",
+      "avoiding-injuries",
+    ],
+    closingQuestion:
+      "Which exercise felt hardest on your first try — and what helped your form click?",
+    faq: [
+      {
+        question: "How long does this beginner dumbbell workout take?",
+        answer:
+          "Plan on 45–60 minutes including warm-up and rest between sets. Rest 60–90 seconds on most exercises and up to 2 minutes after deadlifts and goblet squats. If you're still learning form, the first session may run longer — that's normal.",
+      },
+      {
+        question: "How often should a beginner do this workout?",
+        answer:
+          "Two to three times per week on non-consecutive days (for example Monday, Wednesday, Friday). Muscles need recovery between sessions, especially when you're new to lifting. If you're also building a running habit, schedule strength after easy runs or on rest days — not the day before a long run or speed work.",
+      },
+      {
+        question: "What dumbbell weight should a complete beginner start with?",
+        answer:
+          "Pick a weight where reps 12–15 feel challenging but your form stays clean on every rep. Most beginners need different weights for legs versus arms — adjustable dumbbells or a small set of fixed pairs (light, medium, heavy) works better than one pair for everything.",
+      },
+      {
+        question: "Can I do this workout if I only run and never lifted before?",
+        answer:
+          "Yes, if you're cleared for exercise and you start light. Do the full warm-up, use rehearsal sets before working weight, and prioritize form over load. If bodyweight squats and lunges already feel shaky, spend a few weeks on our [bodyweight strength for runners](/blog/bodyweight-strength-for-runners) routine first.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "You don't need a gym membership or a complicated program to start strength training at home. One pair of dumbbells (or a small set), a sturdy bench or chair, and about an hour is enough for a full beginner session that hits legs, back, chest, and arms in a sensible order.",
+          "This routine is built for first-time lifters: warm up properly, train big compound moves while you're fresh, finish with smaller arm exercises, and leave room to progress every week or two. If you run, it doubles as smart [cross-training](/blog/importance-of-cross-training) — stronger hips and core make easy miles feel easier.",
+        ],
+      },
+      {
+        heading: "What you need",
+        list: [
+          "Dumbbells — adjustable or a light/medium pair to start",
+          "Sturdy bench, ottoman, or chair for rows and chest work (floor works too)",
+          "Exercise mat or carpet",
+          "Water and a phone timer for rest periods",
+        ],
+      },
+      {
+        id: "warmup",
+        heading: "The warm-up routine",
+        paragraphs: [
+          "Cold muscles and heavy dumbbells are a bad mix. Move through this once before your working sets — unweighted except for the light rehearsal at the end.",
+        ],
+        list: [
+          "Arm circles — extend arms straight out at shoulder height. Small controlled circles forward, then backward",
+          "Arm swings (huggers) — swing arms wide to the sides, then cross them over your chest",
+          "Shoulder rolls and scapular squeezes — roll shoulders backward in large circles; squeeze shoulder blades together at the back",
+          "Wrist rotations — interlock fingers and roll wrists in both directions to prepare for gripping dumbbells",
+          "Air jumps (skipping) — 20 jumps per set",
+          "Bodyweight squats or lunges — 10–15 reps to wake up legs and glutes",
+          "Cat-cow or bird-dog — 8–10 reps for core and spine mobility",
+          "Light rehearsal sets — before heavy working sets, do 10–12 reps of each planned exercise with very light dumbbells or body weight only",
+        ],
+      },
+      {
+        id: "workout",
+        heading: "The workout",
+        paragraphs: [
+          "Do exercises in order. Finish all sets of one move before starting the next. Default prescription: **3 sets of 12–15 reps** per exercise (drop to 10–12 if form breaks). Rest **60–90 seconds** between most sets; **2 minutes** after deadlifts and goblet squats.",
+        ],
+        subsections: [
+          {
+            heading: "Deadlift",
+            list: [
+              "Stand with feet hip-width, dumbbells in front of thighs",
+              "Hinge at hips (push butt back), keep back flat and neutral",
+              "Lower until you feel a hamstring stretch, then drive through heels to stand",
+              "3 sets of 12–15 reps (drop to 10–12 if form breaks)",
+            ],
+          },
+          {
+            heading: "Goblet squat",
+            list: [
+              "Hold one dumbbell vertically at your chest; feet shoulder-width",
+              "Squat as deep as comfortable — thighs at least parallel if you can",
+              "Knees track over toes; chest stays up; drive up through heels",
+              "3 sets of 12–15 reps",
+              "Beginner tip: if knee issues flare, limit depth",
+            ],
+          },
+          {
+            heading: "Thread the needle row (single-arm dumbbell row)",
+            list: [
+              "One knee and same-side hand on bench or chair; opposite hand rows dumbbell toward hip",
+              "Don't sweep the bell wildly — pull with control",
+              "Squeeze shoulder blade at the top; alternate sides each set",
+              "3 sets of 12–15 reps per side",
+              "Focus on controlled rowing to build back strength safely",
+            ],
+          },
+          {
+            heading: "Dumbbell chest raise",
+            list: [
+              "Lie on bench or floor; dumbbells above chest, palms forward",
+              "Lower to chest or shoulder level with control, then press up explosively",
+              "3 sets of 12–15 reps",
+            ],
+          },
+          {
+            heading: "Rope pull (hands behind head)",
+            list: [
+              "Hold one dumbbell overhead with both hands",
+              "Lower behind head (elbows point up), then extend arms straight",
+              "Keep elbows tight — great tricep finisher",
+              "3 sets of 12–15 reps",
+            ],
+          },
+          {
+            heading: "Straight bicep curls",
+            list: [
+              "Hold dumbbells at your sides, palms forward",
+              "Curl up smoothly without swinging; lower with control",
+              "3 sets of 12–15 reps",
+            ],
+          },
+          {
+            heading: "Hammer curls",
+            list: [
+              "Palms face inward throughout the movement",
+              "Curl both arms together",
+              "3 sets of 12–15 reps",
+            ],
+          },
+        ],
+      },
+      {
+        id: "order",
+        heading: "Why this order?",
+        list: [
+          "Warm-up first — prevents injury and prepares joints for load",
+          "Compound before isolation — big multi-joint moves (deadlift, squat, row) while energy is highest",
+          "Lower body → upper body — allows partial recovery between similar muscle groups",
+          "Push/pull balance — row (pull) before chest raise (push)",
+          "Arms last — small muscles fatigue quickly; save curls for the end",
+          "Total flow — efficient 45–60 minute session depending on rest and reps",
+        ],
+      },
+      {
+        heading: "Quick tips and progression",
+        list: [
+          "Do 3 sets of 8–15 reps per exercise — adjust toward strength (heavier, fewer reps) or endurance (lighter, more reps) based on your goals",
+          "Rest 60–90 seconds between most sets; 2 minutes after deadlifts and squats",
+          "Every 1–2 weeks, increase weight slightly or add 1–2 reps when your current numbers feel easy — track your workouts",
+          "Optional core add-on: plank 3 × 20–40 seconds or bird-dog at the end (helpful for running)",
+          "Cool-down: 5 minutes light walking plus static stretches for hamstrings, quads, chest, and shoulders",
+          "Frequency: 2–3× per week on non-consecutive days for recovery",
+        ],
+        paragraphs: [
+          "For a shorter runner-focused option with two alternating sessions, see [basic dumbbell workouts at home for runners](/blog/dumbbell-strength-at-home-for-runners).",
+        ],
+      },
+      {
+        id: "printable-tracker",
+        heading: "Printable workout tracker",
+        paragraphs: [
+          "Track dumbbell weight, reps per set, which days you lifted, and weekly body weight on a 12-week printable log. Circle your training days and write reps as set 1 / set 2 / set 3 in each cell (for example 12/14/15).",
+        ],
+        cta: {
+          text: "Open printable tracker",
+          href: "/blog/beginner-dumbbell-workout-at-home/printable",
+        },
+      },
+      {
+        id: "safety",
+        heading: "Safety notes",
+        list: [
+          "Prioritize form over weight — every time",
+          "For squats and deadlifts, stop if knee pain increases; modify range or swap to glute bridges",
+          "Use a sturdy bench, chair, or floor variations — nothing wobbly under your hands or knees",
+          "Focus extra attention on deadlift and goblet squat form before adding load",
+          "Sharp joint pain, tingling, or form that only works if you hold your breath means stop, drop weight, or skip that exercise today",
+        ],
+        paragraphs: [
+          "If you haven't been active recently or you have heart, joint, or blood pressure concerns, check with your doctor before starting resistance training.",
+        ],
+        cta: {
+          text: "Pair strength with a running plan",
+          href: "/plan",
         },
       },
     ],

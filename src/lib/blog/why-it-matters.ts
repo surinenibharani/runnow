@@ -62,6 +62,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Men starting out face different blind spots — heart symptoms, under-fueling without period cues, groin load, and push-through culture. Addressing those early keeps training sustainable.",
   "dumbbell-strength-at-home-for-runners":
     "A single pair of dumbbells at home can build the hip and leg strength running demands — without a gym contract or complicated programs.",
+  "beginner-dumbbell-workout-at-home":
+    "Most beginner dumbbell guides assume you've lifted before or skip the warm-up. A clear order — compound moves first, arms last — keeps your first home session safe and finishable in under an hour.",
   "full-body-dumbbell-workout-at-home":
     "Starting strength after 40 feels intimidating — and most programs assume you've lifted before. Adjustable dumbbells or a small fixed set, plus a gradual 12-week progression, is enough to build visible muscle without a gym.",
   "advanced-strength-training-for-runners":
