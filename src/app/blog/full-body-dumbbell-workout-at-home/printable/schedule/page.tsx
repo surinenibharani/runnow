@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Printable 12-Week Dumbbell Workout Schedule",
   description:
     "Print or save as PDF: twice-a-week lifting schedule, 12-week progression, and weekly check-off tracker.",
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
   alternates: {
     canonical: `${SITE_URL}${dumbbellWorkoutSchedulePrintablePath()}`,
   },

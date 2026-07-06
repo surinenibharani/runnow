@@ -12,14 +12,20 @@ import {
   commonInjuries,
   preventionPrinciples,
 } from "@/lib/injuries/common-injuries";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { INJURIES_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { cn } from "@/lib/utils";
 
+const INJURIES_TITLE =
+  "Common Running Injuries — Prevention & Recovery for Beginners";
+const INJURIES_DESCRIPTION =
+  "Shin splints, runner's knee, IT band pain, and plantar fasciitis — how beginners can prevent, recover from, and avoid common running injuries.";
+
 export const metadata: Metadata = pageMetadata({
-  title: "Common Running Injuries — Prevention & Recovery for Beginners",
-  description:
-    "Shin splints, runner's knee, IT band pain, and plantar fasciitis — how beginners can prevent, recover from, and avoid common running injuries.",
+  title: INJURIES_TITLE,
+  description: INJURIES_DESCRIPTION,
   path: "/injuries",
   keywords: [...INJURIES_SEO_KEYWORDS],
 });
@@ -27,6 +33,19 @@ export const metadata: Metadata = pageMetadata({
 export default function InjuriesPage() {
   return (
     <div className="py-12 sm:py-16">
+      <JsonLd
+        data={[
+          webPageJsonLd({
+            name: INJURIES_TITLE,
+            description: INJURIES_DESCRIPTION,
+            path: "/injuries",
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Injuries", path: "/injuries" },
+          ]),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
           <Breadcrumbs

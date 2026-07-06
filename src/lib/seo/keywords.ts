@@ -196,8 +196,11 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
 
 export function blogPostKeywords(slug: string, category: string): string[] {
   const extra = BLOG_POST_KEYWORDS[slug] ?? [];
+  const fromSlug = slug.replace(/-/g, " ");
   return [
     category.toLowerCase(),
+    fromSlug,
+    `${fromSlug} beginner`,
     "beginner running",
     "running tips",
     ...extra,

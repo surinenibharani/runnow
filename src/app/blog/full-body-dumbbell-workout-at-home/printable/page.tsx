@@ -12,8 +12,8 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Printable Full-Body Dumbbell Workout Sheet",
   description:
-    "Print or save as PDF: 13-exercise dumbbell workout with sets, reps, and basic form diagrams.",
-  robots: { index: true, follow: true },
+    "Print or save as PDF: 13-exercise dumbbell workout with sets, reps, and form diagrams.",
+  robots: { index: false, follow: true },
   alternates: {
     canonical: `${SITE_URL}${dumbbellWorkoutPrintablePath()}`,
   },

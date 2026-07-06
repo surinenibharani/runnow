@@ -16,14 +16,19 @@ import {
   type GearTier,
 } from "@/lib/gear/items";
 import { getGearUpdates, formatGearUpdatedAt, getMergedSuggestions } from "@/lib/gear/updates";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { GEAR_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { cn } from "@/lib/utils";
 
+const GEAR_TITLE = "Beginner Running Gear Guide — Shoes, Socks & Essentials";
+const GEAR_DESCRIPTION =
+  "Beginner running gear guide: first shoes, socks, what to wear, budget picks under $50, and when you actually need a watch — couch to 5K starter kit.";
+
 export const metadata: Metadata = pageMetadata({
-  title: "Beginner Running Gear Guide — Shoes, Socks & Essentials",
-  description:
-    "Beginner running gear guide: first shoes, socks, what to wear, budget picks under $50, and when you actually need a watch — couch to 5K starter kit.",
+  title: GEAR_TITLE,
+  description: GEAR_DESCRIPTION,
   path: "/gear",
   keywords: [...GEAR_SEO_KEYWORDS],
 });
@@ -39,6 +44,19 @@ export default function GearPage() {
 
   return (
     <div className="py-12 sm:py-16">
+      <JsonLd
+        data={[
+          webPageJsonLd({
+            name: GEAR_TITLE,
+            description: GEAR_DESCRIPTION,
+            path: "/gear",
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Gear guide", path: "/gear" },
+          ]),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Gear guide" }]} />
 

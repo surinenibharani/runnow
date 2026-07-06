@@ -4,16 +4,21 @@ import { BookOpen } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { WeatherTipsGrid } from "@/components/tips/weather-tips-grid";
 import { BadWeatherTipsPageHero } from "@/components/visuals/content-scenes";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { BAD_WEATHER_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
+const TITLE = "Running in Bad Weather — Rain, Heat, Ice & Indoor Swaps";
+const DESCRIPTION =
+  "Bad weather running tips for beginners: when to run in rain or heat, when to stay in, and indoor cross-training swaps so your couch to 5K plan stays on track.";
+
 export const metadata: Metadata = pageMetadata({
-  title: "Running in Bad Weather — Rain, Heat, Ice & Indoor Swaps",
-  description:
-    "Bad weather running tips for beginners: when to run in rain or heat, when to stay in, and indoor cross-training swaps so your couch to 5K plan stays on track.",
+  title: TITLE,
+  description: DESCRIPTION,
   path: "/tips/bad-weather",
   keywords: [...BAD_WEATHER_SEO_KEYWORDS, ...TIPS_SEO_KEYWORDS.slice(0, 3)],
 });
@@ -21,6 +26,20 @@ export const metadata: Metadata = pageMetadata({
 export default function BadWeatherTipsPage() {
   return (
     <div className="py-12 sm:py-16">
+      <JsonLd
+        data={[
+          webPageJsonLd({
+            name: TITLE,
+            description: DESCRIPTION,
+            path: "/tips/bad-weather",
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Tips", path: "/tips" },
+            { name: "Bad weather", path: "/tips/bad-weather" },
+          ]),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs
           items={[

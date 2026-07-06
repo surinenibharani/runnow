@@ -6,7 +6,7 @@ import { ArrowRight, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FinishLineBackground, FinishLineTextBackdrop } from "@/components/landing/finish-line-background";
-import { HeroRunningVisual } from "@/components/landing/hero-running-visual";
+import { HeroVideo } from "@/components/landing/hero-video";
 import { SITE_NAME } from "@/lib/site";
 
 const heroButtonClass =
@@ -19,7 +19,7 @@ export function Hero() {
       <FinishLineBackground />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-20 sm:px-6 sm:pb-28 lg:pb-36">
-        <HeroRunningVisual />
+        <HeroVideo />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

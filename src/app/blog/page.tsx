@@ -55,7 +55,17 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <div className="py-12 sm:py-16">
-      <JsonLd data={blogIndexJsonLd(sortedPosts.length)} />
+      <JsonLd
+        data={[
+          blogIndexJsonLd(
+            sortedPosts.map((post) => ({
+              title: post.metaTitle ?? post.title,
+              slug: post.slug,
+              excerpt: post.excerpt,
+            }))
+          ),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
 

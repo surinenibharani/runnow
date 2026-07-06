@@ -6,8 +6,12 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { PostContent } from "@/components/blog/post-content";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getCommentCount } from "@/lib/blog/comment-counts";
-import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { ogImageMeta } from "@/lib/seo/metadata";
+import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd } from "@/lib/seo";
+import {
+  ogImageMeta,
+  seoTitle,
+  truncateMetaDescription,
+} from "@/lib/seo/metadata";
 import { blogPostKeywords } from "@/lib/seo/keywords";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
@@ -61,18 +65,21 @@ export async function generateMetadata({
   const scheduled = isBlogPostScheduled(post.publishedAt);
   const url = `${SITE_URL}/blog/${slug}`;
   const images = ogImageMeta();
+  const title = post.metaTitle ?? post.title;
+  const description = truncateMetaDescription(post.excerpt);
+  const fullTitle = seoTitle(title);
 
   return {
-    title: post.metaTitle ?? post.title,
-    description: post.excerpt,
+    title,
+    description,
     keywords: blogPostKeywords(slug, post.category),
     authors: [{ name: post.author }],
     ...(scheduled && preview
       ? { robots: { index: false, follow: false } }
       : {}),
     openGraph: {
-      title: post.metaTitle ?? post.title,
-      description: post.excerpt,
+      title: fullTitle,
+      description,
       type: "article",
       publishedTime: post.publishedAt,
       authors: [post.author],
@@ -82,8 +89,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: post.metaTitle ?? post.title,
-      description: post.excerpt,
+      title: fullTitle,
+      description,
       images: images.map((i) => i.url),
     },
     alternates: {
@@ -113,6 +120,9 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
             { name: "Blog", path: "/blog" },
             { name: post.title, path: `/blog/${slug}` },
           ]),
+          ...(post.faq?.length
+            ? [faqPageJsonLd(post.faq, `${SITE_URL}/blog/${slug}`)]
+            : []),
         ]}
       />
       <div className="mx-auto max-w-3xl px-4 sm:px-6">

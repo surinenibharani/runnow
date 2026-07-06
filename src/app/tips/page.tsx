@@ -3,19 +3,24 @@ import Link from "next/link";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
 import { TipCard } from "@/components/tips/tip-card";
 import { TipsGuideLink } from "@/components/tips/tips-guide-link";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { TipsPageHero } from "@/components/visuals/content-scenes";
 import { getPostBySlug } from "@/lib/blog/posts";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { runnerTips, tipsPageGuides } from "@/lib/tips/tips";
 
+const TIPS_TITLE = "Beginner Running Tips — Pace, Gear, Recovery & More";
+const TIPS_DESCRIPTION =
+  "Beginner running tips for couch to 5K starters: easy pace, shoes, hydration, rest days, and bad-weather alternatives — no app, no paywall.";
+
 export const metadata: Metadata = pageMetadata({
-  title: "Beginner Running Tips — Pace, Gear, Recovery & More",
-  description:
-    "Beginner running tips for couch to 5K starters: easy pace, shoes, hydration, rest days, and bad-weather alternatives — no app, no paywall.",
+  title: TIPS_TITLE,
+  description: TIPS_DESCRIPTION,
   path: "/tips",
   keywords: [...TIPS_SEO_KEYWORDS],
 });
@@ -23,6 +28,19 @@ export const metadata: Metadata = pageMetadata({
 export default function TipsPage() {
   return (
     <div className="py-12 sm:py-16">
+      <JsonLd
+        data={[
+          webPageJsonLd({
+            name: TIPS_TITLE,
+            description: TIPS_DESCRIPTION,
+            path: "/tips",
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Tips", path: "/tips" },
+          ]),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Tips" }]} />
         <TipsSectionNav />

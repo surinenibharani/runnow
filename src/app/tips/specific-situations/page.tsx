@@ -4,16 +4,21 @@ import { BookOpen } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { SituationalTipsGrid } from "@/components/tips/situational-tips-grid";
 import { SpecificSituationsTipsPageHero } from "@/components/visuals/content-scenes";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { SITUATIONAL_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
+const TITLE = "Running for Pregnancy, 55+, & Health Conditions";
+const DESCRIPTION =
+  "Beginner running guidance for pregnancy, runners 55+, diabetes, asthma, arthritis, and more — when to get clearance and how to start safely.";
+
 export const metadata: Metadata = pageMetadata({
-  title: "Running for Pregnancy, 55+, & Health Conditions",
-  description:
-    "Beginner running guidance for pregnancy, runners 55+, diabetes, asthma, arthritis, and more — when to get clearance and how to start safely.",
+  title: TITLE,
+  description: DESCRIPTION,
   path: "/tips/specific-situations",
   keywords: [...SITUATIONAL_SEO_KEYWORDS, ...TIPS_SEO_KEYWORDS.slice(0, 3)],
 });
@@ -21,6 +26,20 @@ export const metadata: Metadata = pageMetadata({
 export default function SpecificSituationsTipsPage() {
   return (
     <div className="py-12 sm:py-16">
+      <JsonLd
+        data={[
+          webPageJsonLd({
+            name: TITLE,
+            description: DESCRIPTION,
+            path: "/tips/specific-situations",
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Tips", path: "/tips" },
+            { name: "Specific situations", path: "/tips/specific-situations" },
+          ]),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs
           items={[
