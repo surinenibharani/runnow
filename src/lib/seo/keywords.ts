@@ -87,6 +87,21 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "how to start running from zero",
   ],
   "training-first-5k": ["first 5k training plan", "train for first 5k beginner"],
+  "training-half-and-full-marathon-same-season": [
+    "train for half marathon and marathon same time",
+    "half marathon before marathon training plan",
+    "two races same season running",
+    "half marathon tune up for marathon",
+    "marathon and half marathon training schedule",
+  ],
+  "prioritize-running-marathon-training": [
+    "prioritize running marathon training",
+    "marathon training dedication",
+    "rest during marathon training",
+    "nutrition marathon training plan",
+    "cut back cross training marathon",
+    "how hard is marathon training",
+  ],
   "first-run-tips": ["first run tips beginner", "what to know before first run"],
   "why-walking-is-not-cheating": [
     "walk run method beginner",

@@ -151,7 +151,7 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-02-05",
     readTime: "8 min",
-    relatedSlugs: ["training-first-5k", "race-day-tips", "nutrition-for-runners"],
+    relatedSlugs: ["training-first-5k", "training-half-and-full-marathon-same-season", "race-day-tips", "nutrition-for-runners"],
     sections: [
       {
         paragraphs: [
@@ -208,7 +208,7 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-02-19",
     readTime: "9 min",
-    relatedSlugs: ["training-first-half-marathon", "race-day-tips", "mental-side-of-running"],
+    relatedSlugs: ["training-first-half-marathon", "training-half-and-full-marathon-same-season", "prioritize-running-marathon-training", "race-day-tips", "mental-side-of-running"],
     sections: [
       {
         paragraphs: [
@@ -255,6 +255,379 @@ export const blogPosts: BlogPost[] = [
           "Expect a tough patch between miles 18–22 — have a mantra ready",
           "Finishing is the goal for marathon #1; time goals come later",
         ],
+      },
+    ],
+  },
+  {
+    slug: "prioritize-running-marathon-training",
+    title: "Marathon Training Isn't Just Running — Here's How to Actually Prioritize It",
+    metaTitle:
+      "How to Prioritize Marathon Training — Recovery, Nutrition & Rest",
+    excerpt:
+      "The miles matter, but so does everything around them — recovery, fuel, and protecting your training. Here's how to give marathon prep the attention it deserves without disappearing from life.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-04",
+    readTime: "7 min",
+    relatedSlugs: [
+      "training-first-full-marathon",
+      "nutrition-for-runners",
+      "post-run-recovery",
+      "what-to-do-on-rest-days",
+      "importance-of-cross-training",
+    ],
+    closingQuestion:
+      "What helped you stay consistent during marathon training — and what would you do differently next time?",
+    faq: [
+      {
+        question: "Should I stop all other sports during marathon training?",
+        answer:
+          "Not necessarily — but high-intensity activities that leave your legs sore or drained (HIIT, competitive sports, heavy leg days) are worth reducing during peak weeks. Easy cross-training like gentle yoga, walking, or light cycling is fine when it doesn't replace rest or interfere with long runs.",
+      },
+      {
+        question: "How many rest days do I need while training for a marathon?",
+        answer:
+          "Most plans include at least one full rest day per week, plus easy days that function as active recovery. Aim for 7–9 hours of sleep most nights — especially after long runs.",
+      },
+      {
+        question: "Do I need to eat more during marathon training?",
+        answer:
+          "Usually yes. As mileage climbs, your body needs more fuel. Eat enough carbohydrates around long runs and harder sessions, include protein for recovery, and practice race-day nutrition on long runs so your stomach is ready.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Training for a marathon is one of the most rewarding challenges you can take on. It's also one of the most demanding. The miles matter, but so does everything you do around the miles — how well you recover, how consistently you fuel, and how much you protect your training.",
+          "When you prioritize running properly, training becomes more enjoyable and race day feels more achievable. Here's how to give your marathon training the attention it deserves without completely disappearing from the rest of your life.",
+        ],
+      },
+      {
+        heading: "Why the marathon asks for more",
+        paragraphs: [
+          "A marathon is a long effort. Even at an easy pace, you're asking your body to perform for 4–5+ hours. As your training progresses, the long runs get longer and the weekly mileage climbs. Your body needs time to adapt to that stress.",
+          "This is why marathon training works best when you treat it as a real priority for several months. When running, recovery, and nutrition come first, you give yourself the best chance to feel strong on race day.",
+        ],
+      },
+      {
+        heading: "What prioritizing marathon training really means",
+        paragraphs: [
+          "Prioritizing doesn't mean quitting everything else. It means making intentional choices so your training can actually work:",
+        ],
+        list: [
+          "Long runs and key workouts are protected",
+          "Easy days stay easy so you're fresh for the hard days",
+          "Sleep and nutrition are treated as part of training",
+          "You're willing to say \"not right now\" to some other activities during peak weeks",
+          "You accept that this season has a main focus",
+        ],
+        paragraphs: [
+          "When you do this, training becomes more sustainable — and you're much more likely to enjoy the process.",
+        ],
+      },
+      {
+        id: "other-sports",
+        heading: "Be strategic with other high-intensity activities",
+        paragraphs: [
+          "You don't need to stop all exercise, but you should be thoughtful about activities that compete with your running.",
+        ],
+        subsections: [
+          {
+            heading: "Usually wise to reduce or pause",
+            list: [
+              "High-intensity interval training and boot camps",
+              "Heavy leg days and intense CrossFit sessions",
+              "Competitive sports (basketball, soccer, tennis, etc.)",
+              "Plyometrics and very demanding strength work",
+            ],
+          },
+          {
+            heading: "What you can usually keep doing",
+            list: [
+              "Strength training focused on your glutes, hips, and core",
+              "Gentle yoga and mobility work",
+              "Easy cycling or swimming",
+              "Light upper-body sessions",
+            ],
+          },
+        ],
+      },
+      {
+        paragraphs: [
+          "These high-intensity activities can leave your legs tired or sore right before important runs. When that happens, you either compromise your long run or risk accumulating too much fatigue.",
+          "Simple guideline: If something leaves you significantly fatigued the next day, it's probably taking energy away from your marathon training. See [cross-training for runners](/blog/importance-of-cross-training) for more on what supports mileage without replacing it.",
+        ],
+      },
+      {
+        id: "rest",
+        heading: "Protect your rest and recovery",
+        paragraphs: [
+          "This is where many runners struggle. Rest isn't lazy — it's when your body gets stronger. The harder your training gets, the more important recovery becomes.",
+        ],
+        list: [
+          "Take at least one full rest day every week",
+          "Keep your easy runs truly easy",
+          "Aim for 7–9 hours of sleep most nights",
+          "After long runs, prioritize eating and hydrating instead of adding extra activity",
+          "Pay attention when your body sends signals — persistent fatigue, elevated resting heart rate, or dreading every run are signs to back off",
+        ],
+        paragraphs: [
+          "When you protect recovery, your hard workouts and long runs become more effective. More on [rest days](/blog/what-to-do-on-rest-days) and [post-run recovery](/blog/post-run-recovery).",
+        ],
+      },
+      {
+        id: "nutrition",
+        heading: "Fuel your training properly",
+        paragraphs: [
+          "You can't run strong on empty. As your mileage increases, your nutrition needs increase too.",
+        ],
+        list: [
+          "Eat enough carbohydrates around your long runs and harder sessions",
+          "Include protein regularly to support recovery",
+          "Practice your race-day fueling on long runs so your stomach is ready",
+          "Stay hydrated throughout the week, not just on run days",
+          "Stick with foods that work for you during race week — this isn't the time for big experiments",
+        ],
+        paragraphs: [
+          "Good fueling helps you feel better during training and gives you a much stronger chance on race day. See [nutrition for runners](/blog/nutrition-for-runners) for distance-specific guidance.",
+        ],
+      },
+      {
+        heading: "Protect your peak training weeks",
+        paragraphs: [
+          "The 4–6 weeks before your taper are when your training is at its highest. This is the time to be most protective of your long runs and recovery.",
+        ],
+        list: [
+          "Treat your long run as a priority",
+          "Reduce high-intensity cross-training",
+          "Get good sleep in the days leading up to long runs",
+          "Be honest with the people around you about your energy and schedule",
+          "Trust the taper when it comes — resist the urge to add extra miles",
+        ],
+      },
+      {
+        heading: "You can do this",
+        paragraphs: [
+          "Marathon training doesn't require you to become a different person. It does ask you to be intentional about where your energy goes for a few months.",
+          "When you protect your long runs, respect recovery, and fuel properly, you give yourself the best opportunity to feel proud on race day. The runners who have the best experiences are usually the ones who took their training seriously — not just the running, but everything that supports it.",
+          "You've already taken the step of signing up. Now give yourself the best chance to succeed by treating this training block with the care it deserves.",
+        ],
+        cta: {
+          text: "Start your marathon plan",
+          href: "/plan",
+        },
+      },
+    ],
+  },
+  {
+    slug: "training-half-and-full-marathon-same-season",
+    title: "Half + Full Marathon in One Season: When It Works and How to Do It Right",
+    metaTitle:
+      "Half + Full Marathon in One Season — When Dual Training Works",
+    excerpt:
+      "Two races on the calendar can feel exciting — until you're tapering twice and showing up to the marathon on tired legs. Here's when dual training works and how to structure it.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-24",
+    readTime: "8 min",
+    relatedSlugs: [
+      "training-first-half-marathon",
+      "training-first-full-marathon",
+      "race-day-tips",
+      "nutrition-for-runners",
+      "importance-of-cross-training",
+    ],
+    closingQuestion:
+      "Have you ever lined up for two distance races close together — what would you do differently?",
+    faq: [
+      {
+        question: "Can you train for a half marathon and a marathon at the same time?",
+        answer:
+          "Yes — if one race is your main goal and the other is a tune-up or secondary event, and they're spaced at least 3–4 weeks apart. The problem is treating both as all-out A races on back-to-back weekends or stacking peak mileage for two separate builds.",
+      },
+      {
+        question: "How far apart should the two races be?",
+        answer:
+          "Ideal spacing is 4–8 weeks when the marathon is your A race and the half is a tune-up. A half 2–3 weeks before a marathon can work as a final hard effort if you treat it as a training run, not a PR attempt. Less than two weeks between races is risky for most recreational runners.",
+      },
+      {
+        question: "Should I run the half marathon at race pace during marathon training?",
+        answer:
+          "Usually no — unless the half is your A race. If the marathon is the priority, run the half at marathon effort or slightly faster, not all-out. You want a confidence boost and a fueling rehearsal, not a week of limping through marathon long runs.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Two races on the calendar can feel exciting — until you're tapering twice and showing up to the marathon on tired legs. Training for both a half and full marathon in the same season is possible, but it only works with a clear strategy: pick one primary race, treat the other as a supporting workout, and build recovery into your plan instead of hoping it happens.",
+          "Here's when dual training makes sense, when it doesn't, and how to structure your training so you show up to both start lines healthy and ready.",
+        ],
+      },
+      {
+        heading: "When dual training makes sense",
+        paragraphs: [
+          "Dual training works best when you have a clear hierarchy between the two races. It tends to go well if:",
+        ],
+        list: [
+          "The marathon is your A race and the half is 4–8 weeks earlier as a tune-up or confidence builder",
+          "The half is your A race and the marathon is 10+ weeks later (using the half build as base fitness)",
+          "You're an experienced runner already consistently running 30+ miles per week with no recent injury history",
+          "The half course is similar to the marathon (road, comparable elevation) — making it a useful dress rehearsal",
+          "You want to practice fueling, pacing, and race-day routines at intensity without running 20+ miles",
+        ],
+      },
+      {
+        heading: "When you should probably just pick one race",
+        paragraphs: [
+          "Dual training becomes risky when your body or schedule can't handle two peaks. Consider focusing on just one race if:",
+        ],
+        list: [
+          "This is your [first half](/blog/training-first-half-marathon) or [first marathon](/blog/training-first-full-marathon)",
+          "Both races are within 2 weeks of each other",
+          "You're still building consistency and averaging under 25 miles per week",
+          "You want to PR at both distances in the same season",
+          "Your sleep, stress, or life load is already high",
+        ],
+        paragraphs: [
+          "Bottom line: If you haven't successfully completed at least one full training cycle yet, it's usually smarter to do the races in separate seasons.",
+        ],
+      },
+      {
+        id: "primary-race",
+        heading: "Step 1: Choose your primary (A) race",
+        paragraphs: [
+          "Every training decision should flow from this choice.",
+        ],
+        subsections: [
+          {
+            heading: "Option A: Marathon is your main goal, half is a tune-up (most common approach)",
+            list: [
+              "Schedule the half 4–6 weeks before the marathon",
+              "Run the half at marathon effort (or slightly faster) — finish feeling like you could have gone harder",
+              "Use the same breakfast, shoes, and fueling strategy you plan to use on marathon day",
+              "Take 2–3 easy days after the half, then resume your marathon long-run progression",
+              "Do not chase a half marathon PR if it will compromise your marathon training",
+            ],
+          },
+          {
+            heading: "Option B: Half is your A race, marathon comes later",
+            list: [
+              "Follow a dedicated half marathon plan and peak properly for race day",
+              "Take 1–2 full recovery weeks afterward (easy running, extra sleep, no hard sessions)",
+              "Only start a full marathon block once you're comfortably back at 25+ miles per week",
+              "Your half fitness carries over — you won't be starting from zero",
+            ],
+          },
+        ],
+      },
+      {
+        id: "weekly-structure",
+        heading: "Step 2: How to structure your weekly training",
+        paragraphs: [
+          "During a dual-race block, keep your training focused and sustainable:",
+        ],
+        list: [
+          "4–5 run days per week maximum",
+          "One long run per week (the foundation of marathon training)",
+          "One quality session per week (tempo, intervals, or race-pace work)",
+          "At least one full rest day",
+          "Keep easy days truly easy — they protect the quality of your hard days",
+        ],
+      },
+      {
+        id: "timeline",
+        heading: "Sample timeline: Half as a tune-up → marathon",
+        paragraphs: [
+          "Here's how a 16-week marathon plan might look with a half marathon at week 11:",
+        ],
+        subsections: [
+          {
+            heading: "Base building (weeks 1–8)",
+            list: [
+              "Focus: build aerobic fitness",
+              "Long run: 8 → 14 miles",
+              "One quality session per week",
+            ],
+          },
+          {
+            heading: "Specific prep (weeks 9–10)",
+            list: [
+              "Focus: marathon-specific work",
+              "Long run: 15–16 miles",
+              "Practice fueling on long runs",
+            ],
+          },
+          {
+            heading: "Half marathon (week 11)",
+            list: [
+              "Run at controlled effort — marathon pace, not all-out",
+            ],
+          },
+          {
+            heading: "Recovery (week 12)",
+            list: [
+              "Focus: recover from the half",
+              "Long run: 8–10 miles",
+              "Reduce total volume by 30–40%",
+            ],
+          },
+          {
+            heading: "Peak marathon (weeks 13–14)",
+            list: [
+              "Focus: biggest training weeks",
+              "Long run: 16–20 miles",
+              "Last major quality session",
+            ],
+          },
+          {
+            heading: "Taper (weeks 15–16)",
+            list: [
+              "Focus: fresh legs for race day",
+              "Long run: 12 → 8 miles",
+              "Keep some short race-pace touches",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Key rules for dual training",
+        list: [
+          "Follow the 10% rule — never increase weekly mileage by more than 10% from one week to the next",
+          "After the half, return to your pre-half mileage before pushing long runs higher again",
+          "If your legs still feel heavy 48 hours after the half, repeat the previous week's volume instead of progressing",
+          "You only get one real taper per season — save the full 2–3 week taper for your A race",
+          "The half should not get a long taper if the marathon is still ahead",
+        ],
+      },
+      {
+        heading: "Recovery after the half",
+        list: [
+          "Days 1–2: Rest or very easy running (20–30 minutes max)",
+          "Days 3–4: Easy running only if soreness is improving",
+          "Prioritize sleep and eating enough — your body repairs during recovery, not during hard training",
+          "Watch for red flags: pain that changes your gait, swelling, or soreness that worsens after 3 days",
+        ],
+      },
+      {
+        heading: "Common mistakes to avoid",
+        list: [
+          "Racing the half all-out and then struggling with marathon long runs",
+          "Skipping proper recovery because \"the marathon is only a few weeks away\"",
+          "Adding extra quality sessions to \"get faster at both\"",
+          "Buying new shoes for the half and breaking them in on long runs",
+          "Treating both races as equal priority",
+        ],
+      },
+      {
+        heading: "Final thoughts",
+        paragraphs: [
+          "Training for both a half and full marathon in one season can work — but only when you respect the principle of one peak. Build toward your main race, use the other as a smart rehearsal, recover properly, and taper once.",
+          "Trying to peak for both usually means you don't peak for either.",
+        ],
+        cta: {
+          text: "Build your training plan",
+          href: "/plan",
+        },
       },
     ],
   },

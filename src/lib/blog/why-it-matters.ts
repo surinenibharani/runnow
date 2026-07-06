@@ -8,6 +8,10 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Half marathon training is where casual joggers become real runners. Mileage jumps and long-run mistakes here cause most overuse injuries — knowing the progression matters.",
   "training-first-full-marathon":
     "The marathon punishes guesswork. Fueling, pacing, and recovery errors that barely matter at 5K can end your race at mile 20. A smart build-up is non-negotiable.",
+  "prioritize-running-marathon-training":
+    "Marathon training isn't only about logging miles — recovery, fuel, and what you do on off days decide whether you feel strong at mile 20 or survive on grit alone.",
+  "training-half-and-full-marathon-same-season":
+    "Two distance races on one calendar sounds efficient — until you taper twice, peak twice, and show up to the marathon on tired legs. Picking a primary race and spacing the build is what makes dual training work.",
   "importance-of-cross-training":
     "Running every day feels productive but often leads to breakdown. Cross-training keeps your heart and lungs working while giving bones and tendons the variety they need.",
   "what-to-do-on-rest-days":
