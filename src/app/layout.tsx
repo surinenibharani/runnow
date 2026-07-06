@@ -11,6 +11,7 @@ import { TurnstileScripts } from "@/components/security/turnstile-scripts";
 import { GoogleAnalyticsPageView } from "@/components/analytics/page-view-tracker";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
+import { BRAND_APPLE_ICON_PATH, BRAND_FAVICON_PATH, BRAND_ICON_PATH } from "@/lib/brand";
 import { SITE_NAME, SITE_TAGLINE, SITE_URL, SITE_DESCRIPTION, SITE_KEYWORDS } from "@/lib/site";
 import { ogImageMeta } from "@/lib/seo/metadata";
 import { Analytics } from "@vercel/analytics/react";
@@ -64,8 +65,11 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/icon.png", type: "image/png", sizes: "512x512" }],
-    apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
+    icon: [
+      { url: BRAND_FAVICON_PATH, sizes: "any" },
+      { url: BRAND_ICON_PATH, type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: BRAND_APPLE_ICON_PATH, type: "image/png", sizes: "180x180" }],
   },
 };
 
