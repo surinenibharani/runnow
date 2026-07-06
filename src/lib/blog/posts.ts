@@ -3063,7 +3063,7 @@ export const blogPosts: BlogPost[] = [
       "A complete at-home dumbbell session for first-time lifters: warm-up, eight exercises in the right order, sets and reps, and how to progress safely without a gym.",
     category: "Training",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-07-06",
+    publishedAt: "2026-08-11",
     readTime: "10 min",
     relatedSlugs: [
       "dumbbell-strength-at-home-for-runners",
