@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ChevronDown, Cloud, Flame, Moon, RotateCcw, Sparkles } from "lucide-react";
@@ -70,6 +70,7 @@ const emptyProgress: ProgressData = {
 };
 
 export function WeekTracker() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const { status: authStatus } = useSession();
   const initialPlan = resolveInitialPlan(searchParams.get("plan"));
@@ -92,6 +93,7 @@ export function WeekTracker() {
   const migratedRef = useRef(false);
   const migrationPlanIdRef = useRef(initialPlan.id);
   const shareSectionRef = useRef<HTMLElement>(null);
+  const syncedUrlPlanIdRef = useRef<string | null>(searchParams.get("plan"));
 
   const isAuthenticated = authStatus === "authenticated";
   const urlPlanId = searchParams.get("plan");
@@ -312,8 +314,19 @@ export function WeekTracker() {
     [useRemote]
   );
 
+  const syncPlanUrl = useCallback(
+    (id: string) => {
+      if (searchParams.get("plan") === id) return;
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("plan", id);
+      syncedUrlPlanIdRef.current = id;
+      router.replace(`/plan?${params.toString()}#plan-tracker`, { scroll: false });
+    },
+    [router, searchParams]
+  );
+
   const applyPlanSelection = useCallback(
-    (id: string, options?: { resetWeek?: boolean }) => {
+    (id: string, options?: { resetWeek?: boolean; fromUrl?: boolean }) => {
       const selected = PLANS.find((p) => p.id === id);
       if (!selected || selected.id === planId) return;
 
@@ -332,6 +345,10 @@ export function WeekTracker() {
         setExpandedDay(null);
       }
 
+      if (!options?.fromUrl) {
+        syncPlanUrl(selected.id);
+      }
+
       if (useRemote) {
         void persistPlanSettings(
           selected.id,
@@ -344,15 +361,16 @@ export function WeekTracker() {
         setProgress(getProgress(selected.id));
       }
     },
-    [planId, schedulePrefs, planProfile, useRemote, persistPlanSettings]
+    [planId, schedulePrefs, planProfile, useRemote, persistPlanSettings, syncPlanUrl]
   );
 
   useEffect(() => {
     if (!bootstrapComplete || !urlPlanId) return;
     if (!PLANS.some((p) => p.id === urlPlanId)) return;
-    if (urlPlanId === planId) return;
-    applyPlanSelection(urlPlanId, { resetWeek: true });
-  }, [urlPlanId, bootstrapComplete, planId, applyPlanSelection]);
+    if (syncedUrlPlanIdRef.current === urlPlanId) return;
+    syncedUrlPlanIdRef.current = urlPlanId;
+    applyPlanSelection(urlPlanId, { resetWeek: true, fromUrl: true });
+  }, [urlPlanId, bootstrapComplete, applyPlanSelection]);
 
   const handleScheduleChange = useCallback(
     (prefs: SchedulePreferences) => {
@@ -429,6 +447,7 @@ export function WeekTracker() {
           selected.runsPerWeek
         );
         setSchedulePrefs(nextPrefs);
+        syncPlanUrl(selected.id);
         if (useRemote) {
           void persistPlanSettings(selected.id, nextPrefs, planProfile, 1);
         } else {
@@ -436,7 +455,7 @@ export function WeekTracker() {
         }
       }
     },
-    [useRemote, schedulePrefs, planProfile, persistPlanSettings]
+    [useRemote, schedulePrefs, planProfile, persistPlanSettings, syncPlanUrl]
   );
 
   const handleVariantChange = useCallback(
