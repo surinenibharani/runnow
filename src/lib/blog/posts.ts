@@ -321,6 +321,8 @@ export const blogPosts: BlogPost[] = [
           "You're willing to say \"not right now\" to some other activities during peak weeks",
           "You accept that this season has a main focus",
         ],
+      },
+      {
         paragraphs: [
           "When you do this, training becomes more sustainable — and you're much more likely to enjoy the process.",
         ],
@@ -371,6 +373,8 @@ export const blogPosts: BlogPost[] = [
           "After long runs, prioritize eating and hydrating instead of adding extra activity",
           "Pay attention when your body sends signals — persistent fatigue, elevated resting heart rate, or dreading every run are signs to back off",
         ],
+      },
+      {
         paragraphs: [
           "When you protect recovery, your hard workouts and long runs become more effective. More on [rest days](/blog/what-to-do-on-rest-days) and [post-run recovery](/blog/post-run-recovery).",
         ],
@@ -388,6 +392,8 @@ export const blogPosts: BlogPost[] = [
           "Stay hydrated throughout the week, not just on run days",
           "Stick with foods that work for you during race week — this isn't the time for big experiments",
         ],
+      },
+      {
         paragraphs: [
           "Good fueling helps you feel better during training and gives you a much stronger chance on race day. See [nutrition for runners](/blog/nutrition-for-runners) for distance-specific guidance.",
         ],
@@ -488,6 +494,8 @@ export const blogPosts: BlogPost[] = [
           "You want to PR at both distances in the same season",
           "Your sleep, stress, or life load is already high",
         ],
+      },
+      {
         paragraphs: [
           "Bottom line: If you haven't successfully completed at least one full training cycle yet, it's usually smarter to do the races in separate seasons.",
         ],
