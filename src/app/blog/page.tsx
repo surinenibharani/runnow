@@ -6,9 +6,8 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import {
   BlogCategoryFilter,
 } from "@/components/blog/blog-category-filter";
-import { BlogPostCards } from "@/components/blog/blog-post-cards";
+import { BlogFilteredPosts } from "@/components/blog/blog-filtered-posts";
 import { JsonLd } from "@/components/seo/json-ld";
-import { filterPostsByCategory, paramToCategory } from "@/lib/blog/categories";
 import { getCommentCountsBySlug } from "@/lib/blog/comment-counts";
 import {
   getVisibleBlogPosts,
@@ -50,8 +49,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     ? sortedPosts.filter((post) => isBlogPostScheduled(post.publishedAt)).length
     : 0;
   const commentCounts = await getCommentCountsBySlug();
-  const activeCategory = paramToCategory(categoryParam);
-  const filteredPosts = filterPostsByCategory(sortedPosts, categoryParam);
 
   return (
     <div className="py-12 sm:py-16">
@@ -90,19 +87,12 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           <BlogPreviewBanner scheduledCount={scheduledCount} />
         )}
 
-        {activeCategory && (
-          <FadeIn className="mb-6 text-center text-sm text-muted-foreground">
-            Showing{" "}
-            <span className="font-medium text-foreground">{activeCategory}</span>{" "}
-            · {filteredPosts.length} article
-            {filteredPosts.length === 1 ? "" : "s"}
-          </FadeIn>
-        )}
-
-        <BlogPostCards
-          posts={filteredPosts}
-          commentCounts={commentCounts}
-        />
+        <Suspense fallback={null}>
+          <BlogFilteredPosts
+            posts={sortedPosts}
+            commentCounts={commentCounts}
+          />
+        </Suspense>
 
         <FadeIn className="mt-12">
           <StartPlanCta variant="compact" />
