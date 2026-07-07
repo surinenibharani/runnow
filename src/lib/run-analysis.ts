@@ -272,7 +272,7 @@ export function generateSuggestions(
   if (latest.averageCadence != null && latest.averageCadence > 0 && latest.averageCadence < 160) {
     suggestions.push({
       title: "Cadence check",
-      detail: `Last run cadence was ~${Math.round(latest.averageCadence)} spm. Many beginners benefit from slightly quicker steps (165–175 on easy runs) to reduce overstriding.`,
+      detail: `Last run cadence was ~${Math.round(latest.averageCadence)} spm. If you tend to overstride, experimenting with slightly quicker, shorter steps can help — there's no single "correct" cadence, so change it gradually and keep what feels smooth.`,
       priority: "low",
     });
   }

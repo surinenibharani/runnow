@@ -792,6 +792,23 @@ export function DashboardContent() {
                 </Card>
               ))}
             </div>
+            <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+              <strong className="font-semibold text-foreground">
+                These suggestions are general fitness education, not medical
+                advice.
+              </strong>{" "}
+              Heart-rate zones use estimated maximums (e.g. the Tanaka formula)
+              and vary by individual.{" "}
+              <a
+                href="https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise-intensity/art-20046887"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                Learn how heart-rate zones work
+              </a>
+              .
+            </p>
           </FadeIn>
         )}
 

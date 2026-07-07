@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { RunnerConcernCard } from "@/components/injuries/runner-concern-card";
 import { InjuryShareButtons } from "@/components/injuries/injury-share-buttons";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import {
@@ -76,6 +77,10 @@ export default async function MenRunnerConcernDetailPage({
 
         <FadeIn className="mb-8">
           <RunnerConcernCard concern={concern} theme="sky" basePath={BASE_PATH} />
+          <MedicalDisclaimerBanner className="mt-6">
+            New chest pain, blood in urine, or symptoms that persist need prompt
+            medical evaluation.{" "}
+          </MedicalDisclaimerBanner>
           <InjuryShareButtons
             title={`${concern.title} — men runner health guide`}
             path={detailPath}

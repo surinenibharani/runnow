@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { RunnerConcernCard } from "@/components/injuries/runner-concern-card";
 import { InjuryShareButtons } from "@/components/injuries/injury-share-buttons";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import {
@@ -81,6 +82,10 @@ export default async function WomenRunnerConcernDetailPage({
             basePath={BASE_PATH}
             showIllustration
           />
+          <MedicalDisclaimerBanner className="mt-6">
+            Missed periods, pelvic-floor symptoms, or pregnancy and postpartum
+            questions should be reviewed with a clinician.{" "}
+          </MedicalDisclaimerBanner>
           <InjuryShareButtons
             title={`${concern.title} — women runner health guide`}
             path={detailPath}

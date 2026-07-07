@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PlanCatalog } from "@/components/plan/plan-catalog";
 import { PlanLoading } from "@/components/plan/plan-loading";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { PlanPageHero } from "@/components/visuals/plan-scenes";
 import { getPlanById } from "@/lib/plans";
 import {
@@ -51,6 +52,13 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
               and long run day — runs and cross-training shift to fit your schedule.
             </p>
           </div>
+        </FadeIn>
+
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner>
+            Build volume gradually and stop for chest pain, dizziness, or sharp
+            joint pain.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <PlanCatalog selectedPlanId={planId} />

@@ -45,7 +45,7 @@ export default function ForMenRunnersInjuriesPage() {
             </p>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground">
               Guidelines vary by country — follow your national screening advice
-              for breast, prostate, and heart checks.
+              for prostate, colorectal, and heart checks.
             </p>
           </div>
         </FadeIn>

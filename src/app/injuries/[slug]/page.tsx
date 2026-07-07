@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { CommonInjuryCard } from "@/components/injuries/common-injury-card";
 import { InjuryShareButtons } from "@/components/injuries/injury-share-buttons";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import {
@@ -73,6 +74,9 @@ export default async function CommonInjuryDetailPage({
 
         <FadeIn className="mb-8">
           <CommonInjuryCard injury={injury} />
+          <MedicalDisclaimerBanner className="mt-6">
+            Persistent, worsening, or one-spot pain needs a professional exam.{" "}
+          </MedicalDisclaimerBanner>
           <InjuryShareButtons
             title={`${injury.title} — running injury guide`}
             path={detailPath}

@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { GearCategoryCard } from "@/components/gear/gear-category-card";
 import { GearTierSuggestions } from "@/components/gear/gear-tier-suggestions";
 import { GearWeeklyNews } from "@/components/gear/gear-weekly-news";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { GearPageHero } from "@/components/visuals/gear-scenes";
 import {
   gearTierMeta,
@@ -123,6 +124,14 @@ export default function GearPage() {
               </div>
             </CardContent>
           </Card>
+        </FadeIn>
+
+        <FadeIn className="mb-10">
+          <MedicalDisclaimerBanner>
+            Some picks (like anti-chafe or skin products) are used off-label by
+            runners — check the label and ask a clinician or pharmacist if you
+            have sensitive skin or a health condition.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <div className="space-y-16">

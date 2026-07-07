@@ -7,6 +7,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { WeatherTipsGrid } from "@/components/tips/weather-tips-grid";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { BadWeatherTipsPageHero } from "@/components/visuals/content-scenes";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -61,6 +62,13 @@ export default function BadWeatherTipsPage() {
               alternatives so you keep moving without skipping your habit.
             </p>
           </div>
+        </FadeIn>
+
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner>
+            Extreme heat, cold, or poor air quality carry real health risks —
+            when in doubt, move your run indoors.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <WeatherTipsGrid />

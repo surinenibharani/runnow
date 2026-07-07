@@ -581,7 +581,7 @@ export const gearCategories: GearCategory[] = [
       },
       {
         name: "Monistat Chafing Relief Powder Gel",
-        note: "Drugstore option many runners use along bra lines and inner thighs.",
+        note: "A silicone anti-chafe gel (not an antifungal medication) that many runners use along bra lines and inner thighs. Patch-test first if you have sensitive skin.",
       },
     ],
   },

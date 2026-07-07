@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { TipCard } from "@/components/tips/tip-card";
 import { TipsGuideLink } from "@/components/tips/tips-guide-link";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { TipsPageHero } from "@/components/visuals/content-scenes";
 import { getPostBySlug } from "@/lib/blog/posts";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
@@ -56,6 +57,10 @@ export default function TipsPage() {
               Bookmark this page and come back whenever you need a reminder.
             </p>
           </div>
+        </FadeIn>
+
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner />
         </FadeIn>
 
         <StaggerChildren className="grid gap-5 sm:grid-cols-2">

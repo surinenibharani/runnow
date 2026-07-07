@@ -116,6 +116,20 @@ export function CommonInjuryCard({
             ))}
           </ul>
         </div>
+        {injury.learnMore && (
+          <p className="text-sm text-muted-foreground sm:ml-14">
+            Read more about this condition:{" "}
+            <a
+              href={injury.learnMore.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary hover:underline"
+            >
+              {injury.learnMore.label}
+            </a>{" "}
+            <span className="text-xs">({injury.learnMore.publisher})</span>
+          </p>
+        )}
         {showShare && (
           <div className="sm:ml-14">
             <InjuryShareButtons

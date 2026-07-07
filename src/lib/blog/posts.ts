@@ -1,4 +1,5 @@
 import type { BlogPost } from "./types";
+import { SOURCES } from "./sources";
 import { getWhyItMatters } from "./why-it-matters";
 import { isBlogPostVisible } from "./preview";
 import { isBlogPostPublishedAt } from "./publish-schedule";
@@ -767,6 +768,11 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "nutrition-for-runners",
+    sources: [
+      SOURCES.runningNutrition,
+      SOURCES.hyponatremia,
+      SOURCES.ironDeficiency,
+    ],
     title: "Runner's Nutrition: Before, During & After (5K, Half & Marathon)",
     excerpt:
       "What to eat and drink at every distance — from your first 5K to 26.2 miles. Practical fueling without the overwhelm.",
@@ -1252,6 +1258,13 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "avoiding-injuries",
+    sources: [
+      SOURCES.shinSplints,
+      SOURCES.patellofemoralPain,
+      SOURCES.plantarFasciitis,
+      SOURCES.stressFracture,
+      SOURCES.strengthForRunners,
+    ],
     title: "How to Avoid the Injuries That Sideline Beginners",
     excerpt:
       "Most running injuries are preventable. The habits that keep you on your feet — and when to back off before it's too late.",
@@ -1286,7 +1299,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Strength prevents injury",
         paragraphs: [
-          "Weak hips and glutes cause knee and IT band issues. Two 15-minute bodyweight sessions per week — glute bridges, clamshells, calf raises — pay enormous dividends.",
+          "Weak hips and glutes can contribute to knee and IT band issues — injuries are usually multifactorial, but building strength is one of the few things clearly within your control. Two 15-minute bodyweight sessions per week — glute bridges, clamshells, calf raises — pay enormous dividends.",
         ],
       },
       {
@@ -1445,6 +1458,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-in-bad-weather",
+    sources: [SOURCES.heatSafety, SOURCES.hyponatremia],
     title: "Running in Bad Weather: When to Go Out and When to Stay In",
     excerpt:
       "Rain, heat, ice, storms, wind, and poor air quality — practical rules for staying safe without losing your training habit.",
@@ -1504,6 +1518,14 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-with-health-conditions",
+    sources: [
+      SOURCES.preParticipationScreening,
+      SOURCES.pregnancyExercise,
+      SOURCES.diabetesExercise,
+      SOURCES.exerciseInducedAsthma,
+      SOURCES.osteoporosis,
+      SOURCES.physicalActivityGuidelines,
+    ],
     title: "Running With Health Conditions: What to Know Before You Start",
     excerpt:
       "Pregnancy, age 55+, diabetes, asthma, arthritis, heart issues, and osteoporosis — general guidance and when to get medical clearance first.",
@@ -2009,6 +2031,10 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "post-run-recovery",
+    sources: [
+      SOURCES.peaceAndLove,
+      SOURCES.runningNutrition,
+    ],
     title: "Post-Run Recovery: What Actually Helps After a Run",
     excerpt:
       "Cool-down, fuel, sleep, and soreness — the simple recovery habits that keep beginners showing up three times a week.",
@@ -2068,7 +2094,7 @@ export const blogPosts: BlogPost[] = [
         list: [
           "Foam rolling tight calves and quads — 2–3 minutes, not a torture session",
           "Elevating legs for 10 minutes after a long run",
-          "Ice on a specific hot spot for 10–15 minutes if something feels inflamed",
+          "Ice a specific hot spot for 10–15 minutes if something feels inflamed — soothing for comfort, but modern guidance ([PEACE & LOVE](https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/)) leans on gentle movement and load over ice as the main driver of healing",
           "Two short strength sessions per week — glutes, calves, core",
         ],
         cta: { text: "Read what to do on rest days", href: "/blog/what-to-do-on-rest-days" },
@@ -2077,6 +2103,10 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "nutrition-basics-for-beginners",
+    sources: [
+      SOURCES.runningNutrition,
+      SOURCES.physicalActivityGuidelines,
+    ],
     title: "Nutrition Basics for Beginners: What to Eat When You Start Running",
     excerpt:
       "You don't need a perfect diet to start running. Simple daily habits, easy pre-run snacks, and post-run meals that support energy without overwhelm.",
@@ -2126,8 +2156,11 @@ export const blogPosts: BlogPost[] = [
         list: [
           "Exact macro tracking and calorie apps",
           "Gels and chews for runs under an hour",
-          "Keto, fasted running, or cutting carbs while building mileage",
+          "Cutting carbs or starting keto while building mileage",
           "Expensive supplements marketed to runners",
+        ],
+        paragraphs: [
+          "A note on fasted running: you don't need it, and it's best not to start restricting food while ramping mileage. That said, if you already practice intermittent fasting, short easy runs can still fit — see [running during fasting](/blog/running-during-fasting) for how to do it sensibly.",
         ],
       },
       {
@@ -2212,6 +2245,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-form-101",
+    sources: [SOURCES.cadenceResearch],
     title: "Running Form 101: Posture, Footstrike & Cadence for Beginners",
     excerpt:
       "You don't need a coach on day one. A few visual cues for posture, where your feet land, arm swing, and step rate make running feel smoother and safer.",
@@ -2273,14 +2307,14 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Cadence: steps per minute",
         paragraphs: [
-          "Many beginners run around 150–160 steps per minute. A slightly quicker cadence — often 170–180 for easy running — can reduce overstriding and feel smoother.",
-          "Count one foot for 30 seconds and double it, or use a free metronome app at 170 bpm for a few minutes during an easy run.",
+          "Many beginners run around 150–160 steps per minute. If you tend to overstride, experimenting with slightly quicker, shorter steps can reduce impact and feel smoother. There is no single ideal cadence — the old \"180 spm\" figure came from watching elite runners and isn't a universal target. Your best cadence depends on your height, pace, and terrain, so change it gradually and keep what feels comfortable.",
+          "Count one foot for 30 seconds and double it, or use a free metronome app set a few steps above your current cadence for short stretches of an easy run. See the [research on step-rate and running mechanics](https://pubmed.ncbi.nlm.nih.gov/21131861/) if you want the detail.",
         ],
         figures: [
           {
             src: "/blog/running-form/cadence.svg",
             alt: "Diagram illustrating quicker shorter running steps and a target cadence around 170 to 180 steps per minute",
-            caption: "Quicker, shorter steps — not sprinting. Aim for roughly 170–180 steps per minute on easy runs.",
+            caption: "Quicker, shorter steps — not sprinting. Nudge cadence up only if you overstride; there's no universal target number.",
           },
         ],
       },
@@ -2298,6 +2332,14 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-guide-for-women",
+    sources: [
+      SOURCES.redS,
+      SOURCES.femaleAthleteTriad,
+      SOURCES.menstrualCycleReview,
+      SOURCES.ironDeficiency,
+      SOURCES.osteoporosis,
+      SOURCES.pregnancyExercise,
+    ],
     title: "A Beginner Running Guide for Women",
     metaTitle:
       "Beginner Running Guide for Women: Bras, Cycle, Pregnancy & More",
@@ -2415,7 +2457,8 @@ export const blogPosts: BlogPost[] = [
         id: "menstrual-cycle",
         heading: "Training with your menstrual cycle",
         paragraphs: [
-          "Energy and recovery shift across the month. Tracking how you feel for 2–3 cycles beats fighting every sluggish day — or forcing PR attempts when your body wants rest.",
+          "Energy and recovery can shift across the month. Tracking how you feel for 2–3 cycles beats fighting every sluggish day — or forcing PR attempts when your body wants rest.",
+          "One honest caveat: the science here is still mixed. A [2020 systematic review](https://pubmed.ncbi.nlm.nih.gov/32661839/) found that, on average, menstrual cycle phase has only a small and inconsistent effect on performance — and individual responses vary widely. Treat the phase descriptions below as a starting framework for your own tracking, not a rigid schedule to obey.",
         ],
         subsections: [
           {
@@ -2683,6 +2726,12 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-guide-for-men",
+    sources: [
+      SOURCES.redS,
+      SOURCES.preParticipationScreening,
+      SOURCES.heartRateZones,
+      SOURCES.physicalActivityGuidelines,
+    ],
     title: "A Beginner Running Guide for Men",
     metaTitle:
       "Beginner Running Guide for Men: Gear, Fueling, Heart Health & More",
@@ -2711,7 +2760,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "Should I see a doctor before starting to run?",
         answer:
-          "If you're sedentary and over 40, or have heart disease risk factors, a pre-participation check is smart. If you feel healthy and start with walk-run, most men under 40 can begin gradually — but **new chest pain during exercise always means stop and get checked.**",
+          "If you've been sedentary, have heart disease risk factors, or any chronic condition, a quick pre-participation check with your doctor is wise regardless of age. If you feel healthy and start gently with walk-run, most people can begin gradually — but **new chest pain, unusual breathlessness, or dizziness during exercise always means stop and get checked.** See [general guidance on exercise and when to check with your doctor](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise-and-chronic-disease/art-20046049).",
       },
       {
         question: "How do I stop nipple chafing on long runs?",
@@ -2739,7 +2788,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Most beginner running content assumes one generic body and a willingness to push through discomfort. Men starting out often have specific questions — about gear, eating enough, chest symptoms, groin pain, and whether it's weak to take a rest day.",
           "Higher average cardiovascular risk in middle age, greater sweat rates, sports hernia risk with sudden speed work, and RED-S that hides without period tracking all shape how training feels. That doesn't mean running isn't for you — it means smart setup beats bravado.",
-          "Guidelines vary by country — follow your national screening advice for breast, prostate, and heart checks.",
+          "Guidelines vary by country — follow your national screening advice for prostate, colorectal, and heart checks.",
           "**This isn't medical advice. When in doubt, talk to your doctor, cardiologist, or sports medicine specialist.** What follows are practical starting points that help many men run consistently and safely.",
         ],
       },
@@ -4176,6 +4225,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "mortons-neuroma-running",
+    sources: [SOURCES.mortonsNeuroma],
     title: "Morton's Neuroma and Running: Symptoms, Treatments, and What Actually Helped",
     excerpt:
       "Burning or numbness between your toes isn't normal — Morton's neuroma is common in runners. One friend's story: injections and acupuncture didn't fix it; a metatarsal pad helped a little; wider toe-box shoes (like Topo) finally did.",
@@ -4307,6 +4357,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "achilles-tendinitis-running",
+    sources: [SOURCES.achillesTendinitis, SOURCES.peaceAndLove],
     title: "Achilles Tendinitis for Runners: How a Mileage Spike Got Me — and What Fixed It",
     excerpt:
       "Achilles pain isn't just a beginner injury. I spiked mileage as a seasoned runner and paid for it. Slow calf raises, then isometric holds, then air skipping — that progression is what finally got me back.",
@@ -4367,7 +4418,7 @@ export const blogPosts: BlogPost[] = [
           "Random YouTube exercises with no progression — busy work without a plan",
         ],
         paragraphs: [
-          "Rest alone doesn't rebuild a tendon that's lost tolerance to load. You need to reduce running volume while deliberately strengthening the calf-Achilles unit — slowly, with a progression that respects pain levels.",
+          "Rest alone doesn't rebuild a tendon that's lost tolerance to load. You need to reduce running volume while deliberately strengthening the calf-Achilles unit — slowly, with a progression that respects pain levels. **This is what worked for me, not a substitute for care: a physiotherapist should confirm your diagnosis and stage before you progress loading.**",
         ],
       },
       {
@@ -4456,6 +4507,12 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-during-fasting",
+    sources: [
+      SOURCES.intermittentFasting,
+      SOURCES.hyponatremia,
+      SOURCES.redS,
+      SOURCES.runningNutrition,
+    ],
     title: "Running During Fasting: What to Do, What to Avoid, and When It's Safe",
     metaTitle:
       "Running & Intermittent Fasting — What to Do, Long Runs & More",
@@ -4757,6 +4814,11 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-for-weight-loss-facts-and-myths",
+    sources: [
+      SOURCES.weightLoss,
+      SOURCES.physicalActivityGuidelines,
+      SOURCES.runningNutrition,
+    ],
     title: "Running for Weight Loss: Facts and Myths",
     metaTitle:
       "Running for Weight Loss — Facts, Myths & What Actually Works",

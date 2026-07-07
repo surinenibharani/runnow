@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Lightbulb } from "lucide-react";
 import type { BlogPost } from "@/lib/blog/types";
 import { BlogFaq } from "@/components/blog/blog-faq";
+import { BlogSources } from "@/components/blog/blog-sources";
 import { BlogSectionBlock } from "@/components/blog/blog-section";
 import { BlogTableOfContents } from "@/components/blog/blog-table-of-contents";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
@@ -111,6 +112,10 @@ export function PostContent({
       </div>
 
       {post.faq && post.faq.length > 0 && <BlogFaq items={post.faq} />}
+
+      {post.sources && post.sources.length > 0 && (
+        <BlogSources sources={post.sources} />
+      )}
 
       {post.closingQuestion && !scheduled && (
         <Link

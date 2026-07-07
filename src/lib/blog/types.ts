@@ -27,6 +27,14 @@ export type BlogFaqItem = {
   answer: string;
 };
 
+/** Authoritative reference for "Sources & further reading" on a post. */
+export type BlogSource = {
+  label: string;
+  href: string;
+  /** Publisher shown after the label, e.g. "Mayo Clinic" or "NHS". */
+  publisher?: string;
+};
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -41,6 +49,8 @@ export type BlogPost = {
   sections: BlogSection[];
   relatedSlugs?: string[];
   faq?: BlogFaqItem[];
+  /** Authoritative references rendered as "Sources & further reading". */
+  sources?: BlogSource[];
   /** Prompt shown above comments to encourage discussion. */
   closingQuestion?: string;
 };

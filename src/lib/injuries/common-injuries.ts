@@ -16,6 +16,8 @@ export type CommonInjury = {
   avoid: string[];
   fix: string[];
   seeSpecialist: string[];
+  /** Authoritative medical reference for this condition. */
+  learnMore?: { label: string; href: string; publisher: string };
 };
 
 export const commonInjuries: CommonInjury[] = [
@@ -44,6 +46,11 @@ export const commonInjuries: CommonInjury[] = [
       "Swelling, redness, or warmth along the shin",
       "You can't walk without limping",
     ],
+    learnMore: {
+      label: "Shin splints — symptoms & causes",
+      href: "https://www.mayoclinic.org/diseases-conditions/shin-splints/symptoms-causes/syc-20354105",
+      publisher: "Mayo Clinic",
+    },
   },
   {
     slug: "runners-knee",
@@ -54,7 +61,7 @@ export const commonInjuries: CommonInjury[] = [
       "Dull ache around or behind the kneecap, worse going downstairs, after sitting, or on longer runs.",
     avoid: [
       "Don't ramp up hills and speed work in the same week",
-      "Strengthen quads and glutes — weak hips often cause knee tracking issues",
+      "Strengthen quads and glutes — weak hips can contribute to knee tracking issues",
       "Avoid overstriding; aim for a quicker, shorter stride on easy days",
       "Use the 10% rule for weekly volume increases",
     ],
@@ -70,6 +77,11 @@ export const commonInjuries: CommonInjury[] = [
       "Pain is severe enough to change how you walk day-to-day",
       "Same knee pain returns every time you build mileage — a sports physio can assess tracking and hip strength",
     ],
+    learnMore: {
+      label: "Patellofemoral pain syndrome — symptoms & causes",
+      href: "https://www.mayoclinic.org/diseases-conditions/patellofemoral-pain-syndrome/symptoms-causes/syc-20350792",
+      publisher: "Mayo Clinic",
+    },
   },
   {
     slug: "it-band-syndrome",
@@ -96,6 +108,11 @@ export const commonInjuries: CommonInjury[] = [
       "IT band issues keep returning every time you increase distance",
       "A sports physio or orthopaedic specialist can check hip biomechanics and running gait",
     ],
+    learnMore: {
+      label: "Iliotibial (IT) band syndrome",
+      href: "https://my.clevelandclinic.org/health/diseases/21967-iliotibial-band-syndrome",
+      publisher: "Cleveland Clinic",
+    },
   },
   {
     slug: "plantar-fasciitis",
@@ -122,6 +139,11 @@ export const commonInjuries: CommonInjury[] = [
       "Sharp pain in the arch or heel after a sudden increase in activity",
       "A podiatrist can assess foot mechanics; a physio can guide loading and return-to-run",
     ],
+    learnMore: {
+      label: "Plantar fasciitis — symptoms & causes",
+      href: "https://www.mayoclinic.org/diseases-conditions/plantar-fasciitis/symptoms-causes/syc-20354846",
+      publisher: "Mayo Clinic",
+    },
   },
   {
     slug: "achilles-tendinitis",
@@ -148,6 +170,11 @@ export const commonInjuries: CommonInjury[] = [
       "The tendon is visibly swollen, thickened, or warm to touch",
       "Morning stiffness doesn't ease after 30 minutes of walking — see a sports doctor or physio to rule out a partial tear",
     ],
+    learnMore: {
+      label: "Achilles tendinitis — symptoms & causes",
+      href: "https://www.mayoclinic.org/diseases-conditions/achilles-tendinitis/symptoms-causes/syc-20369020",
+      publisher: "Mayo Clinic",
+    },
   },
   {
     slug: "stress-fractures",
@@ -174,6 +201,11 @@ export const commonInjuries: CommonInjury[] = [
       "Pain at rest or at night, not just during runs",
       "You've had multiple stress injuries or suspect low bone density — ask about a bone health workup",
     ],
+    learnMore: {
+      label: "Stress fractures — symptoms & causes",
+      href: "https://www.mayoclinic.org/diseases-conditions/stress-fractures/symptoms-causes/syc-20354057",
+      publisher: "Mayo Clinic",
+    },
   },
 ];
 

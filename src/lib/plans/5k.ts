@@ -12,7 +12,8 @@ function build5kPlan(
     title: string;
     focus: string;
     items: Parameters<typeof runs>[2];
-  }>
+  }>,
+  prerequisite: string = "No experience needed"
 ): TrainingPlan {
   return {
     id,
@@ -22,7 +23,7 @@ function build5kPlan(
     description,
     duration,
     durationWeeks,
-    prerequisite: "No experience needed",
+    prerequisite,
     runsPerWeek: 3,
     weeks: weekBuilders.map((w, i) =>
       buildWeek(id, i + 1, w.title, w.focus, runs(id, i + 1, w.items))
@@ -118,8 +119,9 @@ export const plan5k4w = build5kPlan(
   "5k-4w",
   4,
   "4 weeks",
-  "An aggressive 4-week 5K plan for those who want results fast.",
-  week4
+  "An aggressive 4-week 5K plan for those who are already active. True beginners should use the 8-week plan to lower injury risk.",
+  week4,
+  "Already active (walking 30+ min or light exercise most days)"
 );
 
 export const plans5k = [plan5k4w, plan5k6w, plan5k8w];
