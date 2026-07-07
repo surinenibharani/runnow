@@ -1,5 +1,6 @@
 import { AlertTriangle } from "lucide-react";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { MedicalDisclaimerText } from "@/components/legal/medical-disclaimer-text";
 import { TipDetailCard } from "@/components/tips/tip-detail-card";
 import { situationalTips } from "@/lib/tips/situational";
 
@@ -10,11 +11,12 @@ export function SituationalTipsGrid() {
         <div className="flex gap-3 rounded-xl border border-amber-500/30 bg-amber-500/5 px-4 py-4 text-sm">
           <AlertTriangle className="size-5 shrink-0 text-amber-600 dark:text-amber-400 mt-0.5" />
           <p className="text-muted-foreground leading-relaxed">
-            <span className="font-medium text-foreground">Medical disclaimer: </span>
-            LetsRunNow provides general fitness education, not medical advice.
-            Talk to your physician, OB-GYN, or specialist before starting or
-            changing exercise — especially during pregnancy, after illness, or
-            when managing a chronic condition.
+            <MedicalDisclaimerText>
+              Medical disclaimer: LetsRunNow provides general fitness education,
+              not medical advice. Talk to your physician, OB-GYN, or specialist
+              before starting or changing exercise — especially during pregnancy,
+              after illness, or when managing a chronic condition.
+            </MedicalDisclaimerText>
           </p>
         </div>
       </FadeIn>

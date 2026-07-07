@@ -5,6 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TipIllustration } from "@/components/tips/tip-illustration";
 import type { TipIllustrationId } from "@/lib/tips/tips";
+import { containsMedicalDisclaimer } from "@/lib/medical-disclaimer";
+import { MedicalDisclaimerText } from "@/components/legal/medical-disclaimer-text";
 import { cn } from "@/lib/utils";
 
 type TipDetailCardProps = {
@@ -58,7 +60,11 @@ export function TipDetailCard({
                   "text-amber-700 dark:text-amber-400/90"
               )}
             >
-              {footer}
+              {containsMedicalDisclaimer(footer) ? (
+                <MedicalDisclaimerText>{footer}</MedicalDisclaimerText>
+              ) : (
+                footer
+              )}
             </p>
           )}
           {blogSlug && (

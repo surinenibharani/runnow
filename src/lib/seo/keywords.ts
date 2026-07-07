@@ -215,6 +215,24 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "isometric calf raises running injury",
     "return to running achilles pain",
   ],
+  "running-during-fasting": [
+    "running and intermittent fasting",
+    "running while fasting",
+    "fasted running beginner",
+    "can you run before breakfast",
+    "fasted long run running",
+    "16:8 fasting and running schedule",
+    "running on empty stomach",
+  ],
+  "running-for-weight-loss-facts-and-myths": [
+    "running for weight loss",
+    "does running help lose weight",
+    "running weight loss myths",
+    "can you outrun a bad diet",
+    "running not losing weight",
+    "is running good for weight loss beginner",
+    "fat burning zone running myth",
+  ],
 };
 
 export function blogPostKeywords(slug: string, category: string): string[] {

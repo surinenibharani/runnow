@@ -4454,6 +4454,501 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "running-during-fasting",
+    title: "Running During Fasting: What to Do, What to Avoid, and When It's Safe",
+    metaTitle:
+      "Running & Intermittent Fasting — What to Do, Long Runs & More",
+    excerpt:
+      "Intermittent fasting and running can coexist — but not every workout belongs in a fasted state. How to time runs around your eating window, long-run rules, and how men and women should adjust differently.",
+    category: "Nutrition",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-09-08",
+    readTime: "15 min",
+    relatedSlugs: [
+      "nutrition-for-runners",
+      "nutrition-basics-for-beginners",
+      "running-guide-for-women",
+      "running-guide-for-men",
+      "post-run-recovery",
+    ],
+    closingQuestion:
+      "How do you fit runs around your eating window — and what's been hardest to figure out with intermittent fasting?",
+    faq: [
+      {
+        question: "Can I run on an empty stomach?",
+        answer:
+          "Many runners do easy runs under 45–60 minutes without eating first — that's light fasted cardio. With intermittent fasting you can usually still drink water, which makes it far more manageable. If you feel dizzy, nauseous, or unusually weak, eat something small and slow down. See [what to do before easy runs](#easy-runs-short-and-steady).",
+      },
+      {
+        question: "Can I fast before a long run?",
+        answer:
+          "For runs over 60–75 minutes, or any run where you're building marathon or half-marathon endurance: **no** — not if you want the run to go well or recover properly. Long efforts need carbohydrates. Fasted long runs increase bonk risk, slow recovery, and raise injury risk for most beginners.",
+      },
+      {
+        question: "How do I time runs around a 16:8 window?",
+        answer:
+          "Put your run near the start or middle of your eating window so you can eat before or soon after. If you run in the morning but eat noon–8 p.m., either shift your window earlier, keep the run short and easy and eat immediately after, or move the run to the evening. See [intermittent fasting schedules](#intermittent-fasting).",
+      },
+      {
+        question: "Does fasted running burn more fat?",
+        answer:
+          "Fasted easy runs may use a higher proportion of fat for fuel during the run, but that doesn't automatically mean better fat loss or faster racing. Total energy balance, sleep, and consistency matter more. Using fasting mainly to lose weight while ramping mileage is a common path to fatigue and injury.",
+      },
+      {
+        question: "Should women fast and run differently than men?",
+        answer:
+          "Often yes. Women are more sensitive to low energy availability — missed periods, bone stress, and slower recovery are real risks without a monthly cycle as an early warning. Men face RED-S too, but without that signal. See [differences for women](#differences-for-women) and [differences for men](#differences-for-men).",
+      },
+      {
+        question: "Can I do intervals or tempo runs while fasting?",
+        answer:
+          "Generally not. Quality workouts need glycogen. Fasted intervals usually mean bad form, poor pacing, and a longer recovery hole. Schedule hard efforts when you can fuel before and after — or skip them that week and protect easy consistency instead.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Intermittent fasting and running can work well together — but not every workout should be done fasted. Knowing how to time your runs around your eating window helps you train effectively without burning out or increasing injury risk.",
+          "This post covers how fasting affects running, which workouts are better fueled, long-run guidelines, and how men and women may need to approach things differently.",
+          "**Important: This is not medical advice. If you have diabetes, are pregnant or breastfeeding, take medication for blood pressure or blood sugar, have a history of eating disorders, or manage any chronic condition, please speak with a doctor or registered dietitian before combining fasting with training.**",
+        ],
+      },
+      {
+        id: "how-fasting-affects-running",
+        heading: "How fasting affects your body on a run",
+        paragraphs: [
+          "Your muscles prefer carbohydrates (glycogen) for moderate to hard efforts. When you've been fasting for many hours, glycogen stores are lower, and perceived effort often increases — even on easy runs.",
+          "Common effects include:",
+        ],
+        list: [
+          "Easy runs can feel harder, with heart rate drifting higher for the same pace",
+          "Quality sessions (intervals, tempo, hills) suffer because they rely heavily on carbohydrates",
+          "Recovery slows when you delay carbs and protein after running",
+          "Hunger can spike during or after the run",
+          "Injury risk can increase if fatigue is masked by \"mental toughness\"",
+        ],
+      },
+      {
+        paragraphs: [
+          "Some experienced runners adapt well to easy fasted runs. However, this adaptation does **not** mean long runs or hard workouts should be done fasted, especially while building toward a half or full marathon.",
+        ],
+      },
+      {
+        id: "what-to-do",
+        heading: "What to do",
+        subsections: [
+          {
+            heading: "Match the workout to your eating window",
+            list: [
+              "Schedule long runs and quality sessions (tempo, intervals) for times when you can eat **before and after**",
+              "Keep fasted runs **easy** — true conversational pace",
+              "Most beginners do best keeping fasted runs between **20–45 minutes**. Some experienced runners can go up to 60 minutes if they feel good",
+              "It's okay to shift your eating window earlier or later on hard training days",
+            ],
+          },
+          {
+            heading: "Stay hydrated during the fast",
+            list: [
+              "Water, black coffee, and plain tea are usually allowed",
+              "Consider adding **electrolytes** to your water on fasted runs longer than 45–60 minutes, especially in hot weather",
+              "Check your hydration by the color of your urine (pale straw is ideal)",
+            ],
+          },
+          {
+            heading: "Electrolyte suggestions",
+            paragraphs: [
+              "Electrolytes — mainly **sodium**, plus **potassium** and **magnesium** — help you hold onto fluid and prevent the flat, crampy feeling that fasted runs in the heat can bring. Because plain water alone can dilute sodium further when you're already fasted, a little electrolyte support goes a long way.",
+            ],
+            list: [
+              "**Sugar-free is key while fasting** — choose zero-calorie tablets or powders (e.g. LMNT, Nuun Sport, or a store-brand equivalent) so you don't break the fast",
+              "**DIY option**: a pinch of salt (about 1/4 tsp) in water, optionally with a squeeze of lemon; add a magnesium supplement in the evening if you cramp",
+              "**How much**: roughly 300–500 mg sodium for runs of 45–90 minutes; more in heat or if you're a heavy/salty sweater (white marks on your cap or shirt)",
+              "**Timing**: sip electrolytes before and during longer fasted runs — you don't need them for a quick 20–30 minute jog",
+              "**Watch labels**: many sports drinks and gels contain sugar and calories, which break a fast — save those for fueled runs and race practice",
+              "**Everyday food covers the rest**: once your window opens, salty whole foods, fruit, dairy or fortified alternatives, and leafy greens top you back up",
+            ],
+          },
+          {
+            heading: "Break your fast properly after running",
+            list: [
+              "Eat a combination of **carbs + protein** soon after finishing",
+              "Good options: eggs with toast, yogurt with fruit and oats, rice with chicken or lentils, or a smoothie",
+              "Try to eat within an hour after a fasted run rather than waiting several hours",
+              "See [nutrition basics for beginners](/blog/nutrition-basics-for-beginners) and [distance-specific fueling](/blog/nutrition-for-runners)",
+            ],
+          },
+          {
+            heading: "Adjust instead of pushing through",
+            list: [
+              "If a fasted run feels much harder than expected, it's okay to slow down or cut it short",
+              "Use run-walk if needed",
+              "Track how you feel the rest of the day — if fasted runs consistently leave you exhausted, move them inside your eating window",
+            ],
+          },
+        ],
+      },
+      {
+        id: "what-not-to-do",
+        heading: "What not to do",
+        list: [
+          "Don't do long runs fasted (see section below)",
+          "Don't do intervals, tempo runs, or hill repeats fasted",
+          "Don't use fasting as a way to cut weight while significantly increasing mileage",
+          "Don't ignore warning signs like dizziness, chest pain, confusion, or unusual fatigue",
+          "Don't attempt race day fasted unless you've practiced the exact same routine on long runs",
+          "Don't start a strict fasting protocol and a big increase in running volume at the same time",
+        ],
+      },
+      {
+        id: "fast-before-long-run",
+        heading: "Can you fast before a long run?",
+        paragraphs: [
+          "**Short answer:** No — not if you want the long run to be productive.",
+          "Long runs develop endurance, pacing, and (for half and marathon runners) the ability to tolerate fuel. Running them glycogen-depleted turns them into survival efforts rather than quality training.",
+          "**General guidelines by duration:**",
+        ],
+        list: [
+          "**Under 45–60 minutes, easy:** Some experienced runners do these fasted. Beginners should usually eat something light.",
+          "**60–90 minutes:** Eat beforehand.",
+          "**90+ minutes (true long runs):** Carbohydrates before the run are strongly recommended for most people.",
+          "**Race simulation long runs:** Always practice your race-morning nutrition — never fasted.",
+        ],
+      },
+      {
+        paragraphs: [
+          "If your eating window doesn't open until later in the day, simply move it earlier on long-run days. One flexible day won't ruin the benefits of intermittent fasting.",
+        ],
+      },
+      {
+        id: "easy-runs-short-and-steady",
+        heading: "Easy runs: where fasted training fits best",
+        paragraphs: [
+          "Short, easy runs are the most appropriate place for fasted training for many people. A few tips:",
+        ],
+        list: [
+          "Keep them truly easy (you should be able to speak full sentences)",
+          "Start with 20–30 minutes and build slowly if it feels good",
+          "Have food ready right after the run",
+          "Stop or slow down if you feel dizzy, overly fatigued, or unwell",
+        ],
+      },
+      {
+        paragraphs: [
+          "**Important:** Individual responses vary. Some runners feel great doing easy runs fasted, while others feel sluggish or lightheaded. There's no single correct approach — experiment carefully and pay attention to how you feel.",
+        ],
+      },
+      {
+        id: "strength-training",
+        heading: "Strength training while fasting",
+        paragraphs: [
+          "Light to moderate strength training (especially upper body) can often be done fasted. However, heavy lower-body sessions are usually better performed after eating, as they're more demanding on glycogen stores and can leave you very fatigued.",
+        ],
+      },
+      {
+        id: "intermittent-fasting",
+        heading: "Building your schedule around your eating window",
+        paragraphs: [
+          "The goal is simple: hard sessions get fuel, while easy sessions have more flexibility.",
+        ],
+        list: [
+          "Try to schedule runs near the beginning or middle of your eating window when possible",
+          "Morning runners on a 16:8 (noon–8 p.m. window) often do best shifting the window earlier on hard days or running easy fasted and eating right after",
+          "Evening runners usually have an easier time fitting runs inside their window",
+          "Be cautious stacking very high mileage with OMAD (one meal a day) — one meal often isn't enough to support both training and recovery",
+        ],
+      },
+      {
+        id: "differences-for-women",
+        heading: "Differences for women",
+        paragraphs: [
+          "Women tend to be more sensitive to low energy availability. Combining fasting with running increases the risk of **Relative Energy Deficiency in Sport (RED-S)**, even if weight appears stable.",
+          "Key considerations:",
+        ],
+        list: [
+          "Fasted running often feels harder in the late luteal phase (the week before your period)",
+          "Lost or irregular periods while fasting and training is a red flag — see a clinician",
+          "Restricted eating windows can make it harder to get enough calcium and iron",
+          "Pregnancy and breastfeeding generally require medical clearance before fasting while training",
+          "If you have a history of disordered eating, fasted running can sometimes trigger old patterns",
+        ],
+      },
+      {
+        paragraphs: [
+          "More context: [beginner running guide for women](/blog/running-guide-for-women) and [RED-S for women runners](/injuries/for-women-runners#red-s-bone-health).",
+        ],
+      },
+      {
+        id: "differences-for-men",
+        heading: "Differences for men",
+        paragraphs: [
+          "Men aren't immune to under-fueling, but the warning signs can be subtler.",
+          "Watch for:",
+        ],
+        list: [
+          "Recurring stress reactions or injuries",
+          "Low libido or mood changes",
+          "Frequent illness or stalled progress",
+          "Unusual fatigue that doesn't improve with rest",
+        ],
+      },
+      {
+        paragraphs: [
+          "Men also tend to have higher sweat rates, so hydration and electrolytes become especially important during fasted runs in warm weather. Prioritize protein when breaking your fast to support muscle repair.",
+          "More context: [beginner running guide for men](/blog/running-guide-for-men).",
+        ],
+      },
+      {
+        id: "when-to-skip",
+        heading: "When to skip the run or eat first",
+        paragraphs: [
+          "Stop or eat before running if you experience:",
+        ],
+        list: [
+          "Dizziness, nausea, or headache that doesn't improve when you slow down",
+          "Chest pain, pressure, or irregular heartbeat",
+          "Sharp pain that changes your running form",
+          "Very poor sleep (under 5 hours) and heavy legs",
+          "Any symptoms your doctor has previously advised you to watch for",
+        ],
+      },
+      {
+        paragraphs: [
+          "Remember: Eating a small snack and running anyway is always an option. Breaking your fast an hour early to protect a workout is not a failure of discipline — it's smart training.",
+        ],
+      },
+      {
+        id: "sample-weeks",
+        heading: "Sample approaches",
+        paragraphs: [
+          "These are examples, not prescriptions:",
+        ],
+        subsections: [
+          {
+            heading: "Beginner (3× per week) + 16:8 (noon–8 p.m. window)",
+            list: [
+              "Easy runs: Can be done fasted in the morning or inside the window",
+              "Long-ish run: Open the eating window earlier and eat before running",
+            ],
+          },
+          {
+            heading: "Half Marathon Build + 16:8",
+            list: [
+              "Easy midweek runs: Can be fasted (30–45 min)",
+              "Tempo or interval days: Run inside the eating window with food before and after",
+              "Long run: Always eat beforehand — never fasted",
+            ],
+          },
+        ],
+        cta: {
+          text: "Start a structured beginner plan",
+          href: "/plan",
+        },
+      },
+      {
+        heading: "Bottom line",
+        paragraphs: [
+          "Intermittent fasting and running can coexist successfully when you're honest about which workouts need fuel. Easy and shorter runs can often be done fasted for many people. Long runs and quality sessions should be fueled — adjust your eating window on those days rather than pushing through.",
+          "Women should pay close attention to menstrual cycle changes and recovery. Men should watch for subtler signs of low energy availability. Everyone performs and recovers better when the eating window supports the training instead of working against it.",
+          "When in doubt, choose the option that helps you keep showing up consistently. That's what actually leads to progress.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "running-for-weight-loss-facts-and-myths",
+    title: "Running for Weight Loss: Facts and Myths",
+    metaTitle:
+      "Running for Weight Loss — Facts, Myths & What Actually Works",
+    excerpt:
+      "Running can support weight loss — but many popular beliefs about how it works are misleading. What the science actually says, the biggest myths debunked, and what tends to work in practice.",
+    category: "Nutrition",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-09-15",
+    readTime: "12 min",
+    relatedSlugs: [
+      "nutrition-for-runners",
+      "nutrition-basics-for-beginners",
+      "performance-goals-over-aesthetics",
+      "building-a-running-habit",
+      "avoiding-injuries",
+    ],
+    closingQuestion:
+      "What's the biggest weight-loss myth about running you used to believe — and what changed your mind?",
+    faq: [
+      {
+        question: "Is running good for weight loss?",
+        answer:
+          "Running can help, but it's not magic. It burns calories and improves fitness, mood, and appetite regulation over time. However, weight loss ultimately comes down to a sustained calorie deficit — and it's very easy to eat back the calories a run burns. Running works best for weight loss when paired with reasonable nutrition, not as a license to ignore food.",
+      },
+      {
+        question: "Can I outrun a bad diet?",
+        answer:
+          "For almost everyone, no. A typical 30–45 minute run burns roughly 300–450 calories — easily erased by a single pastry, sports drink, or large latte. Nutrition drives fat loss far more than exercise volume. See [nutrition basics for beginners](/blog/nutrition-basics-for-beginners).",
+      },
+      {
+        question: "Why am I running regularly but not losing weight?",
+        answer:
+          "Common reasons: eating more to match the hunger running creates, overestimating calories burned, water retention from new training (temporary), gaining a little muscle, or not being in an actual calorie deficit. Weight can also fluctuate 1–3 lbs day to day from water and food. Look at trends over weeks, not the daily scale.",
+      },
+      {
+        question: "Do I need to run fasted to burn fat?",
+        answer:
+          "No. Fasted running may shift which fuel you burn during the run, but it doesn't reliably lead to more fat loss over time — total energy balance matters more. If you want to try it, see our guide to [running during fasting](/blog/running-during-fasting).",
+      },
+      {
+        question: "Is running or walking better for weight loss?",
+        answer:
+          "Running burns more calories per minute, but walking is easier to sustain, lower-injury-risk, and something you can do more often. The best exercise for weight loss is the one you'll actually keep doing. Many beginners do best with a walk-run mix — see [why walking is not cheating](/blog/why-walking-is-not-cheating).",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Running has a strong reputation as a fat-loss tool. While it can definitely support weight loss, many popular beliefs about how it works are misleading or outright wrong. Understanding the real relationship between running and fat loss helps you set better expectations and avoid common pitfalls.",
+          "This post breaks down what the science actually says, debunks the biggest myths, and explains what tends to work in practice.",
+          "**Note: This is general education, not medical or nutrition advice. If you have a medical condition, are pregnant or breastfeeding, take medication, or have a history of disordered eating, please consult a doctor or registered dietitian before starting a weight-loss plan.**",
+        ],
+      },
+      {
+        id: "how-weight-loss-works",
+        heading: "How weight loss actually works",
+        paragraphs: [
+          "Fat loss occurs when you consistently consume fewer calories than you burn over time — a **calorie deficit**. Running increases the number of calories you burn, which can help create that deficit. However, it's usually only one part of the equation.",
+          "Your body burns the majority of its daily calories through basic metabolism and everyday movement (called NEAT — Non-Exercise Activity Thermogenesis). A few runs per week add to your total burn, but they don't override what you eat. This is why nutrition plays the biggest role in weight loss, while running serves as a helpful support tool.",
+        ],
+      },
+      {
+        id: "facts",
+        heading: "The facts",
+        subsections: [
+          {
+            heading: "Running burns calories and builds fitness efficiently",
+            paragraphs: [
+              "Running is one of the more time-efficient forms of cardio. It raises heart rate quickly and burns a meaningful number of calories — typically **300–500+ calories** in 30–45 minutes for most people (though this varies based on body weight, pace, and terrain).",
+            ],
+          },
+          {
+            heading: "Consistency beats intensity for long-term results",
+            paragraphs: [
+              "Three easy, sustainable runs per week will almost always outperform an overly ambitious plan you quit after a couple of weeks. Real fat loss comes from maintaining a moderate deficit over months, not from short bursts of extreme effort. See [how to build a running habit that sticks](/blog/building-a-running-habit).",
+            ],
+          },
+          {
+            heading: "Running improves more than just the number on the scale",
+            paragraphs: [
+              "Regular running often leads to:",
+            ],
+            list: [
+              "Better mood, sleep, and stress management",
+              "Improved insulin sensitivity and heart health",
+              "Increased leg strength and endurance",
+              "Greater confidence that can positively influence eating habits",
+            ],
+          },
+          {
+            heading: "Body composition can improve even when weight stays the same",
+            paragraphs: [
+              "You can lose fat while gaining a small amount of muscle, especially when combining running with strength training. This means the scale might not move much while your body shape and how your clothes fit continue to improve. See [performance goals over aesthetics](/blog/performance-goals-over-aesthetics) for why non-scale progress matters.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "myths",
+        heading: "The myths",
+        subsections: [
+          {
+            heading: "Myth: You can outrun a bad diet",
+            paragraphs: [
+              "A 30–45 minute run typically burns 300–500 calories for most people. That's easily canceled out by one pastry, a large flavored coffee, or a couple of slices of pizza. Nutrition drives fat loss. Running supports it but cannot reliably overcome a consistently poor diet. See [nutrition basics for beginners](/blog/nutrition-basics-for-beginners).",
+            ],
+          },
+          {
+            heading: "Myth: More miles always equals more fat loss",
+            paragraphs: [
+              "Adding excessive mileage often backfires. It can significantly increase hunger, raise injury risk, and lead to under-fueling or burnout. Beginners who increase volume too quickly are especially prone to injury — see [how to avoid the injuries that sideline beginners](/blog/avoiding-injuries).",
+            ],
+          },
+          {
+            heading: "Myth: You need to run fasted to burn fat",
+            paragraphs: [
+              "Fasted running shifts which fuel your body uses during the workout (more fat, less glycogen). However, it does not lead to greater fat loss over time. Total calorie balance still determines results. If you want to try fasted running, do it safely and only on easy runs — see [running during fasting](/blog/running-during-fasting).",
+            ],
+          },
+          {
+            heading: "Myth: There's a magic \"fat-burning zone\"",
+            paragraphs: [
+              "Lower-intensity exercise burns a higher percentage of calories from fat, but higher-intensity running burns more total calories. Overall energy balance matters far more than targeting a specific heart rate zone for weight loss.",
+            ],
+          },
+          {
+            heading: "Myth: The scale is the only measure of progress",
+            paragraphs: [
+              "Weight can fluctuate 1–3 pounds daily due to water, food, hormones, and training. Judging success by daily weigh-ins often leads to unnecessary frustration. Focus on weekly trends and non-scale victories instead.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "why-not-losing",
+        heading: "Why you might be running and not losing weight",
+        paragraphs: [
+          "This is a very common experience. Here are the most frequent reasons:",
+        ],
+        list: [
+          "**Eating back the calories** — Running often increases appetite, and it's easy to unconsciously eat more than you burned",
+          "**Overestimating calorie burn** — Fitness watches and machines frequently overestimate calories burned by 20–40%",
+          "**Water retention from training** — New or increased running causes muscles to store more glycogen and water. This is temporary",
+          "**No real calorie deficit** — Without some level of awareness around intake, most people underestimate how much they're eating",
+          "**Focusing on daily fluctuations** — Normal weight swings hide real progress. Look at trends over weeks, not days",
+        ],
+      },
+      {
+        id: "what-works",
+        heading: "What actually works",
+        paragraphs: [
+          "Here's what tends to produce better, more sustainable results:",
+        ],
+        list: [
+          "**Pair running with reasonable nutrition** — Focus on protein, vegetables, fiber, and overall portion awareness rather than extreme restrictions. See [nutrition basics for beginners](/blog/nutrition-basics-for-beginners)",
+          "**Build consistency first** — A moderate habit you can maintain beats a perfect plan you abandon",
+          "**Include strength training** — This helps preserve muscle while losing fat, which supports metabolism and body composition. Try [bodyweight strength for runners](/blog/bodyweight-strength-for-runners)",
+          "**Increase mileage gradually** — Follow the 10% rule to reduce injury and burnout risk",
+          "**Prioritize sleep and stress management** — Poor sleep and high stress strongly affect hunger hormones and fat loss",
+          "**Track trends and non-scale wins** — Measure progress by how your clothes fit, how you feel, and performance improvements rather than daily weight",
+        ],
+      },
+      {
+        id: "differences-women-men",
+        heading: "A note for women and men",
+        paragraphs: [
+          "Creating a large calorie deficit while training heavily increases the risk of **Relative Energy Deficiency in Sport (RED-S)** for everyone. Warning signs differ between sexes:",
+        ],
+        list: [
+          "**Women**: Lost or irregular periods while running and dieting is a clear signal of under-fueling. See a clinician and read our [beginner running guide for women](/blog/running-guide-for-women)",
+          "**Men**: Signs are often subtler — low libido, mood changes, frequent illness, or stalled progress. See our [beginner running guide for men](/blog/running-guide-for-men)",
+        ],
+      },
+      {
+        paragraphs: [
+          "Sustainable weight loss should not feel like constant depletion. If training keeps getting harder week after week, you may be eating too little to support your activity level.",
+        ],
+      },
+      {
+        heading: "Bottom line",
+        paragraphs: [
+          "Running is a genuinely helpful tool for weight loss, but it works best as a **supporting player**, not the main driver. It burns calories, improves health, and builds consistency that makes maintaining a calorie deficit easier. What it cannot do is cancel out a poor diet or deliver fast results on its own.",
+          "The runners who see the best long-term results are usually the ones who combine running with reasonable nutrition, stay consistent rather than extreme, and focus on how their body feels and performs — not just the scale.",
+          "Set realistic expectations, be patient, and treat running as one important part of the process rather than the entire solution. That mindset is what turns running into lasting, healthy change.",
+        ],
+        cta: {
+          text: "Start a free beginner running plan",
+          href: "/plan",
+        },
+      },
+    ],
+  },
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

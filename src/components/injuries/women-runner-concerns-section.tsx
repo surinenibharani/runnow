@@ -1,3 +1,4 @@
+import { MedicalDisclaimerText } from "@/components/legal/medical-disclaimer-text";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 import {
   RunnerConcernCard,
@@ -17,9 +18,9 @@ export function WomenRunnerConcernsSection() {
       <FadeIn className="mb-8">
         <p className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
           {womenRunnerPageIntro.whyUnique}{" "}
-          <span className="font-medium text-foreground">
+          <MedicalDisclaimerText>
             {womenRunnerPageIntro.disclaimer}
-          </span>
+          </MedicalDisclaimerText>
         </p>
       </FadeIn>
 

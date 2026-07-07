@@ -84,6 +84,10 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Forefoot burning that feels like a pebble in your shoe is easy to ignore until every run hurts. Catching it early — and fixing shoe fit before chasing quick fixes — keeps small nerve irritation from becoming a season-ender.",
   "achilles-tendinitis-running":
     "Achilles pain isn't only a beginner problem — a mileage spike can sideline experienced runners too. Loading the tendon patiently with calf work and smart plyometrics often beats resting until you're afraid to lace up.",
+  "running-during-fasting":
+    "Intermittent fasting changes when your body has fuel — stack a long run or speed work onto a fasted window and easy days stop feeling easy. Timing runs around your eating window keeps you training without burning out.",
+  "running-for-weight-loss-facts-and-myths":
+    "Most beginners expect running alone to melt fat, then quit when the scale won't budge. Understanding what running really does — and what nutrition has to do — sets expectations that actually lead to results.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

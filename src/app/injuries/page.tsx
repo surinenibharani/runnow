@@ -16,6 +16,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { INJURIES_SEO_KEYWORDS } from "@/lib/seo/keywords";
+import { MedicalDisclaimerText } from "@/components/legal/medical-disclaimer-text";
 import { cn } from "@/lib/utils";
 
 const INJURIES_TITLE =
@@ -91,8 +92,10 @@ export default function InjuriesPage() {
             <CardContent className="flex gap-4 p-6">
               <Stethoscope className="mt-0.5 size-6 shrink-0 text-primary" />
               <div className="text-sm leading-relaxed">
-                <p className="font-medium text-foreground">
-                  This page is educational, not medical advice.
+                <p>
+                  <MedicalDisclaimerText>
+                    This page is educational, not medical advice.
+                  </MedicalDisclaimerText>
                 </p>
                 <p className="mt-1 text-muted-foreground">
                   Sharp pain, swelling, numbness, or pain that worsens over days

@@ -1,5 +1,7 @@
 import { FadeIn } from "@/components/motion/fade-in";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { MedicalDisclaimerText } from "@/components/legal/medical-disclaimer-text";
+import { isMedicalDisclaimerHeading } from "@/lib/medical-disclaimer";
 
 type LegalSection = {
   heading: string;
@@ -49,7 +51,11 @@ export function LegalPage({
                     key={p}
                     className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base"
                   >
-                    {p}
+                    {isMedicalDisclaimerHeading(section.heading) ? (
+                      <MedicalDisclaimerText>{p}</MedicalDisclaimerText>
+                    ) : (
+                      p
+                    )}
                   </p>
                 ))}
                 {section.list && (

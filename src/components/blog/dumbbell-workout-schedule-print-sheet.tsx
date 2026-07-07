@@ -246,7 +246,9 @@ export function DumbbellWorkoutSchedulePrintSheet({
           Exercise list & form diagrams: {workoutSheetHref} · Full article:{" "}
           {articleHref.replace(/^https?:\/\/[^/]+/, "")}
         </p>
-        <p className="mt-1">Not medical advice. Stop if you feel sharp joint pain.</p>
+        <p className="mt-1">
+          <strong className="font-semibold">Not medical advice.</strong> Stop if you feel sharp joint pain.
+        </p>
       </footer>
       </div>
 
