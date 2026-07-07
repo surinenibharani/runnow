@@ -2353,7 +2353,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Most beginner running advice is written as if every body responds the same. Women starting out often have specific questions — about gear, energy shifts across the month, bone health, pregnancy, and feeling like they belong on the path.",
           "Hormonal fluctuations, pelvic anatomy, lower average peak bone density, and pregnancy or postpartum history all shape how training feels. That doesn't mean running isn't for you — it means smart setup beats generic advice.",
-          "Guidelines vary by country — follow your national screening advice for breast, prostate, and heart checks.",
+          "Guidelines vary by country — follow your national screening advice for breast, cervical, and heart checks.",
           "**This isn't medical advice. When in doubt, talk to your doctor or a women's health specialist.** What follows are practical starting points that help many women run consistently and safely.",
         ],
       },
