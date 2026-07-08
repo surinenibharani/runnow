@@ -90,6 +90,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Most beginners expect running alone to melt fat, then quit when the scale won't budge. Understanding what running really does — and what nutrition has to do — sets expectations that actually lead to results.",
   "nutrition-for-training-by-run-type":
     "A 5K fueling chart won't tell you what to eat before Tuesday intervals or a humid Sunday long run. Matching food and fluid to each workout type is what keeps training blocks from unraveling in heat or on hard weeks.",
+  "run-workouts-hills-intervals-fartlek-track":
+    "Training plans tell you what to do, but not why. Understanding what hills, intervals, fartlek, and track sessions actually develop helps you run the right workout at the right time — and avoid turning every day into a race.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

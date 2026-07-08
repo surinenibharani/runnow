@@ -146,4 +146,28 @@ export const SOURCES = {
     href: "https://communityhealth.mayoclinic.org/featured-stories/exercise-summer-heat",
     publisher: "Mayo Clinic",
   },
+  intervalTrainingVO2max2024: {
+    label:
+      "HIIT vs continuous training for aerobic performance (systematic review & meta-analysis, 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/38904772/",
+    publisher: "PubMed",
+  },
+  intervalTrainingVO2maxRunners2021: {
+    label:
+      "Interval training and VO₂max in well-trained endurance runners (systematic review, 2021)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/33605843/",
+    publisher: "PubMed",
+  },
+  strengthTrainingRunningEconomy2016: {
+    label:
+      "Strength training improves running economy in trained runners (systematic review & meta-analysis, 2016)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/26694507/",
+    publisher: "J Strength Cond Res / PubMed",
+  },
+  acsmExercisePrescription2009: {
+    label:
+      "ACSM Position Stand: Exercise prescription for apparently healthy adults (2009)",
+    href: "https://www.bewegenismedicijn.nl/files/downloads/full_text_acsm_position_stand_parameters_of_exercise_for_adults.pdf",
+    publisher: "ACSM",
+  },
 } satisfies Record<string, BlogSource>;

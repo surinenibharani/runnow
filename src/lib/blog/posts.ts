@@ -5344,6 +5344,192 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "run-workouts-hills-intervals-fartlek-track",
+    sources: [
+      SOURCES.intervalTrainingVO2max2024,
+      SOURCES.intervalTrainingVO2maxRunners2021,
+      SOURCES.strengthTrainingRunningEconomy2016,
+      SOURCES.acsmExercisePrescription2009,
+    ],
+    title:
+      "Types of Runs Explained: Hills, Intervals, Fartlek, Tempo & Track (and Why They Work)",
+    metaTitle:
+      "Hills, Intervals, Fartlek, Tempo & Track — What Each Run Builds",
+    excerpt:
+      "Not all hard runs are the same. Hills, intervals, fartlek, tempo, and track sessions each develop different qualities in your running. Understanding what each workout actually builds helps you train with more purpose and get better results without burning out. This guide explains the main types of runs, what they develop, and when they’re most useful.",
+    category: "Training",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-07-07",
+    readTime: "12 min",
+    relatedSlugs: [
+      "how-to-pace-yourself",
+      "how-to-not-hate-hills",
+      "running-form-101",
+      "post-run-recovery",
+      "running-in-bad-weather",
+    ],
+    sections: [
+      {
+        id: "the-big-picture",
+        heading: "The Big Picture",
+        paragraphs: [],
+        list: [
+          "Aerobic base — Your ability to run longer and recover between efforts",
+          "Lactate threshold — How fast you can run before fatigue builds up quickly",
+          "VO₂max — Your maximum capacity to use oxygen during hard efforts",
+          "Running economy — How efficiently you run at a given pace",
+          "Strength & neuromuscular coordination — Better form, power, and the ability to stay relaxed when running fast",
+        ],
+      },
+      {
+        id: "hill-workouts",
+        heading: "Hill Workouts",
+        paragraphs: [
+          "Hills build strength and improve running form. They’re one of the most effective ways to get stronger without needing a gym.",
+        ],
+        subsections: [
+          {
+            heading: "Hill Sprints",
+            paragraphs: [
+              "Short, powerful efforts uphill with full recovery.",
+              "Key point: These are quality efforts — take full recovery so every rep stays sharp.",
+            ],
+            list: [
+              "Main benefits: Develops power, ankle stiffness, and better running mechanics",
+              "Best used for: Improving strength and form, especially for runners who want to get faster without high injury risk",
+            ],
+          },
+          {
+            heading: "Longer Hill Repeats",
+            paragraphs: [
+              "Sustained efforts up a moderate hill.",
+            ],
+            list: [
+              "Main benefits: Builds strength endurance and mental toughness",
+              "Best used for: Improving your ability to hold effort over time",
+            ],
+          },
+        ],
+      },
+      {
+        id: "tempo-runs",
+        heading: "Tempo Runs (also called Threshold Runs or Race Pace Runs)",
+        paragraphs: [
+          "Tempo runs are sustained efforts at a “comfortably hard” pace — roughly the fastest pace you could hold for about an hour in a race. They improve your lactate threshold, allowing you to run faster for longer before fatigue sets in.",
+          "Main benefits: Raises the speed you can sustain for longer periods, improves mental toughness, and helps with race pacing.",
+          "How it feels: You should be able to speak in short sentences, but not hold a full conversation. It’s harder than easy running but more controlled than intervals.",
+          "Best used for: 5K to marathon training, especially when preparing for a specific race goal. Tempo runs are one of the most effective workouts for improving overall race performance.",
+        ],
+      },
+      {
+        id: "interval-workouts",
+        heading: "Interval Workouts",
+        paragraphs: [
+          "Intervals are structured periods of hard running with planned recovery. They primarily improve VO₂max — your body’s ability to use oxygen at high intensities.",
+        ],
+        subsections: [
+          {
+            heading: "Main benefits",
+            list: ["Improves aerobic power and the ability to sustain hard efforts"],
+          },
+          {
+            heading: "Best used for",
+            list: [
+              "5K and 10K performance",
+              "Raising your top-end speed",
+            ],
+          },
+        ],
+      },
+      {
+        id: "fartlek",
+        heading: "Fartlek (Speed Play)",
+        paragraphs: [
+          "Fartlek is unstructured speedwork. You add faster surges during an easy run using time, landmarks, or feel instead of exact distances. (Fartlek is Swedish for “speed play.”)",
+          "Fartlek is a great bridge between easy running and more structured workouts.",
+        ],
+        subsections: [
+          {
+            heading: "Main benefits",
+            list: [
+              "Helps you practice running at different speeds",
+              "Improves your ability to change pace",
+              "Keeps training engaging",
+            ],
+          },
+          {
+            heading: "Best used for",
+            list: [
+              "Beginners who are new to speedwork",
+              "Runners who find track intimidating",
+              "Adding variety to training",
+            ],
+          },
+        ],
+      },
+      {
+        id: "track",
+        heading: "Track Workouts",
+        paragraphs: [
+          "Track sessions are done on a measured surface, which makes them ideal for practicing pacing and running with consistency.",
+        ],
+        subsections: [
+          {
+            heading: "Main benefits",
+            list: [
+              "Improves pacing accuracy",
+              "Helps you learn to hold effort evenly",
+              "Provides clear feedback on effort",
+            ],
+          },
+          {
+            heading: "Best used for",
+            list: [
+              "Runners training for a specific goal pace",
+              "Runners who tend to start too fast and fade",
+              "Anyone who wants consistent footing",
+            ],
+          },
+          {
+            heading: "Track etiquette tips",
+            list: [
+              "Run counterclockwise (unless signs say otherwise)",
+              "Faster runners have priority in the inside lanes",
+              "Don’t stop suddenly in lane one",
+            ],
+          },
+        ],
+      },
+      {
+        id: "long-runs",
+        heading: "Long Runs",
+        paragraphs: [
+          "Long runs are your endurance builders. They teach your body to keep running when fatigue rises and they give your legs (and gut) the practice of going the distance.",
+          "Long runs are also where you learn patience: you can’t rush long-run adaptation. You earn the fitness by finishing strong enough to recover.",
+        ],
+        list: [
+          "Main benefits: Builds aerobic endurance, improves resilience for the final miles, and strengthens your ability to recover between harder days",
+          "Most useful for: 10K to marathon training goals, and for anyone who wants to run farther with less fear",
+        ],
+      },
+      {
+        heading: "Bottom Line",
+        paragraphs: [
+          "Each type of run has a specific job. Use the right one for what you’re trying to improve.",
+        ],
+        list: [
+          "Hill Sprints — Power and running form — Strength and mechanics",
+          "Longer Hill Repeats — Strength endurance — Building resilience",
+          "Long Runs — Aerobic base — Endurance, fueling practice, and staying calm when fatigue hits",
+          "Tempo Runs — Lactate threshold / Race pace — Sustained speed and race performance",
+          "Interval Workouts — VO₂max / Aerobic power — Top-end speed and 5K/10K",
+          "Fartlek — Pace awareness + variety — Beginners and fun speedwork",
+          "Track Workouts — Pacing precision — Goal pace training",
+        ],
+      },
+    ],
+  },
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {
