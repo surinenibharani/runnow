@@ -7,9 +7,14 @@ import type { BlogSource } from "./types";
  */
 export const SOURCES = {
   physicalActivityGuidelines: {
-    label: "Physical activity guidelines for adults",
-    href: "https://www.nhs.uk/live-well/exercise/exercise-guidelines/physical-activity-guidelines-for-adults-aged-19-to-64/",
+    label: "Physical activity guidelines for adults (UK)",
+    href: "https://www.nhs.uk/live-well/exercise/physical-activity-guidelines-for-adults-aged-19-to-64/",
     publisher: "NHS",
+  },
+  physicalActivityGuidelinesUS: {
+    label: "Physical activity guidelines for adults",
+    href: "https://www.cdc.gov/physical-activity-basics/guidelines/adults.html",
+    publisher: "Centers for Disease Control and Prevention (CDC)",
   },
   preParticipationScreening: {
     label: "Exercise and chronic disease — when to check with your doctor",
@@ -18,7 +23,7 @@ export const SOURCES = {
   },
   redS: {
     label: "2023 IOC consensus statement on Relative Energy Deficiency in Sport (REDs)",
-    href: "https://bjsm.bmj.com/content/57/17/1073",
+    href: "https://doi.org/10.1136/bjsports-2023-106994",
     publisher: "British Journal of Sports Medicine",
   },
   femaleAthleteTriad: {
@@ -35,6 +40,11 @@ export const SOURCES = {
     label: "The effects of menstrual cycle phase on exercise performance (McNulty et al., 2020)",
     href: "https://pubmed.ncbi.nlm.nih.gov/32661839/",
     publisher: "Sports Medicine",
+  },
+  menstrualCycleUmbrella2023: {
+    label: "Umbrella review: menstrual cycle phase and strength performance (2023)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10076834/",
+    publisher: "Frontiers in Sports and Active Living / PMC",
   },
   ironDeficiency: {
     label: "Iron deficiency anemia — symptoms & causes",

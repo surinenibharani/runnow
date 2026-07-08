@@ -36,7 +36,7 @@ export const commonInjuries: CommonInjury[] = [
     ],
     fix: [
       "Rest or cross-train (bike, swim) for 1–2 weeks",
-      "Ice shins 15–20 min after activity",
+      "Short bouts of ice (10–15 min) may soothe soreness, but gentle movement and load progression matter more for recovery",
       "Gentle calf stretches and foam rolling",
       "Return with walk-run intervals before full running",
     ],
@@ -67,7 +67,7 @@ export const commonInjuries: CommonInjury[] = [
     ],
     fix: [
       "Reduce mileage and avoid hills until pain subsides",
-      "Ice after runs; try patellar taping if recommended by a physio",
+      "Ice may soothe a hot spot briefly, but don't rely on it alone — load management and strength work drive recovery",
       "Exercises: clamshells, side-lying leg lifts, wall sits",
       "Gradually rebuild volume once pain-free on stairs and easy walks",
     ],
@@ -161,7 +161,7 @@ export const commonInjuries: CommonInjury[] = [
     fix: [
       "Stop running if pain is sharp — Achilles tears are serious",
       "Eccentric heel lowers: 3 sets of 15, twice daily (off a step, slow lower)",
-      "Ice and avoid hills until pain-free walking for a week",
+      "Reduce hills and speed until walking is pain-free for a week; ice only for short comfort if needed",
       "Return with flat, easy runs only after a pain-free week of walking",
     ],
     seeSpecialist: [

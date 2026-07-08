@@ -9,6 +9,11 @@ export const BLOG_AUTHOR = "B";
 export const blogPosts: BlogPost[] = [
   {
     slug: "never-ran-where-to-start",
+    sources: [
+      SOURCES.preParticipationScreening,
+      SOURCES.physicalActivityGuidelines,
+      SOURCES.physicalActivityGuidelinesUS,
+    ],
     title: "I Never Ran in My Life — Where Do I Actually Start?",
     excerpt:
       "Zero running background? No problem. Here's the honest, no-jargon path from your couch to your first confident jog.",
@@ -27,7 +32,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Step 1: Get medical clearance if you need it",
         paragraphs: [
-          "If you have heart conditions, joint issues, or haven't been active in years, a quick check with your doctor is smart. For most healthy adults, walking is a safe place to begin without a formal clearance.",
+          "If you have heart conditions, joint issues, or haven't been active in years, a quick check with your doctor is smart regardless of age. For most healthy adults, walking is a safe place to begin — but **new chest pain, unusual breathlessness, or dizziness during exercise always means stop and get checked.**",
         ],
       },
       {
@@ -173,9 +178,9 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
-        heading: "The 10% rule is real",
+        heading: "The 10% rule is a useful guardrail",
         paragraphs: [
-          "Don't increase total weekly mileage by more than 10% week over week. Half marathon training fails when people jump from 15 miles to 25 miles in one week. Your cardiovascular system adapts faster than your tendons.",
+          "Many coaches use a 10% weekly mileage cap as a practical starting point — not a law of physiology, but a way to avoid sudden load spikes. Half marathon training often fails when people jump from 15 miles to 25 miles in one week. Your cardiovascular system adapts faster than your tendons.",
         ],
       },
       {
@@ -1277,6 +1282,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "Shin splints, knee pain, and plantar fasciitis aren't badges of honor — they're signals. Beginners get hurt when they do too much, too soon, too fast. Here's how to stay on the right side of that line.",
+          "**This is general fitness education, not medical advice. Persistent or worsening pain needs a professional evaluation.**",
         ],
       },
       {
@@ -1413,6 +1419,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "breathing-while-running",
+    sources: [SOURCES.exerciseInducedAsthma],
     title: "How to Breathe While Running (Without Overthinking It)",
     excerpt:
       "Gasping on mile one? A simple rhythm, slower pace, and a few posture cues fix most beginner breathing problems.",
@@ -1425,6 +1432,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "New runners often worry they're breathing wrong. You're not broken — your body is just asking for an easier effort. Fix the pace first; breathing usually follows.",
+          "**Wheezing, chest tightness, or dizziness that doesn't improve when you slow down may need medical review — especially if you have asthma.**",
         ],
       },
       {
@@ -1892,6 +1900,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "first-run-tips",
+    sources: [SOURCES.preParticipationScreening, SOURCES.physicalActivityGuidelines],
     title: "First Run Tips: What to Know Before You Head Out the Door",
     excerpt:
       "Nervous about run one? Pace, route, shoes, and what to expect — the essentials that keep your first jog from becoming your last.",
@@ -1908,7 +1917,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "Your first run doesn't need to be heroic. It needs to be repeatable. The goal isn't to prove fitness — it's to finish feeling like you could do it again within a few days.",
-          "These tips apply whether you're doing walk-run intervals or jogging the whole way. Get these right and run two gets much easier.",
+          "These tips apply whether you're doing walk-run intervals or jogging the whole way. **This is general fitness education, not medical advice — check with your doctor first if you have health concerns or haven't been active recently.**",
         ],
       },
       {
@@ -2179,6 +2188,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "bodyweight-strength-for-runners",
+    sources: [SOURCES.strengthForRunners, SOURCES.peaceAndLove],
     title: "Simple Bodyweight Strength Routines for Runners",
     excerpt:
       "Two short sessions per week — no gym required. Glutes, calves, and core work that keeps beginners injury-free and climbing hills with less dread.",
@@ -2195,8 +2205,8 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
-          "Running builds endurance, not balanced strength. Weak glutes and calves are behind many beginner shin and knee issues — and they make hills feel harder than they need to be.",
-          "The good news: you don't need a gym membership. Two 15–20 minute bodyweight sessions per week on non-running days (or after easy runs) is enough to start.",
+          "Running builds endurance, not balanced strength. Weak glutes and calves can contribute to many beginner shin and knee issues — and they make hills feel harder than they need to be.",
+          "The good news: you don't need a gym membership. Two 15–20 minute bodyweight sessions per week on non-running days (or after easy runs) is enough to start. **Stop and see a clinician if an exercise causes sharp or worsening pain.**",
         ],
       },
       {
@@ -2313,7 +2323,7 @@ export const blogPosts: BlogPost[] = [
         figures: [
           {
             src: "/blog/running-form/cadence.svg",
-            alt: "Diagram illustrating quicker shorter running steps and a target cadence around 170 to 180 steps per minute",
+            alt: "Diagram illustrating slightly quicker, shorter running steps to reduce overstriding",
             caption: "Quicker, shorter steps — not sprinting. Nudge cadence up only if you overstride; there's no universal target number.",
           },
         ],
@@ -2336,6 +2346,7 @@ export const blogPosts: BlogPost[] = [
       SOURCES.redS,
       SOURCES.femaleAthleteTriad,
       SOURCES.menstrualCycleReview,
+      SOURCES.menstrualCycleUmbrella2023,
       SOURCES.ironDeficiency,
       SOURCES.osteoporosis,
       SOURCES.pregnancyExercise,
@@ -2458,7 +2469,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Training with your menstrual cycle",
         paragraphs: [
           "Energy and recovery can shift across the month. Tracking how you feel for 2–3 cycles beats fighting every sluggish day — or forcing PR attempts when your body wants rest.",
-          "One honest caveat: the science here is still mixed. A [2020 systematic review](https://pubmed.ncbi.nlm.nih.gov/32661839/) found that, on average, menstrual cycle phase has only a small and inconsistent effect on performance — and individual responses vary widely. Treat the phase descriptions below as a starting framework for your own tracking, not a rigid schedule to obey.",
+          "One honest caveat: the science here is still mixed. A [2020 systematic review](https://pubmed.ncbi.nlm.nih.gov/32661839/) found that, on average, menstrual cycle phase has only a small and inconsistent effect on performance — and a [2023 umbrella review](https://pmc.ncbi.nlm.nih.gov/articles/PMC10076834/) reached similar conclusions for strength training. Individual responses vary widely. Treat the phase descriptions below as a starting framework for your own tracking, not a rigid schedule to obey.",
         ],
         subsections: [
           {

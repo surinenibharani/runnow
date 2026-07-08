@@ -86,7 +86,7 @@ export function CommonInjuryCard({
         <div className="grid gap-4 sm:ml-14 sm:grid-cols-2">
           <div className="rounded-xl bg-muted/40 p-4">
             <h3 className="mb-2 text-sm font-semibold text-foreground">
-              How to avoid
+              Prevention tips
             </h3>
             <ConcernList items={injury.avoid} />
           </div>
