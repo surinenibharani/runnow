@@ -790,6 +790,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "You don't need a perfect diet to start running. But what you eat — and when — affects how runs feel and how fast you recover. Here's a distance-by-distance guide for everyday runners, not elite athletes.",
+          "For fueling by **workout type** (easy, tempo, long runs) and **hot weather**, see [nutrition for training by run type](/blog/nutrition-for-training-by-run-type).",
         ],
       },
       {
@@ -1495,6 +1496,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Heat and humidity",
         paragraphs: [
           "Run early or near sunset. Slow 30–90 seconds per mile. Pre-hydrate and carry water on sessions over 30 minutes. Heat advisories mean treadmill or rest — overheating is not toughness.",
+          "For detailed hot-weather eating and hydration (electrolytes, sodium, what to drink during long runs), see [nutrition for training by run type](/blog/nutrition-for-training-by-run-type#hot-weather-fueling).",
         ],
       },
       {
@@ -2132,7 +2134,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "Nutrition advice online sounds like a chemistry exam — macros, timing windows, supplement stacks. Beginners need something simpler: eat enough, hydrate, and don't experiment on race day.",
-          "This guide covers daily basics. For distance-specific fueling (5K vs half vs marathon), see our [full runner's nutrition guide](/blog/nutrition-for-runners).",
+          "This guide covers daily basics. For distance-specific fueling (5K vs half vs marathon), see our [full runner's nutrition guide](/blog/nutrition-for-runners). For easy vs hard vs long runs and hot-weather fueling, see [nutrition for training by run type](/blog/nutrition-for-training-by-run-type).",
         ],
       },
       {
@@ -5017,6 +5019,326 @@ export const blogPosts: BlogPost[] = [
         ],
         cta: {
           text: "Start a free beginner running plan",
+          href: "/plan",
+        },
+      },
+    ],
+  },
+  {
+    slug: "nutrition-for-training-by-run-type",
+    sources: [
+      SOURCES.runningNutrition,
+      SOURCES.hyponatremia,
+      SOURCES.heatSafety,
+      SOURCES.redS,
+      SOURCES.physicalActivityGuidelines,
+      SOURCES.physicalActivityGuidelinesUS,
+    ],
+    title: "Nutrition for Training: Fuel by Run Type (Easy, Hard, Long & Hot Weather)",
+    metaTitle:
+      "Running Nutrition by Workout Type — Easy, Tempo, Long Runs & Heat",
+    excerpt:
+      "Easy runs, tempo days, intervals, and long runs don't need the same fueling. A practical guide to eating and hydrating through a training block — with extra detail for hot, humid weather.",
+    category: "Nutrition",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-09-21",
+    readTime: "14 min",
+    relatedSlugs: [
+      "nutrition-for-runners",
+      "nutrition-basics-for-beginners",
+      "running-in-bad-weather",
+      "post-run-recovery",
+      "running-during-fasting",
+    ],
+    closingQuestion:
+      "Which run type is hardest for you to fuel — easy mornings, long runs, or hot-weather days?",
+    faq: [
+      {
+        question: "Do I need to eat before every run?",
+        answer:
+          "Not always. Easy runs under 45–60 minutes often work fine with normal daily eating and a little water. Hard workouts, long runs, and anything in heat usually need deliberate fuel before, during, or after. See [easy runs](#easy-runs) and [tempo and interval runs](#tempo-and-interval-runs).",
+      },
+      {
+        question: "Should I drink water or a sports drink?",
+        answer:
+          "Water is enough for most easy runs under an hour in mild weather. Sports drinks or electrolyte tablets help on runs over 60 minutes, in heat, or if you're a heavy sweater. See [hot-weather fueling](#hot-weather-fueling).",
+      },
+      {
+        question: "How much should I drink in hot weather?",
+        answer:
+          "There's no one number — sweat rates vary widely. A practical approach: drink steadily through the day, sip during runs over 30 minutes, and replace fluids gradually after. Urine pale straw-colored is a simple check. Don't chug huge amounts of plain water without sodium on long hot runs — see [hyponatremia risks](#hot-weather-fueling).",
+      },
+      {
+        question: "Can I do hard workouts on an empty stomach?",
+        answer:
+          "Most beginners shouldn't. Tempo runs, intervals, and hill repeats need carbohydrates. Fasted hard sessions usually mean poor pacing, heavy legs, and slow recovery. Easy runs are the main place for optional fasted training — see [running during fasting](/blog/running-during-fasting).",
+      },
+      {
+        question: "What should I eat after a long run?",
+        answer:
+          "Aim for carbs plus protein within 1–2 hours — chocolate milk, eggs and toast, yogurt with fruit, or a normal balanced meal. Rehydrate over several hours, not in one giant chug. See [long runs](#long-runs) and [post-run recovery](/blog/post-run-recovery).",
+      },
+      {
+        question: "Why do I feel awful on hot runs even when I drink water?",
+        answer:
+          "Plain water alone may not replace sodium lost in sweat, especially on runs over 45–60 minutes. Heat also raises heart rate for the same pace — you may need to slow down, run earlier, and add electrolytes. See [hot-weather fueling](#hot-weather-fueling).",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Distance guides tell you what to eat for a 5K, half, or marathon. Training guides tell you when to run. But day to day, what you eat depends on **what kind of run is on the calendar** — easy Tuesday jog, Thursday intervals, Sunday long run, or a heat-wave tempo that feels twice as hard as the pace says.",
+          "This post is that missing layer: how to fuel through a training block by **run type**, plus what changes when it's **hot and humid**. For daily basics, see [nutrition basics for beginners](/blog/nutrition-basics-for-beginners). For race-distance specifics, see [nutrition for runners](/blog/nutrition-for-runners).",
+          "**This is general fitness education, not medical or nutrition advice. If you have diabetes, heart disease, kidney issues, a history of eating disorders, or take medications affecting fluid or blood sugar, talk to your doctor or a registered dietitian before changing how you eat and drink around training.**",
+        ],
+      },
+      {
+        id: "daily-foundation",
+        heading: "Daily foundation during a training block",
+        paragraphs: [
+          "Workout-specific fueling only works if the rest of the week isn't empty. Training blocks fail quietly when runners eat like they're dieting while mileage climbs.",
+        ],
+        list: [
+          "**Eat enough** — Under-fueling shows up as heavy legs, poor sleep, irritability, and recurring niggles. Missed periods (women) or stalled recovery (everyone) are red flags for low energy availability — see [RED-S guidance](https://orthoinfo.aaos.org/en/diseases--conditions/relative-energy-deficiency-in-sport-reds/)",
+          "**Carbs are training fuel** — Rice, oats, potatoes, fruit, bread, and pasta support glycogen for hard and long efforts. You don't need to \"carb load\" every day, but skimping on carbs while adding intervals is a common mistake",
+          "**Protein supports repair** — Aim for some at most meals (eggs, yogurt, chicken, beans, tofu). You don't need perfection — just consistency",
+          "**Hydrate through the day** — Chugging right before a run leads to sloshing. Steady sipping beats panic drinking",
+          "**Sleep and alcohol matter** — Short sleep raises perceived effort; heavy drinking the night before a long run rarely ends well",
+        ],
+        subsections: [
+          {
+            heading: "Rough daily targets (starting points, not rules)",
+            list: [
+              "**Easy training weeks** — Normal balanced meals; no need to count grams",
+              "**Hard or long-run weeks** — Slightly more carbs at lunch and dinner the day before quality work",
+              "**Two-a-day or high-mileage blocks** — Snacks between meals (banana, toast, yogurt) so you're not running on fumes",
+            ],
+          },
+        ],
+      },
+      {
+        id: "easy-runs",
+        heading: "Easy and recovery runs",
+        paragraphs: [
+          "Easy runs should feel conversational. Fueling should be simple too — the goal is to finish feeling like you could do it again tomorrow.",
+          "If you practice intermittent fasting, easy runs are usually the best place to experiment — not long runs or intervals. See [running during fasting](/blog/running-during-fasting).",
+        ],
+        subsections: [
+          {
+            heading: "Before",
+            list: [
+              "**Under 45–60 minutes** — Often nothing special if you've eaten normally that day. A small snack (banana, toast) is fine if you're hungry",
+              "**Morning easy runs** — Many runners go out lightly fueled; others need half a banana or toast. If you feel dizzy or weak, eat something small and slow down",
+              "**Avoid** — Heavy, greasy, or high-fiber meals right before heading out",
+            ],
+          },
+          {
+            heading: "During",
+            list: [
+              "Water for most sessions under an hour in mild weather",
+              "Hot day or run over 45 minutes? Sip water or diluted electrolyte drink — see [hot weather](#hot-weather-fueling)",
+            ],
+          },
+          {
+            heading: "After",
+            list: [
+              "Eat a normal meal within 1–2 hours if you're hungry — no recovery shake required",
+              "Recovery runs the day after a long run: prioritize food and sleep over pace",
+            ],
+          },
+        ],
+      },
+      {
+        id: "tempo-and-interval-runs",
+        heading: "Tempo, threshold, and interval runs",
+        paragraphs: [
+          "Quality workouts stress your cardiovascular system and burn through glycogen fast. Showing up under-fueled turns intervals into survival mode — bad form, bad data, bad recovery.",
+          "**Rule of thumb:** If the workout has a name (tempo, intervals, hills, fartlek), fuel it like it matters.",
+        ],
+        subsections: [
+          {
+            heading: "Before (2–3 hours prior)",
+            list: [
+              "Familiar carb-focused meal: oatmeal, bagel with peanut butter, rice bowl, or pasta — foods you've tested before",
+              "Small top-up 30–60 minutes out if needed: half a banana, few crackers, or a gel (only if you've used it in training)",
+              "Coffee is fine if it's your normal — don't try espresso for the first time pre-workout",
+            ],
+          },
+          {
+            heading: "During",
+            list: [
+              "Water for sessions under 60 minutes in cool weather",
+              "Over 60 minutes or in heat: sip water or sports drink; consider electrolytes",
+              "Intervals under 45 minutes rarely need mid-run fuel — focus on hydration",
+            ],
+          },
+          {
+            heading: "After (within 1–2 hours)",
+            list: [
+              "Carbs + protein — smoothie with fruit, eggs and toast, or chicken and rice",
+              "Don't skip this meal because you're \"not hungry\" — delayed eating slows recovery for the next session",
+              "Easy dinner the same night; don't stack another hard effort on depleted legs",
+            ],
+          },
+        ],
+      },
+      {
+        id: "long-runs",
+        heading: "Long runs",
+        paragraphs: [
+          "Long runs teach your gut and your legs. They're also where most beginners discover bonking, cramping, or post-run nausea — usually a fueling or pacing problem, not a fitness problem.",
+        ],
+        subsections: [
+          {
+            heading: "Night before and morning of",
+            list: [
+              "Normal dinner — slightly carb-forward (pasta, rice, potatoes), not a feast",
+              "Race-morning breakfast 2–3 hours before: oatmeal, bagel, toast — **tested on prior long runs**",
+              "Avoid new foods, extra fiber, or huge portions",
+            ],
+          },
+          {
+            heading: "During (runs over 75–90 minutes)",
+            list: [
+              "Start sipping early — don't wait until you're thirsty",
+              "Rough guide: **30–60g carbohydrates per hour** after the first 45–60 minutes (gels, chews, sports drink, or banana)",
+              "Set a phone timer every 30–40 minutes — fuel before you feel hungry",
+              "Alternate water and electrolyte drink at aid stations or on loops",
+              "Practice the exact products you plan to use on race day",
+            ],
+          },
+          {
+            heading: "After",
+            list: [
+              "Something within 30–60 minutes: chocolate milk, yogurt and fruit, or a balanced meal",
+              "Rehydrate gradually over several hours",
+              "Salty foods help if you sweat heavily or cramp",
+              "See [post-run recovery](/blog/post-run-recovery) for the full habit list",
+            ],
+          },
+        ],
+        cta: {
+          text: "Distance-specific fueling (5K to marathon)",
+          href: "/blog/nutrition-for-runners",
+        },
+      },
+      {
+        id: "race-simulation",
+        heading: "Race simulation and tune-up runs",
+        paragraphs: [
+          "A dress-rehearsal long run or tune-up race is a nutrition experiment, not just a mileage check. Eat, drink, and time everything exactly as you plan on race morning.",
+        ],
+        list: [
+          "Same breakfast timing and foods as race day",
+          "Same gel or drink brands and timing",
+          "Note what sat well and what didn't — write it down",
+          "Don't try new caffeine, new gels, or new restaurants the night before",
+        ],
+      },
+      {
+        id: "strength-and-cross-training",
+        heading: "Strength and cross-training days",
+        list: [
+          "**Before lifting** — Light snack if hungry; hard leg day benefits from carbs 1–2 hours prior",
+          "**After lifting** — Protein + carbs within 1–2 hours supports muscle repair",
+          "**Swim or bike cross-training** — Treat long sessions like easy aerobic work; fuel if over 60 minutes",
+          "**Rest days** — Still eat normally. Rest is when adaptation happens; chronic undereating on off days undermines the whole block",
+        ],
+        cta: {
+          text: "Simple strength routines for runners",
+          href: "/blog/bodyweight-strength-for-runners",
+        },
+      },
+      {
+        id: "hot-weather-fueling",
+        heading: "Hot-weather fueling: what actually changes",
+        paragraphs: [
+          "Heat and humidity raise heart rate, sweat rate, and perceived effort at the **same pace**. Nutrition and hydration strategy matter more than ego pace. For safety rules (when to stay in, heat advisories), see [running in bad weather](/blog/running-in-bad-weather) and our [bad-weather tips](/tips/bad-weather).",
+          "**Important: Heat illness is serious.** Dizziness, confusion, cessation of sweating, or nausea mean stop, cool down, and seek help if symptoms don't improve quickly.",
+        ],
+        subsections: [
+          {
+            heading: "Before you head out",
+            list: [
+              "**Pre-hydrate** — Pale straw urine is a simple check. Dark urine means start sipping hours earlier, not minutes before",
+              "**Time your run** — Early morning or late evening beats midday when possible",
+              "**Dress light** — Light colors, minimal layers, hat and sunglasses",
+              "**Lower expectations** — Slow 30–90 seconds per mile; effort matters more than pace on the watch",
+              "**Electrolytes in the bottle** — Especially for runs over 45–60 minutes or if you're a heavy sweater",
+            ],
+          },
+          {
+            heading: "During the run",
+            list: [
+              "**Carry fluid** on any run over 30 minutes in heat — don't assume fountains will be available",
+              "**Sip every 10–15 minutes** — Small, steady drinks beat chugging",
+              "**Water vs sports drink** — Water alone is fine for short easy runs. Longer efforts need **sodium** (sports drink, electrolyte tablets, or salty foods planned for after)",
+              "**Don't overdrink plain water** — Drinking large volumes without sodium on long hot runs can dilute blood sodium (hyponatremia). Symptoms include headache, confusion, and bloating. See [Mayo Clinic on hyponatremia](https://www.mayoclinic.org/diseases-conditions/hyponatremia/symptoms-causes/syc-20373711)",
+              "**Gels and chews** — Long hot runs still need carbs; practice in training. Wash gels down with water, not just more gel",
+            ],
+          },
+          {
+            heading: "Easy vs hard runs in heat",
+            list: [
+              "**Easy runs** — Shorter loops near home; water bottle or known fountains; cap duration if heat index is extreme",
+              "**Tempo / intervals** — Move indoors, shift to early morning, or swap for easy effort. Quality work in peak heat is rarely worth it",
+              "**Long runs** — Start earlier; more fluid and electrolytes per hour; consider shortening the run or splitting into morning + evening if the forecast is brutal",
+            ],
+          },
+          {
+            heading: "After hot runs",
+            list: [
+              "Rehydrate over hours — water plus electrolytes or salty food (broth, pretzels, normal meals with salt)",
+              "Cool down before ice-cold drinks — walk, shade, damp towel on neck",
+              "Eat within 1–2 hours — you may not feel hungry but glycogen and sodium both need replacing",
+              "Weighing before and after (optional) — Each pound lost is roughly 16 oz fluid to replace, plus electrolytes. Not required, but some runners find it useful once or twice to learn their sweat rate",
+            ],
+          },
+          {
+            heading: "When to skip or move indoors",
+            list: [
+              "Heat advisory or extreme heat index in your area",
+              "You slept poorly and feel already dehydrated",
+              "Dizziness, headache, or nausea before you start",
+              "Treadmill, pool, or rest beats a heat-stroke gamble — consistency matters more than one heroic outdoor run",
+            ],
+          },
+        ],
+      },
+      {
+        id: "quick-reference",
+        heading: "Quick reference by run type",
+        paragraphs: [
+          "Pin this mentally before each week:",
+        ],
+        list: [
+          "**Easy / recovery (<60 min)** — Normal eating; water usually enough; optional snack if hungry",
+          "**Tempo / intervals** — Carb meal 2–3 hrs before; water or sports drink; full meal after",
+          "**Long run (75+ min)** — Tested breakfast; 30–60g carbs/hr during; recovery meal after",
+          "**Hot weather (any type)** — Pre-hydrate; carry fluid; electrolytes; slow pace; know when to stop",
+          "**Strength** — Snack if needed; protein + carbs after",
+        ],
+      },
+      {
+        id: "warning-signs",
+        heading: "Warning signs: fuel, fluid, or heat",
+        list: [
+          "**During a run** — Dizziness, confusion, cold clammy skin, stopping sweating, or chest pain: stop and get help",
+          "**After under-fueling** — Heavy fatigue on easy days, mood crashes, illness stacking up, performance sliding for weeks",
+          "**Women** — Lost or irregular periods while mileage increases: see a clinician before adding more training",
+          "**Cramping** — Often sodium or fitness, not just \"lack of stretching.\" Log heat, distance, and what you drank",
+          "**GI distress** — Usually timing, fiber, or new foods. Test fuel on easy days before long runs",
+        ],
+      },
+      {
+        heading: "Bottom line",
+        paragraphs: [
+          "Training nutrition isn't one meal plan — it's matching fuel to the work. Easy days stay simple. Hard and long days get deliberate carbs and recovery meals. Hot weather adds fluid, sodium, and humility about pace.",
+          "Test everything in training. Race day — and heat wave week — are the wrong time for experiments.",
+          "Eat enough, drink smart, and when in doubt, slow down and fuel up.",
+        ],
+        cta: {
+          text: "Open your training plan",
           href: "/plan",
         },
       },

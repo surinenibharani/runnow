@@ -88,6 +88,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Intermittent fasting changes when your body has fuel — stack a long run or speed work onto a fasted window and easy days stop feeling easy. Timing runs around your eating window keeps you training without burning out.",
   "running-for-weight-loss-facts-and-myths":
     "Most beginners expect running alone to melt fat, then quit when the scale won't budge. Understanding what running really does — and what nutrition has to do — sets expectations that actually lead to results.",
+  "nutrition-for-training-by-run-type":
+    "A 5K fueling chart won't tell you what to eat before Tuesday intervals or a humid Sunday long run. Matching food and fluid to each workout type is what keeps training blocks from unraveling in heat or on hard weeks.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {
