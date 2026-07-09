@@ -9,6 +9,7 @@ export const BLOG_AUTHOR = "B";
 export const blogPosts: BlogPost[] = [
   {
     slug: "never-ran-where-to-start",
+    metaTitle: "How to Start Running When You've Never Run Before",
     sources: [
       SOURCES.preParticipationScreening,
       SOURCES.physicalActivityGuidelines,
@@ -22,6 +23,23 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-01-08",
     readTime: "6 min",
     relatedSlugs: ["training-first-5k", "building-a-running-habit", "choosing-running-shoes"],
+    faq: [
+      {
+        question: "How do I start running if I've never run before?",
+        answer:
+          "Start with walking 20–30 minutes, 3–4 times per week for two weeks. Then add short run-walk intervals (1 min jog, 2 min walk). Go slow enough to hold a conversation.",
+      },
+      {
+        question: "Do I need a doctor's OK before I start running?",
+        answer:
+          "If you haven't been active in years or have heart or joint conditions, get medical clearance first. Most healthy adults can begin with walking safely.",
+      },
+      {
+        question: "What gear do I need as a brand-new runner?",
+        answer:
+          "Running shoes are the main investment. Comfortable clothes and water on hot days are enough — skip expensive watches and gadgets until you're hooked.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -86,6 +104,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "training-first-5k",
+    metaTitle: "First 5K Training Plan Guide for Beginners",
     title: "Training for Your First 5K: A Beginner's Roadmap",
     excerpt:
       "3.1 miles sounds short until you've never run it. Here's how to build up safely and actually enjoy race day.",
@@ -714,6 +733,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "what-to-do-on-rest-days",
+    metaTitle: "What to Do on Rest Days as a Runner",
     title: "What to Do on Rest Days (And What to Avoid)",
     excerpt:
       "Rest days aren't lazy days — they're when your body gets stronger. Here's how to use them without losing momentum.",
@@ -903,6 +923,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "building-a-running-habit",
+    metaTitle: "How to Build a Running Habit That Sticks",
     title: "How to Build a Running Habit That Actually Sticks",
     excerpt:
       "Motivation fades. Habits don't. Simple strategies to show up consistently — even when you don't feel like it.",
@@ -911,6 +932,18 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-04-16",
     readTime: "5 min",
     relatedSlugs: ["never-ran-where-to-start", "what-to-do-on-rest-days", "how-to-pace-yourself"],
+    faq: [
+      {
+        question: "How do I stay consistent with running?",
+        answer:
+          "Schedule runs like appointments on the same days each week. Start embarrassingly easy, track streaks gently, and never double up after a missed day.",
+      },
+      {
+        question: "What if I don't feel motivated to run?",
+        answer:
+          "Commit to a minimum — even 10 minutes counts. Motivation follows action more often than the reverse for beginners.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -955,6 +988,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "choosing-running-shoes",
+    metaTitle: "How to Choose Your First Running Shoes",
     title: "How to Choose Your First Pair of Running Shoes",
     excerpt:
       "The one piece of gear that actually matters. What to look for, where to shop, and when to replace them.",
@@ -963,6 +997,18 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-04-30",
     readTime: "5 min",
     relatedSlugs: ["never-ran-where-to-start", "avoiding-injuries", "training-first-5k"],
+    faq: [
+      {
+        question: "Where should beginners buy running shoes?",
+        answer:
+          "A running specialty store is ideal — staff can watch your gait and suggest options. You need the right fit, not the most expensive pair.",
+      },
+      {
+        question: "How often should I replace running shoes?",
+        answer:
+          "Every 300–500 miles, or when tread is worn or new aches appear. Beginners running ~15 miles/week often replace shoes every 5–8 months.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -1002,6 +1048,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "how-to-pace-yourself",
+    metaTitle: "How to Pace Yourself Running (Beginner Guide)",
     title: "How to Pace Yourself as a Beginner Runner",
     excerpt:
       "Going out too fast is the #1 beginner mistake. Learn to run easy, run steady, and save speed for when it counts.",
@@ -1010,6 +1057,18 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-05-14",
     readTime: "6 min",
     relatedSlugs: ["training-first-5k", "race-day-tips", "building-a-running-habit"],
+    faq: [
+      {
+        question: "How do I know if I'm running too fast?",
+        answer:
+          "Use the talk test: on easy runs you should speak in full sentences. If you can only manage a few words, slow down or walk.",
+      },
+      {
+        question: "What pace should a beginner runner use?",
+        answer:
+          "Most runs should feel easy and conversational — roughly 60–70% effort. Save hard efforts for planned tempo or interval days.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -1218,6 +1277,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "mental-side-of-running",
+    metaTitle: "Mental Tips for Beginner Runners",
     title: "The Mental Side of Running: Doubt, Boredom & Breakthroughs",
     excerpt:
           "Your legs get stronger in training. Your head gets stronger on the road. How to handle the psychological side of becoming a runner.",
@@ -1264,6 +1324,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "avoiding-injuries",
+    metaTitle: "How to Avoid Running Injuries as a Beginner",
     sources: [
       SOURCES.shinSplints,
       SOURCES.patellofemoralPain,
@@ -1279,6 +1340,18 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-06-18",
     readTime: "6 min",
     relatedSlugs: ["importance-of-cross-training", "what-to-do-on-rest-days", "choosing-running-shoes"],
+    faq: [
+      {
+        question: "How can beginners avoid running injuries?",
+        answer:
+          "Increase weekly mileage by no more than ~10%, keep most runs easy, take rest days seriously, and add two short strength sessions per week for hips and glutes.",
+      },
+      {
+        question: "Should I run through pain?",
+        answer:
+          "Muscle soreness 1–2 days after a hard effort is normal. Pain that worsens as you run, persists at rest, or changes your gait means stop and get assessed.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -1420,6 +1493,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "breathing-while-running",
+    metaTitle: "How to Breathe While Running (Beginner Tips)",
     sources: [SOURCES.exerciseInducedAsthma],
     title: "How to Breathe While Running (Without Overthinking It)",
     excerpt:
@@ -1467,6 +1541,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-in-bad-weather",
+    metaTitle: "Running in Bad Weather: Rain, Heat & Safety Tips",
     sources: [SOURCES.heatSafety, SOURCES.hyponatremia],
     title: "Running in Bad Weather: When to Go Out and When to Stay In",
     excerpt:
@@ -1781,6 +1856,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "beginner-gear-guide-under-50",
+    metaTitle: "Beginner Running Gear Guide Under $50",
     title: "Beginner Gear Guide Under $50",
     excerpt:
       "Shoes, socks, and the one app you actually need — a sensible starter kit that won't drain your wallet before your first 5K.",
@@ -1902,6 +1978,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "first-run-tips",
+    metaTitle: "First Run Tips: What to Know Before You Go",
     sources: [SOURCES.preParticipationScreening, SOURCES.physicalActivityGuidelines],
     title: "First Run Tips: What to Know Before You Head Out the Door",
     excerpt:
@@ -1914,6 +1991,18 @@ export const blogPosts: BlogPost[] = [
       "never-ran-where-to-start",
       "why-walking-is-not-cheating",
       "how-to-pace-yourself",
+    ],
+    faq: [
+      {
+        question: "How slow should my first run be?",
+        answer:
+          "Slow enough to speak in short sentences. Walk breaks are part of the workout — the goal is to finish feeling like you could do it again in a few days.",
+      },
+      {
+        question: "What should I do before my first run?",
+        answer:
+          "Eat something light if hungry, tie shoes with room in the toe box, pick a flat familiar route, and warm up with 5 minutes of brisk walking.",
+      },
     ],
     sections: [
       {
@@ -2042,6 +2131,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "post-run-recovery",
+    metaTitle: "Post-Run Recovery Tips for Beginners",
     sources: [
       SOURCES.peaceAndLove,
       SOURCES.runningNutrition,
@@ -2114,6 +2204,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "nutrition-basics-for-beginners",
+    metaTitle: "Nutrition Basics for New Runners",
     sources: [
       SOURCES.runningNutrition,
       SOURCES.physicalActivityGuidelines,
@@ -2257,6 +2348,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-form-101",
+    metaTitle: "Running Form 101 for Beginners",
     sources: [SOURCES.cadenceResearch],
     title: "Running Form 101: Posture, Footstrike & Cadence for Beginners",
     excerpt:
@@ -5361,6 +5453,7 @@ export const blogPosts: BlogPost[] = [
     category: "Training",
     author: BLOG_AUTHOR,
     publishedAt: "2026-07-07",
+    updatedAt: "2026-07-08",
     readTime: "12 min",
     relatedSlugs: [
       "how-to-pace-yourself",

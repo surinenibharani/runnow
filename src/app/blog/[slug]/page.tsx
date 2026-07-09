@@ -8,9 +8,10 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { getCommentCount } from "@/lib/blog/comment-counts";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd } from "@/lib/seo";
 import {
-  ogImageMeta,
+  postOgImageMeta,
   seoTitle,
   truncateMetaDescription,
+  twitterSiteMeta,
 } from "@/lib/seo/metadata";
 import { blogPostKeywords } from "@/lib/seo/keywords";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -36,7 +37,7 @@ type PageProps = {
   searchParams: Promise<{ preview?: string }>;
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   return blogPosts
@@ -64,10 +65,10 @@ export async function generateMetadata({
 
   const scheduled = isBlogPostScheduled(post.publishedAt);
   const url = `${SITE_URL}/blog/${slug}`;
-  const images = ogImageMeta();
   const title = post.metaTitle ?? post.title;
   const description = truncateMetaDescription(post.excerpt);
   const fullTitle = seoTitle(title);
+  const images = postOgImageMeta(slug, title);
 
   return {
     title,
@@ -89,6 +90,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
+      ...twitterSiteMeta(),
       title: fullTitle,
       description,
       images: images.map((i) => i.url),

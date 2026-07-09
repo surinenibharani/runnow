@@ -8,9 +8,11 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { SituationalTipsGrid } from "@/components/tips/situational-tips-grid";
 import { SpecificSituationsTipsPageHero } from "@/components/visuals/content-scenes";
-import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { SITUATIONAL_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
+import { situationalTipsToFaq } from "@/lib/tips/helpers";
+import { SITE_URL } from "@/lib/site";
 
 const TITLE = "Running for Pregnancy, 55+, & Health Conditions";
 const DESCRIPTION =
@@ -38,6 +40,10 @@ export default function SpecificSituationsTipsPage() {
             { name: "Tips", path: "/tips" },
             { name: "Specific situations", path: "/tips/specific-situations" },
           ]),
+          faqPageJsonLd(
+            situationalTipsToFaq(),
+            `${SITE_URL}/tips/specific-situations`
+          ),
         ]}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">

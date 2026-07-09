@@ -25,4 +25,12 @@ export const SITE_URL =
 /** Public Instagram profile — set NEXT_PUBLIC_INSTAGRAM_URL in production. */
 export const INSTAGRAM_URL =
   process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim() ||
-  "https://www.instagram.com/letsrunnow";
+  "https://www.instagram.com/letsrunnowcoach";
+
+/** Instagram username without @ — for display and share copy. */
+export const INSTAGRAM_HANDLE =
+  process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE?.trim() || "letsrunnowcoach";
+
+/** Twitter/X handle for social cards — set NEXT_PUBLIC_TWITTER_HANDLE in production. */
+export const TWITTER_HANDLE =
+  process.env.NEXT_PUBLIC_TWITTER_HANDLE?.trim() || "@letsrunnow";

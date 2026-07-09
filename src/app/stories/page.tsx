@@ -8,7 +8,7 @@ import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-i
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { INSTAGRAM_URL, SITE_NAME } from "@/lib/site";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, SITE_NAME } from "@/lib/site";
 import { successStories } from "@/lib/testimonials";
 
 export const metadata: Metadata = pageMetadata({
@@ -86,7 +86,7 @@ export default function StoriesPage() {
               }
               variant="outline"
             >
-              @{INSTAGRAM_URL.replace(/^https?:\/\/(www\.)?instagram\.com\//, "")}
+              @{INSTAGRAM_HANDLE}
             </Button>
           </div>
 

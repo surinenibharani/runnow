@@ -102,7 +102,7 @@ function buildIndex(): SiteSearchResult[] {
     id: `tip-${tip.slug}`,
     title: tip.title,
     description: tip.content,
-    href: tip.blogSlug ? `/blog/${tip.blogSlug}` : `/tips#${tip.slug}`,
+    href: tip.blogSlug ? `/blog/${tip.blogSlug}` : `/tips/${tip.slug}`,
     kind: "tip" as const,
     category: tip.category,
   }));

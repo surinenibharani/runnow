@@ -1,6 +1,6 @@
 import type { BlogPost } from "@/lib/blog/types";
 import { BRAND_ICON_PATH, BRAND_LOGO_PATH } from "@/lib/brand";
-import { OG_IMAGE_PATH, truncateMetaDescription } from "@/lib/seo/metadata";
+import { truncateMetaDescription } from "@/lib/seo/metadata";
 import {
   INSTAGRAM_URL,
   SITE_DESCRIPTION,
@@ -53,15 +53,16 @@ export function websiteJsonLd() {
 export function articleJsonLd(post: BlogPost) {
   const url = `${SITE_URL}/blog/${post.slug}`;
   const headline = post.metaTitle ?? post.title;
+  const modified = post.updatedAt ?? post.publishedAt;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline,
     description: truncateMetaDescription(post.excerpt),
     datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    dateModified: modified,
     url,
-    image: [`${SITE_URL}${OG_IMAGE_PATH}`],
+    image: [`${SITE_URL}/blog/${post.slug}/opengraph-image`],
     author: {
       "@type": "Person",
       name: post.author,
@@ -147,12 +148,32 @@ export function blogIndexJsonLd(
         url: `${SITE_URL}${BRAND_LOGO_PATH}`,
       },
     },
-    blogPost: posts.slice(0, 20).map((post, index) => ({
+    blogPost: posts.map((post, index) => ({
       "@type": "BlogPosting",
       position: index + 1,
       headline: post.title,
       description: truncateMetaDescription(post.excerpt),
       url: `${SITE_URL}/blog/${post.slug}`,
+    })),
+  };
+}
+
+export function itemListJsonLd(opts: {
+  name: string;
+  path: string;
+  items: { name: string; path: string }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: opts.name,
+    url: `${SITE_URL}${opts.path}`,
+    numberOfItems: opts.items.length,
+    itemListElement: opts.items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: `${SITE_URL}${item.path}`,
     })),
   };
 }

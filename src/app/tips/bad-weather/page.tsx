@@ -9,9 +9,11 @@ import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { WeatherTipsGrid } from "@/components/tips/weather-tips-grid";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { BadWeatherTipsPageHero } from "@/components/visuals/content-scenes";
-import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { BAD_WEATHER_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
+import { weatherTipsToFaq } from "@/lib/tips/helpers";
+import { SITE_URL } from "@/lib/site";
 
 const TITLE = "Running in Bad Weather — Rain, Heat, Ice & Indoor Swaps";
 const DESCRIPTION =
@@ -39,6 +41,10 @@ export default function BadWeatherTipsPage() {
             { name: "Tips", path: "/tips" },
             { name: "Bad weather", path: "/tips/bad-weather" },
           ]),
+          faqPageJsonLd(
+            weatherTipsToFaq(),
+            `${SITE_URL}/tips/bad-weather`
+          ),
         ]}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">

@@ -12,7 +12,7 @@ import { GoogleAnalyticsPageView } from "@/components/analytics/page-view-tracke
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { BRAND_APPLE_ICON_PATH, BRAND_FAVICON_PATH, BRAND_ICON_PATH } from "@/lib/brand";
-import { SITE_NAME, SITE_TAGLINE, SITE_URL, SITE_DESCRIPTION, SITE_KEYWORDS } from "@/lib/site";
+import { SITE_NAME, SITE_TAGLINE, SITE_URL, SITE_DESCRIPTION, SITE_KEYWORDS, TWITTER_HANDLE } from "@/lib/site";
 import { ogImageMeta } from "@/lib/seo/metadata";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -50,9 +50,15 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: TWITTER_HANDLE,
     title: `${SITE_NAME} — ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     images: [ogImageMeta()[0].url],
+  },
+  alternates: {
+    types: {
+      "application/rss+xml": `${SITE_URL}/feed.xml`,
+    },
   },
   robots: {
     index: true,

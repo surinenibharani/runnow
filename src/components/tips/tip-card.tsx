@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 type TipCardProps = {
   id?: string;
+  tipHref?: string;
   illustration: TipIllustrationId;
   icon: LucideIcon;
   iconClassName?: string;
@@ -22,6 +23,7 @@ type TipCardProps = {
 
 export function TipCard({
   id,
+  tipHref,
   illustration,
   icon: Icon,
   iconClassName,
@@ -54,7 +56,15 @@ export function TipCard({
           <Badge variant="secondary" className="mb-2 text-xs">
             {category}
           </Badge>
-          <h2 className="font-semibold text-lg leading-snug">{title}</h2>
+          {tipHref ? (
+            <h2 className="font-semibold text-lg leading-snug">
+              <Link href={tipHref} className="hover:text-primary hover:underline">
+                {title}
+              </Link>
+            </h2>
+          ) : (
+            <h2 className="font-semibold text-lg leading-snug">{title}</h2>
+          )}
           <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
             {content}
           </p>
@@ -70,6 +80,15 @@ export function TipCard({
                   · {blogReadTime}
                 </span>
               )}
+              <ArrowRight className="size-3.5" />
+            </Link>
+          )}
+          {tipHref && !blogSlug && (
+            <Link
+              href={tipHref}
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+            >
+              Read more
               <ArrowRight className="size-3.5" />
             </Link>
           )}

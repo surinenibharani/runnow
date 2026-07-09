@@ -162,10 +162,10 @@ export const tipsPageGuides = [
 export const tipsTickerItems = [
   ...runnerTips.map((tip) => ({
     title: tip.title,
-    href: `/tips#${tip.slug}`,
+    href: `/tips/${tip.slug}`,
   })),
   ...tipsPageGuides.map((guide) => ({
     title: guide.title,
-    href: `/tips#${guide.slug}`,
+    href: guide.href,
   })),
 ];

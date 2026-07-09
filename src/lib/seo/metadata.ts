@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { BRAND_CAPTION } from "@/lib/brand";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_URL, TWITTER_HANDLE } from "@/lib/site";
 
 export const OG_IMAGE_PATH = "/opengraph-image";
 
@@ -30,6 +30,19 @@ export function ogImageMeta() {
       width: 1200,
       height: 630,
       alt: `${SITE_NAME} — ${BRAND_CAPTION}`,
+    },
+  ];
+}
+
+/** Per-post dynamic OG image served at /blog/[slug]/opengraph-image. */
+export function postOgImageMeta(slug: string, alt: string) {
+  const url = `/blog/${slug}/opengraph-image`;
+  return [
+    {
+      url,
+      width: 1200,
+      height: 630,
+      alt,
     },
   ];
 }
@@ -66,9 +79,14 @@ export function pageMetadata(opts: {
     },
     twitter: {
       card: "summary_large_image",
+      site: TWITTER_HANDLE,
       title: fullTitle,
       description,
       images: [OG_IMAGE_PATH],
     },
   };
+}
+
+export function twitterSiteMeta() {
+  return { site: TWITTER_HANDLE };
 }

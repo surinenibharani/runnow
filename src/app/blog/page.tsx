@@ -21,7 +21,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { BLOG_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { SITE_NAME } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
   title: "Beginner Running Blog — Couch to 5K Tips & Training Advice",

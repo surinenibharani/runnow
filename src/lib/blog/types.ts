@@ -45,6 +45,8 @@ export type BlogPost = {
   category: string;
   author: string;
   publishedAt: string;
+  /** When content was last updated — used for sitemap and Article schema. */
+  updatedAt?: string;
   readTime: string;
   sections: BlogSection[];
   relatedSlugs?: string[];

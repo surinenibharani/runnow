@@ -9,6 +9,7 @@ import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { PostShareButtons } from "@/components/blog/post-share-buttons";
 import { BlogComments } from "@/components/blog/blog-comments";
 import { RelatedPosts } from "@/components/blog/related-posts";
+import { RelatedTips } from "@/components/tips/related-tips";
 import { Badge } from "@/components/ui/badge";
 import { categoryToParam } from "@/lib/blog/categories";
 import { appendBlogPreviewParam } from "@/lib/blog/preview";
@@ -75,6 +76,21 @@ export function PostContent({
               year: "numeric",
             })}
           </time>
+          {post.updatedAt && post.updatedAt !== post.publishedAt && (
+            <>
+              <span aria-hidden>·</span>
+              <span>
+                Updated{" "}
+                <time dateTime={post.updatedAt}>
+                  {new Date(post.updatedAt).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </time>
+              </span>
+            </>
+          )}
           <span aria-hidden>·</span>
           <span>{post.readTime} read</span>
           <span aria-hidden>·</span>
@@ -103,10 +119,11 @@ export function PostContent({
       />
 
       <div className="space-y-10">
-        {post.sections.map((section) => (
+        {post.sections.map((section, index) => (
           <BlogSectionBlock
             key={section.id ?? section.heading ?? section.paragraphs?.[0]}
             section={section}
+            sectionIndex={index}
           />
         ))}
       </div>
@@ -135,6 +152,8 @@ export function PostContent({
         category={post.category}
         previewToken={previewToken}
       />
+
+      <RelatedTips blogSlug={post.slug} />
 
       {!scheduled && (
         <BlogComments postSlug={post.slug} initialCount={commentCount} />

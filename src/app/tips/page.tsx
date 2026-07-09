@@ -10,7 +10,7 @@ import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { TipsPageHero } from "@/components/visuals/content-scenes";
 import { getPostBySlug } from "@/lib/blog/posts";
-import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { runnerTips, tipsPageGuides } from "@/lib/tips/tips";
@@ -40,6 +40,14 @@ export default function TipsPage() {
             { name: "Home", path: "/" },
             { name: "Tips", path: "/tips" },
           ]),
+          itemListJsonLd({
+            name: "Beginner running tips",
+            path: "/tips",
+            items: runnerTips.map((tip) => ({
+              name: tip.title,
+              path: `/tips/${tip.slug}`,
+            })),
+          }),
         ]}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
@@ -71,6 +79,7 @@ export default function TipsPage() {
               <StaggerItem key={tip.slug}>
                 <TipCard
                   id={tip.slug}
+                  tipHref={`/tips/${tip.slug}`}
                   illustration={tip.illustration}
                   icon={tip.icon}
                   category={tip.category}

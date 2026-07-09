@@ -1,4 +1,5 @@
 import type { BlogSection } from "@/lib/blog/types";
+import { resolveSectionId } from "@/lib/blog/section-ids";
 import { cn } from "@/lib/utils";
 
 type BlogTableOfContentsProps = {
@@ -12,11 +13,14 @@ export function BlogTableOfContents({
   extra = [],
   className,
 }: BlogTableOfContentsProps) {
-  const sectionItems = sections.filter(
-    (section): section is BlogSection & { id: string; heading: string } =>
-      Boolean(section.id && section.heading)
-  );
-  const items = [...sectionItems.map((s) => ({ id: s.id, label: s.heading! })), ...extra];
+  const sectionItems = sections
+    .map((section, index) => {
+      const id = resolveSectionId(section.id, section.heading, index);
+      if (!id || !section.heading) return null;
+      return { id, label: section.heading };
+    })
+    .filter((item): item is { id: string; label: string } => item !== null);
+  const items = [...sectionItems, ...extra];
 
   if (items.length === 0) return null;
 

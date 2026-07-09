@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
 import { getPublishedBlogPosts } from "@/lib/blog/posts";
+import { getTipSitemapEntries } from "@/lib/tips/helpers";
 import { commonInjurySlugs } from "@/lib/injuries/common-injuries";
 import { menRunnerConcernSlugs } from "@/lib/injuries/men-runner-concerns";
 import { womenRunnerConcernSlugs } from "@/lib/injuries/women-runner-concerns";
 import { getPlanSitemapEntries } from "@/lib/seo/plans";
 import { SITE_URL } from "@/lib/site";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 /** Public marketing and content routes (excludes auth, dashboard, API). */
 const staticRoutes = [
@@ -29,7 +30,6 @@ const staticRoutes = [
     changeFrequency: "monthly" as const,
   },
   { path: "/stories", priority: 0.75, changeFrequency: "monthly" as const },
-  { path: "/teams", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/privacy", priority: 0.2, changeFrequency: "yearly" as const },
   { path: "/terms", priority: 0.2, changeFrequency: "yearly" as const },
 ] as const;
@@ -55,10 +55,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const posts: MetadataRoute.Sitemap = getPublishedBlogPosts().map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt),
+    lastModified: new Date(post.updatedAt ?? post.publishedAt),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
+
+  const tipPages: MetadataRoute.Sitemap = getTipSitemapEntries().map(
+    (entry) => ({
+      url: `${SITE_URL}${entry.path}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
+    })
+  );
 
   const injuryDetails: MetadataRoute.Sitemap = [
     ...commonInjurySlugs.map((slug) => `/injuries/${slug}`),
@@ -71,7 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...pages, ...planPages, ...posts, ...injuryDetails].sort(
+  return [...pages, ...planPages, ...posts, ...tipPages, ...injuryDetails].sort(
     (a, b) => (b.priority ?? 0) - (a.priority ?? 0)
   );
 }

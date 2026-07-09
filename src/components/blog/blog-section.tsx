@@ -3,13 +3,22 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { FormatBlogText } from "@/components/blog/format-blog-text";
 import type { BlogSection } from "@/lib/blog/types";
+import { resolveSectionId } from "@/lib/blog/section-ids";
 import { cn } from "@/lib/utils";
 
-export function BlogSectionBlock({ section }: { section: BlogSection }) {
+export function BlogSectionBlock({
+  section,
+  sectionIndex = 0,
+}: {
+  section: BlogSection;
+  sectionIndex?: number;
+}) {
+  const sectionId = resolveSectionId(section.id, section.heading, sectionIndex);
+
   return (
     <section
-      id={section.id}
-      className={cn(section.id && "scroll-mt-24", "space-y-4")}
+      id={sectionId}
+      className={cn(sectionId && "scroll-mt-24", "space-y-4")}
     >
       {section.heading && (
         <h2 className="text-xl font-bold tracking-tight sm:text-2xl">

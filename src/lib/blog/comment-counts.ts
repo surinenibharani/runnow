@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
 export async function getCommentCount(postSlug: string): Promise<number> {
@@ -8,7 +9,7 @@ export async function getCommentCount(postSlug: string): Promise<number> {
   }
 }
 
-export async function getCommentCountsBySlug(): Promise<Record<string, number>> {
+async function fetchCommentCountsBySlug(): Promise<Record<string, number>> {
   try {
     const rows = await prisma.blogComment.groupBy({
       by: ["postSlug"],
@@ -22,3 +23,9 @@ export async function getCommentCountsBySlug(): Promise<Record<string, number>> 
     return {};
   }
 }
+
+export const getCommentCountsBySlug = unstable_cache(
+  fetchCommentCountsBySlug,
+  ["blog-comment-counts"],
+  { revalidate: 300 }
+);
