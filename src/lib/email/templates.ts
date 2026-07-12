@@ -103,3 +103,51 @@ export function newPostEmail(post: BlogPost, unsubscribeToken: string) {
     text: `${post.title}\n\n${post.excerpt}\n\nRead: ${url}`,
   };
 }
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+export function newCommentEmail({
+  postSlug,
+  postTitle,
+  authorName,
+  content,
+}: {
+  postSlug: string;
+  postTitle: string;
+  authorName: string;
+  content: string;
+}) {
+  const url = `${getBlogPostCanonicalUrl(postSlug)}#comments`;
+  const safeTitle = escapeHtml(postTitle);
+  const safeAuthor = escapeHtml(authorName);
+  const safeContent = escapeHtml(content);
+  const preheader = `${authorName} commented on ${postTitle}`;
+
+  const body = `
+    <h1 style="margin:0 0 12px;font-size:22px;line-height:1.3;">New blog comment</h1>
+    <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#4b5563;">
+      <strong>${safeAuthor}</strong> left a comment on <strong>${safeTitle}</strong>.
+    </p>
+    <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;">
+      <p style="margin:0;font-size:15px;line-height:1.6;color:#374151;white-space:pre-wrap;">${safeContent}</p>
+    </div>
+    ${ctaButton(url, "View comment")}
+  `;
+
+  return {
+    subject: `New comment on ${postTitle}`,
+    html: emailLayout({ preheader, body }),
+    text: `New comment on ${postTitle}
+
+${authorName} wrote:
+${content}
+
+View: ${url}`,
+  };
+}

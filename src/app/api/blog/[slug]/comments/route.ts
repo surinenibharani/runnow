@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { blogPosts } from "@/lib/blog/posts";
+import { blogPosts, getPostBySlug } from "@/lib/blog/posts";
+import { isEmailConfigured, sendEmail } from "@/lib/email/client";
+import { newCommentEmail } from "@/lib/email/templates";
 import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 import { isHoneypotTriggered, sanitizeText } from "@/lib/security/sanitize";
 import { verifyTurnstile } from "@/lib/security/turnstile";
 import { isValidPostSlug } from "@/lib/security/validation";
+
+const COMMENT_NOTIFY_EMAIL =
+  process.env.COMMENT_NOTIFY_EMAIL?.trim() || "letsrunnow79@gmail.com";
 
 type RouteContext = {
   params: Promise<{ slug: string }>;
@@ -122,6 +127,24 @@ export async function POST(request: Request, context: RouteContext) {
         createdAt: true,
       },
     });
+
+    if (isEmailConfigured()) {
+      const post = getPostBySlug(slug);
+      const message = newCommentEmail({
+        postSlug: slug,
+        postTitle: post?.title ?? slug,
+        authorName: comment.authorName,
+        content: comment.content,
+      });
+      void sendEmail({
+        to: COMMENT_NOTIFY_EMAIL,
+        subject: message.subject,
+        html: message.html,
+        text: message.text,
+      }).catch((err) => {
+        console.error("[email] Failed to send comment notification:", err);
+      });
+    }
 
     return NextResponse.json({ comment }, { status: 201 });
   } catch {

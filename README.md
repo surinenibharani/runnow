@@ -78,6 +78,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `UPSTASH_REDIS_REST_TOKEN` | Optional. Upstash Redis REST token (pairs with URL above) |
 | `RESEND_API_KEY` | [Resend](https://resend.com) API key for newsletter emails |
 | `EMAIL_FROM` | Sender address, e.g. `LetsRunNow <hello@yourdomain.com>` (must match verified Resend domain) |
+| `COMMENT_NOTIFY_EMAIL` | Optional. Inbox for new blog comment alerts (defaults to `letsrunnow79@gmail.com`) |
 | `CRON_SECRET` | Random string for `/api/cron/newsletter` — `openssl rand -base64 32` |
 
 ### Strava setup
