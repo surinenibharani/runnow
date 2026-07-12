@@ -112,6 +112,10 @@ function escapeHtml(value: string): string {
     .replace(/"/g, "&quot;");
 }
 
+function sanitizeEmailHeader(value: string): string {
+  return value.replace(/[\r\n\0]/g, " ").trim();
+}
+
 export function newCommentEmail({
   postSlug,
   postTitle,
@@ -127,7 +131,7 @@ export function newCommentEmail({
   const safeTitle = escapeHtml(postTitle);
   const safeAuthor = escapeHtml(authorName);
   const safeContent = escapeHtml(content);
-  const preheader = `${authorName} commented on ${postTitle}`;
+  const preheader = `${safeAuthor} commented on ${safeTitle}`;
 
   const body = `
     <h1 style="margin:0 0 12px;font-size:22px;line-height:1.3;">New blog comment</h1>
@@ -141,7 +145,7 @@ export function newCommentEmail({
   `;
 
   return {
-    subject: `New comment on ${postTitle}`,
+    subject: `New comment on ${sanitizeEmailHeader(postTitle)}`,
     html: emailLayout({ preheader, body }),
     text: `New comment on ${postTitle}
 
