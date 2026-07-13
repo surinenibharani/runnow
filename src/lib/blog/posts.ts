@@ -3,6 +3,8 @@ import { SOURCES } from "./sources";
 import { getWhyItMatters } from "./why-it-matters";
 import { isBlogPostVisible } from "./preview";
 import { isBlogPostPublishedAt } from "./publish-schedule";
+import { priorityGapPosts } from "./posts-priority-gaps";
+import { mediumLowGapPosts } from "./posts-medium-low-gaps";
 
 export const BLOG_AUTHOR = "B";
 
@@ -112,7 +114,7 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-01-22",
     readTime: "7 min",
-    relatedSlugs: ["never-ran-where-to-start", "race-day-tips", "nutrition-for-runners"],
+    relatedSlugs: ["never-ran-where-to-start", "training-first-10k", "race-day-tips", "nutrition-for-runners"],
     sections: [
       {
         paragraphs: [
@@ -176,7 +178,7 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-02-05",
     readTime: "8 min",
-    relatedSlugs: ["training-first-5k", "training-half-and-full-marathon-same-season", "race-day-tips", "nutrition-for-runners"],
+    relatedSlugs: ["training-first-5k", "training-first-10k", "training-half-and-full-marathon-same-season", "race-day-tips", "nutrition-for-runners"],
     sections: [
       {
         paragraphs: [
@@ -996,7 +998,13 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-04-30",
     readTime: "5 min",
-    relatedSlugs: ["never-ran-where-to-start", "avoiding-injuries", "training-first-5k"],
+    relatedSlugs: [
+      "never-ran-where-to-start",
+      "avoiding-injuries",
+      "training-first-5k",
+      "running-shoes-without-lab-reviews",
+      "beginner-gear-guide-under-50",
+    ],
     faq: [
       {
         question: "Where should beginners buy running shoes?",
@@ -1056,7 +1064,7 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-05-14",
     readTime: "6 min",
-    relatedSlugs: ["training-first-5k", "race-day-tips", "building-a-running-habit"],
+    relatedSlugs: ["training-first-5k", "training-first-10k", "race-day-tips", "building-a-running-habit", "easy-runs-effort-heart-rate"],
     faq: [
       {
         question: "How do I know if I'm running too fast?",
@@ -1117,6 +1125,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "10 min",
     relatedSlugs: [
       "training-first-5k",
+      "training-first-10k",
       "training-first-half-marathon",
       "training-first-full-marathon",
       "nutrition-for-runners",
@@ -1339,7 +1348,13 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-18",
     readTime: "6 min",
-    relatedSlugs: ["importance-of-cross-training", "what-to-do-on-rest-days", "choosing-running-shoes"],
+    relatedSlugs: [
+      "importance-of-cross-training",
+      "what-to-do-on-rest-days",
+      "choosing-running-shoes",
+      "shin-splints-running",
+      "runners-knee-running",
+    ],
     faq: [
       {
         question: "How can beginners avoid running injuries?",
@@ -1550,7 +1565,13 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-28",
     readTime: "7 min",
-    relatedSlugs: ["what-to-do-on-rest-days", "importance-of-cross-training", "avoiding-injuries"],
+    relatedSlugs: [
+      "what-to-do-on-rest-days",
+      "importance-of-cross-training",
+      "avoiding-injuries",
+      "treadmill-indoor-winter-running",
+      "hydration-electrolytes-running",
+    ],
     sections: [
       {
         paragraphs: [
@@ -1810,6 +1831,7 @@ export const blogPosts: BlogPost[] = [
       "building-a-running-habit",
       "what-to-do-on-rest-days",
       "performance-goals-over-aesthetics",
+      "comeback-after-running-break",
     ],
     sections: [
       {
@@ -2147,6 +2169,8 @@ export const blogPosts: BlogPost[] = [
       "what-to-do-on-rest-days",
       "nutrition-for-runners",
       "avoiding-injuries",
+      "sleep-recovery-for-runners",
+      "warm-up-cool-down-running",
     ],
     sections: [
       {
@@ -5461,6 +5485,8 @@ export const blogPosts: BlogPost[] = [
       "running-form-101",
       "post-run-recovery",
       "running-in-bad-weather",
+      "speedwork-after-5k-beginners",
+      "easy-runs-effort-heart-rate",
     ],
     sections: [
       {
@@ -5623,6 +5649,8 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  ...priorityGapPosts,
+  ...mediumLowGapPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

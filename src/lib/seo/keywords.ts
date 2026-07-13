@@ -87,6 +87,61 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "how to start running from zero",
   ],
   "training-first-5k": ["first 5k training plan", "train for first 5k beginner"],
+  "training-first-10k": [
+    "first 10k training plan beginner",
+    "how to train for a 10k after 5k",
+    "10k training schedule beginner",
+  ],
+  "comeback-after-running-break": [
+    "start running again after a break",
+    "return to running after time off",
+    "comeback running plan beginner",
+  ],
+  "easy-runs-effort-heart-rate": [
+    "easy run heart rate zone beginner",
+    "talk test running pace",
+    "zone 2 running for beginners",
+  ],
+  "shin-splints-running": [
+    "shin splints from running recovery",
+    "how to fix shin splints beginner",
+    "medial tibial stress syndrome running",
+  ],
+  "runners-knee-running": [
+    "runners knee patellofemoral pain",
+    "knee pain from running beginner",
+    "PFPS running recovery",
+  ],
+  "treadmill-indoor-winter-running": [
+    "treadmill running for beginners winter",
+    "indoor running when sidewalks icy",
+    "keep running streak in winter",
+  ],
+  "warm-up-cool-down-running": [
+    "how to warm up before running beginner",
+    "cool down after run",
+    "should I stretch before running",
+  ],
+  "hydration-electrolytes-running": [
+    "hydration for runners beginner",
+    "electrolytes running when needed",
+    "water vs sports drink running",
+  ],
+  "sleep-recovery-for-runners": [
+    "sleep for runners recovery",
+    "how much sleep do runners need",
+    "running when sleep deprived",
+  ],
+  "speedwork-after-5k-beginners": [
+    "speedwork for beginners after 5k",
+    "interval training beginner runners",
+    "when to start speed work running",
+  ],
+  "running-shoes-without-lab-reviews": [
+    "buy running shoes without reviews",
+    "running shoe fit vs awards",
+    "best way to choose running shoes beginner",
+  ],
   "training-half-and-full-marathon-same-season": [
     "train for half marathon and marathon same time",
     "half marathon before marathon training plan",

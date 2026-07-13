@@ -146,6 +146,16 @@ export const SOURCES = {
     href: "https://communityhealth.mayoclinic.org/featured-stories/exercise-summer-heat",
     publisher: "Mayo Clinic",
   },
+  sleepTips: {
+    label: "Sleep tips: 6 steps to better sleep",
+    href: "https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/sleep/art-20048379",
+    publisher: "Mayo Clinic",
+  },
+  dehydration: {
+    label: "Dehydration — symptoms & causes",
+    href: "https://www.mayoclinic.org/diseases-conditions/dehydration/symptoms-causes/syc-20354086",
+    publisher: "Mayo Clinic",
+  },
   intervalTrainingVO2max2024: {
     label:
       "HIIT vs continuous training for aerobic performance (systematic review & meta-analysis, 2024)",

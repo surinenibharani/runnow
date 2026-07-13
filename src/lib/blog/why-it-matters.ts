@@ -92,6 +92,28 @@ export const whyItMattersBySlug: Record<string, string> = {
     "A 5K fueling chart won't tell you what to eat before Tuesday intervals or a humid Sunday long run. Matching food and fluid to each workout type is what keeps training blocks from unraveling in heat or on hard weeks.",
   "run-workouts-hills-intervals-fartlek-track":
     "Training plans tell you what to do, but not why. Understanding what hills, intervals, fartlek, and track sessions actually develop helps you run the right workout at the right time — and avoid turning every day into a race.",
+  "training-first-10k":
+    "A 10K is where many runners stall — too big a jump from 5K bravado, not enough structure before a half. Getting the long-run build right keeps the bridge from becoming an injury gap.",
+  "comeback-after-running-break":
+    "Fitness fades faster than confidence. Returning runners who match old paces in week one often earn shin or knee pain instead of a comeback — a deliberate rebuild is what makes the second chapter stick.",
+  "easy-runs-effort-heart-rate":
+    "Most beginners run every day at 'kinda hard.' Learning effort, the talk test, and simple heart-rate guardrails is how easy days finally build the base that makes hard days possible.",
+  "shin-splints-running":
+    "Shin pain ends more beginner plans than lack of motivation. Knowing when it's load-related, how to calm it, and how to rebuild beats another cycle of rest-then-flare.",
+  "runners-knee-running":
+    "Kneecap pain on stairs or after runs isn't a verdict on your future — it's usually training load and strength. Early modifications plus hip/quad work keep small aches from becoming season-enders.",
+  "treadmill-indoor-winter-running":
+    "Ice and early dark end more beginner streaks than hard workouts. Knowing how to use the treadmill — and when to swap indoors — keeps consistency alive through winter.",
+  "warm-up-cool-down-running":
+    "Most beginners either skip warm-ups or copy a 40-minute influencer flow they'll never repeat. A short, doable routine is what actually reduces that first-mile shock.",
+  "hydration-electrolytes-running":
+    "Short easy runs rarely need a science kit — heat and long efforts do. Clear water-vs-sports-drink rules prevent both dehydration drama and overdrinking mistakes.",
+  "sleep-recovery-for-runners":
+    "You can't out-supplement a chronic sleep deficit. Protecting bedtime is the recovery lever that makes mileage, strength, and easy days finally add up.",
+  "speedwork-after-5k-beginners":
+    "Adding speed too early turns every run into injury practice. After a solid 5K base, one controlled quality day teaches speed without torching recovery.",
+  "running-shoes-without-lab-reviews":
+    "Award roundups aren't your feet. A fit-first buying process beats chasing gold medals that weren't tested on your sidewalks.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {
