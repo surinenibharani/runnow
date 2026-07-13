@@ -114,6 +114,16 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Adding speed too early turns every run into injury practice. After a solid 5K base, one controlled quality day teaches speed without torching recovery.",
   "running-shoes-without-lab-reviews":
     "Award roundups aren't your feet. A fit-first buying process beats chasing gold medals that weren't tested on your sidewalks.",
+  "plantar-fasciitis-running":
+    "Morning heel pain ends more training blocks than laziness. Catching plantar fasciitis early — and rebuilding foot/calf capacity — beats another cycle of rest-then-flare.",
+  "it-band-syndrome-running":
+    "Outer-knee pain after hills or cambered roads isn't a mystery badge of honor. Load management plus hip strength keeps IT band flares from stealing a season.",
+  "first-race-signup-logistics":
+    "Training gets you fit; logistics keep race morning from becoming chaos. Knowing what to read, pack, and plan is what makes the first bib feel exciting instead of scary.",
+  "off-season-between-training-plans":
+    "The weeks after a goal race are when beginners quit or overcook. A deliberate easy base between plans is how one finish becomes a lifelong habit.",
+  "running-over-50-beginners":
+    "Starting after 50 works — when recovery, strength, and medical common sense get equal billing with motivation. Walk-run and patience beat ego miles every time.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

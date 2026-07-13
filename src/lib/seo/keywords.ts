@@ -142,6 +142,31 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "running shoe fit vs awards",
     "best way to choose running shoes beginner",
   ],
+  "plantar-fasciitis-running": [
+    "plantar fasciitis from running",
+    "heel pain running beginner",
+    "plantar fasciitis recovery runners",
+  ],
+  "it-band-syndrome-running": [
+    "IT band syndrome running",
+    "outer knee pain running hills",
+    "iliotibial band syndrome beginner",
+  ],
+  "first-race-signup-logistics": [
+    "how to sign up for first 5k",
+    "first race day logistics beginner",
+    "what to know before first running race",
+  ],
+  "off-season-between-training-plans": [
+    "what to do between training plans running",
+    "off season running plan beginner",
+    "base building after a race",
+  ],
+  "running-over-50-beginners": [
+    "start running after 50",
+    "beginner running guide over 50",
+    "masters beginner running plan",
+  ],
   "training-half-and-full-marathon-same-season": [
     "train for half marathon and marathon same time",
     "half marathon before marathon training plan",

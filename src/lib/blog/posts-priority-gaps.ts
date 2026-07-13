@@ -193,6 +193,7 @@ export const priorityGapPosts: BlogPost[] = [
       "avoiding-injuries",
       "building-a-running-habit",
       "easy-runs-effort-heart-rate",
+      "off-season-between-training-plans",
     ],
     closingQuestion:
       "What's the longest break you've taken from running — and what made coming back hardest?",
@@ -467,6 +468,7 @@ export const priorityGapPosts: BlogPost[] = [
       "bodyweight-strength-for-runners",
       "comeback-after-running-break",
       "what-to-do-on-rest-days",
+      "plantar-fasciitis-running",
     ],
     closingQuestion:
       "Have shin splints ever sidelined your training — what finally helped you get back?",
@@ -591,6 +593,7 @@ export const priorityGapPosts: BlogPost[] = [
       "running-form-101",
       "importance-of-cross-training",
       "comeback-after-running-break",
+      "it-band-syndrome-running",
     ],
     closingQuestion:
       "Has knee pain ever changed how you train — what modifications actually helped?",

@@ -5,6 +5,7 @@ import { isBlogPostVisible } from "./preview";
 import { isBlogPostPublishedAt } from "./publish-schedule";
 import { priorityGapPosts } from "./posts-priority-gaps";
 import { mediumLowGapPosts } from "./posts-medium-low-gaps";
+import { nextGapPosts } from "./posts-next-gaps";
 
 export const BLOG_AUTHOR = "B";
 
@@ -933,7 +934,12 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-04-16",
     readTime: "5 min",
-    relatedSlugs: ["never-ran-where-to-start", "what-to-do-on-rest-days", "how-to-pace-yourself"],
+    relatedSlugs: [
+      "never-ran-where-to-start",
+      "what-to-do-on-rest-days",
+      "how-to-pace-yourself",
+      "off-season-between-training-plans",
+    ],
     faq: [
       {
         question: "How do I stay consistent with running?",
@@ -1129,6 +1135,7 @@ export const blogPosts: BlogPost[] = [
       "training-first-half-marathon",
       "training-first-full-marathon",
       "nutrition-for-runners",
+      "first-race-signup-logistics",
     ],
     sections: [
       {
@@ -1354,6 +1361,8 @@ export const blogPosts: BlogPost[] = [
       "choosing-running-shoes",
       "shin-splints-running",
       "runners-knee-running",
+      "plantar-fasciitis-running",
+      "it-band-syndrome-running",
     ],
     faq: [
       {
@@ -1639,7 +1648,12 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-28",
     readTime: "8 min",
-    relatedSlugs: ["never-ran-where-to-start", "avoiding-injuries", "what-to-do-on-rest-days"],
+    relatedSlugs: [
+      "never-ran-where-to-start",
+      "avoiding-injuries",
+      "what-to-do-on-rest-days",
+      "running-over-50-beginners",
+    ],
     sections: [
       {
         paragraphs: [
@@ -5651,6 +5665,7 @@ export const blogPosts: BlogPost[] = [
   },
   ...priorityGapPosts,
   ...mediumLowGapPosts,
+  ...nextGapPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {
