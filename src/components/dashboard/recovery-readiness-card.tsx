@@ -103,7 +103,7 @@ export function RecoveryReadinessCard({
   }
 
   return (
-    <Card className="border-border/60">
+    <Card id="recovery-readiness" className="border-border/60 scroll-mt-24">
       <CardHeader className="pb-3">
         <CardTitle className="text-xl flex items-center gap-2">
           <Battery className="size-5 text-primary" />

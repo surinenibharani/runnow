@@ -267,6 +267,7 @@ export const remainingGapPosts: BlogPost[] = [
       "treadmill-indoor-winter-running",
       "nutrition-for-training-by-run-type",
       "easy-runs-effort-heart-rate",
+      "cold-weather-running-hub",
     ],
     closingQuestion:
       "What's your hottest successful run strategy — early alarm, treadmill, or route with water stops?",
@@ -672,6 +673,7 @@ export const remainingGapPosts: BlogPost[] = [
       "how-to-not-hate-hills",
       "avoiding-injuries",
       "bodyweight-strength-for-runners",
+      "kids-family-running",
     ],
     closingQuestion:
       "Stroller runners — asphalt loops or crushed gravel? What's your go-to route?",

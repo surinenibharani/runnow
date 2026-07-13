@@ -14,7 +14,7 @@ const steps = [
   {
     step: "03",
     title: "Check off and come back",
-    description: "Mark workouts complete, build your streak, and watch the plan adapt as you get stronger.",
+    description: "Mark workouts complete, build your streak, and get an adaptive coach that reads recovery, plan alignment, and pace — without an app subscription.",
   },
 ];
 

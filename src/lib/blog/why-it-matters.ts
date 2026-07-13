@@ -140,6 +140,18 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Stroller miles are real training with different mechanics. Setup, posture, and heat rules protect both of you — and your shoulders.",
   "dog-running-guide":
     "Two athletes share one leash. Age, breed, pavement heat, and manners decide whether dog runs become a joy or an injury factory for both ends.",
+  "trail-ultra-intro-beginners":
+    "Trail running punishes road ego and rewards patience. Learning footing, hiking climbs, and time-on-feet thinking is how dirt stays fun instead of becoming an ankle story.",
+  "cold-weather-running-hub":
+    "Ice and dark mornings end more seasons than hard workouts. A clear layering and bail playbook keeps winter from wiping your habit.",
+  "night-running-safety":
+    "After-work miles only work if you're seen and on a sane route. Visibility and predictability beat bravery on unlit shortcuts.",
+  "chafing-blisters-running":
+    "Friction ends proud long runs. Preventing rub and hotspots is cheaper than mid-race first aid and more reliable than toughing it out.",
+  "first-track-workout-beginners":
+    "The oval is friendlier than it looks once you know lanes and a simple session. One measured workout teaches effort better than another mystery road 'tempo.'",
+  "kids-family-running":
+    "Family miles should build joy, not miniature training camps. Playful loops and walk-friendly events create adults who still lace up years later.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

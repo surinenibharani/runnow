@@ -132,6 +132,86 @@ export const runnerTips: RunnerTip[] = [
       "Start every session with 5 minutes of brisk walking. End with 5 minutes of easy walking and light stretching. Your future knees will thank you.",
     blogSlug: "avoiding-injuries",
   },
+  {
+    slug: slugifyTipTitle("Be seen after dark"),
+    icon: Moon,
+    illustration: "cold",
+    category: "Safety",
+    title: "Be seen after dark",
+    content:
+      "Light colors, reflective details, and a small light beat invisible black kits. Assume drivers don't see you. Lit loops beat shortcuts.",
+    blogSlug: "night-running-safety",
+  },
+  {
+    slug: slugifyTipTitle("Layer for cold, then unzip"),
+    icon: CloudRain,
+    illustration: "cold",
+    category: "Weather",
+    title: "Layer for cold, then unzip",
+    content:
+      "Dress for ~10–15°F warmer than the start — you'll heat up. Wick sweat, protect hands and ears, and bail on black ice.",
+    blogSlug: "cold-weather-running-hub",
+  },
+  {
+    slug: slugifyTipTitle("Lube the hotspots before you leave"),
+    icon: Heart,
+    illustration: "health",
+    category: "Gear",
+    title: "Lube the hotspots before you leave",
+    content:
+      "Chafing is friction plus sweat. Anti-chafe balm on thighs, underarms, and bra lines before longer or humid runs saves your skin.",
+    blogSlug: "chafing-blisters-running",
+  },
+  {
+    slug: slugifyTipTitle("Blisters love new shoes on race day"),
+    icon: Activity,
+    illustration: "shoes",
+    category: "Gear",
+    title: "Blisters love new shoes on race day",
+    content:
+      "Debut shoes and socks on training runs first. Fit and sock choice prevent most blisters better than any mid-race tape scramble.",
+    blogSlug: "chafing-blisters-running",
+  },
+  {
+    slug: slugifyTipTitle("Outer lanes are for warming up"),
+    icon: Footprints,
+    illustration: "easy-pace",
+    category: "Training",
+    title: "Outer lanes are for warming up",
+    content:
+      "On a track, leave lane 1 for faster work. Warm up and recover in outer lanes, pass outside, and clear the inside between reps.",
+    blogSlug: "first-track-workout-beginners",
+  },
+  {
+    slug: slugifyTipTitle("Trail pace is supposed to look slow"),
+    icon: Footprints,
+    illustration: "easy-pace",
+    category: "Training",
+    title: "Trail pace is supposed to look slow",
+    content:
+      "Roots and climbs punish road ego. Judge trail runs by effort and time on feet. Hiking the steep bits is normal — not a failure.",
+    blogSlug: "trail-ultra-intro-beginners",
+  },
+  {
+    slug: slugifyTipTitle("Family runs are for fun first"),
+    icon: Users,
+    illustration: "mindset",
+    category: "Mindset",
+    title: "Family runs are for fun first",
+    content:
+      "Keep kid loops playful and walk-friendly. Save workouts for solo days. Never use running as punishment — joy builds lifelong movers.",
+    blogSlug: "kids-family-running",
+  },
+  {
+    slug: slugifyTipTitle("Missed a week? Don't double up"),
+    icon: Clock,
+    illustration: "calendar",
+    category: "Scheduling",
+    title: "Missed a week? Don't double up",
+    content:
+      "Catch-up stacks cause injuries. Repeat the week you left, or resume easy. Adaptive plans on LetsRunNow will nudge you to stay patient.",
+    blogSlug: "what-to-do-when-you-miss-a-run",
+  },
 ];
 
 export const tipsPageGuides = [

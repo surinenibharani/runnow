@@ -7,6 +7,7 @@ import { priorityGapPosts } from "./posts-priority-gaps";
 import { mediumLowGapPosts } from "./posts-medium-low-gaps";
 import { nextGapPosts } from "./posts-next-gaps";
 import { remainingGapPosts } from "./posts-remaining-gaps";
+import { surfaceGapPosts } from "./posts-surface-gaps";
 
 export const BLOG_AUTHOR = "B";
 
@@ -1011,6 +1012,7 @@ export const blogPosts: BlogPost[] = [
       "training-first-5k",
       "running-shoes-without-lab-reviews",
       "beginner-gear-guide-under-50",
+      "chafing-blisters-running",
     ],
     faq: [
       {
@@ -1138,6 +1140,8 @@ export const blogPosts: BlogPost[] = [
       "race-taper-guide",
       "race-anxiety-nerves",
       "first-race-signup-logistics",
+      "chafing-blisters-running",
+      "kids-family-running",
     ],
     sections: [
       {
@@ -1370,6 +1374,7 @@ export const blogPosts: BlogPost[] = [
       "runners-knee-running",
       "plantar-fasciitis-running",
       "it-band-syndrome-running",
+      "chafing-blisters-running",
     ],
     faq: [
       {
@@ -1588,6 +1593,8 @@ export const blogPosts: BlogPost[] = [
       "treadmill-indoor-winter-running",
       "hydration-electrolytes-running",
       "hot-weather-running-hub",
+      "cold-weather-running-hub",
+      "night-running-safety",
     ],
     sections: [
       {
@@ -1971,6 +1978,7 @@ export const blogPosts: BlogPost[] = [
       "how-to-pace-yourself",
       "breathing-while-running",
       "training-first-5k",
+      "trail-ultra-intro-beginners",
     ],
     sections: [
       {
@@ -4028,6 +4036,7 @@ export const blogPosts: BlogPost[] = [
       "running-vs-biking",
       "importance-of-cross-training",
       "training-first-half-marathon",
+      "trail-ultra-intro-beginners",
     ],
     sections: [
       {
@@ -4132,6 +4141,9 @@ export const blogPosts: BlogPost[] = [
       "hiking-instead-of-long-run",
       "how-to-not-hate-hills",
       "group-running-coach-and-pacer",
+      "trail-ultra-intro-beginners",
+      "first-track-workout-beginners",
+      "night-running-safety",
     ],
     sections: [
       {
@@ -5510,6 +5522,7 @@ export const blogPosts: BlogPost[] = [
       "running-in-bad-weather",
       "speedwork-after-5k-beginners",
       "easy-runs-effort-heart-rate",
+      "first-track-workout-beginners",
     ],
     sections: [
       {
@@ -5676,6 +5689,7 @@ export const blogPosts: BlogPost[] = [
   ...mediumLowGapPosts,
   ...nextGapPosts,
   ...remainingGapPosts,
+  ...surfaceGapPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

@@ -129,12 +129,49 @@ export function calculateRunStreak(activities: ActivitySummary[]): RunStreak {
 export function generateSuggestions(
   user: Pick<User, "age" | "gender" | "weightKg" | "heightCm">,
   activities: ActivitySummary[],
-  restingHeartRate: number | null = null
+  restingHeartRate: number | null = null,
+  context?: {
+    recoveryScore?: number | null;
+    recoveryLabel?: string | null;
+    alignmentPercent?: number | null;
+    hasTrainingPlan?: boolean;
+  }
 ): RunSuggestion[] {
   const suggestions: RunSuggestion[] = [];
   const runs = activities
     .filter((a) => isRunActivity(a.type))
     .sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
+
+  if (context?.recoveryScore != null && context.recoveryScore < 50) {
+    suggestions.push({
+      title: "Recovery is asking for easy",
+      detail: `Readiness is ${context.recoveryScore}${context.recoveryLabel ? ` (${context.recoveryLabel})` : ""}. Favor easy effort or rest today — metrics improve when you absorb training, not when you force it.`,
+      priority: "high",
+    });
+  } else if (
+    context &&
+    context.recoveryScore == null &&
+    context.hasTrainingPlan
+  ) {
+    suggestions.push({
+      title: "Log sleep & resting HR",
+      detail:
+        "Two morning numbers unlock recovery scoring and smarter adaptive coaching on your dashboard.",
+      priority: "medium",
+    });
+  }
+
+  if (
+    context?.alignmentPercent != null &&
+    context.alignmentPercent < 40 &&
+    context.hasTrainingPlan
+  ) {
+    suggestions.push({
+      title: "Don't stack missed workouts",
+      detail: `This week is only ~${context.alignmentPercent}% complete vs plan. Repeat the week or keep remaining days easy — catch-up doubles raise injury risk.`,
+      priority: "high",
+    });
+  }
 
   if (runs.length === 0) {
     suggestions.push({

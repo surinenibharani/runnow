@@ -28,6 +28,9 @@ import {
   selectBestEffortBaseline,
 } from "@/lib/strava-best-efforts";
 import { computeSyncedRunStats } from "@/lib/synced-run-stats";
+import { buildAdaptiveBrief } from "@/lib/adaptive-brief";
+import { getPersonalizedContent } from "@/lib/personalized-content";
+import { isAdaptiveAiConfigured } from "@/lib/adaptive-ai";
 
 function isRunActivity(type: string): boolean {
   const t = type.toLowerCase();
@@ -107,7 +110,6 @@ export async function GET(request: Request) {
   const streak = calculateRunStreak(activities);
   const restingHeartRate = resolveRestingHeartRate(wellness);
   const athleteProfile = buildAthleteProfile(user, restingHeartRate);
-  const suggestions = generateSuggestions(user, activities, restingHeartRate);
   const routeComparisons = findRouteComparisons(activities);
   const alignment = trainingPlan
     ? analyzePlanAlignment({
@@ -167,6 +169,51 @@ export async function GET(request: Request) {
 
   const recovery = calculateRecoveryReadiness(wellness, activities, user);
 
+  const suggestions = generateSuggestions(user, activities, restingHeartRate, {
+    recoveryScore: recovery.score,
+    recoveryLabel: recovery.label,
+    alignmentPercent: alignment?.alignmentPercent ?? null,
+    hasTrainingPlan: !!trainingPlan,
+  });
+
+  const trainingPlanDisplay = trainingPlan
+    ? buildTrainingPlanDisplay(
+        {
+          planId: trainingPlan.planId,
+          currentWeek: trainingPlan.currentWeek,
+          restDay: trainingPlan.restDay,
+          longRunDay: trainingPlan.longRunDay,
+          runDaysPerWeek: trainingPlan.runDaysPerWeek,
+          age: trainingPlan.age,
+          fitnessLevel: trainingPlan.fitnessLevel,
+          goalRaceDate: trainingPlan.goalRaceDate,
+          startedAt: trainingPlan.startedAt,
+        },
+        parseCompletedIdsFromDb(trainingPlan.completedIds)
+      )
+    : null;
+
+  const adaptiveBrief = buildAdaptiveBrief({
+    hasTrainingPlan: !!trainingPlan,
+    trainingPlan: trainingPlanDisplay,
+    alignment,
+    recovery,
+    paceInsights,
+    streak,
+    suggestions,
+    stravaConnected: !!stravaAccount,
+    totalRuns: activities.filter((a) => isRunActivity(a.type)).length,
+  });
+
+  const forYou = getPersonalizedContent({
+    fitnessLevel: trainingPlanDisplay?.fitnessLevel ?? null,
+    planFamilyId: trainingPlanDisplay?.familyId ?? null,
+    age: user.age ?? trainingPlanDisplay?.age ?? null,
+    recovery,
+    stravaConnected: !!stravaAccount,
+    hasTrainingPlan: !!trainingPlan,
+  });
+
   const recentRuns = activities.slice(0, 10).map((a) => ({
     id: a.id,
     stravaId: a.stravaId,
@@ -203,25 +250,13 @@ export async function GET(request: Request) {
       ? `https://www.strava.com/athletes/${stravaAccount.athleteId}`
       : null,
     hasTrainingPlan: !!trainingPlan,
-    trainingPlan: trainingPlan
-      ? buildTrainingPlanDisplay(
-          {
-            planId: trainingPlan.planId,
-            currentWeek: trainingPlan.currentWeek,
-            restDay: trainingPlan.restDay,
-            longRunDay: trainingPlan.longRunDay,
-            runDaysPerWeek: trainingPlan.runDaysPerWeek,
-            age: trainingPlan.age,
-            fitnessLevel: trainingPlan.fitnessLevel,
-            goalRaceDate: trainingPlan.goalRaceDate,
-            startedAt: trainingPlan.startedAt,
-          },
-          parseCompletedIdsFromDb(trainingPlan.completedIds)
-        )
-      : null,
+    trainingPlan: trainingPlanDisplay,
     alignment,
     streak,
     suggestions,
+    adaptiveBrief,
+    forYou,
+    adaptiveAiConfigured: isAdaptiveAiConfigured(),
     routeComparisons,
     chartTimeRange,
     activityBreakdown,

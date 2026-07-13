@@ -45,6 +45,10 @@ export const TIPS_SEO_KEYWORDS = [
   "how to pace yourself running",
   "running tips for new runners",
   "easy running pace beginner",
+  "night running safety tips",
+  "cold weather running tips",
+  "prevent chafing running",
+  "track workout for beginners",
 ] as const;
 
 export const GEAR_SEO_KEYWORDS = [
@@ -206,6 +210,36 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "running with dog beginner",
     "how far can dogs run",
     "dog running leash tips heat",
+  ],
+  "trail-ultra-intro-beginners": [
+    "trail running for beginners",
+    "first trail run tips",
+    "ultra running intro for road runners",
+  ],
+  "cold-weather-running-hub": [
+    "cold weather running tips",
+    "what to wear running in winter",
+    "running on ice safety",
+  ],
+  "night-running-safety": [
+    "night running safety tips",
+    "running in the dark reflective gear",
+    "is it safe to run at night",
+  ],
+  "chafing-blisters-running": [
+    "prevent chafing while running",
+    "blisters from running shoes",
+    "anti chafe tips for runners",
+  ],
+  "first-track-workout-beginners": [
+    "first track workout beginner",
+    "how to use a running track",
+    "track lane etiquette beginners",
+  ],
+  "kids-family-running": [
+    "running with kids family 5k",
+    "family fun run tips",
+    "how to start kids running",
   ],
   "training-half-and-full-marathon-same-season": [
     "train for half marathon and marathon same time",

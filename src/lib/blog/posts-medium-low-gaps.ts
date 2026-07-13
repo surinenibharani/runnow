@@ -445,6 +445,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "easy-runs-effort-heart-rate",
       "how-to-pace-yourself",
       "avoiding-injuries",
+      "first-track-workout-beginners",
     ],
     closingQuestion:
       "Have you added speedwork yet — or are easy miles still doing all the heavy lifting?",

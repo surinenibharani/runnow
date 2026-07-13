@@ -9,6 +9,7 @@ A beautiful, beginner-friendly running website built with Next.js, Tailwind CSS,
 - **User accounts** — Sign up / log in with email and password
 - **Strava integration** — Sync runs, streaks, HR-based suggestions, route comparisons
 - **Progress tracking** — Check off plan workouts (synced to your account when logged in)
+- **Adaptive coach** — Today brief from recovery, plan alignment, and pace signals; personalized tips/guides; optional OpenAI tone polish
 - **Tips page** — Practical advice for new runners
 
 ## Tech Stack
@@ -78,6 +79,8 @@ Open [http://localhost:3000](http://localhost:3000).
 | `UPSTASH_REDIS_REST_TOKEN` | Optional. Upstash Redis REST token (pairs with URL above) |
 | `RESEND_API_KEY` | [Resend](https://resend.com) API key for newsletter emails |
 | `EMAIL_FROM` | Sender address, e.g. `LetsRunNow <hello@yourdomain.com>` (must match verified Resend domain) |
+| `OPENAI_API_KEY` | Optional. Enables AI tone polish for the dashboard adaptive coach (rule-based coaching always works without this) |
+| `OPENAI_MODEL` | Optional. OpenAI model for polish (default `gpt-4o-mini`) |
 | `COMMENT_NOTIFY_EMAIL` | Optional. Inbox for new blog comment alerts (defaults to `letsrunnow79@gmail.com`) |
 | `CRON_SECRET` | Random string for `/api/cron/newsletter` — `openssl rand -base64 32` |
 

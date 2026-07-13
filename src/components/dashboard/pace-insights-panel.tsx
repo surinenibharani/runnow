@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 
 type PaceInsightsPanelProps = {
   insights: PaceInsights;
+  /** Adaptive coaching note layered on top of pace model (e.g. easy day when recovery is low). */
+  adaptiveNote?: string | null;
 };
 
 function confidenceBadge(confidence: "low" | "medium" | "high") {
@@ -13,7 +15,10 @@ function confidenceBadge(confidence: "low" | "medium" | "high") {
   return { label: "Low", variant: "outline" as const };
 }
 
-export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
+export function PaceInsightsPanel({
+  insights,
+  adaptiveNote,
+}: PaceInsightsPanelProps) {
   if (!insights.available) {
     return (
       <Card className="border-border/60">
@@ -23,6 +28,9 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
             {insights.reason ??
               "Connect Strava and sync runs to estimate race times and pace zones."}
           </p>
+          {adaptiveNote && (
+            <p className="mt-3 text-sm text-primary leading-relaxed">{adaptiveNote}</p>
+          )}
         </CardContent>
       </Card>
     );
@@ -30,6 +38,14 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
 
   return (
     <div className="space-y-4">
+      {adaptiveNote && (
+        <Card className="border-primary/20 bg-primary/5">
+          <CardContent className="p-4">
+            <p className="text-sm leading-relaxed">{adaptiveNote}</p>
+          </CardContent>
+        </Card>
+      )}
+
       {insights.athleteStats && (
         <Card className="border-primary/20 bg-primary/5">
           <CardContent className="p-5">

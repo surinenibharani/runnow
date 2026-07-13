@@ -32,8 +32,12 @@ import { RecoveryReadinessCard } from "@/components/dashboard/recovery-readiness
 import { useProfileModal } from "@/components/profile/profile-modal";
 import { ActivityPieChart } from "@/components/dashboard/activity-pie-chart";
 import { PaceInsightsPanel } from "@/components/dashboard/pace-insights-panel";
+import { AdaptiveTodayCard } from "@/components/dashboard/adaptive-today-card";
+import { ForYouRail } from "@/components/dashboard/for-you-rail";
 import { ActivityDetailPanel } from "@/components/dashboard/activity-detail-panel";
 import type { RouteComparison, RunSuggestion } from "@/lib/run-analysis";
+import type { AdaptiveBrief } from "@/lib/adaptive-brief";
+import type { PersonalizedContent } from "@/lib/personalized-content";
 import type { PieSlice } from "@/lib/activity-charts";
 import type { PaceInsights } from "@/lib/pace-analysis";
 import { TEAMS_ROLLOUT_ENABLED } from "@/lib/teams/rollout";
@@ -77,6 +81,9 @@ interface DashboardData {
   trainingPlan: TrainingPlanDisplay | null;
   streak: { current: number; longest: number; lastRunDate: string | null };
   suggestions: RunSuggestion[];
+  adaptiveBrief?: AdaptiveBrief;
+  forYou?: PersonalizedContent;
+  adaptiveAiConfigured?: boolean;
   routeComparisons: RouteComparison[];
   chartTimeRange: ChartTimeRange;
   activityBreakdown: PieSlice[];
@@ -460,6 +467,22 @@ export function DashboardContent() {
           )}
         </FadeIn>
 
+        {data.adaptiveBrief && (
+          <FadeIn>
+            <AdaptiveTodayCard
+              brief={data.adaptiveBrief}
+              aiConfigured={Boolean(data.adaptiveAiConfigured)}
+            />
+          </FadeIn>
+        )}
+
+        {data.forYou &&
+          (data.forYou.tips.length > 0 || data.forYou.posts.length > 0) && (
+          <FadeIn>
+            <ForYouRail content={data.forYou} />
+          </FadeIn>
+        )}
+
         {!data.stravaConnected && (
           <Card className="border-[#fc4c02]/30 bg-[#fc4c02]/5">
             <CardContent className="p-6">
@@ -605,7 +628,17 @@ export function DashboardContent() {
               <Timer className="size-5 text-primary" />
               Pace & training zones
             </h2>
-            <PaceInsightsPanel insights={data.paceInsights} />
+            <PaceInsightsPanel
+              insights={data.paceInsights}
+              adaptiveNote={
+                data.adaptiveBrief?.action === "go_easy" ||
+                data.adaptiveBrief?.action === "rest_or_walk"
+                  ? "Adaptive coach: treat zone targets as ceilings today — stay conversational if readiness is soft."
+                  : data.adaptiveBrief?.action === "protect_taper"
+                    ? "Adaptive coach: projections can wait — protect taper freshness over testing fitness."
+                    : null
+              }
+            />
           </FadeIn>
         )}
 

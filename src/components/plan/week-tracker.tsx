@@ -41,6 +41,8 @@ import { getActivityCaption } from "@/lib/workout-caption";
 import { StravaConnectBanner } from "@/components/strava/strava-connect-banner";
 import { SchedulePicker } from "@/components/plan/schedule-picker";
 import { PlanProfilePicker } from "@/components/plan/plan-profile-picker";
+import { AdaptivePlanCoach } from "@/components/plan/adaptive-plan-coach";
+import { getAdaptivePlanSuggestion } from "@/lib/adaptive-plan";
 import { PlanLoading } from "@/components/plan/plan-loading";
 import { ProgressShare } from "@/components/plan/progress-share";
 import {
@@ -114,6 +116,17 @@ export function WeekTracker() {
   const percentComplete = totalWorkouts
     ? Math.round((completedInPlan / totalWorkouts) * 100)
     : 0;
+
+  const adaptiveSuggestion = useMemo(
+    () =>
+      getAdaptivePlanSuggestion({
+        plan: basePlan,
+        profile: planProfile,
+        currentWeek: Number(activeWeek) || 1,
+        planPercentComplete: percentComplete,
+      }),
+    [basePlan, planProfile, activeWeek, percentComplete]
+  );
 
   const applyRemotePlan = useCallback((remote: {
     planId: string;
@@ -806,6 +819,12 @@ export function WeekTracker() {
         plan={basePlan}
         currentWeek={Number(activeWeek)}
         onChange={handleProfileChange}
+      />
+
+      <AdaptivePlanCoach
+        suggestion={adaptiveSuggestion}
+        onApplyWeek={(week) => handleWeekChange(String(week))}
+        onApplyPlan={(id) => handleVariantChange(id)}
       />
 
       <SchedulePicker
