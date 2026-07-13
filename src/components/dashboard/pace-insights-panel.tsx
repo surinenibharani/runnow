@@ -34,6 +34,10 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
         <Card className="border-primary/20 bg-primary/5">
           <CardContent className="p-5">
             <h3 className="font-semibold">Strava running totals</h3>
+            <p className="mt-1 text-xs text-muted-foreground">
+              From your synced runs (last 28 days / calendar YTD) — same activities
+              listed on this dashboard.
+            </p>
             <div className="mt-3 grid gap-3 sm:grid-cols-3 text-sm">
               <div>
                 <p className="text-muted-foreground">Last 4 weeks</p>
@@ -183,8 +187,11 @@ export function PaceInsightsPanel({ insights }: PaceInsightsPanelProps) {
         <CardContent className="p-6">
           <h3 className="font-semibold text-lg">Training pace zones</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Derived from your projected 5K pace and profile — includes runs and
-            cross-training when synced from Strava.
+            Anchored to estimated <span className="text-foreground">5K race pace</span>
+            {insights.baselineSource === "best_effort"
+              ? " from your Strava best efforts"
+              : " from your fastest recent efforts (not average jog pace)"}
+            , then adjusted for your profile.
           </p>
           <ul className="mt-5 space-y-2.5">
             {insights.zones.map((zone) => (

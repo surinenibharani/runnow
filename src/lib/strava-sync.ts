@@ -83,7 +83,7 @@ async function syncAthleteStatsAndBestEfforts(
   const recentRuns = await prisma.activity.findMany({
     where: { userId },
     orderBy: { startDate: "desc" },
-    take: 12,
+    take: 40,
     select: { stravaId: true, type: true, distance: true },
   });
 
@@ -92,7 +92,7 @@ async function syncAthleteStatsAndBestEfforts(
 
   for (const run of recentRuns) {
     if (!isRunType(run.type) || run.distance < 1609) continue;
-    if (detailFetches >= 6) break;
+    if (detailFetches >= 12) break;
 
     try {
       const detail = await fetchStravaActivityDetail(accessToken, run.stravaId);

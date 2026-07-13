@@ -6,6 +6,7 @@ import { isBlogPostPublishedAt } from "./publish-schedule";
 import { priorityGapPosts } from "./posts-priority-gaps";
 import { mediumLowGapPosts } from "./posts-medium-low-gaps";
 import { nextGapPosts } from "./posts-next-gaps";
+import { remainingGapPosts } from "./posts-remaining-gaps";
 
 export const BLOG_AUTHOR = "B";
 
@@ -1134,7 +1135,8 @@ export const blogPosts: BlogPost[] = [
       "training-first-10k",
       "training-first-half-marathon",
       "training-first-full-marathon",
-      "nutrition-for-runners",
+      "race-taper-guide",
+      "race-anxiety-nerves",
       "first-race-signup-logistics",
     ],
     sections: [
@@ -1301,7 +1303,12 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-11",
     readTime: "6 min",
-    relatedSlugs: ["building-a-running-habit", "training-first-full-marathon", "race-day-tips"],
+    relatedSlugs: [
+      "building-a-running-habit",
+      "race-anxiety-nerves",
+      "race-day-tips",
+      "breathing-while-running",
+    ],
     sections: [
       {
         paragraphs: [
@@ -1580,6 +1587,7 @@ export const blogPosts: BlogPost[] = [
       "avoiding-injuries",
       "treadmill-indoor-winter-running",
       "hydration-electrolytes-running",
+      "hot-weather-running-hub",
     ],
     sections: [
       {
@@ -2494,9 +2502,10 @@ export const blogPosts: BlogPost[] = [
     readTime: "18 min",
     relatedSlugs: [
       "running-with-health-conditions",
+      "postpartum-return-to-run",
+      "stroller-running-guide",
       "nutrition-basics-for-beginners",
       "avoiding-injuries",
-      "choosing-running-shoes",
       "bodyweight-strength-for-runners",
     ],
     closingQuestion:
@@ -5666,6 +5675,7 @@ export const blogPosts: BlogPost[] = [
   ...priorityGapPosts,
   ...mediumLowGapPosts,
   ...nextGapPosts,
+  ...remainingGapPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

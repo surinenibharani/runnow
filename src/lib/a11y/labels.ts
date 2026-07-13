@@ -28,6 +28,7 @@ export const GEAR_GROUP_LABELS: Record<string, string> = {
 
 export const PLAN_FAMILY_LABELS: Record<string, string> = {
   "5k": "Couch to 5K training path illustration",
+  "10k": "10K training path illustration",
   "half-marathon": "Half marathon training path illustration",
   "full-marathon": "Marathon training path illustration",
 };

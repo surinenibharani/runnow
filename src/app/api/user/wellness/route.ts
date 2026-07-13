@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import {
   parseDateKey,
   toDateKey,
+  toStoredDateKey,
   wellnessDateKeysForLog,
 } from "@/lib/recovery-readiness";
 
@@ -68,7 +69,7 @@ export async function GET() {
 
   return NextResponse.json({
     entries: rows.map((row) => ({
-      date: toDateKey(row.date),
+      date: toStoredDateKey(row.date),
       sleepMinutes: row.sleepMinutes,
       restingHeartRate: row.restingHeartRate,
       source: row.source,
@@ -159,7 +160,7 @@ export async function POST(request: Request) {
       },
     });
     saved.push({
-      date: toDateKey(row.date),
+      date: toStoredDateKey(row.date),
       sleepMinutes: row.sleepMinutes,
       restingHeartRate: row.restingHeartRate,
       source: row.source,

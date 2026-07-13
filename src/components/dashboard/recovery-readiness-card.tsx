@@ -112,8 +112,8 @@ export function RecoveryReadinessCard({
         <p className="text-sm text-muted-foreground font-normal">
           Combines sleep, resting heart rate, weekly training load, and workouts
           from the last 48 hours — adjusted for your age and sex from profile.
-          Log values from your watch each morning, or let us estimate resting HR
-          from easy Strava activities.
+          Log resting HR and sleep from your watch each morning for accurate
+          scores (we do not treat run average HR as resting HR).
         </p>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -208,8 +208,8 @@ export function RecoveryReadinessCard({
           <p className="text-xs text-muted-foreground flex items-start gap-2">
             <HeartPulse className="size-3.5 shrink-0 mt-0.5" />
             Copy sleep and resting HR from Apple Health, Garmin Connect, or Coros
-            each morning. Without a log, we estimate resting HR from your easiest
-            Strava activities.
+            each morning. Training load still uses your synced Strava workouts when
+            wellness fields are empty.
           </p>
         </form>
       </CardContent>

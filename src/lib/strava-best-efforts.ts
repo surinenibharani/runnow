@@ -97,7 +97,13 @@ export function selectBestEffortBaseline(
 ): BestEffortBaseline | null {
   const cutoff = Date.now() - maxAgeDays * 24 * 60 * 60 * 1000;
 
-  for (const target of EFFORT_TARGETS) {
+  // Prefer race-distance efforts; skip mile-only unless nothing else exists.
+  const preference = ["5k", "10k", "half", "mile"] as const;
+
+  for (const id of preference) {
+    const target = EFFORT_TARGETS.find((t) => t.id === id);
+    if (!target) continue;
+
     const match = efforts
       .filter(
         (e) =>
@@ -112,7 +118,12 @@ export function selectBestEffortBaseline(
         movingTimeSeconds: match.elapsedTimeSeconds,
         source: `${target.label} best effort (${match.name})`,
         startDate: new Date(match.startDate),
-        confidence: target.id === "5k" || target.id === "10k" ? "high" : "medium",
+        confidence:
+          target.id === "5k" || target.id === "10k"
+            ? "high"
+            : target.id === "mile"
+              ? "medium"
+              : "medium",
       };
     }
   }

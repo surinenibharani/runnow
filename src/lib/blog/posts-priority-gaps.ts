@@ -23,6 +23,7 @@ export const priorityGapPosts: BlogPost[] = [
       "training-first-5k",
       "training-first-half-marathon",
       "race-day-tips",
+      "race-taper-guide",
       "how-to-pace-yourself",
       "easy-runs-effort-heart-rate",
       "nutrition-for-runners",
@@ -85,9 +86,9 @@ export const priorityGapPosts: BlogPost[] = [
           "10 weeks — if your longest run is still under 3.5 miles, or life is chaotic and you want buffer weeks",
         ],
         paragraphs: [
-          "LetsRunNow's free plans currently focus on 5K through marathon. For a first 10K, treat an [8-week 5K plan](/plan?plan=5k-8w) as your base, then extend the long run each week toward 6–7 miles while keeping midweek runs easy — or move toward a [half marathon plan](/plan) once a 10K feels comfortable.",
+          "Use LetsRunNow's free [8-week 10K plan](/plan?plan=10k-8w) as the default after a 5K — or pick the [10-week](/plan?plan=10k-10w) or [6-week](/plan?plan=10k-6w) variant to match your timeline. Prefer a gentler start? Finish a [5K plan](/plan?plan=5k-8w) first, then switch families when you're ready.",
         ],
-        cta: { text: "Open free training plans", href: "/plan" },
+        cta: { text: "Open the free 10K plan", href: "/plan?plan=10k-8w" },
       },
       {
         id: "weekly-structure",
@@ -464,10 +465,10 @@ export const priorityGapPosts: BlogPost[] = [
     relatedSlugs: [
       "avoiding-injuries",
       "runners-knee-running",
+      "stress-fracture-running",
       "choosing-running-shoes",
       "bodyweight-strength-for-runners",
       "comeback-after-running-break",
-      "what-to-do-on-rest-days",
       "plantar-fasciitis-running",
     ],
     closingQuestion:

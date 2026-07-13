@@ -180,4 +180,19 @@ export const SOURCES = {
     href: "https://www.bewegenismedicijn.nl/files/downloads/full_text_acsm_position_stand_parameters_of_exercise_for_adults.pdf",
     publisher: "ACSM",
   },
+  exerciseAfterPregnancy: {
+    label: "Exercise after pregnancy",
+    href: "https://www.acog.org/womens-health/faqs/exercise-after-pregnancy",
+    publisher: "American College of Obstetricians and Gynecologists",
+  },
+  anxietyDisorders: {
+    label: "Anxiety disorders — symptoms & causes",
+    href: "https://www.mayoclinic.org/diseases-conditions/anxiety/symptoms-causes/syc-20350961",
+    publisher: "Mayo Clinic",
+  },
+  heatExhaustion: {
+    label: "Heat exhaustion — symptoms & causes",
+    href: "https://www.mayoclinic.org/diseases-conditions/heat-exhaustion/symptoms-causes/syc-20373250",
+    publisher: "Mayo Clinic",
+  },
 } satisfies Record<string, BlogSource>;

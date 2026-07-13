@@ -12,6 +12,7 @@ import {
   type AthleteProfile,
 } from "@/lib/athlete-profile";
 import { formatActivityType } from "@/lib/activity-types";
+import { toZonedDateKey, zonedDaysAgo } from "@/lib/date-keys";
 import {
   activityTrainingLoad,
   formatElevationFeet,
@@ -116,18 +117,25 @@ function adjustedLoadInRange(
 }
 
 function toDateKey(date: Date): string {
-  return date.toISOString().slice(0, 10);
+  return toZonedDateKey(date);
+}
+
+/** Calendar key for Prisma `@db.Date` values (UTC midnight encoding of the civil date). */
+function toStoredDateKey(date: Date): string {
+  const y = date.getUTCFullYear();
+  const m = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const d = String(date.getUTCDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
 }
 
 function parseDateKey(key: string): Date {
-  return new Date(`${key}T12:00:00.000Z`);
+  const [year, month, day] = key.split("-").map(Number);
+  // Noon UTC keeps the civil YYYY-MM-DD stable in `@db.Date` round-trips.
+  return new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
 }
 
 function daysAgo(n: number): Date {
-  const d = new Date();
-  d.setUTCDate(d.getUTCDate() - n);
-  d.setUTCHours(12, 0, 0, 0);
-  return d;
+  return zonedDaysAgo(n);
 }
 
 function scoreSleep(
@@ -198,7 +206,7 @@ function scoreRestingHr(
       label: "Resting heart rate",
       score: 0,
       detail:
-        "Add this morning's resting HR from Apple Watch, Garmin, or Coros — or we'll estimate from easy activities.",
+        "Add this morning's resting HR from Apple Watch, Garmin, or Coros. We only use values you log — not average heart rate from runs.",
       available: false,
     };
   }
@@ -491,37 +499,15 @@ function formatRelativeWorkoutTime(startDate: Date, now: Date): string {
   return days === 1 ? "yesterday" : `${days}d ago`;
 }
 
-/** Lowest easy-effort HR from recent activities — proxy when no watch RHR is logged. */
+/**
+ * Do not invent resting HR from activity average HR — easy-run averages are
+ * typically 120–150 bpm and are not resting values. Only manual logs count.
+ */
 export function estimateRestingHeartRate(
-  activities: ActivitySummary[],
-  lookbackDays = 14
+  _activities: ActivitySummary[],
+  _lookbackDays = 14
 ): number | null {
-  const since = daysAgo(lookbackDays);
-  const withHr = activities.filter(
-    (a) =>
-      a.averageHeartrate != null &&
-      a.averageHeartrate > 0 &&
-      a.startDate >= since &&
-      a.movingTime >= 600
-  );
-
-  if (withHr.length === 0) return null;
-
-  const easyEfforts = withHr
-    .filter((a) => {
-      const t = a.type.toLowerCase();
-      return (
-        t.includes("walk") ||
-        t.includes("hike") ||
-        isRunActivity(a.type)
-      );
-    })
-    .map((a) => a.averageHeartrate as number)
-    .sort((a, b) => a - b);
-
-  const pool = easyEfforts.length > 0 ? easyEfforts : withHr.map((a) => a.averageHeartrate as number).sort((a, b) => a - b);
-  const index = Math.min(Math.floor(pool.length * 0.1), pool.length - 1);
-  return Math.round(pool[Math.max(0, index)]);
+  return null;
 }
 
 function median(values: number[]): number | null {
@@ -535,7 +521,7 @@ function median(values: number[]): number | null {
 
 function resolveTodayRhr(
   wellness: WellnessSnapshot[],
-  activities: ActivitySummary[]
+  _activities: ActivitySummary[]
 ): { rhr: number | null; source: "manual" | "estimated" | null } {
   const todayKey = toDateKey(new Date());
   const todayManual = wellness.find(
@@ -545,9 +531,15 @@ function resolveTodayRhr(
     return { rhr: todayManual.restingHeartRate, source: "manual" };
   }
 
-  const estimated = estimateRestingHeartRate(activities);
-  if (estimated != null) {
-    return { rhr: estimated, source: "estimated" };
+  // Fall back to most recent manual RHR from the last 2 days (morning log lag).
+  const yesterdayKey = toDateKey(daysAgo(1));
+  const recentManual = wellness.find(
+    (w) =>
+      (w.date === todayKey || w.date === yesterdayKey) &&
+      w.restingHeartRate != null
+  );
+  if (recentManual?.restingHeartRate) {
+    return { rhr: recentManual.restingHeartRate, source: "manual" };
   }
 
   return { rhr: null, source: null };
@@ -555,7 +547,7 @@ function resolveTodayRhr(
 
 function resolveBaselineRhr(
   wellness: WellnessSnapshot[],
-  activities: ActivitySummary[]
+  _activities: ActivitySummary[]
 ): number | null {
   const manual = wellness
     .filter((w) => w.restingHeartRate != null)
@@ -566,8 +558,7 @@ function resolveBaselineRhr(
     return median(manual);
   }
 
-  const estimated = estimateRestingHeartRate(activities, 28);
-  return estimated;
+  return null;
 }
 
 function resolveLastNightSleep(
@@ -712,4 +703,4 @@ export function wellnessDateKeysForLog(): {
   };
 }
 
-export { toDateKey, parseDateKey };
+export { toDateKey, parseDateKey, toStoredDateKey };

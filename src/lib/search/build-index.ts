@@ -25,7 +25,7 @@ const STATIC_PAGES: SiteSearchResult[] = [
     id: "page-plan",
     title: "Training plans",
     description:
-      "Free couch to 5K, half marathon, and marathon schedules you can customize in your browser.",
+      "Free couch to 5K, 10K, half marathon, and marathon schedules you can customize in your browser.",
     href: "/plan",
     kind: "page",
     category: "Plans",

@@ -124,6 +124,22 @@ export const whyItMattersBySlug: Record<string, string> = {
     "The weeks after a goal race are when beginners quit or overcook. A deliberate easy base between plans is how one finish becomes a lifelong habit.",
   "running-over-50-beginners":
     "Starting after 50 works — when recovery, strength, and medical common sense get equal billing with motivation. Walk-run and patience beat ego miles every time.",
+  "postpartum-return-to-run":
+    "Coming back after birth isn't a vanity timeline contest. Clearance, pelvic floor signals, and a walk-first rebuild are what turn 'I used to run' into 'I'm running again' without a setback spiral.",
+  "stress-fracture-running":
+    "Focal bone pain that worsens with every run isn't a badge of toughness. Catching bone stress early — and fixing the load error — beats months of forced rest after a full fracture.",
+  "hot-weather-running-hub":
+    "Summer miles punish pride pacing. One clear playbook for timing, effort, fluid, and bail rules keeps heat from ending the season — or worse.",
+  "race-taper-guide":
+    "Fitness doesn't vanish in a light week — fatigue does. A deliberate taper is how months of training actually show up on the start line.",
+  "race-anxiety-nerves":
+    "Butterflies mean you care. Learning to use race nerves — instead of letting them rewrite your pacing — is a skill as trainable as your long run.",
+  "gps-watch-vs-no-watch":
+    "A watch can build awareness or ruin easy days. Knowing when phone-only (or no device) is enough keeps gear from becoming the coach.",
+  "stroller-running-guide":
+    "Stroller miles are real training with different mechanics. Setup, posture, and heat rules protect both of you — and your shoulders.",
+  "dog-running-guide":
+    "Two athletes share one leash. Age, breed, pavement heat, and manners decide whether dog runs become a joy or an injury factory for both ends.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

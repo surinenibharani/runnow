@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 const PLAN_GRADIENTS: Record<string, string> = {
   "5k": "from-orange-500/20 via-amber-400/10 to-card",
+  "10k": "from-emerald-500/20 via-teal-400/10 to-card",
   "half-marathon": "from-blue-500/20 via-indigo-400/10 to-card",
   "full-marathon": "from-violet-500/20 via-purple-400/10 to-card",
   hero: "from-primary/20 via-orange-400/10 to-card",
@@ -19,6 +20,16 @@ function PlanFamilyScene({ familyId }: { familyId: string }) {
           <path d="M60 56 L54 68 M60 56 L66 68 M60 56 L60 64" className="stroke-primary/70" strokeWidth="2" strokeLinecap="round" />
           <rect x="84" y="36" width="14" height="10" rx="2" className="fill-orange-500/15 stroke-orange-600/30" strokeWidth="1" />
           <circle cx="72" cy="28" r="10" className="fill-amber-400/40" />
+        </>
+      );
+    case "10k":
+      return (
+        <>
+          <path d="M14 58 Q32 44 50 54 T78 48 T110 58" className="stroke-emerald-500/35" strokeWidth="2" fill="none" strokeLinecap="round" />
+          <circle cx="50" cy="54" r="3.5" className="fill-emerald-500/55" />
+          <circle cx="78" cy="48" r="3.5" className="fill-teal-500/55" />
+          <path d="M78 48 L74 60 M78 48 L82 60 M78 48 L78 56" className="stroke-emerald-600/55" strokeWidth="2" strokeLinecap="round" />
+          <rect x="86" y="34" width="16" height="10" rx="2" className="fill-emerald-500/15 stroke-emerald-600/30" strokeWidth="1" />
         </>
       );
     case "half-marathon":

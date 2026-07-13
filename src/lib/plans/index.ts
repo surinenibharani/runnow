@@ -1,4 +1,5 @@
 import { plans5k } from "@/lib/plans/5k";
+import { plans10k } from "@/lib/plans/10k";
 import { plansHalf } from "@/lib/plans/half-marathon";
 import { plansFull } from "@/lib/plans/full-marathon";
 import type { PlanFamily, TrainingPlan } from "@/lib/plan-types";
@@ -11,6 +12,14 @@ export const PLAN_FAMILIES: PlanFamily[] = [
     prerequisite: "No experience needed",
     runsPerWeek: 3,
     variantIds: plans5k.map((p) => p.id),
+  },
+  {
+    id: "10k",
+    name: "10K",
+    shortName: "10K",
+    prerequisite: "Comfortable completing a 5K or running ~30 minutes continuously",
+    runsPerWeek: 3,
+    variantIds: plans10k.map((p) => p.id),
   },
   {
     id: "half-marathon",
@@ -30,8 +39,12 @@ export const PLAN_FAMILIES: PlanFamily[] = [
   },
 ];
 
-export const PLANS: TrainingPlan[] = [...plans5k, ...plansHalf, ...plansFull];
-
+export const PLANS: TrainingPlan[] = [
+  ...plans5k,
+  ...plans10k,
+  ...plansHalf,
+  ...plansFull,
+];
 export const DEFAULT_FAMILY_ID = "5k";
 export const DEFAULT_PLAN_ID = "5k-8w";
 

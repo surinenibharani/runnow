@@ -4,7 +4,7 @@ export const SITE_NAME = "LetsRunNow";
 /** Matches the logo caption. */
 export const SITE_TAGLINE = BRAND_CAPTION;
 export const SITE_DESCRIPTION =
-  "Free couch to 5K, half marathon, and marathon training plans — a beginner running schedule in your browser, no app required. Pick a plan, track progress, and optional Strava sync. Run with us.";
+  "Free couch to 5K, 10K, half marathon, and marathon training plans — a beginner running schedule in your browser, no app required. Pick a plan, track progress, and optional Strava sync. Run with us.";
 export const SITE_KEYWORDS = [
   "couch to 5k free plan",
   "beginner running schedule no app",

@@ -18,7 +18,7 @@ import {
   parseChartTimeRange,
 } from "@/lib/chart-time-range";
 import { analyzePlanAlignment, parseCompletedIdsFromDb } from "@/lib/plan-alignment";
-import { calculateRecoveryReadiness, toDateKey } from "@/lib/recovery-readiness";
+import { calculateRecoveryReadiness, toStoredDateKey } from "@/lib/recovery-readiness";
 import { buildAthleteProfile } from "@/lib/athlete-profile";
 import { getUserTrainingPlan } from "@/lib/teams";
 import { buildTrainingPlanDisplay } from "@/lib/training-plan-display";
@@ -27,8 +27,7 @@ import {
   parseBestEffortsCache,
   selectBestEffortBaseline,
 } from "@/lib/strava-best-efforts";
-
-const MILE_METERS = 1609.34;
+import { computeSyncedRunStats } from "@/lib/synced-run-stats";
 
 function isRunActivity(type: string): boolean {
   const t = type.toLowerCase();
@@ -99,7 +98,7 @@ export async function GET(request: Request) {
   }
 
   const wellness = wellnessRows.map((w) => ({
-    date: toDateKey(w.date),
+    date: toStoredDateKey(w.date),
     sleepMinutes: w.sleepMinutes,
     restingHeartRate: w.restingHeartRate,
     source: w.source,
@@ -130,12 +129,13 @@ export async function GET(request: Request) {
     ? parseBestEffortsCache(stravaAccount.bestEffortsCache)
     : [];
   const bestEffortBaseline = selectBestEffortBaseline(cachedBestEfforts);
+  const syncedStats = computeSyncedRunStats(activities);
   const athleteStats =
-    stravaAccount?.recentRunDistance != null
+    syncedStats.recentRunCount > 0 || syncedStats.ytdRunCount > 0
       ? {
-          recentRunMiles: stravaAccount.recentRunDistance / MILE_METERS,
-          recentRunCount: stravaAccount.recentRunCount ?? 0,
-          ytdRunMiles: (stravaAccount.ytdRunDistance ?? 0) / MILE_METERS,
+          recentRunMiles: syncedStats.recentRunMiles,
+          recentRunCount: syncedStats.recentRunCount,
+          ytdRunMiles: syncedStats.ytdRunMiles,
         }
       : undefined;
 

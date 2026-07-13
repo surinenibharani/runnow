@@ -66,6 +66,10 @@ type PaceSample = {
   weight: number;
   source: string;
   startDate: Date;
+  kind: "run" | "cross_train";
+  /** Fraction of estimated max HR when present (0–1+). */
+  hrPctMax: number | null;
+  workoutType: number | null;
 };
 
 type ActivityPaceRule = {
@@ -209,18 +213,29 @@ function extractPaceSample(
   const recencyWeight = Math.max(0.35, 1 - daysAgo(activity.startDate) / LOOKBACK_DAYS);
   const distanceWeight = Math.min(activity.distance / 5000, 1.5);
   const hrWeight = hrEffortMultiplier(activity, profile);
-  const weight = rule.baseWeight * recencyWeight * distanceWeight * hrWeight;
+  const workoutBoost =
+    activity.workoutType === 1 ? 1.35 : activity.workoutType === 3 ? 1.2 : 1;
+  const weight =
+    rule.baseWeight * recencyWeight * distanceWeight * hrWeight * workoutBoost;
 
   const source =
     rule.kind === "run"
       ? activity.type.replace(/_/g, " ")
       : `cross-training (${activity.type.replace(/_/g, " ")})`;
 
+  let hrPctMax: number | null = null;
+  if (activity.averageHeartrate && profile) {
+    hrPctMax = activity.averageHeartrate / estimateMaxHeartRate(profile);
+  }
+
   return {
     runEquivSpeedMps,
     weight,
     source,
     startDate: activity.startDate,
+    kind: rule.kind,
+    hrPctMax,
+    workoutType: activity.workoutType ?? null,
   };
 }
 
@@ -231,6 +246,12 @@ type Baseline = {
   note: string;
 };
 
+/**
+ * Estimate race-capable speed from training samples.
+ * Easy aerobic miles dominate Strava history — averaging them as "5K pace"
+ * makes projections and zones far too slow. Prefer faster / harder efforts
+ * and convert clearly-easy paces toward race effort.
+ */
 function selectBaseline(
   samples: PaceSample[],
   runCount: number,
@@ -238,37 +259,72 @@ function selectBaseline(
 ): Baseline | null {
   if (samples.length === 0) return null;
 
-  const fiveKProxies = samples.filter((s) => {
+  const plausible = samples.filter((s) => {
     const implied5kTime = FIVE_K_METERS / s.runEquivSpeedMps;
-    return implied5kTime >= 14 * 60 && implied5kTime <= 40 * 60;
+    return implied5kTime >= 12 * 60 && implied5kTime <= 55 * 60;
   });
+  const pool = plausible.length > 0 ? plausible : samples;
+  const runPool = pool.filter((s) => s.kind === "run");
+  const primary = runPool.length > 0 ? runPool : pool;
 
-  const pool = fiveKProxies.length > 0 ? fiveKProxies : samples;
-  const best = [...pool].sort((a, b) => b.runEquivSpeedMps - a.runEquivSpeedMps)[0];
+  const sorted = [...primary].sort(
+    (a, b) => b.runEquivSpeedMps - a.runEquivSpeedMps
+  );
+  const topCount = Math.max(1, Math.ceil(sorted.length * 0.3));
+  const top = sorted.slice(0, topCount);
 
   let weightedSpeed = 0;
   let totalWeight = 0;
-  for (const sample of pool) {
+  for (const sample of top) {
     weightedSpeed += sample.runEquivSpeedMps * sample.weight;
     totalWeight += sample.weight;
   }
-
   if (totalWeight <= 0) return null;
 
-  const blendedSpeed = weightedSpeed / totalWeight;
-  const useBest = best.runEquivSpeedMps > blendedSpeed * 1.08;
-  const anchorSpeed = useBest
-    ? best.runEquivSpeedMps * 0.65 + blendedSpeed * 0.35
-    : blendedSpeed;
+  let anchorSpeed = weightedSpeed / totalWeight;
+  const best = sorted[0];
+
+  // Detect easy-dominated sample: few races/workouts and low HR share.
+  const hardTagged = top.filter(
+    (s) =>
+      s.workoutType === 1 ||
+      s.workoutType === 3 ||
+      (s.hrPctMax != null && s.hrPctMax >= 0.85)
+  );
+  const easyLooking =
+    hardTagged.length === 0 &&
+    top.every(
+      (s) =>
+        s.hrPctMax == null ||
+        s.hrPctMax < 0.8 ||
+        (s.workoutType !== 1 && s.workoutType !== 3)
+    );
+
+  let convertedFromEasy = false;
+  if (easyLooking && primary === runPool) {
+    // Typical recreational gap: easy ~15–20% slower than 5K race pace.
+    anchorSpeed *= 1.16;
+    convertedFromEasy = true;
+  } else if (hardTagged.length === 0 && best.runEquivSpeedMps > anchorSpeed) {
+    // Bias toward the freshest hard-ish effort without treating one outlier as race form.
+    anchorSpeed = best.runEquivSpeedMps * 0.55 + anchorSpeed * 0.45;
+  }
+
+  // Clamp implied 5K to a sane beginner→advanced band.
+  const implied5k = FIVE_K_METERS / anchorSpeed;
+  if (implied5k < 13 * 60) anchorSpeed = FIVE_K_METERS / (13 * 60);
+  if (implied5k > 50 * 60) anchorSpeed = FIVE_K_METERS / (50 * 60);
 
   const referenceDistance = FIVE_K_METERS;
   const movingTimeSeconds = referenceDistance / anchorSpeed;
 
   let confidence: ProjectionConfidence = "low";
-  if (runCount >= 5 && crossTrainCount === 0) confidence = "high";
-  else if (runCount >= 4) confidence = "medium";
+  if (runCount >= 5 && !convertedFromEasy && hardTagged.length > 0) {
+    confidence = "high";
+  } else if (runCount >= 4) confidence = "medium";
   else if (runCount >= 2 && crossTrainCount > 0) confidence = "medium";
   else if (runCount >= 1 || crossTrainCount >= 2) confidence = "low";
+  if (convertedFromEasy && confidence === "high") confidence = "medium";
 
   const recent = daysAgo(best.startDate) <= 21;
   if (confidence === "high" && !recent) confidence = "medium";
@@ -284,10 +340,14 @@ function selectBaseline(
   }
 
   let note = `Based on ${parts.join(" and ")}`;
-  if (useBest && best.source.toLowerCase().includes("cross")) {
+  if (convertedFromEasy) {
+    note += " · estimated race pace from easier training (zones use race-effort, not jog pace)";
+  } else if (runPool.length === 0) {
     note += " · cross-training converted to run-equivalent pace";
   } else if (crossTrainCount > 0 && runCount > 0) {
-    note += " · blended with run-equivalent cross-training efforts";
+    note += " · fastest recent efforts weighted highest";
+  } else {
+    note += " · fastest recent efforts weighted highest";
   }
 
   return {
@@ -410,44 +470,45 @@ function buildPaceZones(
   const { easyOffset } = getZoneAdjustments(profile);
   const p = fiveKPaceSecPerMile;
 
+  // Offsets relative to true 5K race pace (Daniels / McMillan-style recreational bands).
   const defs: Array<Omit<PaceZone, "paceRange">> = [
     {
       id: "recovery",
       label: "Recovery",
       description: "Very easy — full conversation, active rest",
-      minSecondsPerMile: p + 105 + easyOffset,
-      maxSecondsPerMile: p + 135 + easyOffset,
+      minSecondsPerMile: p + 100 + easyOffset,
+      maxSecondsPerMile: p + 140 + easyOffset,
       color: ZONE_COLORS.recovery,
     },
     {
       id: "easy",
       label: "Easy",
       description: "Aerobic base — conversational effort",
-      minSecondsPerMile: p + 75 + easyOffset,
-      maxSecondsPerMile: p + 105 + easyOffset,
+      minSecondsPerMile: p + 70 + easyOffset,
+      maxSecondsPerMile: p + 100 + easyOffset,
       color: ZONE_COLORS.easy,
     },
     {
       id: "marathon",
       label: "Marathon",
       description: "Sustainable race-day marathon effort",
-      minSecondsPerMile: p + 42 + Math.round(easyOffset * 0.25),
-      maxSecondsPerMile: p + 55 + Math.round(easyOffset * 0.25),
+      minSecondsPerMile: p + 35 + Math.round(easyOffset * 0.25),
+      maxSecondsPerMile: p + 50 + Math.round(easyOffset * 0.25),
       color: ZONE_COLORS.marathon,
     },
     {
       id: "threshold",
       label: "Threshold",
       description: "Comfortably hard — ~1-hour race effort",
-      minSecondsPerMile: p + 20,
-      maxSecondsPerMile: p + 32,
+      minSecondsPerMile: p + 15,
+      maxSecondsPerMile: p + 28,
       color: ZONE_COLORS.threshold,
     },
     {
       id: "interval",
       label: "Interval",
       description: "Hard repeats — near 5K race effort",
-      minSecondsPerMile: p - 5,
+      minSecondsPerMile: p - 8,
       maxSecondsPerMile: p + 8,
       color: ZONE_COLORS.interval,
     },
@@ -455,8 +516,8 @@ function buildPaceZones(
       id: "repetition",
       label: "Repetition",
       description: "Short, fast reps — mile or faster",
-      minSecondsPerMile: p - 25,
-      maxSecondsPerMile: p - 10,
+      minSecondsPerMile: p - 30,
+      maxSecondsPerMile: p - 12,
       color: ZONE_COLORS.repetition,
     },
   ];

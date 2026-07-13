@@ -8,13 +8,14 @@ import { PLAN_SEO_KEYWORDS } from "@/lib/seo/keywords";
 const PLAN_KEYWORDS = [
   ...PLAN_SEO_KEYWORDS,
   "5k training plan",
+  "10k training plan",
   "half marathon training plan",
   "marathon training plan",
   SITE_NAME,
 ] as const;
 
 export const PLAN_INDEX_DESCRIPTION =
-  "Free couch to 5K plan for beginners — 8-week running schedule in your browser, no app required. Half marathon and marathon plans from 4–16 weeks with cross-training, rest days, and progress tracking.";
+  "Free couch to 5K and 10K plans for beginners — running schedules in your browser, no app required. Half marathon and marathon plans from 4–16 weeks with cross-training, rest days, and progress tracking.";
 
 function truncateDescription(text: string, max = 158): string {
   if (text.length <= max) return text;
@@ -27,7 +28,9 @@ export function getPlanMetaDescription(plan: TrainingPlan): string {
   const lead =
     plan.familyId === "5k"
       ? `Free couch to 5K plan (${plan.duration}) — beginner running schedule, no app.`
-      : `Free ${plan.name} plan (${plan.duration}) — beginner running schedule in your browser.`;
+      : plan.familyId === "10k"
+        ? `Free 10K training plan (${plan.duration}) — build from a 5K base in your browser.`
+        : `Free ${plan.name} plan (${plan.duration}) — beginner running schedule in your browser.`;
 
   return truncateDescription(
     `${lead} ${plan.description} ${plan.runsPerWeek} runs per week with cross-training, rest days, and progress tracking.`
@@ -37,6 +40,9 @@ export function getPlanMetaDescription(plan: TrainingPlan): string {
 export function getPlanPageTitle(plan: TrainingPlan): string {
   if (plan.id === "5k-8w") {
     return "Free Couch to 5K Plan (8 Weeks) for Beginners";
+  }
+  if (plan.id === "10k-8w") {
+    return "Free 10K Training Plan (8 Weeks) for Beginners";
   }
   return `Free ${plan.name} Training Plan (${plan.duration})`;
 }
@@ -59,7 +65,7 @@ export function buildPlanPageMetadata(planId?: string | null): Metadata {
   }
 
   return pageMetadata({
-    title: "Free Running Training Plans — Couch to 5K, Half & Marathon",
+    title: "Free Running Training Plans — 5K, 10K, Half & Marathon",
     description: PLAN_INDEX_DESCRIPTION,
     path: "/plan",
     keywords: [...PLAN_KEYWORDS],

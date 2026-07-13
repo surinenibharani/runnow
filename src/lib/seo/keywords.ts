@@ -25,13 +25,13 @@ export const HOME_SEO_KEYWORDS = [
 export const PLAN_SEO_KEYWORDS = [
   ...GLOBAL_SEO_KEYWORDS,
   "8 week couch to 5k plan",
+  "8 week 10k training plan beginner",
   "12 week half marathon plan",
   "16 week marathon plan beginner",
   "running schedule 3 days a week",
   "cross training running plan",
   "customize run days",
 ] as const;
-
 export const BLOG_SEO_KEYWORDS = [
   ...GLOBAL_SEO_KEYWORDS,
   "beginner running tips",
@@ -166,6 +166,46 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "start running after 50",
     "beginner running guide over 50",
     "masters beginner running plan",
+  ],
+  "postpartum-return-to-run": [
+    "postpartum return to running",
+    "when can I run after pregnancy",
+    "pelvic floor running after birth",
+  ],
+  "stress-fracture-running": [
+    "stress fracture from running",
+    "bone stress injury runners",
+    "shin stress fracture symptoms",
+  ],
+  "hot-weather-running-hub": [
+    "running in hot weather tips",
+    "summer running hydration heat",
+    "when to skip run in heat",
+  ],
+  "race-taper-guide": [
+    "how to taper for a race beginner",
+    "race week taper running",
+    "taper before 5k 10k half marathon",
+  ],
+  "race-anxiety-nerves": [
+    "race day anxiety tips",
+    "nervous before first 5k",
+    "calm pre race nerves running",
+  ],
+  "gps-watch-vs-no-watch": [
+    "do I need a GPS watch to run",
+    "running without a watch beginner",
+    "GPS watch vs phone running",
+  ],
+  "stroller-running-guide": [
+    "jogging stroller running tips",
+    "how to run with a stroller",
+    "stroller running form postpartum",
+  ],
+  "dog-running-guide": [
+    "running with dog beginner",
+    "how far can dogs run",
+    "dog running leash tips heat",
   ],
   "training-half-and-full-marathon-same-season": [
     "train for half marathon and marathon same time",
