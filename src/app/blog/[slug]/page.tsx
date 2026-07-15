@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { PostContent } from "@/components/blog/post-content";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getCommentCount } from "@/lib/blog/comment-counts";
+import { getContentLikeStateForSession } from "@/lib/engagement/content-likes";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd } from "@/lib/seo";
 import {
   postOgImageMeta,
@@ -111,6 +112,7 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
   const scheduled = isBlogPostScheduled(post.publishedAt);
   const related = getRelatedPosts(post, preview);
   const commentCount = await getCommentCount(slug);
+  const likeState = await getContentLikeStateForSession("blog", slug);
 
   return (
     <div className="py-12 sm:py-16">
@@ -147,6 +149,8 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
             post={post}
             related={related}
             commentCount={commentCount}
+            likeCount={likeState.count}
+            likedByMe={likeState.liked}
             scheduled={preview && scheduled}
           />
 

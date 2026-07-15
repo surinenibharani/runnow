@@ -273,6 +273,26 @@ export const runnerTips: RunnerTip[] = [
       "Training harder while eating less is a common path to fatigue, niggles, and stress injuries — not toughness. Match food to the work: a carb-friendly snack before longer or harder runs, a real meal after, and enough total calories across the day so easy miles still feel easy. Skip the habit of stacking mileage on a diet deficit. Warning signs worth taking seriously include constant tiredness, stalled progress, recurring bone or soft-tissue pain, frequent illness, and (if you menstruate) missed or irregular periods. When those stack up, ease training and fuel more — and get clinical help if they persist. Under-eating isn't a badge; food is training gear.",
     blogSlug: "reds-low-energy-availability-runners",
   },
+  {
+    slug: slugifyTipTitle("Skip the first-year marathon — climb the ladder"),
+    icon: Footprints,
+    illustration: "calendar",
+    category: "Training",
+    title: "Skip the first-year marathon — climb the ladder",
+    content:
+      "Lungs adapt faster than tendons and bone — and age plus starting fitness change the timeline. A very fit multi-sport athlete might move faster; a normal beginner usually needs 5K → 10K → a couple of half seasons before 26.2. Keep easy days easy, trust your coach over ego, and refuse the comparison trap.",
+    blogSlug: "dont-run-a-marathon-in-your-first-year",
+  },
+  {
+    slug: slugifyTipTitle("Trust the coach — they're not trying to end you"),
+    icon: Footprints,
+    illustration: "mindset",
+    category: "Training",
+    title: "Trust the coach — they're not trying to end you",
+    content:
+      "Insultingly easy days, cutback weeks, and pacers who ignore your mile-four Speedy Gonzales proposal usually aren't personal — they're load management. They also can't read your mind or feel your shin. Talk early about pain, dread, sleep crashes, life chaos, or goal doubt; mid-race, a short clear signal beats tough-person silence. Stop for gait-changing pain, chest symptoms, or illness even if the calendar says go.",
+    blogSlug: "trust-your-coach-and-pacer",
+  },
 ];
 
 export const tipsPageGuides = [

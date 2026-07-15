@@ -324,4 +324,34 @@ export const SOURCES = {
     href: "https://www.mayoclinic.org/diseases-conditions/heat-exhaustion/symptoms-causes/syc-20373250",
     publisher: "Mayo Clinic",
   },
+  tendonAdaptationBohm2015: {
+    label:
+      "Human tendon adaptation to mechanical loading — systematic review & meta-analysis (Bohm, Mersmann & Arampatzis, 2015)",
+    href: "https://doi.org/10.1186/s40798-015-0009-9",
+    publisher: "Sports Medicine - Open",
+  },
+  tendonCollagenSynthesisMiller2005: {
+    label:
+      "Coordinated collagen and muscle protein synthesis after exercise (Miller et al., 2005)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/16002437/",
+    publisher: "PubMed / Journal of Physiology",
+  },
+  boneStressWorkloadWarden2021: {
+    label:
+      "Preventing bone stress injuries in runners with optimal workload (Warden, Edwards & Willy, 2021)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8316280/",
+    publisher: "Current Osteoporosis Reports / PMC",
+  },
+  boneStressExercisePrescription2022: {
+    label:
+      "Exercise prescription for stress fracture prevention — physiologic paradoxes (Hughes et al., 2022)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9679355/",
+    publisher: "PMC",
+  },
+  runningInjuriesVanGent2007: {
+    label:
+      "Incidence and determinants of lower extremity running injuries in long distance runners — systematic review (van Gent et al., 2007)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/17473005/",
+    publisher: "PubMed / British Journal of Sports Medicine",
+  },
 } satisfies Record<string, BlogSource>;

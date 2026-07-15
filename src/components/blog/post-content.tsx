@@ -7,6 +7,7 @@ import { BlogSectionBlock } from "@/components/blog/blog-section";
 import { BlogTableOfContents } from "@/components/blog/blog-table-of-contents";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { PostShareButtons } from "@/components/blog/post-share-buttons";
+import { ContentLikeButton } from "@/components/engagement/content-like-button";
 import { BlogComments } from "@/components/blog/blog-comments";
 import { RelatedPosts } from "@/components/blog/related-posts";
 import { RelatedTips } from "@/components/tips/related-tips";
@@ -19,6 +20,8 @@ type PostContentProps = {
   post: BlogPost;
   related?: BlogPost[];
   commentCount?: number;
+  likeCount?: number;
+  likedByMe?: boolean;
   previewToken?: string;
   scheduled?: boolean;
 };
@@ -27,6 +30,8 @@ export function PostContent({
   post,
   related = [],
   commentCount = 0,
+  likeCount = 0,
+  likedByMe = false,
   previewToken,
   scheduled = false,
 }: PostContentProps) {
@@ -100,12 +105,19 @@ export function PostContent({
               : `${commentCount} comment${commentCount === 1 ? "" : "s"}`}
           </Link>
         </div>
-        <PostShareButtons
-          title={post.title}
-          url={getBlogPostCanonicalUrl(post.slug, previewToken)}
-          displayUrl={getBlogPostDisplayUrl(post.slug)}
-          className="mt-6 pt-6 border-t border-border/60"
-        />
+        <div className="mt-6 space-y-5 border-t border-border/60 pt-6">
+          <ContentLikeButton
+            targetType="blog"
+            targetSlug={post.slug}
+            initialCount={likeCount}
+            initialLiked={likedByMe}
+          />
+          <PostShareButtons
+            title={post.title}
+            url={getBlogPostCanonicalUrl(post.slug, previewToken)}
+            displayUrl={getBlogPostDisplayUrl(post.slug)}
+          />
+        </div>
       </header>
 
       <BlogTableOfContents

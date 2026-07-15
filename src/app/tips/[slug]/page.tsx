@@ -8,8 +8,10 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { TipCard } from "@/components/tips/tip-card";
 import { TipIllustration } from "@/components/tips/tip-illustration";
+import { ContentLikeButton } from "@/components/engagement/content-like-button";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { getPublishedPostBySlug } from "@/lib/blog/posts";
+import { getContentLikeStateForSession } from "@/lib/engagement/content-likes";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
@@ -57,6 +59,7 @@ export default async function TipDetailPage({ params }: PageProps) {
   if (!tip) notFound();
 
   const post = tip.blogSlug ? getPublishedPostBySlug(tip.blogSlug) : undefined;
+  const likeState = await getContentLikeStateForSession("tip", slug);
   const pageUrl = `${SITE_URL}/tips/${slug}`;
   const seoTitleText = tipSeoTitle(tip);
   const description = tipMetaDescription(tip);
@@ -119,6 +122,13 @@ export default async function TipDetailPage({ params }: PageProps) {
                 <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
                   {tip.content}
                 </p>
+                <ContentLikeButton
+                  targetType="tip"
+                  targetSlug={tip.slug}
+                  initialCount={likeState.count}
+                  initialLiked={likeState.liked}
+                  className="mt-6"
+                />
                 {tip.blogSlug && post && (
                   <Link
                     href={`/blog/${tip.blogSlug}`}

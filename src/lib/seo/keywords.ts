@@ -91,6 +91,20 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "how to start running from zero",
   ],
   "training-first-5k": ["first 5k training plan", "train for first 5k beginner"],
+  "dont-run-a-marathon-in-your-first-year": [
+    "should I run a marathon in my first year",
+    "how long to train before first marathon",
+    "5k to 10k to half to marathon progression",
+    "tendons joints adapt marathon training years",
+  ],
+  "trust-your-coach-and-pacer": [
+    "trust your running coach",
+    "why running coach makes easy days slow",
+    "race day pacer tips",
+    "when to talk to running coach",
+    "tell coach about pain anxiety",
+    "when to stop a run injury",
+  ],
   "training-first-10k": [
     "first 10k training plan beginner",
     "how to train for a 10k after 5k",

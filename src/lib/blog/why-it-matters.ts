@@ -188,6 +188,10 @@ export const whyItMattersBySlug: Record<string, string> = {
     "When training outruns fueling, bone, hormones, and immunity pay first. Enough food is performance equipment — not a character flaw.",
   "bone-health-masters-runners":
     "Masters bone health is strength + fuel + smart impact, not mileage alone. Know when DEXA and modified loading beat another tempo.",
+  "dont-run-a-marathon-in-your-first-year":
+    "Lungs adapt in months; tendons and bone need seasons — and age plus starting fitness change how long. A fit multi-sport athlete might compress the path; a normal beginner usually needs patience, half seasons, and trust the coach or plan over ego.",
+  "trust-your-coach-and-pacer":
+    "Easy days, cutbacks, and stubborn pacers feel personal — usually they're protecting the distance from your ego. They still can't see inside your head or tissues: speak up early, and stop for medical red flags even when the plan says go.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

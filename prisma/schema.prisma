@@ -30,6 +30,7 @@ model User {
   activities               Activity[]
   dailyWellness            DailyWellness[]
   blogComments             BlogComment[]
+  contentLikes             ContentLike[]
   trainingPlan             UserTrainingPlan?
   coachedTeams             Team[]            @relation("CoachTeams")
   teamMemberships          TeamMember[]
@@ -145,6 +146,22 @@ model BlogComment {
   createdAt  DateTime @default(now())
 
   @@index([postSlug, createdAt])
+}
+
+// User likes on file-based blog posts or tips, keyed by slug.
+// Guests use identityKey "anon:<cookie>"; signed-in users use "user:<id>".
+model ContentLike {
+  id          String   @id @default(cuid())
+  // "blog" | "tip"
+  targetType  String
+  targetSlug  String
+  identityKey String
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@unique([identityKey, targetType, targetSlug])
+  @@index([targetType, targetSlug])
 }
 
 model UserTrainingPlan {
