@@ -10,6 +10,7 @@ import { remainingGapPosts } from "./posts-remaining-gaps";
 import { surfaceGapPosts } from "./posts-surface-gaps";
 import { heartDeepDivePosts } from "./posts-heart-deep-dives";
 import { zonesLungsDeepDivePosts } from "./posts-zones-lungs-deep-dives";
+import { competitiveGapPosts } from "./posts-competitive-gaps";
 
 export const BLOG_AUTHOR = "B";
 
@@ -5867,6 +5868,7 @@ export const blogPosts: BlogPost[] = [
   ...surfaceGapPosts,
   ...heartDeepDivePosts,
   ...zonesLungsDeepDivePosts,
+  ...competitiveGapPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

@@ -293,6 +293,31 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "increase lung capacity running",
     "breathing strength for runners",
   ],
+  "altitude-travel-race-running": [
+    "running at altitude race tips",
+    "destination race travel running",
+    "altitude acclimation for runners",
+  ],
+  "foam-rolling-mobility-runners": [
+    "foam rolling for runners",
+    "mobility routine for runners beginners",
+    "should runners stretch before running",
+  ],
+  "cadence-drills-runners": [
+    "running cadence drills beginners",
+    "180 steps per minute myth",
+    "how to increase running cadence",
+  ],
+  "none-to-run-gentle-beginners": [
+    "none to run beginner plan",
+    "ultra gentle couch to 5k",
+    "walk first running plan overweight",
+  ],
+  "workplace-lunch-run": [
+    "lunch run at work tips",
+    "how to run on lunch break",
+    "office midday running routine",
+  ],
   "training-half-and-full-marathon-same-season": [
     "train for half marathon and marathon same time",
     "half marathon before marathon training plan",

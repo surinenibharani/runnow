@@ -212,6 +212,46 @@ export const runnerTips: RunnerTip[] = [
       "Catch-up stacks cause injuries. Repeat the week you left, or resume easy. Adaptive plans on LetsRunNow will nudge you to stay patient.",
     blogSlug: "what-to-do-when-you-miss-a-run",
   },
+  {
+    slug: slugifyTipTitle("Nudge cadence — don't chase 180"),
+    icon: Footprints,
+    illustration: "easy-pace",
+    category: "Training",
+    title: "Nudge cadence — don't chase 180",
+    content:
+      "Count your easy-pace steps for 30 seconds and double. If you want a tweak, aim about 5–10% quicker with shorter, quieter steps — not a forced celebrity cadence.",
+    blogSlug: "cadence-drills-runners",
+  },
+  {
+    slug: slugifyTipTitle("Mobility in minutes, not marathons"),
+    icon: Activity,
+    illustration: "warmup",
+    category: "Recovery",
+    title: "Mobility in minutes, not marathons",
+    content:
+      "A short walk and a few leg swings beat a 40-minute flow you'll abandon. Optional foam rolling: a few minutes on calves and quads after hard days is enough.",
+    blogSlug: "foam-rolling-mobility-runners",
+  },
+  {
+    slug: slugifyTipTitle("Pack a lunch-run kit under your desk"),
+    icon: Clock,
+    illustration: "calendar",
+    category: "Scheduling",
+    title: "Pack a lunch-run kit under your desk",
+    content:
+      "Shoes, shorts, wipes, deodorant, spare shirt. Keep midday runs easy and short enough to return human for the 1 p.m. meeting.",
+    blogSlug: "workplace-lunch-run",
+  },
+  {
+    slug: slugifyTipTitle("Arrive early for altitude races"),
+    icon: CloudRain,
+    illustration: "heat",
+    category: "Racing",
+    title: "Arrive early for altitude races",
+    content:
+      "Sea-level pace goals often fail at elevation. Land early when you can, keep the first 48 hours easy, and race by feel — not your hometown splits.",
+    blogSlug: "altitude-travel-race-running",
+  },
 ];
 
 export const tipsPageGuides = [

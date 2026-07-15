@@ -172,6 +172,16 @@ export const whyItMattersBySlug: Record<string, string> = {
     "VO₂max gets screenshots; blood pressure gets decades. Consistent aerobic running is a lifestyle lever for many hypertensive adults — with clinical care, not instead of it.",
   "training-lungs-for-running":
     "Lungs rarely ‘expand’ like a party balloon — ventilation skill, respiratory muscle endurance, and honest easy pacing make breathing feel easier for real.",
+  "altitude-travel-race-running":
+    "Destination races change the oxygen math. Arriving early, racing by effort, and knowing altitude red flags beats sea-level ego at 7,000 feet.",
+  "foam-rolling-mobility-runners":
+    "Mobility shouldn't be a part-time job. Short warm-ups, optional rolling, and strength beat 40-minute routines you'll abandon by week two.",
+  "cadence-drills-runners":
+    "Cadence is a tunable dial, not a mandatory 180. Small step-rate nudges plus soft landings help some runners without form panic.",
+  "none-to-run-gentle-beginners":
+    "Standard couch-to-5K still feels like a cliff for some bodies. A walk-first, micro-jog path builds habit without shame.",
+  "workplace-lunch-run":
+    "If mornings and evenings fail, a packed lunch-run kit and an easy midday loop keep the calendar honest.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

@@ -228,6 +228,32 @@ export const SOURCES = {
     href: "https://www.mayoclinic.org/healthy-lifestyle/stress-management/in-depth/decrease-stress-by-using-your-breath/art-20247654",
     publisher: "Mayo Clinic",
   },
+  altitudeSicknessCleveland: {
+    label: "Altitude sickness — symptoms, causes & prevention",
+    href: "https://my.clevelandclinic.org/health/diseases/15111-altitude-sickness",
+    publisher: "Cleveland Clinic",
+  },
+  cdcHighAltitudeTravel: {
+    label: "High-altitude travel and altitude illness (Yellow Book)",
+    href: "https://wwwnc.cdc.gov/travel/yellowbook/2024/environmental-hazards-risks/high-altitude-travel-and-altitude-illness",
+    publisher: "CDC / Travelers' Health",
+  },
+  mayoTravelHealth: {
+    label: "How to stay healthy while traveling",
+    href: "https://mcpress.mayoclinic.org/living-well/how-to-stay-healthy-while-traveling-tips-for-flights-cruises-and-road-trips/",
+    publisher: "Mayo Clinic Press",
+  },
+  foamRollingBehm2015: {
+    label:
+      "Foam rolling acute effects on ROM and muscle performance (Behm & Cheatham / related literature)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/27614883/",
+    publisher: "PubMed / Frontiers Physiol context reviews",
+  },
+  stretchingMayo: {
+    label: "Stretching: Focus on flexibility",
+    href: "https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/stretching/art-20047931",
+    publisher: "Mayo Clinic",
+  },
   heatSafety: {
     label: "Exercising safely in the summer heat",
     href: "https://communityhealth.mayoclinic.org/featured-stories/exercise-summer-heat",
