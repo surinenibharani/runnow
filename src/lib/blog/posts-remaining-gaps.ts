@@ -1680,7 +1680,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Why run, myths about age and knees, when to check with a doctor, first shoes and clothes, where to start if you're lost, and how to begin with walk-run — one calm map with links when you want the deeper version.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-07-30",
+    publishedAt: "2026-07-15",
     readTime: "14 min",
     relatedSlugs: [
       "never-ran-where-to-start",

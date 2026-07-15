@@ -374,7 +374,7 @@ export const competitiveGapPosts: BlogPost[] = [
       "High BMI, long layoff, fear of jogging, or joints that hate surprise impact? A 12–16 week walk-first progression, mindset rules, and when to graduate into a standard beginner 5K plan — without shame.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-07-30",
+    publishedAt: "2026-07-15",
     readTime: "13 min",
     relatedSlugs: [
       "beginner-running-a-to-z",
