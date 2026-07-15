@@ -105,6 +105,20 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "tell coach about pain anxiety",
     "when to stop a run injury",
   ],
+  "running-does-not-ruin-your-knees": [
+    "does running ruin your knees myth",
+    "running and knee osteoarthritis research",
+    "is jogging bad for joints",
+    "running strengthens knees",
+    "masters runners knee health",
+  ],
+  "beginner-running-a-to-z": [
+    "how to start running for beginners",
+    "absolute beginner running guide",
+    "running a to z for beginners",
+    "first time runner checklist",
+    "walk run method for beginners",
+  ],
   "training-first-10k": [
     "first 10k training plan beginner",
     "how to train for a 10k after 5k",

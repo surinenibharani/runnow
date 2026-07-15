@@ -354,4 +354,34 @@ export const SOURCES = {
     href: "https://pubmed.ncbi.nlm.nih.gov/17473005/",
     publisher: "PubMed / British Journal of Sports Medicine",
   },
+  runningKneeOAAlentornGeli2017: {
+    label:
+      "Recreational vs competitive running and hip/knee osteoarthritis — systematic review & meta-analysis (Alentorn-Geli et al., 2017)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/28504066/",
+    publisher: "PubMed / Journal of Orthopaedic & Sports Physical Therapy",
+  },
+  runningKneeOALo2017: {
+    label:
+      "History of running and symptomatic knee osteoarthritis — Osteoarthritis Initiative (Lo et al., 2017)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/27333572/",
+    publisher: "PubMed / Arthritis Care & Research",
+  },
+  runningKneeOALo2018: {
+    label:
+      "Running does not increase symptoms or structural progression in people with knee OA — OAI data (Lo et al., 2018)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/29728929/",
+    publisher: "PubMed / Clinical Rheumatology",
+  },
+  runningKneeOADhillon2023: {
+    label:
+      "Effects of running on development of knee osteoarthritis — updated systematic review (Dhillon et al., 2023)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/36875337/",
+    publisher: "PubMed / Orthopaedic Journal of Sports Medicine",
+  },
+  longDistanceRunningKneeOAChakravarty2008: {
+    label:
+      "Long distance running and knee osteoarthritis — prospective study (Chakravarty et al., 2008)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/18692736/",
+    publisher: "PubMed / American Journal of Preventive Medicine",
+  },
 } satisfies Record<string, BlogSource>;

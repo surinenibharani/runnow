@@ -192,6 +192,10 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Lungs adapt in months; tendons and bone need seasons — and age plus starting fitness change how long. A fit multi-sport athlete might compress the path; a normal beginner usually needs patience, half seasons, and trust the coach or plan over ego.",
   "trust-your-coach-and-pacer":
     "Easy days, cutbacks, and stubborn pacers feel personal — usually they're protecting the distance from your ego. They still can't see inside your head or tissues: speak up early, and stop for medical red flags even when the plan says go.",
+  "running-does-not-ruin-your-knees":
+    "Recreational running is not a kneecap death sentence in journal reviews — mindful load, strength, age-aware recovery, and enough food help joints and connective tissue stay capable. Fix spikes and overuse pain; don't retire on a myth.",
+  "beginner-running-a-to-z":
+    "One calm map for absolute beginners: why run, myth filter, medical common sense, boring gear, walk-run start, easy effort, food/rest, and links when you're ready for the deeper chapter.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

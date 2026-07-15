@@ -1467,4 +1467,521 @@ export const remainingGapPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "running-does-not-ruin-your-knees",
+    metaTitle:
+      "Running Damages Knees? Myth — What Journals Say & What To Do",
+    title:
+      "\"Running Ruins Your Knees\" Is a Myth — Here's What Medical Journals Actually Show",
+    excerpt:
+      "Family dinners love this scare story. Systematic reviews and Osteoarthritis Initiative data paint a different picture: mindful recreational running is not a kneecap death sentence — and smart loading can help joints stay capable. Age, nutrition, and what to do next.",
+    category: "Health",
+    author: AUTHOR,
+    publishedAt: "2026-07-28",
+    readTime: "12 min",
+    relatedSlugs: [
+      "runners-knee-running",
+      "avoiding-injuries",
+      "bodyweight-strength-for-runners",
+      "bone-health-masters-runners",
+      "nutrition-for-runners",
+      "easy-runs-effort-heart-rate",
+      "it-band-syndrome-running",
+      "dont-run-a-marathon-in-your-first-year",
+    ],
+    closingQuestion:
+      "Who first told you running would wreck your knees — and what evidence (or lack of it) were they trading on?",
+    sources: [
+      SOURCES.runningKneeOAAlentornGeli2017,
+      SOURCES.runningKneeOALo2017,
+      SOURCES.runningKneeOALo2018,
+      SOURCES.runningKneeOADhillon2023,
+      SOURCES.longDistanceRunningKneeOAChakravarty2008,
+      SOURCES.tendonAdaptationBohm2015,
+      SOURCES.tendonCollagenSynthesisMiller2005,
+      SOURCES.patellofemoralPain,
+      SOURCES.itBandSyndrome,
+      SOURCES.strengthForRunners,
+      SOURCES.runningNutrition,
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.acsmExercisePrescription2009,
+      SOURCES.preParticipationScreening,
+      SOURCES.exerciseWithOsteoporosis,
+    ],
+    faq: [
+      {
+        question: "Does running cause knee osteoarthritis?",
+        answer:
+          "Large reviews do not show recreational running as a reliable cause of knee OA compared with being less active. In a major meta-analysis, recreational runners had a lower prevalence of hip/knee OA than sedentary controls; competitive/elite contexts look different and can be confounded by prior injury and extreme volume. Short-term systematic reviews also fail to show running as a clear accelerator of radiographic OA.",
+      },
+      {
+        question: "If running is fine, why do so many runners get knee pain?",
+        answer:
+          "Overuse pain (like runner's knee / PFPS or IT band irritation) is real — and different from 'mileage grinding cartilage into dust.' Spikes in volume, always-hard paces, weak hips, and ignoring early niggles cause many flare-ups. Fix the training error; don't retire the sport based on a dinner-table myth.",
+      },
+      {
+        question: "I already have knee osteoarthritis — can I still run?",
+        answer:
+          "Often yes with clinician guidance. Osteoarthritis Initiative analyses found running was not associated with worse symptoms or faster structural progression in people who already had knee OA. That is not a free pass to ignore locking, giving way, big swelling, or your clinician's limits — start easy, strength-train, and progress slowly.",
+      },
+      {
+        question: "Does age mean I should quit running to save my knees?",
+        answer:
+          "No automatic rule. Masters runners may need more recovery, strength, and patience with mileage jumps — but healthy aging guidelines still reward regular activity. Remaining active and strong usually beats a sudden sedentary swap done 'to protect the joints.'",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "**Educational only — not medical advice.** Persistent pain, locking, giving way, marked swelling, recent trauma, or known joint disease deserve a clinician's exam — not a blog diagnosis ([when to check first](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise-and-chronic-disease/art-20046049)).",
+          "Someone will say it at Thanksgiving, in a Facebook comment, or after you mention a 5K: *\"You'll destroy your knees.\"* The image is vivid — cartilage as eraser rubber, miles as sanding. The science, for typical recreational runners, is far less dramatic.",
+          "Here is the clearer story: **\"running ruins knees\" is mostly a myth** when people mean lifelong joint destruction from normal mindful jogging. Peer-reviewed syntheses and cohort data repeatedly fail to show recreational running as a kneecap death sentence. In fact, **appropriate loading** — plus strength, recovery, and fueling — is how joints, ligaments, and tendons stay capable.",
+          "What *does* hurt knees is boredom with basics: sudden mileage spikes, racing every easy day, ignoring gait-changing pain, skipping strength and food, and confusing overuse flares with \"proof the sport is evil.\"",
+        ],
+      },
+      {
+        id: "myth-vs-journals",
+        heading: "What medical journals actually show",
+        paragraphs: [
+          "Start with the big picture papers people rarely link under scary memes.",
+        ],
+        subsections: [
+          {
+            heading: "Recreational runners ≠ wrecked joints",
+            paragraphs: [
+              "A [2017 systematic review and meta-analysis in the *Journal of Orthopaedic & Sports Physical Therapy*](https://pubmed.ncbi.nlm.nih.gov/28504066/) (Alentorn-Geli et al.) pooled studies on hip and knee osteoarthritis. Among meta-analyzed participants, **overall OA prevalence was about 3.5% in recreational runners, 10.2% in sedentary controls, and 13.3% in competitive runners**. Recreational runners were not the \"most destroyed\" group — sedentary living was not the joint spa day folklore invents.",
+              "Important nuance the paper itself stresses: competitive/elite pools are different animals (prior traumatic injuries, extreme exposure, selection). Causation is messy. Still, the dinner-table claim that *any* running equals inevitable knee ruin does not match the recreational signal.",
+            ],
+          },
+          {
+            heading: "Osteoarthritis Initiative: running history wasn't the villain",
+            paragraphs: [
+              "Using community-recruited Osteoarthritis Initiative participants, [Lo and colleagues (*Arthritis Care & Research*, 2017)](https://pubmed.ncbi.nlm.nih.gov/27333572/) asked whether a history of leisure running associated with more frequent knee pain, radiographic OA, or symptomatic OA. **Self-selected runners were not at increased risk of symptomatic knee OA** versus never-runners; trends often favored runners, and authors concluded running did not appear detrimental to knees in people without OA.",
+              "In a follow-up analysis of people who already had knee OA, [Lo et al. (*Clinical Rheumatology*, 2018)](https://pubmed.ncbi.nlm.nih.gov/29728929/) reported that **running was not associated with increased symptoms or structural progression** in that OAI sample. Again: guidance from *your* clinician still wins — these data undercut the panic that jogging automatically accelerates OA.",
+            ],
+          },
+          {
+            heading: "Updated reviews, older long-distance cohorts",
+            paragraphs: [
+              "An [updated 2023 systematic review in the *Orthopaedic Journal of Sports Medicine*](https://pubmed.ncbi.nlm.nih.gov/36875337/) (Dhillon et al.; thousands of runners and nonrunners) concluded that **running was not associated with worsening patient-reported outcomes or clear radiographic OA acceleration** at short-term follow-up, with several signals of **less knee pain** among runners and, in one included analysis, lower risk of progressing toward knee replacement among runners versus nonrunners.",
+              "A [prospective long-distance running study (*American Journal of Preventive Medicine*, 2008)](https://pubmed.ncbi.nlm.nih.gov/18692736/) (Chakravarty et al.) likewise did not find long-distance runners developing more radiographic knee OA than controls across years of follow-up.",
+              "Bottom line for beginners and hobby joggers: the scare story fails the journal homework. Training quality still matters — science is not a permission slip for reckless spikes.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "pain-vs-wear",
+        heading: "Knee pain ≠ \"the cartilage is gone\"",
+        paragraphs: [
+          "Runners absolutely get knee pain. The myth confuses **overuse syndromes** with **inevitable arthritis from footprint count**.",
+          "[Patellofemoral pain (\"runner's knee\")](https://www.mayoclinic.org/diseases-conditions/patellofemoral-pain-syndrome/symptoms-causes/syc-20350792) and [IT band irritation](https://my.clevelandclinic.org/health/diseases/21967-iliotibial-band-syndrome) hate sudden hills, always-hard paces, and weak hips — they are usually load-management problems, not proof that every mile deletes joint forever ([runner's knee guide](/blog/runners-knee-running); [IT band](/blog/it-band-syndrome-running); [injury basics](/blog/avoiding-injuries)).",
+          "Respect those niggles. Just don't retire your identity as a runner because Uncle Dave read a meme.",
+        ],
+      },
+      {
+        id: "strengthens",
+        heading: "How mindful running helps knees, ligaments, and joints",
+        paragraphs: [
+          "Joints are living systems. Cartilage, bone under the joint surface, muscles that stabilize the knee, and collagen-rich tendons/ligaments all respond to **repeated, recoverable loading** — the opposite of glass ornaments that shatter if touched.",
+        ],
+        list: [
+          "**Muscles are shock absorbers.** Stronger quads, hips, and calves reduce how chaotic force hits the knee. Strength training is joint armor, not optional garnish ([strength basics](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/strength-training/art-20046670); [bodyweight options](/blog/bodyweight-strength-for-runners)).",
+          "**Tendons adapt to progressive loading.** Collagen synthesis rises after loading ([Miller et al., 2005](https://pubmed.ncbi.nlm.nih.gov/16002437/)), and measurable tendon adaptations accumulate over weeks to months of training ([Bohm, Mersmann & Arampatzis, 2015](https://doi.org/10.1186/s40798-015-0009-9)). Mindful progression is how connective tissue gets quieter under weekly mileage.",
+          "**Ligaments like controlled demand** more than sudden \"zero-to-hero\" blocks. The practical coaching rule matches tissue science: build seasons, not one viral challenge ([patience before marathon leaps](/blog/dont-run-a-marathon-in-your-first-year)).",
+          "**Bone and joint support structures remodel with impact** when fuel and recovery exist — crash mileage without sleep or food is the riskier combo than easy jogging itself.",
+          "**Weight and metabolic health matter.** Regular activity (running included) aligns with [adult physical-activity guidance](https://www.cdc.gov/physical-activity-basics/guidelines/adults.html). Lower body mass and healthier metabolic profiles are major friends of knee comfort over a lifetime — sitting forever is not joint insurance.",
+        ],
+      },
+      {
+        paragraphs: [
+          "**Mindful** is the keyword. Conversational most days ([easy effort](/blog/easy-runs-effort-heart-rate)), gradual weekly jumps, cutback weeks, strength 1–2×/week, and early responses to gait-changing pain — that is joint-smart running. Ego miles that feel heroic for three weeks are how myths recruit new believers.",
+        ],
+      },
+      {
+        id: "age",
+        heading: "Age: patience, not panic",
+        paragraphs: [
+          "Age changes the interest rate on mistakes. It does **not** automatically mean \"switch to the couch to save the knees.\"",
+        ],
+        subsections: [
+          {
+            heading: "Younger adults",
+            paragraphs: [
+              "You often recover faster — and overreach louder. First-year marathon ego and every-day hard paces still create overuse pain. Use the longevity gift of rebound capacity to **build skill and strength**, not to audit how hard you can ignore warning niggles.",
+            ],
+          },
+          {
+            heading: "Masters (roughly 40+)",
+            paragraphs: [
+              "Recovery windows can stretch. Tendons feel grumpier. Bone and muscle need deliberate strength and fuel ([masters bone health](/blog/bone-health-masters-runners)). Prefer smaller mileage jumps, honest easy days, and strength as non-negotiable. The OA literature still does not hand you a medal for quitting activity \"just in case.\"",
+            ],
+          },
+          {
+            heading: "Later life and prior OA",
+            paragraphs: [
+              "Many people continue or return to light jogging with clinical clearance, modified volume, and strength. OAI running-with-OA data ([Lo et al., 2018](https://pubmed.ncbi.nlm.nih.gov/29728929/)) argues against automatic fear. Walk-run, softer surfaces, and cross-training weeks are tools — not shame.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "nutrition",
+        heading: "Nutrition: joints don't remodel on vibes",
+        paragraphs: [
+          "Tissue adaptation is expensive. Under-fueling while stacking impact is a classic way to feel \"running is destroying me\" when the missing piece is surplus repair material ([nutrition for runners](/blog/nutrition-for-runners); [Mayo on eating and exercise](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise/art-20045506)).",
+        ],
+        list: [
+          "**Eat enough for the work.** Chronic low energy availability taxes bone, recovery, and soft tissue — not a toughness badge ([REDs context](/blog/reds-low-energy-availability-runners)).",
+          "**Protein across the day** supports muscle and collagen turnover — especially as you age and after hard sessions.",
+          "**Carbs around longer/harder runs** so easy volume stays easy and recovery isn't delayed by under-eating.",
+          "**Calcium + vitamin D sufficiency** matter for the bone under the joint surface; ask a clinician about labs if diet is thin or you're masters/postmenopausal.",
+          "**Hydration is tissue plumbing** — not magic cartilage juice, but useful for training quality.",
+          "**Weight-loss extremes + rising mileage** is a joint tax. If body mass is a goal, pair gradual change with conservative running progression.",
+        ],
+      },
+      {
+        id: "what-to-do",
+        heading: "What to actually do (the checklist that beats the myth)",
+        paragraphs: [
+          "Evidence without habits is just a nicer dinner argument. Do this:",
+        ],
+        list: [
+          "**1. Keep most runs easy** — talk-test conversational. Hard days are few and intentional.",
+          "**2. Progress slowly** — one stressor at a time (distance *or* hills *or* speed). Cutback every few weeks.",
+          "**3. Strength 2×/week** — hips, quads, calves, trunk. Sit-to-stands, bridges, side steps, calf raises beat endless foam-rolling theater.",
+          "**4. Fuel the week** — especially before/after long runs; don't \"earn\" food by skipping it.",
+          "**5. Sleep like remodeling depends on it** — because soft tissue recovery does.",
+          "**6. Choose shoes that feel stable for you** and retire them when midsoles are dead — ([shoe basics](/blog/choosing-running-shoes)).",
+          "**7. Respect early knee signals** — reduce or stop for pain that worsens as you run, changes gait, or lingers at rest; see [runner's knee](/blog/runners-knee-running) and get assessed when unclear.",
+          "**8. Masters: add patience** — smaller jumps, more strength, honest recovery.",
+          "**9. Already have OA or surgery history?** — get a tailored plan; OAI data is hopeful, not a DIY MRI.",
+          "**10. Ignore the scare story; keep the receipts** — recreational running in journal reviews is not the cartoon villain.",
+        ],
+        cta: { text: "Start a beginner-friendly plan", href: "/plan" },
+      },
+      {
+        id: "final",
+        heading: "Final thoughts",
+        paragraphs: [
+          "\"Running ruins your knees\" survives because it sounds careful. Peer-reviewed syntheses and Osteoarthritis Initiative analyses keep failing to crown recreational jogging as a reliable knee destroyer — and several signals lean the other way for habitual runners versus less active peers.",
+          "Joints, ligaments, and tendons get stronger and quieter when loading is progressive, strength supports the chain, food and sleep fund remodeling, and age edits the schedule without ending the hobby. Overuse pain is real; mythological grinding-away-of-knees-with-every-footstrike is not what the journals show for mindful runners.",
+          "Lace up gently. Lift a little. Eat enough. Progress like someone who plans to still be running in ten years — because that is the point.",
+        ],
+        cta: { text: "Build a plan that respects your joints", href: "/plan" },
+      },
+    ],
+  },
+  {
+    slug: "beginner-running-a-to-z",
+    metaTitle: "Beginner Running A to Z — Simple Start Guide With Next Reads",
+    title: "Running from Absolute Scratch: The Simple A-to-Z Beginner Guide",
+    excerpt:
+      "Why run, myths about age and knees, when to check with a doctor, first shoes and clothes, where to start if you're lost, and how to begin with walk-run — one calm map with links when you want the deeper version.",
+    category: "Getting Started",
+    author: AUTHOR,
+    publishedAt: "2026-07-30",
+    readTime: "14 min",
+    relatedSlugs: [
+      "never-ran-where-to-start",
+      "none-to-run-gentle-beginners",
+      "first-run-tips",
+      "why-walking-is-not-cheating",
+      "choosing-running-shoes",
+      "what-to-wear-running",
+      "training-first-5k",
+      "running-with-health-conditions",
+      "running-does-not-ruin-your-knees",
+      "avoiding-injuries",
+      "building-a-running-habit",
+    ],
+    closingQuestion:
+      "If you could tell your first-week self one sentence about starting to run — what would it be?",
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.preParticipationScreening,
+      SOURCES.acsmExercisePrescription2009,
+      SOURCES.runningKneeOAAlentornGeli2017,
+      SOURCES.runningKneeOADhillon2023,
+      SOURCES.runningKneeOALo2017,
+      SOURCES.patellofemoralPain,
+      SOURCES.shinSplints,
+      SOURCES.strengthForRunners,
+      SOURCES.runningNutrition,
+      SOURCES.sleepTips,
+    ],
+    faq: [
+      {
+        question: "I've never run. Where do I start?",
+        answer:
+          "Start with short walk-run sessions three days a week. Walking between jog bits is normal, not failure. Use a gentle plan (or our free [beginner plan](/plan)), keep most effort easy enough to talk, and add distance slowly. Deep dives: [I never ran — where to start](/blog/never-ran-where-to-start) and [why walking is not cheating](/blog/why-walking-is-not-cheating).",
+      },
+      {
+        question: "Am I too old / will running ruin my knees?",
+        answer:
+          "Age alone is not a stop sign — many people start later with more patience and strength. \"Running ruins knees\" is largely a myth for mindful recreational runners: a [2017 JOSPT meta-analysis](https://pubmed.ncbi.nlm.nih.gov/28504066/) found lower hip/knee OA prevalence in recreational runners than sedentary controls, and a [2023 OJSM systematic review](https://pubmed.ncbi.nlm.nih.gov/36875337/) did not find running associated with worse short-term OA outcomes. See [running does not ruin your knees](/blog/running-does-not-ruin-your-knees) and [starting after 50](/blog/running-over-50-beginners).",
+      },
+      {
+        question: "What gear do I need on day one?",
+        answer:
+          "Shoes that feel comfortable for jogging, socks that don't blister, and clothes you can move in. You do not need a race kit, GPS watch, or special wardrobe. Guides: [choosing running shoes](/blog/choosing-running-shoes), [what to wear](/blog/what-to-wear-running), [gear under $50](/blog/beginner-gear-guide-under-50).",
+      },
+      {
+        question: "When should I talk to a doctor before running?",
+        answer:
+          "If you have heart or lung disease, uncontrolled blood pressure or diabetes, chest pain with effort, dizziness, recent surgery or pregnancy/postpartum, joint problems, or other chronic conditions — check first. Overview: [running with health conditions](/blog/running-with-health-conditions) and [Mayo Clinic on when to check with a clinician](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise-and-chronic-disease/art-20046049).",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "**Educational only — not medical advice.** If you have a health condition, new chest pain, dizziness, or pain that changes how you walk, talk to a clinician before you push hard ([when to check first](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise-and-chronic-disease/art-20046049)).",
+          "This is the **one map** for absolute beginners. Keep it simple. When a topic gets deeper, we link the longer guide so you don't have to learn everything on day one.",
+          "**Your A-to-Z path:** Why run → Myths (age, knees, \"I'm not athletic\") → Medical common sense → Confused where to start → First gear → How to start → Weekly rhythm → Easy pace → Rest & strength → Food & sleep → Don't get hurt → Next goals → Mind & habit → Your week-one checklist.",
+        ],
+      },
+      {
+        id: "why",
+        heading: "A — Why run at all?",
+        paragraphs: [
+          "Running is a cheap outdoor habit that builds heart fitness, mood, and confidence. You don't need a race. You don't need to be fast. Showing up a few times a week already counts.",
+          "Health bodies encourage regular activity for adults — see the [CDC adult activity guidelines](https://www.cdc.gov/physical-activity-basics/guidelines/adults.html). Running (or walk-run) is one way to get there. If you want the \"why this site\" version, skim [Why LetsRunNow](/blog/why-letsrunnow).",
+        ],
+        list: [
+          "**Simple:** shoes + outdoor space (or treadmill)",
+          "**Flexible:** 20–30 minutes can be enough early on",
+          "**Measurable:** you notice \"I can go a bit farther\" within weeks",
+          "**Social optional:** alone, with a friend, or later a club",
+        ],
+      },
+      {
+        id: "myths",
+        heading: "B — Myths: age, knees, and \"I'm not a runner\"",
+        paragraphs: [
+          "Beginners quit early when myths get louder than common sense. Here's the short truth; deeper articles are one click away.",
+        ],
+        subsections: [
+          {
+            heading: "\"I'm too old\"",
+            paragraphs: [
+              "Plenty of people start in their 40s, 50s, and beyond. Age usually means **more patience**, smaller jumps, and more strength — not a ban. Dedicated guide: [starting after 50](/blog/running-over-50-beginners). Bone and masters context: [bone health for masters](/blog/bone-health-masters-runners).",
+            ],
+          },
+          {
+            heading: "\"Running will ruin my knees\"",
+            paragraphs: [
+              "That dinner-table scare story does **not** match what peer-reviewed reviews show for mindful recreational running. A [2017 *JOSPT* systematic review and meta-analysis](https://pubmed.ncbi.nlm.nih.gov/28504066/) (Alentorn-Geli et al.) reported **lower** hip/knee osteoarthritis prevalence in recreational runners (~3.5%) than in sedentary controls (~10.2%). A [2023 *Orthopaedic Journal of Sports Medicine* systematic review](https://pubmed.ncbi.nlm.nih.gov/36875337/) (Dhillon et al.) likewise found running was **not** associated with worse short-term patient-reported or clear radiographic OA worsening — and runners often reported less knee pain. Overuse niggles are real; automatic \"mileage grinds cartilage into dust\" is the myth. Plain-language deep dive: [running does not ruin your knees](/blog/running-does-not-ruin-your-knees). If kneecap ache shows up later, see [runner's knee](/blog/runners-knee-running).",
+            ],
+          },
+          {
+            heading: "\"I have to run nonstop or it doesn't count\"",
+            paragraphs: [
+              "Wrong. **Walk breaks are training**, not cheating. [Why walking is not cheating](/blog/why-walking-is-not-cheating). If even couch-to-5K feels fast, try a gentler ramp later: [none-to-run style](/blog/none-to-run-gentle-beginners).",
+            ],
+          },
+          {
+            heading: "\"I'm not athletic\"",
+            paragraphs: [
+              "You become a runner by repeating easy sessions — not by winning high school PE. Habit beats talent. [Building a running habit](/blog/building-a-running-habit).",
+            ],
+          },
+        ],
+      },
+      {
+        id: "medical",
+        heading: "C — Medical conditions: what to take care of",
+        paragraphs: [
+          "You do **not** need to be perfectly healthy to move. You *do* need honesty and, sometimes, clearance.",
+        ],
+        list: [
+          "**Check with a clinician first if:** heart or lung disease, uncontrolled blood pressure or blood sugar, chest pain or unusual shortness of breath with effort, fainting/dizziness history, recent surgery, pregnancy or postpartum, known joint/bone problems, or your doctor already told you to be careful.",
+          "**Bring common sense every session:** stop for chest pain, severe dizziness, or pain that makes you limp.",
+          "**Condition-specific overview:** [running with health conditions](/blog/running-with-health-conditions).",
+          "**Women's basics** (cycle, bras, heat, life load): [beginner guide for women](/blog/running-guide-for-women).",
+          "**Men's basics** (start simple, ego traps, gear without overbuying): [beginner guide for men](/blog/running-guide-for-men).",
+          "**After baby:** wait for clearance; graded return — [postpartum return to run](/blog/postpartum-return-to-run).",
+          "**Blood pressure / heart long game (deeper later):** [blood pressure & heart health](/blog/blood-pressure-running-heart-health).",
+        ],
+      },
+      {
+        paragraphs: [
+          "Simple rule: if something about starting scares you medically, ask a professional **before** you invent a hard plan. Then start easier than your ego wants.",
+        ],
+      },
+      {
+        id: "confused",
+        heading: "D — Confused where to start? Pick one door",
+        paragraphs: [
+          "Too many apps and plans create freeze. Choose **one** door and ignore the rest for 4–6 weeks.",
+        ],
+        list: [
+          "**Door 1 — Never ran / barely active:** walk-run 3×/week. Read [I never ran — where to start](/blog/never-ran-where-to-start) and [first run tips](/blog/first-run-tips).",
+          "**Door 2 — Can jog a little but inconsistent:** easy runs + rest days; aim for a first [5K plan](/blog/training-first-5k).",
+          "**Door 3 — Coming back after months off:** restart shorter than you remember — [comeback after a break](/blog/comeback-after-running-break).",
+          "**Door 4 — Want a free structured plan now:** start at [/plan](/plan) and follow the calendar without freestyle bonus miles.",
+        ],
+      },
+      {
+        paragraphs: [
+          "If a coach or plan later slows you down, that is often kindness. Fun deep dive when you're ready: [trust your coach and pacer](/blog/trust-your-coach-and-pacer).",
+        ],
+      },
+      {
+        id: "gear",
+        heading: "E — First gear (keep it boring)",
+        paragraphs: [
+          "You need comfort, not a catalog.",
+        ],
+        subsections: [
+          {
+            heading: "Shoes",
+            paragraphs: [
+              "Buy running shoes that feel good when you jog in the store (or a trusted return policy online). Fit matters more than brand. Guide: [choosing running shoes](/blog/choosing-running-shoes). Budget kit ideas: [gear under $50](/blog/beginner-gear-guide-under-50).",
+            ],
+          },
+          {
+            heading: "Clothes",
+            paragraphs: [
+              "Soft socks. Shorts or leggings that don't chafe. A T-shirt or tank. In heat or cold, dress a little cooler than you think — you warm up. Full simple guide: [what to wear](/blog/what-to-wear-running).",
+            ],
+          },
+          {
+            heading: "Optional (later)",
+            list: [
+              "Phone armband or waist belt",
+              "Simple watch (a phone timer works at first)",
+              "Reflective bits if you run near cars",
+              "GPS gadgets — not required; deeper when curious: [GPS watch vs no watch](/blog/gps-watch-vs-no-watch)",
+            ],
+          },
+        ],
+      },
+      {
+        id: "how-to-start",
+        heading: "F — How to start (the actual first weeks)",
+        paragraphs: [
+          "This is the part that matters. Simple beats clever.",
+        ],
+        list: [
+          "**Frequency:** 3 days per week (e.g. Mon / Wed / Sat). Rest or easy walking between.",
+          "**Time:** 20–30 minutes total on the clock is enough at first.",
+          "**Method:** alternate easy jog with walking. Example: jog 1 minute, walk 2 minutes, repeat. Adjust so breathing stays controlled.",
+          "**Progress the mix:** as you get comfortable, shorten the walks and lengthen the jogs. Example: 90-second jog / 90-second walk → later 2-minute jog / 1-minute walk → keep nudging until you can cover your whole 20–30 minutes mostly jogging (still easy). No rush — only change the mix when the current version feels boringly doable.",
+          "**Feel:** you should be able to speak short sentences while jogging. If you can't, slow down or walk sooner — [how to pace yourself](/blog/how-to-pace-yourself) and later [easy runs by effort](/blog/easy-runs-effort-heart-rate).",
+          "**Place:** flat path, park loop, treadmill — pick safe and boring.",
+          "**Finish:** walk 3–5 minutes. Drink water. You're done. No hero sprint.",
+        ],
+        cta: { text: "Open a free beginner plan", href: "/plan" },
+      },
+      {
+        paragraphs: [
+          "Day-of checklist energy: [first run tips](/blog/first-run-tips). Ultra-gentle alternative if this still feels steep: [none-to-run](/blog/none-to-run-gentle-beginners).",
+        ],
+      },
+      {
+        id: "weekly",
+        heading: "G — A simple weekly rhythm",
+        paragraphs: [
+          "For the first month, copy this idea — not the exact minutes. Progressive overload (a little more over time, with recovery) is the same principle sports-medicine exercise prescription uses for healthy adults ([ACSM parameters of exercise](https://www.bewegenismedicijn.nl/files/downloads/full_text_acsm_position_stand_parameters_of_exercise_for_adults.pdf)) — beginners just apply it gently.",
+        ],
+        list: [
+          "**3 run/walk days** — same easy effort",
+          "**2–3 rest or life days** — sleep, walk the dog, normal life ([rest days](/blog/what-to-do-on-rest-days))",
+          "**1–2 short strength snacks** — 10–15 minutes ([bodyweight strength](/blog/bodyweight-strength-for-runners); [strength basics](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/strength-training/art-20046670))",
+          "**Optional easy cross-training** — bike or swim if joints feel grumpy ([cross-training](/blog/importance-of-cross-training))",
+        ],
+      },
+      {
+        paragraphs: [
+          "After 3–4 weeks of consistency, make **one** thing a bit longer (add a few minutes), not five things at once.",
+        ],
+      },
+      {
+        id: "pace",
+        heading: "H — Pace: slow is a skill",
+        paragraphs: [
+          "Beginners often run the first minutes too fast, then hate the sport. Your job is **easy** on most days.",
+          "Talk test: if you can chat, you're close. If you're gasping, walk. Details: [how to pace yourself](/blog/how-to-pace-yourself). Advanced effort/HR later: [easy runs](/blog/easy-runs-effort-heart-rate).",
+        ],
+      },
+      {
+        id: "fuel-sleep",
+        heading: "I — Food, water, and sleep (beginner level)",
+        paragraphs: [
+          "You don't need race gels in week one. You need enough food and rest so sessions feel doable.",
+        ],
+        list: [
+          "Eat a small normal snack 1–2 hours before if you feel empty (toast, banana, yogurt — what your stomach likes).",
+          "Drink water across the day; more if it's hot ([hydration basics later](/blog/hydration-electrolytes-running)).",
+          "After: a regular meal with some carbs + protein ([nutrition basics for beginners](/blog/nutrition-basics-for-beginners); fuller later: [nutrition for runners](/blog/nutrition-for-runners); [Mayo on eating and exercise](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise/art-20045506)).",
+          "Sleep is recovery. Short sleep makes everything feel harder ([Mayo Clinic sleep tips](https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/sleep/art-20048379)).",
+        ],
+      },
+      {
+        id: "injuries",
+        heading: "J — How not to get hurt",
+        paragraphs: [
+          "Most beginner injuries come from **too much, too soon, too fast** — not from \"having bad knees forever.\" Clinical overviews for common niggles: [shin splints (Mayo)](https://www.mayoclinic.org/diseases-conditions/shin-splints/symptoms-causes/syc-20354105) and [patellofemoral / runner's knee pain (Mayo)](https://www.mayoclinic.org/diseases-conditions/patellofemoral-pain-syndrome/symptoms-causes/syc-20350792).",
+        ],
+        list: [
+          "Increase weekly time slowly; don't double volume in a week",
+          "Keep most days easy",
+          "Take rest days seriously",
+          "Add simple strength for hips and calves",
+          "Stop or back off for pain that worsens as you go, changes your gait, or lingers at rest",
+        ],
+      },
+      {
+        paragraphs: [
+          "Starter prevention guide: [avoiding injuries](/blog/avoiding-injuries). Site deep dives: [shin splints](/blog/shin-splints-running), [runner's knee](/blog/runners-knee-running). Weather later: [hot weather](/blog/hot-weather-running-hub), [bad weather tips](/tips/bad-weather).",
+        ],
+      },
+      {
+        id: "next",
+        heading: "K — What's next after you can finish easy sessions?",
+        paragraphs: [
+          "When 25–30 minutes of walk-run feels normal (not heroic) for a few weeks:",
+        ],
+        list: [
+          "**Goal 1:** continuous easy jogging bits growing longer — still mostly easy",
+          "**Goal 2:** train toward a [first 5K](/blog/training-first-5k)",
+          "**Goal 3 (later):** [first 10K](/blog/training-first-10k) when 5K feels calm",
+          "**Race someday?** Optional. Logistics when ready: [first race signup](/blog/first-race-signup-logistics) and [race day tips](/blog/race-day-tips)",
+          "**Do not** leap to a full marathon in year one — [why patience wins](/blog/dont-run-a-marathon-in-your-first-year)",
+        ],
+      },
+      {
+        id: "mind",
+        heading: "L — Mind: doubt is normal",
+        paragraphs: [
+          "Feeling awkward is part of week one. Consistency beats motivation. When your brain gets loud: [mental side of running](/blog/mental-side-of-running). Race nerves later: [race anxiety](/blog/race-anxiety-nerves).",
+          "Women/men starter lenses if helpful: [guide for women](/blog/running-guide-for-women), [guide for men](/blog/running-guide-for-men).",
+        ],
+      },
+      {
+        id: "checklist",
+        heading: "M — Week-one checklist (print with your brain)",
+        list: [
+          "I checked medical red flags (or got clearance if needed)",
+          "I have comfortable shoes and non-blister socks",
+          "I picked 3 days this week for 20–30 minutes walk-run",
+          "I will keep effort conversational and use walk breaks proudly",
+          "I will not add bonus miles to \"catch up\"",
+          "I will rest between run days",
+          "I know which deeper article to open if I get stuck (links above)",
+        ],
+        cta: { text: "Start your beginner plan", href: "/plan" },
+      },
+      {
+        id: "final",
+        heading: "Final thoughts",
+        paragraphs: [
+          "Absolute beginners don't need fifty rules. You need a why, a myth filter, medical common sense, boring gear, a walk-run start, easy effort, food and rest, and the humility to progress slowly.",
+          "Use this page as your home base. Open the linked guides only when that chapter becomes your next question. That is how you go from \"I've never run\" to \"I run\" without drowning in advice.",
+          "Lace up. Walk when you need. Jog when you can. Repeat next week.",
+        ],
+        cta: { text: "Build a free plan", href: "/plan" },
+      },
+    ],
+  },
 ];

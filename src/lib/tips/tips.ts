@@ -293,6 +293,26 @@ export const runnerTips: RunnerTip[] = [
       "Insultingly easy days, cutback weeks, and pacers who ignore your mile-four Speedy Gonzales proposal usually aren't personal — they're load management. They also can't read your mind or feel your shin. Talk early about pain, dread, sleep crashes, life chaos, or goal doubt; mid-race, a short clear signal beats tough-person silence. Stop for gait-changing pain, chest symptoms, or illness even if the calendar says go.",
     blogSlug: "trust-your-coach-and-pacer",
   },
+  {
+    slug: slugifyTipTitle("Running doesn't ruin knees — spikes do"),
+    icon: Footprints,
+    illustration: "recovery",
+    category: "Health",
+    title: "Running doesn't ruin knees — spikes do",
+    content:
+      "Journal reviews don't crown recreational running as a reliable knee destroyer — Osteoarthritis Initiative data and meta-analyses often look better for habitual runners than for sedentary peers. Mindful easy volume, hip/quad strength, enough food, and age-aware progression help joints and tendons adapt. Fix overuse flares early; don't quit on a Thanksgiving myth.",
+    blogSlug: "running-does-not-ruin-your-knees",
+  },
+  {
+    slug: slugifyTipTitle("Lost where to start? One beginner map"),
+    icon: Footprints,
+    illustration: "easy-pace",
+    category: "Getting Started",
+    title: "Lost where to start? One beginner map",
+    content:
+      "Skip the fifty-tab rabbit hole. Absolute beginners need why, a myth filter, medical common sense, boring shoes, walk-run three days a week, and easy effort — then open deeper guides only when that chapter is next. Start simple; advanced articles wait patiently.",
+    blogSlug: "beginner-running-a-to-z",
+  },
 ];
 
 export const tipsPageGuides = [
