@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { TipCard } from "@/components/tips/tip-card";
 import { TipIllustration } from "@/components/tips/tip-illustration";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
-import { getPostBySlug } from "@/lib/blog/posts";
+import { getPublishedPostBySlug } from "@/lib/blog/posts";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
@@ -56,7 +56,7 @@ export default async function TipDetailPage({ params }: PageProps) {
   const tip = getTipBySlug(slug);
   if (!tip) notFound();
 
-  const post = tip.blogSlug ? getPostBySlug(tip.blogSlug) : undefined;
+  const post = tip.blogSlug ? getPublishedPostBySlug(tip.blogSlug) : undefined;
   const pageUrl = `${SITE_URL}/tips/${slug}`;
   const seoTitleText = tipSeoTitle(tip);
   const description = tipMetaDescription(tip);
@@ -147,7 +147,7 @@ export default async function TipDetailPage({ params }: PageProps) {
             <div className="grid gap-5 sm:grid-cols-2">
               {relatedTips.map((related) => {
                 const relatedPost = related.blogSlug
-                  ? getPostBySlug(related.blogSlug)
+                  ? getPublishedPostBySlug(related.blogSlug)
                   : undefined;
                 return (
                   <TipCard
@@ -158,7 +158,7 @@ export default async function TipDetailPage({ params }: PageProps) {
                     category={related.category}
                     title={related.title}
                     content={related.content}
-                    blogSlug={related.blogSlug}
+                    blogSlug={relatedPost ? related.blogSlug : undefined}
                     blogReadTime={relatedPost?.readTime}
                   />
                 );

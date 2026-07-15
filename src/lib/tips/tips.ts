@@ -270,7 +270,7 @@ export const runnerTips: RunnerTip[] = [
     category: "Nutrition",
     title: "Fuel the miles — under-eating isn't toughness",
     content:
-      "Training harder while eating less is a common path to fatigue, niggles, and stress injuries. Eat enough for the work you do — snacks around long or hard sessions count as training gear.",
+      "Training harder while eating less is a common path to fatigue, niggles, and stress injuries — not toughness. Match food to the work: a carb-friendly snack before longer or harder runs, a real meal after, and enough total calories across the day so easy miles still feel easy. Skip the habit of stacking mileage on a diet deficit. Warning signs worth taking seriously include constant tiredness, stalled progress, recurring bone or soft-tissue pain, frequent illness, and (if you menstruate) missed or irregular periods. When those stack up, ease training and fuel more — and get clinical help if they persist. Under-eating isn't a badge; food is training gear.",
     blogSlug: "reds-low-energy-availability-runners",
   },
 ];

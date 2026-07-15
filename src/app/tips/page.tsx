@@ -9,7 +9,7 @@ import { TipsGuideLink } from "@/components/tips/tips-guide-link";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { TipsPageHero } from "@/components/visuals/content-scenes";
-import { getPostBySlug } from "@/lib/blog/posts";
+import { getPublishedPostBySlug } from "@/lib/blog/posts";
 import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
@@ -73,7 +73,9 @@ export default function TipsPage() {
 
         <StaggerChildren className="grid gap-5 sm:grid-cols-2">
           {runnerTips.map((tip) => {
-            const post = tip.blogSlug ? getPostBySlug(tip.blogSlug) : undefined;
+            const post = tip.blogSlug
+              ? getPublishedPostBySlug(tip.blogSlug)
+              : undefined;
 
             return (
               <StaggerItem key={tip.slug}>
@@ -85,7 +87,7 @@ export default function TipsPage() {
                   category={tip.category}
                   title={tip.title}
                   content={tip.content}
-                  blogSlug={tip.blogSlug}
+                  blogSlug={post ? tip.blogSlug : undefined}
                   blogReadTime={post?.readTime}
                 />
               </StaggerItem>
@@ -94,7 +96,9 @@ export default function TipsPage() {
         </StaggerChildren>
 
         {tipsPageGuides.map((guide) => {
-          const post = guide.blogSlug ? getPostBySlug(guide.blogSlug) : undefined;
+          const post = guide.blogSlug
+            ? getPublishedPostBySlug(guide.blogSlug)
+            : undefined;
 
           return (
             <TipsGuideLink
@@ -106,7 +110,7 @@ export default function TipsPage() {
               icon={guide.icon}
               iconClassName={guide.iconClassName}
               illustration={guide.illustration}
-              blogSlug={guide.blogSlug}
+              blogSlug={post ? guide.blogSlug : undefined}
               blogReadTime={post?.readTime}
             />
           );
