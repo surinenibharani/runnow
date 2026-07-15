@@ -8,6 +8,8 @@ import { mediumLowGapPosts } from "./posts-medium-low-gaps";
 import { nextGapPosts } from "./posts-next-gaps";
 import { remainingGapPosts } from "./posts-remaining-gaps";
 import { surfaceGapPosts } from "./posts-surface-gaps";
+import { heartDeepDivePosts } from "./posts-heart-deep-dives";
+import { zonesLungsDeepDivePosts } from "./posts-zones-lungs-deep-dives";
 
 export const BLOG_AUTHOR = "B";
 
@@ -118,10 +120,16 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-01-22",
     readTime: "7 min",
     relatedSlugs: ["never-ran-where-to-start", "training-first-10k", "race-day-tips", "nutrition-for-runners"],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.acsmExercisePrescription2009,
+      SOURCES.preParticipationScreening,
+    ],
     sections: [
       {
         paragraphs: [
           "A 5K is the perfect first goal. It's long enough to feel like an achievement, short enough to train for without rearranging your entire life. Most beginners can go from zero to 5K in 6–8 weeks with a structured plan.",
+          "**Educational only — not medical advice.** If you're new to exercise or have chronic conditions, check with a clinician before hard training — and stop for chest pain, unusual breathlessness, or dizziness.",
         ],
       },
       {
@@ -182,9 +190,16 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-02-05",
     readTime: "8 min",
     relatedSlugs: ["training-first-5k", "training-first-10k", "training-half-and-full-marathon-same-season", "race-day-tips", "nutrition-for-runners"],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.runningNutrition,
+      SOURCES.acsmExercisePrescription2009,
+      SOURCES.preParticipationScreening,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "A half marathon is a serious distance — but it's absolutely achievable for recreational runners who respect the process. You should comfortably run a 5K before starting a half plan. If you can't jog 30 minutes yet, build that base first.",
         ],
       },
@@ -239,9 +254,16 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-02-19",
     readTime: "9 min",
     relatedSlugs: ["training-first-half-marathon", "training-half-and-full-marathon-same-season", "prioritize-running-marathon-training", "race-day-tips", "mental-side-of-running"],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.runningNutrition,
+      SOURCES.acsmExercisePrescription2009,
+      SOURCES.preParticipationScreening,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "26.2 miles has humbled plenty of strong athletes. Respect the distance, follow a plan, and you'll get there. Most coaches recommend completing a half marathon before attempting a full — not because it's required, but because you've learned how your body handles higher mileage.",
         ],
       },
@@ -325,9 +347,15 @@ export const blogPosts: BlogPost[] = [
           "Usually yes. As mileage climbs, your body needs more fuel. Eat enough carbohydrates around long runs and harder sessions, include protein for recovery, and practice race-day nutrition on long runs so your stomach is ready.",
       },
     ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.acsmExercisePrescription2009,
+      SOURCES.runningNutrition,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "Training for a marathon is one of the most rewarding challenges you can take on. It's also one of the most demanding. The miles matter, but so does everything you do around the miles — how well you recover, how consistently you fuel, and how much you protect your training.",
           "When you prioritize running properly, training becomes more enjoyable and race day feels more achievable. Here's how to give your marathon training the attention it deserves without completely disappearing from the rest of your life.",
         ],
@@ -492,9 +520,16 @@ export const blogPosts: BlogPost[] = [
           "Usually no — unless the half is your A race. If the marathon is the priority, run the half at marathon effort or slightly faster, not all-out. You want a confidence boost and a fueling rehearsal, not a week of limping through marathon long runs.",
       },
     ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.acsmExercisePrescription2009,
+      SOURCES.runningNutrition,
+      SOURCES.preParticipationScreening,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "Two races on the calendar can feel exciting — until you're tapering twice and showing up to the marathon on tired legs. Training for both a half and full marathon in the same season is possible, but it only works with a clear strategy: pick one primary race, treat the other as a supporting workout, and build recovery into your plan instead of hoping it happens.",
           "Here's when dual training makes sense, when it doesn't, and how to structure your training so you show up to both start lines healthy and ready.",
         ],
@@ -630,7 +665,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Key rules for dual training",
         list: [
-          "Follow the 10% rule — never increase weekly mileage by more than 10% from one week to the next",
+          "Treat ~10% weekly mileage increases as a useful guardrail — not a law of physiology — and ease back if pain or fatigue stacks up",
           "After the half, return to your pre-half mileage before pushing long runs higher again",
           "If your legs still feel heavy 48 hours after the half, repeat the previous week's volume instead of progressing",
           "You only get one real taper per season — save the full 2–3 week taper for your A race",
@@ -679,9 +714,15 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-03-05",
     readTime: "5 min",
     relatedSlugs: ["what-to-do-on-rest-days", "training-first-5k", "avoiding-injuries", "running-vs-biking"],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.strengthForRunners,
+      SOURCES.acsmExercisePrescription2009,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "Beginners often think progress means running every day. It doesn't. Cross-training — intentional non-running exercise — builds fitness while giving your running muscles and joints a break from impact.",
         ],
       },
@@ -747,10 +788,16 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-03-19",
     readTime: "5 min",
     relatedSlugs: ["importance-of-cross-training", "building-a-running-habit", "avoiding-injuries"],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.sleepTips,
+      SOURCES.peaceAndLove,
+    ],
     sections: [
       {
         paragraphs: [
           "Rest days are built into every LetsRunNow plan for a reason: adaptation happens when you're not running. Muscles repair, glycogen stores refill, and your nervous system resets. Skip them and you don't get ahead — you get injured or exhausted.",
+          "**Educational only — not medical advice.** Persistent pain, illness, or chest symptoms on a 'rest' day still deserve clinical judgment — rest is training, not a diagnosis.",
         ],
       },
       {
@@ -810,12 +857,18 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-04-02",
     readTime: "10 min",
-    relatedSlugs: ["training-first-5k", "training-first-half-marathon", "training-first-full-marathon"],
+    relatedSlugs: [
+      "training-first-5k",
+      "training-first-half-marathon",
+      "training-first-full-marathon",
+      "running-myths-debunked",
+    ],
     sections: [
       {
         paragraphs: [
           "You don't need a perfect diet to start running. But what you eat — and when — affects how runs feel and how fast you recover. Here's a distance-by-distance guide for everyday runners, not elite athletes.",
           "For fueling by **workout type** (easy, tempo, long runs) and **hot weather**, see [nutrition for training by run type](/blog/nutrition-for-training-by-run-type).",
+          "**Educational only — not medical or nutrition advice.** If you have diabetes, kidney disease, a history of disordered eating, or take medications affecting fluid or blood sugar, talk with a clinician or registered dietitian before big fueling changes.",
         ],
       },
       {
@@ -954,6 +1007,10 @@ export const blogPosts: BlogPost[] = [
           "Commit to a minimum — even 10 minutes counts. Motivation follows action more often than the reverse for beginners.",
       },
     ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.sleepTips,
+    ],
     sections: [
       {
         paragraphs: [
@@ -1026,9 +1083,15 @@ export const blogPosts: BlogPost[] = [
           "Every 300–500 miles, or when tread is worn or new aches appear. Beginners running ~15 miles/week often replace shoes every 5–8 months.",
       },
     ],
+    sources: [
+      SOURCES.cadenceResearch,
+      SOURCES.plantarFasciitis,
+      SOURCES.shinSplints,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "You can run in old sneakers, but you won't enjoy it. Running shoes are designed for forward motion, impact absorption, and breathability. They're the best investment you'll make as a beginner.",
         ],
       },
@@ -1073,7 +1136,19 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-05-14",
     readTime: "6 min",
-    relatedSlugs: ["training-first-5k", "training-first-10k", "race-day-tips", "building-a-running-habit", "easy-runs-effort-heart-rate"],
+    relatedSlugs: [
+      "training-first-5k",
+      "training-first-10k",
+      "race-day-tips",
+      "building-a-running-habit",
+      "easy-runs-effort-heart-rate",
+      "running-myths-debunked",
+    ],
+    sources: [
+      SOURCES.heartRateZones,
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.acsmExercisePrescription2009,
+    ],
     faq: [
       {
         question: "How do I know if I'm running too fast?",
@@ -1090,6 +1165,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "Pacing isn't about being slow — it's about being smart. Most beginners run their easy days too hard and their hard days too easy (or skip them). Flip that pattern and you'll improve faster with fewer injuries.",
+          "**Educational only — not medical advice.** Chest pain, fainting, or unusual breathlessness mean stop and get checked — not 'push the pace.'",
         ],
       },
       {
@@ -1143,9 +1219,16 @@ export const blogPosts: BlogPost[] = [
       "chafing-blisters-running",
       "kids-family-running",
     ],
+    sources: [
+      SOURCES.runningNutrition,
+      SOURCES.heatSafety,
+      SOURCES.dehydration,
+      SOURCES.physicalActivityGuidelinesUS,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "You've done the hard part — the early mornings, the long runs, the days you didn't feel like lacing up. Race day is where it all comes together. It's also where small mistakes (new shoes, skipping breakfast, going out too fast) can undo weeks of work.",
           "The good news: most race-day errors are preventable. Below are universal rules that apply to every distance, followed by specific recommendations for 5K, half marathon, and full marathon.",
         ],
@@ -1313,6 +1396,10 @@ export const blogPosts: BlogPost[] = [
       "race-day-tips",
       "breathing-while-running",
     ],
+    sources: [
+      SOURCES.anxietyDisorders,
+      SOURCES.physicalActivityGuidelinesUS,
+    ],
     sections: [
       {
         paragraphs: [
@@ -1440,6 +1527,9 @@ export const blogPosts: BlogPost[] = [
       "training-first-5k",
       "building-a-running-habit",
     ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+    ],
     sections: [
       {
         paragraphs: [
@@ -1538,12 +1628,18 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-28",
     readTime: "5 min",
-    relatedSlugs: ["how-to-pace-yourself", "mental-side-of-running", "avoiding-injuries"],
+    relatedSlugs: [
+      "how-to-pace-yourself",
+      "mental-side-of-running",
+      "avoiding-injuries",
+      "training-lungs-for-running",
+      "easy-runs-effort-heart-rate",
+    ],
     sections: [
       {
         paragraphs: [
           "New runners often worry they're breathing wrong. You're not broken — your body is just asking for an easier effort. Fix the pace first; breathing usually follows.",
-          "**Wheezing, chest tightness, or dizziness that doesn't improve when you slow down may need medical review — especially if you have asthma.**",
+          "**Educational only — not medical advice.** Wheezing, chest tightness, or dizziness that doesn't improve when you slow down may need medical review — especially if you have asthma.",
         ],
       },
       {
@@ -1599,6 +1695,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Stop for chest pain, fainting, or unusual breathlessness, and get clinical guidance if you have chronic conditions before hard sessions.",
           "Perfect weather is rare. Beginners who learn to adapt — or swap to smart indoor options — stick with running longer than those who quit after one rainy week.",
         ],
       },
@@ -1740,6 +1837,10 @@ export const blogPosts: BlogPost[] = [
       "mental-side-of-running",
       "training-first-5k",
     ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.weightLoss,
+    ],
     sections: [
       {
         paragraphs: [
@@ -1802,12 +1903,18 @@ export const blogPosts: BlogPost[] = [
       "never-ran-where-to-start",
       "how-to-pace-yourself",
       "training-first-5k",
+      "running-myths-debunked",
+    ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.acsmExercisePrescription2009,
     ],
     sections: [
       {
         paragraphs: [
           "Somewhere along the way, beginners internalized a toxic rule: if you're walking, you're failing. Social media clips of nonstop sprints don't help. Neither does the voice in your head that treats every walk break like a confession.",
           "Here's the truth elite coaches have known for decades: walk-run intervals are not a shortcut. They're a proven on-ramp to aerobic fitness — and for most new runners, they're the smartest way to start.",
+          "**Educational only — not medical advice.** Chest pain, fainting, or unusual breathlessness mean stop and get checked — walking does not replace clinical care when red flags appear.",
         ],
       },
       {
@@ -1861,6 +1968,10 @@ export const blogPosts: BlogPost[] = [
       "what-to-do-on-rest-days",
       "performance-goals-over-aesthetics",
       "comeback-after-running-break",
+    ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.peaceAndLove,
     ],
     sections: [
       {
@@ -1919,6 +2030,10 @@ export const blogPosts: BlogPost[] = [
       "choosing-running-shoes",
       "never-ran-where-to-start",
       "why-letsrunnow",
+    ],
+    sources: [
+      SOURCES.heatSafety,
+      SOURCES.physicalActivityGuidelinesUS,
     ],
     sections: [
       {
@@ -1980,9 +2095,15 @@ export const blogPosts: BlogPost[] = [
       "training-first-5k",
       "trail-ultra-intro-beginners",
     ],
+    sources: [
+      SOURCES.heartRateZones,
+      SOURCES.acsmExercisePrescription2009,
+      SOURCES.physicalActivityGuidelinesUS,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "Hills are where beginner dreams go to die — or so it feels the first time your neighborhood turns upward and your legs turn to concrete. Everyone else seems to float; you seem to stop.",
           "Good news: hills aren't a test of worthiness. They're a skill. And with a few adjustments, they become short strength sessions that make flat ground feel like a gift.",
         ],
@@ -2122,9 +2243,14 @@ export const blogPosts: BlogPost[] = [
       "choosing-running-shoes",
       "running-in-bad-weather",
     ],
+    sources: [
+      SOURCES.heatSafety,
+      SOURCES.physicalActivityGuidelinesUS,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "Running clothes don't need to be expensive or branded. They need to keep you comfortable, visible, and blister-free. Most beginners overbuy gadgets and underthink fabric and fit.",
         ],
       },
@@ -2207,6 +2333,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Recovery isn't just for elites with ice baths and massage guns. Beginners need it more — your muscles, tendons, and joints are adapting to impact they haven't handled before.",
           "Good post-run habits reduce soreness, prevent injury, and make the next run feel possible instead of dreaded.",
+          "**Educational only — not medical advice.** Worsening pain, swelling, or symptoms that change your gait need a clinician — not another ice-bath video.",
         ],
       },
       {
@@ -2280,6 +2407,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "Nutrition advice online sounds like a chemistry exam — macros, timing windows, supplement stacks. Beginners need something simpler: eat enough, hydrate, and don't experiment on race day.",
           "This guide covers daily basics. For distance-specific fueling (5K vs half vs marathon), see our [full runner's nutrition guide](/blog/nutrition-for-runners). For easy vs hard vs long runs and hot-weather fueling, see [nutrition for training by run type](/blog/nutrition-for-training-by-run-type).",
+          "**Educational only — not medical or nutrition advice.** Personalized medical or dietetic needs beat any blog checklist.",
         ],
       },
       {
@@ -2353,7 +2481,8 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "Running builds endurance, not balanced strength. Weak glutes and calves can contribute to many beginner shin and knee issues — and they make hills feel harder than they need to be.",
-          "The good news: you don't need a gym membership. Two 15–20 minute bodyweight sessions per week on non-running days (or after easy runs) is enough to start. **Stop and see a clinician if an exercise causes sharp or worsening pain.**",
+          "The good news: you don't need a gym membership. Two 15–20 minute bodyweight sessions per week on non-running days (or after easy runs) is enough to start.",
+          "**Educational only — not medical advice.** Stop and see a clinician if an exercise causes sharp or worsening pain.",
         ],
       },
       {
@@ -2556,7 +2685,7 @@ export const blogPosts: BlogPost[] = [
           "Most beginner running advice is written as if every body responds the same. Women starting out often have specific questions — about gear, energy shifts across the month, bone health, pregnancy, and feeling like they belong on the path.",
           "Hormonal fluctuations, pelvic anatomy, lower average peak bone density, and pregnancy or postpartum history all shape how training feels. That doesn't mean running isn't for you — it means smart setup beats generic advice.",
           "Guidelines vary by country — follow your national screening advice for breast, cervical, and heart checks.",
-          "**This isn't medical advice. When in doubt, talk to your doctor or a women's health specialist.** What follows are practical starting points that help many women run consistently and safely.",
+          "**Educational only — not medical advice.** When in doubt, talk to your doctor or a women's health specialist. What follows are practical starting points that help many women run consistently and safely.",
         ],
       },
       {
@@ -2949,7 +3078,7 @@ export const blogPosts: BlogPost[] = [
           "Most beginner running content assumes one generic body and a willingness to push through discomfort. Men starting out often have specific questions — about gear, eating enough, chest symptoms, groin pain, and whether it's weak to take a rest day.",
           "Higher average cardiovascular risk in middle age, greater sweat rates, sports hernia risk with sudden speed work, and RED-S that hides without period tracking all shape how training feels. That doesn't mean running isn't for you — it means smart setup beats bravado.",
           "Guidelines vary by country — follow your national screening advice for prostate, colorectal, and heart checks.",
-          "**This isn't medical advice. When in doubt, talk to your doctor, cardiologist, or sports medicine specialist.** What follows are practical starting points that help many men run consistently and safely.",
+          "**Educational only — not medical advice.** When in doubt, talk to your doctor, cardiologist, or sports medicine specialist. What follows are practical starting points that help many men run consistently and safely.",
         ],
       },
       {
@@ -3200,9 +3329,15 @@ export const blogPosts: BlogPost[] = [
       "importance-of-cross-training",
       "avoiding-injuries",
     ],
+    sources: [
+      SOURCES.strengthForRunners,
+      SOURCES.strengthTrainingRunningEconomy2016,
+      SOURCES.preParticipationScreening,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "Bodyweight work gets you far. Once you can hold a plank, lunge, and glute bridge with good form, light dumbbells add load without complexity — perfect for a living room or garage setup.",
           "This is beginner-friendly strength, not bodybuilding. The goal is stronger hips, legs, and core so running feels smoother and injuries stay rare.",
         ],
@@ -3304,9 +3439,15 @@ export const blogPosts: BlogPost[] = [
           "Yes, if you're cleared for exercise and you start light. Do the full warm-up, use rehearsal sets before working weight, and prioritize form over load. If bodyweight squats and lunges already feel shaky, spend a few weeks on our [bodyweight strength for runners](/blog/bodyweight-strength-for-runners) routine first.",
       },
     ],
+    sources: [
+      SOURCES.strengthForRunners,
+      SOURCES.strengthTrainingRunningEconomy2016,
+      SOURCES.preParticipationScreening,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "You don't need a gym membership or a complicated program to start strength training at home. One pair of dumbbells (or a small set), a sturdy bench or chair, and about an hour is enough for a full beginner session that hits legs, back, chest, and arms in a sensible order.",
           "This routine is built for first-time lifters: warm up properly, train big compound moves while you're fresh, finish with smaller arm exercises, and leave room to progress every week or two. If you run, it doubles as smart [cross-training](/blog/importance-of-cross-training) — stronger hips and core make easy miles feel easier.",
         ],
@@ -3475,8 +3616,7 @@ export const blogPosts: BlogPost[] = [
       "I never touched weights in 45 years. A dumbbell set I'd bought five years back — covers still on until a few months ago — two full-body sessions per week, and slow consistency. Here's the routine that finally made strength stick.",
     category: "Training",
     author: BLOG_AUTHOR,
-    // Draft — not public until this date (preview cookie / local dev only).
-    publishedAt: "2099-01-01",
+    publishedAt: "2026-11-26",
     readTime: "16 min",
     relatedSlugs: [
       "dumbbell-strength-at-home-for-runners",
@@ -3519,9 +3659,15 @@ export const blogPosts: BlogPost[] = [
           "Same exercises and schedule as men — usually lighter starting bells. In the [workout list](#workout), each exercise shows men and women ranges on the same line (e.g. goblet squat 15–25 lb men · 10–15 lb women). Most women new to lifting do well with a 5–40 lb adjustable set or fixed pairs at 5, 8, and 12 lb plus one 15–20 lb bell for goblet squats. Progress 2.5–5 lb when 3×15 feels smooth two weeks in a row.",
       },
     ],
+    sources: [
+      SOURCES.strengthForRunners,
+      SOURCES.strengthTrainingRunningEconomy2016,
+      SOURCES.preParticipationScreening,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "I ran. I biked. I hiked. I walked. But weights? Never. Not in school, not in my twenties, not in my thirties. By 45 I figured my body was basically done accepting new tricks.",
           "Then I peeled the covers off a dumbbell set I'd bought five years back — it had been sitting there while I told myself I'd start \"next month.\" The gym felt like a project anyway — commute, crowds, mirrors, the whole performance. I wanted something I could do in the basement at my own random convenient time, with no audience and no plan to become a \"gym person.\"",
           "Six months later, something unexpected happened: muscles started showing up. Not bodybuilder showing up — I'm not posting shirtless transformation photos. But shoulders looked a little rounder. Arms stopped being purely decorative.",
@@ -3830,9 +3976,15 @@ export const blogPosts: BlogPost[] = [
       "training-first-full-marathon",
       "importance-of-cross-training",
     ],
+    sources: [
+      SOURCES.strengthForRunners,
+      SOURCES.strengthTrainingRunningEconomy2016,
+      SOURCES.preParticipationScreening,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "If you've been running consistently for a year or more — and you've done basic strength work — you can layer in harder training that improves hill power, finishing kick, and injury resilience.",
           "This is not about becoming a weightlifter. It's about targeted overload during base and early build phases, then maintaining strength as mileage peaks.",
         ],
@@ -3927,9 +4079,15 @@ export const blogPosts: BlogPost[] = [
       "avoiding-injuries",
       "training-first-5k",
     ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.heartRateZones,
+      SOURCES.acsmExercisePrescription2009,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "Runners and cyclists love a friendly rivalry: knees vs quads, pavement vs pedals, 5K PRs vs century rides. The better question isn't which sport wins — it's how each one makes you fitter for the other.",
           "For beginners especially, pairing easy cycling with a run plan can keep you consistent when joints need a break, weather turns ugly, or motivation dips.",
         ],
@@ -4038,9 +4196,15 @@ export const blogPosts: BlogPost[] = [
       "training-first-half-marathon",
       "trail-ultra-intro-beginners",
     ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.peaceAndLove,
+      SOURCES.shinSplints,
+    ],
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "Your training plan says long run. The forecast is perfect and your friend texts about a ridge trail three towns over. Can you swap the pavement for peaks and still move your fitness forward?",
           "Sometimes yes — especially if you treat the hike with the same respect you'd give a long run. Sometimes no — if the hike is so brutal it wrecks your legs for days or you never run on roads before race day.",
         ],
@@ -4144,6 +4308,9 @@ export const blogPosts: BlogPost[] = [
       "trail-ultra-intro-beginners",
       "first-track-workout-beginners",
       "night-running-safety",
+    ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
     ],
     sections: [
       {
@@ -4259,11 +4426,16 @@ export const blogPosts: BlogPost[] = [
       "building-a-running-habit",
       "importance-of-cross-training",
     ],
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.acsmExercisePrescription2009,
+    ],
     sections: [
       {
         paragraphs: [
           "Solo runs build discipline. Coach-led group training builds consistency — if you actually follow the plan someone designed for you. Tuesday track night, Saturday long-run crew, couch-to-5K clinic at the park: there's usually a coach (or coach-trained leader) explaining what today's session is for and how hard it should feel.",
           "This post is about training, not race morning. A race pacer is a different job. Here we're talking about the person who sets the week's structure, briefs the group before the run, and sometimes assigns workout pacers to hold specific efforts on the road or track.",
+          "**Educational only — not medical advice.** Tell a coach about pain or symptoms that change your gait — group energy is not a reason to ignore red flags.",
         ],
       },
       {
@@ -4998,6 +5170,7 @@ export const blogPosts: BlogPost[] = [
       "performance-goals-over-aesthetics",
       "building-a-running-habit",
       "avoiding-injuries",
+      "running-myths-debunked",
     ],
     closingQuestion:
       "What's the biggest weight-loss myth about running you used to believe — and what changed your mind?",
@@ -5528,7 +5701,9 @@ export const blogPosts: BlogPost[] = [
       {
         id: "the-big-picture",
         heading: "The Big Picture",
-        paragraphs: [],
+        paragraphs: [
+          "**Educational only — not medical advice.** Stop for chest pain, fainting, or unusual breathlessness, and get clinical guidance if you have chronic conditions before hard sessions.",
+        ],
         list: [
           "Aerobic base — Your ability to run longer and recover between efforts",
           "Lactate threshold — How fast you can run before fatigue builds up quickly",
@@ -5690,6 +5865,8 @@ export const blogPosts: BlogPost[] = [
   ...nextGapPosts,
   ...remainingGapPosts,
   ...surfaceGapPosts,
+  ...heartDeepDivePosts,
+  ...zonesLungsDeepDivePosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

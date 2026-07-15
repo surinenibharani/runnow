@@ -241,6 +241,58 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "family fun run tips",
     "how to start kids running",
   ],
+  "running-myths-debunked": [
+    "running myths debunked",
+    "running hydration myths",
+    "beginner running pace myths",
+    "running nutrition myths",
+  ],
+  "train-runners-heart-metrics": [
+    "how to train runners heart",
+    "running heart rate metrics explained",
+    "resting heart rate for runners",
+    "VO2max heart rate zones beginners",
+  ],
+  "resting-heart-rate-runners": [
+    "resting heart rate for runners",
+    "normal resting heart rate athletes",
+    "why is my resting heart rate high",
+  ],
+  "maximum-heart-rate-runners": [
+    "maximum heart rate for runners",
+    "220 minus age heart rate accurate",
+    "heart rate training zones beginners",
+  ],
+  "vo2max-for-runners": [
+    "VO2max for runners explained",
+    "how to improve VO2max running",
+    "watch VO2max accuracy",
+  ],
+  "heart-rate-variability-runners": [
+    "heart rate variability for runners",
+    "HRV RMSSD training recovery",
+    "should I rest when HRV is low",
+  ],
+  "training-zones-z1-z5-runners": [
+    "heart rate zones z1 z5 explained",
+    "zone 2 running for beginners",
+    "training zones plain english runners",
+  ],
+  "lactate-threshold-for-runners": [
+    "lactate threshold for runners",
+    "tempo run threshold training beginners",
+    "what is lactate threshold running",
+  ],
+  "blood-pressure-running-heart-health": [
+    "running to lower blood pressure",
+    "exercise and hypertension for runners",
+    "blood pressure heart health running",
+  ],
+  "training-lungs-for-running": [
+    "how to train lungs for running",
+    "increase lung capacity running",
+    "breathing strength for runners",
+  ],
   "training-half-and-full-marathon-same-season": [
     "train for half marathon and marathon same time",
     "half marathon before marathon training plan",

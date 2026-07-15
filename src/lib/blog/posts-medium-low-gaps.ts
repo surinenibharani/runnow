@@ -54,6 +54,7 @@ export const mediumLowGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Stop for chest pain, fainting, or unusual breathlessness, and get clinical guidance if you have chronic conditions before hard sessions.",
           "Winter ends more beginner streaks than hard workouts do. Black ice, early dark, and windchill that steals your face aren't character tests — they're logistics.",
           "A treadmill (or a smart indoor swap) keeps the habit alive. Pair it with [bad-weather decision rules](/blog/running-in-bad-weather) so you know when to stay in versus layer up.",
         ],
@@ -162,6 +163,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       {
         paragraphs: [
           "Social media warm-ups look like part-time jobs. Real beginners need something they'll actually do: raise temperature, wake up coordination, then run — then ease out.",
+          "**Educational only — not medical advice.** Sharp pain during warm-up is a stop signal, not a cue to stretch harder.",
           "Think **5–10 minutes in, 3–5 minutes out** for most easy days. Harder workouts and cold mornings get a little more.",
         ],
       },
@@ -237,6 +239,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "race-day-tips",
       "nutrition-basics-for-beginners",
       "post-run-recovery",
+      "running-myths-debunked",
     ],
     closingQuestion:
       "Are you more likely to under-drink on easy days or overdo fluids because a bottle feels 'serious'?",
@@ -376,6 +379,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       {
         paragraphs: [
           "Training stress + life stress only adapt when you recover. Sleep is the highest-ROI recovery tool beginners skip while buying massage guns.",
+          "**Educational only — not medical advice.** Chronic insomnia, loud snoring with daytime sleepiness, or new serious symptoms deserve clinical care — not just caffeine and stubborn early alarms.",
           "Mayo Clinic notes most adults need **at least seven hours**, with steady schedules helping more than occasional catch-up marathons. Aim for enough that you don't need heroic caffeine to feel human — often **7–9 hours** in build weeks.",
         ],
       },
@@ -475,6 +479,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       {
         paragraphs: [
           "You don't need elite track sessions to get faster. After a first [5K](/blog/training-first-5k), a little controlled spice once a week teaches your legs quicker turnover while easy days still build the engine.",
+          "**Educational only — not medical advice.** Skip hard sessions if you're injured, febrile, or newly symptomatic — intensity is optional; staying healthy is not.",
           "If you're still gasping on every jog, fix [easy effort](/blog/easy-runs-effort-heart-rate) first. Speedwork on a broken base is how shin and knee pain show up.",
         ],
       },

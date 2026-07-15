@@ -177,7 +177,7 @@ export const remainingGapPosts: BlogPost[] = [
       {
         paragraphs: [
           "Bone adapts to training — slowly. When mileage, intensity, or life stress outruns that adaptation, microdamage can outpace repair. That's the setup for a **bone stress injury**, from early stress reaction to a full stress fracture.",
-          "**This is education, not a diagnosis.** Persistent focal bone pain needs a clinician. Mayo Clinic's overview of [stress fractures](https://www.mayoclinic.org/diseases-conditions/stress-fractures/symptoms-causes/syc-20354057) is a solid starting reference for questions to bring in.",
+          "**This is education, not medical advice or a diagnosis.** Persistent focal bone pain needs a clinician. Mayo Clinic's overview of [stress fractures](https://www.mayoclinic.org/diseases-conditions/stress-fractures/symptoms-causes/syc-20354057) is a solid starting reference for questions to bring in.",
         ],
       },
       {
@@ -299,6 +299,7 @@ export const remainingGapPosts: BlogPost[] = [
         paragraphs: [
           "Heat isn't a character test. It's a physiology multiplier: same pace costs more, sweat loss rises, and recovery stretches. This hub collects the practical rules so you can train through summer without collecting a cautionary tale.",
           "Pair it with the broader [bad weather guide](/blog/running-in-bad-weather) and the detailed [hydration & electrolytes](/blog/hydration-electrolytes-running) post when you want depth.",
+          "**Educational only — not medical advice.** Heat exhaustion and heatstroke are medical emergencies — stop, cool down, and seek care for confusion, collapse, or severe symptoms ([heat exhaustion overview](https://www.mayoclinic.org/diseases-conditions/heat-exhaustion/symptoms-causes/syc-20373250)).",
         ],
       },
       {
@@ -409,6 +410,7 @@ export const remainingGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Stop for chest pain, fainting, or unusual breathlessness, and get clinical guidance if you have chronic conditions before hard sessions.",
           "Training builds the engine. **Taper removes the fatigue so the engine can actually show up.** Beginners often ruin a good block with secret miles, new shoes, or panic speedwork in the final week.",
           "Use this as a standalone playbook whether your plan has a labeled taper week or you're freestyling the last stretch before a [5K](/plan?plan=5k-8w), [10K](/plan?plan=10k-8w), half, or marathon.",
         ],

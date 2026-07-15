@@ -60,6 +60,7 @@ export const priorityGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Stop for chest pain, fainting, or unusual breathlessness, and get clinical guidance if you have chronic conditions before hard sessions.",
           "A 5K teaches you that you can finish. A half marathon asks you to rearrange your weekends. The **10K (6.2 miles)** sits in the middle — long enough to feel like a real step up, short enough that three good runs a week still fit a normal life.",
           "If you've finished a 5K (or can jog about 30 minutes without stopping), you're ready to start a 10K build. If you're still walking most of your sessions, [finish a beginner 5K plan](/blog/training-first-5k) first — the 10K will wait.",
         ],
@@ -332,6 +333,7 @@ export const priorityGapPosts: BlogPost[] = [
       "training-first-5k",
       "training-first-10k",
       "building-a-running-habit",
+      "train-runners-heart-metrics",
     ],
     closingQuestion:
       "Do you trust effort, heart rate, or pace most on easy days — and which one has lied to you before?",
@@ -362,6 +364,7 @@ export const priorityGapPosts: BlogPost[] = [
         paragraphs: [
           "Beginners often do every run at 'kinda hard.' It feels productive. It also stalls aerobic development and loads injury risk onto legs that never get true easy stimulus.",
           "Easy running is the boring superpower: most of your weekly minutes should feel like you could chat, breathe through your nose at times, and finish wanting a little more. Pace is optional. Effort is not.",
+          "**Educational only — not medical advice.** Heart-rate formulas are estimates; chest pain, fainting, or concerning breathlessness need clinical care, not a harder easy day.",
         ],
       },
       {
@@ -500,7 +503,7 @@ export const priorityGapPosts: BlogPost[] = [
       {
         paragraphs: [
           "Shin splints — clinicians often say **medial tibial stress syndrome** — show up when bone and the tissues along the shin take more repetitive load than they've adapted to. Beginners ramping mileage, runners returning too fast after a break, and sudden surface or shoe changes are classic setups.",
-          "**This is general education, not a diagnosis or treatment plan.** Persistent, worsening, or pinpoint bone pain needs a professional — stress fractures can mimic or follow ignored shin pain.",
+          "**This is general education, not medical advice or a diagnosis.** Persistent, worsening, or pinpoint bone pain needs a professional — stress fractures can mimic or follow ignored shin pain.",
         ],
       },
       {
@@ -625,7 +628,7 @@ export const priorityGapPosts: BlogPost[] = [
       {
         paragraphs: [
           "**Runner's knee** is everyday language for pain around the kneecap — frequently **patellofemoral pain syndrome (PFPS)**. It loves sudden hills, mileage spikes, weak hips, and the 'I feel great so I'll add speed and distance' week.",
-          "**Not medical advice.** Locking, giving way, big swelling, or trauma need hands-on evaluation. IT band pain on the outer knee is a cousin problem with a different feel — don't assume every lateral ache is PFPS.",
+          "**Educational only — not medical advice.** Locking, giving way, big swelling, or trauma need hands-on evaluation. IT band pain on the outer knee is a cousin problem with a different feel — don't assume every lateral ache is PFPS.",
         ],
       },
       {

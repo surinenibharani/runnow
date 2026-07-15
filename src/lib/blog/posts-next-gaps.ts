@@ -55,7 +55,7 @@ export const nextGapPosts: BlogPost[] = [
       {
         paragraphs: [
           "Plantar fasciitis is irritation of the thick band of tissue under your foot that supports the arch — the **plantar fascia**. Runners meet it after mileage jumps, hard surfaces, dead shoes, tight calves, or coming back too fast from time off.",
-          "**This is general education, not a diagnosis.** Persistent heel pain needs a professional. Stress fractures, nerve issues, and Achilles problems can mimic it.",
+          "**This is general education, not medical advice or a diagnosis.** Persistent heel pain needs a professional. Stress fractures, nerve issues, and Achilles problems can mimic it.",
         ],
       },
       {
@@ -411,6 +411,7 @@ export const nextGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Stop for chest pain, fainting, or unusual breathlessness, and get clinical guidance if you have chronic conditions before hard sessions.",
           "Training plans have a finish line. Life doesn't. The gap **between cycles** is where many beginners either quit… or pile on random hard miles because structure disappeared.",
           "Off-season isn't laziness. It's how you turn one race into a multi-year habit.",
         ],

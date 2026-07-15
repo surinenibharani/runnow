@@ -141,6 +141,93 @@ export const SOURCES = {
     href: "https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise-intensity/art-20046887",
     publisher: "Mayo Clinic",
   },
+  heartDiseaseExercise: {
+    label: "Exercise and chronic disease — when to check with your doctor",
+    href: "https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise-and-chronic-disease/art-20046049",
+    publisher: "Mayo Clinic",
+  },
+  bloodPressureExercise: {
+    label: "Exercise: A drug-free approach to lowering high blood pressure",
+    href: "https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/high-blood-pressure/art-20045206",
+    publisher: "Mayo Clinic",
+  },
+  restingHeartRateMayo: {
+    label: "Heart rate: What's normal?",
+    href: "https://www.mayoclinic.org/healthy-lifestyle/fitness/expert-answers/heart-rate/faq-20057979",
+    publisher: "Mayo Clinic",
+  },
+  targetHeartRatesAHA: {
+    label: "Target heart rates chart",
+    href: "https://www.heart.org/en/healthy-living/exercise-and-physical-activity/fitness-basics/target-heart-rates",
+    publisher: "American Heart Association",
+  },
+  vo2maxMayoQA: {
+    label: "What does a VO₂ max have to do with overall fitness?",
+    href: "https://newsnetwork.mayoclinic.org/discussion/mayo-clinic-qa-what-does-a-vo2-max-have-to-do-with-overall-fitness/",
+    publisher: "Mayo Clinic News Network",
+  },
+  hrvMonitoringBuchheit2014: {
+    label:
+      "Monitoring training status with HR measures: do all roads lead to Rome? (Buchheit, 2014)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/24578692/",
+    publisher: "PubMed / Sports Med",
+  },
+  hrvMobileAthletesReview2025: {
+    label:
+      "Monitoring training adaptation and recovery with HRV via mobile devices (narrative review)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12787763/",
+    publisher: "PMC / Sensors",
+  },
+  hrvNocturnalRecreationalRunners2024: {
+    label:
+      "Morning versus nocturnal HR and HRV responses to intensified training in recreational runners (2024)",
+    href: "https://doi.org/10.1186/s40798-024-00779-5",
+    publisher: "Sports Medicine - Open",
+  },
+  bloodPressureChartMayo: {
+    label: "Blood pressure chart: What your reading means",
+    href: "https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982",
+    publisher: "Mayo Clinic",
+  },
+  highBloodPressureMayo: {
+    label: "High blood pressure (hypertension) — diagnosis & treatment",
+    href: "https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/diagnosis-treatment/drc-20373417",
+    publisher: "Mayo Clinic",
+  },
+  ahaExerciseBloodPressure: {
+    label: "Getting active to control high blood pressure",
+    href: "https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/getting-active-to-control-high-blood-pressure",
+    publisher: "American Heart Association",
+  },
+  lactateThresholdNarrative2024: {
+    label:
+      "Lactate threshold training to improve long-distance running performance (narrative review, 2024)",
+    href: "https://doi.org/10.26773/mjssm.240303",
+    publisher: "Montenegrin Journal of Sports Science and Medicine",
+  },
+  lactateFixedThresholdIndividual2023: {
+    label:
+      "Individual responses to continuous running at a fixed lactate threshold (2023)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10611166/",
+    publisher: "PMC / Frontiers in Physiology",
+  },
+  faudeLactateThreshold2009: {
+    label:
+      "Lactate threshold concepts: how valid are they? (Faude, Kindermann & Meyer, 2009)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/19480095/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  inspiratoryMuscleTrainingMeta2013: {
+    label:
+      "Inspiratory muscle training in healthy humans: a meta-analysis of exercise performance (Illi et al., 2012/2013)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/22706912/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  diaphragmaticBreathingMayo: {
+    label: "Decrease stress by using your breath",
+    href: "https://www.mayoclinic.org/healthy-lifestyle/stress-management/in-depth/decrease-stress-by-using-your-breath/art-20247654",
+    publisher: "Mayo Clinic",
+  },
   heatSafety: {
     label: "Exercising safely in the summer heat",
     href: "https://communityhealth.mayoclinic.org/featured-stories/exercise-summer-heat",

@@ -152,6 +152,26 @@ export const whyItMattersBySlug: Record<string, string> = {
     "The oval is friendlier than it looks once you know lanes and a simple session. One measured workout teaches effort better than another mystery road 'tempo.'",
   "kids-family-running":
     "Family miles should build joy, not miniature training camps. Playful loops and walk-friendly events create adults who still lace up years later.",
+  "running-myths-debunked":
+    "Bad rules (never walk, chug on cue, fear carbs, chase soreness) end more beginner streaks than hard workouts. Clearing the myths makes easy days easy and long goals reachable.",
+  "train-runners-heart-metrics":
+    "Watches flash resting HR, VO₂max, and HRV like magic. Understanding what those numbers mean — and that easy miles build most of them — turns metrics into patience instead of panic.",
+  "resting-heart-rate-runners":
+    "Morning resting HR is a free longitudinal lab test. Trends reveal fitness and load; single scary mornings mostly reveal last night.",
+  "maximum-heart-rate-runners":
+    "HRmax formulas sketch zones — they don't define your worth. Knowing the ceiling's limits keeps easy days easy and hard days intentional.",
+  "vo2max-for-runners":
+    "VO₂max is the aerobic ceiling story: build it with patient easy miles plus recovered spice, and treat watch estimates as trends not trophies.",
+  "heart-rate-variability-runners":
+    "HRV turns recovery into data — useful when you trust your baseline and multi-day trends, useless when one orange ring cancels common sense.",
+  "training-zones-z1-z5-runners":
+    "Zones only work when easy days stay easy. Plain-English Z1–Z5 keeps quality scarce and conversational miles where the engine actually grows.",
+  "lactate-threshold-for-runners":
+    "Threshold is the comfortably hard line that makes race pace feel less like a cliff — train it sparingly after a real easy base, not as daily religion.",
+  "blood-pressure-running-heart-health":
+    "VO₂max gets screenshots; blood pressure gets decades. Consistent aerobic running is a lifestyle lever for many hypertensive adults — with clinical care, not instead of it.",
+  "training-lungs-for-running":
+    "Lungs rarely ‘expand’ like a party balloon — ventilation skill, respiratory muscle endurance, and honest easy pacing make breathing feel easier for real.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {
