@@ -87,6 +87,17 @@ export default async function CommonInjuryDetailPage({
 
         <FadeIn className="text-center">
           <p className="text-sm text-muted-foreground">
+            {injury.relatedBlog && (
+              <>
+                <Link
+                  href={injury.relatedBlog.href}
+                  className="text-primary hover:underline"
+                >
+                  {injury.relatedBlog.label}
+                </Link>
+                {" · "}
+              </>
+            )}
             <Link href="/injuries" className="text-primary hover:underline">
               All running injuries
             </Link>

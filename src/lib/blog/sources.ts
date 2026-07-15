@@ -131,6 +131,22 @@ export const SOURCES = {
     href: "https://www.mayoclinic.org/diseases-conditions/osteoporosis/symptoms-causes/syc-20351968",
     publisher: "Mayo Clinic",
   },
+  exerciseWithOsteoporosis: {
+    label: "Exercising with osteoporosis: Stay active the safe way",
+    href: "https://www.mayoclinic.org/diseases-conditions/osteoporosis/in-depth/osteoporosis/art-20044989",
+    publisher: "Mayo Clinic",
+  },
+  menopauseFitnessMayo: {
+    label: "Women's Wellness: Fitness tips for menopause",
+    href: "https://newsnetwork.mayoclinic.org/discussion/womens-wellness-fitness-tips-for-menopause/",
+    publisher: "Mayo Clinic",
+  },
+  menopauseWeightliftingBoneMayo: {
+    label:
+      "Perimenopause, menopause and weightlifting — bone health (Mayo Clinic Healthcare)",
+    href: "https://newsnetwork.mayoclinic.org/discussion/perimenopause-menopause-and-weightlifting-expert-explains-value-for-bone-health/",
+    publisher: "Mayo Clinic",
+  },
   strengthForRunners: {
     label: "Strength training: get stronger, leaner, healthier",
     href: "https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/strength-training/art-20046670",

@@ -18,6 +18,8 @@ export type CommonInjury = {
   seeSpecialist: string[];
   /** Authoritative medical reference for this condition. */
   learnMore?: { label: string; href: string; publisher: string };
+  /** Deep-dive blog guide on LetsRunNow. */
+  relatedBlog?: { label: string; href: string };
 };
 
 export const commonInjuries: CommonInjury[] = [
@@ -51,6 +53,10 @@ export const commonInjuries: CommonInjury[] = [
       href: "https://www.mayoclinic.org/diseases-conditions/shin-splints/symptoms-causes/syc-20354105",
       publisher: "Mayo Clinic",
     },
+    relatedBlog: {
+      label: "Shin splints deep dive for runners",
+      href: "/blog/shin-splints-running",
+    },
   },
   {
     slug: "runners-knee",
@@ -81,6 +87,10 @@ export const commonInjuries: CommonInjury[] = [
       label: "Patellofemoral pain syndrome — symptoms & causes",
       href: "https://www.mayoclinic.org/diseases-conditions/patellofemoral-pain-syndrome/symptoms-causes/syc-20350792",
       publisher: "Mayo Clinic",
+    },
+    relatedBlog: {
+      label: "Runner's knee deep dive",
+      href: "/blog/runners-knee-running",
     },
   },
   {
@@ -113,6 +123,10 @@ export const commonInjuries: CommonInjury[] = [
       href: "https://my.clevelandclinic.org/health/diseases/21967-iliotibial-band-syndrome",
       publisher: "Cleveland Clinic",
     },
+    relatedBlog: {
+      label: "IT band syndrome deep dive",
+      href: "/blog/it-band-syndrome-running",
+    },
   },
   {
     slug: "plantar-fasciitis",
@@ -143,6 +157,10 @@ export const commonInjuries: CommonInjury[] = [
       label: "Plantar fasciitis — symptoms & causes",
       href: "https://www.mayoclinic.org/diseases-conditions/plantar-fasciitis/symptoms-causes/syc-20354846",
       publisher: "Mayo Clinic",
+    },
+    relatedBlog: {
+      label: "Plantar fasciitis deep dive",
+      href: "/blog/plantar-fasciitis-running",
     },
   },
   {
@@ -175,6 +193,10 @@ export const commonInjuries: CommonInjury[] = [
       href: "https://www.mayoclinic.org/diseases-conditions/achilles-tendinitis/symptoms-causes/syc-20369020",
       publisher: "Mayo Clinic",
     },
+    relatedBlog: {
+      label: "Achilles tendinitis deep dive",
+      href: "/blog/achilles-tendinitis-running",
+    },
   },
   {
     slug: "stress-fractures",
@@ -205,6 +227,10 @@ export const commonInjuries: CommonInjury[] = [
       label: "Stress fractures — symptoms & causes",
       href: "https://www.mayoclinic.org/diseases-conditions/stress-fractures/symptoms-causes/syc-20354057",
       publisher: "Mayo Clinic",
+    },
+    relatedBlog: {
+      label: "Stress fracture deep dive for runners",
+      href: "/blog/stress-fracture-running",
     },
   },
 ];

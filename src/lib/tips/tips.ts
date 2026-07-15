@@ -8,6 +8,7 @@ import {
   Heart,
   Moon,
   Sun,
+  Utensils,
   Users,
   Wind,
 } from "lucide-react";
@@ -251,6 +252,26 @@ export const runnerTips: RunnerTip[] = [
     content:
       "Sea-level pace goals often fail at elevation. Land early when you can, keep the first 48 hours easy, and race by feel — not your hometown splits.",
     blogSlug: "altitude-travel-race-running",
+  },
+  {
+    slug: slugifyTipTitle("If easy days aren't easy, slow down now"),
+    icon: Heart,
+    illustration: "easy-pace",
+    category: "Training",
+    title: "If easy days aren't easy, slow down now",
+    content:
+      "Easy days build the aerobic base. If you're gasping, racing strangers, or sore for days after 'recovery' runs, you're training hard by accident — walk, shorten, or dial effort down.",
+    blogSlug: "easy-runs-effort-heart-rate",
+  },
+  {
+    slug: slugifyTipTitle("Fuel the miles — under-eating isn't toughness"),
+    icon: Utensils,
+    illustration: "health",
+    category: "Nutrition",
+    title: "Fuel the miles — under-eating isn't toughness",
+    content:
+      "Training harder while eating less is a common path to fatigue, niggles, and stress injuries. Eat enough for the work you do — snacks around long or hard sessions count as training gear.",
+    blogSlug: "reds-low-energy-availability-runners",
   },
 ];
 

@@ -182,6 +182,12 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Standard couch-to-5K still feels like a cliff for some bodies. A walk-first, micro-jog path builds habit without shame.",
   "workplace-lunch-run":
     "If mornings and evenings fail, a packed lunch-run kit and an easy midday loop keep the calendar honest.",
+  "running-through-menopause":
+    "Perimenopause and menopause change recovery, heat, pelvic floor, and bone load — edit the plan with easy volume, strength, and sleep instead of old race ego.",
+  "reds-low-energy-availability-runners":
+    "When training outruns fueling, bone, hormones, and immunity pay first. Enough food is performance equipment — not a character flaw.",
+  "bone-health-masters-runners":
+    "Masters bone health is strength + fuel + smart impact, not mileage alone. Know when DEXA and modified loading beat another tempo.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

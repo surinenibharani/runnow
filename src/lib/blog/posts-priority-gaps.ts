@@ -17,7 +17,7 @@ export const priorityGapPosts: BlogPost[] = [
       "6.2 miles is the sweet next goal after a 5K — long enough to feel like a leap, short enough to train without marathon-level volume. Here's how to build up safely.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-09-28",
+    publishedAt: "2026-10-03",
     readTime: "9 min",
     relatedSlugs: [
       "training-first-5k",
@@ -186,7 +186,7 @@ export const priorityGapPosts: BlogPost[] = [
       "Fitness fades faster than ego. Whether you took three weeks or three years off, here's how to rebuild mileage so the comeback sticks — and the injuries don't.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-10-05",
+    publishedAt: "2026-10-15",
     readTime: "8 min",
     relatedSlugs: [
       "what-to-do-when-you-miss-a-run",
@@ -324,7 +324,7 @@ export const priorityGapPosts: BlogPost[] = [
       "Pace lies. Heat, stress, and hills make the same 'easy' mile feel different. Learn the talk test, RPE, and simple heart-rate guardrails so most of your training actually builds your base.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-10-12",
+    publishedAt: "2026-09-11",
     readTime: "8 min",
     relatedSlugs: [
       "how-to-pace-yourself",
@@ -463,7 +463,7 @@ export const priorityGapPosts: BlogPost[] = [
       "Pain along the inner shin is one of the most common beginner setbacks. Learn what shin splints usually mean, how to calm them down, and how to keep them from returning when you rebuild.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-10-19",
+    publishedAt: "2026-07-18",
     readTime: "8 min",
     relatedSlugs: [
       "avoiding-injuries",
@@ -588,7 +588,7 @@ export const priorityGapPosts: BlogPost[] = [
       "Dull ache around the kneecap after runs or on stairs isn't a character flaw — it's usually load, strength, and training choices. Here's how runners calm PFPS and rebuild.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-10-26",
+    publishedAt: "2026-07-16",
     readTime: "8 min",
     relatedSlugs: [
       "avoiding-injuries",

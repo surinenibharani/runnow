@@ -17,7 +17,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "Ice, dark, and wind don't have to end your streak. How to use the treadmill (or indoor swaps) without boredom, blown knees, or fake 'easy' paces.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-11-02",
+    publishedAt: "2026-09-29",
     readTime: "8 min",
     relatedSlugs: [
       "running-in-bad-weather",
@@ -129,7 +129,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "You don't need a 40-minute mobility flow before every jog. A short warm-up and simple cool-down make easy runs feel better and hard days safer — without eating your whole evening.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-11-09",
+    publishedAt: "2026-07-25",
     readTime: "7 min",
     relatedSlugs: [
       "first-run-tips",
@@ -230,7 +230,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "Water vs sports drinks, when salt matters, and how to avoid both dehydration and overdrinking. Practical rules for easy runs, long days, and heat.",
     category: "Nutrition",
     author: AUTHOR,
-    publishedAt: "2026-11-16",
+    publishedAt: "2026-10-19",
     readTime: "8 min",
     relatedSlugs: [
       "nutrition-for-runners",
@@ -345,7 +345,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "You can't out-train a chronic sleep deficit. How much sleep runners need, how training messes with bedtime, and simple habits that make easy days and long runs pay off.",
     category: "Recovery",
     author: AUTHOR,
-    publishedAt: "2026-11-23",
+    publishedAt: "2026-10-21",
     readTime: "7 min",
     relatedSlugs: [
       "post-run-recovery",
@@ -440,7 +440,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "Ready for something spicier than easy miles? How to add strides, gentle intervals, and simple VO₂-style work after a 5K — once a week, with full recovery, and no junk intensity.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-11-30",
+    publishedAt: "2026-10-17",
     readTime: "8 min",
     relatedSlugs: [
       "training-first-5k",

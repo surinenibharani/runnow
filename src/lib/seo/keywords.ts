@@ -318,6 +318,21 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "how to run on lunch break",
     "office midday running routine",
   ],
+  "running-through-menopause": [
+    "running through menopause",
+    "perimenopause running training",
+    "menopause exercise tips runners",
+  ],
+  "reds-low-energy-availability-runners": [
+    "REDs runners low energy availability",
+    "underfueling running injuries",
+    "relative energy deficiency sport running",
+  ],
+  "bone-health-masters-runners": [
+    "bone health for masters runners",
+    "osteoporosis running postmenopausal",
+    "strength training bone density runners",
+  ],
   "training-half-and-full-marathon-same-season": [
     "train for half marathon and marathon same time",
     "half marathon before marathon training plan",

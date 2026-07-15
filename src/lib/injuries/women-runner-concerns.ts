@@ -123,8 +123,12 @@ export const womenRunnerConcerns: WomenRunnerConcern[] = [
     ],
     illustration: "bone-health",
     readMore: [
+      {
+        label: "REDs & underfueling deep dive",
+        href: "/blog/reds-low-energy-availability-runners",
+      },
+      { label: "Stress fracture deep dive", href: "/blog/stress-fracture-running" },
       { label: "Women's running guide", href: "/blog/running-guide-for-women" },
-      { label: "Stress fractures (all runners)", href: "/injuries" },
     ],
   },
   {
@@ -331,7 +335,14 @@ export const womenRunnerConcerns: WomenRunnerConcern[] = [
       "HRT or bone medication questions — endocrinologist or GP with menopause expertise",
     ],
     readMore: [
-      { label: "Health conditions & running", href: "/blog/running-with-health-conditions" },
+      {
+        label: "Bone health for masters runners",
+        href: "/blog/bone-health-masters-runners",
+      },
+      {
+        label: "Running through menopause",
+        href: "/blog/running-through-menopause",
+      },
       { label: "RED-S & bone health (above)", href: "#red-s-bone-health" },
     ],
   },

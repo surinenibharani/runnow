@@ -17,7 +17,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Coming back after birth isn't a couch-to-5K restart with a baby carrier. Clearance, pelvic floor signs, walk-run progressions, and when to get help — without the shame spiral.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2027-01-11",
+    publishedAt: "2026-07-31",
     readTime: "10 min",
     relatedSlugs: [
       "running-guide-for-women",
@@ -137,7 +137,7 @@ export const remainingGapPosts: BlogPost[] = [
       "A hotspot that worsens with every run isn't toughness — it can be a bone stress injury. How stress fractures show up, what recovery usually looks like, and how to lower the odds of a repeat.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2027-01-18",
+    publishedAt: "2026-07-14",
     readTime: "9 min",
     relatedSlugs: [
       "shin-splints-running",
@@ -258,7 +258,7 @@ export const remainingGapPosts: BlogPost[] = [
       "One place for summer running: how heat changes effort, when to slow down or go indoors, hydration without overdoing it, and the warning signs that mean stop — not 'tough it out.'",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2027-01-25",
+    publishedAt: "2026-08-12",
     readTime: "8 min",
     relatedSlugs: [
       "running-in-bad-weather",
@@ -373,7 +373,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Taper isn't laziness — it's the week(s) where fitness shows up. How much to cut, what to keep, what to stop inventing, and how to handle the classic 'I feel sluggish' panic.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2027-02-01",
+    publishedAt: "2026-08-08",
     readTime: "8 min",
     relatedSlugs: [
       "race-day-tips",
@@ -476,7 +476,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Butterflies, bathroom loops, and 'what if I DNF' spirals are common — especially at your first race. Practical tools to use the nerves without letting them run the morning.",
     category: "Mindset",
     author: AUTHOR,
-    publishedAt: "2027-02-08",
+    publishedAt: "2026-09-19",
     readTime: "7 min",
     relatedSlugs: [
       "mental-side-of-running",
@@ -574,7 +574,7 @@ export const remainingGapPosts: BlogPost[] = [
       "A watch can coach consistency — or turn every jog into a verdict. When a GPS device helps, when your phone is enough, and how to run by feel without becoming anti-data.",
     category: "Gear",
     author: AUTHOR,
-    publishedAt: "2027-02-15",
+    publishedAt: "2026-08-14",
     readTime: "7 min",
     relatedSlugs: [
       "easy-runs-effort-heart-rate",
@@ -666,7 +666,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Running with a jogging stroller is a skill — not just 'running but heavier.' Setup, posture, when to start postpartum, heat rules with a baby aboard, and how to train without overstriding into the handlebar.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2027-02-22",
+    publishedAt: "2026-09-07",
     readTime: "8 min",
     relatedSlugs: [
       "postpartum-return-to-run",
@@ -778,7 +778,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Your dog might be ready before you are — or the opposite. Breed and age limits, leash skills, pavement heat, distance progressions, and when a walk is the kinder sport for everyone.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2027-03-01",
+    publishedAt: "2026-10-11",
     readTime: "8 min",
     relatedSlugs: [
       "hot-weather-running-hub",

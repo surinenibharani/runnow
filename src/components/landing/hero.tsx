@@ -53,7 +53,28 @@ export function Hero() {
             quirky run names so it never feels like homework.
           </p>
 
-          <div className="relative z-10 mt-8 flex w-full max-w-md flex-col gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:justify-center">
+          <div className="relative z-10 mt-6 flex flex-wrap justify-center gap-3 sm:mt-8">
+            <Button
+              nativeButton={false}
+              render={<Link href="/blog/running-guide-for-women" />}
+              variant="outline"
+              size="sm"
+              className="border-violet-500/30 bg-background/70 text-violet-700 backdrop-blur-sm hover:bg-violet-500/10 dark:text-violet-300"
+            >
+              Women&apos;s running guide
+            </Button>
+            <Button
+              nativeButton={false}
+              render={<Link href="/blog/running-guide-for-men" />}
+              variant="outline"
+              size="sm"
+              className="border-sky-500/30 bg-background/70 text-sky-700 backdrop-blur-sm hover:bg-sky-500/10 dark:text-sky-300"
+            >
+              Men&apos;s running guide
+            </Button>
+          </div>
+
+          <div className="relative z-10 mt-5 flex w-full max-w-md flex-col gap-3 sm:mt-6 sm:max-w-none sm:flex-row sm:justify-center">
             <Button
               nativeButton={false}
               render={<Link href="/plan" />}
