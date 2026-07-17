@@ -507,6 +507,15 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "is running good for weight loss beginner",
     "fat burning zone running myth",
   ],
+  "why-long-runs-feel-hard": [
+    "why does my long run feel so hard",
+    "why are long runs getting harder",
+    "heavy legs during long run",
+    "how to make long runs easier",
+    "long run pacing for beginners",
+    "what to eat before a long run",
+    "long run fatigue causes",
+  ],
 };
 
 export function blogPostKeywords(slug: string, category: string): string[] {
