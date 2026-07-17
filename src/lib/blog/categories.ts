@@ -13,6 +13,8 @@ export const BLOG_CATEGORY_ORDER = [
   "Gear",
   "Mindset",
   "Health",
+  "Injuries",
+  "Tips",
 ] as const;
 
 export function getBlogCategories(): string[] {
@@ -29,6 +31,10 @@ export function categoryToParam(category: string): string {
 export function paramToCategory(param: string | null | undefined): string | null {
   if (!param) return null;
   const normalized = param.toLowerCase().replace(/-/g, " ");
+  const fromOrder = BLOG_CATEGORY_ORDER.find(
+    (c) => c !== ALL_BLOG_CATEGORY && c.toLowerCase() === normalized
+  );
+  if (fromOrder) return fromOrder;
   const match = blogPosts.find(
     (p) => p.category.toLowerCase() === normalized
   );

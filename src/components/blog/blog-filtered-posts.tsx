@@ -3,6 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import type { BlogPost } from "@/lib/blog/types";
 import { filterPostsByCategory, paramToCategory } from "@/lib/blog/categories";
+import { compareBlogPostsNewestFirst } from "@/lib/blog/posts";
 import { BlogPostCards } from "@/components/blog/blog-post-cards";
 
 type BlogFilteredPostsProps = {
@@ -19,7 +20,10 @@ export function BlogFilteredPosts({
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
   const activeCategory = paramToCategory(categoryParam);
-  const filteredPosts = filterPostsByCategory(posts, categoryParam);
+  // Always newest-first — including when All / no category is selected.
+  const filteredPosts = [...filterPostsByCategory(posts, categoryParam)].sort(
+    compareBlogPostsNewestFirst
+  );
   const listKey = categoryParam ?? "all";
 
   return (

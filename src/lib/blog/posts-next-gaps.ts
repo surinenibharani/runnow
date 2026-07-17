@@ -14,7 +14,7 @@ export const nextGapPosts: BlogPost[] = [
     title: "Plantar Fasciitis for Runners: Heel Pain That Shows Up in the Morning",
     excerpt:
       "That first-step stab in the heel isn't 'just tightness.' What plantar fasciitis usually feels like, how runners calm it down, and how to keep it from returning when you rebuild mileage.",
-    category: "Health",
+    category: "Injuries",
     author: AUTHOR,
     publishedAt: "2026-07-22",
     readTime: "8 min",
@@ -135,7 +135,7 @@ export const nextGapPosts: BlogPost[] = [
     title: "IT Band Syndrome: The Outer-Knee Pain That Loves Hills and Camber",
     excerpt:
       "Sharp or burning pain on the outside of the knee after a few miles isn't mysterious toughness — it's often IT band irritation. How to calm it, what strength actually helps, and when to get checked.",
-    category: "Health",
+    category: "Injuries",
     author: AUTHOR,
     publishedAt: "2026-07-26",
     readTime: "8 min",

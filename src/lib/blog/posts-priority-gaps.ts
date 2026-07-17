@@ -461,7 +461,7 @@ export const priorityGapPosts: BlogPost[] = [
     title: "Shin Splints from Running: What Helps, What Doesn't, and When to Worry",
     excerpt:
       "Pain along the inner shin is one of the most common beginner setbacks. Learn what shin splints usually mean, how to calm them down, and how to keep them from returning when you rebuild.",
-    category: "Health",
+    category: "Injuries",
     author: AUTHOR,
     publishedAt: "2026-07-18",
     readTime: "8 min",
@@ -586,7 +586,7 @@ export const priorityGapPosts: BlogPost[] = [
     title: "Runner's Knee Explained: Patellofemoral Pain Without the Panic",
     excerpt:
       "Dull ache around the kneecap after runs or on stairs isn't a character flaw — it's usually load, strength, and training choices. Here's how runners calm PFPS and rebuild.",
-    category: "Health",
+    category: "Injuries",
     author: AUTHOR,
     publishedAt: "2026-07-16",
     readTime: "8 min",

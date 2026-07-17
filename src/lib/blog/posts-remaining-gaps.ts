@@ -135,7 +135,7 @@ export const remainingGapPosts: BlogPost[] = [
     title: "Stress Fractures for Runners: Why 'Push Through' Is the Wrong Play",
     excerpt:
       "A hotspot that worsens with every run isn't toughness — it can be a bone stress injury. How stress fractures show up, what recovery usually looks like, and how to lower the odds of a repeat.",
-    category: "Health",
+    category: "Injuries",
     author: AUTHOR,
     publishedAt: "2026-07-14",
     readTime: "9 min",
@@ -371,7 +371,7 @@ export const remainingGapPosts: BlogPost[] = [
     title: "The Standalone Taper Guide: How to Arrive Fresh Without Going Rusty",
     excerpt:
       "Taper isn't laziness — it's the week(s) where fitness shows up. How much to cut, what to keep, what to stop inventing, and how to handle the classic 'I feel sluggish' panic.",
-    category: "Training",
+    category: "Racing",
     author: AUTHOR,
     publishedAt: "2026-08-08",
     readTime: "8 min",
@@ -474,7 +474,7 @@ export const remainingGapPosts: BlogPost[] = [
     title: "Race Anxiety Is Normal: How to Calm Nerves Without Quitting the Start Line",
     excerpt:
       "Butterflies, bathroom loops, and 'what if I DNF' spirals are common — especially at your first race. Practical tools to use the nerves without letting them run the morning.",
-    category: "Mindset",
+    category: "Racing",
     author: AUTHOR,
     publishedAt: "2026-09-19",
     readTime: "7 min",
@@ -889,7 +889,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Want to Run a Marathon in Your First Year? Why Patience Beats the Shortcut",
     excerpt:
       "Finishers medals look great on social media — but lungs adapt faster than tendons. Here's why most runners need years of progressive loading — including a couple of half marathon seasons — before 26.2 miles (42 km) of repeated impact is a fair ask.",
-    category: "Training",
+    category: "Getting Started",
     author: AUTHOR,
     publishedAt: "2026-10-31",
     readTime: "14 min",
@@ -1228,7 +1228,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Trust Your Coach and Pacer — Even When It Feels Like They're Trying to End You",
     excerpt:
       "Easy days that feel insultingly slow. Long runs that go on forever. Pacers who refuse your mid-race ego. Here's why good coaches and pacers do what they do — and when to talk, push back, or actually stop.",
-    category: "Training",
+    category: "Mindset",
     author: AUTHOR,
     publishedAt: "2026-07-19",
     readTime: "11 min",

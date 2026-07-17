@@ -306,7 +306,7 @@ export const surfaceGapPosts: BlogPost[] = [
     title: "Chafing and Blisters: Stop the Rub Before It Ends Your Run",
     excerpt:
       "Salt, seams, wet socks, and new shoes create most beginner skin drama. Prevention first, then simple care — without weird internet remedies.",
-    category: "Health",
+    category: "Tips",
     author: AUTHOR,
     publishedAt: "2026-10-01",
     readTime: "7 min",
@@ -578,7 +578,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "Running Myths Debunked: Pace, Hydration, Nutrition, Gear & Recovery",
     excerpt:
       "You don't have to run every step, chug water on cue, or buy a gel wardrobe to be a real runner. The biggest beginner myths — and what to do instead.",
-    category: "Tips",
+    category: "Mindset",
     author: AUTHOR,
     publishedAt: "2026-09-03",
     readTime: "14 min",
@@ -888,7 +888,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "How to Train a Runner's Heart (and the Metrics That Make People Say Wow)",
     excerpt:
       "Your heart adapts like a muscle: bigger stroke volume, lower resting rate, better recovery. Here's what those flashy numbers mean — and how easy miles plus a little spice actually train the engine.",
-    category: "Training",
+    category: "Health",
     author: AUTHOR,
     publishedAt: "2026-08-16",
     readTime: "12 min",

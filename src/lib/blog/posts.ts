@@ -1451,7 +1451,7 @@ export const blogPosts: BlogPost[] = [
     title: "How to Avoid the Injuries That Sideline Beginners",
     excerpt:
       "Most running injuries are preventable. The habits that keep you on your feet — and when to back off before it's too late.",
-    category: "Health",
+    category: "Injuries",
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-18",
     readTime: "6 min",
@@ -1680,7 +1680,7 @@ export const blogPosts: BlogPost[] = [
     title: "Running in Bad Weather: When to Go Out and When to Stay In",
     excerpt:
       "Rain, heat, ice, storms, wind, and poor air quality — practical rules for staying safe without losing your training habit.",
-    category: "Training",
+    category: "Tips",
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-28",
     readTime: "7 min",
@@ -4297,7 +4297,7 @@ export const blogPosts: BlogPost[] = [
     title: "Runner's Etiquette: Roads, Trails (Paved & Dirt), and the Track",
     excerpt:
       "Where to run, who yields to whom, and how not to be That Runner — a practical guide to sharing roads, multi-use paths, singletrack, and track lanes.",
-    category: "Getting Started",
+    category: "Tips",
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-30",
     readTime: "8 min",
@@ -4567,7 +4567,7 @@ export const blogPosts: BlogPost[] = [
     title: "Morton's Neuroma and Running: Symptoms, Treatments, and What Actually Helped",
     excerpt:
       "Burning or numbness between your toes isn't normal — Morton's neuroma is common in runners. One friend's story: injections and acupuncture didn't fix it; a metatarsal pad helped a little; wider toe-box shoes (like Topo) finally did.",
-    category: "Health",
+    category: "Injuries",
     author: BLOG_AUTHOR,
     publishedAt: "2026-07-20",
     readTime: "8 min",
@@ -4699,7 +4699,7 @@ export const blogPosts: BlogPost[] = [
     title: "Achilles Tendinitis for Runners: How a Mileage Spike Got Me — and What Fixed It",
     excerpt:
       "Achilles pain isn't just a beginner injury. I spiked mileage as a seasoned runner and paid for it. Slow calf raises, then isometric holds, then air skipping — that progression is what finally got me back.",
-    category: "Health",
+    category: "Injuries",
     author: BLOG_AUTHOR,
     publishedAt: "2026-07-24",
     readTime: "9 min",
@@ -5888,11 +5888,19 @@ export function isBlogPostPublished(
   return isBlogPostPublishedAt(publishedAt, now);
 }
 
-/** Newest publish date first; same-day posts keep newest-added order. */
+/** Source-array position by slug — used for same-day newest-added tiebreaks. */
+const blogPostSourceIndexBySlug = new Map(
+  blogPosts.map((post, index) => [post.slug, index])
+);
+
+/** Newest publish date first; same-day posts keep newest-added (later in source) order. */
 export function compareBlogPostsNewestFirst(a: BlogPost, b: BlogPost): number {
   const dateCompare = b.publishedAt.localeCompare(a.publishedAt);
   if (dateCompare !== 0) return dateCompare;
-  return blogPosts.indexOf(b) - blogPosts.indexOf(a);
+  return (
+    (blogPostSourceIndexBySlug.get(b.slug) ?? 0) -
+    (blogPostSourceIndexBySlug.get(a.slug) ?? 0)
+  );
 }
 
 export function getVisibleBlogPosts(

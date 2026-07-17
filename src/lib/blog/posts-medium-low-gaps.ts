@@ -15,7 +15,7 @@ export const mediumLowGapPosts: BlogPost[] = [
     title: "Treadmill and Indoor Running: How to Keep Training When Winter Wins",
     excerpt:
       "Ice, dark, and wind don't have to end your streak. How to use the treadmill (or indoor swaps) without boredom, blown knees, or fake 'easy' paces.",
-    category: "Training",
+    category: "Tips",
     author: AUTHOR,
     publishedAt: "2026-09-29",
     readTime: "8 min",
@@ -127,7 +127,7 @@ export const mediumLowGapPosts: BlogPost[] = [
     title: "Warm-Up and Cool-Down for Beginners (Skip the 20-Minute Circus)",
     excerpt:
       "You don't need a 40-minute mobility flow before every jog. A short warm-up and simple cool-down make easy runs feel better and hard days safer — without eating your whole evening.",
-    category: "Getting Started",
+    category: "Recovery",
     author: AUTHOR,
     publishedAt: "2026-07-25",
     readTime: "7 min",
