@@ -225,6 +225,7 @@ export const priorityGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "Missing one run is a scheduling problem. Coming back after weeks, months, or years is a different sport — your lungs may remember more than your shins do.",
           "This guide is for layoffs longer than a messy week: illness, travel, burnout, life, or injury. For a single skipped workout, see [what to do when you miss a run](/blog/what-to-do-when-you-miss-a-run). **If you stopped because of injury or a medical issue, get clearance before you rebuild.**",
         ],

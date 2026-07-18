@@ -12,6 +12,7 @@ import { heartDeepDivePosts } from "./posts-heart-deep-dives";
 import { zonesLungsDeepDivePosts } from "./posts-zones-lungs-deep-dives";
 import { competitiveGapPosts } from "./posts-competitive-gaps";
 import { p0MedicalGapPosts } from "./posts-p0-medical-gaps";
+import { p1P2GapPosts } from "./posts-p1-p2-gaps";
 
 export const BLOG_AUTHOR = "B";
 
@@ -52,6 +53,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "If you've never run before, the internet can make it feel like everyone else was born doing 10K loops before breakfast. They're not. Every runner started exactly where you are — wondering if they're doing it wrong, too slow, or too out of shape.",
           "The good news: you don't need talent. You need a plan, patience, and permission to walk.",
         ],
@@ -1016,6 +1018,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "The runners who improve aren't the ones with the most motivation — they're the ones who kept showing up when motivation was gone. Habits beat inspiration every time.",
         ],
       },
@@ -1405,6 +1408,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "Every runner has a voice that says stop. Beginners hear it loudest. The difference isn't talent — it's practice at not listening, or at least negotiating.",
         ],
       },
@@ -1535,6 +1539,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "“The anti-app app for new runners” — the one you use when big flashy apps feel like too much.",
           "You’ve decided to start running. That’s awesome.",
           "Then you open the app store and suddenly you’re drowning in features: GPS tracking, heart rate zones, AI coaching, social challenges, premium subscriptions, and leaderboards full of people who look like they were born running.",
@@ -1846,6 +1851,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "In fitness, aesthetic goals — losing fat, building muscle, achieving a certain look — are incredibly common and completely valid. Many of us start wanting to feel more confident in our bodies or fit into certain clothes. That's human.",
           "But as many runners learn the hard way, relying solely on how you look can quickly lead to frustration, obsession, and a sense that you're never quite enough.",
         ],
@@ -1978,6 +1984,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "You missed a run. Maybe work exploded, the kids were sick, or you simply didn't want to. The shame spiral arrives fast: \"I've ruined everything. Might as well stop.\"",
           "Spoiler: you haven't ruined anything. One missed run is a blip. Quitting because of one missed run is the actual problem — and it's optional.",
         ],
@@ -2040,6 +2047,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "Running Instagram wants you to believe you need carbon plates, compression everything, and a watch that predicts the weather. You don't — not yet.",
           "Here's a honest under-$50 starter kit that covers what actually matters for your first few months. Shoes are the big ticket; everything else is cheap insurance against blisters and boredom.",
         ],
@@ -2550,6 +2558,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "Beginners often worry they're running 'wrong.' Most form fixes are simple: stand tall, don't overstride, and keep arms relaxed. You don't need to obsess — small adjustments beat a complete overhaul mid-run.",
         ],
       },
@@ -3965,58 +3974,99 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "advanced-strength-training-for-runners",
+    metaTitle:
+      "Advanced Strength Training for Runners: Power Without Burnout",
     title: "Advanced Strength Training for Runners: Build Power Without Burning Out",
     excerpt:
-      "For experienced runners with a solid base: periodized lifting, single-leg power, and plyometrics that support half-marathon and marathon training — not replace it.",
+      "For experienced runners with a solid base: periodized high-load lifting, single-leg power, and plyometrics that improve economy and late-race kick — without replacing your run plan.",
     category: "Training",
     author: BLOG_AUTHOR,
     publishedAt: "2026-07-17",
-    readTime: "9 min",
+    updatedAt: "2026-07-18",
+    readTime: "11 min",
     relatedSlugs: [
       "dumbbell-strength-at-home-for-runners",
+      "bodyweight-strength-for-runners",
+      "weight-training-bone-structure-runners",
       "training-first-half-marathon",
       "training-first-full-marathon",
       "importance-of-cross-training",
+      "why-sleep-matters-most-runners",
     ],
     sources: [
       SOURCES.strengthForRunners,
+      SOURCES.strengthTrainingRunningEconomyLlanos2024,
+      SOURCES.strengthTrainingRunnerPerformanceLlanos2024,
+      SOURCES.strengthTrainingEnduranceUmbrella2025,
+      SOURCES.strengthTrainingRunningEconomyBlagrove2018,
       SOURCES.strengthTrainingRunningEconomy2016,
+      SOURCES.exerciseInjuryPreventionLauersen2014,
       SOURCES.preParticipationScreening,
     ],
     sections: [
       {
         paragraphs: [
-          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
-          "If you've been running consistently for a year or more — and you've done basic strength work — you can layer in harder training that improves hill power, finishing kick, and injury resilience.",
-          "This is not about becoming a weightlifter. It's about targeted overload during base and early build phases, then maintaining strength as mileage peaks.",
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions, recent injury, or concerning symptoms.",
+          "Experienced runners can break plateaus and build hill power, finishing kick, and injury resilience with targeted strength work. Recent meta-analyses confirm high-load strength training and plyometrics improve running economy and performance without hurting aerobic capacity when properly periodized — with individual concurrent-training trials and earlier reviews often reporting economy gains on the order of **~2–8%**.",
+          "This is not about becoming a weightlifter. It is targeted overload in base and early build, then maintenance as mileage peaks — with **single-leg** work front and center because running is a series of one-leg landings.",
         ],
       },
       {
-        heading: "Who this is for (and who should wait)",
+        id: "proven-benefits",
+        heading: "Proven benefits (what the journals show)",
+        paragraphs: [
+          "Well-designed concurrent strength work earns its spot next to your long run for measurable reasons — not gym vibes.",
+        ],
         list: [
-          "Good fit: runners logging 20+ miles per week with no current injury flare-up",
-          "Good fit: you've completed 8+ weeks of bodyweight or dumbbell strength already",
-          "Wait if: you're in your first 6 months of running or returning from injury",
-          "Wait if: strength sessions leave you too sore to hit prescribed easy runs",
+          "**Running economy (methods)** — A [2024 *Sports Medicine* meta-analysis (Llanos-Lagos et al.)](https://pubmed.ncbi.nlm.nih.gov/38165636/) found **high-load** (≥80% 1RM), **plyometric**, and **combined** methods produce small-to-moderate improvements in economy; submaximal and isometric-only approaches were less reliable. Gains come mainly from neuromuscular efficiency and tendon stiffness — not bulky muscle",
+          "**Running economy (percent range)** — Across earlier systematic reviews of concurrent strength training, well-run programs often report about **~2–8%** better economy ([Blagrove, Howatson & Hayes, 2018](https://pubmed.ncbi.nlm.nih.gov/29249083/); see also the [2016 meta-analysis](https://pubmed.ncbi.nlm.nih.gov/26694507/))",
+          "**Race performance** — A companion [2024 meta-analysis](https://pubmed.ncbi.nlm.nih.gov/38627351/) linked high-load strength work to better time-trial / time-to-exhaustion outcomes in middle- and long-distance runners",
+          "**Umbrella confirmation** — A [2025 *JSCR* umbrella review (Ramos-Campo et al.)](https://pubmed.ncbi.nlm.nih.gov/40153564/) synthesizes that strength training (maximal, explosive, reactive) improves economy and endurance performance determinants while helping **maintain VO₂max** rather than stealing it",
+          "**Injury risk** — In a classic multi-sport meta-analysis, [Lauersen et al. (2014)](https://pubmed.ncbi.nlm.nih.gov/24100287/) found strength training cut sports injuries dramatically and **nearly halved overuse injuries** (~47% relative reduction). Runner-specific programs still need gradual mileage — strength is a major lever, not a force field",
         ],
       },
       {
+        id: "who",
+        heading: "Who this is for (and who should wait)",
+        paragraphs: [
+          "**“Advanced” here assumes good movement quality** — you can squat, hinge, and balance on one leg without pain or collapse — not that you already deadlift twice bodyweight. If form is shaky, stay on [bodyweight](/blog/bodyweight-strength-for-runners) or [dumbbell](/blog/dumbbell-strength-at-home-for-runners) foundations first.",
+        ],
+        list: [
+          "Good fit: runners logging **20+ miles/week** with no current injury flare-up",
+          "Good fit: **8+ weeks** of consistent bodyweight or dumbbell strength already done",
+          "Good fit: you can train hard and still hit prescribed **easy** runs the next day",
+          "Wait if: first **6 months** of running, return from injury, or strength leaves you too sore for easy miles",
+          "Wait if: you cannot control a split squat or single-leg RDL through a full, quiet set",
+        ],
+      },
+      {
+        id: "single-leg",
+        heading: "Why single-leg work gets priority",
+        paragraphs: [
+          "Every running stride is unilateral. Bilateral squats build a base; **split squats, single-leg RDLs, and hops** expose and fix left–right gaps that show up as hip drop, late-race form collapse, or one-sided niggles. Keep at least one primary single-leg strength move and one single-leg power move in every advanced week — that is not optional fluff.",
+        ],
+      },
+      {
+        id: "weekly",
         heading: "Weekly structure (3 sessions)",
         paragraphs: [
-          "Place the heavy day after an easy run or rest day. Keep plyometrics fresh — not the day after a long run. During peak race weeks, cut to one maintenance session.",
+          "Place the **heavy** day after an easy run or rest day. Keep plyometrics **fresh** — not the day after a long run. Leave **48–72 hours** between heavy lower-body sessions and your next key quality run (tempo, intervals, or long run). During peak race weeks, cut to one maintenance session.",
         ],
         subsections: [
           {
-            heading: "Day 1 — Heavy strength",
+            heading: "Day 1 — Heavy strength (high load)",
             list: [
-              "Back or goblet squat — 4×6 at RPE 7–8 (2 reps left in the tank)",
+              "Back or goblet squat — 4×6 at RPE 7–8 (2 reps left in the tank; aim ≥~80% effort of a true max when ready)",
               "Romanian deadlift — 4×8",
-              "Bulgarian split squat — 3×8 each leg",
+              "Bulgarian split squat — 3×8 each leg (**non-negotiable single-leg emphasis**)",
               "Standing calf raise (weighted) — 3×12 slow",
             ],
           },
           {
             heading: "Day 2 — Power & plyometrics",
+            paragraphs: [
+              "Emphasize **soft landings**, quiet feet, and **progressive volume**. For advanced runners, a practical total is roughly **60–100 foot contacts** per plyo session — count each foot hit (e.g., 3×8 single-leg hops = 24 contacts per leg). Stop early if landings get noisy or form collapses.",
+            ],
             list: [
               "Box step-ups (explosive) — 3×6 each leg",
               "Jump squats or squat jumps — 3×5, land softly",
@@ -4030,34 +4080,67 @@ export const blogPosts: BlogPost[] = [
               "Single-leg Romanian deadlift — 3×10 each leg",
               "Hip thrust or glute bridge (barbell or heavy dumbbell) — 4×10",
               "Pallof press or band anti-rotation — 3×12 each side",
+              "Bird-dog **or** dead bug — 3×8–10 each side (anti-extension for running posture)",
               "Copenhagen plank or side plank with row — 3×30 sec each side",
             ],
           },
         ],
       },
       {
+        id: "progression",
+        heading: "Progressive overload — sample 4-week block",
+        paragraphs: [
+          "Most concurrent programs in the economy literature run **about 6–24 weeks** with **1–4** strength sessions per week. Practically: add load when the top set stays at RPE 7–8 with clean form for two sessions in a row; deload every fourth week so easy runs stay easy.",
+        ],
+        figures: [
+          {
+            src: "/blog/advanced-strength/4-week-progression.svg",
+            alt: "Table showing a four-week progressive overload plan for squats, RDLs, and single-leg work",
+            caption:
+              "Sample heavy-day progression. Prefer smaller jumps on single-leg moves — balance and control before ego load.",
+          },
+        ],
+        list: [
+          "**Week 1** — establish baseline loads; film a set of split squats if unsure",
+          "**Week 2** — add 2.5–5 lb (or a small dumbbell jump) if RPE was easy",
+          "**Week 3** — hold load and add a rep on single-leg work, or a tiny load bump",
+          "**Week 4** — deload ~20% volume/load; then restart the block slightly heavier",
+        ],
+      },
+      {
+        id: "periodize",
         heading: "Periodize with your running plan",
         list: [
           "Base phase (8–12 weeks out): full 3-day strength, progressive load",
-          "Build phase (4–8 weeks out): keep heavy day, trim plyo volume by 30%",
+          "Build phase (4–8 weeks out): keep heavy day, trim plyo volume by ~30%",
           "Peak / taper (2–3 weeks out): one maintenance session — squats, RDL, core only",
           "Race week: skip lifting or do 15 minutes of mobility and activation",
         ],
       },
       {
-        heading: "At home vs gym",
+        id: "track-transfer",
+        heading: "Track real-world transfer",
         paragraphs: [
-          "A home setup can work with adjustable dumbbells, a bench, and resistance bands. A gym helps for barbell squats, trap-bar deadlifts, and heavier hip thrusts — but isn't mandatory.",
-          "Prioritize single-leg work and hip extension. Those transfer directly to uphill running and late-race form.",
+          "Gym numbers matter less than whether running got cheaper. Every 3–4 weeks, note **easy-run pace at the same perceived effort** (or heart rate), how hills feel at controlled effort, and whether late-run posture holds. If the bar goes up but easy pace at the same RPE does not improve over a block — and recovery is fine — check sleep, fueling, and whether plyos are too aggressive.",
         ],
       },
       {
+        id: "home-gym",
+        heading: "At home vs gym",
+        paragraphs: [
+          "A home setup can work with adjustable dumbbells, a bench, and resistance bands. A gym helps for barbell squats, trap-bar deadlifts, and heavier hip thrusts — but is not mandatory.",
+          "Prioritize **single-leg work and hip extension**. Those transfer directly to uphill running and late-race form. For bone-focused context, see [weight training and bone structure](/blog/weight-training-bone-structure-runners).",
+        ],
+      },
+      {
+        id: "recovery",
         heading: "Recovery rules advanced runners break",
         list: [
-          "Lifting legs to failure the day before tempo — schedule around quality runs",
+          "**Less than 48 hours** between heavy legs and tempo/intervals/long run — protect the key run",
+          "Lifting legs to failure the day before quality — schedule around hard sessions",
           "Adding plyometrics during an injury flare — back off to isometrics and PT",
           "Chasing gym PRs during marathon peak — maintain, don't max out",
-          "Skipping sleep and protein while stacking mileage and lifting — recovery is the limiter",
+          "Skipping sleep and protein while stacking mileage and lifting — recovery is the limiter ([why sleep matters](/blog/why-sleep-matters-most-runners))",
         ],
         cta: {
           text: "Basic dumbbell routines at home",
@@ -4317,6 +4400,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "Nobody gives you a handbook when you become a runner. You learn that sidewalks end, cyclists appear from nowhere, and track lanes have rules — usually by almost colliding with someone.",
           "Good etiquette isn't about being perfect. It's about keeping everyone safe, reducing awkward moments, and making the running community somewhere you'd want to belong on day one.",
         ],
@@ -5206,9 +5290,9 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This is general fitness education, not a diagnosis or nutrition treatment plan. If you have a medical condition, are pregnant or breastfeeding, take medication, or have a history of disordered eating, consult a doctor or registered dietitian before starting a weight-loss plan.",
           "Running has a strong reputation as a fat-loss tool. While it can definitely support weight loss, many popular beliefs about how it works are misleading or outright wrong. Understanding the real relationship between running and fat loss helps you set better expectations and avoid common pitfalls.",
           "This post breaks down what the science actually says, debunks the biggest myths, and explains what tends to work in practice.",
-          "**Note: This is general education, not medical or nutrition advice. If you have a medical condition, are pregnant or breastfeeding, take medication, or have a history of disordered eating, please consult a doctor or registered dietitian before starting a weight-loss plan.**",
         ],
       },
       {
@@ -5413,9 +5497,9 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This is general fitness education, not medical or nutrition advice. If you have diabetes, heart disease, kidney issues, a history of eating disorders, or take medications affecting fluid or blood sugar, talk to your doctor or a registered dietitian before changing how you eat and drink around training.",
           "Distance guides tell you what to eat for a 5K, half, or marathon. Training guides tell you when to run. But day to day, what you eat depends on **what kind of run is on the calendar** — easy Tuesday jog, Thursday intervals, Sunday long run, or a heat-wave tempo that feels twice as hard as the pace says.",
           "This post is that missing layer: how to fuel through a training block by **run type**, plus what changes when it's **hot and humid**. For daily basics, see [nutrition basics for beginners](/blog/nutrition-basics-for-beginners). For race-distance specifics, see [nutrition for runners](/blog/nutrition-for-runners).",
-          "**This is general fitness education, not medical or nutrition advice. If you have diabetes, heart disease, kidney issues, a history of eating disorders, or take medications affecting fluid or blood sugar, talk to your doctor or a registered dietitian before changing how you eat and drink around training.**",
         ],
       },
       {
@@ -5871,6 +5955,7 @@ export const blogPosts: BlogPost[] = [
   ...zonesLungsDeepDivePosts,
   ...competitiveGapPosts,
   ...p0MedicalGapPosts,
+  ...p1P2GapPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

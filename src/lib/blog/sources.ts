@@ -261,9 +261,15 @@ export const SOURCES = {
   },
   foamRollingBehm2015: {
     label:
-      "Foam rolling acute effects on ROM and muscle performance (Behm & Cheatham / related literature)",
-    href: "https://pubmed.ncbi.nlm.nih.gov/27614883/",
-    publisher: "PubMed / Frontiers Physiol context reviews",
+      "The effects of self-myofascial release using a foam roller or roller massager on joint range of motion, muscle recovery, and performance — systematic review (Cheatham et al., 2015)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/26618062/",
+    publisher: "PubMed / International Journal of Sports Physical Therapy",
+  },
+  strengthTrainingRunningEconomyBlagrove2018: {
+    label:
+      "Effects of strength training on the physiological determinants of middle- and long-distance running performance — systematic review (Blagrove, Howatson & Hayes, 2018)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/29249083/",
+    publisher: "PubMed / Sports Medicine",
   },
   stretchingMayo: {
     label: "Stretching: Focus on flexibility",
@@ -302,6 +308,30 @@ export const SOURCES = {
       "Strength training improves running economy in trained runners (systematic review & meta-analysis, 2016)",
     href: "https://pubmed.ncbi.nlm.nih.gov/26694507/",
     publisher: "J Strength Cond Res / PubMed",
+  },
+  strengthTrainingRunningEconomyLlanos2024: {
+    label:
+      "Effect of strength training programs on middle- and long-distance runners’ economy — systematic review & meta-analysis (Llanos-Lagos et al., 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/38165636/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  strengthTrainingRunnerPerformanceLlanos2024: {
+    label:
+      "Effect of strength training methods on middle- and long-distance runners’ athletic performance — systematic review & meta-analysis (Llanos-Lagos et al., 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/38627351/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  strengthTrainingEnduranceUmbrella2025: {
+    label:
+      "Strength training and endurance performance determinants — umbrella review (Ramos-Campo et al., 2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/40153564/",
+    publisher: "PubMed / Journal of Strength and Conditioning Research",
+  },
+  exerciseInjuryPreventionLauersen2014: {
+    label:
+      "Exercise interventions to prevent sports injuries — systematic review & meta-analysis (Lauersen, Bertelsen & Andersen, 2014)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/24100287/",
+    publisher: "PubMed / British Journal of Sports Medicine",
   },
   acsmExercisePrescription2009: {
     label:
@@ -383,5 +413,205 @@ export const SOURCES = {
       "Long distance running and knee osteoarthritis — prospective study (Chakravarty et al., 2008)",
     href: "https://pubmed.ncbi.nlm.nih.gov/18692736/",
     publisher: "PubMed / American Journal of Preventive Medicine",
+  },
+  marathonWallRapoport2010: {
+    label:
+      "Metabolic factors limiting performance in marathon runners — hitting the wall (Rapoport, 2010)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2958805/",
+    publisher: "PLOS Computational Biology / PMC",
+  },
+  carbsTrainingCompetitionBurke2011: {
+    label:
+      "Carbohydrates for training and competition (Burke et al., 2011)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/21660838/",
+    publisher: "PubMed / Journal of Sports Sciences",
+  },
+  nutritionAthleticPerformanceACSM2016: {
+    label:
+      "Nutrition and Athletic Performance — joint position statement (Thomas, Erdman & Burke, 2016)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/26891166/",
+    publisher:
+      "Academy of Nutrition and Dietetics, Dietitians of Canada & ACSM / PubMed",
+  },
+  eliteMarathonNutritionStellingwerff2013: {
+    label:
+      "Contemporary nutrition approaches to optimize elite marathon performance (Stellingwerff, 2013)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/23579229/",
+    publisher: "PubMed / International Journal of Sport Nutrition and Exercise Metabolism",
+  },
+  acsmPhysicalActivityBoneHealth2004: {
+    label:
+      "ACSM Position Stand: Physical activity and bone health (Kohrt et al., 2004)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/15514517/",
+    publisher: "PubMed / Medicine & Science in Sports & Exercise",
+  },
+  resistanceTrainingBMDZhao2015: {
+    label:
+      "Resistance training modes and bone mineral density in postmenopausal women — meta-analysis (Zhao, Zhao & Xu, 2015)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/25603795/",
+    publisher: "PubMed / Journal of Biomedical Research",
+  },
+  exerciseBMDPostmenopausalKemmler2023: {
+    label:
+      "Exercise training and bone mineral density in postmenopausal women — updated meta-analysis (Mohebbi et al., 2023)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/36749350/",
+    publisher: "PubMed / Osteoporosis International",
+  },
+  resistanceTrainingBMDOptimal2025: {
+    label:
+      "Optimal resistance training parameters for improving BMD in postmenopausal women — systematic review & meta-analysis (2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/40420105/",
+    publisher: "PubMed",
+  },
+  yogaFlexibilityBalancePolsgrove2016: {
+    label:
+      "Impact of 10 weeks of yoga on flexibility and balance of college athletes (Polsgrove, Eggleston & Lockyer, 2016)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/26865768/",
+    publisher: "PubMed / International Journal of Yoga",
+  },
+  yogaFunctionalMovementAthletes2022: {
+    label:
+      "Yoga intervention, functional movement patterns, and mindfulness in collegiate athletes (Xu et al., 2022)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9690310/",
+    publisher: "International Journal of Environmental Research and Public Health / PMC",
+  },
+  yogaAnxietyCramer2018: {
+    label:
+      "Yoga for anxiety — systematic review and meta-analysis of RCTs (Cramer et al., 2018)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/29697885/",
+    publisher: "PubMed / Depression and Anxiety",
+  },
+  yogaTrackFieldAthletes2025: {
+    label:
+      "Effect of yoga on performance metrics and mental health of track and field athletes — systematic review (2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/41316576/",
+    publisher: "PubMed",
+  },
+  exercisePreventionRRIWu2024: {
+    label:
+      "Exercise-based prevention programs and running-related injuries — systematic review & meta-analysis (Wu et al., 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/38261240/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  cycleRunCrossTrainingMutton1993: {
+    label:
+      "Run vs combined cycle/run training on VO₂max and running performance (Mutton et al., 1993)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/8107548/",
+    publisher: "PubMed / Medicine & Science in Sports & Exercise",
+  },
+  crossTrainingTanaka1994: {
+    label:
+      "Effects of cross-training — VO₂max transfer between cycling, running and swimming (Tanaka, 1994)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/7871294/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  cycleRunCrossTrainingMeta2026: {
+    label:
+      "Cross-training between running and cycling: VO₂max and running performance — systematic review & meta-analysis (2026)",
+    href: "https://doi.org/10.3389/fspor.2026.1843803",
+    publisher: "Frontiers in Sports and Active Living",
+  },
+  sleepDeprivationEnduranceLopes2023: {
+    label:
+      "How much does sleep deprivation impair endurance performance? — systematic review & meta-analysis (Lopes et al., 2023)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/36472094/",
+    publisher: "PubMed / European Journal of Sport Science",
+  },
+  sleepDeprivationAthletesGong2024: {
+    label:
+      "Acute sleep deprivation and sporting performance in athletes — systematic review & meta-analysis (Gong et al., 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/39006249/",
+    publisher: "PubMed",
+  },
+  sleepLossPhysicalPerformanceCraven2022: {
+    label:
+      "Effects of acute sleep loss on physical performance — systematic & meta-analytical review (Craven et al., 2022)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/35708888/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  sleepExtensionAthletesMah2011: {
+    label:
+      "Sleep extension and athletic performance in collegiate basketball players (Mah et al., 2011)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/21731144/",
+    publisher: "PubMed / Sleep",
+  },
+  sleepInjuryAdolescentMilewski2014: {
+    label:
+      "Chronic lack of sleep and sports injuries in adolescent athletes (Milewski et al., 2014)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/25028798/",
+    publisher: "PubMed / Journal of Pediatric Orthopaedics",
+  },
+  sleepAthleticPerformanceWatson2017: {
+    label: "Sleep and athletic performance — review (Watson, 2017)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/29135639/",
+    publisher: "PubMed / Current Sports Medicine Reports",
+  },
+  sleepAthleteConsensusBJSM2021: {
+    label:
+      "Sleep and the athlete — narrative review and expert consensus recommendations (Walsh et al., 2021)",
+    href: "https://bjsm.bmj.com/content/55/7/356",
+    publisher: "British Journal of Sports Medicine",
+  },
+  sleepInterventionsAthletes2023: {
+    label:
+      "Impact of sleep interventions on athletic performance — systematic review (2023)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/37462808/",
+    publisher: "PubMed",
+  },
+  giEnduranceNutritionStrategies2025: {
+    label:
+      "Nutritional strategies for minimizing gastrointestinal symptoms during endurance exercise — systematic review (2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/40650376/",
+    publisher: "PubMed / Journal of the International Society of Sports Nutrition",
+  },
+  gutTrainingFeedingChallenge2023: {
+    label:
+      "Gut-training and feeding-challenge effects on gastrointestinal status in endurance exercise — systematic review (2023)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/37061651/",
+    publisher: "PubMed",
+  },
+  returnExerciseCovid2022: {
+    label:
+      "Return to exercise post-COVID-19 infection — pragmatic approach (2022)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9170595/",
+    publisher: "PMC / Journal of Science and Medicine in Sport",
+  },
+  ahaLongCovidExercise2025: {
+    label:
+      "Exercise intolerance and training in Long COVID — AHA scientific statement (2025)",
+    href: "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001348",
+    publisher: "American Heart Association / Circulation",
+  },
+  issnCaffeine2021: {
+    label:
+      "ISSN position stand: caffeine and exercise performance (2021)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/33388079/",
+    publisher: "PubMed / Journal of the International Society of Sports Nutrition",
+  },
+  caffeineEnduranceRunningMeta2023: {
+    label:
+      "Caffeine intake and endurance running performance / time to exhaustion — systematic review & meta-analysis (2023)",
+    href: "https://doi.org/10.3390/nu15010148",
+    publisher: "Nutrients / MDPI",
+  },
+  alcoholSleepMayo: {
+    label: "Alcohol and sleep — why drinking before bed backfires",
+    href: "https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/alcohol/art-20044561",
+    publisher: "Mayo Clinic",
+  },
+  hamstringStrainMayo: {
+    label: "Hamstring injury — symptoms & causes",
+    href: "https://www.mayoclinic.org/diseases-conditions/hamstring-injury/symptoms-causes/syc-20372985",
+    publisher: "Mayo Clinic",
+  },
+  muscleStrainMayo: {
+    label: "Muscle strains — diagnosis & treatment",
+    href: "https://www.mayoclinic.org/diseases-conditions/muscle-strains/diagnosis-treatment/drc-20350823",
+    publisher: "Mayo Clinic",
+  },
+  toenailFungusMayo: {
+    label: "Nail fungus / toenail problems — overview",
+    href: "https://www.mayoclinic.org/diseases-conditions/nail-fungus/symptoms-causes/syc-20352300",
+    publisher: "Mayo Clinic",
   },
 } satisfies Record<string, BlogSource>;

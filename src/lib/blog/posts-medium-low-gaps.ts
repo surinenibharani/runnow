@@ -348,6 +348,7 @@ export const mediumLowGapPosts: BlogPost[] = [
     publishedAt: "2026-10-21",
     readTime: "7 min",
     relatedSlugs: [
+      "why-sleep-matters-most-runners",
       "post-run-recovery",
       "what-to-do-on-rest-days",
       "avoiding-injuries",
@@ -357,7 +358,16 @@ export const mediumLowGapPosts: BlogPost[] = [
     ],
     closingQuestion:
       "What's the first thing that slips when training ramps — bedtime, or the easy pace on tired days?",
-    sources: [SOURCES.sleepTips, SOURCES.physicalActivityGuidelinesUS],
+    sources: [
+      SOURCES.sleepTips,
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.sleepDeprivationEnduranceLopes2023,
+      SOURCES.sleepLossPhysicalPerformanceCraven2022,
+      SOURCES.sleepDeprivationAthletesGong2024,
+      SOURCES.sleepInjuryAdolescentMilewski2014,
+      SOURCES.sleepAthleteConsensusBJSM2021,
+      SOURCES.sleepInterventionsAthletes2023,
+    ],
     faq: [
       {
         question: "How much sleep do runners need?",
@@ -389,7 +399,7 @@ export const mediumLowGapPosts: BlogPost[] = [
         list: [
           "Tissue repair and hormone signals lean on overnight recovery",
           "Poor sleep raises perceived effort — easy runs feel strangely hard",
-          "Injury risk climbs when you stack fatigue + mileage jumps",
+          "Injury risk climbs when you stack fatigue + mileage jumps — adolescent sport data link short sleep with higher injury odds, and endurance meta-analyses show sleep loss hurts longer efforts most ([deeper sleep science](/blog/why-sleep-matters-most-runners))",
           "Mood and habit discipline drop — the streak dies psychologically first",
         ],
       },
@@ -405,7 +415,7 @@ export const mediumLowGapPosts: BlogPost[] = [
           "If you're not asleep ~20 minutes, get up and do something quiet, then retry",
         ],
         paragraphs: [
-          "More detail: Mayo Clinic's [sleep tips](https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/sleep/art-20048379).",
+          "More detail: Mayo Clinic's [sleep tips](https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/sleep/art-20048379). For journal evidence on endurance, injury, and sleep extension, see [why sleep matters most](/blog/why-sleep-matters-most-runners).",
         ],
       },
       {
@@ -569,6 +579,7 @@ export const mediumLowGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "Big sites publish lab graphs and gold medals every season. Useful for curiosity. Terrible as a substitute for **your** feet on **your** sidewalks.",
           "LetsRunNow's take: skip the arms race. Use a simple process, spend what you can ([under $50 kit thinking](/blog/beginner-gear-guide-under-50) still applies to the *rest* of gear), and replace shoes when they stop protecting you.",
         ],

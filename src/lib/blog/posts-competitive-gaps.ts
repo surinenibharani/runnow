@@ -201,7 +201,7 @@ export const competitiveGapPosts: BlogPost[] = [
       {
         paragraphs: [
           "Influencer mobility flows look like a second job. Beginners need something they'll repeat: **raise temperature, move joints through useful ranges, then run** — optional short rolling when something feels sticky.",
-          "Mayo’s stretching guidance emphasizes warming tissue first and controlled flexibility work as part of fitness — not as a magic pre-run ritual ([stretching overview](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/stretching/art-20047931)). Foam-rolling research generally finds short-term range-of-motion benefits with limited performance magic ([related literature](https://pubmed.ncbi.nlm.nih.gov/27614883/)).",
+          "Mayo’s stretching guidance emphasizes warming tissue first and controlled flexibility work as part of fitness — not as a magic pre-run ritual ([stretching overview](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/stretching/art-20047931)). Foam-rolling research generally finds short-term range-of-motion benefits with limited performance magic ([Cheatham et al., 2015 systematic review](https://pubmed.ncbi.nlm.nih.gov/26618062/)).",
           "**Educational only — not medical advice.** Sharp pain, suspected stress injuries, or tingling need a clinician — not deeper pressure on the roller.",
         ],
       },

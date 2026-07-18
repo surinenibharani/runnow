@@ -1,5 +1,17 @@
 /** One-paragraph stakes hook shown at the top of each article. */
 export const whyItMattersBySlug: Record<string, string> = {
+  "hitting-the-wall-marathon":
+    "Observational reports suggest more than two-fifths of marathoners hit severe carbohydrate depletion mid-race. Understanding the wall — and practicing fueling and pacing before race day — is how you finish strong instead of surviving the last 10K.",
+  "weight-training-bone-structure-runners":
+    "Bone is living tissue that remolds under load. Progressive weight training — paired with smart running — is one of the most practical ways runners build denser, more resilient bone and fewer season-ending stress injuries.",
+  "yoga-between-runs":
+    "Easy days do not have to mean the couch. Gentle yoga can improve flexibility, balance, and calm between hard sessions — without replacing the strength and easy miles that actually build a runner.",
+  "cycling-between-runs":
+    "Cycling keeps the aerobic engine humming with far less impact than another easy jog. Used between runs, it can protect fitness while giving bones and tendons a break — without replacing the specific miles that make you race.",
+  "weight-yoga-cycling-between-runs":
+    "Between hard runs, the best recovery week is not one trick — it is lifting for bone and muscle, yoga for mobility and calm, and easy cycling for aerobic work without impact. Used together on purpose, they keep you training instead of sidelined.",
+  "why-sleep-matters-most-runners":
+    "Runners buy shoes, plans, and gadgets — then treat sleep like optional background noise. Meta-analyses show sleep loss bluntly hurts endurance and raises injury risk. Protecting the night is often the highest-ROI training change you can make.",
   "never-ran-where-to-start":
     "Most beginners quit because they start too hard, too fast, with no plan. Getting the first four weeks right is the difference between a lifelong habit and another abandoned resolution.",
   "training-first-5k":
@@ -71,7 +83,7 @@ export const whyItMattersBySlug: Record<string, string> = {
   "full-body-dumbbell-workout-at-home":
     "Starting strength after 40 feels intimidating — and most programs assume you've lifted before. Adjustable dumbbells or a small fixed set, plus a gradual 12-week progression, is enough to build visible muscle without a gym.",
   "advanced-strength-training-for-runners":
-    "Experienced runners hit plateaus when they only add miles. Smart lifting and plyometrics support power on hills and protect you when training peaks.",
+    "Experienced runners hit plateaus when they only add miles. High-load strength and plyometrics — periodized around key runs — improve economy a few percent and protect you when training peaks.",
   "running-vs-biking":
     "Cycling isn't cheating on your run plan — it's how many beginners stay consistent when impact, weather, or soreness would otherwise sideline them.",
   "hiking-instead-of-long-run":
@@ -196,6 +208,26 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Recreational running is not a kneecap death sentence in journal reviews — mindful load, strength, age-aware recovery, and enough food help joints and connective tissue stay capable. Fix spikes and overuse pain; don't retire on a myth.",
   "beginner-running-a-to-z":
     "One calm map for absolute beginners: why run, myth filter, medical common sense, boring gear, walk-run start, easy effort, food/rest, and links when you're ready for the deeper chapter.",
+  "runners-gi-distress":
+    "GI distress ends more races than empty legs. Gut training, practiced fuel, and smart pre-race meals are trainable skills — not a personality flaw.",
+  "gait-analysis-when-to-get":
+    "Not every beginner needs a $200 gait lab. Know what you can self-check, when cadence and shoes matter, and when persistent pain deserves a clinician.",
+  "periodization-beginners-base-build-peak-taper":
+    "Base, build, peak, taper is the plain-English map behind every good plan. Without it, beginners stack intensity forever and wonder why they break.",
+  "return-to-run-after-illness":
+    "Coming back after a cold or COVID is not the same as a vacation break. Fever-free rules, graduated return, and cardiac red flags protect more than grit.",
+  "cross-training-swim-elliptical-aqua-jog":
+    "When pavement is off-limits, swim, elliptical, and aqua jogging keep the engine online. Use them as tools — with protocols, not random flailing.",
+  "black-toenails-runners":
+    "Black toenails are common and usually preventable with shoe fit and downhill skill — know when it's cosmetic vs when to see a clinician.",
+  "hamstring-calf-hip-flexor-runners":
+    "Soft-tissue injuries sidelining runners are often load mistakes, not bad luck. Early load management and strength beat endless stretching.",
+  "caffeine-alcohol-training-runners":
+    "Caffeine can help endurance in studied doses; alcohol quietly steals sleep and recovery. Race week is the wrong time to experiment.",
+  "vacation-travel-training-runners":
+    "Hotel treadmills and jet lag don't have to erase your block. Keep easy miles honest and refuse the 'make up the long run' trap.",
+  "negative-splits-race-pacing":
+    "Starting slow enough to finish strong is a skill you practice in training — not a prayer at the start line.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

@@ -291,6 +291,7 @@ export const nextGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "Training gets the glory. **Signup logistics** decide whether race morning feels exciting or like a scavenger hunt in spandex.",
           "This guide covers picking an event, reading the fine print, and showing up prepared. For pacing and race-day do's/don'ts, pair it with [race day tips](/blog/race-day-tips).",
         ],
@@ -528,6 +529,7 @@ export const nextGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "Starting to run after 50 isn't a nostalgia project — it's one of the best investments you can make in energy, mood, and long-term health. The rules are mostly the same as any beginner… with **more respect for recovery, strength, and medical context.**",
           "**Get clearance if you need it** — especially with heart symptoms, major joint issues, or long inactivity. Mayo Clinic and CDC-style guidance still apply: move more, progress gradually, stop for warning signs. See also [running with health conditions](/blog/running-with-health-conditions).",
         ],

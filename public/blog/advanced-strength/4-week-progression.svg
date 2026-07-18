@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" fill="none" role="img" aria-label="Sample four-week progressive overload table for runner strength training">
+  <rect width="640" height="280" fill="#faf8f6"/>
+  <text x="24" y="36" fill="#18181b" font-family="system-ui,sans-serif" font-size="16" font-weight="700">4-week progressive overload (heavy day)</text>
+  <text x="24" y="56" fill="#71717a" font-family="system-ui,sans-serif" font-size="12">Add load only when RPE stays at 78 with clean single-leg form</text>
+
+  <!-- header -->
+  <rect x="24" y="72" width="592" height="36" fill="#f4f4f5" stroke="#e4e4e7"/>
+  <text x="40" y="95" fill="#52525b" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Week</text>
+  <text x="120" y="95" fill="#52525b" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Squat / RDL</text>
+  <text x="280" y="95" fill="#52525b" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Single-leg work</text>
+  <text x="450" y="95" fill="#52525b" font-family="system-ui,sans-serif" font-size="12" font-weight="600">Focus</text>
+
+  <!-- rows -->
+  <rect x="24" y="108" width="592" height="36" fill="#ffffff" stroke="#e4e4e7"/>
+  <text x="40" y="131" fill="#18181b" font-family="system-ui,sans-serif" font-size="13" font-weight="600">1</text>
+  <text x="120" y="131" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">4×6 @ baseline</text>
+  <text x="280" y="131" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">3×8 / side</text>
+  <text x="450" y="131" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">Groove form</text>
+
+  <rect x="24" y="144" width="592" height="36" fill="#fff7ed" stroke="#e4e4e7"/>
+  <text x="40" y="167" fill="#18181b" font-family="system-ui,sans-serif" font-size="13" font-weight="600">2</text>
+  <text x="120" y="167" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">+2.55 lb if easy</text>
+  <text x="280" y="167" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">3×810 / side</text>
+  <text x="450" y="167" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">Add load</text>
+
+  <rect x="24" y="180" width="592" height="36" fill="#ffffff" stroke="#e4e4e7"/>
+  <text x="40" y="203" fill="#18181b" font-family="system-ui,sans-serif" font-size="13" font-weight="600">3</text>
+  <text x="120" y="203" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">Hold or +small</text>
+  <text x="280" y="203" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">3×10 / side</text>
+  <text x="450" y="203" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">Volume bump</text>
+
+  <rect x="24" y="216" width="592" height="36" fill="#fff7ed" stroke="#e4e4e7"/>
+  <text x="40" y="239" fill="#18181b" font-family="system-ui,sans-serif" font-size="13" font-weight="600">4</text>
+  <text x="120" y="239" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">Deload ~20%</text>
+  <text x="280" y="239" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">23×8 / side</text>
+  <text x="450" y="239" fill="#3f3f46" font-family="system-ui,sans-serif" font-size="13">Absorb gains</text>
+
+  <text x="24" y="268" fill="#a1a1aa" font-family="system-ui,sans-serif" font-size="11">Repeat the block with a slightly higher starting load if recovery and easy runs stay clean.</text>
+</svg>

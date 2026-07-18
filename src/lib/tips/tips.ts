@@ -313,6 +313,56 @@ export const runnerTips: RunnerTip[] = [
       "Skip the fifty-tab rabbit hole. Absolute beginners need why, a myth filter, medical common sense, boring shoes, walk-run three days a week, and easy effort — then open deeper guides only when that chapter is next. Start simple; advanced articles wait patiently.",
     blogSlug: "beginner-running-a-to-z",
   },
+  {
+    slug: slugifyTipTitle("Side stitch: slow down, exhale longer"),
+    icon: Wind,
+    illustration: "breathing",
+    category: "Health",
+    title: "Side stitch: slow down, exhale longer",
+    content:
+      "A sharp side stitch is your cue to ease pace, deepen the exhale (especially on the opposite side of the stitch), and avoid stacking a huge meal or new gel right before hard efforts. If stitches are constant with GI chaos, practice race fuel on easy long runs — gut training is a skill. Persistent pain that isn't a stitch deserves a clinician, not another YouTube stretch.",
+    blogSlug: "runners-gi-distress",
+  },
+  {
+    slug: slugifyTipTitle("Strength twice a week beats more junk miles"),
+    icon: Activity,
+    illustration: "recovery",
+    category: "Training",
+    title: "Strength twice a week beats more junk miles",
+    content:
+      "Another easy jog that leaves you cooked is not free fitness. Two short strength sessions — hips, calves, single-leg work — often do more for economy and durability than stacking optional miles. Keep lifts away from key runs, and treat sleep like recovery equipment.",
+    blogSlug: "advanced-strength-training-for-runners",
+  },
+  {
+    slug: slugifyTipTitle("Coming back after a cold — wait until fever-free"),
+    icon: Heart,
+    illustration: "health",
+    category: "Health",
+    title: "Coming back after a cold — wait until fever-free",
+    content:
+      "No fever, improving energy, and symptoms above the neck only is the usual green light for a gentle return — not a tempo. After COVID or any illness with chest symptoms, start easier than you think and stop for chest pain, undue breathlessness, or palpitations. Graduated return beats hero miles on half-healed lungs.",
+    blogSlug: "return-to-run-after-illness",
+  },
+  {
+    slug: slugifyTipTitle("Shoe life: about 300–500 miles, not vibes"),
+    icon: Activity,
+    illustration: "shoes",
+    category: "Gear",
+    title: "Shoe life: about 300–500 miles, not vibes",
+    content:
+      "Cushioning dies before the outsole looks dramatic. Most daily trainers need retirement around 300–500 miles depending on body weight, surface, and shoe. Rotate pairs if you can, and replace when legs feel mysteriously beat-up on easy days — not when the mesh tears.",
+    blogSlug: "choosing-running-shoes",
+  },
+  {
+    slug: slugifyTipTitle("Downhill: shorten stride, don't brake"),
+    icon: Footprints,
+    illustration: "easy-pace",
+    category: "Training",
+    title: "Downhill: shorten stride, don't brake",
+    content:
+      "Braking with long strides on descents pounds quads and toenails. Shorten the step, keep cadence quick, lean slightly from the ankles, and let gravity help without sitting back. Practice on gentle hills before race-day downhills surprise you.",
+    blogSlug: "how-to-not-hate-hills",
+  },
 ];
 
 export const tipsPageGuides = [

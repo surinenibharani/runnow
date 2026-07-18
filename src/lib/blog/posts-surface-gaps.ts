@@ -251,6 +251,7 @@ export const surfaceGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "After work is when many beginners actually have time — and when cars, curbs, and dogs become harder to see. **Night running is a skill stack: visibility, route choice, and predictability.**",
         ],
       },
@@ -519,6 +520,7 @@ export const surfaceGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "The goal isn't a family Strava club with PRs. **It's showing that moving together is normal** — park loops, walk-run games, and low-pressure community 5Ks.",
           "Adult training can still happen solo. Family sessions are for connection first.",
         ],
