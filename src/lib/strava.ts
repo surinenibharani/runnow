@@ -363,7 +363,7 @@ export function isRunType(type: string): boolean {
 
 export function formatPace(speedMps: number): string {
   if (!speedMps || speedMps <= 0) return "—";
-  let totalSec = Math.round(1609.34 / speedMps);
+  const totalSec = Math.round(1609.34 / speedMps);
   if (totalSec < 0) return "—";
   const min = Math.floor(totalSec / 60);
   const sec = totalSec % 60;

@@ -17,10 +17,11 @@ export const SITE_KEYWORDS = [
   "running plan in browser",
   "LetsRunNow",
 ] as const;
-export const SITE_URL =
+export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.AUTH_URL ||
-  "http://localhost:3000";
+  "http://localhost:3000"
+).replace(/\/$/, "");
 
 /** Public Instagram profile — set NEXT_PUBLIC_INSTAGRAM_URL in production. */
 export const INSTAGRAM_URL =

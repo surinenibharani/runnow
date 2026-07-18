@@ -111,7 +111,7 @@ export function slugify(name: string): string {
 }
 
 export async function uniqueTeamSlug(base: string): Promise<string> {
-  let slug = slugify(base) || "team";
+  const slug = slugify(base) || "team";
   let suffix = 0;
   while (true) {
     const candidate = suffix === 0 ? slug : `${slug}-${suffix}`;
