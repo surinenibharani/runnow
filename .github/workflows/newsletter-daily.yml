@@ -16,8 +16,14 @@ jobs:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
           if [ -z "$SITE_URL" ] || [ -z "$CRON_SECRET" ]; then
-            echo "SITE_URL and CRON_SECRET secrets are required."
+            echo "::error::Missing GitHub Actions secrets SITE_URL and/or CRON_SECRET."
+            echo "Add both under Settings → Secrets and variables → Actions:"
+            echo "  SITE_URL     = https://www.letsrunnow.com  (no trailing slash needed)"
+            echo "  CRON_SECRET  = same value as production CRON_SECRET env (openssl rand -base64 32)"
+            echo "Also ensure Vercel has CRON_SECRET, RESEND_API_KEY, and EMAIL_FROM set."
             exit 1
           fi
           curl -fsS -X POST "${SITE_URL%/}/api/cron/newsletter" \
-            -H "Authorization: Bearer ${CRON_SECRET}"
+            -H "Authorization: Bearer ${CRON_SECRET}" \
+            -H "Content-Type: application/json" \
+            -w "\nHTTP %{http_code}\n"

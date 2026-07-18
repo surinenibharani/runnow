@@ -7,8 +7,23 @@ import fs from "fs";
 import path from "path";
 
 const root = path.resolve(import.meta.dirname, "..");
-const postsSrc = fs.readFileSync(path.join(root, "src/lib/blog/posts.ts"), "utf8");
-const blogSlugs = new Set([...postsSrc.matchAll(/slug: "([^"]+)"/g)].map((m) => m[1]));
+const blogDir = path.join(root, "src/lib/blog");
+
+/** Blog posts live across posts.ts + posts-*.ts gap modules — scan all of them. */
+function readBlogPostSources() {
+  return fs
+    .readdirSync(blogDir)
+    .filter((name) => /^posts.*\.ts$/.test(name))
+    .map((name) => fs.readFileSync(path.join(blogDir, name), "utf8"));
+}
+
+const blogSources = readBlogPostSources();
+const blogSlugs = new Set();
+const blogSectionIds = new Set();
+for (const src of blogSources) {
+  for (const m of src.matchAll(/slug: "([^"]+)"/g)) blogSlugs.add(m[1]);
+  for (const m of src.matchAll(/\bid: "([^"]+)"/g)) blogSectionIds.add(m[1]);
+}
 
 const staticRoutes = new Set([
   "",
@@ -22,6 +37,7 @@ const staticRoutes = new Set([
   "/injuries/for-women-runners",
   "/injuries/for-men-runners",
   "/stories",
+  "/instagram",
   "/dashboard",
   "/search",
   "/teams",
@@ -37,17 +53,15 @@ const commonInjurySlugs = new Set(
   )].map((m) => m[1])
 );
 
-const concernIds = new Set([
-  ...fs
-    .readFileSync(path.join(root, "src/lib/injuries/women-runner-concerns.ts"), "utf8")
-    .matchAll(/id: "([^"]+)"/g),
-  ...fs
-    .readFileSync(path.join(root, "src/lib/injuries/men-runner-concerns.ts"), "utf8")
-    .matchAll(/id: "([^"]+)"/g),
-].map((m) => m[1]));
-
-const blogSectionIds = new Set(
-  [...postsSrc.matchAll(/\bid: "([^"]+)"/g)].map((m) => m[1])
+const concernIds = new Set(
+  [
+    ...fs
+      .readFileSync(path.join(root, "src/lib/injuries/women-runner-concerns.ts"), "utf8")
+      .matchAll(/id: "([^"]+)"/g),
+    ...fs
+      .readFileSync(path.join(root, "src/lib/injuries/men-runner-concerns.ts"), "utf8")
+      .matchAll(/id: "([^"]+)"/g),
+  ].map((m) => m[1])
 );
 
 const gearSlugs = new Set(
@@ -58,11 +72,19 @@ const gearSlugs = new Set(
 gearSlugs.add("start-here");
 gearSlugs.add("level-up");
 
-const tipSlugs = new Set(
-  [...fs.readFileSync(path.join(root, "src/lib/tips/tips.ts"), "utf8").matchAll(/slug: "([^"]+)"/g)].map(
-    (m) => m[1]
-  )
-);
+const tipSlugs = new Set();
+const tipsSrc = fs.readFileSync(path.join(root, "src/lib/tips/tips.ts"), "utf8");
+for (const m of tipsSrc.matchAll(/slug: "([^"]+)"/g)) tipSlugs.add(m[1]);
+for (const m of tipsSrc.matchAll(/slugifyTipTitle\("([^"]+)"\)/g)) {
+  tipSlugs.add(
+    m[1]
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .trim()
+  );
+}
 
 function collectFiles(dir, acc = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -157,6 +179,19 @@ for (const file of collectFiles(path.join(root, "src"))) {
     if (pathname === "/gear") {
       if (hash && !gearSlugs.has(hash)) {
         issues.push(`${rel}: unknown gear anchor ${raw}`);
+      }
+      continue;
+    }
+
+    if (pathname.startsWith("/tips/")) {
+      const slug = pathname.slice("/tips/".length);
+      if (
+        slug &&
+        slug !== "bad-weather" &&
+        slug !== "specific-situations" &&
+        !tipSlugs.has(slug)
+      ) {
+        issues.push(`${rel}: unknown tip slug ${pathname}`);
       }
       continue;
     }
