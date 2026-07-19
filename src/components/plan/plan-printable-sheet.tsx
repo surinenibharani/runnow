@@ -191,91 +191,84 @@ export function PlanPrintableSheet({
 
   return (
     <div className="relative mx-auto max-w-5xl px-4 py-8 sm:px-6 print:max-w-none print:px-0 print:py-0">
-      <PrintableWatermark />
-
-      <div className="relative z-10">
-        <div className="no-print mb-8 flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <p className="text-sm text-muted-foreground">
-              <Link href={planHref} className="text-primary hover:underline">
-                ← Back to plan
-              </Link>
-            </p>
-            <h1 className="mt-2 text-2xl font-bold tracking-tight">
-              Printable plan tracker
-            </h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Use Print → Save as PDF. Fill duration, cross-train notes, mood
-              (1–5), and effort (1–10) by hand to compare weeks later.
-            </p>
-          </div>
-          <PrintPageButton label="Print / Save PDF" />
-        </div>
-
-        <header className="mb-6 border-b border-border/70 pb-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            {SITE_NAME}
+      <div className="no-print mb-8 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p className="text-sm text-muted-foreground">
+            <Link href={planHref} className="text-primary hover:underline">
+              ← Back to plan
+            </Link>
           </p>
-          <h2 className="mt-1 text-xl font-bold tracking-tight sm:text-2xl">
-            {plan.name} · {plan.duration}
-          </h2>
-          <p className="mt-1 text-sm text-muted-foreground">{BRAND_CAPTION}</p>
-          {fromQuiz && (
-            <p className="mt-2 text-xs text-muted-foreground">
-              Personalized from Start Here
-              {healthFocus ? ` · focused on ${healthFocus}` : ""}
-            </p>
-          )}
-        </header>
-
-        {(rationale || focusCt.length > 0) && (
-          <section className="relative mb-6 break-inside-avoid overflow-hidden rounded-lg border border-border/70 bg-muted/20 p-3 sm:p-4">
-            <PrintableWatermark mode="section" />
-            <div className="relative z-10">
-              {rationale && (
-                <>
-                  <h3 className="text-sm font-semibold">Why this plan</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">
-                    {rationale}
-                  </p>
-                </>
-              )}
-              <h3 className={`${rationale ? "mt-3" : ""} text-sm font-semibold`}>
-                Suggested cross-training
-              </h3>
-              <ul className="mt-2 space-y-1.5 text-xs sm:text-sm">
-                {focusCt.map((item) => (
-                  <li key={item.title} className="leading-snug">
-                    <span className="font-medium">{item.title}</span>
-                    <span className="text-muted-foreground">
-                      {" "}
-                      — {item.why} ({item.how})
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-3 text-[10px] leading-snug text-muted-foreground sm:text-xs">
-                Mood: 1 = drained · 5 = great. Effort: 1 = very easy · 10 = max.
-                Educational only — not medical advice. Stop for sharp pain,
-                dizziness, or chest pain.
-              </p>
-            </div>
-          </section>
-        )}
-
-        <div className="space-y-4">
-          {weeks.map((week) => (
-            <WeekTable key={week.week} week={week} focusCt={focusCt} />
-          ))}
-        </div>
-
-        <footer className="mt-8 border-t border-border/60 pt-4 text-center text-[10px] text-muted-foreground sm:text-xs">
-          <p>
-            {SITE_NAME} · Keep this sheet to compare weeks. Re-print anytime from{" "}
-            {planHref}
+          <h1 className="mt-2 text-2xl font-bold tracking-tight">
+            Printable plan tracker
+          </h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Use Print → Save as PDF. Fill duration, cross-train notes, mood
+            (1–5), and effort (1–10) by hand to compare weeks later.
           </p>
-        </footer>
+        </div>
+        <PrintPageButton label="Print / Save PDF" />
       </div>
+
+      <header className="mb-6 border-b border-border/70 pb-4 text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+          {SITE_NAME}
+        </p>
+        <h2 className="mt-1 text-xl font-bold tracking-tight sm:text-2xl">
+          {plan.name} · {plan.duration}
+        </h2>
+        <p className="mt-1 text-sm text-muted-foreground">{BRAND_CAPTION}</p>
+        {fromQuiz && (
+          <p className="mt-2 text-xs text-muted-foreground">
+            Personalized from Start Here
+            {healthFocus ? ` · focused on ${healthFocus}` : ""}
+          </p>
+        )}
+      </header>
+
+      {(rationale || focusCt.length > 0) && (
+        <section className="mb-6 break-inside-avoid rounded-lg border border-border/70 bg-muted/20 p-3 sm:p-4">
+          {rationale && (
+            <>
+              <h3 className="text-sm font-semibold">Why this plan</h3>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                {rationale}
+              </p>
+            </>
+          )}
+          <h3 className={`${rationale ? "mt-3" : ""} text-sm font-semibold`}>
+            Suggested cross-training
+          </h3>
+          <ul className="mt-2 space-y-1.5 text-xs sm:text-sm">
+            {focusCt.map((item) => (
+              <li key={item.title} className="leading-snug">
+                <span className="font-medium">{item.title}</span>
+                <span className="text-muted-foreground">
+                  {" "}
+                  — {item.why} ({item.how})
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-[10px] leading-snug text-muted-foreground sm:text-xs">
+            Mood: 1 = drained · 5 = great. Effort: 1 = very easy · 10 = max.
+            Educational only — not medical advice. Stop for sharp pain,
+            dizziness, or chest pain.
+          </p>
+        </section>
+      )}
+
+      <div className="space-y-4">
+        {weeks.map((week) => (
+          <WeekTable key={week.week} week={week} focusCt={focusCt} />
+        ))}
+      </div>
+
+      <footer className="mt-8 border-t border-border/60 pt-4 text-center text-[10px] text-muted-foreground sm:text-xs">
+        <p>
+          {SITE_NAME} · Keep this sheet to compare weeks. Re-print anytime from{" "}
+          {planHref}
+        </p>
+      </footer>
 
       <style>{`
         @media print {
