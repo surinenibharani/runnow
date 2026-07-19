@@ -312,6 +312,12 @@ export const SOURCES = {
     href: "https://pubmed.ncbi.nlm.nih.gov/34025459/",
     publisher: "PubMed / Frontiers in Physiology",
   },
+  postExerciseStretchZhang2025: {
+    label:
+      "Post-exercise stretching vs no stretching on lower-limb recovery and performance — meta-analysis (Zhang, Chen & Xing, 2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/41103301/",
+    publisher: "PubMed / Frontiers in Physiology",
+  },
   stretchIntensityEccentricRecoveryApostolopoulos2018: {
     label:
       "Different passive static stretching intensities and recovery from eccentric exercise — RCT (Apostolopoulos et al., 2018)",

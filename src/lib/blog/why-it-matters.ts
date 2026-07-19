@@ -181,7 +181,7 @@ export const whyItMattersBySlug: Record<string, string> = {
   "earn-hard-runs-by-running-easy":
     "If easy still feels like a grind, hard days are just more stress. Honest slow running — the forever feeling — is how you earn intensity without burning the base.",
   "stretching-between-and-after-runs":
-    "Long static stretches mid-run or right after a long run feel virtuous — research says they don’t speed recovery and aggressive holds can get in the way of bounce-back. Walk, fuel, and move gently instead.",
+    "Long static stretches mid-run or right after a long run feel virtuous — meta-analyses (including Afonso et al., 2021) say they don’t speed recovery, and aggressive holds can get in the way. Keep dynamic warm-ups; walk and fuel after the long one.",
   "lactate-threshold-for-runners":
     "Threshold is the comfortably hard line that makes race pace feel less like a cliff — train it sparingly after a real easy base, not as daily religion.",
   "blood-pressure-running-heart-health":

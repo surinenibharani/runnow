@@ -1427,6 +1427,7 @@ export const p1P2GapPosts: BlogPost[] = [
       SOURCES.passiveStretchForceFowles2000,
       SOURCES.stretchingDomsCochrane2011,
       SOURCES.postExerciseStretchRecoveryAfonso2021,
+      SOURCES.postExerciseStretchZhang2025,
       SOURCES.stretchIntensityEccentricRecoveryApostolopoulos2018,
       SOURCES.injuryPreventionExerciseLauersen2014,
       SOURCES.stretchingMayo,
@@ -1440,12 +1441,12 @@ export const p1P2GapPosts: BlogPost[] = [
       {
         question: "Is all stretching bad for runners?",
         answer:
-          "No. The concern is mostly long-held static stretching (deep end-range holds) right before or between hard efforts, and aggressive stretching on already-fatigued long-run muscles. Short dynamic movement and separate flexible mobility sessions are a different tool.",
+          "No. This post mainly challenges long-held static stretching (deep end-range holds) between hard efforts and right after long runs. A short dynamic warm-up before you run — easy jog plus movement prep — is generally beneficial for temperature and readiness. Separate, gentle mobility on easy days is a different tool than parking-lot max holds when you're already spent.",
       },
       {
         question: "Does post-run stretching prevent soreness?",
         answer:
-          "A Cochrane systematic review found stretching before or after exercise has little or no effect on delayed-onset muscle soreness. Feeling a temporary release is not the same as changing next-day damage or repair.",
+          "Usually not in a meaningful way. A Cochrane review found stretching before or after exercise has little or no effect on DOMS. More recent evidence points the same way: Afonso and colleagues' 2021 RCT meta-analysis found post-exercise stretching did not speed strength recovery or meaningfully reduce DOMS versus resting, and a 2025 lower-limb meta-analysis likewise found only trivial, non-significant effects on soreness and performance versus no stretching.",
       },
       {
         question: "What should I do during rest between interval reps?",
@@ -1458,9 +1459,9 @@ export const p1P2GapPosts: BlogPost[] = [
           "After you've cooled down with walking, if a gentle, pain-free short hold feels good, keep it light — not forcing end range on jelly legs. Put longer flexibility work on a separate recovery day when you're not still depleted.",
       },
       {
-        question:           "Can stretching after a long run delay recovery?",
+        question: "Can stretching after a long run delay recovery?",
         answer:
-          "It can get in the way. Meta-analyses show post-exercise stretching does not speed strength recovery or meaningfully cut DOMS versus resting. Hard, high-intensity end-range stretching after eccentric work has compared less favorably with gentle low-intensity stretching for bounce-back of force and soreness. Long holds also stack temporary force loss onto already tired legs, and time on deep poses often crowds out cool-down walking and fueling.",
+          "It can get in the way. Afonso and colleagues' 2021 meta-analysis of RCTs found post-exercise stretching did not speed strength recovery or meaningfully cut DOMS versus resting; a 2025 lower-limb meta-analysis found the same pattern of trivial effects. Hard, high-intensity end-range stretching after eccentric work has also compared less favorably with gentle low-intensity stretching for bounce-back of force and soreness. Long holds stack temporary force loss onto already tired legs, and time on deep poses often crowds out cool-down walking and fueling.",
       },
       {
         question: "Will skipping mid-run stretches make me tighter or more injured?",
@@ -1473,8 +1474,10 @@ export const p1P2GapPosts: BlogPost[] = [
         paragraphs: [
           "You've seen it at every race expo photo and every path-side curb: runners stop, plant a heel on a bench, and lean into a long static stretch — between mile repeats, at the water fountain mid-long run, or collapsed on the grass right after 16 miles. It feels responsible. Sometimes it feels like the only \"recovery\" tool you know.",
           "Sports science is less romantic about it. **Long-held static stretching can temporarily reduce how hard a muscle can contract**, alter the springiness of the muscle–tendon unit, and — when you pile it onto fatigued tissue after a long run — ask already stressed fibers to lengthen when repair, fuel, and easy movement would serve you better.",
+          "**Important scope note:** this post centers on **static** stretching between bouts and after long runs. A brief **dynamic warm-up before you run** (easy jog plus movement prep) is generally beneficial for readiness — that is not the practice we're arguing against. See our [warm-up and cool-down guide](/blog/warm-up-cool-down-running).",
+          "On the recovery claim specifically: a 2021 systematic review and meta-analysis of RCTs by [Afonso et al.](https://pubmed.ncbi.nlm.nih.gov/34025459/) found post-exercise stretching did **not** improve short-term or 24–72 hour strength recovery or meaningfully change DOMS versus passive recovery. A [2025 lower-limb meta-analysis](https://pubmed.ncbi.nlm.nih.gov/41103301/) reached a similar conclusion — only trivial, non-significant effects on soreness, strength, and performance versus no stretching.",
           "This post covers what to do between hard efforts and after long runs, with journal citations. **Advanced readers:** for how static stretch changes muscle–tendon stiffness, fiber force, and nervous-system drive in more detail, jump to [Advanced reading: What a long static stretch does to muscle tissue and fibers](#what-static-stretch-does) near the end of this page.",
-          "Pair it with our [warm-up and cool-down guide](/blog/warm-up-cool-down-running), [foam rolling reality check](/blog/foam-rolling-mobility-runners), and [post-run recovery](/blog/post-run-recovery).",
+          "Also pair it with our [foam rolling reality check](/blog/foam-rolling-mobility-runners) and [post-run recovery](/blog/post-run-recovery).",
           "**Educational only — not medical advice.** Sharp one-spot pain, a sudden pop, inability to bear weight, or swelling after a stretch or run needs clinical care — not a deeper stretch. See Mayo Clinic guidance on [muscle strains](https://www.mayoclinic.org/diseases-conditions/muscle-strains/diagnosis-treatment/drc-20350823) and [hamstring injuries](https://www.mayoclinic.org/diseases-conditions/hamstring-injury/symptoms-causes/syc-20372985).",
         ],
       },
@@ -1566,7 +1569,7 @@ export const p1P2GapPosts: BlogPost[] = [
           {
             heading: "It doesn't speed strength or soreness recovery — and hard holds can stall both",
             paragraphs: [
-              "A systematic review and meta-analysis of RCTs found **post-exercise stretching did not improve short-term or delayed (24–72 hour) strength recovery** versus simply resting, and it did not meaningfully change DOMS either ([Afonso et al., 2021](https://pubmed.ncbi.nlm.nih.gov/34025459/)). That matches the Cochrane finding that stretch before/after exercise does not produce clinically important DOMS relief ([Herbert et al., 2011](https://pubmed.ncbi.nlm.nih.gov/21735398/)).",
+              "A systematic review and meta-analysis of RCTs found **post-exercise stretching did not improve short-term or delayed (24–72 hour) strength recovery** versus simply resting, and it did not meaningfully change DOMS either ([Afonso et al., 2021](https://pubmed.ncbi.nlm.nih.gov/34025459/)). That matches the Cochrane finding that stretch before/after exercise does not produce clinically important DOMS relief ([Herbert et al., 2011](https://pubmed.ncbi.nlm.nih.gov/21735398/)), and a later lower-limb meta-analysis that likewise found only trivial, non-significant effects of post-exercise stretching on soreness, strength, and performance versus no stretching ([Zhang, Chen & Xing, 2025](https://pubmed.ncbi.nlm.nih.gov/41103301/)).",
               "Intensity matters after eccentric-heavy work (and long runs are eccentric on every landing). In a randomized trial after unaccustomed eccentric exercise, authors reported that **high-intensity passive stretching** (about 70–80% of maximum perceived stretch, 60-second holds) compared **less favorably with low-intensity stretching** for getting eccentric strength back and for perceived soreness over the next days — while **low-intensity** stretching looked more helpful than no stretch for some recovery markers ([Apostolopoulos et al., 2018](https://pubmed.ncbi.nlm.nih.gov/29529387/)).",
               "Translation after a long run: deep, \"make it burn\" end-range holds are the version most likely to **interfere with bounce-back**. Easy mid-range movement is a different stimulus — and even then, cool-down walking and fuel remain the priority.",
             ],
@@ -1631,16 +1634,17 @@ export const p1P2GapPosts: BlogPost[] = [
         id: "when-stretch-ok",
         heading: "When stretching still fits a runner's life",
         paragraphs: [
-          "Static stretching isn't banned forever. Context matters.",
+          "Static stretching isn't banned forever — and **dynamic stretching before a run is still generally a good idea.** Context matters.",
         ],
         list: [
+          "Before runs: easy jog plus short dynamic warm-up movements (leg swings, ankle circles, gentle skips) — usually helpful for temperature and readiness",
           "Separate mobility sessions on easy or rest days, after a short warm-up walk",
-          "Short, mild holds after a full cool-down if they feel good — not into sharp pain",
+          "Short, mild static holds after a full cool-down if they feel good — not into sharp pain",
           "Sport-specific needs (e.g., working with a clinician on a true range-of-motion deficit)",
           "Never as the main strategy to \"prevent\" DOMS or \"earn\" the next long run",
         ],
         closingParagraphs: [
-          "Dynamic warm-ups before harder sessions — easy jog plus movement prep — still make sense. That is activation and temperature, not five minutes of cold end-range splits.",
+          "This article's caution is about **long static holds between hard bouts and aggressive static stretching right after long runs** — not about ditching movement prep before you start. Activation and temperature are different from five minutes of cold end-range splits.",
         ],
       },
       {
@@ -1648,8 +1652,8 @@ export const p1P2GapPosts: BlogPost[] = [
         heading: "Bottom line",
         paragraphs: [
           "Long static stretches between hard running bouts temporarily reduce muscle force and spring — effects documented in systematic reviews and plantarflexor lab work. Between weekly long runs, stretching does little for soreness and is a weak injury-prevention substitute for strength.",
-          "After long runs, aggressive end-range stretching **doesn't speed strength or DOMS recovery** and high-intensity holds after eccentric work can **interfere with force bounce-back** — while also crowding out cool-down walking and fuel. Walk, eat, hydrate; keep any mobility short and gentle.",
-          "Stop mid-run or between reps? Walk, shake out, breathe — no deep static holds.",
+          "After long runs, post-exercise stretching **doesn't speed strength or DOMS recovery** in meta-analyses (including [Afonso et al., 2021](https://pubmed.ncbi.nlm.nih.gov/34025459/)), and high-intensity holds after eccentric work can **interfere with force bounce-back** — while also crowding out cool-down walking and fuel. Walk, eat, hydrate; keep any mobility short and gentle.",
+          "Keep a short dynamic warm-up before you run. Skip deep static holds mid-session and on jelly legs after the long one.",
         ],
       },
       {
