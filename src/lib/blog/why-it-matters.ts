@@ -180,6 +180,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Zones only work when easy days stay easy. Plain-English Z1–Z5 keeps quality scarce and conversational miles where the engine actually grows.",
   "earn-hard-runs-by-running-easy":
     "If easy still feels like a grind, hard days are just more stress. Honest slow running — the forever feeling — is how you earn intensity without burning the base.",
+  "stretching-between-and-after-runs":
+    "Long static stretches mid-run or right after a long run feel virtuous — research says they don’t speed recovery and aggressive holds can get in the way of bounce-back. Walk, fuel, and move gently instead.",
   "lactate-threshold-for-runners":
     "Threshold is the comfortably hard line that makes race pace feel less like a cliff — train it sparingly after a real easy base, not as daily religion.",
   "blood-pressure-running-heart-health":

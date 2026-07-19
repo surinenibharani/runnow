@@ -276,6 +276,54 @@ export const SOURCES = {
     href: "https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/stretching/art-20047931",
     publisher: "Mayo Clinic",
   },
+  staticStretchPerformanceKay2012: {
+    label:
+      "Effect of acute static stretch on maximal muscle performance — systematic review (Kay & Blazevich, 2012)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/21659901/",
+    publisher: "PubMed / Medicine & Science in Sports & Exercise",
+  },
+  staticStretchMetaSimic2013: {
+    label:
+      "Does pre-exercise static stretching inhibit maximal muscular performance? Meta-analysis (Simic et al., 2013)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/22316148/",
+    publisher: "PubMed / Scandinavian Journal of Medicine & Science in Sports",
+  },
+  acuteStretchReviewBehm2011: {
+    label:
+      "Acute effects of static and dynamic stretching on performance — review (Behm & Chaouachi, 2011)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/21373870/",
+    publisher: "PubMed / European Journal of Applied Physiology",
+  },
+  passiveStretchForceFowles2000: {
+    label:
+      "Reduced strength after passive stretch of the human plantarflexors (Fowles et al., 2000)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/10904046/",
+    publisher: "PubMed / Journal of Applied Physiology",
+  },
+  stretchingDomsCochrane2011: {
+    label:
+      "Stretching to prevent or reduce muscle soreness after exercise — Cochrane review (Herbert et al., 2011)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/21735398/",
+    publisher: "Cochrane Database of Systematic Reviews / PubMed",
+  },
+  postExerciseStretchRecoveryAfonso2021: {
+    label:
+      "Post-exercise stretching and recovery of strength, ROM, and DOMS — systematic review & meta-analysis (Afonso et al., 2021)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/34025459/",
+    publisher: "PubMed / Frontiers in Physiology",
+  },
+  stretchIntensityEccentricRecoveryApostolopoulos2018: {
+    label:
+      "Different passive static stretching intensities and recovery from eccentric exercise — RCT (Apostolopoulos et al., 2018)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/29529387/",
+    publisher: "PubMed / Applied Physiology, Nutrition, and Metabolism",
+  },
+  injuryPreventionExerciseLauersen2014: {
+    label:
+      "The effectiveness of exercise interventions to prevent sports injuries — meta-analysis (Lauersen et al., 2014)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/24100287/",
+    publisher: "PubMed / British Journal of Sports Medicine",
+  },
   heatSafety: {
     label: "Exercising safely in the summer heat",
     href: "https://communityhealth.mayoclinic.org/featured-stories/exercise-summer-heat",
