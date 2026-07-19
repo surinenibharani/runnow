@@ -328,6 +328,7 @@ export const priorityGapPosts: BlogPost[] = [
     publishedAt: "2026-07-25",
     readTime: "8 min",
     relatedSlugs: [
+      "earn-hard-runs-by-running-easy",
       "how-to-pace-yourself",
       "run-workouts-hills-intervals-fartlek-track",
       "breathing-while-running",

@@ -178,6 +178,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "HRV turns recovery into data — useful when you trust your baseline and multi-day trends, useless when one orange ring cancels common sense.",
   "training-zones-z1-z5-runners":
     "Zones only work when easy days stay easy. Plain-English Z1–Z5 keeps quality scarce and conversational miles where the engine actually grows.",
+  "earn-hard-runs-by-running-easy":
+    "If easy still feels like a grind, hard days are just more stress. Honest slow running — the forever feeling — is how you earn intensity without burning the base.",
   "lactate-threshold-for-runners":
     "Threshold is the comfortably hard line that makes race pace feel less like a cliff — train it sparingly after a real easy base, not as daily religion.",
   "blood-pressure-running-heart-health":
