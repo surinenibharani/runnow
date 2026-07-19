@@ -34,6 +34,15 @@ export default function Home() {
             ·
           </span>
           <Link
+            href="/start"
+            className="inline-flex min-h-11 items-center justify-center font-medium text-primary hover:underline touch-target sm:min-h-0"
+          >
+            New? Start here
+          </Link>
+          <span className="hidden text-muted-foreground sm:inline" aria-hidden>
+            ·
+          </span>
+          <Link
             href="/tips/specific-situations"
             className="inline-flex min-h-11 items-center justify-center font-medium text-primary hover:underline touch-target sm:min-h-0"
           >

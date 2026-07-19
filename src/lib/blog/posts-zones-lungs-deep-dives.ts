@@ -17,7 +17,7 @@ export const zonesLungsDeepDivePosts: BlogPost[] = [
       "What each zone feels like, what it actually trains, how % of max HR and talk test overlap, and why beginners who live in “kinda hard” stall — plus a weekly mix that builds fitness without junk miles.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-10-23",
+    publishedAt: "2026-08-14",
     readTime: "16 min",
     relatedSlugs: [
       "easy-runs-effort-heart-rate",
@@ -255,7 +255,7 @@ export const zonesLungsDeepDivePosts: BlogPost[] = [
       "What lactate threshold really is (hint: lactate isn’t the villain), how it relates to tempo and race pace, lab vs field estimates, and how beginners raise it without living in the gray zone every day.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-09-15",
+    publishedAt: "2026-07-29",
     readTime: "15 min",
     relatedSlugs: [
       "training-zones-z1-z5-runners",
@@ -431,7 +431,7 @@ export const zonesLungsDeepDivePosts: BlogPost[] = [
       "How ACC/AHA categories work, why aerobic training is a first-line lifestyle tool for many people with hypertension, how to run safely if your numbers are high, and which red flags mean stop and call a clinician — not another tempo.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-08-02",
+    publishedAt: "2026-07-01",
     readTime: "15 min",
     relatedSlugs: [
       "train-runners-heart-metrics",
@@ -588,7 +588,7 @@ export const zonesLungsDeepDivePosts: BlogPost[] = [
       "Your lungs aren’t a balloon you “expand” with magic apps — but ventilation, respiratory muscles, breathing rhythm, and handling exercise-induced symptoms all respond to smart training. What’s real, what’s myth, and how to breathe easier on purpose.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-10-07",
+    publishedAt: "2026-08-06",
     readTime: "15 min",
     relatedSlugs: [
       "breathing-while-running",

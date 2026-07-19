@@ -473,7 +473,7 @@ export const menRunnerOverwhelmedBox = {
   title: "When everything feels overwhelming",
   body: "Pick one step: book a GP or physio visit, pause mileage increases for two weeks, and use a simple walk-run plan until you have answers. You don't need to fix heart worries, groin pain, and hydration all at once.",
   links: [
-    { label: "Start a gentle plan", href: "/plan?plan=5k-8w" },
+    { label: "Start a gentle plan", href: "/plan/5k-8w" },
     { label: "Health & situation tips", href: "/tips/specific-situations" },
   ],
 };

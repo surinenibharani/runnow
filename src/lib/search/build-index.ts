@@ -1,11 +1,12 @@
 import { blogPosts, getPublishedBlogPosts } from "@/lib/blog/posts";
 import { commonInjuries } from "@/lib/injuries/common-injuries";
+import { menRunnerConcerns } from "@/lib/injuries/men-runner-concerns";
+import { womenRunnerConcerns } from "@/lib/injuries/women-runner-concerns";
 import { gearCategories } from "@/lib/gear/items";
 import { PLANS } from "@/lib/plans";
 import { SITE_DESCRIPTION } from "@/lib/site";
 import {
   runnerTips,
-  slugifyTipTitle,
   tipsPageGuides,
 } from "@/lib/tips/tips";
 import { situationalTips } from "@/lib/tips/situational";
@@ -55,6 +56,24 @@ const STATIC_PAGES: SiteSearchResult[] = [
     category: "Gear",
   },
   {
+    id: "page-tools",
+    title: "Tools",
+    description:
+      "Pace calculator, race time predictor, and a beginner shoe quiz.",
+    href: "/tools",
+    kind: "page",
+    category: "Tools",
+  },
+  {
+    id: "page-start",
+    title: "Start here",
+    description:
+      "Answer a short quiz about experience, fitness, goals, and schedule to get a recommended free plan.",
+    href: "/start",
+    kind: "page",
+    category: "Plans",
+  },
+  {
     id: "page-injuries",
     title: "Injury prevention",
     description: "Common running injuries — how to avoid them and when to see a specialist.",
@@ -62,16 +81,76 @@ const STATIC_PAGES: SiteSearchResult[] = [
     kind: "page",
     category: "Health",
   },
+  {
+    id: "page-stories",
+    title: "Success stories",
+    description:
+      "Beginners who started with walk-run plans and stuck with the habit.",
+    href: "/stories",
+    kind: "page",
+    category: "Community",
+  },
+  {
+    id: "page-instagram",
+    title: "Instagram tips",
+    description: "Curated running tips from LetsRunNow on Instagram.",
+    href: "/instagram",
+    kind: "page",
+    category: "Tips",
+  },
+  {
+    id: "page-about",
+    title: "About LetsRunNow",
+    description:
+      "Why we built free browser-based training plans for beginner runners.",
+    href: "/about",
+    kind: "page",
+    category: "Company",
+  },
+  {
+    id: "page-faq",
+    title: "FAQ",
+    description: "Common questions about plans, accounts, Strava, and getting started.",
+    href: "/faq",
+    kind: "page",
+    category: "Company",
+  },
+  {
+    id: "page-contact",
+    title: "Contact",
+    description: "Email LetsRunNow for account help or site questions.",
+    href: "/contact",
+    kind: "page",
+    category: "Company",
+  },
 ];
 
-const INJURY_ENTRIES: SiteSearchResult[] = commonInjuries.map((injury) => ({
-  id: `injury-${injury.slug}`,
-  title: injury.title,
-  description: injury.symptoms,
-  href: `/injuries/${injury.slug}`,
-  kind: "injury" as const,
-  category: "Injuries",
-}));
+const INJURY_ENTRIES: SiteSearchResult[] = [
+  ...commonInjuries.map((injury) => ({
+    id: `injury-${injury.slug}`,
+    title: injury.title,
+    description: injury.symptoms,
+    href: `/injuries/${injury.slug}`,
+    kind: "injury" as const,
+    category: "Injuries",
+  })),
+  ...womenRunnerConcerns.map((concern) => ({
+    id: `injury-women-${concern.id}`,
+    title: concern.title,
+    description: concern.symptoms,
+    href: `/injuries/for-women-runners/${concern.id}`,
+    kind: "injury" as const,
+    category: "Women runner health",
+  })),
+  ...menRunnerConcerns.map((concern) => ({
+    id: `injury-men-${concern.id}`,
+    title: concern.title,
+    description: concern.symptoms,
+    href: `/injuries/for-men-runners/${concern.id}`,
+    kind: "injury" as const,
+    category: "Men runner health",
+  })),
+];
 
 function buildIndex(): SiteSearchResult[] {
   const publishedSlugs = new Set(
@@ -93,7 +172,7 @@ function buildIndex(): SiteSearchResult[] {
     id: `plan-${plan.id}`,
     title: `${plan.name} (${plan.duration})`,
     description: plan.description,
-    href: `/plan?plan=${plan.id}`,
+    href: `/plan/${plan.id}`,
     kind: "plan" as const,
     category: "Training plan",
   }));
@@ -117,19 +196,19 @@ function buildIndex(): SiteSearchResult[] {
   }));
 
   const weather: SiteSearchResult[] = weatherTips.map((tip) => ({
-    id: `weather-${slugifyTipTitle(tip.title)}`,
+    id: `weather-${tip.slug}`,
     title: tip.title,
     description: [tip.condition, ...tip.outdoorTips.slice(0, 2)].join(" · "),
-    href: "/tips/bad-weather",
+    href: `/tips/bad-weather/${tip.slug}`,
     kind: "tip" as const,
     category: "Bad weather",
   }));
 
   const situational: SiteSearchResult[] = situationalTips.map((tip) => ({
-    id: `situational-${slugifyTipTitle(tip.title)}`,
+    id: `situational-${tip.slug}`,
     title: tip.title,
     description: `${tip.audience} — ${tip.tips[0] ?? ""}`,
-    href: "/tips/specific-situations",
+    href: `/tips/specific-situations/${tip.slug}`,
     kind: "tip" as const,
     category: tip.audience,
   }));

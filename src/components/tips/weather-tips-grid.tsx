@@ -6,13 +6,14 @@ export function WeatherTipsGrid() {
   return (
     <StaggerChildren className="grid gap-5 sm:grid-cols-2">
       {weatherTips.map((tip) => (
-        <StaggerItem key={tip.title}>
+        <StaggerItem key={tip.slug}>
           <TipDetailCard
             illustration={tip.illustration}
             icon={tip.icon}
             iconClassName="bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
             badge={tip.condition}
             title={tip.title}
+            tipHref={`/tips/bad-weather/${tip.slug}`}
             footer={tip.skipOutdoor}
             footerClassName="text-indigo-700 dark:text-indigo-300/90"
           >

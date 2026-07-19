@@ -18,6 +18,11 @@ const staticRoutes = [
   { path: "/tips/bad-weather", priority: 0.75, changeFrequency: "monthly" as const },
   { path: "/tips/specific-situations", priority: 0.75, changeFrequency: "monthly" as const },
   { path: "/gear", priority: 0.85, changeFrequency: "weekly" as const },
+  { path: "/tools", priority: 0.85, changeFrequency: "monthly" as const },
+  { path: "/tools/pace-calculator", priority: 0.75, changeFrequency: "monthly" as const },
+  { path: "/tools/race-predictor", priority: 0.75, changeFrequency: "monthly" as const },
+  { path: "/tools/shoe-quiz", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/start", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/injuries", priority: 0.8, changeFrequency: "monthly" as const },
   {
     path: "/injuries/for-women-runners",
@@ -30,6 +35,10 @@ const staticRoutes = [
     changeFrequency: "monthly" as const,
   },
   { path: "/stories", priority: 0.75, changeFrequency: "monthly" as const },
+  { path: "/instagram", priority: 0.7, changeFrequency: "weekly" as const },
+  { path: "/about", priority: 0.5, changeFrequency: "yearly" as const },
+  { path: "/faq", priority: 0.55, changeFrequency: "monthly" as const },
+  { path: "/contact", priority: 0.4, changeFrequency: "yearly" as const },
   { path: "/privacy", priority: 0.2, changeFrequency: "yearly" as const },
   { path: "/terms", priority: 0.2, changeFrequency: "yearly" as const },
 ] as const;

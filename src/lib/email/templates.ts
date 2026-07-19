@@ -20,7 +20,7 @@ function ctaButton(href: string, label: string): string {
 }
 
 export function welcomeEmail(unsubscribeToken: string) {
-  const planUrl = `${SITE_URL.replace(/\/$/, "")}/plan?plan=5k-8w#plan-tracker`;
+  const planUrl = `${SITE_URL.replace(/\/$/, "")}/plan/5k-8w#plan-tracker`;
   const preheader = "Weekly beginner tips and new blog posts — here's what to expect.";
 
   const body = `

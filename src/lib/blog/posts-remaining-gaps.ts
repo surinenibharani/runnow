@@ -17,7 +17,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Coming back after birth isn't a couch-to-5K restart with a baby carrier. Clearance, pelvic floor signs, walk-run progressions, and when to get help — without the shame spiral.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-07-31",
+    publishedAt: "2026-07-05",
     readTime: "10 min",
     relatedSlugs: [
       "running-guide-for-women",
@@ -258,7 +258,7 @@ export const remainingGapPosts: BlogPost[] = [
       "One place for summer running: how heat changes effort, when to slow down or go indoors, hydration without overdoing it, and the warning signs that mean stop — not 'tough it out.'",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-08-12",
+    publishedAt: "2026-07-24",
     readTime: "8 min",
     relatedSlugs: [
       "running-in-bad-weather",
@@ -373,7 +373,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Taper isn't laziness — it's the week(s) where fitness shows up. How much to cut, what to keep, what to stop inventing, and how to handle the classic 'I feel sluggish' panic.",
     category: "Racing",
     author: AUTHOR,
-    publishedAt: "2026-08-08",
+    publishedAt: "2026-07-06",
     readTime: "8 min",
     relatedSlugs: [
       "race-day-tips",
@@ -476,7 +476,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Butterflies, bathroom loops, and 'what if I DNF' spirals are common — especially at your first race. Practical tools to use the nerves without letting them run the morning.",
     category: "Racing",
     author: AUTHOR,
-    publishedAt: "2026-09-19",
+    publishedAt: "2026-07-07",
     readTime: "7 min",
     relatedSlugs: [
       "mental-side-of-running",
@@ -575,7 +575,7 @@ export const remainingGapPosts: BlogPost[] = [
       "A watch can coach consistency — or turn every jog into a verdict. When a GPS device helps, when your phone is enough, and how to run by feel without becoming anti-data.",
     category: "Gear",
     author: AUTHOR,
-    publishedAt: "2026-08-14",
+    publishedAt: "2026-08-28",
     readTime: "7 min",
     relatedSlugs: [
       "easy-runs-effort-heart-rate",
@@ -668,7 +668,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Running with a jogging stroller is a skill — not just 'running but heavier.' Setup, posture, when to start postpartum, heat rules with a baby aboard, and how to train without overstriding into the handlebar.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-09-07",
+    publishedAt: "2026-07-28",
     readTime: "8 min",
     relatedSlugs: [
       "postpartum-return-to-run",
@@ -781,7 +781,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Your dog might be ready before you are — or the opposite. Breed and age limits, leash skills, pavement heat, distance progressions, and when a walk is the kinder sport for everyone.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-10-11",
+    publishedAt: "2026-08-19",
     readTime: "8 min",
     relatedSlugs: [
       "hot-weather-running-hub",
@@ -895,7 +895,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Finishers medals look great on social media — but lungs adapt faster than tendons. Here's why most runners need years of progressive loading — including a couple of half marathon seasons — before 26.2 miles (42 km) of repeated impact is a fair ask.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-10-31",
+    publishedAt: "2026-08-29",
     readTime: "14 min",
     relatedSlugs: [
       "training-first-5k",
@@ -1234,7 +1234,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Easy days that feel insultingly slow. Long runs that go on forever. Pacers who refuse your mid-race ego. Here's why good coaches and pacers do what they do — and when to talk, push back, or actually stop.",
     category: "Mindset",
     author: AUTHOR,
-    publishedAt: "2026-07-19",
+    publishedAt: "2026-08-24",
     readTime: "11 min",
     relatedSlugs: [
       "dont-run-a-marathon-in-your-first-year",
@@ -1481,7 +1481,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Family dinners love this scare story. Systematic reviews and Osteoarthritis Initiative data paint a different picture: mindful recreational running is not a kneecap death sentence — and smart loading can help joints stay capable. Age, nutrition, and what to do next.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-07-28",
+    publishedAt: "2026-07-08",
     readTime: "12 min",
     relatedSlugs: [
       "runners-knee-running",
@@ -2269,7 +2269,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Mile 20 can feel like the race ends while the course continues. Here's what “the wall” actually is — carbohydrate depletion and fading blood glucose — and the journal-backed pacing and fueling habits that keep more runners moving through the last 10K.",
     category: "Racing",
     author: AUTHOR,
-    publishedAt: "2026-11-01",
+    publishedAt: "2026-07-09",
     readTime: "12 min",
     relatedSlugs: [
       "nutrition-for-runners",
@@ -2528,7 +2528,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Bone is living tissue that remolds under load. Here's how progressive strength training changes bone mineral density and architecture — and how that durability, plus stronger muscle, helps you run with fewer stress injuries.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-11-02",
+    publishedAt: "2026-08-18",
     readTime: "11 min",
     relatedSlugs: [
       "weight-yoga-cycling-between-runs",
@@ -2766,7 +2766,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Easy days do not have to mean the couch. Here’s what research shows yoga can do for flexibility, balance, movement quality, and anxiety — and how to use gentle sessions between runs without replacing strength or sleep.",
     category: "Recovery",
     author: AUTHOR,
-    publishedAt: "2026-11-03",
+    publishedAt: "2026-07-10",
     readTime: "10 min",
     relatedSlugs: [
       "weight-yoga-cycling-between-runs",
@@ -2944,7 +2944,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Need aerobic work when your legs want a break from impact? Here’s what journals show about cycling as cross-training for runners — VO₂max, run performance, and how to use easy bike sessions between runs without replacing the miles that matter.",
     category: "Recovery",
     author: AUTHOR,
-    publishedAt: "2026-11-04",
+    publishedAt: "2026-07-11",
     readTime: "10 min",
     relatedSlugs: [
       "weight-yoga-cycling-between-runs",
@@ -3112,7 +3112,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Lifting builds bone and muscle, yoga opens what running tightens, and cycling keeps the aerobic engine humming without impact. Here’s how to use all three between runs — with links to the full guides and citations from medical journals.",
     category: "Recovery",
     author: AUTHOR,
-    publishedAt: "2026-11-05",
+    publishedAt: "2026-07-12",
     readTime: "11 min",
     relatedSlugs: [
       "weight-training-bone-structure-runners",
@@ -3287,7 +3287,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Shoes, plans, and gadgets get the hype. Sleep gets ignored — until easy runs feel hard and injuries stack. Here’s what medical journals show about sleep loss and endurance, why runners skip it, and practical ways to protect the night.",
     category: "Recovery",
     author: AUTHOR,
-    publishedAt: "2026-11-06",
+    publishedAt: "2026-07-13",
     readTime: "11 min",
     relatedSlugs: [
       "sleep-recovery-for-runners",

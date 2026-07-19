@@ -24,6 +24,12 @@ jobs:
       - name: Validate internal content links
         run: npm run validate:links
 
+      - name: Lint
+        run: npm run lint:ci
+
+      - name: Unit tests
+        run: npm test
+
       - name: Build
         run: npm run build
         env:

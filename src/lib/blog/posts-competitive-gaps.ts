@@ -18,7 +18,7 @@ export const competitiveGapPosts: BlogPost[] = [
       "Flying into a mountain 5K or destination half? How altitude changes effort, what the first 48 hours should look like, travel logistics for race weekend, and when symptoms mean descend — not dig in.",
     category: "Racing",
     author: AUTHOR,
-    publishedAt: "2026-08-22",
+    publishedAt: "2026-07-02",
     readTime: "12 min",
     relatedSlugs: [
       "first-race-signup-logistics",
@@ -155,7 +155,7 @@ export const competitiveGapPosts: BlogPost[] = [
       "What foam rolling can and can't do, why static stretching cold muscles is overrated before easy runs, a short mobility menu that actually fits a beginner week, and when 'tight' needs strength — not more rolling.",
     category: "Recovery",
     author: AUTHOR,
-    publishedAt: "2026-08-30",
+    publishedAt: "2026-07-03",
     readTime: "11 min",
     relatedSlugs: [
       "warm-up-cool-down-running",
@@ -264,7 +264,7 @@ export const competitiveGapPosts: BlogPost[] = [
       "What cadence actually is, why '180 SPM' isn't a universal law, simple drills and metronome tricks to nudge step rate, and how to use research-backed small changes without wrecking your easy days.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-10-09",
+    publishedAt: "2026-08-08",
     readTime: "11 min",
     relatedSlugs: [
       "running-form-101",
@@ -501,7 +501,7 @@ export const competitiveGapPosts: BlogPost[] = [
       "How to make a 30–45 minute midday run work: packing kit, sweat strategy, route design near the office, manager-safe timing, and when to swap for a walk so your job — and your plan — both survive.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-10-25",
+    publishedAt: "2026-08-26",
     readTime: "10 min",
     relatedSlugs: [
       "building-a-running-habit",

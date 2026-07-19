@@ -13,7 +13,7 @@ type StartPlanCtaProps = {
 };
 
 function planHref(planId: string) {
-  return `/plan?plan=${planId}#plan-tracker`;
+  return `/plan/${planId}#plan-tracker`;
 }
 
 export function StartPlanCta({

@@ -9,6 +9,8 @@ import { InjuryShareButtons } from "@/components/injuries/injury-share-buttons";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import {
   commonInjurySlugs,
   getCommonInjuryBySlug,
@@ -50,6 +52,20 @@ export default async function CommonInjuryDetailPage({
 
   return (
     <div className="py-12 sm:py-16">
+      <JsonLd
+        data={[
+          webPageJsonLd({
+            name: `${injury.title} — Prevention & Recovery for Runners`,
+            description: injury.symptoms,
+            path: detailPath,
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Injuries", path: "/injuries" },
+            { name: injury.title, path: detailPath },
+          ]),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs
           items={[

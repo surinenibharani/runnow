@@ -17,7 +17,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
       "How estrogen decline changes recovery, hot flashes, pelvic floor, and bone load — plus how to keep easy running, strength, and sleep as the real plan, not heroics.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-09-21",
+    publishedAt: "2026-07-04",
     readTime: "14 min",
     relatedSlugs: [
       "running-guide-for-women",
@@ -152,7 +152,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
       "What Relative Energy Deficiency in Sport (REDs) means for runners of any gender, warning signs beyond missed periods, how underfueling fuels injuries, and the practical fix: eat enough for the work you do.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-08-20",
+    publishedAt: "2026-07-05",
     readTime: "13 min",
     relatedSlugs: [
       "running-guide-for-women",
@@ -284,7 +284,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
       "Why estrogen decline and aging change fracture risk, how running + strength + calcium/vitamin D fit together, DEXA timing in plain language, and when impact should be modified — not mythologized.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-08-04",
+    publishedAt: "2026-07-06",
     readTime: "13 min",
     relatedSlugs: [
       "running-over-50-beginners",

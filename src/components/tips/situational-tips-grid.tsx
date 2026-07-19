@@ -23,13 +23,14 @@ export function SituationalTipsGrid() {
 
       <StaggerChildren className="grid gap-5 sm:grid-cols-2">
         {situationalTips.map((tip) => (
-          <StaggerItem key={tip.title}>
+          <StaggerItem key={tip.slug}>
             <TipDetailCard
               illustration={tip.illustration}
               icon={tip.icon}
               iconClassName="bg-sky-500/10 text-sky-600 dark:text-sky-400"
               badge={tip.audience}
               title={tip.title}
+              tipHref={`/tips/specific-situations/${tip.slug}`}
               footer={tip.caution}
             >
               <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-relaxed text-muted-foreground">

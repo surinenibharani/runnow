@@ -23,6 +23,7 @@ export const mainNavGroups: NavGroup[] = [
     ariaLabel: "Training",
     links: [
       { href: "/plan", label: "Plans", matchPrefix: true },
+      { href: "/start", label: "Start here", matchPrefix: true },
       {
         href: "/dashboard",
         label: "Dashboard",
@@ -36,8 +37,11 @@ export const mainNavGroups: NavGroup[] = [
     links: [
       { href: "/blog", label: "Blog", matchPrefix: true },
       { href: "/tips", label: "Tips", matchPrefix: true },
+      { href: "/tools", label: "Tools", matchPrefix: true },
+      { href: "/instagram", label: "Instagram", matchPrefix: true },
       { href: "/gear", label: "Gear", matchPrefix: true },
       { href: "/injuries", label: "Injuries", matchPrefix: true },
+      { href: "/stories", label: "Stories", matchPrefix: true },
     ],
   },
   {
@@ -66,20 +70,30 @@ export const tipsSectionNav = [
 
 export const footerTrainLinks = [
   { href: "/plan", label: "Training Plans" },
+  { href: "/start", label: "Find your plan" },
   { href: "/dashboard", label: "Dashboard" },
 ] as const;
 
 export const footerLearnLinks: FooterLink[] = [
   { href: "/blog", label: "Blog" },
   { href: "/tips", label: "Running Tips" },
+  { href: "/tools", label: "Tools" },
+  { href: "/instagram", label: "Instagram" },
   { href: "/gear", label: "Gear Guide" },
   { href: "/injuries", label: "Injury Prevention" },
+  { href: "/stories", label: "Success Stories" },
   {
     href: "/teams",
     label: "Coach Teams",
     comingSoon: !TEAMS_ROLLOUT_ENABLED,
   },
 ];
+
+export const footerCompanyLinks = [
+  { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
+] as const;
 
 export const footerTipsLinks = [
   { href: "/tips", label: "All tips" },

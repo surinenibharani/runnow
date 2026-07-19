@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal/legal-page";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_NAME, SUPPORT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
         {
           heading: "Data retention & deletion",
           paragraphs: [
-            "We keep your account data while your account is active. You can disconnect Strava, delete wellness entries, and remove comments where available. To delete your account or request data removal, contact us using the support channel listed on the site.",
+            `We keep your account data while your account is active. You can disconnect Strava, delete wellness entries, and remove comments where available. To delete your account or request data removal, email ${SUPPORT_EMAIL}.`,
           ],
         },
         {

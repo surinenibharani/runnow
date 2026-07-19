@@ -5,22 +5,47 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { EmailSignup } from "@/components/newsletter/email-signup";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
-import { Card, CardContent } from "@/components/ui/card";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Button } from "@/components/ui/button";
+import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { INSTAGRAM_HANDLE, INSTAGRAM_URL, SITE_NAME } from "@/lib/site";
+import { SITE_NAME, SUPPORT_EMAIL } from "@/lib/site";
 import { successStories } from "@/lib/testimonials";
 
+const TITLE = "Success Stories from Beginner Runners";
+const DESCRIPTION =
+  "Real beginners sharing how they started running with LetsRunNow — walk-run wins, streaks, and finishing their first training plan.";
+
 export const metadata: Metadata = pageMetadata({
-  title: "Success Stories from Beginner Runners",
-  description:
-    "Real beginners sharing how they started running with LetsRunNow — walk-run wins, streaks, and finishing their first training plan.",
+  title: TITLE,
+  description: DESCRIPTION,
   path: "/stories",
 });
 
 export default function StoriesPage() {
   return (
     <div className="py-12 sm:py-16">
+      <JsonLd
+        data={[
+          webPageJsonLd({
+            name: TITLE,
+            description: DESCRIPTION,
+            path: "/stories",
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Success Stories", path: "/stories" },
+          ]),
+          itemListJsonLd({
+            name: "Beginner running success stories",
+            path: "/stories",
+            items: successStories.map((story) => ({
+              name: `${story.name} — ${story.milestone ?? story.detail}`,
+              path: "/stories",
+            })),
+          }),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Success Stories" }]} />
 
@@ -34,20 +59,30 @@ export default function StoriesPage() {
           </p>
         </FadeIn>
 
-        <StaggerChildren className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerChildren className="grid gap-6">
           {successStories.map((story) => (
             <StaggerItem key={story.name}>
-              <Card className="h-full border-border/60">
-                <CardContent className="flex h-full flex-col p-6">
-                  <p className="flex-1 leading-relaxed">
-                    &ldquo;{story.quote}&rdquo;
+              <article className="rounded-2xl border border-border/60 bg-muted/15 px-6 py-7 sm:px-8">
+                <p className="text-lg leading-relaxed sm:text-xl">
+                  &ldquo;{story.quote}&rdquo;
+                </p>
+                {story.story && (
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                    {story.story}
                   </p>
-                  <div className="mt-5 border-t border-border pt-4">
+                )}
+                <div className="mt-5 flex flex-wrap items-end justify-between gap-3 border-t border-border/60 pt-4">
+                  <div>
                     <p className="font-semibold">{story.name}</p>
                     <p className="text-sm text-muted-foreground">{story.detail}</p>
                   </div>
-                </CardContent>
-              </Card>
+                  {story.milestone && (
+                    <p className="text-sm font-medium text-foreground/80">
+                      {story.milestone}
+                    </p>
+                  )}
+                </div>
+              </article>
             </StaggerItem>
           ))}
         </StaggerChildren>
@@ -58,7 +93,14 @@ export default function StoriesPage() {
             <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground">
               Finished a week or your whole plan? Use the share buttons on your
               training tracker — friends see your progress and can start their own
-              plan from your link.
+              plan from your link. Or email{" "}
+              <a
+                href={`mailto:${SUPPORT_EMAIL}`}
+                className="text-primary hover:underline"
+              >
+                {SUPPORT_EMAIL}
+              </a>{" "}
+              if you want to be featured.
             </p>
             <Button
               nativeButton={false}
@@ -70,23 +112,21 @@ export default function StoriesPage() {
           </div>
 
           <div className="flex flex-col items-center gap-4 rounded-xl border border-border/60 p-6 text-center sm:flex-row sm:text-left">
-            <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 text-pink-600 dark:text-pink-400">
+            <div className="flex size-12 items-center justify-center rounded-xl bg-muted text-foreground">
               <InstagramIcon className="size-6" />
             </div>
             <div className="flex-1">
-              <h2 className="font-semibold">Follow on Instagram</h2>
+              <h2 className="font-semibold">Tips from Instagram</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Tips, motivation, and community highlights from {SITE_NAME}.
+                Curated posts from {SITE_NAME} — warm-ups, easy days, shoes, and more.
               </p>
             </div>
             <Button
               nativeButton={false}
-              render={
-                <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" />
-              }
+              render={<Link href="/instagram" />}
               variant="outline"
             >
-              @{INSTAGRAM_HANDLE}
+              See Instagram tips
             </Button>
           </div>
 

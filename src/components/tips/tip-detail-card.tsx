@@ -15,6 +15,8 @@ type TipDetailCardProps = {
   iconClassName?: string;
   badge: string;
   title: string;
+  titleAs?: "h1" | "h2";
+  tipHref?: string;
   children: React.ReactNode;
   footer?: string;
   footerClassName?: string;
@@ -28,12 +30,16 @@ export function TipDetailCard({
   iconClassName,
   badge,
   title,
+  titleAs = "h2",
+  tipHref,
   children,
   footer,
   footerClassName,
   blogSlug,
   blogReadTime,
 }: TipDetailCardProps) {
+  const TitleTag = titleAs;
+
   return (
     <Card className="h-full gap-0 overflow-hidden border-border/60 py-0">
       <TipIllustration id={illustration} />
@@ -50,7 +56,23 @@ export function TipDetailCard({
           <Badge variant="outline" className="mb-2 text-xs">
             {badge}
           </Badge>
-          <h2 className="font-semibold text-lg">{title}</h2>
+          <TitleTag
+            className={cn(
+              "font-semibold",
+              titleAs === "h1" ? "text-2xl sm:text-3xl" : "text-lg"
+            )}
+          >
+            {tipHref ? (
+              <Link
+                href={tipHref}
+                className="hover:text-primary hover:underline"
+              >
+                {title}
+              </Link>
+            ) : (
+              title
+            )}
+          </TitleTag>
           {children}
           {footer && (
             <p
@@ -79,6 +101,15 @@ export function TipDetailCard({
                   · {blogReadTime}
                 </span>
               )}
+              <ArrowRight className="size-3.5" />
+            </Link>
+          )}
+          {tipHref && !blogSlug && (
+            <Link
+              href={tipHref}
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+            >
+              Read tip
               <ArrowRight className="size-3.5" />
             </Link>
           )}

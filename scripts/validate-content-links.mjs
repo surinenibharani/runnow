@@ -33,6 +33,14 @@ const staticRoutes = new Set([
   "/tips/bad-weather",
   "/tips/specific-situations",
   "/gear",
+  "/tools",
+  "/tools/pace-calculator",
+  "/tools/race-predictor",
+  "/tools/shoe-quiz",
+  "/start",
+  "/about",
+  "/faq",
+  "/contact",
   "/injuries",
   "/injuries/for-women-runners",
   "/injuries/for-men-runners",
@@ -84,6 +92,34 @@ for (const m of tipsSrc.matchAll(/slugifyTipTitle\("([^"]+)"\)/g)) {
       .replace(/-+/g, "-")
       .trim()
   );
+}
+
+function slugifyTitle(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim();
+}
+
+const weatherTipSlugs = new Set();
+const weatherSrc = fs.readFileSync(path.join(root, "src/lib/tips/weather.ts"), "utf8");
+for (const m of weatherSrc.matchAll(/slug: "([^"]+)"/g)) weatherTipSlugs.add(m[1]);
+for (const m of weatherSrc.matchAll(/slugifyTipTitle\("([^"]+)"\)/g)) {
+  weatherTipSlugs.add(slugifyTitle(m[1]));
+}
+
+const situationalTipSlugs = new Set();
+const situationalSrc = fs.readFileSync(
+  path.join(root, "src/lib/tips/situational.ts"),
+  "utf8"
+);
+for (const m of situationalSrc.matchAll(/slug: "([^"]+)"/g)) {
+  situationalTipSlugs.add(m[1]);
+}
+for (const m of situationalSrc.matchAll(/slugifyTipTitle\("([^"]+)"\)/g)) {
+  situationalTipSlugs.add(slugifyTitle(m[1]));
 }
 
 function collectFiles(dir, acc = []) {
@@ -184,13 +220,25 @@ for (const file of collectFiles(path.join(root, "src"))) {
     }
 
     if (pathname.startsWith("/tips/")) {
-      const slug = pathname.slice("/tips/".length);
-      if (
-        slug &&
-        slug !== "bad-weather" &&
-        slug !== "specific-situations" &&
-        !tipSlugs.has(slug)
-      ) {
+      const rest = pathname.slice("/tips/".length);
+      if (rest === "bad-weather" || rest === "specific-situations") {
+        continue;
+      }
+      if (rest.startsWith("bad-weather/")) {
+        const slug = rest.slice("bad-weather/".length);
+        if (slug && !weatherTipSlugs.has(slug)) {
+          issues.push(`${rel}: unknown weather tip slug ${pathname}`);
+        }
+        continue;
+      }
+      if (rest.startsWith("specific-situations/")) {
+        const slug = rest.slice("specific-situations/".length);
+        if (slug && !situationalTipSlugs.has(slug)) {
+          issues.push(`${rel}: unknown situational tip slug ${pathname}`);
+        }
+        continue;
+      }
+      if (rest && !tipSlugs.has(rest)) {
         issues.push(`${rel}: unknown tip slug ${pathname}`);
       }
       continue;

@@ -35,3 +35,7 @@ export const INSTAGRAM_HANDLE =
 /** Twitter/X handle for social cards — set NEXT_PUBLIC_TWITTER_HANDLE in production. */
 export const TWITTER_HANDLE =
   process.env.NEXT_PUBLIC_TWITTER_HANDLE?.trim() || "@letsrunnow";
+
+/** Public support inbox — set NEXT_PUBLIC_SUPPORT_EMAIL in production if needed. */
+export const SUPPORT_EMAIL =
+  process.env.NEXT_PUBLIC_SUPPORT_EMAIL?.trim() || "hello@letsrunnow.com";

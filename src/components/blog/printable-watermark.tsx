@@ -1,19 +1,51 @@
 import { BRAND_LOGO_PATH } from "@/lib/brand";
+import { cn } from "@/lib/utils";
 
-export function PrintableWatermark() {
+type PrintableWatermarkProps = {
+  /**
+   * `fixed` — overlays the viewport; browsers that support it repeat on every printed page.
+   * `section` — overlays a `relative` parent (use on each week/page block as a fallback).
+   */
+  mode?: "fixed" | "section";
+  className?: string;
+};
+
+/**
+ * LetsRunNow logo watermark for printable / PDF sheets.
+ * Drawn above content at low opacity so opaque cards don’t hide it.
+ */
+export function PrintableWatermark({
+  mode = "fixed",
+  className,
+}: PrintableWatermarkProps) {
   return (
     <div
       aria-hidden
-      className="print-watermark pointer-events-none fixed inset-0 z-0 flex items-center justify-center overflow-hidden"
+      className={cn(
+        "print-watermark pointer-events-none flex items-center justify-center overflow-hidden",
+        mode === "fixed"
+          ? "fixed inset-0 z-50"
+          : "absolute inset-0 z-[5]",
+        className
+      )}
     >
-      <div className="flex select-none items-center justify-center opacity-[0.04] sm:opacity-[0.055] print:opacity-[0.08]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={BRAND_LOGO_PATH}
-          alt=""
-          className="h-40 w-auto sm:h-52 print:h-56"
-        />
-      </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={BRAND_LOGO_PATH}
+        alt=""
+        className={cn(
+          "print-watermark-img select-none w-auto max-w-[min(70%,22rem)] opacity-[0.09] print:opacity-[0.16]",
+          mode === "fixed"
+            ? "h-44 sm:h-56 print:h-60"
+            : "h-40 sm:h-48 print:h-52"
+        )}
+        style={{
+          // Inline fallback — some PDF engines drop Tailwind opacity utilities
+          opacity: 0.14,
+          WebkitPrintColorAdjust: "exact",
+          printColorAdjust: "exact",
+        }}
+      />
     </div>
   );
 }

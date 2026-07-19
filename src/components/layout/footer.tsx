@@ -7,11 +7,12 @@ import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { EmailSignup } from "@/components/newsletter/email-signup";
 import { Separator } from "@/components/ui/separator";
 import {
+  footerCompanyLinks,
   footerLearnLinks,
   footerTipsLinks,
   footerTrainLinks,
 } from "@/lib/navigation";
-import { INSTAGRAM_URL, SITE_NAME } from "@/lib/site";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, SITE_NAME } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function Footer() {
@@ -32,15 +33,23 @@ export function Footer() {
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Helping beginners lace up and love running — one step at a time.
             </p>
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary"
-            >
-              <InstagramIcon className="size-4" />
-              Follow on Instagram
-            </a>
+            <div className="mt-4 flex flex-col gap-2">
+              <Link
+                href="/instagram"
+                className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary"
+              >
+                <InstagramIcon className="size-4" />
+                Instagram tips
+              </Link>
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Follow @{INSTAGRAM_HANDLE}
+              </a>
+            </div>
           </div>
 
           <div>
@@ -56,14 +65,6 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/stories"
-                  className="transition-colors hover:text-foreground"
-                >
-                  Success Stories
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -117,6 +118,19 @@ export function Footer() {
           </div>
 
           <div>
+            <h3 className="mb-3 text-sm font-semibold">Company</h3>
+            <ul className="mb-6 space-y-2 text-sm text-muted-foreground">
+              {footerCompanyLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="transition-colors hover:text-foreground"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             <EmailSignup compact />
           </div>
         </div>

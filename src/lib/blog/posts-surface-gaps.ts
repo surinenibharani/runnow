@@ -16,7 +16,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "Dirt isn't just prettier pavement. Surface, hills, navigation, fueling, and how to dabble in longer trail days without copying elite ultra Instagram.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-08-26",
+    publishedAt: "2026-07-21",
     readTime: "9 min",
     relatedSlugs: [
       "how-to-not-hate-hills",
@@ -128,7 +128,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "One place for winter miles: how to layer, what 'feels like' means for pace, ice and black-ice rules, and when the treadmill is the smart call.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-07-27",
+    publishedAt: "2026-07-20",
     readTime: "8 min",
     relatedSlugs: [
       "running-in-bad-weather",
@@ -223,7 +223,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "Dark miles are doable with the right route, lights, and habits. How to be visible, choose safer paths, and know when darkness means treadmill instead.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-09-05",
+    publishedAt: "2026-07-26",
     readTime: "7 min",
     relatedSlugs: [
       "cold-weather-running-hub",
@@ -309,7 +309,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "Salt, seams, wet socks, and new shoes create most beginner skin drama. Prevention first, then simple care — without weird internet remedies.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-10-01",
+    publishedAt: "2026-08-11",
     readTime: "7 min",
     relatedSlugs: [
       "what-to-wear-running",
@@ -391,7 +391,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "The oval isn't only for elites. How to find an open track, pick a lane, warm up, run a beginner-friendly session, and leave without lane-one drama.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-09-01",
+    publishedAt: "2026-07-23",
     readTime: "8 min",
     relatedSlugs: [
       "run-workouts-hills-intervals-fartlek-track",
@@ -489,7 +489,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "Family 5Ks, scooter miles, and kid-paced loops can build a lifelong habit — if you keep it playful, age-appropriate, and free of adult ego pacing.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-07-29",
+    publishedAt: "2026-07-22",
     readTime: "8 min",
     relatedSlugs: [
       "stroller-running-guide",
@@ -582,7 +582,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "You don't have to run every step, chug water on cue, or buy a gel wardrobe to be a real runner. The biggest beginner myths — and what to do instead.",
     category: "Mindset",
     author: AUTHOR,
-    publishedAt: "2026-09-03",
+    publishedAt: "2026-08-31",
     readTime: "14 min",
     relatedSlugs: [
       "how-to-pace-yourself",
@@ -892,7 +892,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "Your heart adapts like a muscle: bigger stroke volume, lower resting rate, better recovery. Here's what those flashy numbers mean — and how easy miles plus a little spice actually train the engine.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-08-16",
+    publishedAt: "2026-07-14",
     readTime: "12 min",
     relatedSlugs: [
       "easy-runs-effort-heart-rate",

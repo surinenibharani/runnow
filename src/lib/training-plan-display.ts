@@ -190,7 +190,7 @@ export function buildTrainingPlanDisplay(
     startedAt: plan.startedAt?.toISOString() ?? null,
     ...progress,
     weekPreview: buildTrainingPlanWeekPreview(plan),
-    editPlanHref: `/plan?plan=${encodeURIComponent(plan.planId)}`,
+    editPlanHref: `/plan/${encodeURIComponent(plan.planId)}`,
   };
 }
 

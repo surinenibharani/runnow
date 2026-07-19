@@ -54,7 +54,7 @@ export function buildPlanPageMetadata(planId?: string | null): Metadata {
     return pageMetadata({
       title: getPlanPageTitle(plan),
       description: getPlanMetaDescription(plan),
-      path: `/plan?plan=${plan.id}`,
+      path: `/plan/${plan.id}`,
       keywords: [
         plan.name.toLowerCase(),
         `${plan.duration} training plan`,
@@ -85,7 +85,7 @@ function courseEntity(plan: TrainingPlan) {
     "@type": "Course" as const,
     name: getPlanPageTitle(plan),
     description: plan.description,
-    url: `${SITE_URL}/plan?plan=${plan.id}`,
+    url: `${SITE_URL}/plan/${plan.id}`,
     provider: organizationRef(),
     isAccessibleForFree: true,
     courseMode: "online",
@@ -113,7 +113,7 @@ export function plansBreadcrumbJsonLd(plan?: TrainingPlan) {
   if (plan) {
     items.push({
       name: getPlanPageTitle(plan),
-      path: `/plan?plan=${plan.id}`,
+      path: `/plan/${plan.id}`,
     });
   }
 
@@ -141,7 +141,7 @@ export function plansItemListJsonLd() {
 }
 
 export function plansWebPageJsonLd(plan?: TrainingPlan) {
-  const url = plan ? `${SITE_URL}/plan?plan=${plan.id}` : `${SITE_URL}/plan`;
+  const url = plan ? `${SITE_URL}/plan/${plan.id}` : `${SITE_URL}/plan`;
   const name = plan ? getPlanPageTitle(plan) : "Free Running Training Plans";
   const description = plan ? getPlanMetaDescription(plan) : PLAN_INDEX_DESCRIPTION;
 
@@ -182,7 +182,7 @@ export function getPlanSitemapEntries(): Array<{
   priority: number;
 }> {
   return PLANS.map((plan) => ({
-    url: `${SITE_URL}/plan?plan=${plan.id}`,
+    url: `${SITE_URL}/plan/${plan.id}`,
     changeFrequency: "weekly" as const,
     priority: plan.id === "5k-8w" ? 0.85 : 0.8,
   }));

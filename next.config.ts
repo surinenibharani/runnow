@@ -31,6 +31,12 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_TURNSTILE_CONFIGURED: turnstileConfigured ? "true" : "",
   },
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "*.cdninstagram.com" },
+      { protocol: "https", hostname: "*.fbcdn.net" },
+    ],
+  },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },

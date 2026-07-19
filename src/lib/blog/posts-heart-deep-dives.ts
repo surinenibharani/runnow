@@ -17,7 +17,7 @@ export const heartDeepDivePosts: BlogPost[] = [
       "Why trained runners often wake with fewer beats per minute, how to measure resting HR honestly, what makes it jump overnight, and when a \"low\" number needs a clinician — not a celebration.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-08-28",
+    publishedAt: "2026-07-15",
     readTime: "14 min",
     relatedSlugs: [
       "train-runners-heart-metrics",
@@ -176,7 +176,7 @@ export const heartDeepDivePosts: BlogPost[] = [
       "What HRmax actually is, why age formulas mislead individuals, how zones use (and abuse) the number, safer ways to estimate intensity, and why you rarely need a heroic max test.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-09-25",
+    publishedAt: "2026-07-16",
     readTime: "13 min",
     relatedSlugs: [
       "train-runners-heart-metrics",
@@ -346,7 +346,7 @@ export const heartDeepDivePosts: BlogPost[] = [
       "What VO₂max actually measures, why age and sex percentiles beat bragging rights, how easy volume and intervals raise it, and why your watch estimate is a trend tool — not a lab ticket.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-10-29",
+    publishedAt: "2026-08-16",
     readTime: "15 min",
     relatedSlugs: [
       "train-runners-heart-metrics",
@@ -504,7 +504,7 @@ export const heartDeepDivePosts: BlogPost[] = [
       "What HRV (especially RMSSD) actually reflects, why your personal baseline beats internet comparisons, how to measure morning vs night, and how to change training when the trend — not one spooky morning — says back off.",
     category: "Recovery",
     author: AUTHOR,
-    publishedAt: "2026-10-05",
+    publishedAt: "2026-07-17",
     readTime: "14 min",
     relatedSlugs: [
       "train-runners-heart-metrics",

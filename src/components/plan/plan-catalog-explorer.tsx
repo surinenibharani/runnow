@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Calendar, ChevronDown, ChevronUp, Footprints, Route, Timer } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -45,8 +45,14 @@ export function PlanCatalogExplorer({
   selectedPlanId,
 }: PlanCatalogExplorerProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const activePlanId = searchParams.get("plan") ?? selectedPlanId;
+  const pathPlanMatch = pathname.match(/^\/plan\/([^/]+)\/?$/);
+  const activePlanId =
+    selectedPlanId ??
+    pathPlanMatch?.[1] ??
+    searchParams.get("plan") ??
+    undefined;
 
   const [activeFilters, setActiveFilters] = useState<PlanFilter[]>([]);
   const [expandedId, setExpandedId] = useState<string | null>(
@@ -61,9 +67,7 @@ export function PlanCatalogExplorer({
   }, [activePlanId]);
 
   const selectPlan = (planId: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("plan", planId);
-    router.push(`/plan?${params.toString()}#plan-tracker`, { scroll: false });
+    router.push(`/plan/${planId}#plan-tracker`, { scroll: false });
     requestAnimationFrame(() => {
       document.getElementById("plan-tracker")?.scrollIntoView({
         behavior: "smooth",

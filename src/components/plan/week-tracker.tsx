@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ChevronDown, Cloud, Flame, Moon, RotateCcw, Sparkles } from "lucide-react";
@@ -13,6 +13,8 @@ import {
   getTotalWorkouts,
 } from "@/lib/plans";
 import type { TrainingPlan, ScheduleDay } from "@/lib/plans";
+import { applyHealthCrossTrain } from "@/lib/plan/cross-train-guidance";
+import { readPlanBrief } from "@/lib/plan/plan-brief";
 import { applyScheduleToPlan, DEFAULT_SCHEDULE } from "@/lib/schedule-builder";
 import type { SchedulePreferences } from "@/lib/schedule-builder";
 import {
@@ -65,17 +67,37 @@ function resolveInitialPlan(searchPlan: string | null): TrainingPlan {
   return PLANS.find((p) => p.id === DEFAULT_PLAN_ID) ?? PLANS[0];
 }
 
+function planIdFromPath(pathname: string): string | null {
+  const match = pathname.match(/^\/plan\/([^/]+)\/?$/);
+  if (!match) return null;
+  return PLANS.some((p) => p.id === match[1]) ? match[1] : null;
+}
+
 const emptyProgress: ProgressData = {
   completed: [],
   lastCompletedDate: null,
   streak: 0,
 };
 
-export function WeekTracker() {
+type WeekTrackerProps = {
+  /** Preferred when rendering /plan/[planId]. */
+  initialPlanId?: string;
+  /** Hide distance/duration pickers — keep this plan only (Start Here quiz). */
+  lockToPlan?: boolean;
+};
+
+export function WeekTracker({
+  initialPlanId,
+  lockToPlan = false,
+}: WeekTrackerProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const { status: authStatus } = useSession();
-  const initialPlan = resolveInitialPlan(searchParams.get("plan"));
+  const pathPlanId = planIdFromPath(pathname);
+  const initialPlan = resolveInitialPlan(
+    initialPlanId ?? pathPlanId ?? searchParams.get("plan")
+  );
 
   const [familyId, setFamilyId] = useState(initialPlan.familyId);
   const [planId, setPlanId] = useState(initialPlan.id);
@@ -95,17 +117,44 @@ export function WeekTracker() {
   const migratedRef = useRef(false);
   const migrationPlanIdRef = useRef(initialPlan.id);
   const shareSectionRef = useRef<HTMLElement>(null);
-  const syncedUrlPlanIdRef = useRef<string | null>(searchParams.get("plan"));
+  const syncedUrlPlanIdRef = useRef<string | null>(
+    initialPlanId ?? pathPlanId ?? searchParams.get("plan")
+  );
 
   const isAuthenticated = authStatus === "authenticated";
-  const urlPlanId = searchParams.get("plan");
+  const queryPlanId = searchParams.get("plan");
+  const urlPlanId = pathPlanId ?? queryPlanId;
   const explicitUrlPlanId =
     urlPlanId && PLANS.some((p) => p.id === urlPlanId) ? urlPlanId : null;
 
-  const scheduledPlan = useMemo(
-    () => applyScheduleToPlan(basePlan, schedulePrefs, planProfile),
-    [basePlan, schedulePrefs, planProfile]
+  const [healthCrossTrain, setHealthCrossTrain] = useState(
+    () => readPlanBrief(initialPlan.id)?.crossTrain ?? []
   );
+
+  useEffect(() => {
+    setHealthCrossTrain(readPlanBrief(planId)?.crossTrain ?? []);
+  }, [planId]);
+
+  const scheduledPlan = useMemo(() => {
+    const built = applyScheduleToPlan(basePlan, schedulePrefs, planProfile);
+    if (healthCrossTrain.length === 0) return built;
+    return {
+      ...built,
+      scheduledWeeks: built.scheduledWeeks.map((week) => ({
+        ...week,
+        days: week.days.map((day) => {
+          if (day.kind !== "cross-train" || !day.crossTraining) return day;
+          return {
+            ...day,
+            crossTraining: applyHealthCrossTrain(
+              day.crossTraining,
+              healthCrossTrain
+            ),
+          };
+        }),
+      })),
+    };
+  }, [basePlan, schedulePrefs, planProfile, healthCrossTrain]);
 
   const weeks = scheduledPlan.scheduledWeeks;
   const totalWorkouts = getTotalWorkouts(weeks);
@@ -329,13 +378,23 @@ export function WeekTracker() {
 
   const syncPlanUrl = useCallback(
     (id: string) => {
-      if (searchParams.get("plan") === id) return;
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("plan", id);
+      if (lockToPlan) {
+        // Stay on the suggested plan URL; don't hop to other variants.
+        const target = `/plan/${id}?from=start#plan-tracker`;
+        if (pathname === `/plan/${id}` && searchParams.get("from") === "start") {
+          return;
+        }
+        syncedUrlPlanIdRef.current = id;
+        router.replace(target, { scroll: false });
+        return;
+      }
+      if (pathPlanId === id || searchParams.get("plan") === id) {
+        if (pathname === `/plan/${id}`) return;
+      }
       syncedUrlPlanIdRef.current = id;
-      router.replace(`/plan?${params.toString()}#plan-tracker`, { scroll: false });
+      router.replace(`/plan/${id}#plan-tracker`, { scroll: false });
     },
-    [router, searchParams]
+    [router, searchParams, pathPlanId, pathname, lockToPlan]
   );
 
   const applyPlanSelection = useCallback(
@@ -404,17 +463,19 @@ export function WeekTracker() {
         savePlanProfile(profile);
       }
 
-      const recommendation = recommendPlanVariantId(familyId, profile);
       let nextPlanId = planId;
       let nextPlan = basePlan;
 
-      if (recommendation) {
-        const selected = PLANS.find((p) => p.id === recommendation.planId);
-        if (selected) {
-          nextPlanId = selected.id;
-          nextPlan = selected;
-          setPlanId(selected.id);
-          setBasePlan(selected);
+      if (!lockToPlan) {
+        const recommendation = recommendPlanVariantId(familyId, profile);
+        if (recommendation) {
+          const selected = PLANS.find((p) => p.id === recommendation.planId);
+          if (selected) {
+            nextPlanId = selected.id;
+            nextPlan = selected;
+            setPlanId(selected.id);
+            setBasePlan(selected);
+          }
         }
       }
 
@@ -431,6 +492,10 @@ export function WeekTracker() {
         savePlanProfile(profile);
         saveSchedulePreferences(nextPrefs);
       }
+
+      if (!lockToPlan && nextPlanId !== planId) {
+        syncPlanUrl(nextPlanId);
+      }
     },
     [
       useRemote,
@@ -439,6 +504,8 @@ export function WeekTracker() {
       basePlan,
       schedulePrefs,
       persistPlanSettings,
+      lockToPlan,
+      syncPlanUrl,
     ]
   );
 
@@ -745,6 +812,27 @@ export function WeekTracker() {
         </p>
       )}
 
+      {lockToPlan ? (
+        <div className="overflow-hidden rounded-xl border border-border/60">
+          <PlanFamilyIllustration
+            familyId={familyId}
+            familyName={basePlan.name}
+            decorative
+          />
+          <div className="bg-muted/20 p-4 sm:p-5">
+            <h2 className="text-lg font-semibold">{basePlan.name}</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              {basePlan.description}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Badge variant="outline">{basePlan.duration}</Badge>
+              <Badge variant="outline">
+                {basePlan.runsPerWeek} runs / week
+              </Badge>
+            </div>
+          </div>
+        </div>
+      ) : (
       <Tabs value={familyId} onValueChange={handleFamilyChange}>
         <TabsList
           className="grid w-full grid-cols-1 gap-1 bg-muted/50 p-1 min-[480px]:grid-cols-3 sm:flex sm:h-auto sm:flex-row"
@@ -812,6 +900,7 @@ export function WeekTracker() {
           );
         })}
       </Tabs>
+      )}
 
       <PlanProfilePicker
         profile={planProfile}

@@ -8,9 +8,10 @@ import {
   Sun,
   Wind,
 } from "lucide-react";
-import type { TipIllustrationId } from "@/lib/tips/tips";
+import { slugifyTipTitle, type TipIllustrationId } from "@/lib/tips/tips";
 
 export type WeatherTip = {
+  slug: string;
   icon: LucideIcon;
   illustration: TipIllustrationId;
   condition: string;
@@ -22,6 +23,7 @@ export type WeatherTip = {
 
 export const weatherTips: WeatherTip[] = [
   {
+    slug: slugifyTipTitle("Rainy days"),
     icon: CloudRain,
     illustration: "rain",
     condition: "Rain",
@@ -42,6 +44,7 @@ export const weatherTips: WeatherTip[] = [
       "Skip outdoor running in thunderstorms, flooded paths, or when visibility is dangerously low.",
   },
   {
+    slug: slugifyTipTitle("Hot and humid days"),
     icon: Sun,
     illustration: "heat",
     condition: "Heat & humidity",
@@ -62,6 +65,7 @@ export const weatherTips: WeatherTip[] = [
       "Do not run outdoors in heat advisories, extreme humidity with high heart rate, or if you feel faint or headachey before you start.",
   },
   {
+    slug: slugifyTipTitle("Cold, ice, and snow"),
     icon: Snowflake,
     illustration: "cold",
     condition: "Cold & ice",
@@ -82,6 +86,7 @@ export const weatherTips: WeatherTip[] = [
       "Skip outdoor running on untreated ice, during blizzard conditions, or when wind chill makes exposed skin risky within minutes.",
   },
   {
+    slug: slugifyTipTitle("Thunderstorms & lightning"),
     icon: CloudLightning,
     illustration: "storm",
     condition: "Storms",
@@ -101,6 +106,7 @@ export const weatherTips: WeatherTip[] = [
       "Never run outdoors during active lightning. Wait 30 minutes after the last thunder clap before going back out.",
   },
   {
+    slug: slugifyTipTitle("Windy days"),
     icon: Wind,
     illustration: "wind",
     condition: "High wind",
@@ -118,6 +124,7 @@ export const weatherTips: WeatherTip[] = [
     ],
   },
   {
+    slug: slugifyTipTitle("Smoke, pollution, or high pollen"),
     icon: Flame,
     illustration: "air-quality",
     condition: "Poor air quality",
@@ -138,6 +145,7 @@ export const weatherTips: WeatherTip[] = [
       "Avoid outdoor exercise when air is rated unhealthy or hazardous, or when wildfire smoke is in your area.",
   },
   {
+    slug: slugifyTipTitle("Stuck inside? Keep the habit"),
     icon: Home,
     illustration: "indoor",
     condition: "No safe option outside",

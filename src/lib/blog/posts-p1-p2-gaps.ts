@@ -17,7 +17,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "Why the gut rebels mid-run, what gut training and race-fuel practice can (and can't) fix, and why gluten-free isn't a free performance upgrade for most runners.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-11-07",
+    publishedAt: "2026-07-07",
     readTime: "11 min",
     relatedSlugs: [
       "nutrition-for-training-by-run-type",
@@ -162,7 +162,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "Phone videos, cadence nudges, and shoe-store treadmills vs clinical gait labs — what each can tell you, when pain means get help, and why beginners rarely need an expensive analysis first.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-11-08",
+    publishedAt: "2026-08-20",
     readTime: "10 min",
     relatedSlugs: [
       "running-form-101",
@@ -281,7 +281,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "What coaches mean by base, build, peak, and taper — without jargon overload — plus how to use the phases for a first 5K–half without frying yourself in week three.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-11-09",
+    publishedAt: "2026-08-27",
     readTime: "11 min",
     relatedSlugs: [
       "off-season-between-training-plans",
@@ -407,7 +407,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "How to restart after a cold or mild COVID without copying your pre-illness paces — fever-free waiting, a 7–14 day graduated ramp, long-COVID caution, and why this is not the same as a fitness comeback after a break.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-11-10",
+    publishedAt: "2026-07-08",
     readTime: "12 min",
     relatedSlugs: [
       "comeback-after-running-break",
@@ -535,7 +535,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "Practical session templates for pool running, swimming, and elliptical days — whether you're injured, traveling, or protecting legs — plus what research says about transferring fitness back to running.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-11-11",
+    publishedAt: "2026-09-03",
     readTime: "11 min",
     relatedSlugs: [
       "importance-of-cross-training",
@@ -657,7 +657,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "Why downhill miles and tight toe boxes bruise nails, what's usually cosmetic vs worth a clinic visit, and how to prevent the next race-photo toenail casualty.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-11-12",
+    publishedAt: "2026-07-09",
     readTime: "9 min",
     relatedSlugs: [
       "choosing-running-shoes",
@@ -766,7 +766,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "How posterior-chain and hip-flexor strains show up in runners, what load management looks like, when imaging enters the chat, and how strength work fits prevention without overselling miracle programs.",
     category: "Injuries",
     author: AUTHOR,
-    publishedAt: "2026-11-13",
+    publishedAt: "2026-08-30",
     readTime: "12 min",
     relatedSlugs: [
       "avoiding-injuries",
@@ -885,7 +885,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "ISSN caffeine dosing ranges, what endurance-running meta-analyses suggest about time to exhaustion, why alcohol wrecks sleep, and how to keep race-day stimulants from wrecking your gut.",
     category: "Nutrition",
     author: AUTHOR,
-    publishedAt: "2026-11-14",
+    publishedAt: "2026-09-01",
     readTime: "11 min",
     relatedSlugs: [
       "nutrition-for-training-by-run-type",
@@ -1000,7 +1000,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "How to travel without abandoning the plan or cramming revenge long runs — jet-lag realism, hotel-gym options, easy-first weeks, and when altitude races need a separate playbook.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-11-15",
+    publishedAt: "2026-09-02",
     readTime: "10 min",
     relatedSlugs: [
       "altitude-travel-race-running",
@@ -1121,7 +1121,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "What negative splits really mean, why starting slower works for most recreational racers, how to practice in training, and how to link pacing skill to race-day execution.",
     category: "Racing",
     author: AUTHOR,
-    publishedAt: "2026-11-16",
+    publishedAt: "2026-07-10",
     readTime: "10 min",
     relatedSlugs: [
       "how-to-pace-yourself",

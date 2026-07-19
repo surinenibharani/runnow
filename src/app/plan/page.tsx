@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+import { redirect } from "next/navigation";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -32,11 +33,13 @@ export async function generateMetadata({
 
 export default async function PlanPage({ searchParams }: PlanPageProps) {
   const { plan: planId } = await searchParams;
-  const selectedPlan = planId ? getPlanById(planId) : undefined;
+  if (planId && getPlanById(planId)) {
+    redirect(`/plan/${planId}`);
+  }
 
   return (
     <div className="py-12 sm:py-16">
-      <JsonLd data={plansPageJsonLd(selectedPlan)} />
+      <JsonLd data={plansPageJsonLd()} />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Training plans" }]} />
 
@@ -61,7 +64,7 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
           </MedicalDisclaimerBanner>
         </FadeIn>
 
-        <PlanCatalog selectedPlanId={planId} />
+        <PlanCatalog />
 
         <div id="plan-tracker" className="scroll-mt-24">
           <div className="mb-6 border-t border-border/60 pt-10">
