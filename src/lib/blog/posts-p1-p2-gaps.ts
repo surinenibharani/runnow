@@ -1361,7 +1361,7 @@ export const p1P2GapPosts: BlogPost[] = [
           "A short quality session (strides or gentle intervals) doesn't wreck the next two days",
           "You're following a plan with rest and easy volume — not inventing workouts from boredom",
         ],
-        paragraphs: [
+        closingParagraphs: [
           "Then add hard sparingly: one focused session, full recovery between reps, easy the day after. If 'easy' the next day becomes another grind, you didn't earn more intensity — you earned more patience.",
         ],
         cta: { text: "Follow a free plan with easy days built in", href: "/plan" },
@@ -1489,7 +1489,7 @@ export const p1P2GapPosts: BlogPost[] = [
           "Long static holds of about **60 seconds or more** per muscle are where reviews most clearly link temporary force/power loss; shorter brief holds are usually a smaller issue",
           "Time on a curb in a deep hamstring stretch is time you could use for easy walking that keeps blood moving without turning down the volume knob on strength",
         ],
-        paragraphs: [
+        closingParagraphs: [
           "**Practical picture:** You finish a hard 400. Heart rate is high. You fold over into a long toe-touch for a full minute \"so I don't tighten up,\" then try to explode into the next 400. That minute-long hold is in the duration range where reviews most often find temporary force/power loss — on top of metabolic fatigue. The stiff calves that feel \"tight\" mid-session are often protective tone and fatigue — not a flexibility emergency.",
           "Dynamic movement between efforts (easy jog, leg swings done gently, ankle circles) keeps temperature and circulation up without the same maximal-performance hit that longer static protocols can produce ([Behm & Chaouachi, 2011](https://pubmed.ncbi.nlm.nih.gov/21373870/); [Kay & Blazevich, 2012](https://pubmed.ncbi.nlm.nih.gov/21659901/)). For how quality sessions are built, see [types of runs](/blog/run-workouts-hills-intervals-fartlek-track).",
         ],
@@ -1505,7 +1505,7 @@ export const p1P2GapPosts: BlogPost[] = [
           "A short walk before restarting usually re-opens the gait pattern",
           "A deep end-range calf or hamstring stretch before restarting can leave the next kilometers feeling flat and less springy — the same force-reduction story, now at mile 12 when you can least afford it",
         ],
-        paragraphs: [
+        closingParagraphs: [
           "If something truly grabs mid-run (sharp, one-spot, or changing your stride), **stopping to force a stretch is the wrong protocol**. Modern soft-tissue guidance emphasizes protection and graduated loading, not aggressive lengthening into pain — see PEACE & LOVE principles for soft-tissue care ([BJSM PEACE & LOVE](https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/)). Walk it in, cut the run if needed, and get it assessed if it doesn't settle.",
           "Often long runs feel hard for pacing, fuel, heat, and jumps in distance — not \"insufficient stretching.\" See [why long runs feel hard](/blog/why-long-runs-feel-hard).",
         ],
@@ -1521,7 +1521,7 @@ export const p1P2GapPosts: BlogPost[] = [
           "Soreness (DOMS) after unaccustomed or long eccentric work barely moves with stretching protocols in systematic evidence",
           "Injury risk for runners is reduced more convincingly by strength work than by stretching programs in sports-injury meta-analysis",
         ],
-        paragraphs: [
+        closingParagraphs: [
           "Herbert and colleagues' Cochrane review concluded that stretching before or after exercise **does not produce important reductions in delayed-onset muscle soreness** in adults ([Herbert et al., 2011](https://pubmed.ncbi.nlm.nih.gov/21735398/)). Feeling better for five minutes on the living-room floor is not the same as accelerating repair of microtrauma in muscle fibers.",
           "Lauersen and colleagues' meta-analysis on exercise to prevent sports injuries found **strength training** showed large protective effects; stretching protocols did not show the same clear injury-reduction benefit ([Lauersen et al., 2014, BJSM](https://pubmed.ncbi.nlm.nih.gov/24100287/)). If your plan between long runs is \"stretch more,\" trade some of that time for [bodyweight strength](/blog/bodyweight-strength-for-runners) and genuinely easy runs.",
         ],
@@ -1542,15 +1542,17 @@ export const p1P2GapPosts: BlogPost[] = [
           "Hydration appropriate to sweat loss — without overdrinking",
           "Time — DOMS peaks roughly 24–72 hours later; stretching won't cancel that curve",
         ],
-        paragraphs: [
-          "Aggressive static stretching in that window can:",
+        subsections: [
+          {
+            heading: "Aggressive static stretching in that window can",
+            list: [
+              "Ask already-fatigued muscle–tendon tissue to go to end range when it mainly needs blood flow, fuel, and easy movement — a poor trade for little proven benefit",
+              "Create a false sense that you've \"undone\" damage when Cochrane-level evidence says soreness barely changes",
+              "Delay the boring but high-yield steps (walk, change clothes, eat) while you chase end-range poses on shaky legs",
+            ],
+          },
         ],
-        list: [
-          "Ask already-fatigued muscle–tendon tissue to go to end range when it mainly needs blood flow, fuel, and easy movement — a poor trade for little proven benefit",
-          "Create a false sense that you've \"undone\" damage when Cochrane-level evidence says soreness barely changes",
-          "Delay the boring but high-yield steps (walk, change clothes, eat) while you chase end-range poses on shaky legs",
-        ],
-        paragraphs: [
+        closingParagraphs: [
           "Gentle, short, pain-free mobility after you've walked — if it feels good — is a comfort choice, not a medical requirement. Mayo Clinic frames stretching as a flexibility practice with sensible technique, not a cure-all for post-endurance fatigue ([Mayo Clinic](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/stretching/art-20047931)). For the broader recovery stack, use [post-run recovery](/blog/post-run-recovery).",
         ],
       },
@@ -1588,7 +1590,7 @@ export const p1P2GapPosts: BlogPost[] = [
             ],
           },
         ],
-        paragraphs: [
+        closingParagraphs: [
           "Practical rule after the long run: walk first, eat, then if something feels sticky, use **short, mild, pain-free** movement — not a max-stretch session that research links to slower bounce-back of force.",
         ],
       },
@@ -1606,7 +1608,7 @@ export const p1P2GapPosts: BlogPost[] = [
           "Sip water if it's hot; don't slam a bottle then sprint",
           "Cue the purpose of the next rep (\"controlled,\" not \"all-out revenge\")",
         ],
-        paragraphs: [
+        closingParagraphs: [
           "If calves feel locked between reps, try a **few seconds of soft bouncing on the spot or easy walking on the toes then heels** — rhythmic and light — not a 90-second wall stretch into pain. Save deep flexibility for a different hour of the day.",
         ],
       },
@@ -1637,7 +1639,7 @@ export const p1P2GapPosts: BlogPost[] = [
           "Sport-specific needs (e.g., working with a clinician on a true range-of-motion deficit)",
           "Never as the main strategy to \"prevent\" DOMS or \"earn\" the next long run",
         ],
-        paragraphs: [
+        closingParagraphs: [
           "Dynamic warm-ups before harder sessions — easy jog plus movement prep — still make sense. That is activation and temperature, not five minutes of cold end-range splits.",
         ],
       },

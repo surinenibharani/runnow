@@ -8,6 +8,8 @@ export type BlogSubsection = {
   heading: string;
   paragraphs?: string[];
   list?: string[];
+  /** Rendered after the subsection list when present. */
+  closingParagraphs?: string[];
   variant?: "quote";
 };
 
@@ -19,6 +21,8 @@ export type BlogSection = {
   list?: string[];
   figures?: BlogFigure[];
   subsections?: BlogSubsection[];
+  /** Rendered after the list and subsections when present. */
+  closingParagraphs?: string[];
   cta?: { text: string; href: string };
 };
 

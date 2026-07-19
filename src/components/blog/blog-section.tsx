@@ -130,7 +130,30 @@ export function BlogSectionBlock({
               ))}
             </ul>
           )}
+          {sub.closingParagraphs?.map((p) => (
+            <p
+              key={p}
+              className={
+                sub.variant === "quote"
+                  ? "text-sm text-foreground leading-relaxed italic"
+                  : "text-sm text-muted-foreground leading-relaxed"
+              }
+            >
+              {sub.variant === "quote" ? (
+                <>
+                  “<FormatBlogText text={p} />”
+                </>
+              ) : (
+                <FormatBlogText text={p} />
+              )}
+            </p>
+          ))}
         </div>
+      ))}
+      {section.closingParagraphs?.map((p) => (
+        <p key={p} className="text-muted-foreground leading-relaxed">
+          <FormatBlogText text={p} />
+        </p>
       ))}
       {section.cta && (
         <Button
