@@ -130,9 +130,26 @@
   }
   html {
     @apply font-sans scroll-smooth overflow-x-clip;
+    width: 100%;
+    max-width: 100%;
   }
   body {
-    @apply bg-background text-foreground overflow-x-clip max-w-full;
+    @apply bg-background text-foreground overflow-x-clip;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+  /* Prevent wide media / pre blocks from forcing page scroll */
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+  pre,
+  code {
+    overflow-x: auto;
+    max-width: 100%;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -244,6 +261,7 @@
   .tips-ticker-track {
     display: flex;
     width: 100%;
+    max-width: 100%;
     overflow: hidden;
     mask-image: linear-gradient(
       to right,

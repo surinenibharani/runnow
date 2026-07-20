@@ -15,8 +15,8 @@ import { cn } from "@/lib/utils";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/30">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <footer className="w-full max-w-full overflow-x-clip border-t border-border bg-muted/30">
+      <div className="mx-auto w-full min-w-0 max-w-6xl px-4 py-12 sm:px-6">
         <div className="mb-10">
           <StartPlanCta
             variant="compact"

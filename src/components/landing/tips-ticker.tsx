@@ -6,7 +6,7 @@ export function TipsTicker() {
 
   return (
     <div
-      className="border-b border-border/60 bg-muted/20 overflow-hidden"
+      className="border-b border-border/60 bg-muted/20 overflow-x-clip"
       aria-label="Tips for new runners"
     >
       <div className="tips-ticker-track py-2.5">

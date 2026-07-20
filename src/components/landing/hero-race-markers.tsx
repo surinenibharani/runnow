@@ -11,9 +11,9 @@ type RaceMarker = {
 };
 
 const raceMarkers: RaceMarker[] = [
-  { cx: 130, cy: 159, label: "5K", nudge: "translate-x-[1in]" },
+  { cx: 130, cy: 159, label: "5K", nudge: "translate-x-3" },
   { cx: 400, cy: 158, label: "Half marathon" },
-  { cx: 610, cy: 153, label: "Full marathon", nudge: "-translate-x-[1cm]" },
+  { cx: 610, cy: 153, label: "Full marathon", nudge: "-translate-x-2" },
 ];
 
 const SPOTLIGHT_MS = 2000;

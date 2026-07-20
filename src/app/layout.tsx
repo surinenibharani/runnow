@@ -85,14 +85,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${geistMono.variable} h-full max-w-full overflow-x-clip antialiased`}
     >
       <head>
         <Suspense fallback={null}>
           <NonceScripts />
         </Suspense>
       </head>
-      <body className="min-h-full flex flex-col overflow-x-clip">
+      <body className="min-h-full flex w-full max-w-full flex-col overflow-x-clip">
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <Suspense fallback={null}>
           <GoogleAnalyticsPageView />
@@ -100,7 +100,11 @@ export default function RootLayout({
         <AuthProvider>
           <SkipLink />
           <Navbar />
-          <main id="main-content" className="min-w-0 flex-1 outline-none" tabIndex={-1}>
+          <main
+            id="main-content"
+            className="min-w-0 w-full max-w-full flex-1 overflow-x-clip outline-none"
+            tabIndex={-1}
+          >
             {children}
           </main>
           <Footer />

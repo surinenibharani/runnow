@@ -9,6 +9,11 @@ export type NavLink = {
   authRequired?: boolean;
   /** Grey out in nav and show a coming-soon label */
   comingSoon?: boolean;
+  /**
+   * Desktop placement: `more` links live under the More menu / hamburger
+   * overflow so the top bar stays compact.
+   */
+  navSlot?: "primary" | "more";
 };
 
 export type NavGroup = {
@@ -40,8 +45,18 @@ export const mainNavGroups: NavGroup[] = [
       { href: "/tools", label: "Tools", matchPrefix: true },
       { href: "/gear", label: "Gear", matchPrefix: true },
       { href: "/injuries", label: "Injuries", matchPrefix: true },
-      { href: "/instagram", label: "Instagram", matchPrefix: true },
-      { href: "/stories", label: "Stories", matchPrefix: true },
+      {
+        href: "/instagram",
+        label: "Instagram",
+        matchPrefix: true,
+        navSlot: "more",
+      },
+      {
+        href: "/stories",
+        label: "Stories",
+        matchPrefix: true,
+        navSlot: "more",
+      },
     ],
   },
   {
@@ -51,6 +66,7 @@ export const mainNavGroups: NavGroup[] = [
         label: "Teams",
         matchPrefix: true,
         comingSoon: !TEAMS_ROLLOUT_ENABLED,
+        navSlot: "more",
       },
     ],
   },
@@ -115,6 +131,24 @@ export function flattenNavGroups(
   options: { isAuthenticated: boolean }
 ): NavLink[] {
   return groups.flatMap((group) => filterNavLinks(group.links, options));
+}
+
+/** Top-bar links (excludes More-menu overflow). */
+export function getPrimaryNavLinks(options: {
+  isAuthenticated: boolean;
+}): NavLink[] {
+  return flattenNavGroups(mainNavGroups, options).filter(
+    (link) => link.navSlot !== "more"
+  );
+}
+
+/** Instagram / Stories / Teams — desktop More menu + mobile overflow section. */
+export function getMoreNavLinks(options: {
+  isAuthenticated: boolean;
+}): NavLink[] {
+  return flattenNavGroups(mainNavGroups, options).filter(
+    (link) => link.navSlot === "more"
+  );
 }
 
 export function isNavLinkActive(

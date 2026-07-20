@@ -34,12 +34,12 @@ export function Hero() {
             Free · No sign-up · 5K to Marathon
           </Badge>
 
-          <div className="relative w-full max-w-4xl px-1 sm:px-4">
+          <div className="relative w-full max-w-4xl overflow-x-clip px-1 sm:px-4">
             <FinishLineTextBackdrop />
             {/* Soft scrim so headline reads over the scene */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -inset-x-2 -inset-y-4 rounded-2xl bg-gradient-to-b from-background/65 via-background/45 to-background/15 backdrop-blur-[2px] sm:-inset-x-6 sm:-inset-y-6 sm:from-background/60 sm:via-background/35 sm:to-transparent"
+              className="pointer-events-none absolute inset-x-0 -inset-y-4 rounded-2xl bg-gradient-to-b from-background/65 via-background/45 to-background/15 backdrop-blur-[2px] sm:-inset-y-6 sm:from-background/60 sm:via-background/35 sm:to-transparent"
             />
             <h1 className="relative z-10 text-display font-bold text-balance drop-shadow-[0_1px_1px_oklch(1_0_0/0.08)] dark:drop-shadow-none">
               Your first run starts{" "}

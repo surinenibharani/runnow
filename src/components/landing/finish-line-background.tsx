@@ -9,7 +9,7 @@ export function FinishLineTextBackdrop({ className }: FinishLineBackdropProps) {
     <div
       aria-hidden
       className={cn(
-        "pointer-events-none absolute -inset-x-6 -inset-y-3 sm:-inset-x-10 sm:-inset-y-5 overflow-hidden",
+        "pointer-events-none absolute inset-0 overflow-hidden sm:-inset-x-4 sm:-inset-y-3",
         className
       )}
     >

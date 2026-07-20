@@ -181,7 +181,7 @@ export function SiteSearch({
         <div
           id={listboxId}
           role="listbox"
-          className="absolute top-full right-0 z-50 mt-2 w-[min(100vw-2rem,24rem)] overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-lg sm:left-0 sm:w-full"
+          className="absolute top-full right-0 left-auto z-50 mt-2 w-[min(24rem,100%)] min-w-0 overflow-hidden rounded-xl border border-border bg-popover text-popover-foreground shadow-lg sm:left-0 sm:right-auto sm:w-full"
         >
           {loading && results.length === 0 ? (
             <p className="px-3 py-4 text-sm text-muted-foreground">
