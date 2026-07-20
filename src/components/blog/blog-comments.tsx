@@ -20,11 +20,23 @@ type Comment = {
 };
 
 type BlogCommentsProps = {
+  /** Content slug (blog post or tip). */
   postSlug: string;
+  targetType?: "blog" | "tip";
   initialCount?: number;
 };
 
-export function BlogComments({ postSlug, initialCount = 0 }: BlogCommentsProps) {
+function commentsApiPath(targetType: "blog" | "tip", slug: string): string {
+  return targetType === "tip"
+    ? `/api/tips/${slug}/comments`
+    : `/api/blog/${slug}/comments`;
+}
+
+export function BlogComments({
+  postSlug,
+  targetType = "blog",
+  initialCount = 0,
+}: BlogCommentsProps) {
   const { data: session } = useSession();
   const [comments, setComments] = useState<Comment[]>([]);
   const [commentCount, setCommentCount] = useState(initialCount);
@@ -38,10 +50,11 @@ export function BlogComments({ postSlug, initialCount = 0 }: BlogCommentsProps) 
   const [captchaUnavailable, setCaptchaUnavailable] = useState(false);
 
   const captchaRequired = isTurnstileEnabled();
+  const apiPath = commentsApiPath(targetType, postSlug);
 
   const loadComments = useCallback(async () => {
     try {
-      const res = await fetch(`/api/blog/${postSlug}/comments`);
+      const res = await fetch(apiPath);
       if (!res.ok) return;
       const data = await res.json();
       setComments(data.comments ?? []);
@@ -49,7 +62,7 @@ export function BlogComments({ postSlug, initialCount = 0 }: BlogCommentsProps) 
     } finally {
       setLoading(false);
     }
-  }, [postSlug]);
+  }, [apiPath]);
 
   useEffect(() => {
     loadComments();
@@ -72,7 +85,7 @@ export function BlogComments({ postSlug, initialCount = 0 }: BlogCommentsProps) 
 
     setSubmitting(true);
 
-    const res = await fetch(`/api/blog/${postSlug}/comments`, {
+    const res = await fetch(apiPath, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

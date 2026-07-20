@@ -704,4 +704,61 @@ export const SOURCES = {
     href: "https://pubmed.ncbi.nlm.nih.gov/15814880/",
     publisher: "PubMed / New England Journal of Medicine",
   },
+  vaporflyEconomyHoogkamer2018: {
+    label:
+      "Energetic cost of marathon racing shoes — prototype carbon-plate shoes (~4% savings) (Hoogkamer et al., 2018)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/29143929/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  carbonPlateBiomechanicsHoogkamer2019: {
+    label:
+      "Biomechanics of competitive male runners in three marathon racing shoes (Hoogkamer, Kipp & Kram, 2019)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/30460454/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  carbonPlateMetaFrontiers2025: {
+    label:
+      "Metabolic effects of carbon-plated running shoes — systematic review & meta-analysis (~2–3% lower demand) (2025)",
+    href: "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2025.1710224/full",
+    publisher: "Frontiers in Sports and Active Living",
+  },
+  bendingStiffnessReview2021: {
+    label:
+      "Energetics and biomechanics of increased longitudinal bending stiffness — narrative review (2021)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/33830444/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  carbonPlateNavicularTenforde2023: {
+    label:
+      "Bone stress injuries in runners using carbon-fiber plate footwear — navicular case series (Tenforde et al., 2023)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10356879/",
+    publisher: "PMC / Sports Medicine",
+  },
+  aftEversionFootwearScience2024: {
+    label:
+      "Injury- and performance-related biomechanics in advanced footwear technology vs minimalist shoes (2024)",
+    href: "https://doi.org/10.1080/19424280.2024.2327317",
+    publisher: "Footwear Science",
+  },
+  outsideSuperShoeInjuries: {
+    label: "Does super shoe technology prevent injury? Experts aren't sure",
+    href: "https://run.outsideonline.com/gear/do-super-shoes-prevent-injuries-experts-share-their-findings/",
+    publisher: "Outside / Trail Runner",
+  },
+  runnersWorldWaShoeRules: {
+    label: "Banned running shoes: World Athletics stack-height & plate rules",
+    href: "https://www.runnersworld.com/gear/a42418666/banned-running-shoes/",
+    publisher: "Runner's World",
+  },
+  runningWarehouseWhoSuperShoes: {
+    label: "Who should buy super shoes?",
+    href: "https://www.runningwarehouse.com/learningcenter/gear_guides/footwear/who-should-buy-super-shoes.html",
+    publisher: "Running Warehouse",
+  },
+  wirecutterCasualSuperShoes: {
+    label:
+      "Super shoes aren't just for Olympians — but do casual runners really need them?",
+    href: "https://www.nytimes.com/wirecutter/reviews/carbon-plate-running-shoes/",
+    publisher: "NYT Wirecutter",
+  },
 } satisfies Record<string, BlogSource>;

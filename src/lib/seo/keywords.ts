@@ -174,6 +174,12 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "running shoe fit vs awards",
     "best way to choose running shoes beginner",
   ],
+  "why-super-shoes-not-for-everybody": [
+    "why super shoes are not for everybody",
+    "carbon plate running shoes beginners",
+    "should beginners wear supershoes",
+    "carbon fiber plate shoes injury risk",
+  ],
   "plantar-fasciitis-running": [
     "plantar fasciitis from running",
     "heel pain running beginner",
@@ -488,8 +494,9 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
   "achilles-tendinitis-running": [
     "achilles tendinitis running",
     "achilles pain runner mileage",
-    "calf raises achilles tendinopathy",
-    "isometric calf raises running injury",
+    "air skipping achilles rehab",
+    "eccentric heel lowers achilles",
+    "heel raises achilles tendinopathy",
     "return to running achilles pain",
   ],
   "running-during-fasting": [

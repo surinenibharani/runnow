@@ -178,9 +178,10 @@ export const commonInjuries: CommonInjury[] = [
     ],
     fix: [
       "Stop running if pain is sharp — Achilles tears are serious",
-      "Eccentric heel lowers: 3 sets of 15, twice daily (off a step, slow lower)",
+      "Progress loading carefully: air skipping → heel raises → eccentric heel lowers (see the deep-dive post)",
+      "Eccentric heel lowers off a step only after lighter phases stay calm — 3 sets of ~15, slow lower, as tolerated",
       "Reduce hills and speed until walking is pain-free for a week; ice only for short comfort if needed",
-      "Return with flat, easy runs only after a pain-free week of walking",
+      "Return with flat, easy runs only after a pain-free week of walking and stable loading work",
     ],
     seeSpecialist: [
       "Immediately — if you heard a pop, have sudden severe pain, or can't rise onto your toes",

@@ -9,8 +9,13 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { TipCard } from "@/components/tips/tip-card";
 import { TipIllustration } from "@/components/tips/tip-illustration";
 import { ContentLikeButton } from "@/components/engagement/content-like-button";
+import { BlogComments } from "@/components/blog/blog-comments";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { getPublishedPostBySlug } from "@/lib/blog/posts";
+import { getCommentCount } from "@/lib/blog/comment-counts";
+import {
+  commentStorageSlug,
+} from "@/lib/engagement/comments-api";
 import { getContentLikeStateForSession } from "@/lib/engagement/content-likes";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -60,6 +65,7 @@ export default async function TipDetailPage({ params }: PageProps) {
 
   const post = tip.blogSlug ? getPublishedPostBySlug(tip.blogSlug) : undefined;
   const likeState = await getContentLikeStateForSession("tip", slug);
+  const commentCount = await getCommentCount(commentStorageSlug("tip", slug));
   const pageUrl = `${SITE_URL}/tips/${slug}`;
   const seoTitleText = tipSeoTitle(tip);
   const description = tipMetaDescription(tip);
@@ -145,6 +151,14 @@ export default async function TipDetailPage({ params }: PageProps) {
               </div>
             </div>
           </article>
+        </FadeIn>
+
+        <FadeIn>
+          <BlogComments
+            postSlug={tip.slug}
+            targetType="tip"
+            initialCount={commentCount}
+          />
         </FadeIn>
 
         <FadeIn className="mt-8">

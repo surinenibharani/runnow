@@ -140,16 +140,22 @@ export function AdaptiveTodayCard({
             </ul>
           )}
 
-          {cta && (
-            <Button
-              size="sm"
-              nativeButton={false}
-              render={<Link href={cta.href} />}
-            >
-              {cta.label}
-              <ArrowRight className="size-4" />
-            </Button>
-          )}
+          {cta &&
+            (cta.href.startsWith("#") ? (
+              <Button size="sm" nativeButton={false} render={<a href={cta.href} />}>
+                {cta.label}
+                <ArrowRight className="size-4" />
+              </Button>
+            ) : (
+              <Button
+                size="sm"
+                nativeButton={false}
+                render={<Link href={cta.href} />}
+              >
+                {cta.label}
+                <ArrowRight className="size-4" />
+              </Button>
+            ))}
         </CardContent>
       </Card>
 

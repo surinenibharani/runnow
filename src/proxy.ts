@@ -90,7 +90,8 @@ export const proxy = auth(async (request) => {
     const response = nextWithNonce(request, nonce);
     const isPublicCommentsGet =
       request.method === "GET" &&
-      /^\/api\/blog\/[^/]+\/comments$/.test(pathname);
+      (/^\/api\/blog\/[^/]+\/comments$/.test(pathname) ||
+        /^\/api\/tips\/[^/]+\/comments$/.test(pathname));
 
     response.headers.set(
       "Cache-Control",

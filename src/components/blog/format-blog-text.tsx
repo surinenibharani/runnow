@@ -1,18 +1,21 @@
 import Link from "next/link";
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 import {
   MEDICAL_DISCLAIMER_CLASS,
   MEDICAL_DISCLAIMER_SENTENCE_RE,
 } from "@/lib/medical-disclaimer";
+import { cn } from "@/lib/utils";
 
 const INLINE_PATTERN = /(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g;
 const LINK_PATTERN = /^\[([^\]]+)\]\(([^)]+)\)$/;
+
+const LINK_CLASS = "font-medium text-primary hover:underline";
 
 function renderPlainTextWithDisclaimerBold(text: string, keyPrefix: string) {
   if (!text) return null;
 
   const disclaimerRe = new RegExp(MEDICAL_DISCLAIMER_SENTENCE_RE.source, "gi");
-  const nodes: React.ReactNode[] = [];
+  const nodes: ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
   let disclaimerIndex = 0;
@@ -46,7 +49,54 @@ function renderPlainTextWithDisclaimerBold(text: string, keyPrefix: string) {
   return nodes.length > 0 ? nodes : text;
 }
 
-/** Renders blog copy with `**bold**`, `[label](/path)` markers, and auto-bold disclaimers. */
+/** Same-page hashes and path+hash links need a native <a> so the browser scrolls to the id. */
+export function isInPageOrHashHref(href: string): boolean {
+  return href.startsWith("#") || (href.startsWith("/") && href.includes("#"));
+}
+
+export function isAppPathHref(href: string): boolean {
+  return href.startsWith("/") && !href.includes("#");
+}
+
+type ContentLinkProps = {
+  href: string;
+  children: ReactNode;
+  className?: string;
+};
+
+/** Internal app routes via Next Link; in-page/#hash via native anchor for reliable scrolling. */
+export function ContentLink({ href, children, className }: ContentLinkProps) {
+  const classes = cn(LINK_CLASS, className);
+
+  if (isInPageOrHashHref(href)) {
+    return (
+      <a href={href} className={classes}>
+        {children}
+      </a>
+    );
+  }
+
+  if (isAppPathHref(href)) {
+    return (
+      <Link href={href} className={classes}>
+        {children}
+      </Link>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      className={classes}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {children}
+    </a>
+  );
+}
+
+/** Renders blog copy with `**bold**`, `[label](/path)` / `[label](#id)` markers, and auto-bold disclaimers. */
 export function FormatBlogText({ text }: { text: string }) {
   const parts = text.split(INLINE_PATTERN);
 
@@ -64,30 +114,10 @@ export function FormatBlogText({ text }: { text: string }) {
         const linkMatch = part.match(LINK_PATTERN);
         if (linkMatch) {
           const [, label, href] = linkMatch;
-          const isInternal = href.startsWith("/");
-
-          if (isInternal) {
-            return (
-              <Link
-                key={index}
-                href={href}
-                className="font-medium text-primary hover:underline"
-              >
-                {label}
-              </Link>
-            );
-          }
-
           return (
-            <a
-              key={index}
-              href={href}
-              className="font-medium text-primary hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <ContentLink key={index} href={href}>
               {label}
-            </a>
+            </ContentLink>
           );
         }
 

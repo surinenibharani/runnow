@@ -632,6 +632,216 @@ export const mediumLowGapPosts: BlogPost[] = [
         paragraphs: [
           "The best shoe is the one you'll wear because it feels good — not the $180 pair collecting dust while you dread blisters. Outlet models and last-season colors are fair game if fit is right.",
           "Hype is optional. Fit is not. Lace up, take the boring easy run, and save the award ceremonies for someone else's marketing calendar.",
+          "Curious about carbon plates and race-day \"super shoes\"? We break down who they help — and who they don't — in [why super shoes are not for everybody](/blog/why-super-shoes-not-for-everybody).",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "why-super-shoes-not-for-everybody",
+    metaTitle: "Why Super Shoes Are Not for Everybody",
+    title: "Why Super Shoes Are Not for Everybody",
+    excerpt:
+      "Carbon plates and bouncy foam can shave a few percent off the cost of running for some athletes — and feel unstable, expensive, or risky for others. What the journals and gear desks actually say about who should (and shouldn't) lace them up.",
+    category: "Gear",
+    author: AUTHOR,
+    publishedAt: "2026-09-06",
+    readTime: "12 min",
+    relatedSlugs: [
+      "choosing-running-shoes",
+      "running-shoes-without-lab-reviews",
+      "beginner-gear-guide-under-50",
+      "avoiding-injuries",
+      "shin-splints-running",
+      "stress-fracture-running",
+      "achilles-tendinitis-running",
+      "speedwork-after-5k-beginners",
+      "first-race-signup-logistics",
+    ],
+    closingQuestion:
+      "Have you tried a carbon-plated shoe — and did it feel like free speed, a wobbly trampoline, or both?",
+    sources: [
+      SOURCES.vaporflyEconomyHoogkamer2018,
+      SOURCES.carbonPlateBiomechanicsHoogkamer2019,
+      SOURCES.carbonPlateMetaFrontiers2025,
+      SOURCES.bendingStiffnessReview2021,
+      SOURCES.carbonPlateNavicularTenforde2023,
+      SOURCES.aftEversionFootwearScience2024,
+      SOURCES.outsideSuperShoeInjuries,
+      SOURCES.runnersWorldWaShoeRules,
+      SOURCES.runningWarehouseWhoSuperShoes,
+      SOURCES.wirecutterCasualSuperShoes,
+      SOURCES.stressFracture,
+      SOURCES.shinSplints,
+      SOURCES.achillesTendinitis,
+    ],
+    faq: [
+      {
+        question: "What counts as a \"super shoe\"?",
+        answer:
+          "Usually a tall, highly resilient midsole foam plus a stiff carbon (or similar) plate and a rockered shape designed for race pace. Brands market them as advanced footwear technology — not ordinary daily trainers.",
+      },
+      {
+        question: "Do super shoes make everyone ~4% faster?",
+        answer:
+          "No. Classic lab work on early carbon-plate prototypes found roughly 4% lower energetic cost in high-caliber runners at fast speeds. A 2025 meta-analysis of plated shoes puts typical metabolic savings closer to ~2–3% across studies — and individual responses vary. Beginners jogging easy may feel little \"free speed\" and more instability.",
+      },
+      {
+        question: "Can super shoes cause stress fractures?",
+        answer:
+          "They are not proven to \"cause\" fractures in everyone. Sports medicine authors have published case series of navicular bone stress injuries in competitive runners using carbon-plate footwear and urge gradual transition plus clinical awareness. Biomechanics papers also note motion changes that have been linked historically to navicular stress risk. Treat focal midfoot pain seriously — see a clinician; don't diagnose from a shoe review.",
+      },
+      {
+        question: "Can the next version of the same race shoe bother my Achilles?",
+        answer:
+          "Yes — model-year geometry changes (stack, rocker, plate shape, foam) can load the calf–Achilles differently even when the name on the box looks familiar. One runner's \"perfect\" Alphafly 2 is not a guarantee for Alphafly 3. Test new race shoes on shorter efforts; if mid-portion Achilles soreness shows up, stop, rest, and rebuild with a patient progression (air skipping → heel raises → eccentric heel lowers) rather than forcing more plated miles.",
+      },
+      {
+        question: "Should beginners buy super shoes?",
+        answer:
+          "Usually no — not as a first pair and not for everyday easy miles. Start with a comfortable daily trainer that fits. If you later race and want a plated option, introduce it slowly on a few faster sessions after you have a base.",
+      },
+      {
+        question: "Are \"illegal\" stack-height shoes banned for my local 5K?",
+        answer:
+          "World Athletics caps competition shoes (for sanctioned elite road racing) at 40 mm stack and one rigid plate. Runner's World and race organizers note those rules matter most for elites and some championship settings; local open fields rarely police midsole height. Comfort and fit still beat rule-chasing for most hobbyists.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "**Educational only — not medical advice.** Shoe choice is personal; this is general education, not a diagnosis or prescription. Focal bone pain, swelling, or pain that worsens with every run needs a qualified clinician — especially midfoot pain.",
+          "Instagram makes it look mandatory: carbon plate, marshmallow foam, race-day rocket ship. Elites smash records in them. Gear desks call them **super shoes** or **advanced footwear technology (AFT)**.",
+          "Here's the beginner-friendly truth: the same tools that help some athletes run more economically can feel unstable, overpriced, or poorly matched to easy training. Individual response varies a lot — and sports medicine writers have flagged foot-loading changes worth respecting.",
+          "Want the journal deep-dive? For **advanced reading**, jump to [What the science actually shows (and doesn't)](#what-science-shows) near the end of this post.",
+        ],
+      },
+      {
+        id: "what-they-are",
+        heading: "What \"super shoes\" actually are",
+        paragraphs: [
+          "Strip the marketing and you're usually looking at three ideas stacked together:",
+        ],
+        list: [
+          "**Very resilient foam** (often PEBA-family compounds) that returns more energy when compressed than old EVA midsoles",
+          "**A stiff plate** (often carbon fiber) that raises longitudinal bending stiffness — how hard the shoe is to bend toe-to-heel",
+          "**Geometry** — taller stack and a rocker shape that encourages a rolling stride at speed",
+        ],
+        closingParagraphs: [
+          "A 2021 narrative review in *Sports Medicine* notes that raising bending stiffness alone produces **mixed** running-economy results — from small gains to small losses — because plate shape, placement, foam, and the runner all interact. The \"super\" effect is a **system**, not a magic wafer of carbon. More study detail lives in the [science section](#what-science-shows) below.",
+        ],
+      },
+      {
+        id: "injury-caveats",
+        heading: "Injury caveats — association, not a morality tale",
+        paragraphs: [
+          "Performance tech changes how the foot and ankle load. That can be fine. It can also be a problem if you pile on miles too fast in a brand-new geometry.",
+          "In a 2023 *Sports Medicine* Current Opinion piece, Tenforde and colleagues described a **case series of five navicular bone stress injuries** in highly competitive runners using carbon-fiber plate footwear. They do **not** claim every plated shoe causes fractures. They do urge clinicians to consider altered foot/ankle demands, recommend a **slow gradual transition**, and call for more research.",
+          "Outside's gear reporting walks through that case series and later lab work: a 2024 *Footwear Science* comparison of a Vaporfly-style AFT shoe vs a minimalist shoe found greater **eversion excursion** in the AFT condition — a motion pattern previously observed in runners with a history of navicular stress fracture. That's a mechanistic clue, not a population epidemic proof.",
+          "Practical translation for LetsRunNow readers:",
+        ],
+        list: [
+          "Don't make a carbon racer your only shoe from day one of a new plan",
+          "Introduce plated shoes on a few strides or short faster pieces before race day",
+          "Treat a new model year like a new shoe — even if you loved last year's version",
+          "Treat pinpoint midfoot pain that worsens with running as a stop-and-get-checked signal — see our [stress fracture guide](/blog/stress-fracture-running)",
+          "Mid-portion Achilles soreness after a shoe change deserves the same respect — see [Achilles tendinitis for runners](/blog/achilles-tendinitis-running)",
+          "Sudden shoe swaps plus mileage jumps still feed classic overuse patterns like [shin splints](/blog/shin-splints-running)",
+        ],
+      },
+      {
+        id: "same-name-new-geometry",
+        heading: "Same name, new geometry: my Alphafly 2 vs Alphafly 3 story",
+        paragraphs: [
+          "**One person's n=1 — not a lab trial, and not a claim that Alphafly 3 injures everyone.** Still, it is the clearest example I have that \"I already run in Nike's top race shoe\" is not the same as \"this year's update will agree with my Achilles.\"",
+          "I raced and trained through a season in the **Nike Alphafly 2** without Achilles trouble. When I switched to the **Alphafly 3**, mid-portion Achilles irritation showed up after only a few runs. Same brand family. Same \"super shoe\" category. Different geometry under the foot — and my tendon noticed.",
+          "That first flare was not a \"shake it out and keep racing\" moment. I had to **rest about three weeks**, stay off the Alphafly 3, and deliberately **strengthen the Achilles / calf complex** — starting with **air skipping**, then **heel raises**, then **eccentric heel lowers** — before running felt trustworthy again. Full progression: [Achilles tendinitis for runners](/blog/achilles-tendinitis-running). Super-shoe hype does not outrun tendon biology.",
+          "After that break and rehab work, I went on to finish **several half marathons and a full marathon** without that Achilles pattern coming back — still avoiding the Alphafly 3. Later, curious whether it had been a fluke, I put the Alphafly 3 back on for a **9-mile run**. The little mid-portion Achilles soreness returned. That was enough confirmation for me: the shoe was the variable, not random bad luck.",
+          "The lesson I want beginners (and experienced racers) to take: **choosing the right shoe still matters inside the supershoe aisle.** A new model can change stack, rocker, plate shape, and foam feel enough to load the calf–Achilles unit differently — even when the box says the same product line. Love last year's racer? Still treat this year's update like a new tool. Short test runs first. Bail early if the mid-Achilles complains — and budget real rest plus strengthening if it flares, instead of hoping the next race will magically adapt your tendon. Mayo Clinic's overview of [Achilles tendinitis](https://www.mayoclinic.org/diseases-conditions/achilles-tendinitis/symptoms-causes/syc-20369020) is a reminder that sudden load changes — including footwear — are a classic setup.",
+        ],
+      },
+      {
+        id: "who-should-skip",
+        heading: "Who should usually skip them (for now)",
+        list: [
+          "**New runners** still building consistency — buy fit and comfort first ([shoe guide](/blog/choosing-running-shoes))",
+          "**Easy-day specialists** whose weekly volume is mostly conversational jogging — a stable daily trainer usually feels better",
+          "**Anyone with recent foot/bone stress history** until a clinician clears the plan (and even then, transition slowly)",
+          "**Budget-first beginners** — race foams die faster; see [gear under $50 thinking](/blog/beginner-gear-guide-under-50) for the rest of the kit",
+          "**Unstable feeling on a short jog in-store** — if it feels like a trampoline you can't steer, it's not \"you failing the shoe\"",
+        ],
+        paragraphs: [
+          "Skipping super shoes is not anti-progress. It's matching the tool to the job. Most beginners win more fitness from showing up easy than from a plate they fear on wet sidewalks.",
+        ],
+      },
+      {
+        id: "who-might-try",
+        heading: "Who might reasonably try them",
+        list: [
+          "Runners with a solid base who race 5K–marathon and want a dedicated race-day pair",
+          "Athletes adding limited quality work ([after a first 5K base](/blog/speedwork-after-5k-beginners)) who can afford a second shoe",
+          "People who try two models and clearly feel smoother at goal pace — individual response beats brand loyalty",
+        ],
+        paragraphs: [
+          "Even then: break them in. Tenforde et al. explicitly recommend a gradual move from habitual shoes into carbon-plate footwear. Race morning should not be the first time your calves and feet meet that rocker.",
+        ],
+      },
+      {
+        id: "rules-hype",
+        heading: "Rules, \"illegal\" shoes, and hype control",
+        paragraphs: [
+          "World Athletics set competition limits (notably **≤40 mm** stack for road racing shoes and **one** rigid plate) to keep elite fields somewhat comparable — covered clearly by Runner's World. Those rules matter most at the championship/elite end. Your neighborhood 5K is rarely a midsole forensics lab.",
+          "Don't confuse \"legal for elites\" with \"necessary for me.\" And don't confuse \"taller than 40 mm\" lifestyle trainers with a moral failing. Buy the shoe that fits the run you're actually doing.",
+          "For hype-resistant shopping habits, pair this piece with [buying shoes without lab awards](/blog/running-shoes-without-lab-reviews).",
+        ],
+      },
+      {
+        id: "practical-plan",
+        heading: "A practical plan if you're curious anyway",
+        list: [
+          "Own one great daily trainer first — the pair you'll actually log 80% of miles in",
+          "If you add a plated shoe, wear it for short strides or a tempo segment before any race",
+          "When a brand releases \"the next Alphafly / Vaporfly / Adios Pro,\" test it — don't assume last year's fit transfers",
+          "Keep easy days in the stable shoe; save the rocket for hard/race efforts if it feels good",
+          "Change one variable at a time (new shoe **or** big mileage jump — not both)",
+          "Retire race foams when they feel flat; they aren't immortal just because they were expensive",
+        ],
+        cta: {
+          text: "Get fitted the boring, useful way",
+          href: "/blog/choosing-running-shoes",
+        },
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Super shoes are a real engineering story backed by economy studies — and a poor personality test. Journals support modest average metabolic savings in tested runners; they do not crown carbon as mandatory beginner kit. Sports medicine case series and biomechanics papers are enough reason to transition slowly and take midfoot or Achilles pain seriously — including when the shoe that bothers you is only one model year newer than a pair you loved.",
+          "If your goal is loving the next easy run, a shoe that disappears on your foot beats a plate that wins Instagram. Lace up what fits. Train the engine. Let the foam be optional.",
+        ],
+        cta: { text: "Start a free training plan", href: "/plan" },
+      },
+      {
+        id: "what-science-shows",
+        heading: "What the science actually shows (and doesn't)",
+        paragraphs: [
+          "This section is the **advanced reading** pass — economy studies, biomechanics, and what those numbers do *not* promise a beginner on easy miles.",
+        ],
+        subsections: [
+          {
+            heading: "They can lower the metabolic cost of running — for some people, at some speeds",
+            paragraphs: [
+              "The landmark Hoogkamer et al. (2018) study in *Sports Medicine* compared a prototype carbon-plate marathon shoe with established racers in high-caliber athletes. Energetic cost dropped on the order of **~4%** across the speeds they tested — a big deal at the pointy end of the sport.",
+              "Follow-up biomechanics work (Hoogkamer, Kipp & Kram, 2019) pointed less at \"the plate bouncing you forward like a spring\" and more at a combo: foam energy return, altered ankle/MTP joint mechanics, and how the stiff forefoot changes leverage.",
+              "A 2025 systematic review and meta-analysis in *Frontiers in Sports and Active Living* pooled plated vs non-plated crossover trials and found plated shoes lowered metabolic demand by roughly **~2–3%** across outcomes (certainty moderate for several endpoints). Useful. Not \"everyone gets elite Nike ads.\"",
+            ],
+          },
+          {
+            heading: "Response is individual — and study cohorts aren't beginner joggers",
+            paragraphs: [
+              "Most economy studies recruit competitive or well-trained runners moving at controlled lab paces. That's the right design for measuring oxygen cost. It's a weak design for promising a couch-to-5K runner that a $250 race shoe will make easy miles feel easier.",
+              "Gear desks make the same point in plain English. Running Warehouse summarizes clinician and lab voices: the people who respond best in testing are often already fast; tall, bouncy stacks can feel **wobbly** when you're on the ground longer at easy pace — more \"Swiss ball\" than \"free speed.\" Wirecutter's casual-runner explainer echoes the common coaching line: these shoes are built for **harder efforts**, not every recovery shuffle.",
+            ],
+          },
         ],
       },
     ],

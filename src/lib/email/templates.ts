@@ -117,24 +117,41 @@ function sanitizeEmailHeader(value: string): string {
 }
 
 export function newCommentEmail({
-  postSlug,
-  postTitle,
+  contentType = "blog",
+  slug,
+  title,
   authorName,
   content,
+  pageUrl,
+  /** @deprecated use title */
+  postSlug,
+  /** @deprecated use title */
+  postTitle,
 }: {
-  postSlug: string;
-  postTitle: string;
+  contentType?: "blog" | "tip";
+  slug?: string;
+  title?: string;
   authorName: string;
   content: string;
+  pageUrl?: string;
+  postSlug?: string;
+  postTitle?: string;
 }) {
-  const url = `${getBlogPostCanonicalUrl(postSlug)}#comments`;
-  const safeTitle = escapeHtml(postTitle);
+  const resolvedSlug = slug ?? postSlug ?? "";
+  const resolvedTitle = title ?? postTitle ?? resolvedSlug;
+  const url =
+    pageUrl ??
+    (contentType === "tip"
+      ? `${SITE_URL.replace(/\/$/, "")}/tips/${resolvedSlug}#comments`
+      : `${getBlogPostCanonicalUrl(resolvedSlug)}#comments`);
+  const safeTitle = escapeHtml(resolvedTitle);
   const safeAuthor = escapeHtml(authorName);
   const safeContent = escapeHtml(content);
+  const kind = contentType === "tip" ? "tip" : "blog post";
   const preheader = `${safeAuthor} commented on ${safeTitle}`;
 
   const body = `
-    <h1 style="margin:0 0 12px;font-size:22px;line-height:1.3;">New blog comment</h1>
+    <h1 style="margin:0 0 12px;font-size:22px;line-height:1.3;">New ${kind} comment</h1>
     <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#4b5563;">
       <strong>${safeAuthor}</strong> left a comment on <strong>${safeTitle}</strong>.
     </p>
@@ -145,9 +162,9 @@ export function newCommentEmail({
   `;
 
   return {
-    subject: `New comment on ${sanitizeEmailHeader(postTitle)}`,
+    subject: `New comment on ${sanitizeEmailHeader(resolvedTitle)}`,
     html: emailLayout({ preheader, body }),
-    text: `New comment on ${postTitle}
+    text: `New comment on ${resolvedTitle}
 
 ${authorName} wrote:
 ${content}

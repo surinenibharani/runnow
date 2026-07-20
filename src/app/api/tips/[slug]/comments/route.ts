@@ -6,10 +6,10 @@ type RouteContext = {
 
 export async function GET(_request: Request, context: RouteContext) {
   const { slug } = await context.params;
-  return listComments("blog", slug);
+  return listComments("tip", slug);
 }
 
 export async function POST(request: Request, context: RouteContext) {
   const { slug } = await context.params;
-  return createComment(request, "blog", slug);
+  return createComment(request, "tip", slug);
 }

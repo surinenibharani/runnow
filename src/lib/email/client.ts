@@ -48,6 +48,17 @@ export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult>
   if (!response.ok) {
     const body = await response.text().catch(() => "");
     console.error("[email] Resend error:", response.status, body);
+    if (
+      response.status === 400 &&
+      body.includes("domain") &&
+      body.toLowerCase().includes("not verified")
+    ) {
+      return {
+        ok: false,
+        error:
+          "Resend domain not verified — verify the EMAIL_FROM domain in Resend, or create an API key with full access",
+      };
+    }
     return { ok: false, error: "Failed to send email" };
   }
 

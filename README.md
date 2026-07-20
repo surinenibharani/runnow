@@ -77,11 +77,9 @@ Open [http://localhost:3000](http://localhost:3000).
 | `TOKEN_ENCRYPTION_KEY` | Required in production. 32-byte base64 key for encrypting Strava OAuth tokens at rest — `openssl rand -base64 32` |
 | `UPSTASH_REDIS_REST_URL` | Optional. Upstash Redis REST URL for shared rate limiting across serverless instances |
 | `UPSTASH_REDIS_REST_TOKEN` | Optional. Upstash Redis REST token (pairs with URL above) |
-| `RESEND_API_KEY` | [Resend](https://resend.com) API key for newsletter emails |
-| `EMAIL_FROM` | Sender address, e.g. `LetsRunNow <hello@yourdomain.com>` (must match verified Resend domain) |
-| `OPENAI_API_KEY` | Optional. Enables AI tone polish for the dashboard adaptive coach (rule-based coaching always works without this) |
-| `OPENAI_MODEL` | Optional. OpenAI model for polish (default `gpt-4o-mini`) |
-| `COMMENT_NOTIFY_EMAIL` | Optional. Inbox for new blog comment alerts (defaults to `letsrunnow79@gmail.com`) |
+| `RESEND_API_KEY` | [Resend](https://resend.com) API key for newsletter + comment notification emails. Domain on `EMAIL_FROM` must be verified in Resend |
+| `EMAIL_FROM` | Sender address, e.g. `LetsRunNow <hello@yourdomain.com>` (must match a **verified** Resend domain) |
+| `COMMENT_NOTIFY_EMAIL` | Inbox for new blog/tip comment alerts (defaults to `letsrunnow79@gmail.com`) |
 | `CRON_SECRET` | Random string for `/api/cron/newsletter` — `openssl rand -base64 32` |
 
 ### Strava setup

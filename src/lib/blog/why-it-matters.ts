@@ -95,7 +95,7 @@ export const whyItMattersBySlug: Record<string, string> = {
   "mortons-neuroma-running":
     "Forefoot burning that feels like a pebble in your shoe is easy to ignore until every run hurts. Catching it early — and fixing shoe fit before chasing quick fixes — keeps small nerve irritation from becoming a season-ender.",
   "achilles-tendinitis-running":
-    "Achilles pain isn't only a beginner problem — a mileage spike can sideline experienced runners too. Loading the tendon patiently with calf work and smart plyometrics often beats resting until you're afraid to lace up.",
+    "Achilles pain isn't only a beginner problem — a mileage spike can sideline experienced runners too. Patient loading — air skipping, then heel raises, then eccentric heel lowers — often beats resting until you're afraid to lace up.",
   "running-during-fasting":
     "Intermittent fasting changes when your body has fuel — stack a long run or speed work onto a fasted window and easy days stop feeling easy. Timing runs around your eating window keeps you training without burning out.",
   "running-for-weight-loss-facts-and-myths":
@@ -126,6 +126,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Adding speed too early turns every run into injury practice. After a solid 5K base, one controlled quality day teaches speed without torching recovery.",
   "running-shoes-without-lab-reviews":
     "Award roundups aren't your feet. A fit-first buying process beats chasing gold medals that weren't tested on your sidewalks.",
+  "why-super-shoes-not-for-everybody":
+    "Carbon plates can help some runners at race pace — and feel unstable or poorly matched for beginners on easy miles. Knowing who they serve prevents expensive, injury-curious mistakes.",
   "plantar-fasciitis-running":
     "Morning heel pain ends more training blocks than laziness. Catching plantar fasciitis early — and rebuilding foot/calf capacity — beats another cycle of rest-then-flare.",
   "it-band-syndrome-running":

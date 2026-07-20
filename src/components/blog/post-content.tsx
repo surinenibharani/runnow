@@ -99,11 +99,11 @@ export function PostContent({
           <span aria-hidden>·</span>
           <span>{post.readTime} read</span>
           <span aria-hidden>·</span>
-          <Link href="#comments" className="text-primary hover:underline">
+          <a href="#comments" className="text-primary hover:underline">
             {commentCount === 0
               ? "Leave a comment"
               : `${commentCount} comment${commentCount === 1 ? "" : "s"}`}
-          </Link>
+          </a>
         </div>
         <div className="mt-6 space-y-5 border-t border-border/60 pt-6">
           <ContentLikeButton
@@ -147,7 +147,7 @@ export function PostContent({
       )}
 
       {post.closingQuestion && !scheduled && (
-        <Link
+        <a
           href="#comments"
           className="mt-10 block rounded-xl border border-primary/20 bg-primary/5 px-4 py-4 text-sm leading-relaxed text-muted-foreground transition-colors hover:border-primary/30 hover:bg-primary/10 sm:px-5"
         >
@@ -156,7 +156,7 @@ export function PostContent({
           <span className="mt-2 block text-sm font-medium text-primary">
             Leave a comment below ↓
           </span>
-        </Link>
+        </a>
       )}
 
       <RelatedPosts
