@@ -1,9 +1,14 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { BlogPostCardSummary } from "@/lib/blog/types";
 import { filterPostsByCategory, paramToCategory } from "@/lib/blog/categories";
 import { BlogPostCards } from "@/components/blog/blog-post-cards";
+import { Button } from "@/components/ui/button";
+
+const INITIAL_VISIBLE = 12;
+const LOAD_MORE_STEP = 12;
 
 type BlogFilteredPostsProps = {
   /** Already newest-first from the server. */
@@ -20,9 +25,16 @@ export function BlogFilteredPosts({
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
   const activeCategory = paramToCategory(categoryParam);
-  // Preserve server newest-first order while filtering.
   const filteredPosts = filterPostsByCategory(posts, categoryParam);
   const listKey = categoryParam ?? "all";
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+
+  useEffect(() => {
+    setVisibleCount(INITIAL_VISIBLE);
+  }, [listKey]);
+
+  const visiblePosts = filteredPosts.slice(0, visibleCount);
+  const remaining = filteredPosts.length - visiblePosts.length;
 
   return (
     <>
@@ -37,10 +49,24 @@ export function BlogFilteredPosts({
 
       <BlogPostCards
         key={listKey}
-        posts={filteredPosts}
+        posts={visiblePosts}
         commentCounts={commentCounts}
         previewToken={previewToken}
       />
+
+      {remaining > 0 && (
+        <div className="mt-8 flex justify-center">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() =>
+              setVisibleCount((count) => count + LOAD_MORE_STEP)
+            }
+          >
+            Show more ({remaining} left)
+          </Button>
+        </div>
+      )}
     </>
   );
 }

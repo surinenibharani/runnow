@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const HERO_VIDEO_SRC = "/hero/hero.mp4";
+const HERO_POSTER_SRC = "/hero/hero-poster.jpg";
 const HOLD_AT = 1;
 const HOLD_PLAY = 2;
 
@@ -235,6 +236,7 @@ export function HeroVideo({ className }: HeroVideoProps) {
             aria-hidden
             className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center [transform:translateZ(0)] [backface-visibility:hidden]"
             src={HERO_VIDEO_SRC}
+            poster={HERO_POSTER_SRC}
             muted
             playsInline
             preload="metadata"

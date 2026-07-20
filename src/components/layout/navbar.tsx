@@ -68,6 +68,8 @@ export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
+  const mobileNavRef = useRef<HTMLElement>(null);
   const { data: session } = useSession();
   const { openProfile } = useProfileModal();
 
@@ -84,8 +86,41 @@ export function Navbar() {
   useEffect(() => {
     if (!open) return;
 
+    const previouslyFocused = document.activeElement;
+    const panel = mobileNavRef.current;
+    const firstFocusable = panel?.querySelector<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    firstFocusable?.focus();
+
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuToggleRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab" || !panel) return;
+
+      const focusable = [
+        ...panel.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        ),
+      ].filter((el) => !el.hasAttribute("disabled") && el.tabIndex !== -1);
+
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+
+      if (event.shiftKey && active === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
 
     function onPointerDown(event: MouseEvent) {
@@ -104,6 +139,14 @@ export function Navbar() {
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("mousedown", onPointerDown);
+      if (
+        previouslyFocused instanceof HTMLElement &&
+        document.contains(previouslyFocused)
+      ) {
+        previouslyFocused.focus();
+      } else {
+        menuToggleRef.current?.focus();
+      }
     };
   }, [open]);
 
@@ -197,12 +240,14 @@ export function Navbar() {
         </div>
 
         <button
+          ref={menuToggleRef}
           type="button"
           className="ml-1 shrink-0 rounded-lg p-2 hover:bg-muted lg:hidden"
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-nav"
+          aria-haspopup="dialog"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
@@ -210,8 +255,11 @@ export function Navbar() {
 
       {open && (
         <nav
+          ref={mobileNavRef}
           id="mobile-nav"
-          aria-label="Main"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile menu"
           className="border-t border-border animate-in fade-in slide-in-from-top-1 duration-200 lg:hidden"
         >
           <div className="flex flex-col gap-1 p-4">

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { InstagramIcon } from "@/components/icons/instagram";
 import { Logo } from "@/components/brand/logo";
