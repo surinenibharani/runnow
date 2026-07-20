@@ -17,10 +17,10 @@ const blockedPaths = [
   /\.php$/i,
 ];
 
-const protectedPaths = ["/dashboard"];
-
 function isProtectedRoute(pathname: string): boolean {
-  if (protectedPaths.includes(pathname)) return true;
+  if (pathname === "/dashboard" || pathname.startsWith("/dashboard/")) {
+    return true;
+  }
   if (pathname.startsWith("/teams/") && pathname.length > "/teams/".length) {
     return true;
   }

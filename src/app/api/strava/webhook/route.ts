@@ -5,6 +5,7 @@ import {
   syncStravaActivitiesForUser,
 } from "@/lib/strava-sync";
 import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
+import { timingSafeStringEqual } from "@/lib/security/timing-safe";
 
 export const runtime = "nodejs";
 
@@ -30,7 +31,8 @@ export async function GET(request: Request) {
     mode === "subscribe" &&
     challenge &&
     expected &&
-    verifyToken === expected
+    verifyToken != null &&
+    timingSafeStringEqual(verifyToken, expected)
   ) {
     return NextResponse.json({ "hub.challenge": challenge });
   }
@@ -67,12 +69,30 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Webhook not configured" }, { status: 503 });
   }
 
-  if (expectedSubId && String(event.subscription_id) !== expectedSubId) {
+  if (
+    expectedSubId &&
+    !timingSafeStringEqual(String(event.subscription_id), expectedSubId)
+  ) {
     return NextResponse.json({ error: "Invalid subscription" }, { status: 403 });
   }
 
   try {
     const athleteId = String(event.owner_id);
+    const athleteLimited = await rateLimitAsync(
+      `strava-webhook-athlete:${athleteId}`,
+      30,
+      60 * 60 * 1000
+    );
+    if (!athleteLimited.ok) {
+      return NextResponse.json(
+        { error: "Too many webhook events for athlete" },
+        {
+          status: 429,
+          headers: { "Retry-After": String(athleteLimited.retryAfter) },
+        }
+      );
+    }
+
     const userId = await findUserIdByStravaAthleteId(athleteId);
 
     if (!userId) {
@@ -80,6 +100,20 @@ export async function POST(request: Request) {
     }
 
     if (event.object_type === "athlete" && event.updates?.authorized === "false") {
+      const disconnectLimited = await rateLimitAsync(
+        `strava-webhook-disconnect:${athleteId}`,
+        3,
+        60 * 60 * 1000
+      );
+      if (!disconnectLimited.ok) {
+        return NextResponse.json(
+          { error: "Too many disconnect events" },
+          {
+            status: 429,
+            headers: { "Retry-After": String(disconnectLimited.retryAfter) },
+          }
+        );
+      }
       await disconnectStrava(userId);
       return NextResponse.json({ received: true, action: "disconnected" });
     }

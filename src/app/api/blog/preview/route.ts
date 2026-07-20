@@ -6,6 +6,7 @@ import {
   isValidPreviewSecret,
   previewSessionCookieOptions,
 } from "@/lib/blog/preview-session";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 
 const PREVIEW_MAX_AGE_SEC = 24 * 60 * 60;
 
@@ -17,11 +18,29 @@ function redirectTarget(request: Request): string {
   return "/blog";
 }
 
+async function enforcePreviewRateLimit(request: Request) {
+  const ip = getClientIp(request);
+  const limited = await rateLimitAsync(`blog-preview:${ip}`, 20, 15 * 60 * 1000);
+  if (!limited.ok) {
+    return NextResponse.json(
+      { error: "Too many preview attempts. Please try again later." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(limited.retryAfter) },
+      }
+    );
+  }
+  return null;
+}
+
 /** Exchange BLOG_PREVIEW_SECRET for an HttpOnly preview session cookie. */
 export async function GET(request: Request) {
   if (process.env.NODE_ENV === "development") {
     return NextResponse.redirect(new URL(redirectTarget(request), request.url));
   }
+
+  const rateLimited = await enforcePreviewRateLimit(request);
+  if (rateLimited) return rateLimited;
 
   const token = new URL(request.url).searchParams.get("token")?.trim();
   const secret = process.env.BLOG_PREVIEW_SECRET?.trim();
@@ -51,6 +70,9 @@ export async function POST(request: Request) {
   if (process.env.NODE_ENV === "development") {
     return NextResponse.json({ ok: true, redirect: redirectTarget(request) });
   }
+
+  const rateLimited = await enforcePreviewRateLimit(request);
+  if (rateLimited) return rateLimited;
 
   const secret = process.env.BLOG_PREVIEW_SECRET?.trim();
   if (!secret) {

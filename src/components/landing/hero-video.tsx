@@ -237,7 +237,7 @@ export function HeroVideo({ className }: HeroVideoProps) {
             src={HERO_VIDEO_SRC}
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
           />
           <div
             aria-hidden

@@ -85,6 +85,7 @@ export async function GET(request: Request) {
           : {}),
       },
       orderBy: { startDate: "desc" },
+      take: 2000,
       select: activitySummarySelect,
     }),
     prisma.stravaAccount.findUnique({ where: { userId } }),
