@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import { DM_Sans, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { SkipLink } from "@/components/layout/skip-link";
 import { Suspense } from "react";
 import { AuthProvider } from "@/components/providers/auth-provider";
-import { GoogleAnalyticsScripts } from "@/components/analytics/google-analytics";
-import { TurnstileScripts } from "@/components/security/turnstile-scripts";
+import { NonceScripts } from "@/components/security/nonce-scripts";
 import { GoogleAnalyticsPageView } from "@/components/analytics/page-view-tracker";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -79,21 +77,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const nonce = (await headers()).get("x-nonce") ?? undefined;
-
   return (
     <html
       lang="en"
       className={`${dmSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-        <GoogleAnalyticsScripts nonce={nonce} />
-        <TurnstileScripts nonce={nonce} />
+        <Suspense fallback={null}>
+          <NonceScripts />
+        </Suspense>
       </head>
       <body className="min-h-full flex flex-col">
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
