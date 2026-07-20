@@ -69,7 +69,7 @@ export const commonInjuries: CommonInjury[] = [
       "Don't ramp up hills and speed work in the same week",
       "Strengthen quads and glutes — weak hips can contribute to knee tracking issues",
       "Avoid overstriding; aim for a quicker, shorter stride on easy days",
-      "Use the 10% rule for weekly volume increases",
+      "Increase volume gradually — avoid sudden weekly leaps and single-run spikes beyond recent long-run distance",
     ],
     fix: [
       "Reduce mileage and avoid hills until pain subsides",
@@ -242,7 +242,7 @@ export function getCommonInjuryBySlug(slug: string): CommonInjury | undefined {
 }
 
 export const preventionPrinciples = [
-  "Follow the 10% rule — don't add more than 10% weekly mileage",
+  "Increase volume gradually — avoid sudden weekly leaps and big single-run spikes vs your recent longest run",
   "One rest day per week minimum; sleep 7–9 hours",
   "Rotate easy, moderate, and hard days — not every run is a workout",
   "Replace running shoes every 300–500 miles",

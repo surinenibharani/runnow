@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { blogPosts } from "@/lib/blog/posts";
+import { blogPostSlugs } from "@/lib/blog/posts";
 import { getAllTipSlugs } from "@/lib/tips/helpers";
 import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 import { isValidPostSlug } from "@/lib/security/validation";
@@ -11,7 +11,6 @@ import {
   type ContentLikeTargetType,
 } from "@/lib/engagement/content-likes";
 
-const BLOG_SLUGS = blogPosts.map((p) => p.slug);
 const TIP_SLUGS = getAllTipSlugs();
 
 function parseTargetType(raw: unknown): ContentLikeTargetType | null {
@@ -20,7 +19,10 @@ function parseTargetType(raw: unknown): ContentLikeTargetType | null {
 }
 
 function isAllowedSlug(type: ContentLikeTargetType, slug: string): boolean {
-  return isValidPostSlug(slug, type === "blog" ? BLOG_SLUGS : TIP_SLUGS);
+  return isValidPostSlug(
+    slug,
+    type === "blog" ? blogPostSlugs : TIP_SLUGS
+  );
 }
 
 export async function GET(request: Request) {

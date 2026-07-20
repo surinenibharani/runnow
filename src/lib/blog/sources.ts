@@ -668,4 +668,40 @@ export const SOURCES = {
     href: "https://www.mayoclinic.org/diseases-conditions/nail-fungus/symptoms-causes/syc-20352300",
     publisher: "Mayo Clinic",
   },
+  marathonHeartAcuteLaily2026: {
+    label:
+      "Acute effects of marathon running on the heart — systematic review & meta-analysis (Laily et al., 2026)",
+    href: "https://doi.org/10.1136/bmjsem-2026-003201",
+    publisher: "BMJ Open Sport & Exercise Medicine",
+  },
+  marathonTroponinMetaLi2023: {
+    label:
+      "Marathon running and high-sensitivity cardiac troponin — systematic review & meta-analysis (Li et al., 2023)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/37248881/",
+    publisher: "PubMed / Journal of Back and Musculoskeletal Rehabilitation",
+  },
+  bostonMarathonOrganStressMcKenna2025: {
+    label:
+      "Biomarkers of organ stress and injury following the Boston Marathon — sex & hydration (McKenna et al., 2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/41101781/",
+    publisher: "PubMed / Journal of Applied Physiology",
+  },
+  marathonAkiBiomarkersMeta2025: {
+    label:
+      "Acute kidney injury biomarkers in marathon runners — systematic review & meta-analysis (Leucuța et al., 2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/41155766/",
+    publisher: "PubMed / Medicina",
+  },
+  marathonEahReview2022: {
+    label:
+      "Exercise-associated hyponatremia in marathon runners — review (Klingert et al., 2022)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/36431252/",
+    publisher: "PubMed / Journal of Clinical Medicine",
+  },
+  bostonEahAlmond2005: {
+    label:
+      "Hyponatremia among runners in the Boston Marathon (Almond et al., 2005)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/15814880/",
+    publisher: "PubMed / New England Journal of Medicine",
+  },
 } satisfies Record<string, BlogSource>;

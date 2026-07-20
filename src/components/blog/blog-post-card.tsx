@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Clock, Lightbulb, MessageSquare, User } from "lucide-react";
-import type { BlogPost } from "@/lib/blog/types";
+import type { BlogPostCardSummary } from "@/lib/blog/types";
 import { PostShareButtons } from "@/components/blog/post-share-buttons";
 import {
   buildBlogPostHref,
@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 type BlogPostCardProps = {
-  post: BlogPost;
+  post: BlogPostCardSummary;
   commentCount: number;
   scheduled: boolean;
   previewToken?: string;

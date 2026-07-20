@@ -60,3 +60,16 @@ export type BlogPost = {
   /** Prompt shown above comments to encourage discussion. */
   closingQuestion?: string;
 };
+
+/** Fields needed for blog index cards — omit body sections for smaller RSC payloads. */
+export type BlogPostCardSummary = Pick<
+  BlogPost,
+  | "slug"
+  | "title"
+  | "excerpt"
+  | "whyItMatters"
+  | "category"
+  | "author"
+  | "publishedAt"
+  | "readTime"
+>;

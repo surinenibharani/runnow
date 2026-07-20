@@ -91,6 +91,9 @@ export function parseGender(value: unknown): GenderValue | null {
   return null;
 }
 
-export function isValidPostSlug(slug: string, allowedSlugs: string[]): boolean {
+export function isValidPostSlug(
+  slug: string,
+  allowedSlugs: readonly string[]
+): boolean {
   return allowedSlugs.includes(slug);
 }

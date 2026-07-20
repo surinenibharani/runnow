@@ -6,20 +6,22 @@ import { cn } from "@/lib/utils";
 import {
   ALL_BLOG_CATEGORY,
   categoryToParam,
-  getBlogCategories,
   paramToCategory,
 } from "@/lib/blog/categories";
 
 type BlogCategoryFilterProps = {
+  categories: string[];
   className?: string;
 };
 
-export function BlogCategoryFilter({ className }: BlogCategoryFilterProps) {
+export function BlogCategoryFilter({
+  categories,
+  className,
+}: BlogCategoryFilterProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const activeParam = searchParams.get("category");
   const activeCategory = paramToCategory(activeParam) ?? ALL_BLOG_CATEGORY;
-  const categories = getBlogCategories();
 
   const setCategory = useCallback(
     (category: string) => {

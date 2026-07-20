@@ -1,5 +1,7 @@
-import { blogPosts } from "@/lib/blog/posts";
-
+/**
+ * Category helpers kept free of the full blog content module so client
+ * components do not pull every post body into the browser bundle.
+ */
 export const ALL_BLOG_CATEGORY = "All";
 
 /** Stable display order for blog index filters. */
@@ -17,13 +19,6 @@ export const BLOG_CATEGORY_ORDER = [
   "Tips",
 ] as const;
 
-export function getBlogCategories(): string[] {
-  const fromPosts = new Set(blogPosts.map((p) => p.category));
-  return BLOG_CATEGORY_ORDER.filter(
-    (c) => c === ALL_BLOG_CATEGORY || fromPosts.has(c)
-  );
-}
-
 export function categoryToParam(category: string): string {
   return category.toLowerCase().replace(/\s+/g, "-");
 }
@@ -34,11 +29,7 @@ export function paramToCategory(param: string | null | undefined): string | null
   const fromOrder = BLOG_CATEGORY_ORDER.find(
     (c) => c !== ALL_BLOG_CATEGORY && c.toLowerCase() === normalized
   );
-  if (fromOrder) return fromOrder;
-  const match = blogPosts.find(
-    (p) => p.category.toLowerCase() === normalized
-  );
-  return match?.category ?? null;
+  return fromOrder ?? null;
 }
 
 export function filterPostsByCategory<T extends { category: string }>(
@@ -48,4 +39,12 @@ export function filterPostsByCategory<T extends { category: string }>(
   const category = paramToCategory(categoryParam);
   if (!category) return posts;
   return posts.filter((p) => p.category === category);
+}
+
+/** Build filter chips from categories that actually have posts. */
+export function buildBlogCategories(postCategories: Iterable<string>): string[] {
+  const fromPosts = new Set(postCategories);
+  return BLOG_CATEGORY_ORDER.filter(
+    (c) => c === ALL_BLOG_CATEGORY || fromPosts.has(c)
+  );
 }

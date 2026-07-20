@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { blogPosts, getPostBySlug } from "@/lib/blog/posts";
+import { blogPostSlugs, getPostBySlug } from "@/lib/blog/posts";
 import { isEmailConfigured, sendEmail } from "@/lib/email/client";
 import { newCommentEmail } from "@/lib/email/templates";
 import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
@@ -16,12 +16,10 @@ type RouteContext = {
   params: Promise<{ slug: string }>;
 };
 
-const ALLOWED_SLUGS = blogPosts.map((p) => p.slug);
-
 export async function GET(_request: Request, context: RouteContext) {
   const { slug } = await context.params;
 
-  if (!isValidPostSlug(slug, ALLOWED_SLUGS)) {
+  if (!isValidPostSlug(slug, blogPostSlugs)) {
     return NextResponse.json({ error: "Post not found" }, { status: 404 });
   }
 
@@ -44,7 +42,7 @@ export async function POST(request: Request, context: RouteContext) {
   try {
     const { slug } = await context.params;
 
-    if (!isValidPostSlug(slug, ALLOWED_SLUGS)) {
+    if (!isValidPostSlug(slug, blogPostSlugs)) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
 

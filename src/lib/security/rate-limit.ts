@@ -13,6 +13,20 @@ const MAX_STORE_ENTRIES = 10_000;
 
 let redisClient: Redis | null | undefined;
 const limiterCache = new Map<string, Ratelimit>();
+let warnedMissingUpstash = false;
+
+function warnIfMissingDistributedRateLimit() {
+  if (warnedMissingUpstash) return;
+  if (
+    process.env.NODE_ENV === "production" &&
+    !isDistributedRateLimitEnabled()
+  ) {
+    warnedMissingUpstash = true;
+    console.warn(
+      "[rate-limit] UPSTASH_REDIS_REST_URL/TOKEN not set — using in-memory limits that do not share across serverless instances."
+    );
+  }
+}
 
 function pruneStore(now: number) {
   if (store.size <= MAX_STORE_ENTRIES) return;
@@ -104,6 +118,7 @@ export async function rateLimitAsync(
 ): Promise<RateLimitResult> {
   const distributed = getDistributedLimiter(limit, windowMs);
   if (!distributed) {
+    warnIfMissingDistributedRateLimit();
     return rateLimit(key, limit, windowMs);
   }
 

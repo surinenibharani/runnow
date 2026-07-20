@@ -10,8 +10,9 @@ import { BlogFilteredPosts } from "@/components/blog/blog-filtered-posts";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getCommentCountsBySlug } from "@/lib/blog/comment-counts";
 import {
-  getVisibleBlogPosts,
+  getVisibleBlogPostCards,
 } from "@/lib/blog/posts";
+import { buildBlogCategories } from "@/lib/blog/categories";
 import { bootstrapBlogPreview, hasBlogPreviewAccess, isValidPreviewSecret } from "@/lib/blog/preview-server";
 import { isBlogPostScheduled } from "@/lib/blog/preview";
 import { BlogPreviewBanner } from "@/components/blog/blog-preview-banner";
@@ -44,9 +45,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     previewToken,
     `/blog${categoryQuery}`
   );
-  const sortedPosts = getVisibleBlogPosts(preview);
+  const cardPosts = getVisibleBlogPostCards(preview);
+  const categories = buildBlogCategories(cardPosts.map((p) => p.category));
   const scheduledCount = preview
-    ? sortedPosts.filter((post) => isBlogPostScheduled(post.publishedAt)).length
+    ? cardPosts.filter((post) => isBlogPostScheduled(post.publishedAt)).length
     : 0;
   const commentCounts = await getCommentCountsBySlug();
 
@@ -55,8 +57,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <JsonLd
         data={[
           blogIndexJsonLd(
-            sortedPosts.map((post) => ({
-              title: post.metaTitle ?? post.title,
+            cardPosts.map((post) => ({
+              title: post.title,
               slug: post.slug,
               excerpt: post.excerpt,
             }))
@@ -80,7 +82,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         </FadeIn>
 
         <Suspense fallback={null}>
-          <BlogCategoryFilter className="mb-10" />
+          <BlogCategoryFilter categories={categories} className="mb-10" />
         </Suspense>
 
         {preview && scheduledCount > 0 && (
@@ -89,7 +91,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
         <Suspense fallback={null}>
           <BlogFilteredPosts
-            posts={sortedPosts}
+            posts={cardPosts}
             commentCounts={commentCounts}
           />
         </Suspense>

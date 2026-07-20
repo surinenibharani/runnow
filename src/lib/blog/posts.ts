@@ -1,8 +1,9 @@
-import type { BlogPost } from "./types";
+import type { BlogPost, BlogPostCardSummary } from "./types";
 import { SOURCES } from "./sources";
 import { getWhyItMatters } from "./why-it-matters";
 import { isBlogPostVisible } from "./preview";
 import { isBlogPostPublishedAt } from "./publish-schedule";
+import { buildBlogCategories } from "./categories";
 import { priorityGapPosts } from "./posts-priority-gaps";
 import { mediumLowGapPosts } from "./posts-medium-low-gaps";
 import { nextGapPosts } from "./posts-next-gaps";
@@ -221,9 +222,9 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
-        heading: "The 10% rule is a useful guardrail",
+        heading: "Load progression beats a rigid 10% rule",
         paragraphs: [
-          "Many coaches use a 10% weekly mileage cap as a practical starting point — not a law of physiology, but a way to avoid sudden load spikes. Half marathon training often fails when people jump from 15 miles to 25 miles in one week. Your cardiovascular system adapts faster than your tendons.",
+          "Old coaching habit said “never add more than 10% weekly mileage.” Trials in novice runners haven’t shown that weekly 10% cap reliably prevents injury by itself. What matters more for most people: **avoid sudden jumps in a single long run** (roughly more than ~10% beyond your longest run in the past month), keep most days easy, and don’t stack hills + speed + a new distance PR in the same week. Half marathon builds fail when people leap from 15 miles/week to 25 overnight — cardiovascular fitness adapts faster than tendons.",
         ],
       },
       {
@@ -3579,7 +3580,7 @@ export const blogPosts: BlogPost[] = [
           "Rest 60–90 seconds between most sets; 2 minutes after deadlifts and squats",
           "Every 1–2 weeks, increase weight slightly or add 1–2 reps when your current numbers feel easy — track your workouts",
           "Optional core add-on: plank 3 × 20–40 seconds or bird-dog at the end (helpful for running)",
-          "Cool-down: 5 minutes light walking plus static stretches for hamstrings, quads, chest, and shoulders",
+          "Cool-down: 5 minutes easy walking, then optional short, mild stretches if they feel good — skip long, aggressive end-range holds right after hard work ([stretching between and after runs](/blog/stretching-between-and-after-runs))",
           "Frequency: 2–3× per week on non-consecutive days for recovery",
         ],
         paragraphs: [
@@ -5399,7 +5400,7 @@ export const blogPosts: BlogPost[] = [
           "**Pair running with reasonable nutrition** — Focus on protein, vegetables, fiber, and overall portion awareness rather than extreme restrictions. See [nutrition basics for beginners](/blog/nutrition-basics-for-beginners)",
           "**Build consistency first** — A moderate habit you can maintain beats a perfect plan you abandon",
           "**Include strength training** — This helps preserve muscle while losing fat, which supports metabolism and body composition. Try [bodyweight strength for runners](/blog/bodyweight-strength-for-runners)",
-          "**Increase mileage gradually** — Follow the 10% rule to reduce injury and burnout risk",
+          "**Increase mileage gradually** — Avoid big single-run spikes; keep weekly jumps moderate and most days easy to cut injury and burnout risk",
           "**Prioritize sleep and stress management** — Poor sleep and high stress strongly affect hunger hormones and fat loss",
           "**Track trends and non-scale wins** — Measure progress by how your clothes fit, how you feel, and performance improvements rather than daily weight",
         ],
@@ -5997,6 +5998,39 @@ export function getVisibleBlogPosts(
     .map(withWhyItMatters)
     .sort(compareBlogPostsNewestFirst);
 }
+
+/** Index/list payloads without sections, FAQ, or sources. */
+export function toBlogPostCardSummary(post: BlogPost): BlogPostCardSummary {
+  return {
+    slug: post.slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    whyItMatters: post.whyItMatters,
+    category: post.category,
+    author: post.author,
+    publishedAt: post.publishedAt,
+    readTime: post.readTime,
+  };
+}
+
+export function getVisibleBlogPostCards(
+  preview = false,
+  now: Date = new Date()
+): BlogPostCardSummary[] {
+  return getVisibleBlogPosts(preview, now).map(toBlogPostCardSummary);
+}
+
+export function getBlogCategoriesForVisiblePosts(
+  preview = false,
+  now: Date = new Date()
+): string[] {
+  return buildBlogCategories(
+    getVisibleBlogPosts(preview, now).map((p) => p.category)
+  );
+}
+
+/** Lightweight slug allowlist for comment/like APIs. */
+export const blogPostSlugs: readonly string[] = blogPosts.map((p) => p.slug);
 
 export function getPublishedBlogPosts(now: Date = new Date()): BlogPost[] {
   return getVisibleBlogPosts(false, now);

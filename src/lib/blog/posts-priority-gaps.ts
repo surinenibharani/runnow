@@ -570,7 +570,7 @@ export const priorityGapPosts: BlogPost[] = [
         id: "prevention",
         heading: "Keep them from coming back",
         list: [
-          "Cap weekly mileage jumps (~10% rule as a guardrail, not a religion)",
+          "Cap single-run and weekly jumps — especially don’t spike a long run far past your recent longest effort",
           "Keep most runs easy so hard days stay rare",
           "Rotate surfaces when you can",
           "Strength twice a week even when training feels fine",

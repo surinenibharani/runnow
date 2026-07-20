@@ -232,6 +232,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Hotel treadmills and jet lag don't have to erase your block. Keep easy miles honest and refuse the 'make up the long run' trap.",
   "negative-splits-race-pacing":
     "Starting slow enough to finish strong is a skill you practice in training — not a prayer at the start line.",
+  "what-marathon-does-to-your-body":
+    "A full marathon temporarily stresses heart, muscle, gut, and kidneys in ways labs can measure. Knowing what is common — and how men and women often differ — turns post-race wreckage into expected physiology instead of panic.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

@@ -395,4 +395,238 @@ export const p0MedicalGapPosts: BlogPost[] = [
       },
     ],
   },
+
+  {
+    slug: "what-marathon-does-to-your-body",
+    metaTitle: "What a Marathon Does to Your Body — Men vs Women",
+    title:
+      "What a Full Marathon Does to Your Body: Heart, Muscle, Gut, Kidneys — and Sex Differences",
+    excerpt:
+      "What 26.2 miles does inside the body for men and women — transient heart biomarkers, muscle damage, kidney stress, gut barrier hits, and when those lab bumps are expected vs when they need a clinician — from recent medical journals.",
+    category: "Health",
+    author: AUTHOR,
+    publishedAt: "2026-09-05",
+    readTime: "14 min",
+    relatedSlugs: [
+      "training-first-full-marathon",
+      "hitting-the-wall-marathon",
+      "post-run-recovery",
+      "hydration-electrolytes-running",
+      "runners-gi-distress",
+      "running-guide-for-women",
+      "dont-run-a-marathon-in-your-first-year",
+      "sleep-recovery-for-runners",
+    ],
+    closingQuestion:
+      "After your last long race, what felt most wrecked first — legs, gut, sleep, or something you didn't expect?",
+    sources: [
+      SOURCES.marathonHeartAcuteLaily2026,
+      SOURCES.marathonTroponinMetaLi2023,
+      SOURCES.bostonMarathonOrganStressMcKenna2025,
+      SOURCES.marathonAkiBiomarkersMeta2025,
+      SOURCES.marathonEahReview2022,
+      SOURCES.bostonEahAlmond2005,
+      SOURCES.hyponatremia,
+      SOURCES.preParticipationScreening,
+      SOURCES.heartDiseaseExercise,
+      SOURCES.redS,
+      SOURCES.menstrualCycleReview,
+    ],
+    faq: [
+      {
+        question: "Is an elevated troponin after a marathon a heart attack?",
+        answer:
+          "Not by itself. Meta-analyses show high-sensitivity troponin and NT-proBNP commonly rise after a marathon and often exceed clinical cutoffs used in hospitals — yet many of these shifts look transient in healthy finishers, and imaging often does not show classic infarct-style damage. Symptoms, ECG, and the time curve matter; chest pain, fainting, or lasting distress still need urgent care — don't diagnose yourself from a finish-line blood draw meme.",
+      },
+      {
+        question: "Do women recover from marathons differently than men?",
+        answer:
+          "Both sexes absorb large temporary organ stress. Recent Boston Marathon biomarker work found similar post-race rises in markers of kidney stress, gut-barrier injury, and muscle damage when men and women were compared head-to-head. Where patterns diverge more often is in hydration risk (exercise-associated hyponatremia), absolute muscle-enzyme levels linked to lean mass, iron and menstrual-cycle context, and the simple fact that cardiac marathon research still studies far more men than women.",
+      },
+      {
+        question: "How long until kidneys and blood markers settle?",
+        answer:
+          "Many kidney and muscle-related markers peak around finish and begin falling within about a day, though some stay above baseline longer. A 2025 kidney-biomarker meta-analysis describes several recovery patterns. Feeling wiped for a few days is common; dark urine that won't clear, severe swelling, confusion, or chest symptoms are not 'tough it out' signals.",
+      },
+      {
+        question: "Should I drink as much water as possible on race day?",
+        answer:
+          "No. Overdrinking relative to sweat loss is the main driver of exercise-associated hyponatremia. Drink to thirst in most conditions, practice your plan, and include sodium with fluids when racing long in heat. Persistent nausea, headache, confusion, or weight gain mid-race is a medical-tent problem — not a 'one more cup' problem.",
+      },
+      {
+        question: "Is a marathon dangerous for a healthy heart?",
+        answer:
+          "For screened, trained adults, finishing a marathon is usually a large but temporary stress, not automatic permanent damage. Acute biomarker and echo shifts are expected; their long-term meaning is still being studied. People with known heart disease, unexplained symptoms, or sudden family cardiac history should talk with a clinician before building toward 26.2.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "**Educational only — not medical advice.** A full marathon is a controlled (if dramatic) physiological stress test. This guide summarizes what recent journals measure in blood, urine, and imaging after 42.195 km — it is not clearance to race, a diagnosis of organ damage, or a substitute for care. Chest pain, fainting, severe vomiting, confusion, seizures, inability to pee, or one-sided swelling need clinical attention.",
+          "Finish photo: euphoria. Finish bloodwork (when researchers sample it): often a temporary storm of heart-muscle enzymes, kidney stress markers, gut-barrier proteins, and creatine kinase from battered legs. That gap between how heroic the medal feels and how noisy the lab looks is why this post exists.",
+          "We'll walk system by system, then zoom into **men vs women** where the evidence is strongest — and be honest where science still under-samples female runners.",
+        ],
+      },
+      {
+        id: "big-picture",
+        heading: "The big picture: temporary overload, not instant permanent failure",
+        paragraphs: [
+          "A marathon stacks hours of high cardiac output, thousands of impact cycles, reduced gut blood flow, sweating, inflammation, and glycogen drain. Lab markers rise because tissue is stressed and membranes leak proteins into blood or urine — not because every finisher is having a silent heart attack or irreversible kidney failure.",
+          "In trained runners, many of those spikes trend back toward baseline over hours to a few days. The clinical problem is knowing **your** red flags: symptoms that don't match \"tired and sore,\" rare complications like symptomatic hyponatremia, and people with underlying disease who shouldn't treat social media recovery checklists as medical clearance.",
+        ],
+        list: [
+          "Heart muscle markers and pump-function shifts are common and usually transient in healthy adults",
+          "Skeletal muscle damage and soreness often peak 24–72 hours later (DOMS window)",
+          "Kidney and gut biomarkers jump post-race; many resolve around 24 hours, some linger",
+          "Hydration mistakes go both ways: under-drink in heat vs over-drink into low blood sodium",
+        ],
+      },
+      {
+        id: "heart",
+        heading: "Heart: biomarkers, temporary pump changes, and what imaging adds",
+        paragraphs: [
+          "A 2026 systematic review and meta-analysis in *BMJ Open Sport & Exercise Medicine* pooled road-marathon studies of healthy adults (search through April 2025; 69 studies qualitatively, 49 with meta-analysis). Immediately after racing, circulating **troponin T**, **troponin I**, and **NT-proBNP** rose on average by roughly **+42**, **+77**, and **+114 ng/L** respectively — often past cutoffs clinicians use when evaluating possible myocardial injury or heart-failure distress in other settings ([Laily et al., 2026](https://doi.org/10.1136/bmjsem-2026-003201)).",
+          "Echo and MRI pieces of that same synthesis showed modest, short-term shifts: left-ventricular filling and some right-ventricular systolic measures can look different post-race, with right-ventricular volumes often larger, while cardiac MRI in the pooled set did **not** paint a picture of classic infarct-style structural injury. Authors are clear: whether these responses are purely adaptive \"extreme exercise physics\" or early warning signs in susceptible people still needs better long-term, more diverse studies.",
+          "An earlier marathon-only meta-analysis similarly found high-sensitivity troponin I and T elevated after 42 km, with hs-cTnT typically back near baseline by about **72–96 hours** ([Li et al., 2023](https://pubmed.ncbi.nlm.nih.gov/37248881/)).",
+        ],
+        subsections: [
+          {
+            heading: "Men and women — cardiac caveats",
+            paragraphs: [
+              "Most marathon heart papers still enroll far more men than women (often **>70–80% male** cohorts in pooled analyses). Laily and colleagues' meta-regression found that the size of biomarker and echo responses **varied with age, sex, training status, and marathon finish time** — sex is a real modifier of *how the signal looks*, not proof that women's hearts are \"safer\" or \"weaker.\"",
+              "Practical takeaway: don't compare your post-race wearable HR or one random ED troponin to a friend's Strava. Compare symptoms to your usual recovery. Women deserve the same red-flag seriousness for chest pain, syncope, or unexplained breathlessness — under-representation in studies is a research problem, not a reason to shrug off symptoms.",
+            ],
+          },
+        ],
+        cta: {
+          text: "Heart metrics for runners (plain English)",
+          href: "/blog/train-runners-heart-metrics",
+        },
+      },
+      {
+        id: "muscle",
+        heading: "Muscle and tendons: why you limp on Tuesday",
+        paragraphs: [
+          "Every landing is an eccentric load on calves, quads, and hips. After a downhill-heavy course, creatine kinase (CK) and myoglobin commonly spike; soreness often lags a day or two. That is microtrauma and inflammation doing their loud job — usually compatible with recovery if you sleep, eat protein and carbs, and don't double your mileage next weekend.",
+          "At the 2024 Boston Marathon, researchers sampled nearly even numbers of men and women and saw large post-race rises in CK and other organ-stress markers ([McKenna et al., 2025](https://pubmed.ncbi.nlm.nih.gov/41101781/)). Critically for this post: **biological sex did not meaningfully change** the size of those muscle-damage or organ-stress biomarker jumps in that cohort.",
+        ],
+        list: [
+          "**Men:** often higher absolute lean mass → higher absolute CK ceilings are common in exercise studies generally; compare to *your* baseline, not a lab's \"normal\" for a sedentary desk worker",
+          "**Women:** similar relative marathon muscle/organ biomarker stress in the Boston sex-balanced sample; absolute enzyme numbers may look lower when muscle mass is lower — that does not mean \"no damage\"",
+          "True rhabdomyolysis with kidney failure risk is uncommon in recreational marathons but more concerning with extreme heat, crush-level soreness, cola-colored urine, and confusion — get checked",
+        ],
+        closingParagraphs: [
+          "Connective tissue still argues for weeks of respect after the race even when blood looks quieter. See [post-run recovery](/blog/post-run-recovery) and [first-full marathon training](/blog/training-first-full-marathon).",
+        ],
+      },
+      {
+        id: "kidneys",
+        heading: "Kidneys: stress markers shoot up — then usually calm down",
+        paragraphs: [
+          "Reduced kidney blood flow during prolonged hard effort, heat, NSAIDs, and muscle breakdown byproducts can all stress renal tubules. A 2025 systematic review and meta-analysis of marathon AKI-related biomarkers concluded that most measured markers rise significantly right after the race, with several recovery patterns over the next 24 hours — some still elevated, some falling, a few dipping below baseline ([Leucuța et al., 2025](https://pubmed.ncbi.nlm.nih.gov/41155766/)).",
+          "Boston 2024 field data again: AKI-pathway markers rose post-race, and **sex and hydration category did not erase those rises** — staying \"not severely dehydrated\" did not fully cancel the stress signal ([McKenna et al., 2025](https://pubmed.ncbi.nlm.nih.gov/41101781/)).",
+        ],
+        list: [
+          "Rising creatinine or urinary stress markers after a marathon are common research findings — they are not automatic clinical CKD diagnoses",
+          "Men often have higher baseline creatinine because of more muscle mass; that affects *interpretation* of a single number",
+          "Women can still meet KDIGO-style creatinine *rise* criteria; don't assume \"lower baseline = no stress\"",
+          "Skip improvising high-dose NSAIDs for \"race-day inflammation\" — bad combo with kidney stress and gut irritation",
+        ],
+      },
+      {
+        id: "gut",
+        heading: "Gut: barrier leaks and porta-potty urgency",
+        paragraphs: [
+          "Blood is preferentially routed to working muscle and skin; the gut can temporarily become a low-priority organ. Markers of intestinal-barrier injury (such as I-FABP) jumped after Boston alongside kidney and muscle markers, again **without a clear male–female split** in that study. Subjective GI symptoms also looked similar across sexes there.",
+          "Practice what you'll drink and gel in training. Race-day gut chaos is often fuel novelty + intensity + heat stacking — not mysterious \"weak stomach destiny.\" Details: [runner's GI distress](/blog/runners-gi-distress).",
+        ],
+      },
+      {
+        id: "fluids",
+        heading: "Fluids and sodium: the sex difference that keeps showing up",
+        paragraphs: [
+          "Exercise-associated hyponatremia (EAH) — low blood sodium during or soon after long exercise — is the fluid complication that matters most on race weekend. Mayo Clinic's hyponatremia primer covers the general medical picture ([hyponatremia](https://www.mayoclinic.org/diseases-conditions/hyponatremia/symptoms-causes/syc-20373711)); marathon-specific reviews put prevalence of laboratory or symptomatic EAH in a broad ballpark historically cited around **~7–15%** in some race sampling contexts, with severe encephalopathy rare but real ([Klingert et al., 2022](https://pubmed.ncbi.nlm.nih.gov/36431252/)).",
+          "A landmark Boston Marathon study found hyponatremia associated with **weight gain** (overdrinking), **slower finish times**, and BMI extremes — and in multivariate analysis **sex dropped out** once race time and body size were accounted for ([Almond et al., 2005](https://pubmed.ncbi.nlm.nih.gov/15814880/)).",
+        ],
+        subsections: [
+          {
+            heading: "Why women still get special coaching notes",
+            paragraphs: [
+              "Field reports and narrative marathon reviews still often list **female sex** among person-related EAH risk signals — partly because smaller body size, longer time on course for many recreational fields, and a tendency (in some samples) to drink more relative to sweat loss can stack the math. Hormones across the menstrual cycle can also influence water handling.",
+              "So: women are not \"doomed,\" and men are not \"immune.\" Women (and slower finishers of any sex) should be extra wary of forced gallon-chugging plans. Drink to thirst in typical cool–mild conditions, practice sodium with fluids when sweating hard, and treat weight *gain* during the race as a warning — not a hydration success story. More: [hydration & electrolytes](/blog/hydration-electrolytes-running).",
+            ],
+          },
+          {
+            heading: "Men-specific fluid/muscle notes",
+            paragraphs: [
+              "Men more often finish faster on average and sweat larger absolute volumes when heavier — dehydration and heat illness still matter. Higher absolute muscle mass can also mean louder absolute CK after the same course. Neither makes \"drink until you slosh\" smart.",
+            ],
+          },
+        ],
+      },
+      {
+        id: "women-men-summary",
+        heading: "Men vs women: a practical scorecard",
+        paragraphs: [
+          "Same distance, shared systems — overlapping stress patterns with a few coaching accents.",
+        ],
+        subsections: [
+          {
+            heading: "Where sex looked similar (recent field data)",
+            list: [
+              "Post-Boston rises in kidney stress, gut-barrier, and muscle-damage biomarkers — no clear male/female difference in McKenna et al., 2025",
+              "GI symptom reports similar across sexes in that sample",
+              "Staying euhydrated did not fully prevent organ-stress biomarker rises for either sex",
+            ],
+          },
+          {
+            heading: "Where coaching still differs",
+            list: [
+              "**Women:** prioritize EAH prevention (don't overdrink); track iron if fatigue is outsized; respect menstrual-cycle/REDs context if cycles vanish in the build ([women's running guide](/blog/running-guide-for-women); [REDs](/blog/reds-low-energy-availability-runners))",
+              "**Men:** don't treat higher absolute CK or \"I always crush NSAIDs\" as toughness — kidneys and gut get the bill",
+              "**Both:** cardiac research is male-skewed — take symptoms seriously; aged masters of either sex may show different biomarker/echo magnitude per Laily meta-regression",
+            ],
+          },
+        ],
+      },
+      {
+        id: "timeline",
+        heading: "A rough recovery timeline (healthy finishers)",
+        list: [
+          "**0–6 hours:** biomarkers noisy; walk, dry clothes, carbs + protein, sip — don't chug liters for sport",
+          "**6–48 hours:** legs peak sore; sleep debt hits; many kidney markers falling in research cohorts",
+          "**48–96 hours:** cardiac troponin patterns in marathon meta-analyses often settling toward baseline in the measured window",
+          "**1–3 weeks:** gradual return to easy volume; hold off on hammer sessions until sleep and mood feel normal",
+        ],
+        closingParagraphs: [
+          "Hitting the wall mid-race is mostly fuel and pacing — different problem than organ labs, same solution sheet: practice. See [why you hit the wall](/blog/hitting-the-wall-marathon).",
+        ],
+      },
+      {
+        id: "red-flags",
+        heading: "Red flags — leave the \"it's just a marathon\" cope at home",
+        list: [
+          "Chest pain, pressure, jaw/arm radiation, fainting, or new irregular heartbeat sensation",
+          "Confusion, seizures, severe headache, or vomiting with known big fluid intake (possible EAH emergency)",
+          "Cola-colored urine, inability to pee, extreme swelling, or crippling muscle pain out of proportion",
+          "Fever, breathlessness at rest, or symptoms that worsen after the first day",
+        ],
+        paragraphs: [
+          "If you have known heart disease, hypertension on complex meds, prior myocarditis, or a scary family cardiac history, get individualized clearance before the build — Mayo's framing on exercise with chronic conditions is a sane starting point for that conversation ([exercise & chronic disease](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise-and-chronic-disease/art-20046049)).",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "A full marathon temporarily turns up biomarkers of heart, muscle, kidney, and gut stress in healthy adults. Newer syntheses (including 2025–2026 heart and kidney metas and sex-balanced Boston sampling) say those rises are expected; imaging usually doesn't show infarct-style injury; and **sex often matters less for lab organ stress than blogs claim** — except where fluid-sodium risk and incomplete female cardiac sampling deserve stronger coaching language.",
+          "Train for the distance, practice fuel and drink-to-thirst, recover like the race counted, and treat dramatic symptoms as medicine — not motivational content.",
+        ],
+        cta: {
+          text: "Browse free marathon-capable plans",
+          href: "/plan",
+        },
+      },
+    ],
+  },
 ];
