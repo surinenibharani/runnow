@@ -69,8 +69,8 @@ export const tipsSectionNav = [
 ] as const;
 
 export const footerTrainLinks = [
+  { href: "/start", label: "Start here" },
   { href: "/plan", label: "Training Plans" },
-  { href: "/start", label: "Find your plan" },
   { href: "/dashboard", label: "Dashboard" },
 ] as const;
 

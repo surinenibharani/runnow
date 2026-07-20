@@ -78,6 +78,10 @@ export default function SpecificSituationsTipsPage() {
             <Link href="/injuries" className="text-primary hover:underline">
               injury prevention guide
             </Link>
+            . Don&apos;t know where to start?{" "}
+            <Link href="/start" className="text-primary hover:underline">
+              Start here
+            </Link>
             . For a longer read on medical considerations, see{" "}
             <Link
               href="/blog/running-with-health-conditions"

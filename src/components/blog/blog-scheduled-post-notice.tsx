@@ -56,10 +56,10 @@ export function BlogScheduledPostNotice({
           </Button>
           <Button
             nativeButton={false}
-            render={<Link href="/plan" />}
+            render={<Link href="/start" />}
             variant="outline"
           >
-            Free training plans
+            Start here
           </Button>
         </div>
       </div>

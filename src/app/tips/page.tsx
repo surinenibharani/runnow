@@ -122,11 +122,15 @@ export default function TipsPage() {
             <Link href="/injuries" className="text-primary hover:underline">
               injury prevention guide
             </Link>{" "}
-            or build a plan tuned to your age on the{" "}
+            Don&apos;t know where to start?{" "}
+            <Link href="/start" className="text-primary hover:underline">
+              Start here
+            </Link>
+            . Or browse{" "}
             <Link href="/plan" className="text-primary hover:underline">
               training plans
             </Link>{" "}
-            page. Many tips link to longer articles on the{" "}
+            and the{" "}
             <Link href="/blog" className="text-primary hover:underline">
               blog
             </Link>

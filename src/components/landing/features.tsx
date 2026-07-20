@@ -1,4 +1,5 @@
 import { Calendar, Heart, TrendingUp, Trophy } from "lucide-react";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 
@@ -39,6 +40,11 @@ export function Features() {
           </h2>
           <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
             No expensive gear, no complicated apps. Just a clear path forward.
+            Don&apos;t know where to start?{" "}
+            <Link href="/start" className="text-primary hover:underline">
+              Start here
+            </Link>
+            .
           </p>
         </FadeIn>
 

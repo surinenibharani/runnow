@@ -16,9 +16,13 @@ export default function NotFound() {
       <h1 className="text-3xl font-bold tracking-tight">Page not found</h1>
       <p className="mt-3 max-w-md text-muted-foreground">
         The page you are looking for may have moved or no longer exists.
+        Don&apos;t know where to start? Start here.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <Button nativeButton={false} render={<Link href="/" />}>
+        <Button nativeButton={false} render={<Link href="/start" />}>
+          Start here
+        </Button>
+        <Button nativeButton={false} render={<Link href="/" />} variant="outline">
           Home
         </Button>
         <Button nativeButton={false} render={<Link href="/plan" />} variant="outline">

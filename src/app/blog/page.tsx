@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
@@ -77,6 +78,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
               Practical guides for beginners — from your first jog to your first
               marathon. Written by runners who remember what day one felt like.
+              Don&apos;t know where to start?{" "}
+              <Link href="/start" className="font-medium text-primary hover:underline">
+                Start here
+              </Link>
+              .
             </p>
           </div>
         </FadeIn>

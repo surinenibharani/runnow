@@ -31,21 +31,33 @@ export function TrainingPlanSignupCard({
             <ClipboardList className="size-7" />
           </div>
           <h2 className="mt-5 text-2xl font-bold tracking-tight sm:text-3xl">
-            Sign up for a training plan
+            Don&apos;t know where to start?
           </h2>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Pick your distance, set your goal race, and customize your weekly schedule.
-            Your plan will show here on the dashboard once you start.
+            Start here for a short quiz that recommends a free plan — or browse
+            every distance and customize your weekly schedule. Your plan will
+            show here on the dashboard once you begin.
           </p>
-          <Button
-            nativeButton={false}
-            render={<Link href="/plan#plan-tracker" />}
-            size="lg"
-            className="mt-6 h-12 w-full gap-2 px-8 text-base sm:w-auto sm:min-w-[15rem]"
-          >
-            Choose your plan
-            <ArrowRight className="size-5" />
-          </Button>
+          <div className="mt-6 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <Button
+              nativeButton={false}
+              render={<Link href="/start" />}
+              size="lg"
+              className="h-12 w-full gap-2 px-8 text-base sm:min-w-[12rem]"
+            >
+              Start here
+              <ArrowRight className="size-5" />
+            </Button>
+            <Button
+              nativeButton={false}
+              render={<Link href="/plan#plan-tracker" />}
+              size="lg"
+              variant="outline"
+              className="h-12 w-full gap-2 px-8 text-base sm:min-w-[12rem]"
+            >
+              Browse plans
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>

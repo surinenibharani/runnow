@@ -1,20 +1,26 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { Button } from "@/components/ui/button";
 
 const steps = [
   {
     step: "01",
-    title: "Pick your start day",
-    description: "Choose any day to begin. The plan runs three days a week with rest in between.",
+    title: "Start here",
+    description:
+      "Not sure which plan fits? Answer a few questions and we'll recommend a free beginner plan.",
   },
   {
     step: "02",
     title: "Follow the walk-run intervals",
-    description: "Each workout tells you exactly when to walk and when to jog. Start slow, stay consistent.",
+    description:
+      "Each workout tells you exactly when to walk and when to jog. Start slow, stay consistent.",
   },
   {
     step: "03",
     title: "Check off and come back",
-    description: "Mark workouts complete, build your streak, and get an adaptive coach that reads recovery, plan alignment, and pace — without an app subscription.",
+    description:
+      "Mark workouts complete, build your streak, and get an adaptive coach that reads recovery, plan alignment, and pace — without an app subscription.",
   },
 ];
 
@@ -44,6 +50,21 @@ export function HowItWorks() {
             </StaggerItem>
           ))}
         </StaggerChildren>
+
+        <FadeIn className="mt-12 text-center">
+          <p className="text-sm text-muted-foreground sm:text-base">
+            Don&apos;t know where to start?
+          </p>
+          <Button
+            nativeButton={false}
+            render={<Link href="/start" />}
+            size="lg"
+            className="mt-3 gap-2"
+          >
+            Start here
+            <ArrowRight className="size-4" aria-hidden />
+          </Button>
+        </FadeIn>
       </div>
     </section>
   );

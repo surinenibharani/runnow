@@ -20,8 +20,8 @@ export function Footer() {
         <div className="mb-10">
           <StartPlanCta
             variant="compact"
-            headline="Start your free training plan"
-            description="Couch to 5K in your browser — check off workouts, build a streak, no app required."
+            headline="Don't know where to start?"
+            description="Start here for a free plan recommendation — then check off workouts in your browser. No app required."
           />
         </div>
 

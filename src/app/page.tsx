@@ -37,7 +37,7 @@ export default function Home() {
             href="/start"
             className="inline-flex min-h-11 items-center justify-center font-medium text-primary hover:underline touch-target sm:min-h-0"
           >
-            New? Start here
+            Don&apos;t know where to start? Start here
           </Link>
           <span className="hidden text-muted-foreground sm:inline" aria-hidden>
             ·

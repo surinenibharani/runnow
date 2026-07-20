@@ -43,8 +43,9 @@ export default function StartPage() {
             Start here
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-            A short quiz about your experience, fitness, goal, and health
-            context — then a plan that fits, free in your browser.
+            Don&apos;t know where to start? Answer a short quiz about your
+            experience, fitness, goal, and health context — then get a free plan
+            that fits, in your browser.
           </p>
           <p className="mx-auto mt-3 max-w-lg text-sm text-muted-foreground">
             Already know your distance?{" "}

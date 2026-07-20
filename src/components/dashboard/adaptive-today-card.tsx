@@ -25,7 +25,7 @@ const TONE_STYLES: Record<AdaptiveMetricInsight["tone"], string> = {
 const ACTION_CTA: Partial<
   Record<AdaptiveBrief["action"], { href: string; label: string }>
 > = {
-  start_plan: { href: "/plan", label: "Choose a plan" },
+  start_plan: { href: "/start", label: "Start here" },
   connect_strava: { href: "/api/strava/connect", label: "Connect Strava" },
   catch_up_gently: { href: "/plan", label: "Adjust on plan page" },
   protect_taper: { href: "/plan", label: "Open plan" },

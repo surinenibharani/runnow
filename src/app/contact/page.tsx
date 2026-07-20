@@ -67,11 +67,11 @@ export default function ContactPage() {
             <Link href="/faq" className="text-primary hover:underline">
               FAQ
             </Link>{" "}
-            or start with{" "}
+            or{" "}
             <Link href="/start" className="text-primary hover:underline">
-              Find your plan
-            </Link>
-            .
+              Start here
+            </Link>{" "}
+            if you don&apos;t know where to begin.
           </p>
         </FadeIn>
       </div>

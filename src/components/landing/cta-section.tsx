@@ -8,7 +8,7 @@ export function CtaSection() {
         <FadeIn>
           <StartPlanCta
             headline="Ready to lace up?"
-            description="Your future self will thank you. Start the free 8-week plan today — no account, no pressure, just progress."
+            description="Don't know where to start? Start here — a short quiz picks a free plan. No account, no pressure, just progress."
           />
         </FadeIn>
       </div>

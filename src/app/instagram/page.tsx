@@ -169,7 +169,7 @@ export default async function InstagramPage() {
 
           <StartPlanCta
             headline="Put the tips into a plan"
-            description="Start the free beginner plan in your browser — check off workouts, build a streak, no app required."
+            description="Don't know where to start? Start here for a free plan recommendation — then check off workouts in your browser."
           />
         </FadeIn>
       </div>

@@ -987,6 +987,10 @@ export function DashboardContent() {
         )}
 
         <p className="text-center text-sm text-muted-foreground">
+          <Link href="/start" className="text-primary hover:underline">
+            Start here
+          </Link>
+          {" · "}
           <Link href="/plan" className="text-primary hover:underline">
             View training plans
           </Link>

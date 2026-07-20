@@ -68,7 +68,7 @@ const STATIC_PAGES: SiteSearchResult[] = [
     id: "page-start",
     title: "Start here",
     description:
-      "Answer a short quiz about experience, fitness, goals, and schedule to get a recommended free plan.",
+      "Don't know where to start? Answer a short quiz about experience, fitness, goals, and schedule to get a recommended free plan.",
     href: "/start",
     kind: "page",
     category: "Plans",

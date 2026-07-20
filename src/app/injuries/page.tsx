@@ -155,9 +155,14 @@ export default function InjuriesPage() {
 
         <FadeIn className="text-center">
           <p className="text-sm text-muted-foreground">
-            Stay healthy with a structured plan and built-in rest days.{" "}
+            Stay healthy with a structured plan and built-in rest days. Don&apos;t
+            know where to start?{" "}
+            <Link href="/start" className="text-primary hover:underline">
+              Start here
+            </Link>
+            {" · "}
             <Link href="/plan" className="text-primary hover:underline">
-              View training plans
+              Training plans
             </Link>
             {" · "}
             <Link href="/tips" className="text-primary hover:underline">

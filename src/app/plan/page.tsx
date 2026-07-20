@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -9,6 +10,7 @@ import { PlanCatalog } from "@/components/plan/plan-catalog";
 import { PlanLoading } from "@/components/plan/plan-loading";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { PlanPageHero } from "@/components/visuals/plan-scenes";
+import { Button } from "@/components/ui/button";
 import { getPlanById } from "@/lib/plans";
 import {
   buildPlanPageMetadata,
@@ -54,6 +56,20 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
               goal race date for a plan tuned to you. Customize run days, rest day,
               and long run day — runs and cross-training shift to fit your schedule.
             </p>
+            <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
+              Don&apos;t know where to start?{" "}
+              <Link href="/start" className="font-medium text-primary hover:underline">
+                Start here
+              </Link>{" "}
+              for a 60-second recommendation.
+            </p>
+            <Button
+              nativeButton={false}
+              render={<Link href="/start" />}
+              className="mt-5"
+            >
+              Start here
+            </Button>
           </div>
         </FadeIn>
 

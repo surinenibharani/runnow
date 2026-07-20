@@ -106,9 +106,9 @@ export default function FaqPage() {
             </Link>{" "}
             or{" "}
             <Link href="/start" className="text-primary hover:underline">
-              find a plan that fits
-            </Link>
-            .
+              Start here
+            </Link>{" "}
+            if you don&apos;t know which plan fits.
           </p>
         </FadeIn>
       </div>

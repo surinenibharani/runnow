@@ -55,8 +55,8 @@ export default async function PlanSharePage({ searchParams }: PageProps) {
           This share link is missing details. Open your training plan and use
           Share progress to generate a new link.
         </p>
-        <Button nativeButton={false} render={<Link href="/plan" />} className="mt-6">
-          View training plans
+        <Button nativeButton={false} render={<Link href="/start" />} className="mt-6">
+          Start here
         </Button>
       </div>
     );
@@ -127,8 +127,16 @@ export default async function PlanSharePage({ searchParams }: PageProps) {
 
         <FadeIn delay={0.2}>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <Button nativeButton={false} render={<Link href="/plan" />} size="lg">
-              Start your own plan
+            <Button nativeButton={false} render={<Link href="/start" />} size="lg">
+              Start here
+            </Button>
+            <Button
+              nativeButton={false}
+              render={<Link href="/plan" />}
+              variant="outline"
+              size="lg"
+            >
+              Browse plans
             </Button>
             <Button
               nativeButton={false}

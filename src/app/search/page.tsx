@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import {
@@ -37,6 +38,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           </h1>
           <p className="mt-3 text-muted-foreground">
             Find training plans, blog posts, tips, gear guides, and more.
+            Don&apos;t know where to start?{" "}
+            <Link href="/start" className="font-medium text-primary hover:underline">
+              Start here
+            </Link>
+            .
           </p>
 
           <div className="mt-6">
@@ -51,6 +57,16 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 ? `No results for “${query}”`
                 : `${results.length} result${results.length === 1 ? "" : "s"} for “${query}”`}
             </p>
+
+            {results.length === 0 && (
+              <p className="mt-3 text-sm text-muted-foreground">
+                Try another search, or{" "}
+                <Link href="/start" className="font-medium text-primary hover:underline">
+                  Start here
+                </Link>{" "}
+                for a plan recommendation.
+              </p>
+            )}
 
             {results.length > 0 && (
               <ul className="mt-4 flex flex-col gap-3">

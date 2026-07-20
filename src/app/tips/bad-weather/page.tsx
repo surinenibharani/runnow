@@ -81,7 +81,11 @@ export default function BadWeatherTipsPage() {
 
         <FadeIn className="mt-10 text-center text-sm text-muted-foreground">
           <p>
-            Need a structured plan for rest and cross-training days?{" "}
+            Don&apos;t know where to start?{" "}
+            <Link href="/start" className="text-primary hover:underline">
+              Start here
+            </Link>
+            . Need a structured plan for rest and cross-training days?{" "}
             <Link href="/plan" className="text-primary hover:underline">
               Open your training plan
             </Link>

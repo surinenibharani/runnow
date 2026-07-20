@@ -16,6 +16,11 @@ export function Testimonials() {
             <Link href="/stories" className="text-primary hover:underline">
               Read success stories
             </Link>
+            {" · "}
+            Don&apos;t know where to start?{" "}
+            <Link href="/start" className="text-primary hover:underline">
+              Start here
+            </Link>
           </p>
         </FadeIn>
 

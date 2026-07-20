@@ -218,7 +218,11 @@ export default function GearPage() {
 
         <FadeIn className="mt-12 text-center">
           <p className="text-sm text-muted-foreground">
-            New to running? Start with our{" "}
+            New to running? Don&apos;t know where to start?{" "}
+            <Link href="/start" className="text-primary hover:underline">
+              Start here
+            </Link>
+            {" · "}
             <Link href="/blog/choosing-running-shoes" className="text-primary hover:underline">
               shoe guide
             </Link>

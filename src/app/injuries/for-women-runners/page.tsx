@@ -119,6 +119,10 @@ export default function ForWomenRunnersInjuriesPage() {
               All running injuries
             </Link>
             {" · "}
+            <Link href="/start" className="text-primary hover:underline">
+              Start here
+            </Link>
+            {" · "}
             <Link href="/plan" className="text-primary hover:underline">
               Training plans
             </Link>

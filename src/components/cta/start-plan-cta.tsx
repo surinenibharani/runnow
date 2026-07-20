@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 type StartPlanCtaProps = {
   variant?: "banner" | "compact" | "button";
+  /** Optional direct plan link shown as a secondary action. */
   planId?: string;
   className?: string;
   headline?: string;
@@ -16,24 +17,28 @@ function planHref(planId: string) {
   return `/plan/${planId}#plan-tracker`;
 }
 
+const DEFAULT_HEADLINE = "Don't know where to start?";
+const DEFAULT_DESCRIPTION =
+  "Start here — a short quiz recommends a free beginner plan. No account, no app download.";
+
 export function StartPlanCta({
   variant = "banner",
   planId = DEFAULT_PLAN_ID,
   className,
-  headline = "Ready to start running?",
-  description = "Free couch to 5K plan in your browser — no app download, no paywall.",
+  headline = DEFAULT_HEADLINE,
+  description = DEFAULT_DESCRIPTION,
 }: StartPlanCtaProps) {
-  const href = planHref(planId);
+  const browseHref = planHref(planId);
 
   if (variant === "button") {
     return (
       <Button
         nativeButton={false}
-        render={<Link href={href} />}
+        render={<Link href="/start" />}
         size="sm"
         className={className}
       >
-        Start Plan
+        Start here
         <ArrowRight className="size-4" aria-hidden />
       </Button>
     );
@@ -51,14 +56,24 @@ export function StartPlanCta({
           <p className="font-semibold">{headline}</p>
           <p className="mt-1 text-sm text-muted-foreground">{description}</p>
         </div>
-        <Button
-          nativeButton={false}
-          render={<Link href={href} />}
-          className="shrink-0 gap-2"
-        >
-          Start Plan
-          <ArrowRight className="size-4" aria-hidden />
-        </Button>
+        <div className="flex shrink-0 flex-wrap gap-2">
+          <Button
+            nativeButton={false}
+            render={<Link href="/start" />}
+            className="gap-2"
+          >
+            Start here
+            <ArrowRight className="size-4" aria-hidden />
+          </Button>
+          <Button
+            nativeButton={false}
+            render={<Link href={browseHref} />}
+            variant="outline"
+            className="gap-2"
+          >
+            Browse plans
+          </Button>
+        </div>
       </div>
     );
   }
@@ -78,16 +93,27 @@ export function StartPlanCta({
         <p className="mx-auto mt-3 max-w-lg text-primary-foreground/85 text-balance">
           {description}
         </p>
-        <Button
-          nativeButton={false}
-          render={<Link href={href} />}
-          size="lg"
-          variant="secondary"
-          className="mt-6 h-12 gap-2 px-8 text-base"
-        >
-          Start Plan
-          <ArrowRight className="size-4" aria-hidden />
-        </Button>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <Button
+            nativeButton={false}
+            render={<Link href="/start" />}
+            size="lg"
+            variant="secondary"
+            className="h-12 gap-2 px-8 text-base"
+          >
+            Start here
+            <ArrowRight className="size-4" aria-hidden />
+          </Button>
+          <Button
+            nativeButton={false}
+            render={<Link href={browseHref} />}
+            size="lg"
+            variant="outline"
+            className="h-12 border-primary-foreground/35 bg-transparent px-6 text-base text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+          >
+            Browse plans
+          </Button>
+        </div>
       </div>
     </div>
   );

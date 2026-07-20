@@ -99,7 +99,7 @@ export default function AboutPage() {
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Button nativeButton={false} render={<Link href="/start" />}>
-              Find your plan
+              Start here
             </Button>
             <Button
               nativeButton={false}

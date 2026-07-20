@@ -185,7 +185,7 @@ export default async function StoriesPage() {
 
           <StartPlanCta
             headline="Write your own success story"
-            description="Start the free plan today — no app, no paywall. Your first week is one checkbox at a time."
+            description="Don't know where to start? Start here — then check off workouts one week at a time."
           />
         </FadeIn>
       </div>
