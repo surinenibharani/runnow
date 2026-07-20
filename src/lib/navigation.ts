@@ -22,8 +22,8 @@ export const mainNavGroups: NavGroup[] = [
   {
     ariaLabel: "Training",
     links: [
-      { href: "/plan", label: "Plans", matchPrefix: true },
       { href: "/start", label: "Start here", matchPrefix: true },
+      { href: "/plan", label: "Plans", matchPrefix: true },
       {
         href: "/dashboard",
         label: "Dashboard",
