@@ -9,8 +9,9 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { Button } from "@/components/ui/button";
 import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { SITE_NAME, SUPPORT_EMAIL } from "@/lib/site";
+import { SITE_NAME } from "@/lib/site";
 import { successStories } from "@/lib/testimonials";
+import { getCommunityTestimonials } from "@/lib/testimonials/community";
 
 const TITLE = "Success Stories from Beginner Runners";
 const DESCRIPTION =
@@ -22,7 +23,22 @@ export const metadata: Metadata = pageMetadata({
   path: "/stories",
 });
 
-export default function StoriesPage() {
+export const revalidate = 60;
+
+export default async function StoriesPage() {
+  const community = await getCommunityTestimonials();
+
+  const listItems = [
+    ...successStories.map((story) => ({
+      name: `${story.name} — ${story.milestone ?? story.detail}`,
+      path: "/stories",
+    })),
+    ...community.map((story) => ({
+      name: `${story.authorName} — ${story.milestone ?? story.detail ?? "Community story"}`,
+      path: "/stories",
+    })),
+  ];
+
   return (
     <div className="py-12 sm:py-16">
       <JsonLd
@@ -39,10 +55,7 @@ export default function StoriesPage() {
           itemListJsonLd({
             name: "Beginner running success stories",
             path: "/stories",
-            items: successStories.map((story) => ({
-              name: `${story.name} — ${story.milestone ?? story.detail}`,
-              path: "/stories",
-            })),
+            items: listItems,
           }),
         ]}
       />
@@ -57,6 +70,13 @@ export default function StoriesPage() {
             Beginners who laced up, stuck with the plan, and proved they could do
             hard things — one week at a time.
           </p>
+          <Button
+            nativeButton={false}
+            render={<Link href="/stories/write" />}
+            className="mt-6"
+          >
+            Share your story
+          </Button>
         </FadeIn>
 
         <StaggerChildren className="grid gap-6">
@@ -87,27 +107,58 @@ export default function StoriesPage() {
           ))}
         </StaggerChildren>
 
+        {community.length > 0 && (
+          <FadeIn className="mt-14">
+            <h2 className="mb-6 text-center text-2xl font-bold tracking-tight">
+              From the community
+            </h2>
+            <StaggerChildren className="grid gap-6">
+              {community.map((story) => (
+                <StaggerItem key={story.id}>
+                  <article className="rounded-2xl border border-border/60 bg-muted/15 px-6 py-7 sm:px-8">
+                    <p className="text-lg leading-relaxed sm:text-xl">
+                      &ldquo;{story.quote}&rdquo;
+                    </p>
+                    {story.story && (
+                      <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base whitespace-pre-wrap">
+                        {story.story}
+                      </p>
+                    )}
+                    <div className="mt-5 flex flex-wrap items-end justify-between gap-3 border-t border-border/60 pt-4">
+                      <div>
+                        <p className="font-semibold">{story.authorName}</p>
+                        {story.detail && (
+                          <p className="text-sm text-muted-foreground">
+                            {story.detail}
+                          </p>
+                        )}
+                      </div>
+                      {story.milestone && (
+                        <p className="text-sm font-medium text-foreground/80">
+                          {story.milestone}
+                        </p>
+                      )}
+                    </div>
+                  </article>
+                </StaggerItem>
+              ))}
+            </StaggerChildren>
+          </FadeIn>
+        )}
+
         <FadeIn className="mt-12 space-y-8">
           <div className="rounded-xl border border-border/60 bg-muted/20 p-6 sm:p-8 text-center">
             <h2 className="text-xl font-semibold">Share your story</h2>
             <p className="mx-auto mt-2 max-w-lg text-sm text-muted-foreground">
-              Finished a week or your whole plan? Use the share buttons on your
-              training tracker — friends see your progress and can start their own
-              plan from your link. Or email{" "}
-              <a
-                href={`mailto:${SUPPORT_EMAIL}`}
-                className="text-primary hover:underline"
-              >
-                {SUPPORT_EMAIL}
-              </a>{" "}
-              if you want to be featured.
+              No account needed. Write a short quote about what helped you stick
+              with running — it shows under Success Stories for the next beginner.
             </p>
             <Button
               nativeButton={false}
-              render={<Link href="/plan" />}
+              render={<Link href="/stories/write" />}
               className="mt-4"
             >
-              Open training tracker
+              Write a testimonial
             </Button>
           </div>
 

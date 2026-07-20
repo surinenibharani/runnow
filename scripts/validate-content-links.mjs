@@ -45,6 +45,7 @@ const staticRoutes = new Set([
   "/injuries/for-women-runners",
   "/injuries/for-men-runners",
   "/stories",
+  "/stories/write",
   "/instagram",
   "/dashboard",
   "/search",

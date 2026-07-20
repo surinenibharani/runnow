@@ -91,6 +91,15 @@ const STATIC_PAGES: SiteSearchResult[] = [
     category: "Community",
   },
   {
+    id: "page-stories-write",
+    title: "Share your success story",
+    description:
+      "Write a testimonial about your beginner running journey — no account required.",
+    href: "/stories/write",
+    kind: "page",
+    category: "Community",
+  },
+  {
     id: "page-instagram",
     title: "Instagram tips",
     description: "Curated running tips from LetsRunNow on Instagram.",

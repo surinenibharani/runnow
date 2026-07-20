@@ -172,3 +172,50 @@ ${content}
 View: ${url}`,
   };
 }
+
+export function newTestimonialEmail({
+  authorName,
+  quote,
+  story,
+  detail,
+  milestone,
+}: {
+  authorName: string;
+  quote: string;
+  story?: string | null;
+  detail?: string | null;
+  milestone?: string | null;
+}) {
+  const pageUrl = `${SITE_URL.replace(/\/$/, "")}/stories`;
+  const safeAuthor = escapeHtml(authorName);
+  const safeQuote = escapeHtml(quote);
+  const safeStory = story ? escapeHtml(story) : "";
+  const safeDetail = detail ? escapeHtml(detail) : "";
+  const safeMilestone = milestone ? escapeHtml(milestone) : "";
+  const preheader = `${safeAuthor} shared a success story`;
+
+  const body = `
+    <h1 style="margin:0 0 12px;font-size:22px;line-height:1.3;">New success story</h1>
+    <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#4b5563;">
+      <strong>${safeAuthor}</strong> submitted a testimonial.
+    </p>
+    <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;">
+      <p style="margin:0 0 12px;font-size:16px;line-height:1.6;color:#111827;font-style:italic;">&ldquo;${safeQuote}&rdquo;</p>
+      ${safeStory ? `<p style="margin:0 0 12px;font-size:15px;line-height:1.6;color:#374151;white-space:pre-wrap;">${safeStory}</p>` : ""}
+      ${safeDetail ? `<p style="margin:0;font-size:13px;color:#6b7280;">${safeDetail}</p>` : ""}
+      ${safeMilestone ? `<p style="margin:8px 0 0;font-size:13px;color:#6b7280;"><strong>Milestone:</strong> ${safeMilestone}</p>` : ""}
+    </div>
+    ${ctaButton(pageUrl, "View success stories")}
+  `;
+
+  return {
+    subject: `New success story from ${sanitizeEmailHeader(authorName)}`,
+    html: emailLayout({ preheader, body }),
+    text: `New success story from ${authorName}
+
+"${quote}"
+${story ? `\n${story}\n` : ""}${detail ? `\n${detail}` : ""}${milestone ? `\nMilestone: ${milestone}` : ""}
+
+View: ${pageUrl}`,
+  };
+}

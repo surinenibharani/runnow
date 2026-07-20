@@ -74,22 +74,31 @@ export function Hero() {
             </Button>
           </div>
 
-          <div className="relative z-10 mt-5 flex w-full max-w-md flex-col gap-3 sm:mt-6 sm:max-w-none sm:flex-row sm:justify-center">
+          <div className="relative z-10 mt-5 flex w-full max-w-md flex-col gap-3 sm:mt-6 sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center">
             <Button
               nativeButton={false}
-              render={<Link href="/plan" />}
+              render={<Link href="/start" />}
               size="lg"
               className={heroButtonClass}
             >
-              Start Plan
+              Start here
               <ArrowRight className="size-4 shrink-0" />
+            </Button>
+            <Button
+              nativeButton={false}
+              render={<Link href="/plan" />}
+              variant="outline"
+              size="lg"
+              className={`${heroButtonClass} border-teal-500/30 bg-teal-500/[0.06] text-teal-800 backdrop-blur-sm hover:bg-teal-500/10 dark:text-teal-300`}
+            >
+              Start Plan
             </Button>
             <Button
               nativeButton={false}
               render={<Link href="/tips" />}
               variant="outline"
               size="lg"
-              className={heroButtonClass}
+              className={`${heroButtonClass} border-sky-500/30 bg-sky-500/[0.06] text-sky-800 backdrop-blur-sm hover:bg-sky-500/10 dark:text-sky-300`}
             >
               <Play className="size-4 shrink-0" />
               Read Beginner Tips

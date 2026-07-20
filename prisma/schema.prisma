@@ -148,6 +148,19 @@ model BlogComment {
   @@index([postSlug, createdAt])
 }
 
+// Community success stories submitted from /stories/write (no login required).
+model Testimonial {
+  id         String   @id @default(cuid())
+  authorName String
+  quote      String
+  story      String?
+  detail     String?
+  milestone  String?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+}
+
 // User likes on file-based blog posts or tips, keyed by slug.
 // Guests use identityKey "anon:<cookie>"; signed-in users use "user:<id>".
 model ContentLike {
