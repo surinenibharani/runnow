@@ -17,7 +17,7 @@ export const priorityGapPosts: BlogPost[] = [
       "6.2 miles is the sweet next goal after a 5K — long enough to feel like a leap, short enough to train without marathon-level volume. Here's how to build up safely.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-08-04",
+    publishedAt: "2026-08-18",
     readTime: "9 min",
     relatedSlugs: [
       "training-first-5k",
@@ -186,7 +186,7 @@ export const priorityGapPosts: BlogPost[] = [
       "Fitness fades faster than ego. Whether you took three weeks or three years off, here's how to rebuild mileage so the comeback sticks — and the injuries don't.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-08-22",
+    publishedAt: "2026-09-23",
     readTime: "8 min",
     relatedSlugs: [
       "what-to-do-when-you-miss-a-run",
@@ -325,7 +325,7 @@ export const priorityGapPosts: BlogPost[] = [
       "Pace lies. Heat, stress, and hills make the same 'easy' mile feel different. Learn the talk test, RPE, and simple heart-rate guardrails so most of your training actually builds your base.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-07-25",
+    publishedAt: "2026-07-29",
     readTime: "8 min",
     relatedSlugs: [
       "earn-hard-runs-by-running-easy",

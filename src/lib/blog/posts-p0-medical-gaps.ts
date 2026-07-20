@@ -405,7 +405,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
       "What 26.2 miles does inside the body for men and women — transient heart biomarkers, muscle damage, kidney stress, gut barrier hits, and when those lab bumps are expected vs when they need a clinician — from recent medical journals.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-09-05",
+    publishedAt: "2026-10-21",
     readTime: "14 min",
     relatedSlugs: [
       "training-first-full-marathon",

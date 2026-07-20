@@ -17,7 +17,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "Ice, dark, and wind don't have to end your streak. How to use the treadmill (or indoor swaps) without boredom, blown knees, or fake 'easy' paces.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-08-03",
+    publishedAt: "2026-08-16",
     readTime: "8 min",
     relatedSlugs: [
       "running-in-bad-weather",
@@ -230,7 +230,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "Water vs sports drinks, when salt matters, and how to avoid both dehydration and overdrinking. Practical rules for easy runs, long days, and heat.",
     category: "Nutrition",
     author: AUTHOR,
-    publishedAt: "2026-08-25",
+    publishedAt: "2026-09-29",
     readTime: "8 min",
     relatedSlugs: [
       "nutrition-for-runners",
@@ -450,7 +450,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "Ready for something spicier than easy miles? How to add strides, gentle intervals, and simple VO₂-style work after a 5K — once a week, with full recovery, and no junk intensity.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-08-12",
+    publishedAt: "2026-09-03",
     readTime: "8 min",
     relatedSlugs: [
       "training-first-5k",
@@ -645,7 +645,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       "Carbon plates and bouncy foam can shave a few percent off the cost of running for some athletes — and feel unstable, expensive, or risky for others. What the journals and gear desks actually say about who should (and shouldn't) lace them up.",
     category: "Gear",
     author: AUTHOR,
-    publishedAt: "2026-09-06",
+    publishedAt: "2026-10-23",
     readTime: "12 min",
     relatedSlugs: [
       "choosing-running-shoes",

@@ -346,7 +346,7 @@ export const heartDeepDivePosts: BlogPost[] = [
       "What VO₂max actually measures, why age and sex percentiles beat bragging rights, how easy volume and intervals raise it, and why your watch estimate is a trend tool — not a lab ticket.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-08-16",
+    publishedAt: "2026-09-11",
     readTime: "15 min",
     relatedSlugs: [
       "train-runners-heart-metrics",

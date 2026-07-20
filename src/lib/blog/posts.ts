@@ -2248,7 +2248,7 @@ export const blogPosts: BlogPost[] = [
       "You don't need a race kit on day one. Here's what to wear in heat, cold, and everything in between — plus what to skip.",
     category: "Gear",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-21",
+    publishedAt: "2026-09-21",
     readTime: "5 min",
     relatedSlugs: [
       "beginner-gear-guide-under-50",
@@ -2550,7 +2550,7 @@ export const blogPosts: BlogPost[] = [
       "You don't need a coach on day one. A few visual cues for posture, where your feet land, arm swing, and step rate make running feel smoother and safer.",
     category: "Getting Started",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-13",
+    publishedAt: "2026-09-05",
     readTime: "7 min",
     relatedSlugs: [
       "breathing-while-running",
@@ -3420,7 +3420,7 @@ export const blogPosts: BlogPost[] = [
       "A complete at-home dumbbell session for first-time lifters: warm-up, eight exercises in the right order, sets and reps, and how to progress safely without a gym.",
     category: "Training",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-07-31",
+    publishedAt: "2026-08-10",
     readTime: "10 min",
     relatedSlugs: [
       "dumbbell-strength-at-home-for-runners",
@@ -3629,7 +3629,7 @@ export const blogPosts: BlogPost[] = [
       "I never touched weights in 45 years. A dumbbell set I'd bought five years back — covers still on until a few months ago — two full-body sessions per week, and slow consistency. Here's the routine that finally made strength stick.",
     category: "Training",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-02",
+    publishedAt: "2026-08-14",
     readTime: "16 min",
     relatedSlugs: [
       "dumbbell-strength-at-home-for-runners",
@@ -4274,7 +4274,7 @@ export const blogPosts: BlogPost[] = [
       "A tough trail day can build endurance, hill strength, and time on your feet — but it isn't a perfect swap. Here's when hiking helps training and when to lace up instead.",
     category: "Training",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-07-27",
+    publishedAt: "2026-08-02",
     readTime: "7 min",
     relatedSlugs: [
       "how-to-not-hate-hills",
@@ -4655,7 +4655,7 @@ export const blogPosts: BlogPost[] = [
       "Burning or numbness between your toes isn't normal — Morton's neuroma is common in runners. One friend's story: injections and acupuncture didn't fix it; a metatarsal pad helped a little; wider toe-box shoes (like Topo) finally did.",
     category: "Injuries",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-07-30",
+    publishedAt: "2026-08-08",
     readTime: "8 min",
     relatedSlugs: [
       "choosing-running-shoes",
@@ -4787,7 +4787,7 @@ export const blogPosts: BlogPost[] = [
       "Achilles pain isn't just a beginner injury. I spiked mileage as a seasoned runner and paid for it. Air skipping → heel raises → eccentric heel lowers got me back — and I also retired the Nike Alphafly 3 that kept poking the same tendon.",
     category: "Injuries",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-15",
+    publishedAt: "2026-09-09",
     readTime: "10 min",
     relatedSlugs: [
       "avoiding-injuries",
@@ -4969,7 +4969,7 @@ export const blogPosts: BlogPost[] = [
       "Intermittent fasting and running can coexist — but not every workout belongs in a fasted state. How to time runs around your eating window, long-run rules, and how men and women should adjust differently.",
     category: "Nutrition",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-17",
+    publishedAt: "2026-09-13",
     readTime: "15 min",
     relatedSlugs: [
       "nutrition-for-runners",
@@ -5275,7 +5275,7 @@ export const blogPosts: BlogPost[] = [
       "Running can support weight loss — but many popular beliefs about how it works are misleading. What the science actually says, the biggest myths debunked, and what tends to work in practice.",
     category: "Nutrition",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-01",
+    publishedAt: "2026-08-12",
     readTime: "12 min",
     relatedSlugs: [
       "nutrition-for-runners",
@@ -5478,7 +5478,7 @@ export const blogPosts: BlogPost[] = [
       "Easy runs, tempo days, intervals, and long runs don't need the same fueling. A practical guide to eating and hydrating through a training block — with extra detail for hot, humid weather.",
     category: "Nutrition",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-09",
+    publishedAt: "2026-08-28",
     readTime: "14 min",
     relatedSlugs: [
       "nutrition-for-runners",

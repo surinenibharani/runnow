@@ -258,7 +258,7 @@ export const remainingGapPosts: BlogPost[] = [
       "One place for summer running: how heat changes effort, when to slow down or go indoors, hydration without overdoing it, and the warning signs that mean stop — not 'tough it out.'",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-07-24",
+    publishedAt: "2026-07-27",
     readTime: "8 min",
     relatedSlugs: [
       "running-in-bad-weather",
@@ -575,7 +575,7 @@ export const remainingGapPosts: BlogPost[] = [
       "A watch can coach consistency — or turn every jog into a verdict. When a GPS device helps, when your phone is enough, and how to run by feel without becoming anti-data.",
     category: "Gear",
     author: AUTHOR,
-    publishedAt: "2026-08-28",
+    publishedAt: "2026-10-05",
     readTime: "7 min",
     relatedSlugs: [
       "easy-runs-effort-heart-rate",
@@ -668,7 +668,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Running with a jogging stroller is a skill — not just 'running but heavier.' Setup, posture, when to start postpartum, heat rules with a baby aboard, and how to train without overstriding into the handlebar.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-07-28",
+    publishedAt: "2026-08-04",
     readTime: "8 min",
     relatedSlugs: [
       "postpartum-return-to-run",
@@ -781,7 +781,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Your dog might be ready before you are — or the opposite. Breed and age limits, leash skills, pavement heat, distance progressions, and when a walk is the kinder sport for everyone.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-08-19",
+    publishedAt: "2026-09-17",
     readTime: "8 min",
     relatedSlugs: [
       "hot-weather-running-hub",
@@ -895,7 +895,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Finishers medals look great on social media — but lungs adapt faster than tendons. Here's why most runners need years of progressive loading — including a couple of half marathon seasons — before 26.2 miles (42 km) of repeated impact is a fair ask.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-08-29",
+    publishedAt: "2026-10-07",
     readTime: "14 min",
     relatedSlugs: [
       "training-first-5k",
@@ -1234,7 +1234,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Easy days that feel insultingly slow. Long runs that go on forever. Pacers who refuse your mid-race ego. Here's why good coaches and pacers do what they do — and when to talk, push back, or actually stop.",
     category: "Mindset",
     author: AUTHOR,
-    publishedAt: "2026-08-24",
+    publishedAt: "2026-09-27",
     readTime: "11 min",
     relatedSlugs: [
       "dont-run-a-marathon-in-your-first-year",
@@ -2528,7 +2528,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Bone is living tissue that remolds under load. Here's how progressive strength training changes bone mineral density and architecture — and how that durability, plus stronger muscle, helps you run with fewer stress injuries.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-08-18",
+    publishedAt: "2026-09-15",
     readTime: "11 min",
     relatedSlugs: [
       "weight-yoga-cycling-between-runs",

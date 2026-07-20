@@ -223,7 +223,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "Dark miles are doable with the right route, lights, and habits. How to be visible, choose safer paths, and know when darkness means treadmill instead.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-07-26",
+    publishedAt: "2026-07-31",
     readTime: "7 min",
     relatedSlugs: [
       "cold-weather-running-hub",
@@ -309,7 +309,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "Salt, seams, wet socks, and new shoes create most beginner skin drama. Prevention first, then simple care — without weird internet remedies.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-08-11",
+    publishedAt: "2026-09-01",
     readTime: "7 min",
     relatedSlugs: [
       "what-to-wear-running",
@@ -391,7 +391,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "The oval isn't only for elites. How to find an open track, pick a lane, warm up, run a beginner-friendly session, and leave without lane-one drama.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-07-23",
+    publishedAt: "2026-07-25",
     readTime: "8 min",
     relatedSlugs: [
       "run-workouts-hills-intervals-fartlek-track",
@@ -489,7 +489,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "Family 5Ks, scooter miles, and kid-paced loops can build a lifelong habit — if you keep it playful, age-appropriate, and free of adult ego pacing.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-07-22",
+    publishedAt: "2026-07-23",
     readTime: "8 min",
     relatedSlugs: [
       "stroller-running-guide",
@@ -582,7 +582,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "You don't have to run every step, chug water on cue, or buy a gel wardrobe to be a real runner. The biggest beginner myths — and what to do instead.",
     category: "Mindset",
     author: AUTHOR,
-    publishedAt: "2026-08-31",
+    publishedAt: "2026-10-11",
     readTime: "14 min",
     relatedSlugs: [
       "how-to-pace-yourself",
