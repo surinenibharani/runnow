@@ -12,6 +12,9 @@ export type SendEmailResult =
   | { ok: true; id?: string }
   | { ok: false; error: string };
 
+/** Resend allows this sender without a verified custom domain (often limited to account inbox). */
+const RESEND_ONBOARDING_FROM = "LetsRunNow <onboarding@resend.dev>";
+
 function getFromAddress(): string | null {
   const from = process.env.EMAIL_FROM?.trim();
   return from || null;
@@ -21,15 +24,19 @@ export function isEmailConfigured(): boolean {
   return Boolean(process.env.RESEND_API_KEY?.trim() && getFromAddress());
 }
 
-export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult> {
-  const apiKey = process.env.RESEND_API_KEY?.trim();
-  const from = getFromAddress();
+function isUnverifiedDomainError(status: number, body: string): boolean {
+  return (
+    status === 400 &&
+    body.includes("domain") &&
+    body.toLowerCase().includes("not verified")
+  );
+}
 
-  if (!apiKey || !from) {
-    console.warn("[email] RESEND_API_KEY or EMAIL_FROM not configured — skipping send");
-    return { ok: false, error: "Email not configured" };
-  }
-
+async function postResendEmail(
+  apiKey: string,
+  from: string,
+  input: SendEmailInput
+): Promise<{ ok: true; id?: string } | { ok: false; status: number; body: string }> {
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -47,23 +54,58 @@ export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult>
 
   if (!response.ok) {
     const body = await response.text().catch(() => "");
-    console.error("[email] Resend error:", response.status, body);
-    if (
-      response.status === 400 &&
-      body.includes("domain") &&
-      body.toLowerCase().includes("not verified")
-    ) {
-      return {
-        ok: false,
-        error:
-          "Resend domain not verified — verify the EMAIL_FROM domain in Resend, or create an API key with full access",
-      };
-    }
-    return { ok: false, error: "Failed to send email" };
+    return { ok: false, status: response.status, body };
   }
 
   const data = (await response.json()) as { id?: string };
   return { ok: true, id: data.id };
+}
+
+export async function sendEmail(input: SendEmailInput): Promise<SendEmailResult> {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const from = getFromAddress();
+
+  if (!apiKey || !from) {
+    console.warn("[email] RESEND_API_KEY or EMAIL_FROM not configured — skipping send");
+    return { ok: false, error: "Email not configured" };
+  }
+
+  const primary = await postResendEmail(apiKey, from, input);
+  if (primary.ok) {
+    return { ok: true, id: primary.id };
+  }
+
+  console.error("[email] Resend error:", primary.status, primary.body);
+
+  // Custom domain often unverified on fresh Resend keys — retry via Resend's onboarding sender.
+  if (
+    isUnverifiedDomainError(primary.status, primary.body) &&
+    !from.includes("onboarding@resend.dev")
+  ) {
+    console.warn(
+      `[email] EMAIL_FROM domain not verified — retrying via ${RESEND_ONBOARDING_FROM}. Verify letsrunnow.com in Resend for branded sends.`
+    );
+    const fallback = await postResendEmail(apiKey, RESEND_ONBOARDING_FROM, input);
+    if (fallback.ok) {
+      return { ok: true, id: fallback.id };
+    }
+    console.error("[email] Resend fallback error:", fallback.status, fallback.body);
+    return {
+      ok: false,
+      error:
+        "Resend domain not verified and onboarding@resend.dev fallback failed — verify EMAIL_FROM in Resend (or confirm COMMENT_NOTIFY_EMAIL matches your Resend account email)",
+    };
+  }
+
+  if (isUnverifiedDomainError(primary.status, primary.body)) {
+    return {
+      ok: false,
+      error:
+        "Resend domain not verified — verify the EMAIL_FROM domain in Resend, or create an API key with full access",
+    };
+  }
+
+  return { ok: false, error: "Failed to send email" };
 }
 
 export function unsubscribeUrl(token: string): string {
