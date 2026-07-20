@@ -104,7 +104,7 @@ export function PlanCatalogExplorer({
       <div
         role="group"
         aria-label="Filter training plans"
-        className="-mx-4 mb-6 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
+        className="-mx-4 mb-6 flex max-w-[100vw] gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:max-w-none sm:flex-wrap sm:overflow-visible sm:px-0"
       >
         {PLAN_FILTERS.map((filter) => {
           const active = activeFilters.includes(filter.id);

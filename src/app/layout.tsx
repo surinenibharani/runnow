@@ -92,7 +92,7 @@ export default function RootLayout({
           <NonceScripts />
         </Suspense>
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col overflow-x-clip">
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <Suspense fallback={null}>
           <GoogleAnalyticsPageView />
@@ -100,7 +100,7 @@ export default function RootLayout({
         <AuthProvider>
           <SkipLink />
           <Navbar />
-          <main id="main-content" className="flex-1 outline-none" tabIndex={-1}>
+          <main id="main-content" className="min-w-0 flex-1 outline-none" tabIndex={-1}>
             {children}
           </main>
           <Footer />

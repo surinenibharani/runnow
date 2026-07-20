@@ -22,8 +22,8 @@ export const metadata: Metadata = pageMetadata({
 export default function Home() {
   return (
     <>
-      <div className="border-b border-border/60 bg-muted/30">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-1 px-4 py-2.5 sm:flex-row sm:gap-3 sm:px-6 text-center text-sm sm:text-base">
+      <div className="border-b border-border/60 bg-muted/30 overflow-x-clip">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2.5 sm:px-6 text-center text-sm sm:text-base">
           <Link
             href="/blog/why-letsrunnow"
             className="inline-flex min-h-11 items-center justify-center font-medium text-primary hover:underline touch-target sm:min-h-0"
@@ -39,14 +39,14 @@ export default function Home() {
           >
             Don&apos;t know where to start? Start here
           </Link>
-          <span className="hidden text-muted-foreground sm:inline" aria-hidden>
+          <span className="hidden text-muted-foreground md:inline" aria-hidden>
             ·
           </span>
           <Link
             href="/tips/specific-situations"
-            className="inline-flex min-h-11 items-center justify-center font-medium text-primary hover:underline touch-target sm:min-h-0"
+            className="inline-flex min-h-11 max-w-full items-center justify-center px-1 font-medium text-primary hover:underline touch-target sm:min-h-0"
           >
-            Pregnancy, 55+, health conditions — situational tips
+            Situational tips (pregnancy, 55+, health)
           </Link>
         </div>
       </div>

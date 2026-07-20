@@ -37,7 +37,7 @@ function NavItem({
       onClick={onNavigate}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "relative shrink-0 whitespace-nowrap rounded-lg px-2.5 py-2 text-sm font-medium transition-colors lg:px-3",
+        "relative shrink-0 whitespace-nowrap rounded-lg px-2 py-2 text-sm font-medium transition-colors",
         link.comingSoon && "text-muted-foreground/55 hover:text-muted-foreground/70",
         !link.comingSoon &&
           (active
@@ -153,13 +153,17 @@ export function Navbar() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg"
+      className="sticky top-0 z-50 w-full max-w-full overflow-x-clip border-b border-border/60 bg-background/80 backdrop-blur-lg"
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4 sm:gap-4 sm:px-6">
-        <Logo className="shrink-0" />
+      <div className="mx-auto flex h-16 w-full min-w-0 max-w-6xl items-center gap-2 px-4 sm:gap-3 sm:px-6">
+        <Logo className="shrink-0 [&_img]:h-11 sm:[&_img]:h-12" />
 
+        {/*
+          Full desktop nav only from 2xl (~1536px) so the header fits max-w-6xl
+          without forcing horizontal page scroll. Below that, use the menu.
+        */}
         <nav
-          className="hidden shrink-0 items-center gap-2 lg:ml-5 lg:flex xl:ml-8 xl:gap-3"
+          className="hidden min-w-0 items-center gap-1 2xl:ml-4 2xl:flex"
           aria-label="Main"
         >
           {mainNavGroups.map((group, groupIndex) => {
@@ -172,12 +176,12 @@ export function Navbar() {
               <Fragment key={group.ariaLabel ?? `nav-group-${groupIndex}`}>
                 {groupIndex > 0 && (
                   <span
-                    className="mx-1 hidden h-4 w-px shrink-0 bg-border lg:block xl:mx-1.5"
+                    className="mx-1 hidden h-4 w-px shrink-0 bg-border 2xl:block"
                     aria-hidden
                   />
                 )}
                 <div
-                  className="flex items-center gap-0.5 xl:gap-1"
+                  className="flex min-w-0 items-center gap-0"
                   role={group.ariaLabel ? "group" : undefined}
                   aria-label={group.ariaLabel}
                 >
@@ -190,14 +194,14 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden min-w-4 flex-1 lg:block" aria-hidden />
+        <div className="hidden min-w-2 flex-1 2xl:block" aria-hidden />
 
         <SiteSearch
-          className="min-w-0 flex-1 sm:max-w-xs lg:mx-2 lg:w-44 lg:flex-none lg:shrink-0 lg:max-w-none xl:mx-3 xl:w-52"
+          className="min-w-0 flex-1 sm:max-w-xs 2xl:mx-2 2xl:w-44 2xl:flex-none 2xl:shrink-0 2xl:max-w-none"
           inputClassName="bg-background/80"
         />
 
-        <div className="hidden shrink-0 items-center gap-2 lg:ml-1 lg:flex xl:gap-2.5">
+        <div className="hidden shrink-0 items-center gap-2 2xl:ml-1 2xl:flex">
           <StartPlanCta variant="button" />
           {session ? (
             <>
@@ -242,7 +246,7 @@ export function Navbar() {
         <button
           ref={menuToggleRef}
           type="button"
-          className="ml-1 shrink-0 rounded-lg p-2 hover:bg-muted lg:hidden"
+          className="ml-1 shrink-0 rounded-lg p-2 hover:bg-muted 2xl:hidden"
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -260,7 +264,7 @@ export function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label="Mobile menu"
-          className="border-t border-border animate-in fade-in slide-in-from-top-1 duration-200 lg:hidden"
+          className="border-t border-border animate-in fade-in slide-in-from-top-1 duration-200 2xl:hidden"
         >
           <div className="flex flex-col gap-1 p-4">
             <div className="mb-2 px-1">

@@ -128,11 +128,11 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
-    @apply font-sans scroll-smooth;
+    @apply font-sans scroll-smooth overflow-x-clip;
+  }
+  body {
+    @apply bg-background text-foreground overflow-x-clip max-w-full;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
