@@ -55,7 +55,7 @@ export default function PrivacyPage() {
         {
           heading: "Data retention & deletion",
           paragraphs: [
-            `We keep your account data while your account is active. You can disconnect Strava, delete wellness entries, and remove comments where available. To delete your account or request data removal, email ${SUPPORT_EMAIL}.`,
+            `We keep your account data while your account is active. You can disconnect Strava, delete wellness entries, and edit or delete your own comments when signed in. To delete your account or request data removal, email ${SUPPORT_EMAIL}.`,
           ],
         },
         {

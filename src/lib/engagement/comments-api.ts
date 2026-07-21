@@ -45,10 +45,36 @@ function commentTitle(type: CommentTargetType, slug: string): string {
   return getPostBySlug(slug)?.title ?? slug;
 }
 
+function serializeComment(
+  comment: {
+    id: string;
+    authorName: string;
+    content: string;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string | null;
+  },
+  viewerUserId: string | null
+) {
+  return {
+    id: comment.id,
+    authorName: comment.authorName,
+    content: comment.content,
+    createdAt: comment.createdAt,
+    updatedAt: comment.updatedAt,
+    mine: Boolean(viewerUserId && comment.userId === viewerUserId),
+    edited:
+      comment.updatedAt.getTime() - comment.createdAt.getTime() > 1000,
+  };
+}
+
 export async function listComments(type: CommentTargetType, slug: string) {
   if (!isAllowedSlug(type, slug)) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
+
+  const session = await auth();
+  const viewerUserId = session?.user?.id ?? null;
 
   const comments = await prisma.blogComment.findMany({
     where: { postSlug: commentStorageSlug(type, slug) },
@@ -59,10 +85,16 @@ export async function listComments(type: CommentTargetType, slug: string) {
       authorName: true,
       content: true,
       createdAt: true,
+      updatedAt: true,
+      userId: true,
     },
   });
 
-  return NextResponse.json({ comments });
+  return NextResponse.json({
+    comments: comments.map((comment) =>
+      serializeComment(comment, viewerUserId)
+    ),
+  });
 }
 
 export async function createComment(
@@ -154,6 +186,8 @@ export async function createComment(
         authorName: true,
         content: true,
         createdAt: true,
+        updatedAt: true,
+        userId: true,
       },
     });
 
@@ -192,10 +226,165 @@ export async function createComment(
       }
     });
 
-    return NextResponse.json({ comment }, { status: 201 });
+    return NextResponse.json(
+      {
+        comment: serializeComment(comment, session?.user?.id ?? null),
+      },
+      { status: 201 }
+    );
   } catch {
     return NextResponse.json(
       { error: "Failed to post comment" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function updateComment(
+  request: Request,
+  type: CommentTargetType,
+  slug: string,
+  commentId: string
+) {
+  try {
+    if (!isAllowedSlug(type, slug)) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Sign in to edit comments" }, { status: 401 });
+    }
+
+    const ip = getClientIp(request);
+    const limit = await rateLimitAsync(
+      `comment:edit:${session.user.id}:${ip}`,
+      30,
+      60 * 60 * 1000
+    );
+    if (!limit.ok) {
+      return NextResponse.json(
+        { error: "Too many edits. Please try again later." },
+        {
+          status: 429,
+          headers: { "Retry-After": String(limit.retryAfter) },
+        }
+      );
+    }
+
+    const body = await request.json();
+    const text = sanitizeText(body.content, 2000);
+
+    if (!text || text.length < 3) {
+      return NextResponse.json(
+        { error: "Comment must be at least 3 characters" },
+        { status: 400 }
+      );
+    }
+
+    const existing = await prisma.blogComment.findFirst({
+      where: {
+        id: commentId,
+        postSlug: commentStorageSlug(type, slug),
+      },
+      select: { id: true, userId: true },
+    });
+
+    if (!existing) {
+      return NextResponse.json({ error: "Comment not found" }, { status: 404 });
+    }
+
+    if (existing.userId !== session.user.id) {
+      return NextResponse.json(
+        { error: "You can only edit your own comments" },
+        { status: 403 }
+      );
+    }
+
+    const comment = await prisma.blogComment.update({
+      where: { id: existing.id },
+      data: { content: text },
+      select: {
+        id: true,
+        authorName: true,
+        content: true,
+        createdAt: true,
+        updatedAt: true,
+        userId: true,
+      },
+    });
+
+    return NextResponse.json({
+      comment: serializeComment(comment, session.user.id),
+    });
+  } catch {
+    return NextResponse.json(
+      { error: "Failed to update comment" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function deleteComment(
+  request: Request,
+  type: CommentTargetType,
+  slug: string,
+  commentId: string
+) {
+  try {
+    if (!isAllowedSlug(type, slug)) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        { error: "Sign in to delete comments" },
+        { status: 401 }
+      );
+    }
+
+    const ip = getClientIp(request);
+    const limit = await rateLimitAsync(
+      `comment:delete:${session.user.id}:${ip}`,
+      20,
+      60 * 60 * 1000
+    );
+    if (!limit.ok) {
+      return NextResponse.json(
+        { error: "Too many deletes. Please try again later." },
+        {
+          status: 429,
+          headers: { "Retry-After": String(limit.retryAfter) },
+        }
+      );
+    }
+
+    const existing = await prisma.blogComment.findFirst({
+      where: {
+        id: commentId,
+        postSlug: commentStorageSlug(type, slug),
+      },
+      select: { id: true, userId: true },
+    });
+
+    if (!existing) {
+      return NextResponse.json({ error: "Comment not found" }, { status: 404 });
+    }
+
+    if (existing.userId !== session.user.id) {
+      return NextResponse.json(
+        { error: "You can only delete your own comments" },
+        { status: 403 }
+      );
+    }
+
+    await prisma.blogComment.delete({ where: { id: existing.id } });
+
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json(
+      { error: "Failed to delete comment" },
       { status: 500 }
     );
   }

@@ -88,17 +88,8 @@ export const proxy = auth(async (request) => {
 
   if (pathname.startsWith("/api/")) {
     const response = nextWithNonce(request, nonce);
-    const isPublicCommentsGet =
-      request.method === "GET" &&
-      (/^\/api\/blog\/[^/]+\/comments$/.test(pathname) ||
-        /^\/api\/tips\/[^/]+\/comments$/.test(pathname));
-
-    response.headers.set(
-      "Cache-Control",
-      isPublicCommentsGet
-        ? "public, s-maxage=60, stale-while-revalidate=300"
-        : "no-store"
-    );
+    // Comments list is personalized (own-comment flags) when signed in.
+    response.headers.set("Cache-Control", "no-store");
     return response;
   }
 
