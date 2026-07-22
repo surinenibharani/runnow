@@ -11,6 +11,7 @@ import { TipIllustration } from "@/components/tips/tip-illustration";
 import { ContentLikeButton } from "@/components/engagement/content-like-button";
 import { BlogComments } from "@/components/blog/blog-comments";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
+import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
 import { getPublishedPostBySlug } from "@/lib/blog/posts";
 import { getCommentCount } from "@/lib/blog/comment-counts";
 import {
@@ -148,6 +149,7 @@ export default async function TipDetailPage({ params }: PageProps) {
                     <ArrowRight className="size-3.5" />
                   </Link>
                 )}
+                <ContentCopyrightNotice kind="tip" className="mt-6" />
               </div>
             </div>
           </article>

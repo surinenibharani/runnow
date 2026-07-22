@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { PlanCatalog } from "@/components/plan/plan-catalog";
 import { PlanLoading } from "@/components/plan/plan-loading";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
+import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
 import { PlanPageHero } from "@/components/visuals/plan-scenes";
 import { Button } from "@/components/ui/button";
 import { getPlanById } from "@/lib/plans";
@@ -95,6 +96,8 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
             <WeekTracker />
           </Suspense>
         </div>
+
+        <ContentCopyrightNotice kind="plan" className="mt-10" />
       </div>
     </div>
   );

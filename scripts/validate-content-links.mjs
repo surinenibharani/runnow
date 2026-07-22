@@ -52,6 +52,7 @@ const staticRoutes = new Set([
   "/teams",
   "/privacy",
   "/terms",
+  "/dmca",
   "/login",
   "/signup",
 ]);

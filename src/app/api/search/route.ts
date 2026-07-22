@@ -4,7 +4,7 @@ import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 
 export async function GET(request: Request) {
   const ip = getClientIp(request);
-  const limited = await rateLimitAsync(`search:${ip}`, 60, 60 * 1000);
+  const limited = await rateLimitAsync(`search:${ip}`, 30, 60 * 1000);
   if (!limited.ok) {
     return NextResponse.json(
       { error: "Too many searches. Please try again later." },

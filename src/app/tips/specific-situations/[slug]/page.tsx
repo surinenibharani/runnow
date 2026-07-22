@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { TipDetailCard } from "@/components/tips/tip-detail-card";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
+import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { SITUATIONAL_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
@@ -125,6 +126,10 @@ export default async function SituationalTipDetailPage({ params }: PageProps) {
               ))}
             </ul>
           </TipDetailCard>
+        </FadeIn>
+
+        <FadeIn className="mt-6">
+          <ContentCopyrightNotice kind="tip" />
         </FadeIn>
 
         <FadeIn className="mt-8">

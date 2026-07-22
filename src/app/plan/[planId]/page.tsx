@@ -10,6 +10,7 @@ import { PlanLoading } from "@/components/plan/plan-loading";
 import { PlanRecommendationSummary } from "@/components/plan/plan-recommendation-summary";
 import { RecommendedPlanBanner } from "@/components/plan/recommended-plan-banner";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
+import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
 import { PlanPageHero } from "@/components/visuals/plan-scenes";
 import { getPlanById, PLANS } from "@/lib/plans";
 import {
@@ -119,6 +120,8 @@ export default async function PlanVariantPage({
             <WeekTracker initialPlanId={planId} lockToPlan={fromQuiz} />
           </Suspense>
         </div>
+
+        <ContentCopyrightNotice kind="plan" className="mt-10" />
       </div>
     </div>
   );

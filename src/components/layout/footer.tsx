@@ -137,7 +137,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center gap-3 text-center text-xs text-muted-foreground sm:flex-row sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {SITE_NAME}. Built to help you move.
+            © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
           </p>
           <nav aria-label="Legal">
             <Link href="/privacy" className="transition-colors hover:text-foreground">
@@ -148,6 +148,12 @@ export function Footer() {
             </span>
             <Link href="/terms" className="transition-colors hover:text-foreground">
               Terms of Service
+            </Link>
+            <span className="mx-2 text-muted-foreground/60" aria-hidden>
+              ·
+            </span>
+            <Link href="/dmca" className="transition-colors hover:text-foreground">
+              Copyright / DMCA
             </Link>
           </nav>
         </div>

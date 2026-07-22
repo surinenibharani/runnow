@@ -15,6 +15,7 @@
     "gear:refresh-suggestions": "node scripts/refresh-gear-suggestions.mjs",
     "gear:validate": "node scripts/validate-gear-catalog.mjs",
     "validate:links": "node scripts/validate-content-links.mjs",
+    "content:copy-check": "node scripts/content-copy-check-phrases.mjs",
     "test": "tsx --test src/lib/tools/*.test.ts src/lib/blog/publish-schedule.test.ts src/components/blog/format-blog-text.test.ts",
     "strava:encrypt-tokens": "node scripts/encrypt-strava-tokens.mjs",
     "postinstall": "prisma generate"

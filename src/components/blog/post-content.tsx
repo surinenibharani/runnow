@@ -15,6 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { categoryToParam } from "@/lib/blog/categories";
 import { appendBlogPreviewParam } from "@/lib/blog/preview";
 import { getBlogPostCanonicalUrl, getBlogPostDisplayUrl } from "@/lib/blog/urls";
+import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
 
 type PostContentProps = {
   post: BlogPost;
@@ -158,6 +159,8 @@ export function PostContent({
           </span>
         </a>
       )}
+
+      <ContentCopyrightNotice kind="article" className="mt-10" />
 
       <RelatedPosts
         posts={related}

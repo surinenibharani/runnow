@@ -1,4 +1,5 @@
 import { BRAND_LOGO_PATH } from "@/lib/brand";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type PrintableWatermarkProps = {
@@ -11,18 +12,20 @@ type PrintableWatermarkProps = {
 };
 
 /**
- * LetsRunNow logo watermark for printable / PDF sheets.
+ * LetsRunNow logo + URL watermark for printable / PDF sheets.
  * Drawn above content at low opacity so opaque cards don’t hide it.
  */
 export function PrintableWatermark({
   mode = "fixed",
   className,
 }: PrintableWatermarkProps) {
+  const host = SITE_URL.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
   return (
     <div
       aria-hidden
       className={cn(
-        "print-watermark pointer-events-none flex items-center justify-center overflow-hidden",
+        "print-watermark pointer-events-none flex flex-col items-center justify-center gap-2 overflow-hidden",
         mode === "fixed"
           ? "fixed inset-0 z-50"
           : "absolute inset-0 z-[5]",
@@ -46,6 +49,15 @@ export function PrintableWatermark({
           printColorAdjust: "exact",
         }}
       />
+      <p
+        className="print-watermark-url select-none text-center text-[10px] font-medium tracking-wide text-foreground/25 print:text-[11px] print:text-foreground/35 sm:text-xs"
+        style={{
+          WebkitPrintColorAdjust: "exact",
+          printColorAdjust: "exact",
+        }}
+      >
+        {SITE_NAME} · {host} · Personal use only
+      </p>
     </div>
   );
 }

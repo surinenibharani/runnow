@@ -249,6 +249,10 @@ export function DumbbellWorkoutSchedulePrintSheet({
         <p className="mt-1">
           <strong className="font-semibold">Not medical advice.</strong> Stop if you feel sharp joint pain.
         </p>
+        <p className="mt-1">
+          © {new Date().getFullYear()} {SITE_NAME}. Personal use only — do not
+          republish.
+        </p>
       </footer>
       </div>
 

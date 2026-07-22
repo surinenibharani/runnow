@@ -268,6 +268,10 @@ export function PlanPrintableSheet({
           {SITE_NAME} · Keep this sheet to compare weeks. Re-print anytime from{" "}
           {planHref}
         </p>
+        <p className="mt-1">
+          © {new Date().getFullYear()} {SITE_NAME}. Personal use only — do not
+          republish. letsrunnow.com
+        </p>
       </footer>
 
       <style>{`

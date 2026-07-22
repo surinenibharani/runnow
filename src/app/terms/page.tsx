@@ -9,7 +9,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/terms",
 });
 
-const LAST_UPDATED = "June 28, 2026";
+const LAST_UPDATED = "July 22, 2026";
 
 export default function TermsPage() {
   return (
@@ -23,6 +23,15 @@ export default function TermsPage() {
           paragraphs: [
             `${SITE_NAME} provides beginner-friendly training plans, educational content, and optional tools to track progress. You may use the site for personal, non-commercial purposes unless we agree otherwise in writing.`,
             "You are responsible for your account credentials and for activity under your account.",
+          ],
+        },
+        {
+          heading: "Our content & copyright",
+          paragraphs: [
+            `Blog posts, tips, training plans, quizzes, printable trackers, graphics, logos, and other original materials on ${SITE_NAME} are owned by ${SITE_NAME} (or its licensors) and protected by copyright and related laws.`,
+            "You may access content for your own personal training and share links to our pages. You may not copy, scrape, mirror, republish, sell, or commercially reuse our wording, plan structures, tip libraries, or branding on another website, app, newsletter, or product without prior written permission.",
+            "Automated collection of our content for search indexing by mainstream search engines is allowed as described in robots.txt. Using our content to train, fine-tune, or redistribute AI / machine-learning models or datasets without written permission is not allowed.",
+            "Copyright questions and takedown requests: see our Copyright & DMCA page at /dmca.",
           ],
         },
         {
@@ -55,7 +64,8 @@ export default function TermsPage() {
         {
           heading: "Acceptable use",
           list: [
-            "Do not attempt to break, scrape, overload, or reverse engineer the site.",
+            "Do not attempt to break, scrape at abusive rates, overload, mirror, or reverse engineer the site.",
+            "Do not republish our posts, tips, or plans on other sites or feed them into AI datasets without permission.",
             "Do not use the service to harm others or violate applicable laws.",
             "Do not misrepresent your identity or impersonate others.",
           ],
@@ -76,7 +86,7 @@ export default function TermsPage() {
           heading: "Changes & contact",
           paragraphs: [
             "We may update these terms from time to time. Material changes will be reflected in the “Last updated” date. Continued use after changes constitutes acceptance.",
-            "Questions about these terms or the privacy policy can be sent through the support contact listed on the site.",
+            "Questions about these terms, privacy, or copyright can be sent through the support contact listed on the site, or via /dmca for infringement notices.",
           ],
         },
       ]}

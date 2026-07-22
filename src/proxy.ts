@@ -17,6 +17,14 @@ const blockedPaths = [
   /\.php$/i,
 ];
 
+/** Training / bulk scrapers we refuse at the edge (robots.txt also disallows these). */
+const blockedBotUserAgents =
+  /GPTBot|ChatGPT-User|Google-Extended|CCBot|anthropic-ai|ClaudeBot|Claude-Web|Bytespider|FacebookBot|meta-externalagent|cohere-ai|Diffbot|Omgilibot|PerplexityBot|DataForSeoBot|SeekportBot/i;
+
+/** Legitimate search / preview crawlers — skip aggressive page rate limits. */
+const searchEngineUserAgents =
+  /Googlebot|Bingbot|Slurp|DuckDuckBot|Baiduspider|YandexBot|Applebot|facebookexternalhit|Twitterbot|LinkedInBot|SkypeUriPreview|WhatsApp|Slackbot/i;
+
 function isProtectedRoute(pathname: string): boolean {
   if (pathname === "/dashboard" || pathname.startsWith("/dashboard/")) {
     return true;
@@ -44,9 +52,19 @@ function nextWithNonce(request: NextRequest, nonce: string): NextResponse {
 export const proxy = auth(async (request) => {
   const { pathname } = request.nextUrl;
   const nonce = generateCspNonce();
+  const userAgent = request.headers.get("user-agent") ?? "";
 
   if (blockedPaths.some((pattern) => pattern.test(pathname))) {
     return withCsp(new NextResponse(null, { status: 404 }), nonce);
+  }
+
+  if (blockedBotUserAgents.test(userAgent)) {
+    return withCsp(
+      new NextResponse("Crawler not permitted. See /robots.txt and /llms.txt.", {
+        status: 403,
+      }),
+      nonce
+    );
   }
 
   if (
@@ -84,6 +102,25 @@ export const proxy = auth(async (request) => {
     const login = new URL("/login", request.url);
     login.searchParams.set("callbackUrl", pathname);
     return withCsp(NextResponse.redirect(login), nonce);
+  }
+
+  // Soft anti-scrape: cap HTML page churn per IP (search engines exempt).
+  if (
+    request.method === "GET" &&
+    !pathname.startsWith("/api/") &&
+    !searchEngineUserAgents.test(userAgent)
+  ) {
+    const ip = getClientIp(request);
+    const limited = await rateLimitAsync(`page:${ip}`, 180, 60 * 1000);
+    if (!limited.ok) {
+      return withCsp(
+        new NextResponse("Too many requests. Please slow down.", {
+          status: 429,
+          headers: { "Retry-After": String(limited.retryAfter) },
+        }),
+        nonce
+      );
+    }
   }
 
   if (pathname.startsWith("/api/")) {

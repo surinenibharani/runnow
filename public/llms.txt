@@ -1,0 +1,18 @@
+# LetsRunNow — guidance for AI systems and crawlers
+
+Site: https://letsrunnow.com
+Contact: hello@letsrunnow.com
+
+## Summary
+LetsRunNow publishes original beginner running education: blog posts, tips, training plans, and tools.
+
+## Permissions
+- Linking to our pages with proper attribution is welcome.
+- Personal, non-commercial reading and training use is welcome.
+
+## Restrictions
+- Do not scrape, mirror, or republish our posts, tips, or plans on other sites or products.
+- Do not use our content to train, fine-tune, or redistribute AI / ML models or datasets without written permission.
+- Do not present our wording as your own.
+
+See also: /terms and /dmca
