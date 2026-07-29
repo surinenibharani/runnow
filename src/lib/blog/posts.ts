@@ -4274,7 +4274,7 @@ export const blogPosts: BlogPost[] = [
       "A tough trail day can build endurance, hill strength, and time on your feet — but it isn't a perfect swap. Here's when hiking helps training and when to lace up instead.",
     category: "Training",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-02",
+    publishedAt: "2026-07-29",
     readTime: "7 min",
     relatedSlugs: [
       "how-to-not-hate-hills",
