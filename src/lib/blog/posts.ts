@@ -1901,6 +1901,140 @@ export const blogPosts: BlogPost[] = [
     ],
   },
   {
+    slug: "running-beyond-the-numbers",
+    metaTitle: "Remember Why You Started Running: Beyond PRs and Likes",
+    title: "Remember Why You Started: Running Beyond PRs, Numbers, and Likes",
+    excerpt:
+      "Most of us start running to destress, feel good, or get outside — then slowly it becomes a numbers game. Here's how to notice the drift and fall back in love with the run itself.",
+    category: "Mindset",
+    author: BLOG_AUTHOR,
+    publishedAt: "2026-08-12",
+    readTime: "7 min",
+    relatedSlugs: [
+      "performance-goals-over-aesthetics",
+      "mental-side-of-running",
+      "how-to-pace-yourself",
+      "building-a-running-habit",
+      "easy-runs-effort-heart-rate",
+    ],
+    closingQuestion:
+      "Why did you start running — and does your training today still honor that reason? Share it in the comments.",
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.diaphragmaticBreathingMayo,
+    ],
+    faq: [
+      {
+        question: "Is it bad to chase PRs and track my running data?",
+        answer:
+          "Not at all — data and goals are great tools when they serve you. The problem is when the numbers become the whole point and every run turns into a test. A simple check: if a slower run or a missed PR ruins your mood or makes you skip the joy of being out there, the numbers are steering instead of serving.",
+      },
+      {
+        question: "How do I stop comparing my runs to people on social media?",
+        answer:
+          "Curate your feed, mute accounts that make you feel behind, and remember you're seeing everyone's highlight reel — not their easy days, injuries, or walk breaks. Anchor to your own reasons for running and track private wins (how you felt, showing up) rather than public performance.",
+      },
+      {
+        question: "Should I run without a watch sometimes?",
+        answer:
+          "Yes. Regular \"naked\" runs — no watch, no tracking — are one of the simplest ways to reconnect with effort and enjoyment. Run by feel, notice your breath and surroundings, and let the run be just a run.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "**Educational only — not medical advice.** This is general education about the mental side of running — not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
+          "Almost nobody starts running to hit a personal record. We lace up because life felt heavy and we needed to shake it off. Because a doctor mentioned our numbers. Because we wanted to feel strong, or sleep better, or spend twenty minutes outside where nobody needs anything from us.",
+          "Those first runs are clumsy and slow — and somehow perfect. You finish a little breathless, a little proud, and a lot calmer than when you left. That feeling is the whole point.",
+        ],
+      },
+      {
+        heading: "Why we actually start running",
+        paragraphs: [
+          "The reasons are personal, but they tend to rhyme. Runners talk about the same handful of pulls over and over:",
+        ],
+        list: [
+          "To destress and clear a busy head after work or a hard week",
+          "To relax — the rhythm of footsteps and breath is a moving meditation",
+          "To lose weight or improve health markers and feel better in their body",
+          "To get outdoors, into nature, sunlight, and fresh air",
+          "To have time alone, or time with a friend, away from screens",
+          "To prove to themselves they can do a hard thing and keep a promise",
+        ],
+        closingParagraphs: [
+          "Notice what's missing from that list: nobody's first reason is \"to run 8 seconds faster than last Tuesday\" or \"to get 40 likes.\" Those come later — and that's exactly where the drift begins.",
+        ],
+      },
+      {
+        heading: "How the run quietly becomes a number game",
+        paragraphs: [
+          "Progress is intoxicating, and running gives you a lot to measure. As the miles stack up, the watch starts whispering. First you just glance at your pace. Then you start every run hoping to beat the last one. Then a good run only counts if the numbers agree.",
+          "The shift is gradual, which is why it's so easy to miss. One day you realize you're not running to feel good — you're running to not feel bad about the data.",
+        ],
+        list: [
+          "Every easy run turns into a race against your own history",
+          "A slower split or a higher heart rate ruins an otherwise lovely morning",
+          "You post the run before you've even enjoyed it, then refresh for likes",
+          "Rest days feel like guilt instead of recovery",
+          "You compare your mile 3 to a stranger's marathon on social media",
+          "The scale, the pace, the streak — some number decides whether you're allowed to feel proud",
+        ],
+        closingParagraphs: [
+          "None of these are moral failures. They're what happens when helpful tools quietly become the boss. The watch was supposed to serve the run; now the run serves the watch.",
+        ],
+      },
+      {
+        heading: "Why the numbers loop backfires",
+        paragraphs: [
+          "Chasing metrics endlessly has real costs. Physically, always trying to beat yesterday is a fast track to overtraining and injury — the body needs easy days and rest to actually adapt. Mentally, it turns your stress reliever into another source of stress.",
+          "Social media adds a second trap: you're comparing your ordinary Tuesday to everyone else's highlight reel. You never see their walk breaks, their bad runs, their injuries, or the days they didn't post. The comparison isn't just unfair — it's fictional.",
+          "The cruel irony is that the numbers game slowly deletes the exact thing you came for: the calm, the joy, the sense of being present in your own body outdoors.",
+        ],
+      },
+      {
+        heading: "Signs you've drifted from your 'why'",
+        list: [
+          "You dread runs that \"won't count\" (too short, too slow, untracked)",
+          "You feel anxious, not lighter, when you finish",
+          "You'd rather skip a run than log a \"bad\" one",
+          "Your mood for the day rides on a split or a stat",
+          "You can't remember the last time you noticed the scenery",
+          "You check likes and comparisons more than you check in with how you feel",
+        ],
+        closingParagraphs: [
+          "If a few of these hit home, you're not broken and you don't need to quit running. You just need to put the run back in charge.",
+        ],
+      },
+      {
+        heading: "How to keep yourself in check and stay mindful",
+        paragraphs: [
+          "You don't have to throw away your watch or delete your apps. The goal is to make the numbers a tool again — used on purpose, not obeyed by default. A few habits do most of the work:",
+        ],
+        list: [
+          "Run \"naked\" regularly: leave the watch at home (or cover the screen) once a week and run purely by feel",
+          "Reconnect to your reason: before you head out, name why you're running today — clear my head, move my body, get outside — not a pace",
+          "Make most runs genuinely easy: if you can't hold a conversation, you're racing your training; keep easy days conversational",
+          "Use the talk test and your breath, not just the screen, to judge effort — slow, steady breathing means you're where you should be most days",
+          "Notice one thing each run: a tree, the light, your breathing, the quiet — small mindfulness anchors pull you out of the numbers",
+          "Redefine a \"good run\" as one you showed up for and finished feeling better — not one that beat a PR",
+          "Curate your feed: mute or unfollow accounts that make you feel behind, and remember you're seeing highlight reels",
+          "Post for you, not for likes — or don't post at all; let some runs be private and yours alone",
+          "Schedule rest without guilt: recovery is part of training, not a failure of it",
+          "Keep PRs in their place: chase them in a few key sessions or races, not on every ordinary run",
+        ],
+      },
+      {
+        heading: "Let some runs just be runs",
+        paragraphs: [
+          "The runners who last for decades aren't the ones who beat themselves up over every split. They're the ones who kept the original magic alive — who still, sometimes, head out with no plan, no target, and no one to impress.",
+          "Data and goals can absolutely make you a better runner. But they should sit in the passenger seat. The moment a run stops being something you get to do and becomes something you have to prove, it's worth pausing to remember the person who first laced up — tired, hopeful, and just wanting to feel a little better.",
+          "That person was right. The run itself was always enough.",
+        ],
+        cta: { text: "Find a plan that fits your life — not just your stats", href: "/plan" },
+      },
+    ],
+  },
+  {
     slug: "why-walking-is-not-cheating",
     title: "Why Walking Is Not Cheating — How the Walk-Run Method Builds Real Fitness",
     excerpt:
