@@ -57,7 +57,7 @@ function SignupForm() {
   const callbackUrl = safeCallbackUrl(searchParams.get("callbackUrl"), "/dashboard");
   const isCoachFlow = callbackUrl.startsWith("/teams");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(() => searchParams.get("email") ?? "");
   const [password, setPassword] = useState("");
   const [bodyMetrics, setBodyMetrics] = useState<BodyMetricsFormValues>(
     emptyBodyMetricsForm
