@@ -761,4 +761,33 @@ export const SOURCES = {
     href: "https://www.nytimes.com/wirecutter/reviews/carbon-plate-running-shoes/",
     publisher: "NYT Wirecutter",
   },
+  mortonsShoeOrthoticsColo2020: {
+    label:
+      "Shoe modifications and orthotics for Civinini-Morton syndrome — state of the art (Colò et al., 2020)",
+    href: "https://doi.org/10.23750/abm.v91i4-s.9713",
+    publisher: "Acta Biomedica",
+  },
+  mortonsNonsurgicalMatthews2019: {
+    label:
+      "Non-surgical treatments for Morton's neuroma — systematic review (Matthews et al., 2019)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/31718949/",
+    publisher: "PubMed / Foot and Ankle Surgery",
+  },
+  mortonsInjectionNeurolysisNeurectomyLu2021: {
+    label:
+      "Injection, neurolysis, or neurectomy for Morton's neuroma — meta-analysis (Lu et al., 2021)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/32056015/",
+    publisher: "PubMed / Acta Neurochirurgica",
+  },
+  mortonsUltrasoundGuidedKlontzas2021: {
+    label: "Ultrasound-guided treatment of Morton's neuroma (Klontzas et al., 2021)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8264811/",
+    publisher: "Journal of Ultrasonography / PMC",
+  },
+  mortonsCustomInsolesOliveira2019: {
+    label:
+      "Customized insoles for Morton's neuroma — randomized double-blind trial (de Oliveira et al., 2019)",
+    href: "https://doi.org/10.1177/0269215519873949",
+    publisher: "Clinical Rehabilitation",
+  },
 } satisfies Record<string, BlogSource>;

@@ -4783,26 +4783,36 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "mortons-neuroma-running",
-    sources: [SOURCES.mortonsNeuroma],
+    sources: [
+      SOURCES.mortonsNeuroma,
+      SOURCES.mortonsShoeOrthoticsColo2020,
+      SOURCES.mortonsNonsurgicalMatthews2019,
+      SOURCES.mortonsInjectionNeurolysisNeurectomyLu2021,
+      SOURCES.mortonsUltrasoundGuidedKlontzas2021,
+      SOURCES.mortonsCustomInsolesOliveira2019,
+    ],
     title: "Morton's Neuroma and Running: Symptoms, Treatments, and What Actually Helped",
     excerpt:
-      "Burning or numbness between your toes isn't normal — Morton's neuroma is common in runners. One friend's story: injections and acupuncture didn't fix it; a metatarsal pad helped a little; wider toe-box shoes (like Topo) finally did.",
+      "Burning or numbness between your toes isn't normal — Morton's neuroma is common in runners. Wider toe-box shoes (like Topo) often help, but pain can return. Here's what journals say to try next.",
     category: "Injuries",
     author: BLOG_AUTHOR,
     publishedAt: "2026-08-08",
-    readTime: "8 min",
+    updatedAt: "2026-08-09",
+    readTime: "10 min",
     relatedSlugs: [
       "choosing-running-shoes",
       "avoiding-injuries",
       "first-run-tips",
       "what-to-wear-running",
     ],
+    closingQuestion:
+      "Have wider shoes calmed your neuroma — or did symptoms creep back? What helped next?",
     sections: [
       {
         paragraphs: [
           "You're three miles in and feel like there's a wrinkle in your sock — or a small pebble under the ball of your foot. You stop, shake out your shoe, keep running, and the feeling comes back. Sometimes it's burning. Sometimes it's numbness between the third and fourth toes. That pattern is worth paying attention to.",
           "Morton's neuroma is a thickening of tissue around a nerve in the forefoot — often between the third and fourth toes. It's not a tumor, and it's not rare in runners. Tight shoes, high impact, and lots of miles can irritate the nerve until every step stings.",
-          "**This article is practical context for beginners, not medical advice. If your foot hurts, see a podiatrist or sports medicine clinician.** What follows is what the condition is, what treatments people try, and a real story from a close friend who dealt with it while still wanting to run.",
+          "**This article is practical context for beginners, not medical advice. If your foot hurts, see a podiatrist or sports medicine clinician.** What follows is what the condition is, what treatments people try, a real story from a close friend — and what medical reviews say when wide shoes help for a while, then the pain returns.",
         ],
       },
       {
@@ -4837,11 +4847,11 @@ export const blogPosts: BlogPost[] = [
         list: [
           "Reduce or pause running briefly while the nerve calms down",
           "Wider shoes with a roomy toe box — toes should splay, not overlap",
-          "Metatarsal pads or domes to offload pressure from the irritated spot",
+          "Metatarsal pads or custom orthotics to offload pressure from the irritated spot",
           "Corticosteroid injections to reduce inflammation around the nerve",
           "Physical therapy, toe spacers, and gait adjustments",
-          "Acupuncture or other complementary approaches some clinics offer",
-          "Surgery in persistent cases — usually a last resort after months of failed conservative care",
+          "Ultrasound-guided injections or other minimally invasive options if simple measures stall",
+          "Surgery (nerve release or excision) when conservative care fails after months — not a first step",
         ],
       },
       {
@@ -4849,9 +4859,39 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "A close friend of mine developed classic neuroma symptoms mid training block — burning between the toes, that phantom-pebble feeling, and dread lacing up for easy runs. They did the right thing first: saw a podiatrist and got a clear diagnosis.",
           "They tried corticosteroid injections. Relief was partial and temporary; the burning came back within a few weeks. They also tried acupuncture over several sessions. They liked the appointments, felt looser afterward, but the neuroma pain was still there on runs.",
-          "A metatarsal pad (sometimes called a metatarsal dome or met dorsal pad) helped a little — enough to finish some shorter runs with less sting, but not enough to feel \"fixed.\" It offloaded the hot spot, which confirmed the problem was pressure and irritation in that exact zone.",
+          "A metatarsal pad (sometimes called a metatarsal dome or metatarsal pad) helped a little — enough to finish some shorter runs with less sting, but not enough to feel \"fixed.\" It offloaded the hot spot, which confirmed the problem was pressure and irritation in that exact zone.",
           "What finally moved the needle was switching to wider toe-box shoes. They landed on Topo Athletic models with a genuinely roomy forefoot — toes could spread on the ground instead of being squeezed together. Combined with slightly looser lacing in the forefoot and keeping easy days truly easy, symptoms faded over several weeks. They're not preaching one brand for everyone; the lesson was toe box width and shape, not a magic logo.",
-          "Your feet aren't their feet. Their story isn't a treatment plan — it's a reminder that if injections and adjunct therapies only help briefly, the shoe may still be the main problem.",
+          "Here's the honest follow-up: **even after Topo-style wide toe-box shoes helped, the pain can come back.** Mileage spikes, long days in tighter work shoes, a worn-out pair, hills, or simply a larger or more stubborn neuroma can bring the burning back. Wide shoes are often a powerful first lever — they are not always a permanent cure. Medical reviews of footwear and orthotics for Morton's neuroma make the same point: shoe changes and pads frequently reduce pressure and make life livable, but beyond roughly four to five months of stubborn symptoms — and especially with larger neuromas — they may act more as palliation than a definitive fix.",
+          "Your feet aren't their feet. Their story isn't a treatment plan — it's a reminder that if injections help only briefly, and even roomy shoes don't keep symptoms gone for good, you still have evidence-based next steps with a clinician.",
+        ],
+      },
+      {
+        heading: "When wide shoes help — then the pain returns",
+        paragraphs: [
+          "If symptoms ease in roomy shoes (Topo, Altra, wide versions of mainstream trainers, or whatever actually lets your toes splay) and then creep back, don't assume you \"failed\" footwear. Recurrence and incomplete relief after conservative care are common enough that journals describe a stepped pathway: keep unloading the forefoot, then escalate under clinical guidance.",
+        ],
+        list: [
+          "Re-check the basics: is the current pair still truly wide in the forefoot? Has foam compressed? Are you squeezing into dress or recovery shoes all day?",
+          "Dial volume and surface: cut weekly mileage, skip aggressive hills and speed for a stretch, and prefer softer paths while the nerve settles",
+          "Add or refine orthotics: a randomized trial of customized insoles with metatarsal and arch support improved walking pain and foot function versus a flat sham insole — placement and fit matter more than a drugstore pad alone",
+          "Ask about imaging and size: ultrasound is often used both to confirm the neuroma and to guide treatment; larger lesions (reviews often discuss thresholds around 5–6 mm) tend to respond less convincingly to shoes and orthotics alone",
+          "Book a follow-up rather than waiting months in hope — early escalation beats months of limping through every run",
+        ],
+      },
+      {
+        heading: "What journals suggest next (beyond wide shoes)",
+        paragraphs: [
+          "These are options a podiatrist or sports medicine clinician may discuss — not a DIY ladder. Evidence quality varies, and what fits one runner may not fit another.",
+        ],
+        list: [
+          "Layered conservative care: wider footwear + metatarsal pad or custom orthotic + activity modification — combining strategies tends to work better than any single change",
+          "Ultrasound-guided corticosteroid injection: systematic reviews support steroid injections for pain reduction; guidance with ultrasound is often preferred for accuracy. Relief can be meaningful but is frequently temporary (many patients improve for months rather than forever), and side effects can include skin or fat-pad changes",
+          "Other minimally invasive options when injections stall: alcohol (chemical) neurolysis, radiofrequency ablation, and cryoneurolysis appear in reviews as second-line, ultrasound-guided approaches before surgery — promising for some patients, with mixed long-term data and a real chance of needing repeat treatment or surgery later",
+          "Physical therapy and manual approaches: mobilization/manipulation shows signal for pain relief in non-surgical meta-analyses; useful as adjunct care, not a replacement for footwear and load management",
+          "Surgery when conservative care fails: a meta-analysis of nearly 3,000 patients found complete pain relief more often after surgical neurolysis (~68%) or neurectomy (~74%) than after injection alone (~43%) — with higher complete satisfaction after surgery than injection, though surgery can leave numbness, scar issues, or a stump neuroma, and recurrence is still possible",
+        ],
+        closingParagraphs: [
+          "Bottom line from the literature: start with wide shoes, pads/orthotics, and smarter training load. If burning returns or never fully settles after a dedicated trial (often cited around a few months), escalate with your clinician — guided injections or other minimally invasive options next, surgery when those fail and daily life or running stays limited. Keep wearing roomy footwear even after an injection or procedure; footwear remains part of long-term prevention.",
         ],
       },
       {
@@ -4863,6 +4903,7 @@ export const blogPosts: BlogPost[] = [
           "Lace to secure the heel and midfoot while leaving the forefoot less compressed — skip the tight top-eyelet pull if it pinches",
           "Rotate two pairs if you run most days so foam can rebound",
           "Avoid zero-drop overnight if you're not used to it — transition gradually if you change stack or drop",
+          "Treat work and casual shoes as part of the plan — a roomy trainer at 6 a.m. and a pinching dress shoe at noon can undo the morning's progress",
         ],
         cta: {
           text: "Read our shoe guide",
@@ -4872,13 +4913,13 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Metatarsal pads — how they help (a little or a lot)",
         paragraphs: [
-          "A metatarsal pad sits behind the ball of the foot and lifts the metatarsal heads slightly, spreading pressure away from the irritated nerve. For my friend, it was a useful experiment: modest relief meant the diagnosis made sense and footwear was still the bigger lever.",
+          "A metatarsal pad sits behind the ball of the foot and lifts the metatarsal heads slightly, spreading pressure away from the irritated nerve. For my friend, it was a useful experiment: modest relief meant the diagnosis made sense and footwear was still the bigger lever. Custom orthotics with arch support plus a metatarsal element have stronger trial data than a randomly placed gel pad alone.",
         ],
         list: [
           "Start with a reusable gel pad or a podiatrist-fitted orthotic — placement matters",
           "Too far forward and it hurts more; too far back and it does nothing",
           "Combine with wider shoes — pads alone rarely fix a narrow toe box",
-          "If a pad helps even slightly, that's data — not a reason to skip professional follow-up",
+          "If a pad helps even slightly, that's data — not a reason to skip professional follow-up when symptoms return",
         ],
       },
       {
@@ -4888,6 +4929,7 @@ export const blogPosts: BlogPost[] = [
           "Numbness that doesn't resolve after rest",
           "Pain that spikes at night or at rest — not just on runs",
           "No improvement after 2–3 weeks of shoe changes and reduced volume",
+          "Symptoms that keep returning despite roomy shoes and pads — get reassessed rather than \"pushing through\"",
           "Any foot issue if you have diabetes or circulation concerns — get seen sooner",
         ],
         paragraphs: [
@@ -4901,10 +4943,10 @@ export const blogPosts: BlogPost[] = [
           "Keep early runs short and flat; save hills until forefoot stays quiet",
           "Log shoes and symptoms — if the old pair brings burning back in 10 minutes, retire it for daily training",
           "Stay on top of mileage increases — neuromas love revenge when you spike volume",
-          "Keep follow-up with your podiatrist if symptoms flicker again",
+          "Keep follow-up with your podiatrist if symptoms flicker again — recurrence after improvement is a reason to escalate care, not ignore it",
         ],
         paragraphs: [
-          "Most runners who respect toe space and load come back stronger. The ones who struggle usually repeat the same tight shoe in a new color and wonder why the burning returned.",
+          "Most runners who respect toe space and load come back stronger. The ones who struggle usually repeat the same tight shoe in a new color — or assume a wide pair like Topo \"cured\" the neuroma forever — and wonder why the burning returned.",
         ],
         cta: {
           text: "Injury prevention basics",
