@@ -121,8 +121,8 @@ export default function TipsPage() {
             Dealing with pain from running? See our{" "}
             <Link href="/injuries" className="text-primary hover:underline">
               injury prevention guide
-            </Link>{" "}
-            Don&apos;t know where to start?{" "}
+            </Link>
+            . Don&apos;t know where to start?{" "}
             <Link href="/start" className="text-primary hover:underline">
               Start here
             </Link>

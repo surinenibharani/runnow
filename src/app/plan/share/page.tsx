@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!data) {
     return pageMetadata({
       title: "Training progress",
-      description: "Celebrate a training milestone on Let's Run Now.",
+      description: "Celebrate a training milestone on LetsRunNow.",
       path: "/plan/share",
       noindex: true,
     });
