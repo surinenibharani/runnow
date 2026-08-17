@@ -862,4 +862,76 @@ export const SOURCES = {
     href: "https://pubmed.ncbi.nlm.nih.gov/39247485/",
     publisher: "PubMed",
   },
+  ironDeficiencyCollegiateAthletes2024: {
+    label:
+      "Global prevalence of iron deficiency in collegiate athletes — systematic review and meta-analysis (2024)",
+    href: "https://doi.org/10.1002/pbc.31415",
+    publisher: "Pediatric Blood & Cancer",
+  },
+  ironStatusPhysicalPerformance2023: {
+    label:
+      "Iron status and physical performance in athletes — systematic review (Solberg & Reikvam, 2023)",
+    href: "https://doi.org/10.3390/life13102007",
+    publisher: "Life (Basel)",
+  },
+  ironSupplementationAthletesMeta2024: {
+    label:
+      "Effects of oral iron supplementation on blood iron status in athletes — systematic review and meta-analysis (2024)",
+    href: "https://doi.org/10.1007/s40279-024-01992-8",
+    publisher: "Sports Medicine",
+  },
+  ironDeficiencyAthletesPrevention2024: {
+    label:
+      "Approaches to prevent iron deficiency in athletes (German Journal of Sports Medicine, 2024)",
+    href: "https://www.germanjournalsportsmedicine.com/archive/archive-2024/issue-5/approaches-to-prevent-iron-deficiency-in-athletes/",
+    publisher: "German Journal of Sports Medicine",
+  },
+  aclReturnToRunningScoping2018: {
+    label:
+      "Criteria for return to running after ACL reconstruction — scoping review (Rambaud et al., 2018)",
+    href: "https://doi.org/10.1136/bjsports-2017-098602",
+    publisher: "British Journal of Sports Medicine",
+  },
+  aspetarAclRehabGuideline2023: {
+    label:
+      "Aspetar clinical practice guideline on rehabilitation after anterior cruciate ligament reconstruction (Kotsifaki et al., 2023)",
+    href: "https://doi.org/10.1136/bjsports-2022-106495",
+    publisher: "British Journal of Sports Medicine",
+  },
+  aclReturnToSportSystematic2022: {
+    label:
+      "Return to sport after ACL reconstruction requires multifactorial readiness testing — systematic review (2022)",
+    href: "https://doi.org/10.1016/j.arthro.2022.06.015",
+    publisher: "Arthroscopy",
+  },
+  returnToSportAclReview2025: {
+    label:
+      "Return to sport following ACL reconstruction — narrative review (2025)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12446172/",
+    publisher: "PMC",
+  },
+  acogPhysicalActivityPregnancy2020: {
+    label:
+      "Physical Activity and Exercise During Pregnancy and the Postpartum Period — ACOG Committee Opinion No. 804 (2020)",
+    href: "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/04/physical-activity-and-exercise-during-pregnancy-and-the-postpartum-period",
+    publisher: "ACOG",
+  },
+  hormonalContraceptiveStrengthAdaptations2024: {
+    label:
+      "Hormonal contraceptive use and skeletal muscle hypertrophy, power and strength adaptations to resistance training — systematic review and meta-analysis (2024)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10798924/",
+    publisher: "PMC",
+  },
+  combinedHormonalContraceptiveMusculoskeletalBJSM2023: {
+    label:
+      "Combined hormonal contraceptive use and musculoskeletal conditions or injuries — systematic review (BJSM, 2023)",
+    href: "https://doi.org/10.1136/bjsports-2022-105517",
+    publisher: "British Journal of Sports Medicine",
+  },
+  hormonalContraceptiveAthleticPerformance2020: {
+    label:
+      "Effects of hormonal contraceptives on injury risk and athletic performance in female athletes — systematic review (2020)",
+    href: "https://www.jscimedcentral.com/public/assets/articles/sportsmedicine-7-1162.pdf",
+    publisher: "Annals of Sports Medicine and Research",
+  },
 } satisfies Record<string, BlogSource>;

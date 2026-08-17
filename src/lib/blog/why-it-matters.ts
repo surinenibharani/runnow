@@ -236,6 +236,16 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Starting slow enough to finish strong is a skill you practice in training — not a prayer at the start line.",
   "what-marathon-does-to-your-body":
     "A full marathon temporarily stresses heart, muscle, gut, and kidneys in ways labs can measure. Knowing what is common — and how men and women often differ — turns post-race wreckage into expected physiology instead of panic.",
+  "iron-deficiency-runners":
+    "Easy miles that suddenly feel impossible often trace to iron stores, not lost fitness. Catching iron deficiency without anemia early — with the right labs — beats months of grinding through fog.",
+  "return-to-run-after-surgery":
+    "Surgeon clearance is step one; a calendar date is not step two. Criteria-based return after knee or foot surgery protects the repair better than copying your pre-op training log.",
+  "finding-running-community":
+    "Most beginners quit alone before they quit running. A low-pressure group — Parkrun, a store run, a walk-run clinic — turns consistency from willpower into Tuesday on the calendar.",
+  "birth-control-training-runners":
+    "The pill, IUD, or implant changes more than periods — energy, bleeding patterns, and bone context all shape training. Knowing what to track beats guessing why easy miles feel off.",
+  "running-during-pregnancy":
+    "Pregnancy isn't an automatic running retirement — but it is a medical conversation first. Trimester-by-trimester edits and clear stop rules keep miles safe when your OB says they're appropriate.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

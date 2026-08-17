@@ -631,6 +631,34 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "how to negative split 5K half",
     "race pacing start slow finish strong",
   ],
+  "finding-running-community": [
+    "how to find a running group near me",
+    "parkrun beginner guide",
+    "local running club for beginners",
+    "running buddies for beginners",
+  ],
+  "birth-control-training-runners": [
+    "birth control and running performance",
+    "pill and marathon training",
+    "hormonal contraception athletes",
+    "IUD running training",
+  ],
+  "running-during-pregnancy": [
+    "running while pregnant safe",
+    "running during pregnancy trimester guide",
+    "ACOG exercise pregnancy running",
+    "can I run pregnant beginner",
+  ],
+  "iron-deficiency-runners": [
+    "iron deficiency runners ferritin",
+    "runner fatigue low ferritin",
+    "iron deficiency without anemia running",
+  ],
+  "return-to-run-after-surgery": [
+    "return to running after ACL surgery",
+    "when can I run after knee surgery",
+    "post surgery running guidelines",
+  ],
 };
 
 export function blogPostKeywords(slug: string, category: string): string[] {

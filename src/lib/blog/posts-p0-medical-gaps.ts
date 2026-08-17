@@ -107,6 +107,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
         heading: "Strength + bone: the non-optional second sport",
         paragraphs: [
           "Mayo Clinic clinicians emphasize resistance work in perimenopause and after menopause because bones respond to load. Running is weight-bearing, but it mainly stresses the same pattern — legs in one plane. Strength training loads spine, hips, and upper body differently.",
+          "Updated meta-analyses in postmenopausal women show exercise training — especially **resistance work** — can improve or preserve bone mineral density at clinically meaningful sites when progressed consistently over months. A 2025 systematic review likewise found structured resistance training parameters matter for BMD outcomes — not random gym tourism.",
           "Aim for **2 sessions per week** of progressive resistance: squats or sit-to-stands, hip hinges / deadlift pattern, rows, pushes, calf raises, and a little balance. Start with bodyweight or bands ([bodyweight strength](/blog/bodyweight-strength-for-runners)); add load gradually when form is solid.",
           "If you already have low bone density, ask whether high-impact running or jumps are appropriate for *your* T-score — see [exercising with osteoporosis](https://www.mayoclinic.org/diseases-conditions/osteoporosis/in-depth/osteoporosis/art-20044989) framing and our [masters bone health deep dive](/blog/bone-health-masters-runners).",
         ],
@@ -368,6 +369,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
         ],
         paragraphs: [
           "Start simple with [bodyweight strength](/blog/bodyweight-strength-for-runners); progress toward [advanced strength](/blog/advanced-strength-training-for-runners) when ready. For the midlife hormonal context, see [running through menopause](/blog/running-through-menopause).",
+          "Systematic reviews in postmenopausal women confirm **progressive resistance training** is among the most evidence-backed tools for bone mineral density — running alone doesn't replicate the multi-directional loading spine and hips need. Consistency over months beats heroic single sessions.",
         ],
       },
       {
@@ -631,6 +633,498 @@ export const p0MedicalGapPosts: BlogPost[] = [
         cta: {
           text: "Browse free marathon-capable plans",
           href: "/plan",
+        },
+      },
+    ],
+  },
+
+  {
+    slug: "iron-deficiency-runners",
+    metaTitle: "Iron Deficiency in Runners: Symptoms, Labs & What Helps",
+    title:
+      "Iron Deficiency in Runners: When Easy Miles Feel Impossible (And Labs Still Look 'Fine')",
+    excerpt:
+      "Heavy training, menstrual losses, and foot-strike hemolysis drain iron stores long before anemia shows up. What iron deficiency without anemia feels like, which labs to ask for, food and supplement basics, and when to back off training.",
+    category: "Health",
+    author: AUTHOR,
+    publishedAt: "2026-10-28",
+    readTime: "13 min",
+    relatedSlugs: [
+      "running-guide-for-women",
+      "reds-low-energy-availability-runners",
+      "running-through-menopause",
+      "nutrition-for-runners",
+      "easy-runs-effort-heart-rate",
+      "comeback-after-running-break",
+      "avoiding-injuries",
+    ],
+    closingQuestion:
+      "Did you ever blame 'bad fitness' for a slump that turned out to be low iron — what finally tipped you off?",
+    sources: [
+      SOURCES.ironDeficiency,
+      SOURCES.ironDeficiencyCollegiateAthletes2024,
+      SOURCES.ironStatusPhysicalPerformance2023,
+      SOURCES.ironSupplementationAthletesMeta2024,
+      SOURCES.ironDeficiencyAthletesPrevention2024,
+      SOURCES.redS,
+      SOURCES.runningNutrition,
+      SOURCES.physicalActivityGuidelinesUS,
+    ],
+    faq: [
+      {
+        question: "Can I be iron deficient with normal hemoglobin?",
+        answer:
+          "Yes — that's iron deficiency without anemia (IDNA), and it's common in endurance athletes. Hemoglobin can look fine while ferritin (iron stores) is depleted. A 2024 meta-analysis of collegiate athletes found more than half had ferritin below 50 µg/L. Only checking hemoglobin misses the early stage.",
+      },
+      {
+        question: "What ferritin level should runners aim for?",
+        answer:
+          "General lab 'normal' cutoffs (sometimes as low as 12 µg/L) were not designed for athletes. Sports-medicine reviews often suggest ferritin above roughly 35–50 µg/L before hard training blocks, with many clinicians targeting higher for female runners with heavy training loads. Your clinician should interpret labs in context — not against a one-size chart.",
+      },
+      {
+        question: "Should I take iron supplements without testing?",
+        answer:
+          "No. Excess iron causes problems, and supplements can cause GI side effects that make training miserable. Get ferritin, hemoglobin, and transferrin saturation (and discuss CRP if inflammation is possible) through a clinician first. A 2024 meta-analysis found oral iron raised ferritin most clearly when stores were already low.",
+      },
+      {
+        question: "Why are runners at higher risk?",
+        answer:
+          "Foot-strike hemolysis, sweat and GI losses, menstrual bleeding, under-fueling, altitude, and high training volume all increase demand or losses. Female runners, vegetarians, and anyone with a history of REDs or recurrent stress injuries deserve earlier screening.",
+      },
+      {
+        question: "Can I keep training while treating low iron?",
+        answer:
+          "Often yes at reduced load — but persistent breathlessness, dizziness, chest symptoms, or focal bone pain need clinical guidance, not another coffee. Fix the iron problem and protect easy days; don't stack hero weeks while stores are empty.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "The run feels wrong in a specific way: heart rate drifts high on easy pace, legs won't turn over, brain fog sits on top of normal life stress. You blame heat, sleep, or 'lost fitness.' Sometimes it's iron — and standard blood work never looked for it.",
+          "**Iron deficiency without anemia (IDNA)** is the most common missed version in runners. Hemoglobin still reads 'normal,' so the lab printout gets filed away. Meanwhile ferritin — your iron storage tank — is empty enough to blunt endurance, recovery, and mood.",
+          "**Educational only — not medical advice.** Breathlessness, chest pain, palpitations, black stools, or unexplained severe fatigue need a clinician. This guide explains why runners get depleted, what to test, and how treatment usually fits around training — not instead of medical care.",
+        ],
+      },
+      {
+        id: "why-runners",
+        heading: "Why running drains iron faster than couch life",
+        list: [
+          "**Foot-strike hemolysis** — repeated landing can break red cells in the feet, especially on hard surfaces",
+          "**Menstrual blood loss** — heavy or irregular periods plus training is a classic double hit ([women's running guide](/blog/running-guide-for-women))",
+          "**GI losses** — long runs, NSAIDs, and gut stress during hard blocks",
+          "**Under-fueling** — low energy availability impairs iron absorption and recovery ([REDs guide](/blog/reds-low-energy-availability-runners))",
+          "**High volume and altitude** — more red-cell turnover and demand",
+          "**Vegetarian / vegan diets** — doable for runners, but need planning for absorbable iron",
+        ],
+        paragraphs: [
+          "A 2024 systematic review and meta-analysis of more than 17,000 collegiate athletes reported that roughly **54% had ferritin below 50 µg/L** and about **23% met stricter definitions of absolute iron deficiency** — often without anemia. Running culture normalizes the fatigue those numbers produce.",
+        ],
+      },
+      {
+        id: "symptoms",
+        heading: "Symptoms that look like 'bad training'",
+        list: [
+          "Easy pace feels hard despite sleep and reasonable life stress",
+          "Breathlessness disproportionate to effort (especially on hills or stairs)",
+          "Resting heart rate or RPE drifting up for the same routes",
+          "Heavy legs that don't clear after a rest day",
+          "Restless legs, headaches, pale skin, or brittle nails",
+          "Getting sick often; slow recovery between workouts",
+          "In women: worsening symptoms around heavy flow days",
+        ],
+        paragraphs: [
+          "None of these prove iron deficiency — overtraining, illness, thyroid issues, and under-fueling overlap heavily. The point is: **when the pattern persists across weeks, ask for iron labs**, not another caffeine strategy.",
+        ],
+      },
+      {
+        id: "labs",
+        heading: "Labs worth requesting (and how to read them loosely)",
+        paragraphs: [
+          "Sports-medicine screening usually starts with **serum ferritin**, **hemoglobin**, and **transferrin saturation**. Ferritin reflects stores; hemoglobin reflects whether anemia has arrived; transferrin saturation helps stage severity.",
+          "General-population lab ranges often call ferritin 'normal' down to ~12 µg/L. Athlete-focused reviews argue that threshold misses performance-limiting depletion — many clinicians want ferritin **above roughly 35–50 µg/L** before heavy training, with higher targets for some female runners. Interpretation belongs with your clinician, especially if **CRP** is elevated from recent hard training or illness (inflammation can falsely 'inflate' ferritin readings).",
+          "A 2023 systematic review on iron and athletic performance found supplementation helped performance most when athletes started with **clearly low stores** — another reason guessing with pills backfires.",
+        ],
+        list: [
+          "Ask specifically for **ferritin**, not only 'CBC'",
+          "If history suggests inflammation, discuss CRP timing relative to your last hard session",
+          "Repeat labs on a schedule your clinician sets — ferritin rises slowly with treatment",
+          "Do not self-diagnose from one borderline number; trends and symptoms matter",
+        ],
+      },
+      {
+        id: "food-first",
+        heading: "Food-first strategies that actually move the needle",
+        list: [
+          "**Heme iron** (better absorbed): lean red meat, poultry, fish",
+          "**Non-heme iron**: lentils, beans, tofu, spinach, fortified cereals",
+          "Pair plant iron with **vitamin C** (citrus, bell pepper, tomato) at the same meal",
+          "Separate high-calcium meals or coffee/tea from iron-rich meals when possible — calcium and tannins can reduce absorption",
+          "Cook in cast iron occasionally if it fits your kitchen — small but real bump for some diets",
+          "Fuel enough total energy — absorption fails when you're chronically under-eating",
+        ],
+        paragraphs: [
+          "Diet tweaks help prevention and mild deficiency; they rarely fix moderate depletion fast enough mid-season. That's when supervised supplementation enters the conversation.",
+        ],
+      },
+      {
+        id: "supplements",
+        heading: "Supplements: medical supervision, not drugstore heroics",
+        paragraphs: [
+          "Oral iron under clinician guidance is the usual first treatment for confirmed deficiency. A 2024 meta-analysis of randomized trials in athletes found oral iron **increased ferritin** compared with control — with the clearest benefit when pre-treatment ferritin was low. Hemoglobin changes take longer; patience matters.",
+          "Common side effects include constipation, nausea, and dark stools. Divided doses, different iron salts, or taking with food (at the cost of some absorption) may help — ask your prescriber rather than quitting silently.",
+          "**Never** supplement iron because a training partner swears by it. Excess iron is harmful. If you're male, non-menstruating, and not deficient, more iron is not a performance hack.",
+        ],
+      },
+      {
+        id: "training-while-treating",
+        heading: "Training while iron repletes",
+        list: [
+          "Keep most runs truly easy until effort normalizes ([easy-run guide](/blog/easy-runs-effort-heart-rate))",
+          "Drop intensity and long-run length before you drop all movement — unless clinician says otherwise",
+          "Prioritize sleep and total calories; iron repletion on a diet cut is slow motion",
+          "Re-test before jumping back into a peak block",
+          "Screen concurrently for REDs if periods are irregular or bone pain appears",
+        ],
+        paragraphs: [
+          "Fixing iron can feel like fitness returning overnight — because it often *is* physiology catching up, not a motivational breakthrough. Still progress volume gradually; tendons and bone don't care that ferritin improved.",
+        ],
+      },
+      {
+        id: "screening-who",
+        heading: "Who should screen earlier or more often",
+        list: [
+          "Female runners with heavy or irregular menses",
+          "Vegetarian / vegan athletes",
+          "History of iron deficiency in the last 24 months",
+          "Unexplained performance decline with adequate sleep",
+          "High-mileage blocks, altitude camps, or two-a-day schedules",
+          "Anyone with REDs, amenorrhea, or recurrent stress injuries",
+          "Postpartum runners once cleared for routine labs ([postpartum return](/blog/postpartum-return-to-run))",
+        ],
+        paragraphs: [
+          "A 2024 German Journal of Sports Medicine review recommends **annual iron screening** for most athletes and **quarterly labs** for higher-risk groups. That sounds clinical — because unexplained slumps are clinical, not character tests.",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Iron deficiency is common in runners, often invisible on hemoglobin alone, and frequently mistaken for laziness or overtraining. Request ferritin with context, fix under-fueling in parallel, treat under medical guidance, and rebuild training load like you're smart — not stubborn.",
+        ],
+        cta: {
+          text: "Women runner health topics",
+          href: "/injuries/for-women-runners#menstrual-cycle",
+        },
+      },
+    ],
+  },
+  {
+    slug: "birth-control-training-runners",
+    metaTitle: "Birth Control & Running: Energy, Cycle, Bone & Training",
+    title:
+      "Birth Control and Running: What Changes (and What Doesn't) for Training",
+    excerpt:
+      "The pill, patch, ring, IUD, implant, or shot can shift bleeding, energy, and how you read your cycle — without automatically helping or hurting performance. A practical guide for runners on what to track and when to ask a clinician.",
+    category: "Health",
+    author: AUTHOR,
+    publishedAt: "2026-11-18",
+    readTime: "12 min",
+    relatedSlugs: [
+      "running-guide-for-women",
+      "running-through-menopause",
+      "reds-low-energy-availability-runners",
+      "iron-deficiency-runners",
+      "bone-health-masters-runners",
+      "easy-runs-effort-heart-rate",
+      "avoiding-injuries",
+    ],
+    closingQuestion:
+      "Did you change contraception and notice training shift — or did you only realize in hindsight?",
+    sources: [
+      SOURCES.menstrualCycleReview,
+      SOURCES.menstrualCycleUmbrella2023,
+      SOURCES.hormonalContraceptiveStrengthAdaptations2024,
+      SOURCES.combinedHormonalContraceptiveMusculoskeletalBJSM2023,
+      SOURCES.hormonalContraceptiveAthleticPerformance2020,
+      SOURCES.redS,
+      SOURCES.ironDeficiency,
+      SOURCES.physicalActivityGuidelinesUS,
+    ],
+    faq: [
+      {
+        question: "Does birth control ruin running performance?",
+        answer:
+          "Systematic reviews do not show a consistent performance penalty for most female athletes on hormonal contraception. Individual responses vary — bloating, mood, or bleeding changes can affect how runs feel even when lab metrics look fine. Track 2–3 months after any method change before judging.",
+      },
+      {
+        question: "Does the pill protect bone health in runners?",
+        answer:
+          "Evidence is mixed. A 2023 BJSM systematic review of millions of females found low-certainty evidence of slightly higher future fracture risk with combined hormonal contraceptive use in some analyses — not a simple 'pill protects bones' story. Under-fueling and missed periods still matter; see REDs guidance.",
+      },
+      {
+        question: "Can I still track my cycle on hormonal birth control?",
+        answer:
+          "Combined methods often suppress ovulation, so 'cycle syncing' by phase works differently. Progestin-only methods may cause irregular bleeding early on. Track symptoms, energy, and bleeding — not just calendar day — for a few months.",
+      },
+      {
+        question: "Should I stop birth control to improve running?",
+        answer:
+          "That's a medical decision, not a training hack. Contraception, bone health, acne, endometriosis, and pregnancy planning all belong with your clinician. Don't stop or switch methods for mileage without professional guidance.",
+      },
+      {
+        question: "Does birth control cause iron deficiency?",
+        answer:
+          "Some methods reduce menstrual blood loss — which can help iron status. Others cause breakthrough bleeding. Either way, heavy training plus under-fueling remains the bigger REDs and iron story. Get ferritin checked if fatigue doesn't match load ([iron guide](/blog/iron-deficiency-runners)).",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Runners love a simple lever: new shoes, gel strategy, one weird trick. Hormonal contraception is not that. The pill, patch, ring, IUD, implant, or injection changes how you bleed, how you interpret 'cycle day,' and sometimes how easy miles feel — without a universal performance verdict from the literature.",
+          "**Educational only — not medical advice.** Choosing, starting, stopping, or switching contraception belongs with your clinician. This guide explains what runners commonly notice and what reviews actually say about training — not which method you should use.",
+        ],
+      },
+      {
+        id: "methods",
+        heading: "Methods matter — one label hides several systems",
+        list: [
+          "**Combined estrogen + progestin** (pill, patch, ring) — often lighter or predictable withdrawal bleeds; ovulation usually suppressed",
+          "**Progestin-only pill** — irregular bleeding common early; some women feel sluggish on active pills",
+          "**Hormonal IUD** — local progestin; many users have lighter periods or amenorrhea over time",
+          "**Implant** — long-acting progestin; irregular bleeding can persist months",
+          "**Depo injection** — long-acting; bone-density discussions matter for high-mileage athletes",
+          "**Copper IUD** — no hormones; periods may be heavier — relevant for iron status",
+        ],
+        paragraphs: [
+          "When comparing notes with a training partner, 'I'm on the pill' isn't one experience. Method, dose, and your own physiology dominate.",
+        ],
+      },
+      {
+        id: "performance",
+        heading: "Performance and strength: what reviews find",
+        paragraphs: [
+          "A 2020 systematic review on hormonal contraceptives and athletic performance found **no consistently significant difference** in aerobic or anaerobic performance or injury risk between users and non-users in most studies — with nuance by age and method.",
+          "A 2024 meta-analysis on **resistance-training adaptations** found oral contraceptive use did **not** significantly change hypertrophy, power, or strength gains over ~12-week programs. Translation: if you lift for running, being on OCPs doesn't automatically waste the work — but n=1 still rules your Tuesday.",
+          "Menstrual cycle phase effects on performance are themselves small and inconsistent in meta-analyses ([McNulty 2020](https://pubmed.ncbi.nlm.nih.gov/32661839/); [umbrella review 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10076834/)). Suppressing natural cycles doesn't magically fix or break training — it changes the feedback signals you read.",
+        ],
+      },
+      {
+        id: "bone",
+        heading: "Bone health: not a free pass, not automatic doom",
+        paragraphs: [
+          "Marketing sometimes sells hormonal contraception as bone protection. Sports-medicine evidence is messier. A 2023 BJSM systematic review covering **five million females** reported **low-certainty** evidence that combined hormonal contraceptive use may associate with **slightly elevated** future fracture or knee-replacement risk in some analyses — and **very low-certainty** evidence for unclear effects on many bone markers.",
+          "Under-fueling, amenorrhea, and REDs remain independent bone threats whether or not you're on hormones ([REDs guide](/blog/reds-low-energy-availability-runners)). Long-acting depo methods deserve explicit bone conversations with your clinician if you're high-mileage.",
+        ],
+      },
+      {
+        id: "tracking",
+        heading: "What to track after starting or switching",
+        list: [
+          "**8–12 weeks minimum** before deciding a method 'ruins' or 'saves' training",
+          "Easy-run effort vs pace — RPE drift matters more than one bad tempo",
+          "Breakthrough bleeding or heavy flow — iron and bra/chafing logistics",
+          "Sleep, mood, appetite — under-fueling masquerades as 'the pill made me tired'",
+          "Joint niggles — don't blame hormones for load errors; but note timing",
+          "If periods vanish **without** an hormonal method — that's REDs territory, not success",
+        ],
+        paragraphs: [
+          "A simple journal beats app mythology: method start date + weekly run quality + symptoms. Patterns emerge faster than Instagram cycle-sync charts.",
+        ],
+      },
+      {
+        id: "training-edits",
+        heading: "Practical training edits (not medical switches)",
+        list: [
+          "Schedule hard workouts away from known sluggish windows if you notice a pattern",
+          "Keep easy days honest ([easy effort guide](/blog/easy-runs-effort-heart-rate))",
+          "If bloating or breast tenderness peaks mid-pack, adjust long-run fueling and gear — not mileage revenge",
+          "Perimenopause overlap? Layer [menopause training edits](/blog/running-through-menopause) on top of contraceptive tracking",
+          "Copper IUD + heavy flow → screen iron if fatigue climbs ([iron post](/blog/iron-deficiency-runners))",
+        ],
+      },
+      {
+        id: "clinician",
+        heading: "When to involve your clinician",
+        list: [
+          "Migraine with aura on combined methods — urgent method review",
+          "Persistent irregular bleeding after 3+ months on a new method",
+          "Suspected pregnancy on any method",
+          "Bone pain, stress reactions, or amenorrhea while training hard",
+          "Desire to stop hormones for performance — needs a real medical plan, not a blog",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Birth control changes the data stream — bleeding, symptoms, sometimes energy — more than it rewrites physiology in predictable performance ways. Track honestly, fuel enough, lift consistently, and let clinicians own method decisions. Your job is to notice patterns and train the body you have this season.",
+        ],
+        cta: {
+          text: "Women's running guide",
+          href: "/blog/running-guide-for-women",
+        },
+      },
+    ],
+  },
+  {
+    slug: "running-during-pregnancy",
+    metaTitle: "Running During Pregnancy: Trimester Guide & Red Flags",
+    title:
+      "Running During Pregnancy: Trimester-by-Trimester Edits (When Your OB Says Go)",
+    excerpt:
+      "ACOG supports continued activity for many habitually active pregnancies — but running in pregnancy is a medical conversation first. Trimester edits, talk-test pacing, heat and balance rules, and symptoms that mean stop today.",
+    category: "Health",
+    author: AUTHOR,
+    publishedAt: "2026-11-25",
+    readTime: "13 min",
+    relatedSlugs: [
+      "postpartum-return-to-run",
+      "running-guide-for-women",
+      "easy-runs-effort-heart-rate",
+      "hydration-electrolytes-running",
+      "hot-weather-running-hub",
+      "avoiding-injuries",
+      "running-with-health-conditions",
+    ],
+    closingQuestion:
+      "If you ran through pregnancy — what changed first: pace, route choice, or confidence?",
+    sources: [
+      SOURCES.acogPhysicalActivityPregnancy2020,
+      SOURCES.pregnancyExercise,
+      SOURCES.exerciseAfterPregnancy,
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.heatSafety,
+      SOURCES.redS,
+    ],
+    faq: [
+      {
+        question: "Is running safe during pregnancy?",
+        answer:
+          "For many uncomplicated pregnancies in women who already ran, ACOG Committee Opinion No. 804 (2020) supports continuing physical activity with modifications. Safety depends on your medical history, current symptoms, and obstetric guidance — not a blog clearance.",
+      },
+      {
+        question: "Can I start running during pregnancy if I didn't run before?",
+        answer:
+          "ACOG generally recommends that previously inactive women begin with low-impact activity (walking, swimming, stationary cycling) rather than starting a high-impact running program during pregnancy. Running after delivery is often the better entry if you weren't a runner beforehand.",
+      },
+      {
+        question: "What heart rate limit should I use?",
+        answer:
+          "Old '140 bpm' cutoffs are outdated. ACOG emphasizes moderate intensity using the talk test — conversational effort — and individual obstetric guidance. Heart rate rises in pregnancy; perceived effort and symptoms matter more than a fixed number.",
+      },
+      {
+        question: "When should I stop running immediately?",
+        answer:
+          "ACOG lists warning signs including vaginal bleeding, regular painful contractions, amniotic fluid leakage, dizziness, headache, chest pain, calf pain or swelling, and muscle weakness affecting balance. Any of these during or after a run means stop and contact your obstetric care provider.",
+      },
+      {
+        question: "Is postpartum return the same guide?",
+        answer:
+          "No — postpartum has pelvic floor, incision healing, and different timelines. See [postpartum return to run](/blog/postpartum-return-to-run) after your clinician clears impact.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Two truths coexist: many women run healthy pregnancies with medical support — and pregnancy is not the season to prove you're tougher than physiology.",
+          "ACOG's Committee Opinion No. 804 (2020) reinforces that **physical activity and exercise benefit most pregnancies** with minimal risks when appropriately modified. Women who were **regularly active before pregnancy** can often continue — including running — with obstetric monitoring. That is not the same as 'sign up for a marathon PR while newly pregnant.'",
+          "**Educational only — not medical advice.** High-risk pregnancy, placenta issues, bleeding, preterm history, or any concern your OB flags means individualized rules — not this article.",
+        ],
+      },
+      {
+        id: "clearance",
+        heading: "Clearance before the calendar plan",
+        list: [
+          "Tell your OB or midwife you run — ask about **continuing impact**, not just 'exercise'",
+          "Discuss prior miscarriage, preterm birth, placenta previa, cervical issues, or hypertension",
+          "Bring this guide's **stop symptoms** list to your visit",
+          "If cleared, aim for **≥150 minutes/week moderate activity** spread across days (U.S. guidelines + ACOG)",
+          "If not cleared, walking, swimming, or prenatal-approved strength still count",
+        ],
+      },
+      {
+        id: "trimester-one",
+        heading: "First trimester: nausea beats pace",
+        paragraphs: [
+          "Fatigue and nausea are real — walk-run counts. Many runners shorten loops, run closer to home, or swap some days to brisk walking without 'losing athlete status.'",
+        ],
+        list: [
+          "Prioritize **cooler times of day** — overheating risk is higher early ([heat safety](https://communityhealth.mayoclinic.org/featured-stories/exercise-summer-heat))",
+          "Hydrate before and after; keep routes with bathroom access if morning sickness hits",
+          "Easy effort only — this is not hill-repeat season unless your clinician says otherwise",
+          "Stop for bleeding, severe cramping, or dizziness",
+        ],
+      },
+      {
+        id: "trimester-two",
+        heading: "Second trimester: often the longest-running window",
+        paragraphs: [
+          "Many habitually active women log their most consistent running here — with modified intensity. Use the **talk test**: you should hold a conversation, not sprint-recover.",
+        ],
+        list: [
+          "Supportive sports bra becomes non-negotiable — chafing scales with bump",
+          "Flat or gentle routes; save technical trails unless you're confident on footing",
+          "Begin modifying long supine core work — incline walking and side-lying strength instead",
+          "Fuel normally — pregnancy is not the time for aggressive deficits ([REDs](/blog/reds-low-energy-availability-runners))",
+        ],
+      },
+      {
+        id: "trimester-three",
+        heading: "Third trimester: walk-run is still winning",
+        paragraphs: [
+          "Center of gravity shifts; relaxin increases joint laxity; energy cost rises. Many runners transition to walk-jog, then walking only — often between weeks 28–36, but individual.",
+        ],
+        list: [
+          "Short loops; carry phone; tell someone your route",
+          "Downhills and camber may feel unstable — respect balance changes",
+          "Pelvic pressure, leaking, or pubic pain → stop impact; ask about pelvic PT",
+          "No medal for running until delivery day — postpartum return is the next chapter",
+        ],
+      },
+      {
+        id: "modify",
+        heading: "Modifications that actually matter",
+        list: [
+          "**Intensity:** conversational pace; no breathless intervals unless clinician approves",
+          "**Heat:** indoor treadmill, dawn runs, or skip rather than heroics",
+          "**Falls:** avoid icy trails, technical descents, contact sports",
+          "**Core:** limit long supine work after first trimester",
+          "**Volume:** maintain habit, not peak mileage — consistency > ego",
+          "**Gear:** maternity support belts if helpful; shoes may need half-size up",
+        ],
+      },
+      {
+        id: "red-flags",
+        heading: "Stop and call your obstetric provider",
+        list: [
+          "Vaginal bleeding or fluid leakage",
+          "Regular painful contractions",
+          "Dizziness, faintness, or severe headache",
+          "Chest pain or severe shortness of breath before effort",
+          "Calf pain, swelling, or warmth — blood-clot concern",
+          "Decreased fetal movement (when you're far enough along to monitor)",
+          "Any symptom your clinician already flagged as stop-exercise",
+        ],
+        paragraphs: [
+          "These are not 'walk it off' moments. You can return to activity when cleared — rushing through warning signs is the actual risk.",
+        ],
+      },
+      {
+        id: "after-birth",
+        heading: "After birth: different playbook",
+        paragraphs: [
+          "Cardio fitness can return faster than pelvic floor or abdominal healing. ACOG's postpartum guidance still supports activity — but impact running waits on **explicit clearance**, often weeks to months. Start with [postpartum return to run](/blog/postpartum-return-to-run) — not your pre-pregnancy Strava log.",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Running during pregnancy, when medically appropriate, is usually about **continuity and mood** — not proving pre-pregnancy pace. Clear it with your OB, use the talk test, respect heat and balance, and treat stop symptoms as immediate data. The goal is a healthy pregnancy and a sane return afterward.",
+        ],
+        cta: {
+          text: "Postpartum return guide",
+          href: "/blog/postpartum-return-to-run",
         },
       },
     ],

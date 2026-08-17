@@ -262,6 +262,8 @@ export const womenRunnerConcerns: WomenRunnerConcern[] = [
       "A good rule of thumb: You should be able to walk for 30–45 minutes comfortably and do basic core exercises without pain or bulging before progressing to run-walk intervals.",
     illustration: "pregnancy",
     readMore: [
+      { label: "Running during pregnancy", href: "/blog/running-during-pregnancy" },
+      { label: "Postpartum return to run", href: "/blog/postpartum-return-to-run" },
       { label: "Pregnancy & health conditions tips", href: "/tips/specific-situations" },
       { label: "Running with health conditions", href: "/blog/running-with-health-conditions" },
     ],

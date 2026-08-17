@@ -31,6 +31,10 @@ import { computeSyncedRunStats } from "@/lib/synced-run-stats";
 import { buildAdaptiveBrief } from "@/lib/adaptive-brief";
 import { getPersonalizedContent } from "@/lib/personalized-content";
 import { isAdaptiveAiConfigured } from "@/lib/adaptive-ai";
+import {
+  enforceRateLimit,
+  getClientIp,
+} from "@/lib/security/rate-limit";
 
 function isRunActivity(type: string): boolean {
   const t = type.toLowerCase();
@@ -48,6 +52,14 @@ export async function GET(request: Request) {
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const ip = getClientIp(request);
+  const limited = await enforceRateLimit(
+    `dashboard:${session.user.id}:${ip}`,
+    30,
+    60 * 1000
+  );
+  if (limited) return limited;
 
   const userId = session.user.id;
   const chartTimeRange = parseChartTimeRange(

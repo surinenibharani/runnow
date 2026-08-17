@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { blogPostSlugs, getPostBySlug } from "@/lib/blog/posts";
 import { isEmailConfigured, sendEmail } from "@/lib/email/client";
 import { newCommentEmail } from "@/lib/email/templates";
-import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync, enforceRateLimitForIp } from "@/lib/security/rate-limit";
 import { isHoneypotTriggered, sanitizeText } from "@/lib/security/sanitize";
 import { verifyTurnstile } from "@/lib/security/turnstile";
 import { isValidPostSlug } from "@/lib/security/validation";
@@ -68,7 +68,21 @@ function serializeComment(
   };
 }
 
-export async function listComments(type: CommentTargetType, slug: string) {
+export async function listComments(
+  type: CommentTargetType,
+  slug: string,
+  request?: Request
+) {
+  if (request) {
+    const limited = await enforceRateLimitForIp(
+      request,
+      "comments-list",
+      60,
+      15 * 60 * 1000
+    );
+    if (limited) return limited;
+  }
+
   if (!isAllowedSlug(type, slug)) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }

@@ -16,6 +16,7 @@ import {
   resolveWorkoutDayId,
   sanitizeCompletedIds,
 } from "@/lib/plan-validation";
+import { enforceRateLimit, getClientIp } from "@/lib/security/rate-limit";
 
 const VALID_FITNESS_LEVELS: FitnessLevel[] = [
   "beginner",
@@ -28,6 +29,17 @@ function isValidFitnessLevel(value: unknown): value is FitnessLevel {
   return (
     typeof value === "string" &&
     VALID_FITNESS_LEVELS.includes(value as FitnessLevel)
+  );
+}
+
+async function enforceTrainingPlanMutationLimit(
+  request: Request,
+  userId: string
+): Promise<NextResponse | null> {
+  return enforceRateLimit(
+    `training-plan-mutate:${userId}:${getClientIp(request)}`,
+    60,
+    60 * 60 * 1000
   );
 }
 
@@ -101,6 +113,9 @@ export async function PUT(request: Request) {
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const limited = await enforceTrainingPlanMutationLimit(request, session.user.id);
+  if (limited) return limited;
 
   const body = await request.json();
   const {
@@ -244,6 +259,9 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const limited = await enforceTrainingPlanMutationLimit(request, session.user.id);
+  if (limited) return limited;
+
   const body = await request.json();
   const {
     workoutId,
@@ -371,6 +389,9 @@ export async function DELETE(request: Request) {
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const limited = await enforceTrainingPlanMutationLimit(request, session.user.id);
+  if (limited) return limited;
 
   const reset = new URL(request.url).searchParams.get("reset");
 

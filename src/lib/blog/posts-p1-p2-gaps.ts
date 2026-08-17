@@ -527,6 +527,168 @@ export const p1P2GapPosts: BlogPost[] = [
     ],
   },
   {
+    slug: "return-to-run-after-surgery",
+    metaTitle: "Return to Running After Surgery: Criteria-Based Guide",
+    title:
+      "Return to Run After Surgery: When Clearance Isn't a Calendar Date",
+    excerpt:
+      "Surgeon OK is step one — not the green light for last year's mileage. Criteria-based return after ACL reconstruction, meniscus repair, and other common procedures, plus walk-first progressions and red flags.",
+    category: "Health",
+    author: AUTHOR,
+    publishedAt: "2026-11-04",
+    readTime: "12 min",
+    relatedSlugs: [
+      "return-to-run-after-illness",
+      "comeback-after-running-break",
+      "cross-training-swim-elliptical-aqua-jog",
+      "avoiding-injuries",
+      "stress-fracture-running",
+      "runners-knee-running",
+      "easy-runs-effort-heart-rate",
+    ],
+    closingQuestion:
+      "After surgery, what milestone mattered more than the week on the calendar — strength, swelling, or confidence?",
+    sources: [
+      SOURCES.aclReturnToRunningScoping2018,
+      SOURCES.aspetarAclRehabGuideline2023,
+      SOURCES.aclReturnToSportSystematic2022,
+      SOURCES.returnToSportAclReview2025,
+      SOURCES.peaceAndLove,
+      SOURCES.preParticipationScreening,
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.strengthForRunners,
+    ],
+    faq: [
+      {
+        question: "When can I run after ACL surgery?",
+        answer:
+          "There's no universal week. A 2018 BJSM scoping review found a median of 12 postoperative weeks before running was permitted in studies — but fewer than one in five used strength or performance criteria. Current guidelines (including Aspetar's 2023 BJSM clinical practice guideline) emphasize milestones: full knee extension, minimal swelling, acceptable quadriceps strength, and pain-free hopping — not the date alone.",
+      },
+      {
+        question: "Is return-to-run after surgery the same as after a vacation break?",
+        answer:
+          "No. A healthy break is mostly fitness and load management ([comeback after a break](/blog/comeback-after-running-break)). Post-surgery return adds tissue healing, surgical restrictions, and often asymmetric strength. Copying old paces risks re-injury or graft stress.",
+      },
+      {
+        question: "What about meniscus, ankle, or foot surgery?",
+        answer:
+          "Principles overlap — surgeon-specific restrictions always win — but timelines differ. Weight-bearing status, incision healing, and cartilage/bone procedures change when impact is safe. Use the criteria framework here; follow your operative team's protocol for specifics.",
+      },
+      {
+        question: "Can I cross-train while waiting to run?",
+        answer:
+          "Often yes — pool, bike, or elliptical when cleared ([cross-training guide](/blog/cross-training-swim-elliptical-aqua-jog)). The goal is maintaining fitness without violating healing constraints. Running-specific loading comes later.",
+      },
+      {
+        question: "What are red flags during return-to-run?",
+        answer:
+          "Increasing swelling after sessions, sharp joint pain, giving-way, fever/redness at the incision, or pain that worsens run to run. Those are stop-and-call signals — not cues to add miles.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "**Educational only — not medical advice.** Your surgeon and physical therapist own the protocol for your procedure, graft type, and complications. This guide explains how sports-medicine literature thinks about return-to-run — it is not clearance to lace up.",
+          "The most expensive mistake after surgery isn't taking too long — it's treating **surgeon clearance** like **return to last year's training log**. Clearance means healing reached a milestone where *some* loading may be appropriate. It does not mean your cardiovascular fitness and your surgical leg are on the same timeline.",
+          "ACL reconstruction has the best published return-to-run criteria; we'll use it as the anchor example, then generalize principles to other procedures.",
+        ],
+      },
+      {
+        id: "time-vs-criteria",
+        heading: "Time-based vs criteria-based return",
+        paragraphs: [
+          "Historically, many rehab protocols picked a postoperative week — often around **12 weeks** for ACL reconstruction — and started running because the calendar said so. Rambaud and colleagues' 2018 BJSM scoping review of 201 studies found **time was the most common criterion**, while fewer than **20%** also required clinical, strength, or hop-test milestones.",
+          "That gap matters. Two people at 'week 12' can have wildly different quadriceps strength, swelling, and movement quality. A 2022 systematic review on return to sport after ACL reconstruction argued for **multifactorial readiness**: time since surgery **plus** strength testing, **more than two** functional tests, and psychological readiness — not any single checkbox.",
+          "Aspetar's 2023 clinical practice guideline on ACL rehabilitation pushes the same direction: running should begin when the knee can tolerate **repeated, rapid loading** — which requires measurable capacity first.",
+        ],
+      },
+      {
+        id: "acl-milestones",
+        heading: "ACL reconstruction: common milestones before first run",
+        paragraphs: [
+          "Exact numbers vary by surgeon and graft. Typical **non-negotiables** cited across reviews and the Aspetar guideline include:",
+          "Return to **sport** (cutting, pivoting) is a longer runway — often **9–12+ months** with continued strength work. Running is an intermediate step, not the finish line.",
+        ],
+        list: [
+          "**Full knee extension** (no hidden flexion contracture) and near-normal flexion — often cited as ≥95% of the uninvolved side",
+          "**Minimal effusion** — swelling that blows up after rehab is a stop sign",
+          "**Pain controlled** — many protocols use low pain scores on daily activities, not 'only hurts when I run'",
+          "**Normal walking gait** without a limp before impact",
+          "**Quadriceps activation** — strength symmetry often targeted around **70–80% limb symmetry index (LSI)** before run progressions in scoping-review summaries; higher before return to sport",
+          "**Pain-free hopping** or plyometric progressions in rehab — double-leg before single-leg",
+          "**Subjective readiness** — patient-reported knee confidence scales predict success better than pride alone",
+        ],
+      },
+      {
+        id: "run-progression",
+        heading: "A pragmatic run progression (once cleared)",
+        list: [
+          "**Walk–jog intervals** on flat, forgiving surface — short bouts with full recovery",
+          "Start with **2–3 sessions per week**, not daily impact",
+          "Keep effort conversational ([easy runs](/blog/easy-runs-effort-heart-rate))",
+          "Increase **total minutes** before speed; add hills only after flat feels boring",
+          "Monitor **next-day swelling and pain** — mild soreness vs reactive effusion are different",
+          "Continue **strength 2×/week** — quads, hamstrings, glutes, calves ([strength for runners](/blog/bodyweight-strength-for-runners))",
+        ],
+        paragraphs: [
+          "This mirrors illness-return humility ([return after illness](/blog/return-to-run-after-illness)) but adds **limb asymmetry** as a daily data stream. If the surgical side feels like a different leg, you are not ready for progression — you are ready for more rehab.",
+        ],
+      },
+      {
+        id: "other-surgeries",
+        heading: "Meniscus, ankle, foot, and hip procedures",
+        paragraphs: [
+          "Not every surgery is ACL reconstruction. Meniscus repair may restrict deep flexion or loading longer than a trim. Ankle procedures vary by ligament or cartilage work. Bunion or forefoot surgery may delay impact until bone healing completes.",
+          "Shared principles still apply: **(1)** follow weight-bearing and ROM restrictions exactly; **(2)** normalize gait and daily function before run impact; **(3)** use cross-training in the allowed window; **(4)** progress impact volume slower than your lungs want.",
+        ],
+        list: [
+          "Ask explicitly: **When is impact allowed?** Not 'When can I exercise?'",
+          "Get **one return-to-run plan** that reconciles surgeon notes and PT milestones — conflicting advice is common",
+          "Foot/ankle procedures: shoe fit and orthotic changes may matter post-op as much as mileage",
+        ],
+      },
+      {
+        id: "cross-train",
+        heading: "Cross-training in the waiting window",
+        paragraphs: [
+          "Fitness and healing are not enemies when loading is chosen carefully. Cycling, swimming, or aqua jogging — when cleared — preserves aerobic capacity while the surgical site catches up ([cross-training protocols](/blog/cross-training-swim-elliptical-aqua-jog)).",
+          "Avoid comparing pool fitness to pavement readiness. You can be 'fit' and still lack **tissue-specific capacity** for running's impact profile.",
+        ],
+      },
+      {
+        id: "mind",
+        heading: "Psychology: the hidden return-to-run criterion",
+        paragraphs: [
+          "Fear of re-injury is rational after surgery. Systematic reviews increasingly include **psychological readiness** scales alongside hop tests. Rushing because the calendar or Strava feed says so — or avoiding running months after milestones are met — both have costs.",
+          "If confidence is the bottleneck, graded exposure with your PT beats white-knuckling solo miles.",
+        ],
+      },
+      {
+        id: "red-flags",
+        heading: "Red flags — pause and call the team",
+        list: [
+          "Effusion that increases run-to-run or returns hours after easy jogs",
+          "Sharp or catching knee/ankle pain, not dull post-workout soreness",
+          "Giving-way, instability, or new locking",
+          "Fever, spreading redness, or drainage at the surgical site",
+          "Calf swelling with pain — urgent evaluation for clot concerns",
+          "Pain that forces a limp — running through a limp rewrites biomechanics upstream",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Return-to-run after surgery is a **criteria problem**, not a willpower problem. Use surgeon and PT milestones, build impact slowly on flat ground, keep strength in the plan, and treat swelling and asymmetry as data. The goal is running *next year*, not winning week twelve.",
+        ],
+        cta: {
+          text: "Return after illness (different playbook)",
+          href: "/blog/return-to-run-after-illness",
+        },
+      },
+    ],
+  },
+  {
     slug: "cross-training-swim-elliptical-aqua-jog",
     metaTitle: "Swim, Elliptical & Aqua Jogging for Runners",
     title:

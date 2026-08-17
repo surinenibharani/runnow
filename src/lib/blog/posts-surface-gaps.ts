@@ -1111,4 +1111,156 @@ export const surfaceGapPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "finding-running-community",
+    metaTitle: "How to Find a Running Group, Club, or Parkrun Near You",
+    title:
+      "Finding Your Running People: Parkrun, Clubs, Store Runs & Low-Pressure Groups",
+    excerpt:
+      "You don't need a team to start — but most beginners stick longer with some company. How to find Parkrun, local clubs, store group runs, and couch-to-5K clinics without pace anxiety or commitment phobia.",
+    category: "Getting Started",
+    author: AUTHOR,
+    publishedAt: "2026-11-11",
+    readTime: "10 min",
+    relatedSlugs: [
+      "building-a-running-habit",
+      "group-running-coach-and-pacer",
+      "first-race-signup-logistics",
+      "race-anxiety-nerves",
+      "never-ran-where-to-start",
+      "runner-etiquette-trails-roads-track",
+      "kids-family-running",
+    ],
+    closingQuestion:
+      "What finally made group running feel welcoming — a person, a pace group, or a no-judgment route?",
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.physicalActivityGuidelines,
+    ],
+    faq: [
+      {
+        question: "What is Parkrun?",
+        answer:
+          "Parkrun organizes free, timed 5K community events in parks worldwide — usually Saturday mornings. Walkers and runners welcome; many beginners use it as a weekly anchor. Check parkrun.com (or your country's Parkrun site) for local events.",
+      },
+      {
+        question: "How do I find a running club near me?",
+        answer:
+          "Search 'running club' + your city, check local running-store calendars, browse Road Runners Club of America (RRCA) club listings in the U.S., or ask at parkrun. Many clubs label 'beginner' or 'couch to 5K' nights explicitly.",
+      },
+      {
+        question: "What if I'm too slow for a group?",
+        answer:
+          "Good groups have multiple pace bands or walk-run leaders. If everyone sprints off and no one looks back, that's a bad fit — not a verdict on you. Try another club, store run, or Parkrun volunteer + walk-run combo.",
+      },
+      {
+        question: "Do I need to commit to a team?",
+        answer:
+          "No. Drop-in store runs, Parkrun, and charity training groups often need zero membership. Save paid teams or coaches for when you want structure — not week one.",
+      },
+    ],
+    sections: [
+      {
+        paragraphs: [
+          "Solo running works. Habit failure often isn't laziness — it's loneliness, intimidation, or no one expecting you at 7 a.m. Saturday.",
+          "Community doesn't mean becoming a 'team athlete.' It can mean one predictable loop with friendly faces, a volunteer high-five at km 3, or a couch-to-5K coach who normalizes walk breaks.",
+          "This guide is practical discovery — not peer pressure. If solo stays your joy, keep solo. If you've restarted three times alone, try one low-stakes group before you quit again.",
+        ],
+      },
+      {
+        id: "parkrun",
+        heading: "Parkrun: the lowest-friction 5K community",
+        paragraphs: [
+          "**Parkrun** runs free, timed 5Ks in public parks — walkers, joggers, parents with strollers, and speedy locals share the same course. Register once online, print or save your barcode, show up.",
+        ],
+        list: [
+          "No entry fee — volunteer-led; consider volunteering if nervous about running",
+          "Same time weekly (usually Saturday) — habit stacking built in",
+          "Walk-run is normal; last finishers get as much cheer as first",
+          "Use two or three visits before judging 'group running isn't for me'",
+        ],
+      },
+      {
+        id: "clubs",
+        heading: "Local running clubs (without impostor syndrome)",
+        list: [
+          "Search city + 'running club' / 'run club' / 'track club'",
+          "U.S.: [RRCA club finder](https://www.rrca.org/find-a-running-club/) lists organized groups",
+          "Look for keywords: **beginner**, **social**, **no-drop**, **walk-run**",
+          "Track clubs often welcome newbies on structured workout nights — ask which night is beginner-friendly",
+          "Dues vary; many have trial runs before you pay annual fees",
+        ],
+        paragraphs: [
+          "Club culture beats club prestige. A messy neighborhood group that waits at corners beats an elite squad that leaves everyone behind.",
+        ],
+      },
+      {
+        id: "store-runs",
+        heading: "Running-store group runs",
+        list: [
+          "Independent running shops often host free weekly runs — check websites and Instagram",
+          "Staff usually know local 5Ks, coaches, and beginner clinics",
+          "Short 'intro' distances common; gear questions welcome mid-run",
+          "Great for finding routes and people at your pace without joining a team",
+        ],
+      },
+      {
+        id: "programs",
+        heading: "Couch-to-5K clinics & charity teams",
+        list: [
+          "Hospital, YMCA, or store-branded C25K programs add accountability for 8–10 weeks",
+          "Charity marathon/half teams provide coaching + fundraising structure — higher commitment, strong community",
+          "Employer wellness groups — lunch run clubs if your workplace has one ([workplace lunch run](/blog/workplace-lunch-run))",
+          "Kids tagging along? See [family running](/blog/kids-family-running) for age-appropriate expectations",
+        ],
+      },
+      {
+        id: "online",
+        heading: "Online community (useful, not a substitute)",
+        paragraphs: [
+          "Strava clubs, local Reddit/Facebook groups, and Discord servers can find partners — but digital kudos don't replace showing up somewhere weekly.",
+        ],
+        list: [
+          "Good for: finding race carpools, winter accountability, route tips",
+          "Bad for: comparing highlight reels, pace shaming, medical misinformation",
+          "Meet in **public, well-lit places** for first partner runs; share live location if solo meetup",
+        ],
+      },
+      {
+        id: "etiquette",
+        heading: "Group-running etiquette for beginners",
+        paragraphs: [
+          "You already have a post on following coaches at club pace ([group running guide](/blog/group-running-coach-and-pacer)). Add these basics:",
+        ],
+        list: [
+          "Arrive 5–10 minutes early; introduce yourself as new — leaders often pair you with a buddy",
+          "Start **conservative**; you can always pick up, you can't unpick overexertion",
+          "Walk breaks are fine; say 'I'm walk-running today' without apology",
+          "Headphones off or one ear if the group expects conversation/calls",
+          "Thank volunteers at Parkrun; rotate volunteering once in a while",
+        ],
+      },
+      {
+        id: "safety",
+        heading: "Safety and social comfort",
+        list: [
+          "Trust gut feelings about poorly lit routes or pushy pace pressure",
+          "Women-only or LGBTQ+-friendly groups exist in many cities — worth searching explicitly",
+          "Night runs need visibility ([night running safety](/blog/night-running-safety))",
+          "Kids need separate safety rules — don't assume adult group norms fit them",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Find one recurring, low-pressure touchpoint — Parkrun, a store run, a beginner club night — and treat showing up as the win. Pace comes later. People who expect you on Tuesday are the hack most beginners never try.",
+        ],
+        cta: {
+          text: "Build the habit at home first",
+          href: "/blog/building-a-running-habit",
+        },
+      },
+    ],
+  },
 ];

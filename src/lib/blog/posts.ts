@@ -2932,7 +2932,7 @@ export const blogPosts: BlogPost[] = [
           {
             heading: "Iron deficiency — very common",
             paragraphs: [
-              "Heavy periods plus running can drain iron stores. Fatigue that doesn't match training load deserves a blood test — not another coffee.",
+              "Heavy periods plus running can drain iron stores. Fatigue that doesn't match training load deserves a blood test — not another coffee. Full guide: [iron deficiency in runners](/blog/iron-deficiency-runners).",
             ],
             list: [
               "Symptoms: breathlessness on easy runs, restless legs, pale skin, brain fog",
@@ -2942,6 +2942,9 @@ export const blogPosts: BlogPost[] = [
           },
           {
             heading: "Hormonal contraceptives and training",
+            paragraphs: [
+              "Combined pill, progestin-only methods, IUDs, and implants change bleeding and symptoms — not always performance in predictable ways. Full guide: [birth control & running](/blog/birth-control-training-runners).",
+            ],
             list: [
               "Combined pill: some women feel bloated or sluggish on active pills — adjust hard workout timing if needed",
               "Progestin-only (mini-pill, implant, hormonal IUD): irregular bleeding is common early on; usually stabilizes",
@@ -2961,6 +2964,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Bone health and nutrition",
         paragraphs: [
           "Running can build bone when progressed gradually — but under-fueling, missed periods, and too much too soon work against you. The link between **RED-S**, **amenorrhea**, and **stress fractures** is well documented.",
+          "After menopause, resistance training becomes even more central — meta-analyses show it helps preserve bone mineral density in ways mileage alone doesn't. Deep dive: [bone health for masters runners](/blog/bone-health-masters-runners).",
         ],
         subsections: [
           {
@@ -3001,6 +3005,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Pregnancy and postpartum return",
         paragraphs: [
           "Many women run during pregnancy with medical clearance. Postpartum return needs more patience than your pre-baby Strava stats suggest — pelvic floor recovery often matters more than cardio fitness.",
+          "In-pregnancy guide: [running during pregnancy](/blog/running-during-pregnancy). After birth: [postpartum return to run](/blog/postpartum-return-to-run).",
         ],
         subsections: [
           {
@@ -3056,11 +3061,12 @@ export const blogPosts: BlogPost[] = [
         heading: "Menopause and perimenopause",
         paragraphs: [
           "Hormonal shifts in your 40s and 50s change recovery, sleep, joint comfort, and bone density. Running still helps — but the setup may need adjusting.",
+          "Full training guide: [running through menopause](/blog/running-through-menopause). Strength work and bone load deserve equal billing with easy miles.",
         ],
         list: [
           "Joint aches and longer warm-ups — easy miles and mobility before intensity",
           "Hot flashes: dress in layers; carry water; morning runs may feel easier than midday heat",
-          "Bone density: ask about DEXA scans; strength training and adequate calcium/vitamin D matter more",
+          "Bone density: ask about DEXA scans; progressive resistance training 2×/week plus adequate calcium/vitamin D matter more than mileage alone",
           "Recovery takes longer — space hard days further apart",
           "See [bone health (perimenopause+)](/injuries/for-women-runners#osteoporosis-risk) on our injuries guide",
         ],

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { blogPostSlugs } from "@/lib/blog/posts";
 import { getAllTipSlugs } from "@/lib/tips/helpers";
-import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync, enforceRateLimitForIp } from "@/lib/security/rate-limit";
 import { isValidPostSlug } from "@/lib/security/validation";
 import {
   anonCookieOptions,
@@ -26,6 +26,9 @@ function isAllowedSlug(type: ContentLikeTargetType, slug: string): boolean {
 }
 
 export async function GET(request: Request) {
+  const limited = await enforceRateLimitForIp(request, "likes-read", 120, 60 * 1000);
+  if (limited) return limited;
+
   const { searchParams } = new URL(request.url);
   const targetType = parseTargetType(searchParams.get("type"));
   const targetSlug = searchParams.get("slug")?.trim() ?? "";

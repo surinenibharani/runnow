@@ -3,14 +3,22 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { isEmailConfigured, sendEmail } from "@/lib/email/client";
 import { newTestimonialEmail } from "@/lib/email/templates";
-import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync, enforceRateLimitForIp } from "@/lib/security/rate-limit";
 import { isHoneypotTriggered, sanitizeText } from "@/lib/security/sanitize";
 import { verifyTurnstile } from "@/lib/security/turnstile";
 
 const COMMENT_NOTIFY_EMAIL =
   process.env.COMMENT_NOTIFY_EMAIL?.trim() || "letsrunnow79@gmail.com";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const limited = await enforceRateLimitForIp(
+    request,
+    "testimonials-read",
+    60,
+    15 * 60 * 1000
+  );
+  if (limited) return limited;
+
   try {
     const testimonials = await prisma.testimonial.findMany({
       orderBy: { createdAt: "desc" },

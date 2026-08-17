@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { SITE_NAME } from "@/lib/site";
 import { prisma } from "@/lib/prisma";
+import { enforceRateLimitForIp } from "@/lib/security/rate-limit";
 
 function unsubscribePageHtml(options: {
   title: string;
@@ -47,6 +48,14 @@ async function findSubscriber(token: string) {
 }
 
 export async function GET(request: Request) {
+  const limited = await enforceRateLimitForIp(
+    request,
+    "newsletter-unsubscribe",
+    30,
+    15 * 60 * 1000
+  );
+  if (limited) return limited;
+
   const token = new URL(request.url).searchParams.get("token")?.trim();
 
   if (!token) {
@@ -83,6 +92,14 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const limited = await enforceRateLimitForIp(
+    request,
+    "newsletter-unsubscribe",
+    30,
+    15 * 60 * 1000
+  );
+  if (limited) return limited;
+
   const token = new URL(request.url).searchParams.get("token")?.trim();
 
   if (!token) {

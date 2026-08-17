@@ -1,5 +1,6 @@
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
+import { NextResponse } from "next/server";
 
 type RateLimitEntry = {
   count: number;
@@ -134,4 +135,44 @@ export async function rateLimitAsync(
       Math.ceil((result.reset - Date.now()) / 1000)
     ),
   };
+}
+
+export function tooManyRequestsResponse(
+  retryAfter: number,
+  message = "Too many attempts. Please try again later."
+): NextResponse {
+  return NextResponse.json(
+    { error: message },
+    { status: 429, headers: { "Retry-After": String(retryAfter) } }
+  );
+}
+
+/** Returns a 429 response when limited, otherwise null. */
+export async function enforceRateLimit(
+  key: string,
+  limit: number,
+  windowMs: number,
+  message?: string
+): Promise<NextResponse | null> {
+  const result = await rateLimitAsync(key, limit, windowMs);
+  if (!result.ok) {
+    return tooManyRequestsResponse(result.retryAfter, message);
+  }
+  return null;
+}
+
+/** IP-scoped rate limit helper for public routes. */
+export async function enforceRateLimitForIp(
+  request: Request,
+  prefix: string,
+  limit: number,
+  windowMs: number,
+  message?: string
+): Promise<NextResponse | null> {
+  return enforceRateLimit(
+    `${prefix}:${getClientIp(request)}`,
+    limit,
+    windowMs,
+    message
+  );
 }

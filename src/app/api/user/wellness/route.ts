@@ -7,6 +7,7 @@ import {
   toStoredDateKey,
   wellnessDateKeysForLog,
 } from "@/lib/recovery-readiness";
+import { enforceRateLimit, getClientIp } from "@/lib/security/rate-limit";
 
 type WellnessBody = {
   date?: string;
@@ -82,6 +83,13 @@ export async function POST(request: Request) {
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const limited = await enforceRateLimit(
+    `wellness-log:${session.user.id}:${getClientIp(request)}`,
+    30,
+    60 * 60 * 1000
+  );
+  if (limited) return limited;
 
   let body: WellnessBody;
   try {

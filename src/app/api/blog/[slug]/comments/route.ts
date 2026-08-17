@@ -4,9 +4,9 @@ type RouteContext = {
   params: Promise<{ slug: string }>;
 };
 
-export async function GET(_request: Request, context: RouteContext) {
+export async function GET(request: Request, context: RouteContext) {
   const { slug } = await context.params;
-  return listComments("blog", slug);
+  return listComments("blog", slug, request);
 }
 
 export async function POST(request: Request, context: RouteContext) {
