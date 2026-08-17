@@ -659,6 +659,52 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "when can I run after knee surgery",
     "post surgery running guidelines",
   ],
+  "overtraining-recognition-runners": [
+    "overtraining syndrome runners",
+    "signs of overtraining running",
+    "non functional overreaching",
+    "resting heart rate overtraining",
+  ],
+  "side-stitch-running": [
+    "side stitch while running",
+    "how to stop side stitch running",
+    "ETAP running stitch",
+    "side cramp running fix",
+  ],
+  "walking-for-fitness-without-running": [
+    "walking for fitness without running",
+    "walk only exercise plan",
+    "brisk walking health benefits",
+    "beginner walk before run",
+  ],
+  "morning-vs-evening-running": [
+    "morning vs evening running",
+    "best time to run for beginners",
+    "running schedule morning or night",
+  ],
+  "headphones-safety-running": [
+    "running with headphones safety",
+    "one earbud running roads",
+    "open ear headphones running",
+  ],
+  "air-quality-pollution-running": [
+    "running air quality AQI",
+    "running in wildfire smoke",
+    "pollen running air pollution",
+    "when to run indoors air quality",
+  ],
+  "sports-bra-guide-runners": [
+    "sports bra for running guide",
+    "high impact sports bra running",
+    "exercise induced breast pain running",
+    "sports bra fit test",
+  ],
+  "running-burnout-overtraining-mental-health": [
+    "running burnout symptoms",
+    "lost motivation to run",
+    "overtraining mental health runners",
+    "running feels like a chore",
+  ],
 };
 
 export function blogPostKeywords(slug: string, category: string): string[] {

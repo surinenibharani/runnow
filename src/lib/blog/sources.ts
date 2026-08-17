@@ -934,4 +934,69 @@ export const SOURCES = {
     href: "https://www.jscimedcentral.com/public/assets/articles/sportsmedicine-7-1162.pdf",
     publisher: "Annals of Sports Medicine and Research",
   },
+  overtrainingSystematicReview2022: {
+    label:
+      "Overtraining syndrome symptoms and diagnosis in athletes: where is the research? — systematic review (Weakley et al., 2022)",
+    href: "https://doi.org/10.1123/ijspp.2021-0448",
+    publisher: "International Journal of Sports Physiology and Performance",
+  },
+  overtrainingScopingReview2021: {
+    label:
+      "Diagnosing overtraining syndrome — scoping review (2022)",
+    href: "https://doi.org/10.1177/19417381211044739",
+    publisher: "Sports Health",
+  },
+  overtrainingUnderstanding2024: {
+    label:
+      "Overtraining syndrome: how to recognize and deal with it — review (Radzimiński & Jastrzębski, 2024)",
+    href: "https://doi.org/10.2478/hukin-2024-0003",
+    publisher: "Journal of Human Kinetics",
+  },
+  ecssAcsmOvertrainingConsensus2012: {
+    label:
+      "Prevention, diagnosis and treatment of the overtraining syndrome — ECSS/ACSM joint consensus statement (2012)",
+    href: "https://doi.org/10.1249/MSS.0b013e318279a10a",
+    publisher: "Medicine & Science in Sports & Exercise",
+  },
+  exerciseRelatedTransientAbdominalPain2014: {
+    label:
+      "Exercise-related transient abdominal pain (ETAP) — review (Morton & Callister, 2015)",
+    href: "https://doi.org/10.1007/s40279-014-0245-z",
+    publisher: "Sports Medicine",
+  },
+  airPollutionPhysicalActivity2024: {
+    label:
+      "The trade-off between air pollution exposure and physical activity — review (2024)",
+    href: "https://doi.org/10.1016/j.eehl.2024.01.012",
+    publisher: "Eco-Environment & Health",
+  },
+  whoAirPollutionPersonalActions2024: {
+    label:
+      "Personal-level actions to reduce air pollution exposure — WHO European Region (2024)",
+    href: "https://www.who.int/denmark/publications/m/item/personal-level-actions-to-reduce-air-pollution-exposure",
+    publisher: "World Health Organization",
+  },
+  acsmAirQualityOutdoorExercise: {
+    label: "Air quality and outdoor exercise — ACSM",
+    href: "https://acsm.org/air-quality-and-outdoor-exercise/",
+    publisher: "American College of Sports Medicine",
+  },
+  airPollutionSportsPerformance2025: {
+    label:
+      "Air pollution and its effects on sports and exercise performance — review (2025)",
+    href: "https://doi.org/10.1249/JSR.0000000000001241",
+    publisher: "Current Sports Medicine Reports",
+  },
+  sportsBraPhysicalActivityMeta2024: {
+    label:
+      "The impact of breasts and bras on physical activity amongst women and girls — systematic review and meta-analysis (2024)",
+    href: "https://doi.org/10.53646/cdp9k364",
+    publisher: "Journal of Women's Sports Medicine",
+  },
+  breastSupportBiomechanics2020: {
+    label:
+      "Biomechanics of breast support for active women (McGhee & Steele, 2020)",
+    href: "https://doi.org/10.1249/JES.0000000000000221",
+    publisher: "Exercise and Sport Sciences Reviews",
+  },
 } satisfies Record<string, BlogSource>;

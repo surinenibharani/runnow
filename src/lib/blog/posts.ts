@@ -14,6 +14,7 @@ import { zonesLungsDeepDivePosts } from "./posts-zones-lungs-deep-dives";
 import { competitiveGapPosts } from "./posts-competitive-gaps";
 import { p0MedicalGapPosts } from "./posts-p0-medical-gaps";
 import { p1P2GapPosts } from "./posts-p1-p2-gaps";
+import { p1P3GapPosts } from "./posts-p1-p3-gaps";
 
 export const BLOG_AUTHOR = "B";
 
@@ -6192,6 +6193,7 @@ export const blogPosts: BlogPost[] = [
   ...competitiveGapPosts,
   ...p0MedicalGapPosts,
   ...p1P2GapPosts,
+  ...p1P3GapPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

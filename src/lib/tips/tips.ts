@@ -321,7 +321,67 @@ export const runnerTips: RunnerTip[] = [
     title: "Side stitch: slow down, exhale longer",
     content:
       "A sharp side stitch is your cue to ease pace, deepen the exhale (especially on the opposite side of the stitch), and avoid stacking a huge meal or new gel right before hard efforts. If stitches are constant with GI chaos, practice race fuel on easy long runs — gut training is a skill. Persistent pain that isn't a stitch deserves a clinician, not another YouTube stretch.",
-    blogSlug: "runners-gi-distress",
+    blogSlug: "side-stitch-running",
+  },
+  {
+    slug: slugifyTipTitle("Resting HR up for days? Back off early"),
+    icon: Heart,
+    illustration: "recovery",
+    category: "Health",
+    title: "Resting HR up for days? Back off early",
+    content:
+      "A sustained jump in morning resting heart rate — especially with flat mood and stale legs — is often load outpacing recovery, not a bad watch day. Ease or rest before you need a month off. One marker never diagnoses overtraining, but trends plus how runs feel beat pushing through pride.",
+    blogSlug: "overtraining-recognition-runners",
+  },
+  {
+    slug: slugifyTipTitle("Walk-only weeks still count"),
+    icon: Footprints,
+    illustration: "easy-pace",
+    category: "Getting Started",
+    title: "Walk-only weeks still count",
+    content:
+      "Brisk walking hits the same 150-minutes-per-week health target as jogging — and protects joints while you build the habit. You don't owe anyone impact yet. Add run intervals only when walks feel easy for 30+ minutes.",
+    blogSlug: "walking-for-fitness-without-running",
+  },
+  {
+    slug: slugifyTipTitle("Check AQI before hard outdoor miles"),
+    icon: Wind,
+    illustration: "air-quality",
+    category: "Health",
+    title: "Check AQI before hard outdoor miles",
+    content:
+      "You breathe far more air per minute while running. On smoky or orange AQI days, keep efforts easy, move indoors, or swap to a treadmill — don't hero through coughs. WHO and ACSM both say stay active when you can, but match intensity and location to the air.",
+    blogSlug: "air-quality-pollution-running",
+  },
+  {
+    slug: slugifyTipTitle("Sports bra: pass the jump test"),
+    icon: Activity,
+    illustration: "health",
+    category: "Gear",
+    title: "Sports bra: pass the jump test",
+    content:
+      "Minimal bounce when you jump in place, band snug on the loosest hook, straps that don't dig — that's support, not vanity. A 2024 meta-analysis links proper sports bras to less exercise-induced breast pain. Fix the bra before you fix your pace.",
+    blogSlug: "sports-bra-guide-runners",
+  },
+  {
+    slug: slugifyTipTitle("Run when you'll actually show up"),
+    icon: Clock,
+    illustration: "calendar",
+    category: "Scheduling",
+    title: "Run when you'll actually show up",
+    content:
+      "Morning versus evening lab debates are tiny compared with calendar honesty. Pick three slots you reliably keep — protect sleep if you're an early alarm person, and don't stack hard workouts at the hour you're most drained.",
+    blogSlug: "morning-vs-evening-running",
+  },
+  {
+    slug: slugifyTipTitle("One earbud out on shared roads"),
+    icon: Sun,
+    illustration: "mindset",
+    category: "Safety",
+    title: "One earbud out on shared roads",
+    content:
+      "Music helps beginners finish miles — but cars, bikes, and dogs need your ears on shoulders and paths. Open-ear, transparency mode, or one bud out beats noise-canceling isolation. Pause audio at every crossing.",
+    blogSlug: "headphones-safety-running",
   },
   {
     slug: slugifyTipTitle("Strength twice a week beats more junk miles"),

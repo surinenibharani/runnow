@@ -246,6 +246,22 @@ export const whyItMattersBySlug: Record<string, string> = {
     "The pill, IUD, or implant changes more than periods — energy, bleeding patterns, and bone context all shape training. Knowing what to track beats guessing why easy miles feel off.",
   "running-during-pregnancy":
     "Pregnancy isn't an automatic running retirement — but it is a medical conversation first. Trimester-by-trimester edits and clear stop rules keep miles safe when your OB says they're appropriate.",
+  "overtraining-recognition-runners":
+    "Gray-zone training feels productive until weeks disappear. Spotting non-functional overreaching early — mood, pace, resting HR — saves seasons better than another deload you never take.",
+  "side-stitch-running":
+    "Side stitches derail beginner confidence fast. A few breathing and meal-timing fixes turn a panic grab into a minor pace adjustment.",
+  "walking-for-fitness-without-running":
+    "Walk-only weeks aren't cheating the sport — they're how joints, habits, and calendars survive long enough to jog later.",
+  "morning-vs-evening-running":
+    "The best run time is the one that survives your real week. Consistency beats circadian optimization for people who aren't paid to train.",
+  "headphones-safety-running":
+    "Music helps beginners finish miles — until a bike or car needed one second of your ears. Match audio setup to the route, not the playlist ego.",
+  "air-quality-pollution-running":
+    "You breathe far more air per minute while running. Checking AQI and moving hard efforts indoors on smoke days keeps the habit without torching lungs.",
+  "sports-bra-guide-runners":
+    "Breast pain and bounce keep many women off the path. Proper support is performance equipment — the 2024 meta-analysis proves it, not vanity.",
+  "running-burnout-overtraining-mental-health":
+    "When running becomes another inbox of guilt and comparison, rest isn't weakness — it's how you keep a decades-long relationship with the sport.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {
