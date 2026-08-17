@@ -854,6 +854,8 @@ export const blogPosts: BlogPost[] = [
       SOURCES.runningNutrition,
       SOURCES.hyponatremia,
       SOURCES.ironDeficiency,
+      SOURCES.nutritionAthleticPerformanceACSM2016,
+      SOURCES.carbsTrainingCompetitionBurke2011,
     ],
     title: "Runner's Nutrition: Before, During & After (5K, Half & Marathon)",
     excerpt:
@@ -861,6 +863,7 @@ export const blogPosts: BlogPost[] = [
     category: "Nutrition",
     author: BLOG_AUTHOR,
     publishedAt: "2026-04-02",
+    updatedAt: "2026-08-17",
     readTime: "10 min",
     relatedSlugs: [
       "training-first-5k",
@@ -1453,6 +1456,8 @@ export const blogPosts: BlogPost[] = [
       SOURCES.plantarFasciitis,
       SOURCES.stressFracture,
       SOURCES.strengthForRunners,
+      SOURCES.exerciseInjuryPreventionLauersen2014,
+      SOURCES.exercisePreventionRRIWu2024,
     ],
     title: "How to Avoid the Injuries That Sideline Beginners",
     excerpt:
@@ -1460,6 +1465,7 @@ export const blogPosts: BlogPost[] = [
     category: "Injuries",
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-18",
+    updatedAt: "2026-08-17",
     readTime: "6 min",
     relatedSlugs: [
       "importance-of-cross-training",
@@ -1487,6 +1493,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "Shin splints, knee pain, and plantar fasciitis aren't badges of honor — they're signals. Beginners get hurt when they do too much, too soon, too fast. Here's how to stay on the right side of that line.",
+          "Systematic reviews of injury-prevention programs show that structured strength and load management can reduce running-related injuries — but no single magic exercise prevents everything. The basics below still matter most.",
           "**This is general fitness education, not medical advice. Persistent or worsening pain needs a professional evaluation.**",
         ],
       },
@@ -1629,13 +1636,18 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "breathing-while-running",
     metaTitle: "How to Breathe While Running (Beginner Tips)",
-    sources: [SOURCES.exerciseInducedAsthma],
+    sources: [
+      SOURCES.exerciseInducedAsthma,
+      SOURCES.inspiratoryMuscleTrainingMeta2013,
+      SOURCES.diaphragmaticBreathingMayo,
+    ],
     title: "How to Breathe While Running (Without Overthinking It)",
     excerpt:
       "Gasping on mile one? A simple rhythm, slower pace, and a few posture cues fix most beginner breathing problems.",
     category: "Training",
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-28",
+    updatedAt: "2026-08-17",
     readTime: "5 min",
     relatedSlugs: [
       "how-to-pace-yourself",
@@ -1758,6 +1770,7 @@ export const blogPosts: BlogPost[] = [
       SOURCES.preParticipationScreening,
       SOURCES.pregnancyExercise,
       SOURCES.diabetesExercise,
+      SOURCES.adaStandardsPhysicalActivity2025,
       SOURCES.exerciseInducedAsthma,
       SOURCES.osteoporosis,
       SOURCES.physicalActivityGuidelines,
@@ -1768,6 +1781,7 @@ export const blogPosts: BlogPost[] = [
     category: "Health",
     author: BLOG_AUTHOR,
     publishedAt: "2026-06-28",
+    updatedAt: "2026-08-17",
     readTime: "8 min",
     relatedSlugs: [
       "never-ran-where-to-start",
@@ -1797,6 +1811,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Diabetes",
         list: [
           "Discuss exercise timing with your care team, especially on insulin",
+          "Current ADA Standards of Care recommend at least 150 minutes per week of moderate-to-vigorous aerobic activity, spread over at least 3 days, plus 2–3 resistance sessions per week — individualized to your glucose patterns",
           "Check glucose before and after until patterns are clear",
           "Carry fast-acting carbs on every run",
           "Foot care and proper shoes reduce blister and ulcer risk",
@@ -4957,13 +4972,19 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "achilles-tendinitis-running",
-    sources: [SOURCES.achillesTendinitis, SOURCES.peaceAndLove],
+    sources: [
+      SOURCES.achillesTendinitis,
+      SOURCES.peaceAndLove,
+      SOURCES.tendonAdaptationBohm2015,
+      SOURCES.exercisePreventionRRIWu2024,
+    ],
     title: "Achilles Tendinitis for Runners: How a Mileage Spike Got Me — and What Fixed It",
     excerpt:
       "Achilles pain isn't just a beginner injury. I spiked mileage as a seasoned runner and paid for it. Air skipping → heel raises → eccentric heel lowers got me back — and I also retired the Nike Alphafly 3 that kept poking the same tendon.",
     category: "Injuries",
     author: BLOG_AUTHOR,
     publishedAt: "2026-09-09",
+    updatedAt: "2026-08-17",
     readTime: "10 min",
     relatedSlugs: [
       "avoiding-injuries",
@@ -5134,6 +5155,7 @@ export const blogPosts: BlogPost[] = [
     slug: "running-during-fasting",
     sources: [
       SOURCES.intermittentFasting,
+      SOURCES.intermittentFastingExerciseMeta2025,
       SOURCES.hyponatremia,
       SOURCES.redS,
       SOURCES.runningNutrition,
@@ -5146,6 +5168,7 @@ export const blogPosts: BlogPost[] = [
     category: "Nutrition",
     author: BLOG_AUTHOR,
     publishedAt: "2026-09-13",
+    updatedAt: "2026-08-17",
     readTime: "15 min",
     relatedSlugs: [
       "nutrition-for-runners",
@@ -5191,7 +5214,7 @@ export const blogPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
-          "Intermittent fasting and running can work well together — but not every workout should be done fasted. Knowing how to time your runs around your eating window helps you train effectively without burning out or increasing injury risk.",
+          "Intermittent fasting and running can work well together — but not every workout should be done fasted. A 2025 systematic review and meta-analysis found that combining intermittent fasting with exercise did not significantly harm most performance metrics (VO₂max, strength tests) compared with exercise alone — but it did reduce lean mass alongside fat mass, which matters for runners who need to watch total energy availability.",
           "This post covers how fasting affects running, which workouts are better fueled, long-run guidelines, and how men and women may need to approach things differently.",
           "**Important: This is not medical advice. If you have diabetes, are pregnant or breastfeeding, take medication for blood pressure or blood sugar, have a history of eating disorders, or manage any chronic condition, please speak with a doctor or registered dietitian before combining fasting with training.**",
         ],
@@ -5443,6 +5466,9 @@ export const blogPosts: BlogPost[] = [
       SOURCES.weightLoss,
       SOURCES.physicalActivityGuidelines,
       SOURCES.runningNutrition,
+      SOURCES.exerciseWeightLossOverview2020,
+      SOURCES.exerciseCardiometabolicOverweight2021,
+      SOURCES.nutritionAthleticPerformanceACSM2016,
     ],
     title: "Running for Weight Loss: Facts and Myths",
     metaTitle:
@@ -5452,6 +5478,7 @@ export const blogPosts: BlogPost[] = [
     category: "Nutrition",
     author: BLOG_AUTHOR,
     publishedAt: "2026-08-12",
+    updatedAt: "2026-08-17",
     readTime: "12 min",
     relatedSlugs: [
       "nutrition-for-runners",
@@ -5494,7 +5521,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "**Educational only — not medical advice.** This is general fitness education, not a diagnosis or nutrition treatment plan. If you have a medical condition, are pregnant or breastfeeding, take medication, or have a history of disordered eating, consult a doctor or registered dietitian before starting a weight-loss plan.",
-          "Running has a strong reputation as a fat-loss tool. While it can definitely support weight loss, many popular beliefs about how it works are misleading or outright wrong. Understanding the real relationship between running and fat loss helps you set better expectations and avoid common pitfalls.",
+          "Running has a strong reputation as a fat-loss tool. While it can definitely support weight loss, many popular beliefs about how it works are misleading or outright wrong. Systematic reviews confirm that exercise training helps reduce weight and improve body composition in adults with overweight or obesity — but the effect is often modest compared with nutrition changes, and easy to erase by eating back run calories.",
           "This post breaks down what the science actually says, debunks the biggest myths, and explains what tends to work in practice.",
         ],
       },

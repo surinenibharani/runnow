@@ -18,6 +18,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
     category: "Health",
     author: AUTHOR,
     publishedAt: "2026-07-04",
+    updatedAt: "2026-08-17",
     readTime: "14 min",
     relatedSlugs: [
       "running-guide-for-women",
@@ -36,6 +37,8 @@ export const p0MedicalGapPosts: BlogPost[] = [
       SOURCES.osteoporosis,
       SOURCES.exerciseWithOsteoporosis,
       SOURCES.strengthForRunners,
+      SOURCES.exerciseBMDPostmenopausalKemmler2023,
+      SOURCES.resistanceTrainingBMDOptimal2025,
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.sleepTips,
       SOURCES.redS,
@@ -285,6 +288,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
     category: "Health",
     author: AUTHOR,
     publishedAt: "2026-07-06",
+    updatedAt: "2026-08-17",
     readTime: "13 min",
     relatedSlugs: [
       "running-over-50-beginners",
@@ -303,6 +307,8 @@ export const p0MedicalGapPosts: BlogPost[] = [
       SOURCES.menopauseWeightliftingBoneMayo,
       SOURCES.menopauseFitnessMayo,
       SOURCES.strengthForRunners,
+      SOURCES.exerciseBMDPostmenopausalKemmler2023,
+      SOURCES.resistanceTrainingBMDOptimal2025,
       SOURCES.redS,
       SOURCES.physicalActivityGuidelinesUS,
     ],

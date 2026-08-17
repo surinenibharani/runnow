@@ -790,4 +790,76 @@ export const SOURCES = {
     href: "https://doi.org/10.1177/0269215519873949",
     publisher: "Clinical Rehabilitation",
   },
+  exerciseWeightLossOverview2020: {
+    label:
+      "Exercise training for weight loss in adults with overweight or obesity — overview of systematic reviews (Bellicha et al., 2020)",
+    href: "https://doi.org/10.1111/obr.13256",
+    publisher: "Obesity Reviews",
+  },
+  exerciseCardiometabolicOverweight2021: {
+    label:
+      "Comparative efficacy of 5 exercise types on cardiometabolic health in overweight adults — network meta-analysis (Luo et al., 2021)",
+    href: "https://www.ahajournals.org/doi/10.1161/CIRCOUTCOMES.121.008243",
+    publisher: "Circulation: Cardiovascular Quality and Outcomes",
+  },
+  intermittentFastingExerciseMeta2025: {
+    label:
+      "Intermittent fasting and calorie restriction on exercise performance — systematic review and meta-analysis (2025)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/40573103/",
+    publisher: "PubMed / Nutrients",
+  },
+  adaStandardsPhysicalActivity2025: {
+    label:
+      "Standards of Care in Diabetes 2025 — physical activity recommendations",
+    href: "https://diabetesjournals.org/care/article/48/Supplement_1/S86/157563/5-Facilitating-Positive-Health-Behaviors-and-Well",
+    publisher: "Diabetes Care / American Diabetes Association",
+  },
+  ahaAccHypertensionGuideline2025: {
+    label:
+      "2025 AHA/ACC guideline for prevention and management of high blood pressure in adults",
+    href: "https://doi.org/10.1161/cir.0000000000001356",
+    publisher: "Circulation / AHA & ACC",
+  },
+  plantarFasciitisAthletesSystematicReview2017: {
+    label:
+      "Plantar fasciitis in athletes — diagnostic and treatment strategies, systematic review (Lareau et al., 2017)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5505577/",
+    publisher: "PMC / Muscles, Ligaments and Tendons Journal",
+  },
+  plantarFasciitisSystematicReviews2021: {
+    label:
+      "Systematic review of systematic reviews on plantar fasciitis epidemiology, evaluation, and treatment (Rhim et al., 2021)",
+    href: "https://doi.org/10.3390/life11121287",
+    publisher: "Life (Basel)",
+  },
+  mtssTreatmentSystematicReview2013: {
+    label:
+      "Treatment of medial tibial stress syndrome — systematic review (Winters et al., 2013)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/23979968/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  mtssNoviceRunnersSystematicReview2020: {
+    label:
+      "Medial tibial stress syndrome in novice and recreational runners — systematic review (2020)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/33066291/",
+    publisher: "PubMed",
+  },
+  patellofemoralPainBestPractice2024: {
+    label:
+      "Best practice guide for patellofemoral pain — systematic review synthesis (Collins et al., 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/39401870/",
+    publisher: "PubMed / British Journal of Sports Medicine",
+  },
+  patellofemoralPainAdjunctBJSM2024: {
+    label:
+      "Adjunct treatments with exercise for patellofemoral pain — systematic review and meta-analysis (2024)",
+    href: "https://doi.org/10.1136/bjsports-2024-108145",
+    publisher: "British Journal of Sports Medicine",
+  },
+  itbsConservativeRunnersSystematicReview2024: {
+    label:
+      "Conservative treatment for iliotibial band syndrome in runners — systematic review (2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/39247485/",
+    publisher: "PubMed",
+  },
 } satisfies Record<string, BlogSource>;

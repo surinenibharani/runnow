@@ -466,6 +466,7 @@ export const priorityGapPosts: BlogPost[] = [
     category: "Injuries",
     author: AUTHOR,
     publishedAt: "2026-07-18",
+    updatedAt: "2026-08-17",
     readTime: "8 min",
     relatedSlugs: [
       "avoiding-injuries",
@@ -483,6 +484,8 @@ export const priorityGapPosts: BlogPost[] = [
       SOURCES.stressFracture,
       SOURCES.peaceAndLove,
       SOURCES.strengthForRunners,
+      SOURCES.mtssTreatmentSystematicReview2013,
+      SOURCES.mtssNoviceRunnersSystematicReview2020,
     ],
     faq: [
       {
@@ -591,6 +594,7 @@ export const priorityGapPosts: BlogPost[] = [
     category: "Injuries",
     author: AUTHOR,
     publishedAt: "2026-07-16",
+    updatedAt: "2026-08-17",
     readTime: "8 min",
     relatedSlugs: [
       "avoiding-injuries",
@@ -608,6 +612,8 @@ export const priorityGapPosts: BlogPost[] = [
       SOURCES.itBandSyndrome,
       SOURCES.strengthForRunners,
       SOURCES.peaceAndLove,
+      SOURCES.patellofemoralPainBestPractice2024,
+      SOURCES.patellofemoralPainAdjunctBJSM2024,
     ],
     faq: [
       {

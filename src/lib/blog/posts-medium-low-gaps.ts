@@ -231,6 +231,7 @@ export const mediumLowGapPosts: BlogPost[] = [
     category: "Nutrition",
     author: AUTHOR,
     publishedAt: "2026-09-29",
+    updatedAt: "2026-08-17",
     readTime: "8 min",
     relatedSlugs: [
       "nutrition-for-runners",
@@ -248,6 +249,7 @@ export const mediumLowGapPosts: BlogPost[] = [
       SOURCES.hyponatremia,
       SOURCES.heatSafety,
       SOURCES.runningNutrition,
+      SOURCES.marathonEahReview2022,
     ],
     faq: [
       {

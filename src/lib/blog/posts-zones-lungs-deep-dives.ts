@@ -432,6 +432,7 @@ export const zonesLungsDeepDivePosts: BlogPost[] = [
     category: "Health",
     author: AUTHOR,
     publishedAt: "2026-07-01",
+    updatedAt: "2026-08-17",
     readTime: "15 min",
     relatedSlugs: [
       "train-runners-heart-metrics",
@@ -450,6 +451,7 @@ export const zonesLungsDeepDivePosts: BlogPost[] = [
       SOURCES.bloodPressureExercise,
       SOURCES.highBloodPressureMayo,
       SOURCES.ahaExerciseBloodPressure,
+      SOURCES.ahaAccHypertensionGuideline2025,
       SOURCES.heartDiseaseExercise,
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.preParticipationScreening,
@@ -459,7 +461,7 @@ export const zonesLungsDeepDivePosts: BlogPost[] = [
       {
         question: "Can running lower blood pressure?",
         answer:
-          "Regular aerobic activity is a well-supported lifestyle approach for many people. Mayo Clinic cites study-range drops of about 4–10 mm Hg systolic and 5–8 mm Hg diastolic with becoming more active, building over roughly 1–3 months — individual results vary. Medicine and clinician guidance still matter; running is not a solo cure.",
+          "Regular aerobic activity is a well-supported lifestyle approach for many people. The 2025 AHA/ACC hypertension guideline strongly recommends a moderate physical activity program — typically at least 150 minutes per week of moderate aerobic exercise plus resistance training — to prevent or treat elevated blood pressure. Individual results vary; medicine and clinician guidance still matter. Running is not a solo cure.",
       },
       {
         question: "What blood pressure numbers mean for runners?",

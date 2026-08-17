@@ -17,6 +17,7 @@ export const nextGapPosts: BlogPost[] = [
     category: "Injuries",
     author: AUTHOR,
     publishedAt: "2026-08-24",
+    updatedAt: "2026-08-17",
     readTime: "8 min",
     relatedSlugs: [
       "shin-splints-running",
@@ -33,6 +34,8 @@ export const nextGapPosts: BlogPost[] = [
       SOURCES.achillesTendinitis,
       SOURCES.peaceAndLove,
       SOURCES.strengthForRunners,
+      SOURCES.plantarFasciitisAthletesSystematicReview2017,
+      SOURCES.plantarFasciitisSystematicReviews2021,
     ],
     faq: [
       {
@@ -138,6 +141,7 @@ export const nextGapPosts: BlogPost[] = [
     category: "Injuries",
     author: AUTHOR,
     publishedAt: "2026-09-25",
+    updatedAt: "2026-08-17",
     readTime: "8 min",
     relatedSlugs: [
       "runners-knee-running",
@@ -154,6 +158,7 @@ export const nextGapPosts: BlogPost[] = [
       SOURCES.patellofemoralPain,
       SOURCES.strengthForRunners,
       SOURCES.peaceAndLove,
+      SOURCES.itbsConservativeRunnersSystematicReview2024,
     ],
     faq: [
       {
