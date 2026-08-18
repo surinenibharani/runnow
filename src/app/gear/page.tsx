@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowUpRight, Footprints, ShoppingBag, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { GearCategoryCard } from "@/components/gear/gear-category-card";
@@ -10,6 +9,9 @@ import { GearTierSuggestions } from "@/components/gear/gear-tier-suggestions";
 import { GearWeeklyNews } from "@/components/gear/gear-weekly-news";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { GearPageHero } from "@/components/visuals/gear-scenes";
+import { HubNextSteps } from "@/components/content/hub-next-steps";
+import { RelatedPathways } from "@/components/content/related-pathways";
+import { HubEditorialBlock } from "@/components/content/hub-editorial";
 import {
   gearTierMeta,
   gearTiers,
@@ -17,8 +19,11 @@ import {
   type GearTier,
 } from "@/lib/gear/items";
 import { getGearUpdates, formatGearUpdatedAt, getMergedSuggestions } from "@/lib/gear/updates";
+import { gearHubNextSteps, gearHubReads, getGearPathway } from "@/lib/content-pathways";
+import { gearHubEditorial } from "@/lib/hub-seo";
 import { JsonLd } from "@/components/seo/json-ld";
-import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, faqPageJsonLd, howToJsonLd, webPageJsonLd } from "@/lib/seo";
+import { SITE_URL } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { GEAR_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { cn } from "@/lib/utils";
@@ -56,6 +61,13 @@ export default function GearPage() {
             { name: "Home", path: "/" },
             { name: "Gear guide", path: "/gear" },
           ]),
+          faqPageJsonLd(gearHubEditorial.faqs, `${SITE_URL}/gear`),
+          howToJsonLd({
+            name: gearHubEditorial.howTo.name,
+            description: gearHubEditorial.howTo.description,
+            path: "/gear",
+            steps: gearHubEditorial.howTo.steps,
+          }),
         ]}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
@@ -79,6 +91,8 @@ export default function GearPage() {
             </p>
           </div>
         </FadeIn>
+
+        <HubEditorialBlock editorial={gearHubEditorial} />
 
         <FadeIn className="mb-8">
           <nav
@@ -134,6 +148,15 @@ export default function GearPage() {
           </MedicalDisclaimerBanner>
         </FadeIn>
 
+        <FadeIn className="mb-12">
+          <RelatedPathways
+            pathway={{
+              title: "Read first — then buy only what you need",
+              links: gearHubReads,
+            }}
+          />
+        </FadeIn>
+
         <div className="space-y-16">
           {gearTiers.map((tier) => {
             const meta = gearTierMeta[tier];
@@ -144,7 +167,7 @@ export default function GearPage() {
               <section
                 key={tier}
                 id={tierSectionId(tier)}
-                className="scroll-mt-24"
+                className="hub-section scroll-mt-24"
               >
                 <FadeIn className="mb-8">
                   <div
@@ -184,10 +207,13 @@ export default function GearPage() {
                   suggestions={meta.suggestions}
                 />
 
-                <StaggerChildren className="space-y-6">
-                  {items.map((item) => (
-                    <StaggerItem key={item.slug}>
+                <div className="space-y-6">
+                  {items.map((item) => {
+                    const pathway = getGearPathway(item.slug);
+                    return (
+                    <div key={item.slug}>
                       <GearCategoryCard
+                        compact
                         item={item}
                         suggestions={getMergedSuggestions(
                           item.slug,
@@ -203,42 +229,41 @@ export default function GearPage() {
                             : undefined
                         }
                         afterCard={
-                          item.slug === "coros" ? (
-                            <GearWeeklyNews updates={gearUpdates} />
-                          ) : undefined
+                          <>
+                            {pathway && (
+                              <RelatedPathways
+                                pathway={pathway}
+                                className="mt-4"
+                              />
+                            )}
+                            {item.slug === "coros" ? (
+                              <GearWeeklyNews updates={gearUpdates} />
+                            ) : null}
+                          </>
                         }
                       />
-                    </StaggerItem>
-                  ))}
-                </StaggerChildren>
+                    </div>
+                    );
+                  })}
+                </div>
               </section>
             );
           })}
         </div>
 
-        <FadeIn className="mt-12 text-center">
-          <p className="text-sm text-muted-foreground">
-            New to running? Don&apos;t know where to start?{" "}
-            <Link href="/start" className="text-primary hover:underline">
-              Start here
-            </Link>
-            {" · "}
-            <Link href="/blog/choosing-running-shoes" className="text-primary hover:underline">
-              shoe guide
-            </Link>
-            {" · "}
-            <Link href="/plan" className="text-primary hover:underline">
-              training plans
-            </Link>
-            {" · "}
-            <Link href="/dashboard" className="text-primary hover:underline">
-              connect Strava
-            </Link>
-          </p>
+        <FadeIn className="mt-12">
+          <HubNextSteps
+            heading="After shoes, do this"
+            steps={gearHubNextSteps}
+          />
         </FadeIn>
 
         <FadeIn className="mt-8">
-          <StartPlanCta variant="compact" />
+          <StartPlanCta
+            variant="compact"
+            headline="Have shoes? Get a plan."
+            description="A short quiz recommends a free beginner schedule. No account required."
+          />
         </FadeIn>
       </div>
     </div>

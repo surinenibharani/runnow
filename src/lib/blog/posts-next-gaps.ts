@@ -16,7 +16,7 @@ export const nextGapPosts: BlogPost[] = [
       "That first-step stab in the heel isn't 'just tightness.' What plantar fasciitis usually feels like, how runners calm it down, and how to keep it from returning when you rebuild mileage.",
     category: "Injuries",
     author: AUTHOR,
-    publishedAt: "2026-08-24",
+    publishedAt: "2026-08-27",
     updatedAt: "2026-08-17",
     readTime: "8 min",
     relatedSlugs: [
@@ -140,7 +140,7 @@ export const nextGapPosts: BlogPost[] = [
       "Sharp or burning pain on the outside of the knee after a few miles isn't mysterious toughness — it's often IT band irritation. How to calm it, what strength actually helps, and when to get checked.",
     category: "Injuries",
     author: AUTHOR,
-    publishedAt: "2026-09-25",
+    publishedAt: "2026-10-14",
     updatedAt: "2026-08-17",
     readTime: "8 min",
     relatedSlugs: [
@@ -380,7 +380,7 @@ export const nextGapPosts: BlogPost[] = [
       "You finished a 5K or half — now what? How to recover, rebuild base, and stay consistent between training cycles without losing fitness or getting hurt.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-08-30",
+    publishedAt: "2026-09-05",
     readTime: "8 min",
     relatedSlugs: [
       "what-to-do-on-rest-days",
@@ -495,7 +495,7 @@ export const nextGapPosts: BlogPost[] = [
       "You're not behind — you're experienced at life. How to start running after 50 with smarter recovery, strength, medical common sense, and plans that respect tendons as much as motivation.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-08-20",
+    publishedAt: "2026-08-21",
     readTime: "9 min",
     relatedSlugs: [
       "never-ran-where-to-start",

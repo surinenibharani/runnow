@@ -17,7 +17,7 @@ export const zonesLungsDeepDivePosts: BlogPost[] = [
       "What each zone feels like, what it actually trains, how % of max HR and talk test overlap, and why beginners who live in “kinda hard” stall — plus a weekly mix that builds fitness without junk miles.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-09-07",
+    publishedAt: "2026-09-17",
     readTime: "16 min",
     relatedSlugs: [
       "easy-runs-effort-heart-rate",
@@ -590,7 +590,7 @@ export const zonesLungsDeepDivePosts: BlogPost[] = [
       "Your lungs aren’t a balloon you “expand” with magic apps — but ventilation, respiratory muscles, breathing rhythm, and handling exercise-induced symptoms all respond to smart training. What’s real, what’s myth, and how to breathe easier on purpose.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-08-22",
+    publishedAt: "2026-08-24",
     readTime: "15 min",
     relatedSlugs: [
       "breathing-while-running",

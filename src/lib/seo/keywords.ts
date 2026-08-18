@@ -707,6 +707,36 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "overtraining mental health runners",
     "running feels like a chore",
   ],
+  "how-many-days-a-week-should-beginners-run": [
+    "how many days a week should a beginner run",
+    "should beginners run every day",
+    "3 day running schedule beginner",
+    "is running 3 days a week enough",
+  ],
+  "is-walking-during-a-5k-ok": [
+    "is it ok to walk during a 5k",
+    "walking in a 5k cheating",
+    "run walk 5k race strategy",
+    "can I walk in a 5k race",
+  ],
+  "can-i-run-with-sore-legs": [
+    "can I run with sore legs",
+    "running with DOMS beginner",
+    "sore legs after running should I rest",
+    "DOMS vs injury running",
+  ],
+  "treadmill-vs-outside-beginner": [
+    "treadmill vs outside running beginners",
+    "is treadmill running cheating",
+    "1 percent incline treadmill running",
+    "should beginners run outside or treadmill",
+  ],
+  "how-long-to-wait-after-eating-to-run": [
+    "how long after eating to run",
+    "wait after eating before running",
+    "snack before morning run beginner",
+    "running after breakfast how long",
+  ],
 };
 
 export function blogPostKeywords(slug: string, category: string): string[] {

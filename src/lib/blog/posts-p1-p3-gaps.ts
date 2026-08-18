@@ -17,7 +17,7 @@ export const p1P3GapPosts: BlogPost[] = [
       "Persistent slump, mood crash, and paces that won't budge despite rest often mean non-functional overreaching — not weak motivation. How recreational runners spot overload early and fix load before months disappear.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-12-02",
+    publishedAt: "2026-12-13",
     readTime: "11 min",
     relatedSlugs: [
       "easy-runs-effort-heart-rate",
@@ -105,7 +105,7 @@ export const p1P3GapPosts: BlogPost[] = [
       "That sharp pain under your ribs isn't a mystery badge of toughness. Breathing rhythm, timing of food, and pace spikes explain most side stitches — and when to rule out something else.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-12-09",
+    publishedAt: "2026-12-16",
     readTime: "8 min",
     relatedSlugs: [
       "runners-gi-distress",
@@ -189,7 +189,7 @@ export const p1P3GapPosts: BlogPost[] = [
       "You don't have to run to be 'a runner in training.' Brisk walking counts toward health guidelines, builds habit, and prepares joints for walk-run when you're ready.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-12-16",
+    publishedAt: "2026-12-19",
     readTime: "9 min",
     relatedSlugs: [
       "why-walking-is-not-cheating",
@@ -261,7 +261,7 @@ export const p1P3GapPosts: BlogPost[] = [
       "Circadian performance differences are real but small for most beginners. The best time to run is when you'll actually go — with heat, safety, and sleep as tiebreakers.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-12-23",
+    publishedAt: "2026-12-22",
     readTime: "8 min",
     relatedSlugs: [
       "building-a-running-habit",
@@ -339,7 +339,7 @@ export const p1P3GapPosts: BlogPost[] = [
       "Music helps many beginners finish miles — but cars, bikes, dogs, and other runners need your ears. Practical rules for roads, trails, tracks, and races.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-12-30",
+    publishedAt: "2026-12-25",
     readTime: "9 min",
     relatedSlugs: [
       "night-running-safety",
@@ -410,7 +410,7 @@ export const p1P3GapPosts: BlogPost[] = [
       "Wildfire smoke, ozone spikes, and pollen season don't require quitting — but they do require checking the AQI, adjusting intensity, and knowing when treadmill beats heroics.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2027-01-06",
+    publishedAt: "2026-12-28",
     readTime: "10 min",
     relatedSlugs: [
       "running-in-bad-weather",
@@ -486,7 +486,7 @@ export const p1P3GapPosts: BlogPost[] = [
       "Breast pain and bounce keep many women off the path. What research says about support, fit checks, and bra types for easy runs versus long efforts.",
     category: "Gear",
     author: AUTHOR,
-    publishedAt: "2027-01-13",
+    publishedAt: "2026-12-31",
     readTime: "10 min",
     relatedSlugs: [
       "running-guide-for-women",
@@ -560,7 +560,7 @@ export const p1P3GapPosts: BlogPost[] = [
       "Dread, guilt, and all-gray-zone training aren't always 'mental weakness.' How burnout overlaps with overtraining, REDs, and depression — and how to rebuild joy without quitting movement.",
     category: "Mindset",
     author: AUTHOR,
-    publishedAt: "2027-01-20",
+    publishedAt: "2027-01-03",
     readTime: "12 min",
     relatedSlugs: [
       "mental-side-of-running",

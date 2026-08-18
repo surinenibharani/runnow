@@ -8,7 +8,7 @@ import { BlogScheduledPostNotice } from "@/components/blog/blog-scheduled-post-n
 import { JsonLd } from "@/components/seo/json-ld";
 import { getCommentCount } from "@/lib/blog/comment-counts";
 import { getContentLikeStateForSession } from "@/lib/engagement/content-likes";
-import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd } from "@/lib/seo";
+import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd, howToJsonLd } from "@/lib/seo";
 import {
   postOgImageMeta,
   seoTitle,
@@ -165,6 +165,16 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
           ]),
           ...(post.faq?.length
             ? [faqPageJsonLd(post.faq, `${SITE_URL}/blog/${slug}`)]
+            : []),
+          ...(post.howTo
+            ? [
+                howToJsonLd({
+                  name: post.howTo.name,
+                  description: post.howTo.description ?? post.excerpt,
+                  path: `/blog/${slug}`,
+                  steps: post.howTo.steps,
+                }),
+              ]
             : []),
         ]}
       />

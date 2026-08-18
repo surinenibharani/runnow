@@ -9,14 +9,23 @@ import { InjuryShareButtons } from "@/components/injuries/injury-share-buttons";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { BlogFaq } from "@/components/blog/blog-faq";
 import { JsonLd } from "@/components/seo/json-ld";
-import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import {
+  breadcrumbJsonLd,
+  faqPageJsonLd,
+  howToJsonLd,
+  simpleArticleJsonLd,
+  webPageJsonLd,
+} from "@/lib/seo";
 import {
   getWomenRunnerConcernBySlug,
   womenRunnerConcernSlugs,
 } from "@/lib/injuries/women-runner-concerns";
+import { injuryGuideFaqs, injuryGuideHowTo } from "@/lib/injuries/injury-schema";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { INJURIES_SEO_KEYWORDS } from "@/lib/seo/keywords";
+import { SITE_URL } from "@/lib/site";
 
 const BASE_PATH = "/injuries/for-women-runners";
 
@@ -51,9 +60,11 @@ export default async function WomenRunnerConcernDetailPage({
   if (!concern) notFound();
 
   const detailPath = `${BASE_PATH}/${slug}`;
+  const faqs = injuryGuideFaqs(concern);
+  const howTo = injuryGuideHowTo(concern);
 
   return (
-    <div className="py-12 sm:py-16">
+    <div className="py-8 sm:py-16">
       <JsonLd
         data={[
           webPageJsonLd({
@@ -61,12 +72,25 @@ export default async function WomenRunnerConcernDetailPage({
             description: concern.symptoms,
             path: detailPath,
           }),
+          simpleArticleJsonLd({
+            headline: `${concern.title} — Women Runner Health`,
+            description: concern.symptoms,
+            path: detailPath,
+            articleSection: "Injuries",
+          }),
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
             { name: "Injuries", path: "/injuries" },
             { name: "For women runners", path: BASE_PATH },
             { name: concern.title, path: detailPath },
           ]),
+          faqPageJsonLd(faqs, `${SITE_URL}${detailPath}`),
+          howToJsonLd({
+            name: howTo.name,
+            description: howTo.description,
+            path: detailPath,
+            steps: howTo.steps,
+          }),
         ]}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
@@ -103,6 +127,7 @@ export default async function WomenRunnerConcernDetailPage({
             Missed periods, pelvic-floor symptoms, or pregnancy and postpartum
             questions should be reviewed with a clinician.{" "}
           </MedicalDisclaimerBanner>
+          <BlogFaq items={faqs} heading="Quick questions" />
           <InjuryShareButtons
             title={`${concern.title} — women runner health guide`}
             path={detailPath}

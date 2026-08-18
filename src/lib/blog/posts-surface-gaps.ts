@@ -309,7 +309,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "Salt, seams, wet socks, and new shoes create most beginner skin drama. Prevention first, then simple care — without weird internet remedies.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-09-01",
+    publishedAt: "2026-09-08",
     readTime: "7 min",
     relatedSlugs: [
       "what-to-wear-running",
@@ -582,7 +582,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "You don't have to run every step, chug water on cue, or buy a gel wardrobe to be a real runner. The biggest beginner myths — and what to do instead.",
     category: "Mindset",
     author: AUTHOR,
-    publishedAt: "2026-10-11",
+    publishedAt: "2026-11-07",
     readTime: "14 min",
     relatedSlugs: [
       "how-to-pace-yourself",
@@ -1120,7 +1120,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "You don't need a team to start — but most beginners stick longer with some company. How to find Parkrun, local clubs, store group runs, and couch-to-5K clinics without pace anxiety or commitment phobia.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-11-11",
+    publishedAt: "2026-12-04",
     readTime: "10 min",
     relatedSlugs: [
       "building-a-running-habit",

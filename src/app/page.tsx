@@ -6,7 +6,12 @@ import { HowItWorks } from "@/components/landing/how-it-works";
 import { Testimonials } from "@/components/landing/testimonials";
 import { CtaSection } from "@/components/landing/cta-section";
 import { TipsTicker } from "@/components/landing/tips-ticker";
+import { StickyStartHere } from "@/components/landing/sticky-start-here";
+import { BeginnerRoadmap } from "@/components/content/beginner-roadmap";
+import { JsonLd } from "@/components/seo/json-ld";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { howToJsonLd } from "@/lib/seo";
+import { beginnerRoadmapHowToSteps } from "@/lib/beginner-roadmap";
 import { HOME_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { SITE_NAME, SITE_TAGLINE } from "@/lib/site";
 
@@ -22,8 +27,17 @@ export const metadata: Metadata = pageMetadata({
 export default function Home() {
   return (
     <>
-      <div className="border-b border-border/60 bg-muted/30 overflow-x-clip">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2.5 sm:px-6 text-center text-sm sm:text-base">
+      <JsonLd
+        data={howToJsonLd({
+          name: "Beginner running roadmap: week 1 to first 5K",
+          description:
+            "Show up three times, protect the habit, jog continuously, then finish a 5K without racing it.",
+          path: "/",
+          steps: beginnerRoadmapHowToSteps(),
+        })}
+      />
+      <div className="overflow-x-clip border-b border-border/60 bg-muted/30">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 text-center text-sm sm:px-6">
           <Link
             href="/blog/why-letsrunnow"
             className="inline-flex min-h-11 items-center justify-center font-medium text-primary hover:underline touch-target sm:min-h-0"
@@ -34,19 +48,10 @@ export default function Home() {
             ·
           </span>
           <Link
-            href="/start"
-            className="inline-flex min-h-11 items-center justify-center font-medium text-primary hover:underline touch-target sm:min-h-0"
-          >
-            Don&apos;t know where to start? Start here
-          </Link>
-          <span className="hidden text-muted-foreground md:inline" aria-hidden>
-            ·
-          </span>
-          <Link
             href="/tips/specific-situations"
             className="inline-flex min-h-11 max-w-full items-center justify-center px-1 font-medium text-primary hover:underline touch-target sm:min-h-0"
           >
-            Situational tips (pregnancy, 55+, health)
+            Situational tips
           </Link>
         </div>
       </div>
@@ -54,8 +59,12 @@ export default function Home() {
       <Hero />
       <Features />
       <HowItWorks />
+      <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20">
+        <BeginnerRoadmap />
+      </div>
       <Testimonials />
       <CtaSection />
+      <StickyStartHere />
     </>
   );
 }

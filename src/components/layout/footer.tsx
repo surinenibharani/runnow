@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { InstagramIcon } from "@/components/icons/instagram";
 import { Logo } from "@/components/brand/logo";
-import { StartPlanCta } from "@/components/cta/start-plan-cta";
+import { FooterStartCta } from "@/components/layout/footer-start-cta";
 import { EmailSignup } from "@/components/newsletter/email-signup";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -17,13 +17,7 @@ export function Footer() {
   return (
     <footer className="w-full max-w-full overflow-x-clip border-t border-border bg-muted/30">
       <div className="mx-auto w-full min-w-0 max-w-6xl px-4 py-12 sm:px-6">
-        <div className="mb-10">
-          <StartPlanCta
-            variant="compact"
-            headline="Don't know where to start?"
-            description="Start here for a free plan recommendation — then check off workouts in your browser. No app required."
-          />
-        </div>
+        <FooterStartCta />
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">

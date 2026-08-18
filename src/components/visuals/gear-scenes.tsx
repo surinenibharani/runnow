@@ -220,7 +220,7 @@ export function GearPageHero({ className }: GearPageHeroProps) {
   return (
     <IllustrationBanner
       gradient="from-violet-500/20 via-orange-400/10 to-card"
-      className={cn("h-32 rounded-2xl", className)}
+      className={cn("h-24 rounded-2xl sm:h-32", className)}
       label="Running gear guide illustration"
       decorative
     >

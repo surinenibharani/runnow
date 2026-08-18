@@ -11,6 +11,8 @@ type GearCategoryCardProps = {
   suggestions: GearSuggestionPick[];
   womenPicks?: GearSuggestionPick[];
   afterCard?: React.ReactNode;
+  /** Skip the illustration — lighter hub cards on mobile. */
+  compact?: boolean;
 };
 
 export function GearCategoryCard({
@@ -18,6 +20,7 @@ export function GearCategoryCard({
   suggestions,
   womenPicks,
   afterCard,
+  compact = false,
 }: GearCategoryCardProps) {
   const Icon = item.icon;
   const titleId = `${item.slug}-title`;
@@ -29,11 +32,14 @@ export function GearCategoryCard({
         aria-labelledby={titleId}
         className="gap-0 overflow-hidden border-border/60 py-0 transition-shadow duration-300 hover:shadow-md scroll-mt-24"
       >
-        <GearIllustration slug={item.slug} title={item.title} decorative />
-        <CardHeader className="relative pb-3 pt-9">
+        {!compact && (
+          <GearIllustration slug={item.slug} title={item.title} decorative />
+        )}
+        <CardHeader className={cn("relative pb-3", compact ? "pt-5" : "pt-9")}>
           <div
             className={cn(
-              "absolute -top-6 left-5 z-10 flex size-10 items-center justify-center rounded-xl border border-border/60 bg-background text-primary shadow-sm"
+              "flex size-10 items-center justify-center rounded-xl border border-border/60 bg-background text-primary shadow-sm",
+              compact ? "mb-3" : "absolute -top-6 left-5 z-10"
             )}
             aria-hidden
           >

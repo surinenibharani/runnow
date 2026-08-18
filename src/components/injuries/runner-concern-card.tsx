@@ -282,7 +282,7 @@ export function RunnerConcernCard({
 
 export function runnerConcernNavPillClass(theme: RunnerConcernTheme): string {
   return cn(
-    "inline-flex items-center rounded-full border px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors",
+    "inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-sm font-medium text-foreground transition-colors",
     themeStyles[theme].navPill
   );
 }

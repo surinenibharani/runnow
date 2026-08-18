@@ -186,7 +186,7 @@ export const priorityGapPosts: BlogPost[] = [
       "Fitness fades faster than ego. Whether you took three weeks or three years off, here's how to rebuild mileage so the comeback sticks — and the injuries don't.",
     category: "Getting Started",
     author: AUTHOR,
-    publishedAt: "2026-09-23",
+    publishedAt: "2026-10-11",
     readTime: "8 min",
     relatedSlugs: [
       "what-to-do-when-you-miss-a-run",

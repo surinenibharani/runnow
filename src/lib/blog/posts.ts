@@ -15,6 +15,7 @@ import { competitiveGapPosts } from "./posts-competitive-gaps";
 import { p0MedicalGapPosts } from "./posts-p0-medical-gaps";
 import { p1P2GapPosts } from "./posts-p1-p2-gaps";
 import { p1P3GapPosts } from "./posts-p1-p3-gaps";
+import { longtailBeginnerPosts } from "./posts-longtail-beginner";
 
 export const BLOG_AUTHOR = "B";
 
@@ -1094,6 +1095,26 @@ export const blogPosts: BlogPost[] = [
           "Every 300–500 miles, or when tread is worn or new aches appear. Beginners running ~15 miles/week often replace shoes every 5–8 months.",
       },
     ],
+    howTo: {
+      name: "How to choose your first running shoes",
+      description:
+        "Get fitted, check toe room and heel hold, and replace by miles — not by a sale.",
+      steps: [
+        {
+          name: "Go to a running shop if you can",
+          text: "Have someone watch you jog. You need the pair that feels right in the first mile, not the most expensive plate shoe.",
+          url: "/gear",
+        },
+        {
+          name: "Check fit on tired feet",
+          text: "Shop later in the day. Leave a thumb of space at the toes and a heel that does not slip.",
+        },
+        {
+          name: "Plan the replacement",
+          text: "Most beginners get 300–500 miles. New shin or knee aches after the foam dies are a clue, not a coincidence.",
+        },
+      ],
+    },
     sources: [
       SOURCES.cadenceResearch,
       SOURCES.plantarFasciitis,
@@ -2339,6 +2360,27 @@ export const blogPosts: BlogPost[] = [
           "Eat something light if hungry, tie shoes with room in the toe box, pick a flat familiar route, and warm up with 5 minutes of brisk walking.",
       },
     ],
+    howTo: {
+      name: "How to do your first run without wrecking week two",
+      description:
+        "Warm up, go conversational, pick a simple route, and stop while you still want to come back.",
+      steps: [
+        {
+          name: "Warm up with walking",
+          text: "Five minutes of brisk walking before any jog. Cold sprints are how beginners collect calf and Achilles niggles.",
+        },
+        {
+          name: "Stay slow enough to talk",
+          text: "Short sentences are the pace. Walk breaks count. Comparison on day one is useless.",
+          url: "/blog/how-to-pace-yourself",
+        },
+        {
+          name: "Finish with a cooldown and a next date",
+          text: "Walk 3–5 minutes. Put the next easy session on a plan instead of inventing a harder one tomorrow.",
+          url: "/start",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -2398,7 +2440,7 @@ export const blogPosts: BlogPost[] = [
       "You don't need a race kit on day one. Here's what to wear in heat, cold, and everything in between — plus what to skip.",
     category: "Gear",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-09-21",
+    publishedAt: "2026-10-08",
     readTime: "5 min",
     relatedSlugs: [
       "beginner-gear-guide-under-50",
@@ -2700,7 +2742,7 @@ export const blogPosts: BlogPost[] = [
       "You don't need a coach on day one. A few visual cues for posture, where your feet land, arm swing, and step rate make running feel smoother and safer.",
     category: "Getting Started",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-09-05",
+    publishedAt: "2026-09-14",
     readTime: "7 min",
     relatedSlugs: [
       "breathing-while-running",
@@ -4990,7 +5032,7 @@ export const blogPosts: BlogPost[] = [
       "Achilles pain isn't just a beginner injury. I spiked mileage as a seasoned runner and paid for it. Air skipping → heel raises → eccentric heel lowers got me back — and I also retired the Nike Alphafly 3 that kept poking the same tendon.",
     category: "Injuries",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-09-09",
+    publishedAt: "2026-09-20",
     updatedAt: "2026-08-17",
     readTime: "10 min",
     relatedSlugs: [
@@ -5174,7 +5216,7 @@ export const blogPosts: BlogPost[] = [
       "Intermittent fasting and running can coexist — but not every workout belongs in a fasted state. How to time runs around your eating window, long-run rules, and how men and women should adjust differently.",
     category: "Nutrition",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-09-13",
+    publishedAt: "2026-09-26",
     updatedAt: "2026-08-17",
     readTime: "15 min",
     relatedSlugs: [
@@ -5688,7 +5730,7 @@ export const blogPosts: BlogPost[] = [
       "Easy runs, tempo days, intervals, and long runs don't need the same fueling. A practical guide to eating and hydrating through a training block — with extra detail for hot, humid weather.",
     category: "Nutrition",
     author: BLOG_AUTHOR,
-    publishedAt: "2026-08-28",
+    publishedAt: "2026-09-02",
     readTime: "14 min",
     relatedSlugs: [
       "nutrition-for-runners",
@@ -6194,6 +6236,7 @@ export const blogPosts: BlogPost[] = [
   ...p0MedicalGapPosts,
   ...p1P2GapPosts,
   ...p1P3GapPosts,
+  ...longtailBeginnerPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

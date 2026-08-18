@@ -999,4 +999,9 @@ export const SOURCES = {
     href: "https://doi.org/10.1249/JES.0000000000000221",
     publisher: "Exercise and Sport Sciences Reviews",
   },
+  delayedOnsetMuscleSoreness: {
+    label: "Delayed onset muscle soreness (DOMS)",
+    href: "https://my.clevelandclinic.org/health/diseases/22183-delayed-onset-muscle-soreness-doms",
+    publisher: "Cleveland Clinic",
+  },
 } satisfies Record<string, BlogSource>;

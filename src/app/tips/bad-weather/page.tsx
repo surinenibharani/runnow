@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { BookOpen } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -9,11 +7,34 @@ import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { WeatherTipsGrid } from "@/components/tips/weather-tips-grid";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { BadWeatherTipsPageHero } from "@/components/visuals/content-scenes";
+import { HubNextSteps } from "@/components/content/hub-next-steps";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { BAD_WEATHER_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { weatherTipsToFaq } from "@/lib/tips/helpers";
 import { SITE_URL } from "@/lib/site";
+import type { PathwayLink } from "@/lib/content-pathways";
+
+const weatherNextSteps: PathwayLink[] = [
+  {
+    kind: "blog",
+    href: "/blog/running-in-bad-weather",
+    label: "Bad-weather article",
+    detail: "When to head out, when to stay in, and how to keep the habit.",
+  },
+  {
+    kind: "plan",
+    href: "/plan",
+    label: "Use the cross-train day",
+    detail: "Indoor swaps already live on your plan — don't skip the week.",
+  },
+  {
+    kind: "tip",
+    href: "/tips",
+    label: "All beginner tips",
+    detail: "Pace, rest, and gear for ordinary days too.",
+  },
+];
 
 const TITLE = "Running in Bad Weather — Rain, Heat, Ice & Indoor Swaps";
 const DESCRIPTION =
@@ -79,30 +100,16 @@ export default function BadWeatherTipsPage() {
 
         <WeatherTipsGrid />
 
-        <FadeIn className="mt-10 text-center text-sm text-muted-foreground">
-          <p>
-            Don&apos;t know where to start?{" "}
-            <Link href="/start" className="text-primary hover:underline">
-              Start here
-            </Link>
-            . Need a structured plan for rest and cross-training days?{" "}
-            <Link href="/plan" className="text-primary hover:underline">
-              Open your training plan
-            </Link>
-            . Want the full breakdown?{" "}
-            <Link
-              href="/blog/running-in-bad-weather"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
-            >
-              <BookOpen className="size-3.5" />
-              Read the bad-weather article
-            </Link>
-            .
-          </p>
+        <FadeIn className="mt-10">
+          <HubNextSteps steps={weatherNextSteps} />
         </FadeIn>
 
         <FadeIn className="mt-8">
-          <StartPlanCta variant="compact" />
+          <StartPlanCta
+            variant="compact"
+            headline="Keep the habit, change the venue"
+            description="A plan with rest and cross-train days makes bad weather a swap, not a skip."
+          />
         </FadeIn>
       </div>
     </div>

@@ -9,6 +9,11 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { WomenRunnersInjuriesPageHero } from "@/components/visuals/content-scenes";
 import { WomenRunnerConcernsSection } from "@/components/injuries/women-runner-concerns-section";
 import { womenRunnerOverwhelmedBox } from "@/lib/injuries/women-runner-concerns";
+import { HubEditorialBlock } from "@/components/content/hub-editorial";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbJsonLd, faqPageJsonLd, howToJsonLd, webPageJsonLd } from "@/lib/seo";
+import { womenInjuriesHubEditorial } from "@/lib/hub-seo";
+import { SITE_URL } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { INJURIES_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
@@ -22,7 +27,32 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ForWomenRunnersInjuriesPage() {
   return (
-    <div className="py-12 sm:py-16">
+    <div className="py-8 sm:py-16">
+      <JsonLd
+        data={[
+          webPageJsonLd({
+            name: "Running Injuries for Women — RED-S, Pelvic Floor & Postpartum",
+            description:
+              "RED-S, pelvic floor leakage, pregnancy return-to-run, menstrual cycle training, bone health, and breast support — prevention, recovery, and when to see a specialist.",
+            path: "/injuries/for-women-runners",
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Injuries", path: "/injuries" },
+            { name: "For women runners", path: "/injuries/for-women-runners" },
+          ]),
+          faqPageJsonLd(
+            womenInjuriesHubEditorial.faqs,
+            `${SITE_URL}/injuries/for-women-runners`
+          ),
+          howToJsonLd({
+            name: womenInjuriesHubEditorial.howTo.name,
+            description: womenInjuriesHubEditorial.howTo.description,
+            path: "/injuries/for-women-runners",
+            steps: womenInjuriesHubEditorial.howTo.steps,
+          }),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs
           items={[
@@ -49,6 +79,8 @@ export default function ForWomenRunnersInjuriesPage() {
             </p>
           </div>
         </FadeIn>
+
+        <HubEditorialBlock editorial={womenInjuriesHubEditorial} />
 
         <FadeIn className="mb-10">
           <Card className="border-violet-500/20 bg-violet-500/[0.03] hover:shadow-md transition-shadow duration-300">

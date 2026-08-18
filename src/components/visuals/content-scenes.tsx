@@ -9,7 +9,7 @@ export function TipsPageHero({ className }: PageHeroProps) {
   return (
     <IllustrationBanner
       gradient="from-sky-500/20 via-primary/10 to-card"
-      className={cn("h-36 rounded-2xl", className)}
+      className={cn("h-24 rounded-2xl sm:h-36", className)}
       label="Beginner running tips illustration"
       decorative
     >
@@ -58,7 +58,7 @@ export function BlogPageHero({ className }: PageHeroProps) {
   return (
     <IllustrationBanner
       gradient="from-indigo-500/20 via-violet-400/10 to-card"
-      className={cn("h-36 rounded-2xl", className)}
+      className={cn("h-24 rounded-2xl sm:h-36", className)}
       label="Running blog illustration"
       decorative
     >
@@ -118,7 +118,7 @@ export function InjuriesPageHero({ className }: PageHeroProps) {
   return (
     <IllustrationBanner
       gradient="from-rose-500/20 via-amber-400/10 to-card"
-      className={cn("h-36 rounded-2xl", className)}
+      className={cn("h-24 rounded-2xl sm:h-36", className)}
       label="Running injury prevention illustration"
       decorative
     >
@@ -172,7 +172,7 @@ export function WomenRunnersInjuriesPageHero({ className }: PageHeroProps) {
   return (
     <IllustrationBanner
       gradient="from-violet-500/20 via-rose-400/10 to-card"
-      className={cn("h-36 rounded-2xl", className)}
+      className={cn("h-24 rounded-2xl sm:h-36", className)}
       label="Women runners injury and health illustration"
       decorative
     >
@@ -227,7 +227,7 @@ export function MenRunnersInjuriesPageHero({ className }: PageHeroProps) {
   return (
     <IllustrationBanner
       gradient="from-sky-500/20 via-blue-400/10 to-card"
-      className={cn("h-36 rounded-2xl", className)}
+      className={cn("h-24 rounded-2xl sm:h-36", className)}
       label="Men runners injury and health illustration"
       decorative
     >
@@ -280,7 +280,7 @@ export function BadWeatherTipsPageHero({ className }: PageHeroProps) {
   return (
     <IllustrationBanner
       gradient="from-indigo-500/20 via-slate-400/10 to-card"
-      className={cn("h-36 rounded-2xl", className)}
+      className={cn("h-24 rounded-2xl sm:h-36", className)}
       label="Bad weather running tips illustration"
       decorative
     >
@@ -335,7 +335,7 @@ export function SpecificSituationsTipsPageHero({ className }: PageHeroProps) {
   return (
     <IllustrationBanner
       gradient="from-sky-500/20 via-teal-400/10 to-card"
-      className={cn("h-36 rounded-2xl", className)}
+      className={cn("h-24 rounded-2xl sm:h-36", className)}
       label="Running for specific situations illustration"
       decorative
     >

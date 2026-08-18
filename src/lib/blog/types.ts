@@ -59,6 +59,12 @@ export type BlogPost = {
   sources?: BlogSource[];
   /** Prompt shown above comments to encourage discussion. */
   closingQuestion?: string;
+  /** Optional HowTo schema — used for stepwise beginner guides. */
+  howTo?: {
+    name: string;
+    description?: string;
+    steps: { name: string; text: string; url?: string }[];
+  };
 };
 
 /** Fields needed for blog index cards — omit body sections for smaller RSC payloads. */

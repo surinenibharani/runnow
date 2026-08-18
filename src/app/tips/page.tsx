@@ -1,23 +1,58 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { TipCard } from "@/components/tips/tip-card";
 import { TipsGuideLink } from "@/components/tips/tips-guide-link";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
+import { BeginnerRoadmap } from "@/components/content/beginner-roadmap";
+import { HubNextSteps } from "@/components/content/hub-next-steps";
+import { HubEditorialBlock } from "@/components/content/hub-editorial";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { TipsPageHero } from "@/components/visuals/content-scenes";
 import { getPublishedPostBySlug } from "@/lib/blog/posts";
-import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from "@/lib/seo";
+import {
+  breadcrumbJsonLd,
+  faqPageJsonLd,
+  howToJsonLd,
+  itemListJsonLd,
+  webPageJsonLd,
+} from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { runnerTips, tipsPageGuides } from "@/lib/tips/tips";
+import { tipHubSections, tipsForHubSection } from "@/lib/tips/hub";
+import { tipsHubEditorial } from "@/lib/hub-seo";
+import { beginnerRoadmapHowToSteps } from "@/lib/beginner-roadmap";
+import { SITE_URL } from "@/lib/site";
+import type { PathwayLink } from "@/lib/content-pathways";
 
 const TIPS_TITLE = "Beginner Running Tips — Pace, Gear, Recovery & More";
 const TIPS_DESCRIPTION =
   "Beginner running tips for couch to 5K starters: easy pace, shoes, hydration, rest days, and bad-weather alternatives — no app, no paywall.";
+
+const tipsNextSteps: PathwayLink[] = [
+  {
+    kind: "plan",
+    href: "/start",
+    label: "Start here",
+    detail: "A two-minute quiz picks a free beginner plan.",
+  },
+  {
+    kind: "injury",
+    href: "/injuries",
+    label: "Pain or niggles?",
+    detail: "Prevention, recovery, and when to get help.",
+  },
+  {
+    kind: "gear",
+    href: "/gear",
+    label: "Gear without the hype",
+    detail: "Shoes first. Everything else can wait.",
+  },
+];
 
 export const metadata: Metadata = pageMetadata({
   title: TIPS_TITLE,
@@ -48,52 +83,124 @@ export default function TipsPage() {
               path: `/tips/${tip.slug}`,
             })),
           }),
+          faqPageJsonLd(tipsHubEditorial.faqs, `${SITE_URL}/tips`),
+          howToJsonLd({
+            name: tipsHubEditorial.howTo.name,
+            description: tipsHubEditorial.howTo.description,
+            path: "/tips",
+            steps: tipsHubEditorial.howTo.steps,
+          }),
+          howToJsonLd({
+            name: "Beginner running roadmap: week 1 to first 5K",
+            description:
+              "Show up three times, protect the habit, jog continuously, then finish a 5K without racing it.",
+            path: "/tips",
+            steps: beginnerRoadmapHowToSteps(),
+          }),
         ]}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Tips" }]} />
         <TipsSectionNav />
 
-        <FadeIn className="mb-12">
+        <FadeIn className="mb-10">
           <TipsPageHero className="mb-8" />
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Tips for New Runners
+              Tips for new runners
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              The stuff nobody tells you when you&apos;re starting out.
-              Bookmark this page and come back whenever you need a reminder.
+              Short, practical notes — grouped so you can grab what you need
+              and keep moving.
             </p>
           </div>
+        </FadeIn>
+
+        <FadeIn className="mb-10">
+          <BeginnerRoadmap />
+        </FadeIn>
+
+        <FadeIn className="mb-8">
+          <nav
+            aria-label="Tip topics"
+            className="flex flex-wrap justify-center gap-2"
+          >
+            {tipHubSections.map((section) => (
+              <Link
+                key={section.id}
+                href={`/tips#${section.id}`}
+                className="inline-flex min-h-11 items-center rounded-full border border-border/60 bg-background px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:border-primary/40 hover:text-foreground"
+              >
+                {section.title}
+              </Link>
+            ))}
+          </nav>
         </FadeIn>
 
         <FadeIn className="mb-8">
           <MedicalDisclaimerBanner />
         </FadeIn>
 
-        <StaggerChildren className="grid gap-5 sm:grid-cols-2">
-          {runnerTips.map((tip) => {
-            const post = tip.blogSlug
-              ? getPublishedPostBySlug(tip.blogSlug)
-              : undefined;
+        <HubEditorialBlock editorial={tipsHubEditorial} />
 
-            return (
-              <StaggerItem key={tip.slug}>
-                <TipCard
-                  id={tip.slug}
-                  tipHref={`/tips/${tip.slug}`}
-                  illustration={tip.illustration}
-                  icon={tip.icon}
-                  category={tip.category}
-                  title={tip.title}
-                  content={tip.content}
-                  blogSlug={post ? tip.blogSlug : undefined}
-                  blogReadTime={post?.readTime}
-                />
-              </StaggerItem>
-            );
-          })}
-        </StaggerChildren>
+        {tipHubSections.map((section) => {
+          const tips = tipsForHubSection(section);
+          if (tips.length === 0) return null;
+
+          return (
+            <section
+              key={section.id}
+              id={section.id}
+              className="hub-section mb-14 scroll-mt-24"
+            >
+              <div className="mb-5">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
+                      <Link
+                        href={`/tips#${section.id}`}
+                        className="hover:text-primary hover:underline"
+                      >
+                        {section.title}
+                      </Link>
+                    </h2>
+                    <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                      {section.summary}
+                    </p>
+                  </div>
+                  <Link
+                    href={section.nextHref}
+                    className="shrink-0 text-sm font-medium text-primary hover:underline"
+                  >
+                    {section.nextLabel}
+                  </Link>
+                </div>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {tips.map((tip) => {
+                  const post = tip.blogSlug
+                    ? getPublishedPostBySlug(tip.blogSlug)
+                    : undefined;
+                  return (
+                    <TipCard
+                      key={tip.slug}
+                      id={tip.slug}
+                      tipHref={`/tips/${tip.slug}`}
+                      illustration={tip.illustration}
+                      icon={tip.icon}
+                      category={tip.category}
+                      title={tip.title}
+                      content={tip.content}
+                      blogSlug={post ? tip.blogSlug : undefined}
+                      blogReadTime={post?.readTime}
+                      compact
+                    />
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })}
 
         {tipsPageGuides.map((guide) => {
           const post = guide.blogSlug
@@ -116,30 +223,16 @@ export default function TipsPage() {
           );
         })}
 
-        <FadeIn className="mt-10 text-center text-sm text-muted-foreground">
-          <p>
-            Dealing with pain from running? See our{" "}
-            <Link href="/injuries" className="text-primary hover:underline">
-              injury prevention guide
-            </Link>
-            . Don&apos;t know where to start?{" "}
-            <Link href="/start" className="text-primary hover:underline">
-              Start here
-            </Link>
-            . Or browse{" "}
-            <Link href="/plan" className="text-primary hover:underline">
-              training plans
-            </Link>{" "}
-            and the{" "}
-            <Link href="/blog" className="text-primary hover:underline">
-              blog
-            </Link>
-            .
-          </p>
+        <FadeIn className="mt-4">
+          <HubNextSteps steps={tipsNextSteps} />
         </FadeIn>
 
         <FadeIn className="mt-8">
-          <StartPlanCta variant="compact" />
+          <StartPlanCta
+            variant="compact"
+            headline="Ready for a plan?"
+            description="A short quiz recommends a free beginner schedule. No account, no app."
+          />
         </FadeIn>
       </div>
     </div>

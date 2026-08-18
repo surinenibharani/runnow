@@ -413,7 +413,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
       "What 26.2 miles does inside the body for men and women — transient heart biomarkers, muscle damage, kidney stress, gut barrier hits, and when those lab bumps are expected vs when they need a clinician — from recent medical journals.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-10-21",
+    publishedAt: "2026-11-22",
     readTime: "14 min",
     relatedSlugs: [
       "training-first-full-marathon",
@@ -647,7 +647,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
       "Heavy training, menstrual losses, and foot-strike hemolysis drain iron stores long before anemia shows up. What iron deficiency without anemia feels like, which labs to ask for, food and supplement basics, and when to back off training.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-10-28",
+    publishedAt: "2026-11-28",
     readTime: "13 min",
     relatedSlugs: [
       "running-guide-for-women",
@@ -827,7 +827,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
       "The pill, patch, ring, IUD, implant, or shot can shift bleeding, energy, and how you read your cycle — without automatically helping or hurting performance. A practical guide for runners on what to track and when to ask a clinician.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-11-18",
+    publishedAt: "2026-12-07",
     readTime: "12 min",
     relatedSlugs: [
       "running-guide-for-women",
@@ -975,7 +975,7 @@ export const p0MedicalGapPosts: BlogPost[] = [
       "ACOG supports continued activity for many habitually active pregnancies — but running in pregnancy is a medical conversation first. Trimester edits, talk-test pacing, heat and balance rules, and symptoms that mean stop today.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-11-25",
+    publishedAt: "2026-12-10",
     readTime: "13 min",
     relatedSlugs: [
       "postpartum-return-to-run",

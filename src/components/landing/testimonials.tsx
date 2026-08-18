@@ -7,19 +7,14 @@ export function Testimonials() {
   return (
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <FadeIn className="text-center mb-14">
+        <FadeIn className="mb-14 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Real beginners, real progress
           </h2>
-          <p className="mt-4 text-muted-foreground text-lg">
-            You&apos;re not alone on this journey.{" "}
+          <p className="mt-4 text-lg text-muted-foreground">
+            You&apos;re not alone.{" "}
             <Link href="/stories" className="text-primary hover:underline">
               Read success stories
-            </Link>
-            {" · "}
-            Don&apos;t know where to start?{" "}
-            <Link href="/start" className="text-primary hover:underline">
-              Start here
             </Link>
           </p>
         </FadeIn>
@@ -28,11 +23,11 @@ export function Testimonials() {
           {successStories.map((t) => (
             <StaggerItem key={t.name}>
               <Card className="h-full border-border/60">
-                <CardContent className="p-6 sm:p-8 flex flex-col h-full">
-                  <p className="text-foreground leading-relaxed flex-1">
+                <CardContent className="flex h-full flex-col p-6 sm:p-8">
+                  <p className="flex-1 leading-relaxed text-foreground">
                     &ldquo;{t.quote}&rdquo;
                   </p>
-                  <div className="mt-6 pt-6 border-t border-border">
+                  <div className="mt-6 border-t border-border pt-6">
                     <p className="font-semibold">{t.name}</p>
                     <p className="text-sm text-muted-foreground">{t.detail}</p>
                   </div>

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { BookOpen } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -8,11 +6,34 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { SituationalTipsGrid } from "@/components/tips/situational-tips-grid";
 import { SpecificSituationsTipsPageHero } from "@/components/visuals/content-scenes";
+import { HubNextSteps } from "@/components/content/hub-next-steps";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { SITUATIONAL_SEO_KEYWORDS, TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { situationalTipsToFaq } from "@/lib/tips/helpers";
 import { SITE_URL } from "@/lib/site";
+import type { PathwayLink } from "@/lib/content-pathways";
+
+const situationNextSteps: PathwayLink[] = [
+  {
+    kind: "blog",
+    href: "/blog/running-with-health-conditions",
+    label: "Health-conditions guide",
+    detail: "Clearance, pacing, and when a plan should wait.",
+  },
+  {
+    kind: "injury",
+    href: "/injuries",
+    label: "Injury prevention",
+    detail: "If pain is the issue, start here instead of pushing volume.",
+  },
+  {
+    kind: "plan",
+    href: "/start",
+    label: "Get a gentler plan",
+    detail: "The quiz can route you to walk-first if that's the right ramp.",
+  },
+];
 
 const TITLE = "Running for Pregnancy, 55+, & Health Conditions";
 const DESCRIPTION =
@@ -72,30 +93,16 @@ export default function SpecificSituationsTipsPage() {
 
         <SituationalTipsGrid />
 
-        <FadeIn className="mt-10 text-center text-sm text-muted-foreground">
-          <p>
-            Dealing with pain from running? See our{" "}
-            <Link href="/injuries" className="text-primary hover:underline">
-              injury prevention guide
-            </Link>
-            . Don&apos;t know where to start?{" "}
-            <Link href="/start" className="text-primary hover:underline">
-              Start here
-            </Link>
-            . For a longer read on medical considerations, see{" "}
-            <Link
-              href="/blog/running-with-health-conditions"
-              className="inline-flex items-center gap-1 text-primary hover:underline"
-            >
-              <BookOpen className="size-3.5" />
-              running with health conditions
-            </Link>
-            .
-          </p>
+        <FadeIn className="mt-10">
+          <HubNextSteps steps={situationNextSteps} />
         </FadeIn>
 
         <FadeIn className="mt-8">
-          <StartPlanCta variant="compact" />
+          <StartPlanCta
+            variant="compact"
+            headline="Clearance first, then a plan"
+            description="A short quiz recommends a free beginner schedule — always defer to your clinician."
+          />
         </FadeIn>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { MedicalDisclaimerText } from "@/components/legal/medical-disclaimer-text";
-import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
+import { FadeIn } from "@/components/motion/fade-in";
 import {
   RunnerConcernCard,
   runnerConcernNavPillClass,
@@ -41,9 +41,9 @@ export function WomenRunnerConcernsSection() {
         </nav>
       </FadeIn>
 
-      <StaggerChildren className="mb-12 space-y-8">
+      <div className="mb-12 space-y-8">
         {womenRunnerConcerns.map((concern) => (
-          <StaggerItem key={concern.id}>
+          <div key={concern.id} className="hub-section">
             <RunnerConcernCard
               concern={concern}
               theme="violet"
@@ -52,9 +52,9 @@ export function WomenRunnerConcernsSection() {
               showShare
               showIllustration
             />
-          </StaggerItem>
+          </div>
         ))}
-      </StaggerChildren>
+      </div>
     </>
   );
 }

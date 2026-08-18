@@ -162,7 +162,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "Phone videos, cadence nudges, and shoe-store treadmills vs clinical gait labs — what each can tell you, when pain means get help, and why beginners rarely need an expensive analysis first.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-09-19",
+    publishedAt: "2026-10-05",
     readTime: "10 min",
     relatedSlugs: [
       "running-form-101",
@@ -281,7 +281,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "What coaches mean by base, build, peak, and taper — without jargon overload — plus how to use the phases for a first 5K–half without frying yourself in week three.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-10-03",
+    publishedAt: "2026-10-26",
     readTime: "11 min",
     relatedSlugs: [
       "off-season-between-training-plans",
@@ -535,7 +535,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "Surgeon OK is step one — not the green light for last year's mileage. Criteria-based return after ACL reconstruction, meniscus repair, and other common procedures, plus walk-first progressions and red flags.",
     category: "Health",
     author: AUTHOR,
-    publishedAt: "2026-11-04",
+    publishedAt: "2026-12-01",
     readTime: "12 min",
     relatedSlugs: [
       "return-to-run-after-illness",
@@ -697,7 +697,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "Practical session templates for pool running, swimming, and elliptical days — whether you're injured, traveling, or protecting legs — plus what research says about transferring fitness back to running.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-10-17",
+    publishedAt: "2026-11-16",
     readTime: "11 min",
     relatedSlugs: [
       "importance-of-cross-training",
@@ -928,7 +928,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "How posterior-chain and hip-flexor strains show up in runners, what load management looks like, when imaging enters the chat, and how strength work fits prevention without overselling miracle programs.",
     category: "Injuries",
     author: AUTHOR,
-    publishedAt: "2026-10-09",
+    publishedAt: "2026-11-04",
     readTime: "12 min",
     relatedSlugs: [
       "avoiding-injuries",
@@ -1047,7 +1047,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "ISSN caffeine dosing ranges, what endurance-running meta-analyses suggest about time to exhaustion, why alcohol wrecks sleep, and how to keep race-day stimulants from wrecking your gut.",
     category: "Nutrition",
     author: AUTHOR,
-    publishedAt: "2026-10-13",
+    publishedAt: "2026-11-10",
     readTime: "11 min",
     relatedSlugs: [
       "nutrition-for-training-by-run-type",
@@ -1162,7 +1162,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "How to travel without abandoning the plan or cramming revenge long runs — jet-lag realism, hotel-gym options, easy-first weeks, and when altitude races need a separate playbook.",
     category: "Tips",
     author: AUTHOR,
-    publishedAt: "2026-10-15",
+    publishedAt: "2026-11-13",
     readTime: "10 min",
     relatedSlugs: [
       "altitude-travel-race-running",
@@ -1405,7 +1405,7 @@ export const p1P2GapPosts: BlogPost[] = [
       "Easy should feel slower than your ego wants — like you could go forever. That patience builds endurance. Comparison and turning every jog into a test steal the base that makes hard days work.",
     category: "Training",
     author: AUTHOR,
-    publishedAt: "2026-10-19",
+    publishedAt: "2026-11-19",
     readTime: "9 min",
     relatedSlugs: [
       "easy-runs-effort-heart-rate",

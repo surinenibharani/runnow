@@ -11,11 +11,13 @@ import { ContentLikeButton } from "@/components/engagement/content-like-button";
 import { BlogComments } from "@/components/blog/blog-comments";
 import { RelatedPosts } from "@/components/blog/related-posts";
 import { RelatedTips } from "@/components/tips/related-tips";
+import { RelatedPathways } from "@/components/content/related-pathways";
 import { Badge } from "@/components/ui/badge";
 import { categoryToParam } from "@/lib/blog/categories";
 import { appendBlogPreviewParam } from "@/lib/blog/preview";
 import { getBlogPostCanonicalUrl, getBlogPostDisplayUrl } from "@/lib/blog/urls";
 import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
+import { getBlogPathway } from "@/lib/content-pathways";
 
 type PostContentProps = {
   post: BlogPost;
@@ -36,6 +38,8 @@ export function PostContent({
   previewToken,
   scheduled = false,
 }: PostContentProps) {
+  const pathway = getBlogPathway(post.slug);
+
   return (
     <article>
       <header className="mb-10">
@@ -169,6 +173,8 @@ export function PostContent({
       />
 
       <RelatedTips blogSlug={post.slug} />
+
+      {pathway && <RelatedPathways pathway={pathway} className="mt-8" />}
 
       {!scheduled && (
         <BlogComments postSlug={post.slug} initialCount={commentCount} />

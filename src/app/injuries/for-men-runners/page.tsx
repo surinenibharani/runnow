@@ -9,6 +9,11 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { MenRunnersInjuriesPageHero } from "@/components/visuals/content-scenes";
 import { MenRunnerConcernsSection } from "@/components/injuries/men-runner-concerns-section";
 import { menRunnerOverwhelmedBox } from "@/lib/injuries/men-runner-concerns";
+import { HubEditorialBlock } from "@/components/content/hub-editorial";
+import { JsonLd } from "@/components/seo/json-ld";
+import { breadcrumbJsonLd, faqPageJsonLd, howToJsonLd, webPageJsonLd } from "@/lib/seo";
+import { menInjuriesHubEditorial } from "@/lib/hub-seo";
+import { SITE_URL } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { INJURIES_SEO_KEYWORDS } from "@/lib/seo/keywords";
 
@@ -22,7 +27,32 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ForMenRunnersInjuriesPage() {
   return (
-    <div className="py-12 sm:py-16">
+    <div className="py-8 sm:py-16">
+      <JsonLd
+        data={[
+          webPageJsonLd({
+            name: "Running Injuries for Men — Heart, RED-S, Groin & Overtraining",
+            description:
+              "RED-S in men, chest pain while running, groin and sports hernia, overtraining, prostate and urinary symptoms, heat hydration, and mental health — prevention, recovery, and when to see a specialist.",
+            path: "/injuries/for-men-runners",
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Injuries", path: "/injuries" },
+            { name: "For men runners", path: "/injuries/for-men-runners" },
+          ]),
+          faqPageJsonLd(
+            menInjuriesHubEditorial.faqs,
+            `${SITE_URL}/injuries/for-men-runners`
+          ),
+          howToJsonLd({
+            name: menInjuriesHubEditorial.howTo.name,
+            description: menInjuriesHubEditorial.howTo.description,
+            path: "/injuries/for-men-runners",
+            steps: menInjuriesHubEditorial.howTo.steps,
+          }),
+        ]}
+      />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Breadcrumbs
           items={[
@@ -49,6 +79,8 @@ export default function ForMenRunnersInjuriesPage() {
             </p>
           </div>
         </FadeIn>
+
+        <HubEditorialBlock editorial={menInjuriesHubEditorial} />
 
         <FadeIn className="mb-10">
           <Card className="border-sky-500/20 bg-sky-500/[0.03] transition-shadow duration-300 hover:shadow-md">

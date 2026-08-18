@@ -56,17 +56,73 @@ export function articleJsonLd(post: BlogPost) {
   const modified = post.updatedAt ?? post.publishedAt;
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": ["BlogPosting", "Article"],
     headline,
     description: truncateMetaDescription(post.excerpt),
     datePublished: post.publishedAt,
     dateModified: modified,
     url,
+    inLanguage: "en-US",
+    articleSection: post.category,
     image: [`${SITE_URL}/blog/${post.slug}/opengraph-image`],
     author: {
       "@type": "Person",
       name: post.author,
     },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}${BRAND_LOGO_PATH}`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+  };
+}
+
+export function howToJsonLd(opts: {
+  name: string;
+  description: string;
+  path: string;
+  steps: { name: string; text: string; url?: string }[];
+}): Record<string, unknown> {
+  const pageUrl = `${SITE_URL}${opts.path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: opts.name,
+    description: truncateMetaDescription(opts.description),
+    url: pageUrl,
+    step: opts.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"),
+      ...(step.url ? { url: step.url.startsWith("http") ? step.url : `${SITE_URL}${step.url}` } : {}),
+    })),
+  };
+}
+
+export function simpleArticleJsonLd(opts: {
+  headline: string;
+  description: string;
+  path: string;
+  articleSection?: string;
+}): Record<string, unknown> {
+  const url = `${SITE_URL}${opts.path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: opts.headline,
+    description: truncateMetaDescription(opts.description),
+    url,
+    inLanguage: "en-US",
+    ...(opts.articleSection ? { articleSection: opts.articleSection } : {}),
     publisher: {
       "@type": "Organization",
       name: SITE_NAME,

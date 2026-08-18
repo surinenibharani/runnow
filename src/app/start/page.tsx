@@ -3,8 +3,10 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { FadeIn } from "@/components/motion/fade-in";
 import { OnboardingQuiz } from "@/components/tools/onboarding-quiz";
+import { BeginnerRoadmap } from "@/components/content/beginner-roadmap";
 import { JsonLd } from "@/components/seo/json-ld";
-import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, howToJsonLd, webPageJsonLd } from "@/lib/seo";
+import { beginnerRoadmapHowToSteps } from "@/lib/beginner-roadmap";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 const PAGE_TITLE = "Start Here — Find Your Beginner Running Plan";
@@ -31,6 +33,12 @@ export default function StartPage() {
             { name: "Home", path: "/" },
             { name: "Start here", path: "/start" },
           ]),
+          howToJsonLd({
+            name: "Beginner running roadmap: week 1 to first 5K",
+            description: PAGE_DESCRIPTION,
+            path: "/start",
+            steps: beginnerRoadmapHowToSteps(),
+          }),
         ]}
       />
       <div className="mx-auto max-w-2xl px-4 sm:px-6">
@@ -57,6 +65,10 @@ export default function StartPage() {
               Running tools
             </Link>
           </p>
+        </FadeIn>
+
+        <FadeIn className="mb-8">
+          <BeginnerRoadmap heading="The path in four steps" />
         </FadeIn>
 
         <FadeIn>

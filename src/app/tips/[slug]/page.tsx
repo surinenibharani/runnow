@@ -12,13 +12,14 @@ import { ContentLikeButton } from "@/components/engagement/content-like-button";
 import { BlogComments } from "@/components/blog/blog-comments";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
+import { RelatedPathways } from "@/components/content/related-pathways";
 import { getPublishedPostBySlug } from "@/lib/blog/posts";
 import { getCommentCount } from "@/lib/blog/comment-counts";
 import {
   commentStorageSlug,
 } from "@/lib/engagement/comments-api";
 import { getContentLikeStateForSession } from "@/lib/engagement/content-likes";
-import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, faqPageJsonLd, simpleArticleJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import {
@@ -27,7 +28,8 @@ import {
   tipMetaDescription,
   tipSeoTitle,
 } from "@/lib/tips/helpers";
-import { runnerTips } from "@/lib/tips/tips";
+import { getRelatedTipsInCategory } from "@/lib/tips/hub";
+import { getTipPathway } from "@/lib/content-pathways";
 import { Badge } from "@/components/ui/badge";
 import { SITE_URL } from "@/lib/site";
 
@@ -71,7 +73,8 @@ export default async function TipDetailPage({ params }: PageProps) {
   const seoTitleText = tipSeoTitle(tip);
   const description = tipMetaDescription(tip);
   const Icon = tip.icon;
-  const relatedTips = runnerTips.filter((t) => t.slug !== slug).slice(0, 3);
+  const relatedTips = getRelatedTipsInCategory(slug, 3);
+  const pathway = getTipPathway(slug);
 
   return (
     <div className="py-12 sm:py-16">
@@ -81,6 +84,12 @@ export default async function TipDetailPage({ params }: PageProps) {
             name: seoTitleText,
             description,
             path: `/tips/${slug}`,
+          }),
+          simpleArticleJsonLd({
+            headline: tip.title,
+            description,
+            path: `/tips/${slug}`,
+            articleSection: tip.category,
           }),
           breadcrumbJsonLd([
             { name: "Home", path: "/" },
@@ -166,6 +175,12 @@ export default async function TipDetailPage({ params }: PageProps) {
         <FadeIn className="mt-8">
           <MedicalDisclaimerBanner />
         </FadeIn>
+
+        {pathway && (
+          <FadeIn className="mt-10">
+            <RelatedPathways pathway={pathway} />
+          </FadeIn>
+        )}
 
         {relatedTips.length > 0 && (
           <FadeIn className="mt-12">

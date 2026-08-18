@@ -262,6 +262,16 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Breast pain and bounce keep many women off the path. Proper support is performance equipment — the 2024 meta-analysis proves it, not vanity.",
   "running-burnout-overtraining-mental-health":
     "When running becomes another inbox of guilt and comparison, rest isn't weakness — it's how you keep a decades-long relationship with the sport.",
+  "how-many-days-a-week-should-beginners-run":
+    "Daily running feels like commitment. For beginners it is usually just extra impact before tendons catch up. Three days that actually happen beat seven days that produce shin pain.",
+  "is-walking-during-a-5k-ok":
+    "First 5Ks are finished with walk breaks more often than they are raced. Treating walking as a planned gear, not a failure, is how most beginners cross the line wanting another race.",
+  "can-i-run-with-sore-legs":
+    "Next-day stiffness after new work is common. Pinpoint bone pain or a limp is not. Knowing the difference keeps beginners from resting every ache — or running through the wrong ones.",
+  "treadmill-vs-outside-beginner":
+    "The better run is the one that happens. The belt is weather and safety; the path is the race you signed up for. Beginners need both, not a purity contest.",
+  "how-long-to-wait-after-eating-to-run":
+    "Side stitches and sloshy guts are often a timing problem, not a fitness problem. A usable meal-and-snack window keeps the first ten minutes from becoming the whole story.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

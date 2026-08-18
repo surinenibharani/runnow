@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Shield, Stethoscope } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
-import { CommonInjuryCard } from "@/components/injuries/common-injury-card";
+import { FadeIn } from "@/components/motion/fade-in";
+import { InjuryHubCard } from "@/components/injuries/injury-hub-card";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { InjuriesPageHero } from "@/components/visuals/content-scenes";
@@ -13,16 +13,42 @@ import {
   preventionPrinciples,
 } from "@/lib/injuries/common-injuries";
 import { JsonLd } from "@/components/seo/json-ld";
-import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, faqPageJsonLd, howToJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { INJURIES_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { MedicalDisclaimerText } from "@/components/legal/medical-disclaimer-text";
+import { HubNextSteps } from "@/components/content/hub-next-steps";
+import { HubEditorialBlock } from "@/components/content/hub-editorial";
 import { cn } from "@/lib/utils";
+import type { PathwayLink } from "@/lib/content-pathways";
+import { injuriesHubEditorial } from "@/lib/hub-seo";
+import { SITE_URL } from "@/lib/site";
 
 const INJURIES_TITLE =
   "Common Running Injuries — Prevention & Recovery for Beginners";
 const INJURIES_DESCRIPTION =
   "Shin splints, runner's knee, IT band pain, and plantar fasciitis — how beginners can prevent, recover from, and avoid common running injuries.";
+
+const injuryHubNextSteps: PathwayLink[] = [
+  {
+    kind: "tip",
+    href: "/tips/strength-twice-a-week-beats-more-junk-miles",
+    label: "Add strength, not miles",
+    detail: "Two short sessions beat extra junk volume.",
+  },
+  {
+    kind: "plan",
+    href: "/start",
+    label: "Use a plan with rest days",
+    detail: "Most niggles start with skipped recovery.",
+  },
+  {
+    kind: "tip",
+    href: "/tips/missed-a-week-dont-double-up",
+    label: "Don't catch up",
+    detail: "Resume the next scheduled run as written.",
+  },
+];
 
 export const metadata: Metadata = pageMetadata({
   title: INJURIES_TITLE,
@@ -45,6 +71,13 @@ export default function InjuriesPage() {
             { name: "Home", path: "/" },
             { name: "Injuries", path: "/injuries" },
           ]),
+          faqPageJsonLd(injuriesHubEditorial.faqs, `${SITE_URL}/injuries`),
+          howToJsonLd({
+            name: injuriesHubEditorial.howTo.name,
+            description: injuriesHubEditorial.howTo.description,
+            path: "/injuries",
+            steps: injuriesHubEditorial.howTo.steps,
+          }),
         ]}
       />
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
@@ -81,11 +114,14 @@ export default function InjuriesPage() {
               Common Running Injuries
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              How to avoid them, how to recover, and when to get help.
-              Prevention beats rehab every time.
+              Short summaries first. Open a condition for prevention, recovery,
+              and when to get help — then a related strength tip and how to
+              ease the plan.
             </p>
           </div>
         </FadeIn>
+
+        <HubEditorialBlock editorial={injuriesHubEditorial} />
 
         <FadeIn className="mb-10">
           <Card className="border-primary/20 bg-primary/5">
@@ -124,6 +160,10 @@ export default function InjuriesPage() {
 
         <FadeIn className="mb-6">
           <h2 className="text-xl font-bold">Common injuries (all runners)</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Each card links to the full guide, a related tip, and plan-adjustment
+            advice.
+          </p>
         </FadeIn>
 
         <FadeIn className="mb-8">
@@ -136,7 +176,7 @@ export default function InjuriesPage() {
                 key={injury.slug}
                 href={`#${injury.slug}`}
                 className={cn(
-                  "inline-flex items-center rounded-full border border-primary/30 bg-primary/5 px-3.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-primary/10"
+                  "inline-flex min-h-11 items-center rounded-full border border-primary/30 bg-primary/5 px-3.5 py-2 text-sm font-medium text-foreground transition-colors hover:bg-primary/10"
                 )}
               >
                 {injury.title}
@@ -145,48 +185,27 @@ export default function InjuriesPage() {
           </nav>
         </FadeIn>
 
-        <StaggerChildren className="mb-12 space-y-6">
+        <div className="mb-12 space-y-4">
           {commonInjuries.map((injury) => (
-            <StaggerItem key={injury.slug}>
-              <CommonInjuryCard injury={injury} linkTitle showShare />
-            </StaggerItem>
+            <div key={injury.slug} className="hub-section">
+              <InjuryHubCard injury={injury} />
+            </div>
           ))}
-        </StaggerChildren>
+        </div>
 
-        <FadeIn className="text-center">
-          <p className="text-sm text-muted-foreground">
-            Stay healthy with a structured plan and built-in rest days. Don&apos;t
-            know where to start?{" "}
-            <Link href="/start" className="text-primary hover:underline">
-              Start here
-            </Link>
-            {" · "}
-            <Link href="/plan" className="text-primary hover:underline">
-              Training plans
-            </Link>
-            {" · "}
-            <Link href="/tips" className="text-primary hover:underline">
-              Beginner tips
-            </Link>
-            {" · "}
-            <Link
-              href="/blog/running-guide-for-women"
-              className="text-primary hover:underline"
-            >
-              Women&apos;s running guide
-            </Link>
-            {" · "}
-            <Link
-              href="/blog/running-guide-for-men"
-              className="text-primary hover:underline"
-            >
-              Men&apos;s running guide
-            </Link>
-          </p>
+        <FadeIn className="mb-8">
+          <HubNextSteps
+            heading="If something hurts"
+            steps={injuryHubNextSteps}
+          />
         </FadeIn>
 
         <FadeIn className="mt-8">
-          <StartPlanCta variant="compact" />
+          <StartPlanCta
+            variant="compact"
+            headline="Train with rest built in"
+            description="A free plan with rest days is the simplest injury-prevention tool we have."
+          />
         </FadeIn>
       </div>
     </div>
