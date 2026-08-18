@@ -340,7 +340,7 @@ export const runnerTips: RunnerTip[] = [
     category: "Getting Started",
     title: "Walk-only weeks still count",
     content:
-      "Brisk walking hits the same 150-minutes-per-week health target as jogging — and protects joints while you build the habit. You don't owe anyone impact yet. Add run intervals only when walks feel easy for 30+ minutes.",
+      "Brisk walking hits the same 150-minutes-per-week health target as jogging — and protects joints while you build the habit. Our free [16-week walk-first plan](/plan/5k-gentle-16w) tracks it on your calendar.",
     blogSlug: "walking-for-fitness-without-running",
   },
   {

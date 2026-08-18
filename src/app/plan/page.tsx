@@ -58,6 +58,16 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
               and long run day — runs and cross-training shift to fit your schedule.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
+              Even couch-to-5K feel too fast? Try the{" "}
+              <Link
+                href="/plan/5k-gentle-16w"
+                className="font-medium text-primary hover:underline"
+              >
+                16-week walk-first plan
+              </Link>{" "}
+              — four weeks of walking, then gradual jogs to your first 5K.
+            </p>
+            <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
               Don&apos;t know where to start?{" "}
               <Link href="/start" className="font-medium text-primary hover:underline">
                 Start here

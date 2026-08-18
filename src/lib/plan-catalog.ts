@@ -25,6 +25,7 @@ export const PLAN_FILTERS: Array<{
 /** Filter tags assigned to each plan variant. */
 export const PLAN_FILTER_TAGS: Record<string, PlanFilter[]> = {
   "5k-8w": ["beginner", "cross-training"],
+  "5k-gentle-16w": ["beginner", "cross-training"],
   "5k-6w": ["beginner", "cross-training", "time-constrained"],
   "5k-4w": ["cross-training", "time-constrained"],
   "10k-10w": ["beginner", "cross-training"],

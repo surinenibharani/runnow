@@ -176,6 +176,7 @@ function runPriority(runType: RunType): number {
     interval: 70,
     easy: 50,
     "walk-run": 40,
+    walking: 35,
     recovery: 20,
   };
   return order[runType] ?? 0;
@@ -312,6 +313,25 @@ function getCrossTrainingContent(
   }
 
   const templates: Record<RunType, Omit<CrossTraining, "id">> = {
+    walking: {
+      name: "Walk Day Companion",
+      focus: "Mobility and light strength on walk-only days — no impact stacking",
+      duration: "20–30 min",
+      activities: [
+        {
+          category: "yoga",
+          title: "Gentle mobility",
+          details:
+            "Cat-Cow (10 reps) → Ankle circles (10 each) → Standing calf stretch (1 min each leg) → Child's Pose (2 min)",
+        },
+        {
+          category: "bodyweight",
+          title: "Foundation prep (optional)",
+          details:
+            "Sit-to-stands (2 × 10) → Calf raises (2 × 12) → Glute bridges (2 × 12) — skip if tired",
+        },
+      ],
+    },
     "walk-run": {
       name: "Walk-Run Recovery Mix",
       focus: "Ease soreness from walk-run intervals and build base strength",

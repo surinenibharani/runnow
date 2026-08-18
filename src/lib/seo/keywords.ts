@@ -25,6 +25,8 @@ export const HOME_SEO_KEYWORDS = [
 export const PLAN_SEO_KEYWORDS = [
   ...GLOBAL_SEO_KEYWORDS,
   "8 week couch to 5k plan",
+  "16 week walk to 5k gentle plan",
+  "none to run beginner plan",
   "8 week 10k training plan beginner",
   "12 week half marathon plan",
   "16 week marathon plan beginner",

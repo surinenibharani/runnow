@@ -39,6 +39,9 @@ function estimateMilesFromDuration(workout: Workout): number {
   if (!durationMatch) return 0;
 
   const minutes = parseFloat(durationMatch[1]);
+  if (workout.runType === "walking") {
+    return Math.round((minutes / 18) * 10) / 10;
+  }
   if (workout.runType === "walk-run") {
     return Math.round((minutes / 14) * 10) / 10;
   }

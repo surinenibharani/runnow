@@ -415,7 +415,7 @@ export const competitiveGapPosts: BlogPost[] = [
       {
         question: "Can I use LetsRunNow's 5K plan with this?",
         answer:
-          "Yes as a later stage. Use this article for weeks of walk-dominant prep, then enter the free [Couch to 5K](/plan?plan=5k-8w) (or longer variant) when short jogs feel boringly doable.",
+          "Yes as a later stage — or start the free [16-week walk-first plan](/plan/5k-gentle-16w) now. Use this article to understand the philosophy; the plan tracks every walk and jog dash on your calendar.",
       },
     ],
     sections: [
@@ -469,9 +469,9 @@ export const competitiveGapPosts: BlogPost[] = [
           "Keep total session ~25–40 min",
         ],
         paragraphs: [
-          "When 1–2 minute jogs feel boringly controllable, you're ready for a standard beginner structure like [never ran / where to start](/blog/never-ran-where-to-start) and the free [5K plan](/plan?plan=5k-8w).",
+          "When 1–2 minute jogs feel boringly controllable, you're in the home stretch of this plan. Prefer a faster standard ramp later? See [never ran / where to start](/blog/never-ran-where-to-start) and the [8-week couch to 5K](/plan/5k-8w).",
         ],
-        cta: { text: "Open the free Couch to 5K plan", href: "/plan?plan=5k-8w" },
+        cta: { text: "Start the 16-week walk-first plan", href: "/plan/5k-gentle-16w" },
       },
       {
         id: "phase-d",

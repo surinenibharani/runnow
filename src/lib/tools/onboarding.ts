@@ -389,6 +389,9 @@ function buildRationale(
 
   if (plan.familyId === "5k") {
     if (answers.experience === "never" || answers.longestRun === "none") {
+      if (plan.id === "5k-gentle-16w") {
+        return `${plan.name} (${plan.duration}) starts with walking only, then adds tiny jogs when your body is ready — no shame, no cliff.${healthClause}`;
+      }
       return `${plan.name} (${plan.duration}) uses short walk-run intervals so you can start from the couch without forcing continuous jogging.${healthClause}`;
     }
     if (answers.experience === "walk-run") {
@@ -487,7 +490,23 @@ function buildNotes(
   }
 
   let alternate: PlanRecommendation["alternate"] | undefined;
-  if (!redirected && plan.familyId === "5k" && plan.id !== "5k-8w" && wantsGentle(answers)) {
+  if (!redirected && plan.id === "5k-gentle-16w") {
+    alternate = {
+      planId: "5k-8w",
+      label: "Already comfortable with jog intervals? Try the 8-week couch to 5K",
+    };
+  } else if (
+    !redirected &&
+    plan.familyId === "5k" &&
+    plan.id === "5k-8w" &&
+    wantsGentle(answers) &&
+    fitnessScore(answers) <= 1
+  ) {
+    alternate = {
+      planId: "5k-gentle-16w",
+      label: "Want a walk-first path? Try the 16-week gentle plan",
+    };
+  } else if (!redirected && plan.familyId === "5k" && plan.id !== "5k-8w" && plan.id !== "5k-gentle-16w" && wantsGentle(answers)) {
     alternate = { planId: "5k-8w", label: "Prefer the full 8-week couch to 5K?" };
   }
   if (!redirected && plan.familyId === "10k" && plan.id === "10k-6w") {

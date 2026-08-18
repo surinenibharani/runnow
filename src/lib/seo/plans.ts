@@ -41,6 +41,9 @@ export function getPlanPageTitle(plan: TrainingPlan): string {
   if (plan.id === "5k-8w") {
     return "Free Couch to 5K Plan (8 Weeks) for Beginners";
   }
+  if (plan.id === "5k-gentle-16w") {
+    return "Free Walk-to-5K Gentle Plan (16 Weeks) for Beginners";
+  }
   if (plan.id === "10k-8w") {
     return "Free 10K Training Plan (8 Weeks) for Beginners";
   }

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { BlogPostCardSummary } from "@/lib/blog/types";
-import { filterPostsByCategory, paramToCategory } from "@/lib/blog/categories";
+import { filterPostsByCategory, paramToCategory, SCHEDULED_BLOG_FILTER } from "@/lib/blog/categories";
 import { BlogPostCards } from "@/components/blog/blog-post-cards";
 import { Button } from "@/components/ui/button";
 
@@ -41,7 +41,11 @@ export function BlogFilteredPosts({
       {activeCategory && (
         <p className="mb-6 text-center text-sm text-muted-foreground">
           Showing{" "}
-          <span className="font-medium text-foreground">{activeCategory}</span>{" "}
+          <span className="font-medium text-foreground">
+            {activeCategory === SCHEDULED_BLOG_FILTER
+              ? "scheduled posts"
+              : activeCategory}
+          </span>{" "}
           · {filteredPosts.length} article
           {filteredPosts.length === 1 ? "" : "s"}
         </p>

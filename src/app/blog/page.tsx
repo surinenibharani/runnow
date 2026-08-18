@@ -13,7 +13,7 @@ import { getCommentCountsBySlug } from "@/lib/blog/comment-counts";
 import {
   getVisibleBlogPostCards,
 } from "@/lib/blog/posts";
-import { buildBlogCategories } from "@/lib/blog/categories";
+import { SCHEDULED_BLOG_FILTER, buildBlogCategories } from "@/lib/blog/categories";
 import { bootstrapBlogPreview, hasBlogPreviewAccess, isValidPreviewSecret } from "@/lib/blog/preview-server";
 import { isBlogPostScheduled } from "@/lib/blog/preview";
 import { BlogPreviewBanner } from "@/components/blog/blog-preview-banner";
@@ -47,10 +47,13 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     `/blog${categoryQuery}`
   );
   const cardPosts = getVisibleBlogPostCards(preview);
-  const categories = buildBlogCategories(cardPosts.map((p) => p.category));
   const scheduledCount = preview
     ? cardPosts.filter((post) => isBlogPostScheduled(post.publishedAt)).length
     : 0;
+  const categories = [
+    ...buildBlogCategories(cardPosts.map((p) => p.category)),
+    ...(scheduledCount > 0 ? [SCHEDULED_BLOG_FILTER] : []),
+  ];
   const commentCounts = await getCommentCountsBySlug();
 
   return (

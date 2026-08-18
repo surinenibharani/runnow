@@ -13,12 +13,13 @@ function build5kPlan(
     focus: string;
     items: Parameters<typeof runs>[2];
   }>,
-  prerequisite: string = "No experience needed"
+  prerequisite: string = "No experience needed",
+  name: string = "Couch to 5K"
 ): TrainingPlan {
   return {
     id,
     familyId: FAMILY,
-    name: "Couch to 5K",
+    name,
     shortName: "5K",
     description,
     duration,
@@ -99,6 +100,195 @@ const week4 = [
 
 const week6Indices = [0, 1, 2, 3, 5, 7];
 
+type WalkWeekSpec = {
+  title: string;
+  focus: string;
+  minutes: string;
+  names: [string, string, string];
+};
+
+function buildWalkOnlyWeek(spec: WalkWeekSpec) {
+  return {
+    title: spec.title,
+    focus: spec.focus,
+    items: spec.names.map((name, index) => ({
+      day: index + 1,
+      name,
+      description:
+        "Brisk walk — hold a conversation. Walking counts as training here.",
+      duration: `~${spec.minutes} min`,
+      intervals: `${spec.minutes} min brisk walk`,
+      runType: "walking" as const,
+    })),
+  };
+}
+
+const gentleWalkWeeks: WalkWeekSpec[] = [
+  {
+    title: "Walk Habit Week 1",
+    focus: "Show up three times — pace doesn't matter yet",
+    minutes: "25",
+    names: ["First Steps Stroll", "Consistency Counts", "Triple Walk Win"],
+  },
+  {
+    title: "Walk Habit Week 2",
+    focus: "Same structure, slightly more confidence",
+    minutes: "28",
+    names: ["Routine Builder", "Talk-Test Tuesday", "Habit Lock-In"],
+  },
+  {
+    title: "Walk Endurance Week 3",
+    focus: "Longer easy walks — still no jogging required",
+    minutes: "30",
+    names: ["Steady Stroll", "Midweek Meander", "Week Three Wrap"],
+  },
+  {
+    title: "Walk Endurance Week 4",
+    focus: "Build the foundation before tiny jogs",
+    minutes: "35",
+    names: ["Foundation Friday", "Calm & Carry", "Month-One Milestone"],
+  },
+];
+
+const gentleMicroJogWeeks = [
+  {
+    title: "Micro-Jog Intro",
+    focus: "15-second jogs inside long walk breaks",
+    items: [
+      {
+        day: 1,
+        name: "Shuffle Start",
+        description: "Jog = shuffle pace, not a sprint.",
+        duration: "~28 min",
+        intervals: "Walk 8 min → (Jog 15 sec, Walk 2 min) × 4 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+      {
+        day: 2,
+        name: "Tiny Dash Tuesday",
+        description: "Same intervals — consistency beats speed.",
+        duration: "~28 min",
+        intervals: "Walk 8 min → (Jog 15 sec, Walk 2 min) × 4 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+      {
+        day: 3,
+        name: "Micro-Jog Friday",
+        description: "If joints complain for 48+ hours, repeat walk-only week.",
+        duration: "~28 min",
+        intervals: "Walk 8 min → (Jog 15 sec, Walk 2 min) × 4 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+    ],
+  },
+  {
+    title: "Micro-Jog Week 6",
+    focus: "20-second jogs — still mostly walking",
+    items: [
+      {
+        day: 1,
+        name: "Twenty-Second Tester",
+        description: "Keep jogs conversational-shuffle effort.",
+        duration: "~30 min",
+        intervals: "Walk 5 min → (Jog 20 sec, Walk 2 min) × 5 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+      {
+        day: 2,
+        name: "Patience Pace",
+        description: "Walk breaks reset you, not defeat you.",
+        duration: "~30 min",
+        intervals: "Walk 5 min → (Jog 20 sec, Walk 2 min) × 5 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+      {
+        day: 3,
+        name: "Halfway to Jogging",
+        description: "Halfway through the walk-first block.",
+        duration: "~30 min",
+        intervals: "Walk 5 min → (Jog 20 sec, Walk 2 min) × 5 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+    ],
+  },
+  {
+    title: "Micro-Jog Week 7",
+    focus: "30-second jogs",
+    items: [
+      {
+        day: 1,
+        name: "Thirty-Second Shuffle",
+        description: "Still slow enough to talk during walks.",
+        duration: "~32 min",
+        intervals: "Walk 5 min → (Jog 30 sec, Walk 2 min) × 5 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+      {
+        day: 2,
+        name: "Easy Does It",
+        description: "No heroics — repeat a week if needed.",
+        duration: "~32 min",
+        intervals: "Walk 5 min → (Jog 30 sec, Walk 2 min) × 5 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+      {
+        day: 3,
+        name: "Almost Real Intervals",
+        description: "Next week adds 45-second jogs.",
+        duration: "~32 min",
+        intervals: "Walk 5 min → (Jog 30 sec, Walk 2 min) × 5 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+    ],
+  },
+  {
+    title: "Micro-Jog Week 8",
+    focus: "45-second jogs — bridge to standard walk-run",
+    items: [
+      {
+        day: 1,
+        name: "Forty-Five Forward",
+        description: "Last micro-jog week before 1-minute intervals.",
+        duration: "~32 min",
+        intervals: "Walk 5 min → (Jog 45 sec, Walk 2 min) × 5 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+      {
+        day: 2,
+        name: "Walk-Run Graduate",
+        description: "You're earning the classic couch-to-5K structure.",
+        duration: "~32 min",
+        intervals: "Walk 5 min → (Jog 45 sec, Walk 2 min) × 5 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+      {
+        day: 3,
+        name: "Foundation Complete",
+        description: "Celebrate — the hard part was showing up.",
+        duration: "~32 min",
+        intervals: "Walk 5 min → (Jog 45 sec, Walk 2 min) × 5 → Walk 5 min",
+        runType: "walk-run" as const,
+      },
+    ],
+  },
+];
+
+const weekGentle16 = [
+  ...gentleWalkWeeks.map(buildWalkOnlyWeek),
+  ...gentleMicroJogWeeks,
+  ...week8,
+];
+
+export const plan5kGentle16w = build5kPlan(
+  "5k-gentle-16w",
+  16,
+  "16 weeks",
+  "Walk-first none-to-run path: four weeks of walking, tiny jogs, then gradual progress to your first 5K.",
+  weekGentle16,
+  "No running experience needed — start with walking if jogging feels like too much",
+  "Walk to 5K (Gentle)"
+);
+
 export const plan5k8w = build5kPlan(
   "5k-8w",
   8,
@@ -124,4 +314,4 @@ export const plan5k4w = build5kPlan(
   "Already active (walking 30+ min or light exercise most days)"
 );
 
-export const plans5k = [plan5k4w, plan5k6w, plan5k8w];
+export const plans5k = [plan5k4w, plan5k6w, plan5k8w, plan5kGentle16w];

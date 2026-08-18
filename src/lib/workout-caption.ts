@@ -106,6 +106,9 @@ function runScheduleNote(
     if (run.runType === "walk-run") {
       return " Three runs per week — walk breaks are part of the workout, not a failure.";
     }
+    if (run.runType === "walking") {
+      return " Three runs per week — walk-only days build the habit before impact.";
+    }
     return " Three runs per week — conversational pace only on this one.";
   }
 

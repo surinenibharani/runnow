@@ -1,4 +1,5 @@
 export type RunType =
+  | "walking"
   | "walk-run"
   | "easy"
   | "tempo"
@@ -132,6 +133,14 @@ export function runs(
 
 function inferRunType(item: RunInput): RunType {
   const text = `${item.name} ${item.description} ${item.intervals}`.toLowerCase();
+  if (
+    (text.includes("walk only") ||
+      text.includes("brisk walk") ||
+      /\d+\s*min\s+walk\b/.test(text)) &&
+    !text.includes("jog")
+  ) {
+    return "walking";
+  }
   if (
     text.includes("5k") ||
     text.includes("13.1") ||

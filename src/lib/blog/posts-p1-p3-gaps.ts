@@ -249,7 +249,7 @@ export const p1P3GapPosts: BlogPost[] = [
         paragraphs: [
           "Walk-only fitness is not failing the sport — it's respecting the entry ramp. The best runner is the one still showing up next year.",
         ],
-        cta: { text: "Start a free plan when ready", href: "/plan" },
+        cta: { text: "Start a free plan when ready", href: "/plan/5k-gentle-16w" },
       },
     ],
   },

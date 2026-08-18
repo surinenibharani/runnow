@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   ALL_BLOG_CATEGORY,
+  SCHEDULED_BLOG_FILTER,
   categoryToParam,
   paramToCategory,
 } from "@/lib/blog/categories";
@@ -54,13 +55,20 @@ export function BlogCategoryFilter({
             aria-label={
               category === ALL_BLOG_CATEGORY
                 ? "Show all categories"
-                : `Show ${category} articles`
+                : category === SCHEDULED_BLOG_FILTER
+                  ? "Show scheduled posts that are not public yet"
+                  : `Show ${category} articles`
             }
             className={cn(
               "rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors",
-              isActive
-                ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                : "border-border/60 bg-background text-foreground/75 hover:border-primary/40 hover:text-foreground"
+              category === SCHEDULED_BLOG_FILTER &&
+                (isActive
+                  ? "border-amber-600 bg-amber-500 text-amber-950 shadow-sm dark:border-amber-400 dark:bg-amber-500/90 dark:text-amber-950"
+                  : "border-amber-500/50 bg-amber-500/10 text-amber-900 hover:border-amber-500/80 hover:text-amber-950 dark:text-amber-200 dark:hover:text-amber-50"),
+              category !== SCHEDULED_BLOG_FILTER &&
+                (isActive
+                  ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                  : "border-border/60 bg-background text-foreground/75 hover:border-primary/40 hover:text-foreground")
             )}
           >
             {category}

@@ -20,7 +20,7 @@ const base: OnboardingAnswers = {
 describe("onboarding recommendations", () => {
   it("sends never-ran beginners to the gentlest couch to 5K", () => {
     const result = recommendOnboardingPlan(base);
-    assert.equal(result.planId, "5k-8w");
+    assert.equal(result.planId, "5k-gentle-16w");
   });
 
   it("routes jog-ready athletes toward 10K when fitness supports it", () => {
@@ -40,7 +40,7 @@ describe("onboarding recommendations", () => {
       goal: "marathon",
       days: 4,
     });
-    assert.equal(result.planId, "5k-8w");
+    assert.equal(result.planId, "5k-gentle-16w");
   });
 
   it("allows marathon only for consistent high-fitness runners", () => {
