@@ -54,6 +54,32 @@ export const blogPosts: BlogPost[] = [
           "Running shoes are the main investment. Comfortable clothes and water on hot days are enough — skip expensive watches and gadgets until you're hooked.",
       },
     ],
+    howTo: {
+      name: "How to start running when you've never run before",
+      description:
+        "Walk first, add run-walk intervals, stay conversational, then put three days on a plan.",
+      steps: [
+        {
+          name: "Get clearance if you need it",
+          text: "If you have heart or joint concerns or have been inactive for years, check with a clinician before you start.",
+          url: "/blog/running-with-health-conditions",
+        },
+        {
+          name: "Build a walking base",
+          text: "Walk 20–30 minutes, 3–4 times a week for about two weeks before you add jogging.",
+        },
+        {
+          name: "Add short run-walk intervals",
+          text: "Start with about 1 minute jog and 2 minutes walk. Stay slow enough to talk.",
+          url: "/start",
+        },
+        {
+          name: "Put three days on the calendar",
+          text: "Pick a free beginner plan and treat those sessions like appointments.",
+          url: "/plan/5k-gentle-16w",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -133,6 +159,33 @@ export const blogPosts: BlogPost[] = [
       SOURCES.acsmExercisePrescription2009,
       SOURCES.preParticipationScreening,
     ],
+    howTo: {
+      name: "How to train for your first 5K",
+      description:
+        "Pick a beginner plan, keep most runs easy, practice race distance once, then taper lightly.",
+      steps: [
+        {
+          name: "Choose an 8–16 week beginner plan",
+          text: "Match the ramp to your fitness — walk-first if jogging still feels hard.",
+          url: "/start",
+        },
+        {
+          name: "Keep easy days conversational",
+          text: "Most of the week should feel too easy. Speed is optional until the habit sticks.",
+          url: "/blog/easy-runs-effort-heart-rate",
+        },
+        {
+          name: "Practice 5K effort before race day",
+          text: "Finish a continuous or walk-run 5K in training so race day is familiar.",
+          url: "/blog/is-walking-during-a-5k-ok",
+        },
+        {
+          name: "Rest and race conservatively",
+          text: "Protect a rest day before the event and start slower than your ego wants.",
+          url: "/blog/race-day-tips",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -204,6 +257,33 @@ export const blogPosts: BlogPost[] = [
       SOURCES.acsmExercisePrescription2009,
       SOURCES.preParticipationScreening,
     ],
+    howTo: {
+      name: "How to train for your first half marathon",
+      description:
+        "Build a long-run habit, fuel on long days, and protect recovery between hard efforts.",
+      steps: [
+        {
+          name: "Own a comfortable 10K base",
+          text: "Jumping from couch to 13.1 is how injuries start.",
+          url: "/blog/training-first-10k",
+        },
+        {
+          name: "Grow the long run week by week",
+          text: "Add gradually and keep the pace conversational.",
+          url: "/blog/why-long-runs-feel-hard",
+        },
+        {
+          name: "Practice fueling on long runs",
+          text: "Never debut a gel on race morning.",
+          url: "/blog/race-fueling-gels-carb-load-beginners",
+        },
+        {
+          name: "Taper and race patiently",
+          text: "Cut volume, keep a little sharpness, start slower than goal pace.",
+          url: "/blog/race-taper-guide",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -268,6 +348,33 @@ export const blogPosts: BlogPost[] = [
       SOURCES.acsmExercisePrescription2009,
       SOURCES.preParticipationScreening,
     ],
+    howTo: {
+      name: "How to train for your first marathon",
+      description:
+        "Earn the distance with years of base when possible, practice fuel and pacing, and respect the taper.",
+      steps: [
+        {
+          name: "Confirm you belong on the start line",
+          text: "A half marathon base and honest injury history beat a first-year hero attempt.",
+          url: "/blog/dont-run-a-marathon-in-your-first-year",
+        },
+        {
+          name: "Build long runs with recovery weeks",
+          text: "Progress, then cut back — not endless increases.",
+          url: "/plan",
+        },
+        {
+          name: "Rehearse fuel, shoes, and pacing",
+          text: "Long runs are dress rehearsals for race day logistics.",
+          url: "/blog/hitting-the-wall-marathon",
+        },
+        {
+          name: "Taper and trust easy effort early",
+          text: "The marathon punishes a fast first 10K.",
+          url: "/blog/race-day-tips",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -801,6 +908,32 @@ export const blogPosts: BlogPost[] = [
       SOURCES.sleepTips,
       SOURCES.peaceAndLove,
     ],
+    howTo: {
+      name: "How to use a rest day as a beginner runner",
+      description:
+        "Rest or easy cross-train, fuel normally, and do not make up missed runs.",
+      steps: [
+        {
+          name: "Keep at least one full rest or easy day weekly",
+          text: "Adaptation happens between hard efforts.",
+        },
+        {
+          name: "Optional easy movement only",
+          text: "Walk, easy bike, or gentle mobility — not a secret hard run.",
+          url: "/blog/importance-of-cross-training",
+        },
+        {
+          name: "Eat and sleep like training still matters",
+          text: "Rest days are not punishment diets.",
+          url: "/blog/nutrition-basics-for-beginners",
+        },
+        {
+          name: "Never stack missed miles tomorrow",
+          text: "Resume the next scheduled session as written.",
+          url: "/tips/missed-a-week-dont-double-up",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -1022,6 +1155,32 @@ export const blogPosts: BlogPost[] = [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.sleepTips,
     ],
+    howTo: {
+      name: "How to build a running habit that sticks",
+      description:
+        "Schedule three days, shrink friction, and miss without doubling up.",
+      steps: [
+        {
+          name: "Pick three protected days",
+          text: "Same weekdays beat motivation.",
+          url: "/start",
+        },
+        {
+          name: "Shrink the start ritual",
+          text: "Lay out shoes the night before and keep the first mile boring.",
+          url: "/blog/first-run-tips",
+        },
+        {
+          name: "Track show-ups, not PRs",
+          text: "Consistency is the metric for month one.",
+        },
+        {
+          name: "Miss without revenge miles",
+          text: "Resume the next scheduled run as written.",
+          url: "/tips/missed-a-week-dont-double-up",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -1194,6 +1353,32 @@ export const blogPosts: BlogPost[] = [
           "Most runs should feel easy and conversational — roughly 60–70% effort. Save hard efforts for planned tempo or interval days.",
       },
     ],
+    howTo: {
+      name: "How to pace yourself as a beginner",
+      description:
+        "Use the talk test, start slower than ego, and save hard effort for planned sessions.",
+      steps: [
+        {
+          name: "Use the talk test",
+          text: "If you cannot speak short sentences, slow down or walk.",
+          url: "/blog/easy-runs-effort-heart-rate",
+        },
+        {
+          name: "Start the first kilometer too easy",
+          text: "Adrenaline lies. Ease in before you settle.",
+        },
+        {
+          name: "Walk breaks count",
+          text: "Planned walk-run is pacing, not failure.",
+          url: "/blog/why-walking-is-not-cheating",
+        },
+        {
+          name: "Keep hard days rare",
+          text: "Most of the week stays easy so the hard day works.",
+          url: "/blog/earn-hard-runs-by-running-easy",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -1258,6 +1443,32 @@ export const blogPosts: BlogPost[] = [
       SOURCES.dehydration,
       SOURCES.physicalActivityGuidelinesUS,
     ],
+    howTo: {
+      name: "How to handle race day as a beginner",
+      description:
+        "Nothing new on race day, start easy, and finish wanting another race.",
+      steps: [
+        {
+          name: "Nothing new on race day",
+          text: "Shoes, breakfast, and gear should be rehearsed in training.",
+          url: "/blog/first-race-signup-logistics",
+        },
+        {
+          name: "Arrive early and warm up simply",
+          text: "Walk and easy jogging — skip a hard pre-race workout.",
+        },
+        {
+          name: "Start slower than goal pace",
+          text: "The first kilometer should feel too easy.",
+          url: "/blog/how-to-pace-yourself",
+        },
+        {
+          name: "Walk if you planned to",
+          text: "Finish proud; purity tests are optional.",
+          url: "/blog/is-walking-during-a-5k-ok",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -1512,6 +1723,33 @@ export const blogPosts: BlogPost[] = [
           "Muscle soreness 1–2 days after a hard effort is normal. Pain that worsens as you run, persists at rest, or changes your gait means stop and get assessed.",
       },
     ],
+    howTo: {
+      name: "How to avoid common beginner running injuries",
+      description:
+        "Progress gradually, keep easy days easy, strength twice weekly, and stop when gait changes.",
+      steps: [
+        {
+          name: "Increase load slowly",
+          text: "Avoid sudden weekly leaps and huge single-run spikes.",
+          url: "/blog/how-many-days-a-week-should-beginners-run",
+        },
+        {
+          name: "Protect rest and easy pace",
+          text: "Three run days with real easy effort beat seven gray-zone jogs.",
+          url: "/blog/what-to-do-on-rest-days",
+        },
+        {
+          name: "Strength twice a week",
+          text: "Hips, calves, and single-leg work are prevention.",
+          url: "/tips/strength-twice-a-week-beats-more-junk-miles",
+        },
+        {
+          name: "Stop if pain changes your gait",
+          text: "Sharp or one-spot pain needs assessment, not toughness.",
+          url: "/injuries",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -1679,6 +1917,32 @@ export const blogPosts: BlogPost[] = [
       "training-lungs-for-running",
       "easy-runs-effort-heart-rate",
     ],
+    howTo: {
+      name: "How to breathe while running without overthinking",
+      description:
+        "Slow the pace first, breathe naturally, and use longer exhales if a stitch shows up.",
+      steps: [
+        {
+          name: "Fix pace before technique",
+          text: "Gasping usually means you are too fast.",
+          url: "/blog/how-to-pace-yourself",
+        },
+        {
+          name: "Breathe in a comfortable rhythm",
+          text: "Nose, mouth, or both — comfort beats dogma.",
+        },
+        {
+          name: "Lengthen the exhale on a stitch",
+          text: "Slow down and try a longer out-breath.",
+          url: "/tips/side-stitch-slow-down-exhale-longer",
+        },
+        {
+          name: "Stay relaxed in shoulders and jaw",
+          text: "Tension wastes oxygen you need for the run.",
+          url: "/blog/training-lungs-for-running",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -2091,6 +2355,33 @@ export const blogPosts: BlogPost[] = [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.acsmExercisePrescription2009,
     ],
+    howTo: {
+      name: "How to use walk-run without shame",
+      description:
+        "Plan the walk breaks, keep jog segments conversational, and progress the run time slowly.",
+      steps: [
+        {
+          name: "Decide the pattern before you leave",
+          text: "Example: jog 1–2 minutes, walk 1–2 minutes.",
+          url: "/plan/5k-gentle-16w",
+        },
+        {
+          name: "Keep jogs conversational",
+          text: "If you cannot talk, the jog is too fast.",
+          url: "/blog/how-to-pace-yourself",
+        },
+        {
+          name: "Progress run time gradually",
+          text: "Lengthen jogs only when the current pattern feels boringly easy.",
+          url: "/blog/none-to-run-gentle-beginners",
+        },
+        {
+          name: "Use walk breaks on race day if trained",
+          text: "Planned walking is a strategy, not a failure.",
+          url: "/blog/is-walking-during-a-5k-ok",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -2533,6 +2824,33 @@ export const blogPosts: BlogPost[] = [
       "sleep-recovery-for-runners",
       "warm-up-cool-down-running",
     ],
+    howTo: {
+      name: "How to recover after a run",
+      description:
+        "Cool down briefly, refuel, sleep, and keep the next hard day honest.",
+      steps: [
+        {
+          name: "Walk it in for a few minutes",
+          text: "A short cool-down beats collapsing on the couch mid-sprint heart rate.",
+          url: "/blog/warm-up-cool-down-running",
+        },
+        {
+          name: "Eat protein and carbs within a couple of hours",
+          text: "A normal meal is enough for most easy days.",
+          url: "/blog/nutrition-basics-for-beginners",
+        },
+        {
+          name: "Prioritize sleep that night",
+          text: "Sleep is the main recovery tool beginners skip.",
+          url: "/blog/sleep-recovery-for-runners",
+        },
+        {
+          name: "Keep tomorrow easy if today was hard",
+          text: "Stacking hard days is how niggles become injuries.",
+          url: "/blog/what-to-do-on-rest-days",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -2607,6 +2925,33 @@ export const blogPosts: BlogPost[] = [
       "training-first-5k",
       "post-run-recovery",
     ],
+    howTo: {
+      name: "How to eat when you start running",
+      description:
+        "Fuel regularly, time snacks before runs, and keep race experiments in training.",
+      steps: [
+        {
+          name: "Eat enough for the work",
+          text: "Under-fueling is not toughness — especially as mileage grows.",
+          url: "/blog/reds-low-energy-availability-runners",
+        },
+        {
+          name: "Time a small snack before runs",
+          text: "A light carb snack 30–60 minutes out if you are hungry.",
+          url: "/blog/how-long-to-wait-after-eating-to-run",
+        },
+        {
+          name: "Hydrate across the day",
+          text: "Water for most short easy runs; electrolytes when heat or long efforts demand it.",
+          url: "/blog/hydration-electrolytes-running",
+        },
+        {
+          name: "Practice long-run fueling early",
+          text: "Never debut a gel on race morning.",
+          url: "/tips/practice-the-gel-on-a-long-run-never-race-day",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [

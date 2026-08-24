@@ -53,22 +53,22 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
               Your Training Plans
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              Pick your distance and timeline, then add your age, fitness level, and
-              goal race date for a plan tuned to you. Customize run days, rest day,
-              and long run day — runs and cross-training shift to fit your schedule.
-            </p>
-            <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
-              Even couch-to-5K feel too fast? Try the{" "}
-              <Link
-                href="/plan/5k-gentle-16w"
-                className="font-medium text-primary hover:underline"
-              >
-                16-week walk-first plan
-              </Link>{" "}
-              — four weeks of walking, then gradual jogs to your first 5K.
+              Pick a distance and how many weeks you have, then add your age,
+              fitness level, and goal race date. Customize run days, rest day,
+              and long run day — workouts shift to fit your schedule.
             </p>
             <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
-              Don&apos;t know where to start?{" "}
+              You can also{" "}
+              <span className="font-medium text-foreground">
+                print or download a PDF
+              </span>{" "}
+              of any plan (browser Print → Save as PDF) after you load it — handy
+              for the fridge or gym bag.
+            </p>
+            <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
+              New to running? On Couch to 5K, choose{" "}
+              <span className="font-medium text-foreground">16 wk · Walk-first</span>{" "}
+              — or{" "}
               <Link href="/start" className="font-medium text-primary hover:underline">
                 Start here
               </Link>{" "}
@@ -98,7 +98,22 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
             <h2 className="text-xl font-bold sm:text-2xl">Your plan tracker</h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Mark workouts complete, adjust your schedule, and sync progress when
-              signed in.
+              signed in. Prefer paper? Open the printable sheet for your selected
+              plan and use{" "}
+              <span className="font-medium text-foreground">
+                Print → Save as PDF
+              </span>{" "}
+              to download it.
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Example:{" "}
+              <Link
+                href="/plan/5k-8w/printable"
+                className="font-medium text-primary hover:underline"
+              >
+                Printable 8-week 5K tracker
+              </Link>
+              .
             </p>
           </div>
 

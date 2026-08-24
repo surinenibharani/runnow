@@ -8,11 +8,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AdaptivePlanCoach } from "@/components/plan/adaptive-plan-coach";
 import type { AdaptiveBrief, AdaptiveMetricInsight } from "@/lib/adaptive-brief";
+import { saveTrainingPlan } from "@/lib/training-plan-client";
 import { cn } from "@/lib/utils";
 
 type AdaptiveTodayCardProps = {
   brief: AdaptiveBrief;
   aiConfigured?: boolean;
+  /** Called after a week hold / rebuild is saved so the dashboard can refresh. */
+  onPlanWeekApplied?: () => void;
 };
 
 const TONE_STYLES: Record<AdaptiveMetricInsight["tone"], string> = {
@@ -27,27 +30,45 @@ const ACTION_CTA: Partial<
 > = {
   start_plan: { href: "/start", label: "Start here" },
   connect_strava: { href: "/api/strava/connect", label: "Connect Strava" },
-  catch_up_gently: { href: "/plan", label: "Adjust on plan page" },
+  catch_up_gently: {
+    href: "/tips/missed-a-week-dont-double-up",
+    label: "Missed-week tip",
+  },
+  rebuild_week: {
+    href: "/tips/missed-a-week-dont-double-up",
+    label: "Why not catch up?",
+  },
+  hold_deload: {
+    href: "/tips/resting-hr-up-for-days-back-off-early",
+    label: "Resting HR tip",
+  },
   protect_taper: { href: "/plan", label: "Open plan" },
   log_wellness: { href: "#recovery-readiness", label: "Log wellness" },
   go_easy: { href: "/plan", label: "View today's workout" },
-  rest_or_walk: { href: "/tips/rest-days-are-training-days", label: "Rest-day tip" },
+  rest_or_walk: {
+    href: "/tips/rest-days-are-training-days",
+    label: "Rest-day tip",
+  },
   run_as_planned: { href: "/plan", label: "Open plan" },
 };
 
 export function AdaptiveTodayCard({
   brief,
   aiConfigured = false,
+  onPlanWeekApplied,
 }: AdaptiveTodayCardProps) {
   const [headline, setHeadline] = useState(brief.headline);
   const [body, setBody] = useState(brief.body);
   const [polishing, setPolishing] = useState(false);
   const [polished, setPolished] = useState(false);
+  const [applying, setApplying] = useState(false);
+  const [applyMessage, setApplyMessage] = useState("");
 
   useEffect(() => {
     setHeadline(brief.headline);
     setBody(brief.body);
     setPolished(false);
+    setApplyMessage("");
   }, [brief.headline, brief.body, brief.action]);
 
   useEffect(() => {
@@ -86,7 +107,28 @@ export function AdaptiveTodayCard({
     };
   }, [aiConfigured, brief, polished]);
 
+  async function applyWeek(week: number, successNote: string) {
+    setApplying(true);
+    setApplyMessage("");
+    try {
+      await saveTrainingPlan({ currentWeek: week });
+      setApplyMessage(successNote);
+      onPlanWeekApplied?.();
+    } catch {
+      setApplyMessage("Couldn’t update your plan week. Try again from /plan.");
+    } finally {
+      setApplying(false);
+    }
+  }
+
   const cta = ACTION_CTA[brief.action];
+  const rebuild = brief.weekRebuild;
+  const showRebuildApply =
+    rebuild &&
+    rebuild.mode !== "no_op" &&
+    (brief.action === "rebuild_week" ||
+      brief.action === "hold_deload" ||
+      brief.action === "catch_up_gently");
 
   return (
     <div className="space-y-4">
@@ -140,22 +182,60 @@ export function AdaptiveTodayCard({
             </ul>
           )}
 
-          {cta &&
-            (cta.href.startsWith("#") ? (
-              <Button size="sm" nativeButton={false} render={<a href={cta.href} />}>
-                {cta.label}
-                <ArrowRight className="size-4" />
-              </Button>
-            ) : (
+          {rebuild && rebuild.placements.length > 0 && (
+            <ul className="rounded-lg border border-border/60 bg-background/60 px-3 py-2 space-y-1.5 text-sm text-muted-foreground">
+              {rebuild.placements.map((p) => (
+                <li key={`${p.fromLabel}-${p.toDayName}`}>
+                  Make up <span className="font-medium text-foreground">{p.fromLabel}</span>{" "}
+                  as an easy effort on{" "}
+                  <span className="font-medium text-foreground">{p.toDayName}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <div className="flex flex-wrap gap-2">
+            {showRebuildApply && rebuild && (
               <Button
                 size="sm"
-                nativeButton={false}
-                render={<Link href={cta.href} />}
+                disabled={applying}
+                onClick={() =>
+                  void applyWeek(
+                    rebuild.suggestedWeek,
+                    `Plan held on week ${rebuild.suggestedWeek} — keep efforts easy.`
+                  )
+                }
               >
-                {cta.label}
+                {applying ? "Applying…" : rebuild.applyLabel}
                 <ArrowRight className="size-4" />
               </Button>
-            ))}
+            )}
+            {cta &&
+              (cta.href.startsWith("#") ? (
+                <Button
+                  size="sm"
+                  variant={showRebuildApply ? "outline" : "default"}
+                  nativeButton={false}
+                  render={<a href={cta.href} />}
+                >
+                  {cta.label}
+                  <ArrowRight className="size-4" />
+                </Button>
+              ) : (
+                <Button
+                  size="sm"
+                  variant={showRebuildApply ? "outline" : "default"}
+                  nativeButton={false}
+                  render={<Link href={cta.href} />}
+                >
+                  {cta.label}
+                  <ArrowRight className="size-4" />
+                </Button>
+              ))}
+          </div>
+          {applyMessage && (
+            <p className="text-xs text-primary">{applyMessage}</p>
+          )}
         </CardContent>
       </Card>
 
@@ -181,19 +261,16 @@ export function AdaptiveTodayCard({
       )}
 
       {brief.planSuggestion && (
-        <div>
-          <AdaptivePlanCoach suggestion={brief.planSuggestion} />
-          <p className="text-xs text-muted-foreground mt-2">
-            Apply week or plan-length changes on{" "}
-            <Link
-              href="/plan"
-              className="text-primary underline-offset-2 hover:underline"
-            >
-              your training plan
-            </Link>
-            .
-          </p>
-        </div>
+        <AdaptivePlanCoach
+          suggestion={brief.planSuggestion}
+          applying={applying}
+          onApplyWeek={(week) =>
+            void applyWeek(
+              week,
+              `Plan held on week ${week} — keep efforts easy until readiness recovers.`
+            )
+          }
+        />
       )}
     </div>
   );

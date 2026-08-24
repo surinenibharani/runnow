@@ -1736,6 +1736,33 @@ export const remainingGapPosts: BlogPost[] = [
           "If you have heart or lung disease, uncontrolled blood pressure or diabetes, chest pain with effort, dizziness, recent surgery or pregnancy/postpartum, joint problems, or other chronic conditions — check first. Overview: [running with health conditions](/blog/running-with-health-conditions) and [Mayo Clinic on when to check with a clinician](https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise-and-chronic-disease/art-20046049).",
       },
     ],
+    howTo: {
+      name: "How to start running from absolute scratch",
+      description:
+        "Clearance if needed, walk-run, shoes that fit, and a simple three-day plan.",
+      steps: [
+        {
+          name: "Skim health clearance needs",
+          text: "Stop for chest pain, dizziness, or unusual breathlessness and get checked.",
+          url: "/blog/never-ran-where-to-start",
+        },
+        {
+          name: "Start walk-run, not continuous jogging",
+          text: "Short jogs between walks build the habit safely.",
+          url: "/blog/why-walking-is-not-cheating",
+        },
+        {
+          name: "Fit shoes before gadgets",
+          text: "Comfort in mile one beats a watch.",
+          url: "/blog/choosing-running-shoes",
+        },
+        {
+          name: "Follow a written beginner plan",
+          text: "Guesswork is how week-three injuries start.",
+          url: "/start",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [

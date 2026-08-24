@@ -159,6 +159,32 @@ export const mediumLowGapPosts: BlogPost[] = [
           "A few minutes of easy walking helps your heart rate and breathing come down gradually and can reduce that post-run dizzy feeling. It doesn't need to be elaborate.",
       },
     ],
+    howTo: {
+      name: "How to warm up and cool down for easy runs",
+      description:
+        "Walk into the run, keep dynamic moves short, then walk out — skip the 20-minute circus.",
+      steps: [
+        {
+          name: "Walk 3–5 minutes first",
+          text: "Cold sprints are how calves complain.",
+          url: "/blog/first-run-tips",
+        },
+        {
+          name: "Add a few dynamic moves if you like",
+          text: "Leg swings or easy skips — not a long static stretch session.",
+        },
+        {
+          name: "Start the jog slower than goal effort",
+          text: "Ease into conversational pace.",
+          url: "/blog/how-to-pace-yourself",
+        },
+        {
+          name: "Walk 3–5 minutes to finish",
+          text: "Then go live your day — heroic cool-downs are optional.",
+          url: "/blog/post-run-recovery",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -387,6 +413,32 @@ export const mediumLowGapPosts: BlogPost[] = [
           "It depends on the person. Hard late sessions can leave some people wired. Easy evening jogs are fine for many — finish with a wind-down buffer if you notice restless nights.",
       },
     ],
+    howTo: {
+      name: "How to use sleep as running recovery",
+      description:
+        "Protect a consistent bedtime, cut late hard sessions, and treat sleep debt as training debt.",
+      steps: [
+        {
+          name: "Pick a realistic sleep window",
+          text: "Most adults need roughly 7–9 hours — protect it like a workout.",
+        },
+        {
+          name: "Avoid stacking late hard runs and early alarms",
+          text: "Sleep debt makes easy days feel hard.",
+          url: "/blog/morning-vs-evening-running",
+        },
+        {
+          name: "Watch resting mood and pace",
+          text: "Persistent fatigue with load is a cutback signal.",
+          url: "/blog/overtraining-recognition-runners",
+        },
+        {
+          name: "Nap or cut volume when life steals sleep",
+          text: "Do not tough-guy through chronic short nights.",
+          url: "/blog/what-to-do-on-rest-days",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [

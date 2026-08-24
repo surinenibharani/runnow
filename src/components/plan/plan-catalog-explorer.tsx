@@ -2,16 +2,24 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Calendar, ChevronDown, ChevronUp, Footprints, Route, Timer } from "lucide-react";
+import {
+  Calendar,
+  ChevronDown,
+  ChevronUp,
+  Footprints,
+  Route,
+  Timer,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   PLAN_FILTERS,
+  isGentlePlan,
   planMatchesFilters,
   type PlanFilter,
 } from "@/lib/plan-catalog";
-import { PLAN_FAMILIES } from "@/lib/plans";
+import { DEFAULT_PLAN_ID, PLAN_FAMILIES } from "@/lib/plans";
 import type { SampleWeekPreview } from "@/lib/plan-stats";
 import { PlanSampleWeek } from "@/components/plan/plan-sample-week";
 import { cn } from "@/lib/utils";
@@ -40,6 +48,35 @@ type PlanCatalogExplorerProps = {
   selectedPlanId?: string;
 };
 
+type FamilyGroup = {
+  familyId: string;
+  familyName: string;
+  shortName: string;
+  prerequisite: string;
+  variants: PlanCatalogItem[];
+};
+
+function durationChipLabel(plan: PlanCatalogItem): string {
+  if (isGentlePlan(plan.id)) {
+    return `${plan.stats.durationWeeks} wk · Walk-first`;
+  }
+  return `${plan.stats.durationWeeks} weeks`;
+}
+
+function defaultVariantId(
+  variants: PlanCatalogItem[],
+  preferredId?: string
+): string {
+  if (preferredId && variants.some((v) => v.id === preferredId)) {
+    return preferredId;
+  }
+  const classic = variants.find((v) => v.id === DEFAULT_PLAN_ID);
+  if (classic) return classic.id;
+  const beginner = variants.find((v) => v.filters.includes("beginner"));
+  if (beginner) return beginner.id;
+  return variants[0]?.id ?? "";
+}
+
 export function PlanCatalogExplorer({
   plans,
   selectedPlanId,
@@ -55,16 +92,62 @@ export function PlanCatalogExplorer({
     undefined;
 
   const [activeFilters, setActiveFilters] = useState<PlanFilter[]>([]);
-  const [expandedId, setExpandedId] = useState<string | null>(
-    activePlanId ?? plans[0]?.id ?? null
+  const [previewMode, setPreviewMode] = useState<
+    Record<string, "week1" | "peak">
+  >({});
+  const [expandedFamilyId, setExpandedFamilyId] = useState<string | null>(
+    null
   );
-  const [previewMode, setPreviewMode] = useState<Record<string, "week1" | "peak">>(
-    {}
-  );
+  const [selectedByFamily, setSelectedByFamily] = useState<
+    Record<string, string>
+  >({});
+
+  const familyGroups = useMemo((): FamilyGroup[] => {
+    return PLAN_FAMILIES.map((family) => {
+      const variants = plans
+        .filter((p) => p.familyId === family.id)
+        .filter((p) => planMatchesFilters(p.id, activeFilters))
+        .sort((a, b) => a.stats.durationWeeks - b.stats.durationWeeks);
+
+      return {
+        familyId: family.id,
+        familyName: family.name,
+        shortName: family.shortName,
+        prerequisite: family.prerequisite,
+        variants,
+      };
+    }).filter((g) => g.variants.length > 0);
+  }, [plans, activeFilters]);
 
   useEffect(() => {
-    if (activePlanId) setExpandedId(activePlanId);
-  }, [activePlanId]);
+    setSelectedByFamily((prev) => {
+      const next = { ...prev };
+      for (const group of familyGroups) {
+        const preferred =
+          activePlanId &&
+          group.variants.some((v) => v.id === activePlanId)
+            ? activePlanId
+            : prev[group.familyId];
+        const resolved = defaultVariantId(group.variants, preferred);
+        if (resolved) next[group.familyId] = resolved;
+      }
+      return next;
+    });
+  }, [activePlanId, familyGroups]);
+
+  useEffect(() => {
+    if (activePlanId) {
+      const family = plans.find((p) => p.id === activePlanId)?.familyId;
+      if (family) setExpandedFamilyId(family);
+      return;
+    }
+    setExpandedFamilyId((current) => {
+      if (current && familyGroups.some((g) => g.familyId === current)) {
+        return current;
+      }
+      return familyGroups[0]?.familyId ?? null;
+    });
+  }, [activePlanId, familyGroups, plans]);
 
   const selectPlan = (planId: string) => {
     router.push(`/plan/${planId}#plan-tracker`, { scroll: false });
@@ -75,11 +158,6 @@ export function PlanCatalogExplorer({
       });
     });
   };
-
-  const filteredPlans = useMemo(
-    () => plans.filter((plan) => planMatchesFilters(plan.id, activeFilters)),
-    [plans, activeFilters]
-  );
 
   const toggleFilter = (filter: PlanFilter) => {
     setActiveFilters((current) =>
@@ -93,11 +171,11 @@ export function PlanCatalogExplorer({
     <section aria-labelledby="plan-catalog-heading" className="mb-12">
       <div className="mb-6">
         <h2 id="plan-catalog-heading" className="text-xl font-bold sm:text-2xl">
-          Compare plans
+          Choose your distance
         </h2>
         <p className="mt-1 text-sm text-muted-foreground sm:text-base">
-          Summaries load instantly — pick a plan, then customize your schedule
-          below.
+          Pick a distance, choose how many weeks you have, then load that plan
+          into the tracker below.
         </p>
       </div>
 
@@ -137,20 +215,30 @@ export function PlanCatalogExplorer({
         )}
       </div>
 
-      {filteredPlans.length === 0 ? (
+      {familyGroups.length === 0 ? (
         <p className="rounded-xl border border-dashed border-border/60 px-4 py-8 text-center text-sm text-muted-foreground">
           No plans match those filters. Try removing one.
         </p>
       ) : (
         <ul className="space-y-4">
-          {filteredPlans.map((plan) => {
-            const isExpanded = expandedId === plan.id;
+          {familyGroups.map((group) => {
+            const selectedId =
+              selectedByFamily[group.familyId] ??
+              defaultVariantId(group.variants, activePlanId);
+            const plan =
+              group.variants.find((v) => v.id === selectedId) ??
+              group.variants[0];
+            if (!plan) return null;
+
+            const isExpanded = expandedFamilyId === group.familyId;
             const isSelected = activePlanId === plan.id;
             const preview =
-              previewMode[plan.id] === "peak" ? plan.peakWeek : plan.sampleWeek;
+              previewMode[group.familyId] === "peak"
+                ? plan.peakWeek
+                : plan.sampleWeek;
 
             return (
-              <li key={plan.id}>
+              <li key={group.familyId}>
                 <Card
                   className={cn(
                     "overflow-hidden border-border/60 transition-shadow",
@@ -163,26 +251,19 @@ export function PlanCatalogExplorer({
                         <div className="min-w-0 flex-1">
                           <div className="flex flex-wrap items-center gap-2">
                             <Badge variant="outline" className="text-xs">
-                              {plan.familyName}
+                              {group.shortName}
                             </Badge>
+                            {isGentlePlan(plan.id) && (
+                              <Badge className="text-xs bg-teal-600/15 text-teal-800 dark:text-teal-200 border-teal-600/25 hover:bg-teal-600/20">
+                                Walk-first
+                              </Badge>
+                            )}
                             {isSelected && (
                               <Badge className="text-xs">Selected</Badge>
                             )}
-                            {plan.filters.map((tag) => (
-                              <Badge
-                                key={tag}
-                                variant="secondary"
-                                className="text-[10px] font-normal"
-                              >
-                                {PLAN_FILTERS.find((f) => f.id === tag)?.label}
-                              </Badge>
-                            ))}
                           </div>
                           <h3 className="mt-2 text-lg font-semibold sm:text-xl">
-                            {plan.name}{" "}
-                            <span className="text-muted-foreground font-normal">
-                              · {plan.duration}
-                            </span>
+                            {group.familyName}
                           </h3>
                           <p className="mt-1 text-sm text-muted-foreground">
                             {plan.description}
@@ -196,7 +277,7 @@ export function PlanCatalogExplorer({
                             className="w-full sm:min-w-[8rem] inline-flex items-center justify-center gap-1"
                             onClick={() => selectPlan(plan.id)}
                           >
-                            {isSelected ? "Open tracker" : "Select plan"}
+                            {isSelected ? "Open tracker" : "Load this plan"}
                           </Button>
                           <Button
                             type="button"
@@ -204,7 +285,9 @@ export function PlanCatalogExplorer({
                             size="sm"
                             className="w-full sm:min-w-[8rem] inline-flex items-center justify-center gap-1"
                             onClick={() =>
-                              setExpandedId(isExpanded ? null : plan.id)
+                              setExpandedFamilyId(
+                                isExpanded ? null : group.familyId
+                              )
                             }
                             aria-expanded={isExpanded}
                           >
@@ -220,6 +303,43 @@ export function PlanCatalogExplorer({
                               </>
                             )}
                           </Button>
+                        </div>
+                      </div>
+
+                      <div className="mt-4">
+                        <p className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+                          Duration
+                        </p>
+                        <div
+                          role="radiogroup"
+                          aria-label={`${group.familyName} duration`}
+                          className="mt-2 flex flex-wrap gap-2"
+                        >
+                          {group.variants.map((variant) => {
+                            const selected = variant.id === plan.id;
+                            return (
+                              <button
+                                key={variant.id}
+                                type="button"
+                                role="radio"
+                                aria-checked={selected}
+                                onClick={() =>
+                                  setSelectedByFamily((prev) => ({
+                                    ...prev,
+                                    [group.familyId]: variant.id,
+                                  }))
+                                }
+                                className={cn(
+                                  "rounded-full border px-3.5 py-2 text-sm font-medium transition-colors",
+                                  selected
+                                    ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                                    : "border-border/60 bg-background text-foreground/80 hover:border-primary/40 hover:text-foreground"
+                                )}
+                              >
+                                {durationChipLabel(variant)}
+                              </button>
+                            );
+                          })}
                         </div>
                       </div>
 
@@ -263,7 +383,7 @@ export function PlanCatalogExplorer({
                       </dl>
 
                       <p className="mt-3 text-xs text-muted-foreground">
-                        {plan.prerequisite}
+                        {group.prerequisite}
                       </p>
                     </div>
 
@@ -273,11 +393,14 @@ export function PlanCatalogExplorer({
                           <button
                             type="button"
                             onClick={() =>
-                              setPreviewMode((m) => ({ ...m, [plan.id]: "week1" }))
+                              setPreviewMode((m) => ({
+                                ...m,
+                                [group.familyId]: "week1",
+                              }))
                             }
                             className={cn(
                               "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-                              previewMode[plan.id] !== "peak"
+                              previewMode[group.familyId] !== "peak"
                                 ? "bg-primary/10 text-foreground"
                                 : "text-muted-foreground hover:text-foreground"
                             )}
@@ -287,11 +410,14 @@ export function PlanCatalogExplorer({
                           <button
                             type="button"
                             onClick={() =>
-                              setPreviewMode((m) => ({ ...m, [plan.id]: "peak" }))
+                              setPreviewMode((m) => ({
+                                ...m,
+                                [group.familyId]: "peak",
+                              }))
                             }
                             className={cn(
                               "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-                              previewMode[plan.id] === "peak"
+                              previewMode[group.familyId] === "peak"
                                 ? "bg-primary/10 text-foreground"
                                 : "text-muted-foreground hover:text-foreground"
                             )}
@@ -303,7 +429,7 @@ export function PlanCatalogExplorer({
                           title={preview.title}
                           focus={preview.focus}
                           weekLabel={
-                            previewMode[plan.id] === "peak"
+                            previewMode[group.familyId] === "peak"
                               ? `Peak week (W${preview.week})`
                               : `Sample week (W${preview.week})`
                           }
@@ -320,8 +446,8 @@ export function PlanCatalogExplorer({
       )}
 
       <p className="mt-4 text-center text-xs text-muted-foreground">
-        {PLAN_FAMILIES.length} distances · {plans.length} plan lengths · default
-        schedule: 3 run days + cross-training
+        {PLAN_FAMILIES.length} distances · choose a length on each card · default
+        schedule: 3–4 run days + cross-training
       </p>
     </section>
   );

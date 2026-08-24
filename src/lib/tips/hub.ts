@@ -15,8 +15,8 @@ export const tipHubSections: TipHubSection[] = [
     title: "Getting started",
     summary:
       "Slow, walk–run, and showing up. This is how the first month actually works.",
-    nextHref: "/start",
-    nextLabel: "Find a plan",
+    nextHref: "/stories",
+    nextLabel: "Success stories",
     categories: ["Getting Started"],
   },
   {

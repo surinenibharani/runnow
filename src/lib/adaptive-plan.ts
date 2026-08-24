@@ -8,6 +8,7 @@ import {
 export type AdaptiveActionType =
   | "repeat_week"
   | "ease_volume"
+  | "rebuild_week"
   | "stay_course"
   | "consider_longer_plan"
   | "protect_taper";
@@ -21,6 +22,9 @@ export type AdaptivePlanSuggestion = {
   suggestedWeek?: number;
   /** Optional longer plan variant id when timeline is tight. */
   suggestedPlanId?: string;
+  /** Educational deep-link (missed-week / resting HR / rest days). */
+  tipHref?: string;
+  tipLabel?: string;
 };
 
 type AdaptiveInput = {
@@ -60,11 +64,13 @@ export function getAdaptivePlanSuggestion(
   if (recoveryScore != null && recoveryScore < 50 && week < plan.durationWeeks) {
     return {
       status: "strained",
-      title: "Recovery is asking for an easier day",
+      title: "Take an easier / deload week",
       detail:
-        "Your readiness score is low. Keep today's effort easy or rest — don't stack catch-up workouts. Resume the plan when sleep and resting HR look better.",
+        "Your readiness score is low. Hold this plan week — keep efforts easy or rest. Don't stack catch-up workouts. Resume normal progression when sleep and resting HR look better.",
       actionType: "ease_volume",
       suggestedWeek: week,
+      tipHref: "/tips/resting-hr-up-for-days-back-off-early",
+      tipLabel: "Resting HR tip",
     };
   }
 
@@ -75,11 +81,13 @@ export function getAdaptivePlanSuggestion(
   ) {
     return {
       status: "behind",
-      title: "Repeat this week instead of jumping ahead",
+      title: "Rebuild this week — don't jump ahead",
       detail:
-        "Fewer than half of this week's planned activities are done. Repeating the week builds fitness more safely than cramming two weeks into one.",
-      actionType: "repeat_week",
+        "Fewer than half of this week's planned activities are done. Hold or repeat the week and use remaining easy slots — never cram two quality days to catch up.",
+      actionType: "rebuild_week",
       suggestedWeek: week,
+      tipHref: "/tips/missed-a-week-dont-double-up",
+      tipLabel: "Missed-week tip",
     };
   }
 
@@ -148,6 +156,8 @@ export function getAdaptivePlanSuggestion(
         "You've advanced further in the calendar than workouts completed. Jump back to an earlier week that matches what you've actually finished — progress is about work done, not the tab you're on.",
       actionType: "repeat_week",
       suggestedWeek: Math.max(1, week - 1),
+      tipHref: "/tips/missed-a-week-dont-double-up",
+      tipLabel: "Missed-week tip",
     };
   }
 

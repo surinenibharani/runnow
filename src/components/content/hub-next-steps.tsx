@@ -17,7 +17,14 @@ export function HubNextSteps({
   return (
     <section className={cn("rounded-xl border border-primary/20 bg-primary/5 p-5 sm:p-6", className)}>
       <h2 className="text-base font-semibold sm:text-lg">{heading}</h2>
-      <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+      <ul
+        className={cn(
+          "mt-4 grid gap-3",
+          steps.length > 3
+            ? "sm:grid-cols-2 lg:grid-cols-4"
+            : "sm:grid-cols-3"
+        )}
+      >
         {steps.map((step) => (
           <li key={step.href}>
             <Link

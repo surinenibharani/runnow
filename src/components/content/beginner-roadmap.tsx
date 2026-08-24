@@ -63,6 +63,17 @@ export function BeginnerRoadmap({
           </li>
         ))}
       </ol>
+
+      <p className="mt-8 border-t border-border/60 pt-5 text-sm leading-relaxed text-muted-foreground">
+        Need proof the slow path works?{" "}
+        <Link
+          href="/stories"
+          className="font-medium text-primary hover:underline"
+        >
+          Read beginner success stories
+        </Link>
+        .
+      </p>
     </section>
   );
 }

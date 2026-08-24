@@ -1,17 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Battery, Moon, HeartPulse } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { RecoveryReadiness } from "@/lib/recovery-readiness";
+import { saveTrainingPlan } from "@/lib/training-plan-client";
 import { cn } from "@/lib/utils";
 
 type RecoveryReadinessCardProps = {
   recovery: RecoveryReadiness;
   onSaved: () => void;
+  /** Current plan week — enables one-tap deload hold when readiness is low. */
+  currentWeek?: number | null;
+  onDeloadApplied?: () => void;
 };
 
 const SCORE_COLORS: Record<RecoveryReadiness["label"], string> = {
@@ -58,11 +63,38 @@ function FactorBar({ factor }: { factor: RecoveryReadiness["factors"][0] }) {
 export function RecoveryReadinessCard({
   recovery,
   onSaved,
+  currentWeek = null,
+  onDeloadApplied,
 }: RecoveryReadinessCardProps) {
   const [sleepHours, setSleepHours] = useState("");
   const [restingHr, setRestingHr] = useState("");
   const [saving, setSaving] = useState(false);
   const [formMessage, setFormMessage] = useState("");
+  const [holding, setHolding] = useState(false);
+  const [deloadMessage, setDeloadMessage] = useState("");
+
+  const needsDeload =
+    recovery.score != null &&
+    recovery.score < 50 &&
+    currentWeek != null &&
+    currentWeek >= 1;
+
+  async function handleHoldDeload() {
+    if (currentWeek == null) return;
+    setHolding(true);
+    setDeloadMessage("");
+    try {
+      await saveTrainingPlan({ currentWeek });
+      setDeloadMessage(
+        `Plan held on week ${currentWeek} — keep efforts easy until readiness recovers.`
+      );
+      onDeloadApplied?.();
+    } catch {
+      setDeloadMessage("Couldn’t update your plan week. Try again from /plan.");
+    } finally {
+      setHolding(false);
+    }
+  }
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
@@ -149,6 +181,48 @@ export function RecoveryReadinessCard({
             </div>
           </div>
         </div>
+
+        {needsDeload && (
+          <div className="rounded-lg border border-destructive/25 bg-destructive/5 p-4 space-y-3">
+            <p className="text-sm font-medium">
+              Readiness is low — take an easier / deload week
+            </p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Hold week {currentWeek} on your plan. Skip catch-up volume until
+              sleep and resting HR improve.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                size="sm"
+                disabled={holding}
+                onClick={() => void handleHoldDeload()}
+              >
+                {holding ? "Applying…" : `Hold easy week ${currentWeek}`}
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                nativeButton={false}
+                render={
+                  <Link href="/tips/resting-hr-up-for-days-back-off-early" />
+                }
+              >
+                Resting HR tip
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                nativeButton={false}
+                render={<Link href="/tips/missed-a-week-dont-double-up" />}
+              >
+                Missed-week tip
+              </Button>
+            </div>
+            {deloadMessage && (
+              <p className="text-xs text-primary">{deloadMessage}</p>
+            )}
+          </div>
+        )}
 
         <form
           onSubmit={handleSave}

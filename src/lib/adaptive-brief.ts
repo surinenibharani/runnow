@@ -8,12 +8,18 @@ import {
   type AdaptivePlanSuggestion,
 } from "@/lib/adaptive-plan";
 import { getPlanById } from "@/lib/plans";
+import {
+  proposeWeekRebuild,
+  type WeekRebuildProposal,
+} from "@/lib/week-rebuild";
 
 export type AdaptiveAction =
   | "run_as_planned"
   | "go_easy"
   | "rest_or_walk"
   | "catch_up_gently"
+  | "rebuild_week"
+  | "hold_deload"
   | "log_wellness"
   | "start_plan"
   | "connect_strava"
@@ -34,6 +40,7 @@ export type AdaptiveBrief = {
   reasons: string[];
   metricInsights: AdaptiveMetricInsight[];
   planSuggestion: AdaptivePlanSuggestion | null;
+  weekRebuild: WeekRebuildProposal | null;
   todayWorkout: {
     label: string;
     kind: "run" | "cross-train" | "rest" | "none";
@@ -190,7 +197,14 @@ function pickAction(input: BriefInput, today: AdaptiveBrief["todayWorkout"]): Ad
     input.recovery.score < 45 &&
     today.kind === "run"
   ) {
-    return "rest_or_walk";
+    return "hold_deload";
+  }
+  if (
+    input.recovery.score != null &&
+    input.recovery.score < 50 &&
+    input.hasTrainingPlan
+  ) {
+    return "hold_deload";
   }
   if (
     input.recovery.score != null &&
@@ -198,6 +212,13 @@ function pickAction(input: BriefInput, today: AdaptiveBrief["todayWorkout"]): Ad
     today.kind === "run"
   ) {
     return "go_easy";
+  }
+  if (
+    input.alignment &&
+    input.alignment.days.some((d) => d.status === "missed" && d.kind !== "rest") &&
+    input.alignment.alignmentPercent < 70
+  ) {
+    return "rebuild_week";
   }
   if (
     input.alignment &&
@@ -220,6 +241,10 @@ function pickAction(input: BriefInput, today: AdaptiveBrief["todayWorkout"]): Ad
 
 function buildHeadline(action: AdaptiveAction, today: AdaptiveBrief["todayWorkout"]): string {
   switch (action) {
+    case "hold_deload":
+      return "Readiness is low — take a deload week";
+    case "rebuild_week":
+      return "Rebuild this week — don't double up";
     case "rest_or_walk":
       return today.kind === "rest"
         ? "Today is a recovery day — own it"
@@ -252,6 +277,12 @@ function buildBody(
 ): string {
   const weekBit = today.weekTitle ? ` (${today.weekTitle})` : "";
   switch (action) {
+    case "hold_deload":
+      return input.recovery.score != null
+        ? `Recovery is ${input.recovery.score}. Hold your current plan week as an easier / deload week — walk, easy jog, or rest. Apply the hold below, then check the missed-week tip if you're tempted to catch up.`
+        : `Hold this week easy. Fitness sticks when you absorb load — not when you invent make-up speedwork.`;
+    case "rebuild_week":
+      return `You're at ${input.alignment?.alignmentPercent ?? 0}% of this week's planned sessions. Stay on the current week and use remaining easy/cross-train slots — never stack two quality days to "catch up."`;
     case "rest_or_walk":
       return input.recovery.score != null && input.recovery.score < 45
         ? `Recovery is ${input.recovery.score}. Swap a hard effort for a walk, easy spin, or full rest — fitness sticks when you absorb load.`
@@ -343,6 +374,19 @@ export function buildAdaptiveBrief(input: BriefInput): AdaptiveBrief {
     }
   }
 
+  let weekRebuild: WeekRebuildProposal | null = null;
+  if (input.alignment && input.trainingPlan) {
+    const proposal = proposeWeekRebuild({
+      alignment: input.alignment,
+      recoveryScore: input.recovery.score,
+      isTaper:
+        input.trainingPlan.currentWeek >= input.trainingPlan.totalWeeks - 1,
+    });
+    if (proposal.mode !== "no_op") {
+      weekRebuild = proposal;
+    }
+  }
+
   const coachingPriority = [...input.suggestions]
     .sort((a, b) => {
       const rank = { high: 0, medium: 1, low: 2 };
@@ -357,6 +401,7 @@ export function buildAdaptiveBrief(input: BriefInput): AdaptiveBrief {
     reasons: buildReasons(action, input, today),
     metricInsights,
     planSuggestion,
+    weekRebuild,
     todayWorkout: today,
     coachingPriority,
     confidence: confidenceFor(input),

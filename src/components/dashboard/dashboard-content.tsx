@@ -472,6 +472,7 @@ export function DashboardContent() {
             <AdaptiveTodayCard
               brief={data.adaptiveBrief}
               aiConfigured={Boolean(data.adaptiveAiConfigured)}
+              onPlanWeekApplied={() => void loadDashboard()}
             />
           </FadeIn>
         )}
@@ -618,7 +619,9 @@ export function DashboardContent() {
         <FadeIn>
           <RecoveryReadinessCard
             recovery={data.recovery}
+            currentWeek={data.trainingPlan?.currentWeek ?? null}
             onSaved={() => loadDashboard()}
+            onDeloadApplied={() => void loadDashboard()}
           />
         </FadeIn>
 
@@ -632,7 +635,8 @@ export function DashboardContent() {
               insights={data.paceInsights}
               adaptiveNote={
                 data.adaptiveBrief?.action === "go_easy" ||
-                data.adaptiveBrief?.action === "rest_or_walk"
+                data.adaptiveBrief?.action === "rest_or_walk" ||
+                data.adaptiveBrief?.action === "hold_deload"
                   ? "Adaptive coach: treat zone targets as ceilings today — stay conversational if readiness is soft."
                   : data.adaptiveBrief?.action === "protect_taper"
                     ? "Adaptive coach: projections can wait — protect taper freshness over testing fitness."

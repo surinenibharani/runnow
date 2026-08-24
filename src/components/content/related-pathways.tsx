@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Dumbbell, Footprints, Lightbulb, ShoppingBag } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Dumbbell,
+  Footprints,
+  Lightbulb,
+  MessageCircleHeart,
+  ShoppingBag,
+} from "lucide-react";
 import type { ContentPathway, PathwayKind } from "@/lib/content-pathways";
 import { cn } from "@/lib/utils";
 
@@ -31,6 +39,11 @@ const kindMeta: Record<
     label: "Gear",
     icon: ShoppingBag,
     className: "bg-violet-500/10 text-violet-800 dark:text-violet-200",
+  },
+  stories: {
+    label: "Stories",
+    icon: MessageCircleHeart,
+    className: "bg-rose-500/10 text-rose-800 dark:text-rose-200",
   },
 };
 

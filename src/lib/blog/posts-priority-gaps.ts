@@ -57,6 +57,33 @@ export const priorityGapPosts: BlogPost[] = [
           "Absolutely. Planned walk breaks (or a walk-run approach) are smart training and valid race strategy — especially on hills or in heat. Finishing strong beats dying for continuous running glory.",
       },
     ],
+    howTo: {
+      name: "How to train for your first 10K after a 5K",
+      description:
+        "Extend easy volume gradually, keep one longer run, and avoid stacking speed and mileage jumps.",
+      steps: [
+        {
+          name: "Confirm a solid 5K base",
+          text: "Be able to finish a 5K without wrecking the next week.",
+          url: "/blog/training-first-5k",
+        },
+        {
+          name: "Bump weekly volume slowly",
+          text: "Add time or distance in small steps — not a sudden double.",
+          url: "/plan",
+        },
+        {
+          name: "Keep most miles easy",
+          text: "One quality session is enough; the long run stays conversational.",
+          url: "/blog/easy-runs-effort-heart-rate",
+        },
+        {
+          name: "Race the 10K as a controlled effort",
+          text: "Start steady and save surge energy for the last kilometers.",
+          url: "/blog/race-day-tips",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -361,6 +388,32 @@ export const priorityGapPosts: BlogPost[] = [
           "No. The talk test and perceived effort work without gadgets. A watch helps curious runners spot patterns, especially once Strava or a dashboard shows zone time — but effort comes first.",
       },
     ],
+    howTo: {
+      name: "How to keep easy runs easy",
+      description:
+        "Use talk test or easy heart-rate guidance, slow down early, and save hard work for planned days.",
+      steps: [
+        {
+          name: "Check the talk test in the first five minutes",
+          text: "Full sentences mean you are in the right zone.",
+        },
+        {
+          name: "Slow down or walk when speech breaks",
+          text: "Ego pace is not aerobic training.",
+          url: "/blog/how-to-pace-yourself",
+        },
+        {
+          name: "Ignore other runners' speed",
+          text: "Your easy is personal — especially on hills and heat.",
+          url: "/tips/if-easy-days-arent-easy-slow-down-now",
+        },
+        {
+          name: "Limit true hard sessions",
+          text: "Most weeks need at most one quality day after a base.",
+          url: "/blog/earn-hard-runs-by-running-easy",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -504,6 +557,33 @@ export const priorityGapPosts: BlogPost[] = [
           "Mild cases may settle in a couple of weeks with smart load reduction. Stubborn cases take longer. If pain lasts beyond 2–3 weeks despite rest, or walking becomes painful, see a clinician.",
       },
     ],
+    howTo: {
+      name: "How to ease shin splints as a beginner",
+      description:
+        "Cut load, check shoes, add calf and hip strength, and rule out stress-fracture red flags.",
+      steps: [
+        {
+          name: "Reduce impact for 1–2 weeks",
+          text: "Cross-train or walk-run — do not push through sharpening shin pain.",
+          url: "/injuries/shin-splints",
+        },
+        {
+          name: "Check shoe life and surface",
+          text: "Dead foam and sudden concrete spikes are common triggers.",
+          url: "/blog/choosing-running-shoes",
+        },
+        {
+          name: "Strengthen calves and hips",
+          text: "Heel raises and glute work support the shin.",
+          url: "/tips/strength-twice-a-week-beats-more-junk-miles",
+        },
+        {
+          name: "Get checked for pinpoint bone pain",
+          text: "One hot spot, night pain, or limp needs a clinician.",
+          url: "/blog/stress-fracture-running",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -632,6 +712,33 @@ export const priorityGapPosts: BlogPost[] = [
           "Comfortable, not-dead shoes help. Straps and braces help some people short-term but don't replace hip/quad strength and smarter training progression. See a clinician if you're unsure.",
       },
     ],
+    howTo: {
+      name: "How to calm runner's knee (PFPS)",
+      description:
+        "Ease hills and volume, build hip and quad strength, and return only when stairs feel calm.",
+      steps: [
+        {
+          name: "Cut hills and speed briefly",
+          text: "Flat easy volume or cross-training while irritability settles.",
+          url: "/injuries/runners-knee",
+        },
+        {
+          name: "Strengthen hips and quads",
+          text: "Side steps, bridges, and wall sits in a pain-free range.",
+          url: "/blog/bodyweight-strength-for-runners",
+        },
+        {
+          name: "Shorten overstride on easy days",
+          text: "Quicker, softer steps reduce braking at the knee.",
+          url: "/blog/running-form-101",
+        },
+        {
+          name: "Rebuild stairs and hills slowly",
+          text: "Return to volume only when daily stairs are quiet.",
+          url: "/blog/avoiding-injuries",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [

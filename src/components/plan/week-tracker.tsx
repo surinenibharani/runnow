@@ -166,15 +166,28 @@ export function WeekTracker({
     ? Math.round((completedInPlan / totalWorkouts) * 100)
     : 0;
 
+  const weekAlignmentPercent = useMemo(() => {
+    const weekNum = Number(activeWeek) || 1;
+    const week = weeks.find((w) => w.week === weekNum);
+    if (!week) return null;
+    const actionable = week.days.filter((d) => d.kind !== "rest");
+    if (actionable.length === 0) return 100;
+    const done = actionable.filter((d) =>
+      progress.completed.includes(d.id)
+    ).length;
+    return Math.round((done / actionable.length) * 100);
+  }, [weeks, activeWeek, progress.completed]);
+
   const adaptiveSuggestion = useMemo(
     () =>
       getAdaptivePlanSuggestion({
         plan: basePlan,
         profile: planProfile,
         currentWeek: Number(activeWeek) || 1,
+        weekAlignmentPercent,
         planPercentComplete: percentComplete,
       }),
-    [basePlan, planProfile, activeWeek, percentComplete]
+    [basePlan, planProfile, activeWeek, weekAlignmentPercent, percentComplete]
   );
 
   const applyRemotePlan = useCallback((remote: {

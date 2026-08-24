@@ -5,7 +5,7 @@ import {
   getPeakWeekNumber,
   getSampleWeekPreview,
 } from "@/lib/plan-stats";
-import { PLANS, PLAN_FAMILIES, getFamilyById } from "@/lib/plans";
+import { PLANS, getFamilyById } from "@/lib/plans";
 
 function buildCatalogItems(): PlanCatalogItem[] {
   return PLANS.map((plan) => {

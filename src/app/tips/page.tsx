@@ -27,32 +27,11 @@ import { tipHubSections, tipsForHubSection } from "@/lib/tips/hub";
 import { tipsHubEditorial } from "@/lib/hub-seo";
 import { beginnerRoadmapHowToSteps } from "@/lib/beginner-roadmap";
 import { SITE_URL } from "@/lib/site";
-import type { PathwayLink } from "@/lib/content-pathways";
+import { tipsHubNextSteps } from "@/lib/content-pathways";
 
 const TIPS_TITLE = "Beginner Running Tips — Pace, Gear, Recovery & More";
 const TIPS_DESCRIPTION =
   "Beginner running tips for couch to 5K starters: easy pace, shoes, hydration, rest days, and bad-weather alternatives — no app, no paywall.";
-
-const tipsNextSteps: PathwayLink[] = [
-  {
-    kind: "plan",
-    href: "/start",
-    label: "Start here",
-    detail: "A two-minute quiz picks a free beginner plan.",
-  },
-  {
-    kind: "injury",
-    href: "/injuries",
-    label: "Pain or niggles?",
-    detail: "Prevention, recovery, and when to get help.",
-  },
-  {
-    kind: "gear",
-    href: "/gear",
-    label: "Gear without the hype",
-    detail: "Shoes first. Everything else can wait.",
-  },
-];
 
 export const metadata: Metadata = pageMetadata({
   title: TIPS_TITLE,
@@ -224,7 +203,7 @@ export default function TipsPage() {
         })}
 
         <FadeIn className="mt-4">
-          <HubNextSteps steps={tipsNextSteps} />
+          <HubNextSteps steps={tipsHubNextSteps} />
         </FadeIn>
 
         <FadeIn className="mt-8">

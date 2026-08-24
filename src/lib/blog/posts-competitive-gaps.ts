@@ -418,6 +418,33 @@ export const competitiveGapPosts: BlogPost[] = [
           "Yes as a later stage — or start the free [16-week walk-first plan](/plan/5k-gentle-16w) now. Use this article to understand the philosophy; the plan tracks every walk and jog dash on your calendar.",
       },
     ],
+    howTo: {
+      name: "How to follow an ultra-gentle none-to-run path",
+      description:
+        "Walk for weeks, add micro-jogs only when ready, and protect rest days.",
+      steps: [
+        {
+          name: "Commit to walking weeks first",
+          text: "Impact can wait until the habit is real.",
+          url: "/tips/walk-only-weeks-still-count",
+        },
+        {
+          name: "Add tiny jog intervals later",
+          text: "Seconds to a minute — only when walking feels easy.",
+          url: "/plan/5k-gentle-16w",
+        },
+        {
+          name: "Keep every session conversational",
+          text: "If you cannot talk, you progressed too soon.",
+          url: "/blog/how-to-pace-yourself",
+        },
+        {
+          name: "Ignore faster couch-to-5K timelines",
+          text: "Your calendar is allowed to be slower.",
+          url: "/blog/never-ran-where-to-start",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [

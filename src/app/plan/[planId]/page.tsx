@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -77,6 +78,16 @@ export default async function PlanVariantPage({
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
               {selectedPlan.description}
             </p>
+            <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
+              Track it in the browser, or{" "}
+              <Link
+                href={`/plan/${selectedPlan.id}/printable${fromQuiz ? "?from=start" : ""}`}
+                className="font-medium text-primary hover:underline"
+              >
+                print / download a PDF
+              </Link>{" "}
+              (Print → Save as PDF) for offline check-offs.
+            </p>
           </div>
         </FadeIn>
 
@@ -112,7 +123,14 @@ export default async function PlanVariantPage({
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Mark workouts complete, adjust your schedule, and sync progress when
-              signed in.
+              signed in. Prefer paper?{" "}
+              <Link
+                href={`/plan/${selectedPlan.id}/printable${fromQuiz ? "?from=start" : ""}`}
+                className="font-medium text-primary hover:underline"
+              >
+                Print or download this plan as a PDF
+              </Link>
+              .
             </p>
           </div>
 

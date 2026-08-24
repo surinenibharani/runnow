@@ -1,4 +1,10 @@
-export type PathwayKind = "tip" | "blog" | "plan" | "injury" | "gear";
+export type PathwayKind =
+  | "tip"
+  | "blog"
+  | "plan"
+  | "injury"
+  | "gear"
+  | "stories";
 
 export type PathwayLink = {
   kind: PathwayKind;
@@ -10,6 +16,14 @@ export type PathwayLink = {
 export type ContentPathway = {
   title: string;
   links: PathwayLink[];
+};
+
+/** Shared CTA — promote /stories from Start here and tips pathways. */
+export const storiesPathwayLink: PathwayLink = {
+  kind: "stories",
+  href: "/stories",
+  label: "Success stories",
+  detail: "Real beginners who started scared and kept showing up.",
 };
 
 const injuryPathways: Record<string, PathwayLink[]> = {
@@ -155,6 +169,52 @@ const tipPathways: Record<string, PathwayLink[]> = {
       label: "Start with a walk–run plan",
       detail: "The quiz picks a free beginner schedule.",
     },
+    storiesPathwayLink,
+  ],
+  "lost-where-to-start-one-beginner-map": [
+    {
+      kind: "plan",
+      href: "/start",
+      label: "Start here",
+      detail: "Two-minute quiz → free beginner plan.",
+    },
+    {
+      kind: "blog",
+      href: "/blog/never-ran-where-to-start",
+      label: "Never ran? Where to start",
+      detail: "The full beginner map in one guide.",
+    },
+    storiesPathwayLink,
+  ],
+  "bad-runs-happen-to-everyone": [
+    storiesPathwayLink,
+    {
+      kind: "blog",
+      href: "/blog/mental-side-of-running",
+      label: "The mental side",
+      detail: "Why bad days don’t erase the habit.",
+    },
+    {
+      kind: "plan",
+      href: "/start",
+      label: "Keep the plan boring",
+      detail: "A calendar beats waiting to feel motivated.",
+    },
+  ],
+  "family-runs-are-for-fun-first": [
+    storiesPathwayLink,
+    {
+      kind: "tip",
+      href: "/tips/slow-down-seriously",
+      label: "Slow down — seriously",
+      detail: "Conversational pace keeps family loops joyful.",
+    },
+    {
+      kind: "plan",
+      href: "/plan/5k-gentle-16w",
+      label: "Walk-first plan",
+      detail: "Room for walk breaks when kids join.",
+    },
   ],
   "shoes-matter-more-than-gadgets": [
     {
@@ -237,6 +297,7 @@ const tipPathways: Record<string, PathwayLink[]> = {
       label: "16-week walk-first plan",
       detail: "Four weeks of walking, then tiny jogs.",
     },
+    storiesPathwayLink,
   ],
   "fuel-the-miles-under-eating-isnt-toughness": [
     {
@@ -351,6 +412,7 @@ const blogPathways: Record<string, PathwayLink[]> = {
       label: "Slow down — seriously",
       detail: "Conversational pace is the whole point.",
     },
+    storiesPathwayLink,
   ],
   "first-run-tips": [
     {
@@ -371,6 +433,7 @@ const blogPathways: Record<string, PathwayLink[]> = {
       label: "Get a plan",
       detail: "So the second run is already on the calendar.",
     },
+    storiesPathwayLink,
   ],
   "none-to-run-gentle-beginners": [
     {
@@ -385,8 +448,32 @@ const blogPathways: Record<string, PathwayLink[]> = {
       label: "Walk-only weeks still count",
       detail: "Impact can wait until the habit is real.",
     },
+    storiesPathwayLink,
   ],
 };
+
+/** Next steps under the Tips hub — Start here + stories sit first. */
+export const tipsHubNextSteps: PathwayLink[] = [
+  {
+    kind: "plan",
+    href: "/start",
+    label: "Start here",
+    detail: "A two-minute quiz picks a free beginner plan.",
+  },
+  storiesPathwayLink,
+  {
+    kind: "injury",
+    href: "/injuries",
+    label: "Pain or niggles?",
+    detail: "Prevention, recovery, and when to get help.",
+  },
+  {
+    kind: "gear",
+    href: "/gear",
+    label: "Gear without the hype",
+    detail: "Shoes first. Everything else can wait.",
+  },
+];
 
 const gearPathways: Record<string, PathwayLink[]> = {
   shoes: [

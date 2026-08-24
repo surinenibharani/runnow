@@ -55,8 +55,19 @@ function scoreTip(
 
   const recovery = ctx.recovery;
   if (recovery?.score != null && recovery.score < 55) {
-    if (text.includes("rest") || text.includes("recovery") || text.includes("missed")) {
-      score += 8;
+    const recoverySlugs = new Set([
+      "rest-days-are-training-days",
+      "missed-a-week-dont-double-up",
+      "resting-hr-up-for-days-back-off-early",
+      "if-easy-days-arent-easy-slow-down-now",
+    ]);
+    if (
+      recoverySlugs.has(tip.slug) ||
+      text.includes("rest") ||
+      text.includes("recovery") ||
+      text.includes("missed")
+    ) {
+      score += recoverySlugs.has(tip.slug) ? 12 : 8;
       reason = "Matches low readiness — prioritize recovery";
     }
   }

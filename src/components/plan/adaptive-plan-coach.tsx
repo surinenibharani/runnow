@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,6 +11,7 @@ type AdaptivePlanCoachProps = {
   suggestion: AdaptivePlanSuggestion;
   onApplyWeek?: (week: number) => void;
   onApplyPlan?: (planId: string) => void;
+  applying?: boolean;
 };
 
 const STATUS_STYLES: Record<AdaptivePlanSuggestion["status"], string> = {
@@ -20,16 +22,29 @@ const STATUS_STYLES: Record<AdaptivePlanSuggestion["status"], string> = {
   neutral: "border-border/60 bg-muted/20",
 };
 
+function weekButtonLabel(suggestion: AdaptivePlanSuggestion): string {
+  const week = suggestion.suggestedWeek;
+  if (suggestion.actionType === "ease_volume") {
+    return week != null ? `Hold easy week ${week}` : "Hold easy week";
+  }
+  if (suggestion.actionType === "rebuild_week") {
+    return week != null ? `Rebuild: stay on week ${week}` : "Rebuild this week";
+  }
+  return week != null ? `Go to week ${week}` : "Apply week";
+}
+
 export function AdaptivePlanCoach({
   suggestion,
   onApplyWeek,
   onApplyPlan,
+  applying = false,
 }: AdaptivePlanCoachProps) {
   const showWeek =
     suggestion.suggestedWeek != null &&
     onApplyWeek &&
     (suggestion.actionType === "repeat_week" ||
-      suggestion.actionType === "ease_volume");
+      suggestion.actionType === "ease_volume" ||
+      suggestion.actionType === "rebuild_week");
 
   const showPlan =
     suggestion.suggestedPlanId != null &&
@@ -53,23 +68,35 @@ export function AdaptivePlanCoach({
             </p>
           </div>
         </div>
-        {(showWeek || showPlan) && (
+        {(showWeek || showPlan || suggestion.tipHref) && (
           <div className="flex flex-wrap gap-2 pl-0 sm:pl-12">
             {showWeek && suggestion.suggestedWeek != null && (
               <Button
                 size="sm"
                 variant="secondary"
+                disabled={applying}
                 onClick={() => onApplyWeek(suggestion.suggestedWeek!)}
               >
-                Go to week {suggestion.suggestedWeek}
+                {applying ? "Applying…" : weekButtonLabel(suggestion)}
               </Button>
             )}
             {showPlan && suggestion.suggestedPlanId && (
               <Button
                 size="sm"
+                disabled={applying}
                 onClick={() => onApplyPlan(suggestion.suggestedPlanId!)}
               >
                 Switch to recommended plan length
+              </Button>
+            )}
+            {suggestion.tipHref && (
+              <Button
+                size="sm"
+                variant="outline"
+                nativeButton={false}
+                render={<Link href={suggestion.tipHref} />}
+              >
+                {suggestion.tipLabel ?? "Read tip"}
               </Button>
             )}
           </div>

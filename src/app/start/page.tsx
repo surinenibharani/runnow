@@ -64,6 +64,10 @@ export default function StartPage() {
             <Link href="/tools" className="text-primary hover:underline">
               Running tools
             </Link>
+            {" · "}
+            <Link href="/stories" className="text-primary hover:underline">
+              Success stories
+            </Link>
           </p>
         </FadeIn>
 
