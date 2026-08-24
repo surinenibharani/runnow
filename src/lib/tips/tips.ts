@@ -7,6 +7,7 @@ import {
   Footprints,
   Heart,
   Moon,
+  Shield,
   Sun,
   Utensils,
   Users,
@@ -422,6 +423,62 @@ export const runnerTips: RunnerTip[] = [
     content:
       "Braking with long strides on descents pounds quads and toenails. Shorten the step, keep cadence quick, lean slightly from the ankles, and let gravity help without sitting back. Practice on gentle hills before race-day downhills surprise you.",
     blogSlug: "how-to-not-hate-hills",
+  },
+  {
+    slug: slugifyTipTitle(
+      "Twisted ankle: protect, then load — don't ice forever"
+    ),
+    icon: Heart,
+    illustration: "recovery",
+    category: "Recovery",
+    title: "Twisted ankle: protect, then load — don't ice forever",
+    content:
+      "Modern soft-tissue care is PEACE & LOVE: protect early, then gently load within pain limits. Endless icing and total rest can slow what ligaments need. Walk when you can, rebuild balance, and don't jog trails until hops and single-leg stands feel calm.",
+    blogSlug: "ankle-sprain-return-to-run",
+  },
+  {
+    slug: slugifyTipTitle(
+      "Practice the gel on a long run — never race day"
+    ),
+    icon: Utensils,
+    illustration: "hydration",
+    category: "Nutrition",
+    title: "Practice the gel on a long run — never race day",
+    content:
+      "Race morning is the worst time to meet a new gel. Pick one product, use it on training long runs with water, and note what your gut tolerates. 5Ks rarely need mid-race carbs — save the experiment for half and marathon practice.",
+    blogSlug: "race-fueling-gels-carb-load-beginners",
+  },
+  {
+    slug: slugifyTipTitle(
+      "Parkrun is free — treat it like a dress rehearsal"
+    ),
+    icon: Users,
+    illustration: "calendar",
+    category: "Racing",
+    title: "Parkrun is free — treat it like a dress rehearsal",
+    content:
+      "Where Parkrun exists, it's a free timed community 5K — walk-run welcome. Register ahead, start toward the back, and use it to practice nerves and pacing before a paid race. Thank the volunteers; they make the free event possible.",
+    blogSlug: "first-parkrun-community-5k",
+  },
+  {
+    slug: slugifyTipTitle("Heat day: hard work is optional"),
+    icon: Sun,
+    illustration: "heat",
+    category: "Weather",
+    title: "Heat day: hard work is optional",
+    content:
+      "On oppressive heat or humidity, finishing an easy shuffle beats forcing tempo pride. Slow down, shorten, move earlier/later, or swap indoors. Heat illness is not a toughness test — dizziness, chills, or stopping sweat means stop and cool.",
+    blogSlug: "hot-weather-running-hub",
+  },
+  {
+    slug: slugifyTipTitle("Carry ICE contact on night routes"),
+    icon: Shield,
+    illustration: "cold",
+    category: "Safety",
+    title: "Carry ICE contact on night routes",
+    content:
+      "Before dark loops, put an ICE (in case of emergency) contact in your phone and on a written card or shoe tag. Add a photo ID if you can. Bright layers and one earbud out still matter — identity and a callable person matter when something goes wrong.",
+    blogSlug: "night-running-safety",
   },
 ];
 

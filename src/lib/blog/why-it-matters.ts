@@ -272,6 +272,32 @@ export const whyItMattersBySlug: Record<string, string> = {
     "The better run is the one that happens. The belt is weather and safety; the path is the race you signed up for. Beginners need both, not a purity contest.",
   "how-long-to-wait-after-eating-to-run":
     "Side stitches and sloshy guts are often a timing problem, not a fitness problem. A usable meal-and-snack window keeps the first ten minutes from becoming the whole story.",
+  "ankle-sprain-return-to-run":
+    "Endless ice and total rest are outdated for many mild sprains. PEACE & LOVE plus balance work is how beginners return without the re-sprain loop.",
+  "piriformis-deep-gluteal-pain-runners":
+    "Deep butt pain after sitting and hills is usually a load and hip-stability problem. Stretching harder rarely beats cutting hills and building glute strength.",
+  "race-fueling-gels-carb-load-beginners":
+    "Most race guts fail because race day was the first gel experiment. Practice carbs on long runs — or hit the wall with a nervous stomach.",
+  "orthotics-when-runners-need-them":
+    "Inserts rearrange load; they do not forgive a mileage spike. Fit the shoe first, trial simple support, then see a pro if pain persists.",
+  "metatarsalgia-running":
+    "Ball-of-foot pain has several owners. Narrow toe boxes and sudden speed light it up — and not every burn is Morton's neuroma.",
+  "tempo-vs-intervals-vs-fartlek-beginners":
+    "Beginners collect workout names like trading cards. One hard session flavor per week beats stacking tempo, intervals, and fartlek together.",
+  "first-parkrun-community-5k":
+    "Parkrun removes entry-fee anxiety and gives a weekly dress rehearsal. Walk-run is welcome; purity tests are not.",
+  "dns-dnf-stopping-a-race":
+    "DNS and DNF are risk management, not moral failure. Finishing injured for a medal photo is how beginners earn months off.",
+  "road-to-trail-first-trail-5k":
+    "Trail isn't road but prettier. Slower pace, shorter strides, and hike-the-steeps keep ankles intact on the first dirt 5K.",
+  "pilates-for-runners":
+    "Pilates builds control between easy days. It is not a magic injury shield and does not replace progressive strength.",
+  "compression-socks-runners":
+    "Compression can feel good after long runs and on flights. It is not a free speed upgrade or a shin-splint cure.",
+  "hip-bursitis-gluteal-tendinopathy-runners":
+    "Outer-hip pain that hates side-sleeping is often tendon load mislabeled as bursitis. Strength and flatter routes beat aggressive stretching.",
+  "creatine-protein-masters-runners":
+    "Masters beginners lose muscle when under-fueled. Food and strength first; creatine is an optional, clinician-aware add-on — not a personality.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

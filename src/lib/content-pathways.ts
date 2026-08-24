@@ -252,6 +252,76 @@ const tipPathways: Record<string, PathwayLink[]> = {
       detail: "Fueling, load, and when to get imaging.",
     },
   ],
+  "twisted-ankle-protect-then-load-dont-ice-forever": [
+    {
+      kind: "blog",
+      href: "/blog/ankle-sprain-return-to-run",
+      label: "Ankle sprain return-to-run",
+      detail: "PEACE & LOVE, balance, and when to jog.",
+    },
+    {
+      kind: "injury",
+      href: "/injuries",
+      label: "Injury hub",
+      detail: "When pain means stop and get help.",
+    },
+  ],
+  "practice-the-gel-on-a-long-run-never-race-day": [
+    {
+      kind: "blog",
+      href: "/blog/race-fueling-gels-carb-load-beginners",
+      label: "Gels & carb-load guide",
+      detail: "Practice before race morning.",
+    },
+    {
+      kind: "blog",
+      href: "/blog/runners-gi-distress",
+      label: "Runner's gut",
+      detail: "When fueling goes sideways.",
+    },
+  ],
+  "parkrun-is-free-treat-it-like-a-dress-rehearsal": [
+    {
+      kind: "blog",
+      href: "/blog/first-parkrun-community-5k",
+      label: "First Parkrun guide",
+      detail: "Register, start easy, thank volunteers.",
+    },
+    {
+      kind: "blog",
+      href: "/blog/finding-running-community",
+      label: "Find running people",
+      detail: "Low-pressure groups beyond race day.",
+    },
+  ],
+  "heat-day-hard-work-is-optional": [
+    {
+      kind: "blog",
+      href: "/blog/hot-weather-running-hub",
+      label: "Hot-weather hub",
+      detail: "Heat illness signs and safer swaps.",
+    },
+    {
+      kind: "tip",
+      href: "/tips/bad-weather",
+      label: "Bad-weather tips",
+      detail: "Indoor and weather alternatives.",
+    },
+  ],
+  "carry-ice-contact-on-night-routes": [
+    {
+      kind: "blog",
+      href: "/blog/night-running-safety",
+      label: "Night running safety",
+      detail: "Visibility, routes, and awareness.",
+    },
+    {
+      kind: "blog",
+      href: "/blog/headphones-safety-running",
+      label: "Headphones safety",
+      detail: "Keep one ear for the world.",
+    },
+  ],
 };
 
 const blogPathways: Record<string, PathwayLink[]> = {

@@ -1004,4 +1004,24 @@ export const SOURCES = {
     href: "https://my.clevelandclinic.org/health/diseases/22183-delayed-onset-muscle-soreness-doms",
     publisher: "Cleveland Clinic",
   },
+  ankleSprainMayo: {
+    label: "Sprained ankle — diagnosis & treatment",
+    href: "https://www.mayoclinic.org/diseases-conditions/sprained-ankle/diagnosis-treatment/drc-20376449",
+    publisher: "Mayo Clinic",
+  },
+  piriformisCleveland: {
+    label: "Piriformis syndrome",
+    href: "https://my.clevelandclinic.org/health/diseases/22453-piriformis-syndrome",
+    publisher: "Cleveland Clinic",
+  },
+  trochantericBursitisMayo: {
+    label: "Trochanteric bursitis / hip bursitis — symptoms & causes",
+    href: "https://www.mayoclinic.org/diseases-conditions/bursitis/symptoms-causes/syc-20353242",
+    publisher: "Mayo Clinic",
+  },
+  creatineNIH: {
+    label: "Creatine — dietary supplement fact sheet",
+    href: "https://ods.od.nih.gov/factsheets/Creatine-HealthProfessional/",
+    publisher: "NIH Office of Dietary Supplements",
+  },
 } satisfies Record<string, BlogSource>;

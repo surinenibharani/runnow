@@ -737,6 +737,84 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "snack before morning run beginner",
     "running after breakfast how long",
   ],
+  "ankle-sprain-return-to-run": [
+    "ankle sprain return to running",
+    "PEACE LOVE ankle sprain runners",
+    "when can I run after sprained ankle",
+    "ankle sprain rehab beginners",
+  ],
+  "piriformis-deep-gluteal-pain-runners": [
+    "piriformis syndrome runners",
+    "deep gluteal pain running",
+    "butt pain while running beginner",
+    "piriformis vs sciatica running",
+  ],
+  "race-fueling-gels-carb-load-beginners": [
+    "running gels for beginners",
+    "carb load before half marathon",
+    "when to take gel during race",
+    "practice race fueling long run",
+  ],
+  "orthotics-when-runners-need-them": [
+    "do runners need orthotics",
+    "running shoe inserts beginners",
+    "custom orthotics for running",
+    "OTC insoles plantar fasciitis",
+  ],
+  "metatarsalgia-running": [
+    "metatarsalgia running",
+    "ball of foot pain running",
+    "forefoot pain runners",
+    "metatarsalgia vs mortons neuroma",
+  ],
+  "tempo-vs-intervals-vs-fartlek-beginners": [
+    "tempo vs intervals running",
+    "fartlek for beginners",
+    "what is a tempo run beginner",
+    "interval training after 5k",
+  ],
+  "first-parkrun-community-5k": [
+    "first parkrun beginner",
+    "what to expect at parkrun",
+    "parkrun walk run",
+    "free community 5k",
+  ],
+  "dns-dnf-stopping-a-race": [
+    "DNS DNF running meaning",
+    "is it ok to DNF a race",
+    "when to stop mid race",
+    "did not finish marathon shame",
+  ],
+  "road-to-trail-first-trail-5k": [
+    "first trail 5k beginner",
+    "road runner first trail race",
+    "trail running tips beginners",
+    "do I need trail shoes for 5k",
+  ],
+  "pilates-for-runners": [
+    "pilates for runners beginners",
+    "does pilates help running",
+    "pilates vs strength training runners",
+    "15 minute pilates runners",
+  ],
+  "compression-socks-runners": [
+    "compression socks for running",
+    "do compression socks help recovery",
+    "compression socks shin splints myth",
+    "when to wear compression socks",
+  ],
+  "hip-bursitis-gluteal-tendinopathy-runners": [
+    "hip bursitis running",
+    "gluteal tendinopathy runners",
+    "outer hip pain running",
+    "trochanteric pain runners",
+  ],
+  "creatine-protein-masters-runners": [
+    "creatine for masters runners",
+    "protein for runners over 50",
+    "should runners take creatine",
+    "creatine running beginners",
+  ],
 };
 
 export function blogPostKeywords(slug: string, category: string): string[] {
