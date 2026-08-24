@@ -18,6 +18,7 @@ export type CommonInjury = {
   seeSpecialist: string[];
   /** Authoritative medical reference for this condition. */
   learnMore?: { label: string; href: string; publisher: string };
+  additionalLearnMore?: { label: string; href: string; publisher: string }[];
   /** Deep-dive blog guide on LetsRunNow. */
   relatedBlog?: { label: string; href: string };
 };
@@ -38,12 +39,12 @@ export const commonInjuries: CommonInjury[] = [
     ],
     fix: [
       "Rest or cross-train (bike, swim) for 1–2 weeks",
-      "Short bouts of ice (10–15 min) may soothe soreness, but gentle movement and load progression matter more for recovery",
+      "Follow PEACE & LOVE principles: protect early, then gradual load — icing alone won't fix overload",
       "Gentle calf stretches and foam rolling",
       "Return with walk-run intervals before full running",
     ],
     seeSpecialist: [
-      "Pain lasts more than 2–3 weeks despite rest and icing",
+      "Pain lasts more than 2–3 weeks despite rest and load management",
       "Pain is on one specific spot (not a diffuse strip) — could signal a stress fracture",
       "Swelling, redness, or warmth along the shin",
       "You can't walk without limping",
@@ -53,6 +54,13 @@ export const commonInjuries: CommonInjury[] = [
       href: "https://www.mayoclinic.org/diseases-conditions/shin-splints/symptoms-causes/syc-20354105",
       publisher: "Mayo Clinic",
     },
+    additionalLearnMore: [
+      {
+        label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
+        href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
+        publisher: "British Journal of Sports Medicine blog",
+      },
+    ],
     relatedBlog: {
       label: "Shin splints deep dive for runners",
       href: "/blog/shin-splints-running",
@@ -73,7 +81,7 @@ export const commonInjuries: CommonInjury[] = [
     ],
     fix: [
       "Reduce mileage and avoid hills until pain subsides",
-      "Ice may soothe a hot spot briefly, but don't rely on it alone — load management and strength work drive recovery",
+      "PEACE & LOVE over routine icing: load management and strength work drive recovery",
       "Exercises: clamshells, side-lying leg lifts, wall sits",
       "Gradually rebuild volume once pain-free on stairs and easy walks",
     ],
@@ -88,6 +96,13 @@ export const commonInjuries: CommonInjury[] = [
       href: "https://www.mayoclinic.org/diseases-conditions/patellofemoral-pain-syndrome/symptoms-causes/syc-20350792",
       publisher: "Mayo Clinic",
     },
+    additionalLearnMore: [
+      {
+        label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
+        href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
+        publisher: "British Journal of Sports Medicine blog",
+      },
+    ],
     relatedBlog: {
       label: "Runner's knee deep dive",
       href: "/blog/runners-knee-running",
@@ -107,7 +122,7 @@ export const commonInjuries: CommonInjury[] = [
       "Build long runs gradually — IT band issues often follow volume spikes",
     ],
     fix: [
-      "Rest from running; use cycling or swimming to maintain fitness",
+      "Reduce mileage and load — protect the irritated tissue early (PEACE & LOVE)",
       "Foam roll glutes and outer thigh (not directly on the IT band — it's not meant to be rolled aggressively)",
       "Strengthen gluteus medius: side steps with band, single-leg deadlifts",
       "Return slowly with flat routes before hills",
@@ -123,6 +138,13 @@ export const commonInjuries: CommonInjury[] = [
       href: "https://my.clevelandclinic.org/health/diseases/21967-iliotibial-band-syndrome",
       publisher: "Cleveland Clinic",
     },
+    additionalLearnMore: [
+      {
+        label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
+        href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
+        publisher: "British Journal of Sports Medicine blog",
+      },
+    ],
     relatedBlog: {
       label: "IT band syndrome deep dive",
       href: "/blog/it-band-syndrome-running",
@@ -142,9 +164,9 @@ export const commonInjuries: CommonInjury[] = [
       "Avoid jumping into speed work on a weak base",
     ],
     fix: [
-      "Roll a frozen water bottle under your foot for 5–10 min",
+      "Protect painful steps early, then load gradually — brief cold comfort is optional, not the main plan (PEACE & LOVE)",
       "Towel scrunches and calf stretches (wall stretch, 30 sec each side)",
-      "Night splints or supportive insoles can help some runners",
+      "Night splints or supportive insoles can help some runners after a shoe check",
       "Recovery takes weeks to months — patience beats pushing through",
     ],
     seeSpecialist: [
@@ -158,6 +180,13 @@ export const commonInjuries: CommonInjury[] = [
       href: "https://www.mayoclinic.org/diseases-conditions/plantar-fasciitis/symptoms-causes/syc-20354846",
       publisher: "Mayo Clinic",
     },
+    additionalLearnMore: [
+      {
+        label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
+        href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
+        publisher: "British Journal of Sports Medicine blog",
+      },
+    ],
     relatedBlog: {
       label: "Plantar fasciitis deep dive",
       href: "/blog/plantar-fasciitis-running",
@@ -180,7 +209,7 @@ export const commonInjuries: CommonInjury[] = [
       "Stop running if pain is sharp — Achilles tears are serious",
       "Progress loading carefully: air skipping → heel raises → eccentric heel lowers (see the deep-dive post)",
       "Eccentric heel lowers off a step only after lighter phases stay calm — 3 sets of ~15, slow lower, as tolerated",
-      "Reduce hills and speed until walking is pain-free for a week; ice only for short comfort if needed",
+      "PEACE & LOVE over routine icing: protect early, then progressive loading beats endless rest",
       "Return with flat, easy runs only after a pain-free week of walking and stable loading work",
     ],
     seeSpecialist: [
@@ -194,6 +223,13 @@ export const commonInjuries: CommonInjury[] = [
       href: "https://www.mayoclinic.org/diseases-conditions/achilles-tendinitis/symptoms-causes/syc-20369020",
       publisher: "Mayo Clinic",
     },
+    additionalLearnMore: [
+      {
+        label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
+        href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
+        publisher: "British Journal of Sports Medicine blog",
+      },
+    ],
     relatedBlog: {
       label: "Achilles tendinitis deep dive",
       href: "/blog/achilles-tendinitis-running",

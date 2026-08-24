@@ -10,6 +10,8 @@ import {
   Activity,
 } from "lucide-react";
 import { slugifyTipTitle, type TipIllustrationId } from "@/lib/tips/tips";
+import type { BlogSource } from "@/lib/blog/types";
+import { SOURCES } from "@/lib/blog/sources";
 
 export type SituationalTip = {
   slug: string;
@@ -19,6 +21,7 @@ export type SituationalTip = {
   title: string;
   tips: string[];
   caution: string;
+  learnMore?: BlogSource[];
 };
 
 export const situationalTips: SituationalTip[] = [
@@ -37,6 +40,10 @@ export const situationalTips: SituationalTip[] = [
     ],
     caution:
       "Pregnancy is highly individual. What felt fine last week may not be appropriate this week — follow medical guidance over any training plan.",
+    learnMore: [
+      SOURCES.acogPhysicalActivityPregnancy2020,
+      SOURCES.pregnancyExercise,
+    ],
   },
   {
     slug: slugifyTipTitle("Starting or continuing in your 50s and beyond"),
@@ -53,6 +60,10 @@ export const situationalTips: SituationalTip[] = [
     ],
     caution:
       "If you have not been active recently, or you have heart disease risk factors, ask your doctor before starting a new program.",
+    learnMore: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.strengthForRunners,
+    ],
   },
   {
     slug: slugifyTipTitle("Running safely in your 60s and beyond"),
@@ -69,6 +80,10 @@ export const situationalTips: SituationalTip[] = [
     ],
     caution:
       "Bone density, balance, and medications can change how your body responds to exercise. Medical clearance is wise before a new running routine.",
+    learnMore: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.exerciseWithOsteoporosis,
+    ],
   },
   {
     slug: slugifyTipTitle("Running with type 1 or type 2 diabetes"),
@@ -85,6 +100,7 @@ export const situationalTips: SituationalTip[] = [
     ],
     caution:
       "Do not run with very high or very low blood sugar. Your diabetes plan should override any generic training schedule.",
+    learnMore: [SOURCES.diabetesExercise, SOURCES.adaStandardsPhysicalActivity2025],
   },
   {
     slug: slugifyTipTitle("Running with asthma"),
@@ -101,6 +117,7 @@ export const situationalTips: SituationalTip[] = [
     ],
     caution:
       "Exercise-induced bronchospasm is manageable for many runners, but uncontrolled asthma needs medical treatment first.",
+    learnMore: [SOURCES.exerciseInducedAsthma],
   },
   {
     slug: slugifyTipTitle("Running with arthritis or chronic joint issues"),
@@ -117,6 +134,7 @@ export const situationalTips: SituationalTip[] = [
     ],
     caution:
       "Sharp pain, swelling, or locking joints need evaluation — do not run through structural injury symptoms.",
+    learnMore: [SOURCES.runningKneeOALo2018, SOURCES.runningKneeOADhillon2023],
   },
   {
     slug: slugifyTipTitle("Running with heart disease or hypertension"),
@@ -133,6 +151,7 @@ export const situationalTips: SituationalTip[] = [
     ],
     caution:
       "This is general education, not cardiac rehab. Follow your physician's exercise prescription if you have one.",
+    learnMore: [SOURCES.heartDiseaseExercise, SOURCES.ahaExerciseBloodPressure],
   },
   {
     slug: slugifyTipTitle("Running with low bone density"),
@@ -149,5 +168,6 @@ export const situationalTips: SituationalTip[] = [
     ],
     caution:
       "Vertebral or hip fracture history usually requires individualized guidance before returning to impact sports.",
+    learnMore: [SOURCES.exerciseWithOsteoporosis, SOURCES.osteoporosis],
   },
 ];

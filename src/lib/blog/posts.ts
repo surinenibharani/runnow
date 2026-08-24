@@ -1,6 +1,7 @@
 import type { BlogPost, BlogPostCardSummary } from "./types";
 import { SOURCES } from "./sources";
 import { getWhyItMatters } from "./why-it-matters";
+import { deriveHowToFromPost } from "./derive-how-to";
 import { isBlogPostVisible } from "./preview";
 import { isBlogPostPublishedAt } from "./publish-schedule";
 import { buildBlogCategories } from "./categories";
@@ -186,6 +187,23 @@ export const blogPosts: BlogPost[] = [
         },
       ],
     },
+    faq: [
+      {
+        question: "How long does it take to train for a first 5K?",
+        answer:
+          "Most beginners need 6–8 weeks with three runs per week. Choose 8 weeks if you're starting from mostly walking; 4–6 weeks only if you can already jog 15–20 minutes continuously.",
+      },
+      {
+        question: "How many days per week should I run for a 5K?",
+        answer:
+          "Three run days plus one cross-training day and at least one full rest day is the sweet spot for most first-timers. Four runs can wait until the habit feels automatic.",
+      },
+      {
+        question: "Do I need to taper before my first 5K?",
+        answer:
+          "Yes — cut volume by about 30% in the final week. Keep moving, but don't cram extra miles. Your legs should arrive fresh, not fried.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -243,6 +261,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "training-first-half-marathon",
+    metaTitle: "First Half Marathon Training Guide for Beginners",
     title: "Training for Your First Half Marathon (13.1 Miles)",
     excerpt:
       "Doubling down from 5K territory? Here's what changes when you train for 13.1 — mileage, pacing, and mindset.",
@@ -284,6 +303,23 @@ export const blogPosts: BlogPost[] = [
         },
       ],
     },
+    faq: [
+      {
+        question: "How long should a first half marathon training plan be?",
+        answer:
+          "12 weeks is the recommended default for most first-timers. Eight weeks works only if you've been running 3–4 times per week for months and can already do a 6-mile long run.",
+      },
+      {
+        question: "Can I train for a half marathon without running a 5K first?",
+        answer:
+          "You should comfortably run a 5K or jog 30 minutes before starting a half plan. If you can't yet, build that base first — jumping straight to 13.1 is how injuries start.",
+      },
+      {
+        question: "How should I pace my first half marathon?",
+        answer:
+          "Start slower than you think — miles 1–3 should feel almost too comfortable. Easy training runs stay conversational; long runs are 30–90 seconds per mile slower than 5K race pace.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -334,6 +370,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "training-first-full-marathon",
+    metaTitle: "First Marathon Training Guide for Beginners",
     title: "Training for Your First Full Marathon (26.2 Miles)",
     excerpt:
       "The marathon is a different beast. Here's what first-timers need to know about mileage, long runs, and surviving the taper.",
@@ -375,6 +412,23 @@ export const blogPosts: BlogPost[] = [
         },
       ],
     },
+    faq: [
+      {
+        question: "Should I run a half marathon before attempting a full marathon?",
+        answer:
+          "Most coaches recommend completing a half first — not because it's required, but because you've learned how your body handles higher mileage, fueling, and race-day pacing.",
+      },
+      {
+        question: "How long should my longest training run be for a marathon?",
+        answer:
+          "First-timers typically peak at 18–20 miles in training. You don't need to run 26 in training — volume plus race-day adrenaline carries you through the final miles.",
+      },
+      {
+        question: "Why does the marathon taper feel awful?",
+        answer:
+          "Cutting volume in the final 2–3 weeks makes legs feel heavy and brains scream that fitness is gone. You haven't lost it — trust the taper and don't cram in extra miles.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -821,6 +875,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "importance-of-cross-training",
+    metaTitle: "Cross-Training for Runners: Why It Belongs in Your Plan",
     title: "Why Cross-Training Belongs in Every Running Plan",
     excerpt:
       "Running more isn't always the answer. Here's how yoga, cycling, and strength work make you a better, healthier runner.",
@@ -833,6 +888,23 @@ export const blogPosts: BlogPost[] = [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.strengthForRunners,
       SOURCES.acsmExercisePrescription2009,
+    ],
+    faq: [
+      {
+        question: "What counts as cross-training for runners?",
+        answer:
+          "Intentional non-running exercise that supports fitness without extra impact — cycling, swimming, yoga, walking, or strength work. An 'easy jog' on a rest day is still a run, not cross-training.",
+      },
+      {
+        question: "How often should beginners cross-train?",
+        answer:
+          "One cross-training day per week fits most beginner plans. Pair it with the previous day's run type — yoga after a hard day, easy cycling after an easy run.",
+      },
+      {
+        question: "Can cross-training replace running?",
+        answer:
+          "It supports running but doesn't replace time on your feet. Impact tolerance, pacing, and race-specific fitness still come from running — use cross-training to stay consistent when joints or weather need a break.",
+      },
     ],
     sections: [
       {
@@ -934,6 +1006,23 @@ export const blogPosts: BlogPost[] = [
         },
       ],
     },
+    faq: [
+      {
+        question: "Should I run on a rest day if I feel good?",
+        answer:
+          "Usually no. Rest days are when adaptation happens — swapping them for extra miles is a classic beginner mistake that leads to injury or exhaustion.",
+      },
+      {
+        question: "What should I do on a rest day instead of running?",
+        answer:
+          "Sleep, hydrate, gentle walking, foam rolling, or light stretching are all fine. A full rest day means no structured workout — easy cross-training belongs on other days in your schedule.",
+      },
+      {
+        question: "When should I take an extra rest day?",
+        answer:
+          "When pain worsens during runs, you have fever or chest symptoms, you've had several nights of poor sleep, or you dread running in a way that wasn't there before — possible burnout or illness.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -986,6 +1075,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "nutrition-for-runners",
+    metaTitle: "Runner's Nutrition Guide: Before, During & After Runs",
     sources: [
       SOURCES.runningNutrition,
       SOURCES.hyponatremia,
@@ -1006,6 +1096,23 @@ export const blogPosts: BlogPost[] = [
       "training-first-half-marathon",
       "training-first-full-marathon",
       "running-myths-debunked",
+    ],
+    faq: [
+      {
+        question: "Do I need gels for a 5K?",
+        answer:
+          "Usually no. Water and a normal meal earlier are enough for most beginners running under 40 minutes. Practice fueling when runs stretch toward 75–90+ minutes or you're training for a half or longer.",
+      },
+      {
+        question: "What should I eat before a half marathon?",
+        answer:
+          "A carb-focused dinner the night before (pasta, rice, potatoes you've eaten before) and breakfast 2–3 hours before the start — oatmeal, toast, or your usual long-run meal. Never try new foods on race morning.",
+      },
+      {
+        question: "How much should I drink during a marathon?",
+        answer:
+          "Alternate water and sports drink at aid stations — small sips, don't chug. In hot marathons, drinking only water risks hyponatremia; practice your plan on long runs.",
+      },
     ],
     sections: [
       {
@@ -1419,6 +1526,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "race-day-tips",
+    metaTitle: "Race Day Tips for 5K, Half Marathon & Marathon",
     title: "Race Day: What to Do and What Not to Do (5K, Half & Marathon)",
     excerpt:
       "The right race-day habits can make or break months of training. Universal do's and don'ts — plus specific advice for 5K, half marathon, and full marathon.",
@@ -1469,6 +1577,23 @@ export const blogPosts: BlogPost[] = [
         },
       ],
     },
+    faq: [
+      {
+        question: "What should I not do on race day?",
+        answer:
+          "Don't wear new shoes or socks, try a new breakfast or gel, start too fast, or skip the warm-up. Race day is for executing habits you practiced in training — not experiments.",
+      },
+      {
+        question: "How early should I arrive before a race?",
+        answer:
+          "Arrive 60–90 minutes early for bigger races — bathroom lines, bag drop, and corral navigation take time. Pin your bib on the front of what you'll wear at the start.",
+      },
+      {
+        question: "Should I carb-load before a 5K?",
+        answer:
+          "No — a normal dinner and light breakfast are enough. Carb-loading is for events around 90+ minutes; stuffing yourself before a 5K often causes stomach issues.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -1644,6 +1769,23 @@ export const blogPosts: BlogPost[] = [
       SOURCES.anxietyDisorders,
       SOURCES.physicalActivityGuidelinesUS,
     ],
+    faq: [
+      {
+        question: "How do I push through the urge to stop on a run?",
+        answer:
+          "Use small goals — 'one more mailbox' or 'one more minute.' Most beginner urges to stop are mental fatigue, not physical limits. Slow down or walk briefly, then continue if your body feels okay.",
+      },
+      {
+        question: "Is it normal to feel bored while running?",
+        answer:
+          "Yes. Easy runs can feel monotonous — podcasts, music, varying routes, or running with a friend help. Some boredom also builds the mental toughness you'll need on long runs and race day.",
+      },
+      {
+        question: "When should I stop a run for mental reasons vs push through?",
+        answer:
+          "Push through mild mental fatigue and bad weather. Stop or walk for sharp pain, dizziness, chest pain, or pain that changes your gait — those are body signals, not mind games.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -1791,6 +1933,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "why-letsrunnow",
+    metaTitle: "Why LetsRunNow? Free Beginner Running Plans & Guides",
     title: "Why LetsRunNow?",
     excerpt:
       "Tired of overwhelming running apps? LetsRunNow is your one stop for couch-to-marathon plans, running tips, gear picks, injury guidance, and progress tracking — free and beginner-friendly.",
@@ -1805,6 +1948,23 @@ export const blogPosts: BlogPost[] = [
     ],
     sources: [
       SOURCES.physicalActivityGuidelinesUS,
+    ],
+    faq: [
+      {
+        question: "Is LetsRunNow really free?",
+        answer:
+          "Yes — no account required, no hidden paywalls, and no 'upgrade to continue' on training plans. The site is built for beginners who want a clear plan without app-store overwhelm.",
+      },
+      {
+        question: "Do I need a GPS watch to use LetsRunNow?",
+        answer:
+          "No. A phone clock or simple tracker is enough. LetsRunNow gives you the weekly schedule; how you log runs is up to you.",
+      },
+      {
+        question: "Who is LetsRunNow for?",
+        answer:
+          "People starting from zero or returning after a break — especially those who find big running apps intimidating. Walk-run intervals, rest days, and easy pacing are built in, not afterthoughts.",
+      },
     ],
     sections: [
       {
@@ -1943,6 +2103,23 @@ export const blogPosts: BlogPost[] = [
         },
       ],
     },
+    faq: [
+      {
+        question: "Why am I gasping for air when I start running?",
+        answer:
+          "You're almost certainly going too fast. Fix pace first — slow enough to speak in short sentences. Breathing usually follows when effort is honest.",
+      },
+      {
+        question: "Should I breathe through my nose or mouth while running?",
+        answer:
+          "Mouth breathing during exercise is normal and efficient — don't force nasal-only breathing on hard efforts. In cold, dry air, a buff over your mouth can help warm the air.",
+      },
+      {
+        question: "What breathing rhythm should beginners use?",
+        answer:
+          "Try inhaling for three foot strikes and exhaling for three (3:3) on easy runs. If you can't maintain a rhythm, slow down or walk until it returns.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -2000,6 +2177,23 @@ export const blogPosts: BlogPost[] = [
       "cold-weather-running-hub",
       "night-running-safety",
     ],
+    faq: [
+      {
+        question: "Is it safe to run in the rain?",
+        answer:
+          "Light rain is fine with a brimmed hat and thin water-resistant layer. Never run in thunderstorms, flooded paths, or when visibility is dangerously low.",
+      },
+      {
+        question: "When is it too hot to run outside?",
+        answer:
+          "During heat advisories, choose treadmill, indoor cross-training, or rest. On warm days, run early or near sunset, slow 30–90 seconds per mile, and carry water on sessions over 30 minutes.",
+      },
+      {
+        question: "Should I run when air quality is poor?",
+        answer:
+          "Check local AQI — above 150, move indoors. Wildfire smoke and hazardous air mean rest or filtered indoor cardio, not heroics outside.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -2053,6 +2247,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-with-health-conditions",
+    metaTitle: "Running With Health Conditions: When to Get Clearance",
     sources: [
       SOURCES.preParticipationScreening,
       SOURCES.pregnancyExercise,
@@ -2075,6 +2270,23 @@ export const blogPosts: BlogPost[] = [
       "avoiding-injuries",
       "what-to-do-on-rest-days",
       "running-over-50-beginners",
+    ],
+    faq: [
+      {
+        question: "Do I need a doctor's OK before starting to run?",
+        answer:
+          "If you haven't been active recently, have heart disease risk factors, diabetes, osteoporosis, or are pregnant, get medical clearance first. Most healthy adults can begin with walking safely.",
+      },
+      {
+        question: "Can I run with asthma or diabetes?",
+        answer:
+          "Often yes with a plan from your care team — but generic training schedules don't override medical guidance. See our [situation-specific tips](/tips/specific-situations) for condition-by-condition starting points.",
+      },
+      {
+        question: "Is running safe during pregnancy?",
+        answer:
+          "Many active people can keep running into the second trimester if they ran before pregnancy, but get OB clearance first and stop for pain, dizziness, contractions, or calf swelling.",
+      },
     ],
     sections: [
       {
@@ -2136,6 +2348,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "performance-goals-over-aesthetics",
+    metaTitle: "Performance Goals vs Aesthetics for Lasting Fitness",
     title: "Why Performance Goals Beat 'Looking Better' for Lasting Fitness",
     excerpt:
       "Chasing aesthetics alone can backfire. Performance goals — a faster 5K, a longer run, showing up on hard days — build motivation and confidence that last.",
@@ -2151,6 +2364,23 @@ export const blogPosts: BlogPost[] = [
     sources: [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.weightLoss,
+    ],
+    faq: [
+      {
+        question: "Should I focus on weight loss or running performance as a beginner?",
+        answer:
+          "Performance goals — finishing a 5K, showing up three times a week, running a mile without walking — tend to sustain motivation better than mirror-only metrics. Physical changes often follow as a byproduct.",
+      },
+      {
+        question: "What are good performance goals for new runners?",
+        answer:
+          "Specific, measurable targets work best: 'Run 5K without walking,' 'Complete three runs this week,' or 'Hold conversational pace for 20 minutes.' Track consistency and energy, not just the scale.",
+      },
+      {
+        question: "Can I still care about how I look while running?",
+        answer:
+          "Yes — aesthetic goals aren't forbidden. Layer performance goals alongside them so progress feels tangible even when the mirror moves slowly.",
+      },
     ],
     sections: [
       {
@@ -2338,6 +2568,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "why-walking-is-not-cheating",
+    metaTitle: "Walk-Run Method: Why Walking Is Not Cheating",
     title: "Why Walking Is Not Cheating — How the Walk-Run Method Builds Real Fitness",
     excerpt:
       "How the walk-run method builds real fitness — and why your ego is lying to you when it says walking doesn't count.",
@@ -2382,6 +2613,23 @@ export const blogPosts: BlogPost[] = [
         },
       ],
     },
+    faq: [
+      {
+        question: "Is walking during a run cheating?",
+        answer:
+          "No. Walk-run intervals are a proven on-ramp to aerobic fitness. Walking keeps effort in a zone where you can finish the session and show up again — that's smart training, not failure.",
+      },
+      {
+        question: "How do I progress from walk-run to continuous running?",
+        answer:
+          "Lengthen jog intervals slowly — e.g. 1 min jog / 2 min walk for two weeks, then 2/2, then 3/1. Only add continuous jogging when the current pattern feels boringly easy.",
+      },
+      {
+        question: "Should I walk on easy run days when I'm tired?",
+        answer:
+          "Yes — a brisk walk keeps your habit alive without digging a recovery hole. That's training like someone who plans to still be running six months from now.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -2429,6 +2677,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "what-to-do-when-you-miss-a-run",
+    metaTitle: "Missed a Run? How to Get Back on Track",
     title: "What to Do When You Miss a Run",
     excerpt:
       "Spoiler: don't quit. Here's how to get back on track without guilt — and without the 'make-up' mileage trap.",
@@ -2445,6 +2694,23 @@ export const blogPosts: BlogPost[] = [
     sources: [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.peaceAndLove,
+    ],
+    faq: [
+      {
+        question: "Should I make up a missed run?",
+        answer:
+          "No — don't double tomorrow's mileage or squeeze two runs into one day. Resume the next scheduled session as written. Make-up mileage is how beginners get shin splints.",
+      },
+      {
+        question: "Does missing one run ruin my training plan?",
+        answer:
+          "No. One missed run is a blip. Quitting because of one miss is the actual problem — and it's optional.",
+      },
+      {
+        question: "What if I missed a whole week of runs?",
+        answer:
+          "Don't restart at week one unless you were injured. Repeat the current week or drop back one week, then keep going. Consistency over perfection.",
+      },
     ],
     sections: [
       {
@@ -2509,6 +2775,23 @@ export const blogPosts: BlogPost[] = [
       SOURCES.heatSafety,
       SOURCES.physicalActivityGuidelinesUS,
     ],
+    faq: [
+      {
+        question: "What gear do beginners actually need to start running?",
+        answer:
+          "Running shoes that fit, moisture-wicking socks, and clothes you already own. A phone for timing works fine — skip expensive watches and gadgets until the habit sticks.",
+      },
+      {
+        question: "Can I start running in regular sneakers?",
+        answer:
+          "Dedicated running shoes protect joints better than fashion sneakers or old court shoes. Look for last-season models on clearance if budget is tight — comfort and toe-box room matter more than brand.",
+      },
+      {
+        question: "Do I need a running app?",
+        answer:
+          "A structured plan matters more than tracking tech. LetsRunNow gives you the schedule; Strava or any simple tracker (optional) helps log progress.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -2557,6 +2840,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "how-to-not-hate-hills",
+    metaTitle: "How to Run Hills Without Hating Them",
     title: "How to Not Hate Hills",
     excerpt:
       "Climbs don't have to wreck your mood or your pace. Posture, effort, and a few mental tricks make hills your secret strength session.",
@@ -2574,6 +2858,23 @@ export const blogPosts: BlogPost[] = [
       SOURCES.heartRateZones,
       SOURCES.acsmExercisePrescription2009,
       SOURCES.physicalActivityGuidelinesUS,
+    ],
+    faq: [
+      {
+        question: "Why do hills feel so hard when I run?",
+        answer:
+          "You're likely charging the bottom at flat-ground pace. Ease off at the base — aim for the same effort, not the same speed. Your pace will drop; that's correct.",
+      },
+      {
+        question: "Is it okay to walk uphill?",
+        answer:
+          "Yes — power-hiking steep sections is a legitimate strategy trail runners use on purpose. Walk with tall posture and brisk steps, then resume jogging when the grade eases.",
+      },
+      {
+        question: "How often should beginners train on hills?",
+        answer:
+          "Once a week, finish an easy run with a short uphill repeat or hilly loop at conversational effort. You're teaching your body hills are survivable — not racing every climb.",
+      },
     ],
     sections: [
       {
@@ -2727,6 +3028,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "what-to-wear-running",
+    metaTitle: "What to Wear for Running in Heat, Cold & Rain",
     title: "What to Wear for Running (Without Overthinking It)",
     excerpt:
       "You don't need a race kit on day one. Here's what to wear in heat, cold, and everything in between — plus what to skip.",
@@ -2743,6 +3045,49 @@ export const blogPosts: BlogPost[] = [
       SOURCES.heatSafety,
       SOURCES.physicalActivityGuidelinesUS,
     ],
+    faq: [
+      {
+        question: "What should I wear for my first run?",
+        answer:
+          "Running shoes that fit, moisture-wicking socks, and a top and bottoms that don't chafe. You don't need a race kit — comfort and visibility beat brand logos on day one.",
+      },
+      {
+        question: "Should I buy cold-weather gear before I start running?",
+        answer:
+          "Not necessarily. Start with what you have plus a light layer you can remove. Add gloves, tights, or a shell once you're running regularly in cooler temps — see our [cold-weather hub](/blog/cold-weather-running-hub) when winter arrives.",
+      },
+      {
+        question: "Is cotton OK for running?",
+        answer:
+          "Cotton socks and heavy cotton tops hold sweat and cause chafing or chill. Synthetic or merino fabrics feel better for most beginners, especially on runs longer than 20–30 minutes.",
+      },
+    ],
+    howTo: {
+      name: "How to dress for a beginner run",
+      description:
+        "Match fabric and layers to the weather without overbuying gear on week one.",
+      steps: [
+        {
+          name: "Start with shoes and socks",
+          text: "Proper running shoes and wicking socks matter more than any jacket.",
+          url: "/blog/choosing-running-shoes",
+        },
+        {
+          name: "Dress 10–15°F warmer than the thermometer",
+          text: "You'll heat up within 10 minutes — layers you can unzip beat one heavy cotton hoodie.",
+        },
+        {
+          name: "Add visibility in low light",
+          text: "Light colors or reflective details when running near traffic.",
+          url: "/blog/night-running-safety",
+        },
+        {
+          name: "Skip the gadget belt for now",
+          text: "Short beginner runs rarely need hydration packs or compression sleeves.",
+          url: "/blog/beginner-gear-guide-under-50",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -2851,6 +3196,23 @@ export const blogPosts: BlogPost[] = [
         },
       ],
     },
+    faq: [
+      {
+        question: "What should I do immediately after a run?",
+        answer:
+          "Walk 3–5 minutes to cool down, change out of damp clothes, and rehydrate. A balanced meal with carbs and protein within 1–2 hours supports recovery.",
+      },
+      {
+        question: "Is muscle soreness after running normal?",
+        answer:
+          "General leg stiffness 24–48 hours after a harder or longer run is normal. Sharp pain in one spot, pain that worsens during runs, or pain at rest needs assessment — not more miles.",
+      },
+      {
+        question: "Do I need an ice bath after running?",
+        answer:
+          "No — sleep, food, and easy days matter more for beginners. Brief icing may soothe an acute hot spot, but modern guidance (PEACE & LOVE) favors load management over routine icing.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -2912,6 +3274,8 @@ export const blogPosts: BlogPost[] = [
     sources: [
       SOURCES.runningNutrition,
       SOURCES.physicalActivityGuidelines,
+      SOURCES.nutritionAthleticPerformanceACSM2016,
+      SOURCES.redS,
     ],
     title: "Nutrition Basics for Beginners: What to Eat When You Start Running",
     excerpt:
@@ -2952,6 +3316,23 @@ export const blogPosts: BlogPost[] = [
         },
       ],
     },
+    faq: [
+      {
+        question: "Do beginners need to track macros to run?",
+        answer:
+          "No. Eat regular meals with carbs, protein, and healthy fats. Exact macro tracking, gels for short runs, and restrictive diets can wait until mileage grows.",
+      },
+      {
+        question: "What should I eat before a morning run?",
+        answer:
+          "A small familiar snack if hungry — banana, toast, or yogurt 30–60 minutes out. Short easy runs under 45 minutes rarely need special pre-run fuel beyond normal eating.",
+      },
+      {
+        question: "What are signs I'm under-fueling as a new runner?",
+        answer:
+          "Dizziness or heavy fatigue on easy runs, frequent stomach issues without clear cause, or (for women) lost or irregular periods while mileage increases — talk to a clinician.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -3013,6 +3394,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "bodyweight-strength-for-runners",
+    metaTitle: "Bodyweight Strength Routines for Runners",
     sources: [SOURCES.strengthForRunners, SOURCES.peaceAndLove],
     title: "Simple Bodyweight Strength Routines for Runners",
     excerpt:
@@ -3026,6 +3408,23 @@ export const blogPosts: BlogPost[] = [
       "avoiding-injuries",
       "how-to-not-hate-hills",
       "dumbbell-strength-at-home-for-runners",
+    ],
+    faq: [
+      {
+        question: "How often should runners do bodyweight strength?",
+        answer:
+          "Two 15–20 minute sessions per week on rest days or after easy runs is enough for most beginners. Same two days each week beats random 'when I remember.'",
+      },
+      {
+        question: "What bodyweight exercises help prevent running injuries?",
+        answer:
+          "Glute bridges, clamshells, calf raises, reverse lunges, and core work (planks, dead bugs) strengthen hips and legs that running alone doesn't fully load.",
+      },
+      {
+        question: "Should I do strength before or after a run?",
+        answer:
+          "After easy runs or on rest days — not right before intervals or long runs. If strength leaves you too sore for easy miles, reduce reps or skip a round.",
+      },
     ],
     sections: [
       {
@@ -3095,6 +3494,48 @@ export const blogPosts: BlogPost[] = [
       "how-to-pace-yourself",
       "first-run-tips",
     ],
+    faq: [
+      {
+        question: "Should beginners worry about running form?",
+        answer:
+          "A little — stand tall, don't overstride, and keep arms relaxed. You don't need a full biomechanics overhaul on week one. Small cues beat copying elite stride on Instagram.",
+      },
+      {
+        question: "Is heel striking bad?",
+        answer:
+          "Not automatically. Landing with your foot roughly under your hips matters more than whether the heel or midfoot touches first. Overstriding — reaching far in front — is the usual problem.",
+      },
+      {
+        question: "Should I aim for 180 steps per minute?",
+        answer:
+          "No single cadence fits everyone. If you overstride, a small increase in step rate (often 5–10%) with shorter steps can help. Count your easy pace for 30 seconds and double — nudge up only if it feels smoother.",
+      },
+    ],
+    howTo: {
+      name: "How to improve beginner running form",
+      description:
+        "Simple posture, foot placement, and cadence cues without overthinking every step.",
+      steps: [
+        {
+          name: "Stand tall with a slight forward lean",
+          text: "Look ahead 10–20 feet; lean from the ankles, not the waist.",
+        },
+        {
+          name: "Land under your hips",
+          text: "Shorter steps reduce overstriding and excess impact on knees and shins.",
+          url: "/blog/cadence-drills-runners",
+        },
+        {
+          name: "Relax arms and shoulders",
+          text: "Elbows near 90°; swing forward and back, not across your chest.",
+        },
+        {
+          name: "Nudge cadence only if you overstride",
+          text: "Quicker, quieter steps — not sprinting to hit a magic number.",
+          url: "/tips/nudge-cadence-dont-chase-180",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -3178,6 +3619,8 @@ export const blogPosts: BlogPost[] = [
       SOURCES.ironDeficiency,
       SOURCES.osteoporosis,
       SOURCES.pregnancyExercise,
+      SOURCES.acogPhysicalActivityPregnancy2020,
+      SOURCES.postpartumReturnToRunGoom2019,
     ],
     title: "A Beginner Running Guide for Women",
     metaTitle:
@@ -3217,7 +3660,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "When can I start running again after giving birth?",
         answer:
-          "Usually not before 6 weeks minimum — often 8–12+ depending on delivery type and clearance. You should walk 30–45 minutes comfortably and do basic core work without pain or bulging before run-walk. Always get provider clearance first.",
+          "There's no universal week number. Many clinicians discuss clearance around 6 weeks for uncomplicated vaginal births — longer after C-section or complications — but **clearance for exercise is not the same as ready to run**. The [Goom et al. postnatal return-to-running guideline (BJSM 2019)](https://doi.org/10.1136/bjsports-2019-081571) treats impact running as milestone-based — pelvic floor and abdominal recovery first, not a calendar green light. Build from walking and pelvic-floor–friendly strength; run-walk comes later when walking feels easy and red flags (leaking, heaviness, pain) are absent. Always follow your OB, midwife, or pelvic health clinician — see our [postpartum return guide](/blog/postpartum-return-to-run).",
       },
       {
         question: "Can running cause me to lose my period?",
@@ -3394,6 +3837,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Pregnancy and postpartum return",
         paragraphs: [
           "Many women run during pregnancy with medical clearance. Postpartum return needs more patience than your pre-baby Strava stats suggest — pelvic floor recovery often matters more than cardio fitness.",
+          "The [Goom et al. postnatal return-to-running framework](https://doi.org/10.1136/bjsports-2019-081571) (BJSM 2019) stresses that clearance at ~6 weeks is a conversation starter, not permission to resume pre-pregnancy mileage.",
           "In-pregnancy guide: [running during pregnancy](/blog/running-during-pregnancy). After birth: [postpartum return to run](/blog/postpartum-return-to-run).",
         ],
         subsections: [
@@ -3410,9 +3854,9 @@ export const blogPosts: BlogPost[] = [
             heading: "Postpartum timeline",
             list: [
               "**4–6 week check-up** — ask explicitly about return to impact, not just 'exercise'",
-              "**6–12+ weeks** — typical minimum before running; C-section often needs longer for core healing",
-              "Walk 30–45 minutes comfortably before run-walk intervals",
-              "Rebuild walk-run before continuous miles; hills and speed come later",
+              "**After clearance** — build from walking and pelvic-floor–friendly strength; run-walk often comes weeks later, not at the 6-week mark",
+              "C-section and complications often need longer before impact — follow your clinician, not a calendar",
+              "Walk 30–45 minutes comfortably before run-walk intervals; hills and speed come later",
               "Detailed guide: [pregnancy & postpartum injuries section](/injuries/for-women-runners#pregnancy-postpartum)",
             ],
           },
@@ -3873,6 +4317,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "dumbbell-strength-at-home-for-runners",
+    metaTitle: "At-Home Dumbbell Strength for Runners",
     title: "Basic Dumbbell Workouts at Home for Runners",
     excerpt:
       "One pair of dumbbells, two short sessions per week. Simple at-home lifts that build leg drive, posture, and injury resistance without a gym membership.",
@@ -3890,6 +4335,23 @@ export const blogPosts: BlogPost[] = [
       SOURCES.strengthForRunners,
       SOURCES.strengthTrainingRunningEconomy2016,
       SOURCES.preParticipationScreening,
+    ],
+    faq: [
+      {
+        question: "What dumbbell weight should runners start with?",
+        answer:
+          "Pick a weight where the last 2 reps of each set feel challenging but form stays clean. Many beginners use 8–15 lb for upper body and 15–25 lb for lower-body moves — adjustables are ideal.",
+      },
+      {
+        question: "How often should runners lift dumbbells at home?",
+        answer:
+          "Twice per week, 15–20 minutes per session, on rest days or after easy runs. Don't lift hard the day before intervals or a long run.",
+      },
+      {
+        question: "Do I need bodyweight strength before dumbbells?",
+        answer:
+          "Yes — if you can't hold a plank, lunge, or glute bridge with good form, start with [bodyweight strength for runners](/blog/bodyweight-strength-for-runners) for a few weeks first.",
+      },
     ],
     sections: [
       {
@@ -4549,6 +5011,23 @@ export const blogPosts: BlogPost[] = [
       SOURCES.exerciseInjuryPreventionLauersen2014,
       SOURCES.preParticipationScreening,
     ],
+    faq: [
+      {
+        question: "Who is advanced strength training for?",
+        answer:
+          "Runners logging 20+ miles/week with 8+ weeks of consistent bodyweight or dumbbell strength, good movement quality, and no current injury flare-up. Wait if you're in your first six months of running or returning from injury.",
+      },
+      {
+        question: "Will lifting weights make me too sore to run?",
+        answer:
+          "Not if you periodize correctly — place heavy leg days after easy runs or rest, leave 48–72 hours before key quality runs, and cut to one maintenance session during peak race weeks.",
+      },
+      {
+        question: "Does strength training improve running performance?",
+        answer:
+          "Yes — high-load strength and plyometrics in meta-analyses improve running economy and race performance without hurting aerobic capacity when properly programmed alongside your run plan.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -4697,6 +5176,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "running-vs-biking",
+    metaTitle: "Running vs Biking: Cross-Training for Beginners",
     title: "Running vs Biking: Why You Don't Have to Choose",
     excerpt:
       "Running builds impact tolerance and race-specific fitness. Cycling builds aerobic engine without pounding. Here's how to use both — especially as a beginner.",
@@ -4714,6 +5194,23 @@ export const blogPosts: BlogPost[] = [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.heartRateZones,
       SOURCES.acsmExercisePrescription2009,
+    ],
+    faq: [
+      {
+        question: "Can cycling replace running in a training plan?",
+        answer:
+          "Not entirely — impact tolerance, running economy, and race pacing come from time on your feet. Use cycling to support running when joints need a break, not to swap every session.",
+      },
+      {
+        question: "How hard should bike cross-training be?",
+        answer:
+          "Most bike cross-training should feel easy — conversational effort. Flat spinning beats hill repeats when legs are trashed from a long run.",
+      },
+      {
+        question: "How often should beginners cross-train on the bike?",
+        answer:
+          "One easy 30–40 minute ride per week fits many beginner schedules — e.g. Thursday easy spin between run days. Consistency matters more than equipment.",
+      },
     ],
     sections: [
       {
@@ -4813,6 +5310,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "hiking-instead-of-long-run",
+    metaTitle: "Can a Hard Hike Replace Your Long Run?",
     title: "Can a Hard Hike Replace Your Long Run?",
     excerpt:
       "A tough trail day can build endurance, hill strength, and time on your feet — but it isn't a perfect swap. Here's when hiking helps training and when to lace up instead.",
@@ -4831,6 +5329,23 @@ export const blogPosts: BlogPost[] = [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.peaceAndLove,
       SOURCES.shinSplints,
+    ],
+    faq: [
+      {
+        question: "Can a hike replace my long run?",
+        answer:
+          "Sometimes — a 2–3 hour moderate hike with hills can substitute for an easy long run early in a plan if your legs feel good the next day. It doesn't fully replace running-specific impact and pacing before a road race.",
+      },
+      {
+        question: "When should I not swap a long run for a hike?",
+        answer:
+          "Within 3–4 weeks of a goal race, if the hike leaves you too sore for scheduled runs, or if you've been skipping road long runs all month — consistency on your race surface matters.",
+      },
+      {
+        question: "What does hiking give runners that road running doesn't?",
+        answer:
+          "Hours on your feet, hill strength, lower impact for many people, and a mental reset — useful for base building and trail-specific goals, but not a perfect swap for road-race pacing practice.",
+      },
     ],
     sections: [
       {
@@ -4923,6 +5438,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "runner-etiquette-trails-roads-track",
+    metaTitle: "Runner's Etiquette: Roads, Trails & Track",
     title: "Runner's Etiquette: Roads, Trails (Paved & Dirt), and the Track",
     excerpt:
       "Where to run, who yields to whom, and how not to be That Runner — a practical guide to sharing roads, multi-use paths, singletrack, and track lanes.",
@@ -4942,6 +5458,23 @@ export const blogPosts: BlogPost[] = [
     ],
     sources: [
       SOURCES.physicalActivityGuidelinesUS,
+    ],
+    faq: [
+      {
+        question: "Which side should I pass other runners on?",
+        answer:
+          "Pass on the left when you can, and announce with 'On your left' or 'Behind you.' Stay to the right on multi-use paths — same idea as slow traffic on a road.",
+      },
+      {
+        question: "Should I run facing traffic or with traffic?",
+        answer:
+          "Use sidewalks when they exist. With no sidewalk, run facing traffic so you see what's coming. Make eye contact with drivers before crossing.",
+      },
+      {
+        question: "Can beginners run on a track?",
+        answer:
+          "Yes — outer lanes for warm-up and cool-down; lane 1 is for faster workout traffic. Look both ways before stepping on, run counterclockwise, and never stop suddenly on a curve.",
+      },
     ],
     sections: [
       {
@@ -5045,6 +5578,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "group-running-coach-and-pacer",
+    metaTitle: "Group Running: How to Follow Your Coach",
     title: "Group Running: How to Follow Your Coach",
     excerpt:
       "Club runs and couch-to-5K clinics work when you listen to the coach — effort, pace groups, and recovery are all part of the plan, not suggestions to negotiate on the fly.",
@@ -5061,6 +5595,23 @@ export const blogPosts: BlogPost[] = [
     sources: [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.acsmExercisePrescription2009,
+    ],
+    faq: [
+      {
+        question: "How do I pick the right pace group at a club run?",
+        answer:
+          "Choose the group you'll finish with, not the one that flatters your ego. Tell the coach if you're new or returning from injury — moving down a group for a day is training intelligence, not punishment.",
+      },
+      {
+        question: "What's the difference between a running coach and a workout pacer?",
+        answer:
+          "The coach owns the training block and sets each session's purpose. The workout pacer holds prescribed effort during one run so the group doesn't drift too fast on easy days or sandbag intervals.",
+      },
+      {
+        question: "Should I wear headphones at a coached group run?",
+        answer:
+          "Usually no — you need to hear the coach's briefing, traffic, and other runners. Leave headphones at home for coached sessions.",
+      },
     ],
     sections: [
       {
@@ -5193,6 +5744,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "mortons-neuroma-running",
+    metaTitle: "Morton's Neuroma for Runners: Symptoms & Treatment",
     sources: [
       SOURCES.mortonsNeuroma,
       SOURCES.mortonsShoeOrthoticsColo2020,
@@ -5217,6 +5769,23 @@ export const blogPosts: BlogPost[] = [
     ],
     closingQuestion:
       "Have wider shoes calmed your neuroma — or did symptoms creep back? What helped next?",
+    faq: [
+      {
+        question: "What does Morton's neuroma feel like when running?",
+        answer:
+          "Burning, tingling, or numbness in the ball of the foot — often between the third and fourth toes — like a pebble or folded sock when there isn't one. Pain often worsens in tight shoes toward the end of a run.",
+      },
+      {
+        question: "Can wider running shoes fix Morton's neuroma?",
+        answer:
+          "Often they help significantly — toes need room to splay, not overlap. Wide toe-box shoes are a powerful first lever, but symptoms can return with mileage spikes, worn-out pairs, or tighter everyday shoes.",
+      },
+      {
+        question: "When should I see a doctor for forefoot pain?",
+        answer:
+          "If pain lasts more than 1–2 weeks despite shoe changes and reduced volume, sharpens mid-run, causes numbness at rest, or you have diabetes — get a podiatrist or sports medicine exam.",
+      },
+    ],
     sections: [
       {
         paragraphs: [
@@ -5367,6 +5936,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "achilles-tendinitis-running",
+    metaTitle: "Achilles Tendinitis for Runners: Recovery Guide",
     sources: [
       SOURCES.achillesTendinitis,
       SOURCES.peaceAndLove,
@@ -5388,6 +5958,54 @@ export const blogPosts: BlogPost[] = [
       "mortons-neuroma-running",
       "why-super-shoes-not-for-everybody",
     ],
+    faq: [
+      {
+        question: "Can experienced runners get Achilles tendinitis?",
+        answer:
+          "Yes. Mileage spikes, stacked intensity, and worn or aggressive race shoes irritate tendons regardless of years on the road. Morning stiffness at the heel is a common early sign.",
+      },
+      {
+        question: "Should I stop running completely with Achilles pain?",
+        answer:
+          "Stop sharp or worsening pain and get evaluated for a pop or rupture. For mild tendinopathy, many clinicians reduce running while loading the calf–Achilles with a staged plan — rest alone often fails when you return.",
+      },
+      {
+        question: "What is the air skipping → heel raise → eccentric progression?",
+        answer:
+          "A common rehab ladder: gentle plyometric hops (air skipping), then flat heel raises, then slow eccentric heel lowers off a step — each phase only when the prior one stays symptom-stable. A physio should confirm staging for your tendon.",
+      },
+      {
+        question: "Can super shoes cause Achilles pain?",
+        answer:
+          "Some runners tolerate carbon-plated racers fine; others flare when geometry changes between model years. If a shoe repeatedly irritates the same tendon, retire it — rehab without removing the trigger is incomplete.",
+      },
+    ],
+    howTo: {
+      name: "How to rehab Achilles tendinitis as a runner",
+      description:
+        "Reduce irritative load, progress calf–Achilles strength in stages, then return to easy running — educational pattern, not a prescription.",
+      steps: [
+        {
+          name: "Cut the spike that caused it",
+          text: "Reduce mileage, hills, and speed until walking and mornings are calmer.",
+          url: "/blog/what-to-do-on-rest-days",
+        },
+        {
+          name: "Phase 1: Air skipping",
+          text: "Small soft hops on grass or a mat — stop if pain sharpens.",
+        },
+        {
+          name: "Phase 2: Flat heel raises",
+          text: "Slow controlled raises; no bounce until double-leg work stays quiet.",
+          url: "/blog/bodyweight-strength-for-runners",
+        },
+        {
+          name: "Phase 3: Eccentric heel lowers",
+          text: "Rise with both legs, lower slowly on the affected side — hardest phase, not day one.",
+          url: "/injuries/achilles-tendinitis",
+        },
+      ],
+    },
     sections: [
       {
         paragraphs: [
@@ -6408,6 +7026,23 @@ export const blogPosts: BlogPost[] = [
       "easy-runs-effort-heart-rate",
       "first-track-workout-beginners",
     ],
+    faq: [
+      {
+        question: "What's the difference between tempo runs and intervals?",
+        answer:
+          "Tempo runs are sustained 'comfortably hard' efforts that raise lactate threshold. Intervals are shorter hard segments with planned recovery that primarily improve VO₂max. Beginners usually need easy miles before either.",
+      },
+      {
+        question: "What is fartlek running?",
+        answer:
+          "Unstructured speed play — faster surges during an easy run using landmarks or feel instead of exact distances. It's a beginner-friendly bridge before formal track intervals.",
+      },
+      {
+        question: "When should beginners add hill or speed workouts?",
+        answer:
+          "After you can run easy for 20–30 minutes consistently and have finished a 5K or two. Start with gentle hills or fartlek on easy days — not all hard workout types in the same week.",
+      },
+    ],
     sections: [
       {
         id: "the-big-picture",
@@ -6587,9 +7222,13 @@ export const blogPosts: BlogPost[] = [
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {
-  return {
+  const enriched = {
     ...post,
     whyItMatters: post.whyItMatters ?? getWhyItMatters(post.slug),
+  };
+  return {
+    ...enriched,
+    howTo: enriched.howTo ?? deriveHowToFromPost(enriched),
   };
 }
 

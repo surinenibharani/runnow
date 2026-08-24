@@ -116,7 +116,7 @@ export function CommonInjuryCard({
             ))}
           </ul>
         </div>
-        {(injury.relatedBlog || injury.learnMore) && (
+        {(injury.relatedBlog || injury.learnMore || injury.additionalLearnMore) && (
           <div className="space-y-1.5 text-sm text-muted-foreground sm:ml-14">
             {injury.relatedBlog && (
               <p>
@@ -143,6 +143,20 @@ export function CommonInjuryCard({
                 <span className="text-xs">({injury.learnMore.publisher})</span>
               </p>
             )}
+            {injury.additionalLearnMore?.map((source) => (
+              <p key={source.href}>
+                Clinical reference:{" "}
+                <a
+                  href={source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary hover:underline"
+                >
+                  {source.label}
+                </a>{" "}
+                <span className="text-xs">({source.publisher})</span>
+              </p>
+            ))}
           </div>
         )}
         {showShare && (

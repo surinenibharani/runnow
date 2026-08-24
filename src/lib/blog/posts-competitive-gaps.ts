@@ -10,6 +10,158 @@ const AUTHOR = "B";
  */
 export const competitiveGapPosts: BlogPost[] = [
   {
+    slug: "running-apps-compared-beginner-plans",
+    metaTitle:
+      "Running Apps Compared: LetsRunNow vs NRC, Runna & Hal Higdon",
+    title:
+      "Running Apps Compared: LetsRunNow vs Nike Run Club, Runna & Hal Higdon",
+    excerpt:
+      "Nike Run Club, Runna, Hal Higdon, and LetsRunNow all promise to get you running — but they solve different problems. A fair beginner's guide to free vs paid, structure vs vibes, and when a couch-to-marathon plan actually fits.",
+    category: "Getting Started",
+    author: AUTHOR,
+    publishedAt: "2026-08-24",
+    readTime: "11 min",
+    relatedSlugs: [
+      "why-letsrunnow",
+      "none-to-run-gentle-beginners",
+      "never-ran-where-to-start",
+      "building-a-running-habit",
+      "training-first-5k",
+      "gps-watch-vs-no-watch",
+    ],
+    closingQuestion:
+      "Which app got you started — and what would you tell a friend who's still on the fence?",
+    sources: [
+      SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.preParticipationScreening,
+    ],
+    faq: [
+      {
+        question: "What is the best free running app for beginners?",
+        answer:
+          "It depends what you need. Nike Run Club is strong for guided audio runs and motivation. LetsRunNow is built around structured walk–run plans, injury guidance, and a free calendar — less flashy audio, more beginner curriculum. Hal Higdon publishes classic free PDF-style schedules if you want a printable plan without an app shell.",
+      },
+      {
+        question: "Is Runna worth paying for as a new runner?",
+        answer:
+          "Runna shines when you want personalized coaching, strength add-ons, and race-specific structure — and you're willing to pay monthly. Many absolute beginners do fine with a free walk–run plan first; paywalled coaching makes more sense once you've finished a 5K and know you'll keep showing up.",
+      },
+      {
+        question: "Can LetsRunNow replace Nike Run Club?",
+        answer:
+          "They overlap on having a phone app and plans, but differ in focus. NRC emphasizes guided runs and community challenges. LetsRunNow emphasizes free couch-to-distance plans, tips, injury hub, gear guides, and progress tracking without a subscription. Some runners use NRC for audio on easy days and a structured plan elsewhere — that's valid.",
+      },
+      {
+        question: "Are Hal Higdon plans still good for beginners?",
+        answer:
+          "Hal Higdon's Novice schedules are a running-institution baseline: clear weekly mileage, long-run progression, and decades of finishers. They assume you can read a table and self-manage effort — less hand-holding on pace, injury, or walk breaks than modern beginner-first apps. Great if you want simplicity; pair with easy-effort education so 'Novice' doesn't become 'race every workout.'",
+      },
+    ],
+    howTo: {
+      name: "How to pick a beginner running app",
+      description:
+        "Match the tool to your goal — free habit building, guided audio, paid coaching, or a classic printable plan.",
+      steps: [
+        {
+          name: "Name your actual goal",
+          text: "Couch to first 5K, first half marathon, or 'I just need someone in my ear'? Different apps win different jobs.",
+        },
+        {
+          name: "Decide free vs paid",
+          text: "Free plans (LetsRunNow, Higdon, much of NRC) cover most first-year needs. Paid coaching (Runna) adds personalization — budget for it only if you'll use it 3+ months.",
+        },
+        {
+          name: "Check walk–run and rest days",
+          text: "Beginner plans should include walk breaks and real rest — not seven hard days because the app gamifies streaks.",
+        },
+        {
+          name: "Trial one plan for four weeks",
+          text: "Switching apps every Sunday is its own failure mode. Pick one, protect three run days, reassess after a month.",
+        },
+      ],
+    },
+    sections: [
+      {
+        paragraphs: [
+          "Every running app screenshot promises transformation. Most beginners actually need **boring structure**: three protected run days, walk breaks allowed, rest that isn't guilt, and an injury filter before heroics.",
+          "This guide compares **LetsRunNow**, **Nike Run Club (NRC)**, **Runna**, and **Hal Higdon** — plus when **None to Run**-style ultra-gentle plans fit — without pretending one logo owns fitness. Pair with [why LetsRunNow exists](/blog/why-letsrunnow) and [never ran? where to start](/blog/never-ran-where-to-start).",
+          "**Educational only.** Heart disease, pregnancy, joint replacements, or recent illness need clinician clearance before any app plan.",
+        ],
+      },
+      {
+        id: "quick-compare",
+        heading: "Quick comparison (beginner lens)",
+        list: [
+          "**LetsRunNow** — Free walk–run plans (5K → marathon), tips, injuries, gear, calendar tracking; beginner curriculum over audio hype",
+          "**Nike Run Club** — Free guided runs, challenges, social energy; less couch-to-marathon hand-holding than dedicated plan apps",
+          "**Runna** — Paid personalized plans + strength; strong for racers who'll pay monthly after basics",
+          "**Hal Higdon** — Classic free/low-cost schedules; self-directed, assumes you manage easy effort",
+          "**None to Run (style)** — Ultra-gentle walking-first progression; see our [None to Run guide](/blog/none-to-run-gentle-beginners)",
+        ],
+      },
+      {
+        id: "letsrunnow",
+        heading: "LetsRunNow — free couch-to-marathon curriculum",
+        paragraphs: [
+          "LetsRunNow is built for the person who googled 'how to start running' at 11 p.m. and got fifty conflicting tabs. One site: [plans](/start), [tips](/tips), [injuries](/injuries), [gear](/gear), and progress — **no subscription** for the core training path.",
+          "Walk–run intervals, gentle 16-week options, and explicit [missed-run](/blog/what-to-do-when-you-miss-a-run) guidance match how real beginners actually behave. You won't get celebrity coach voiceovers; you do get articles linked to every weird Tuesday (side stitch, sports bra, lunch runs).",
+          "**Best for:** nervous first-timers who want structure + education in one free place.",
+          "**Tradeoff:** fewer gamified audio runs than NRC; less 1:1 coaching polish than Runna.",
+        ],
+      },
+      {
+        id: "nrc",
+        heading: "Nike Run Club — guided runs and motivation",
+        paragraphs: [
+          "NRC excels at **getting out the door**: guided easy runs, tempo sessions with cues, and the psychological boost of a big-brand app. Many runners keep NRC for audio even while following a written plan elsewhere.",
+          "For **absolute beginners**, the gap is often structure: which days to run, how walk breaks fit, what to do after a missed week, and where injury content lives. NRC can work if you pair it with a clear schedule — or if guided audio is the only thing that beats procrastination.",
+          "**Best for:** runners who need a voice in their ear and thrive on challenges.",
+          "**Tradeoff:** less integrated beginner curriculum than plan-first apps; easy to run too hard on 'guided' days if ego joins.",
+        ],
+      },
+      {
+        id: "runna",
+        heading: "Runna — paid coaching and race plans",
+        paragraphs: [
+          "Runna (and similar paid coaches) target runners who want **personalized progression**, strength sessions, and race-specific blocks — half and marathon plans with adjustments. Quality is real; so is the monthly bill.",
+          "If you've **never** finished a 5K, paying for marathon coaching on day one often overshoots tendon and bone adaptation timelines. A free 5K season first usually beats a subscription you abandon in February.",
+          "**Best for:** committed runners post-first-race who want coaching UX and will use strength add-ons.",
+          "**Tradeoff:** cost; beginners may not need personalization until habits exist.",
+        ],
+      },
+      {
+        id: "higdon",
+        heading: "Hal Higdon — the classic printable plan",
+        paragraphs: [
+          "Hal Higdon's Novice plans are the **spreadsheet of running**: week-by-week mileage, one long run, rest days you interpret yourself. Millions of finishers — minimal hand-holding.",
+          "Works when you already understand [easy effort](/blog/easy-runs-effort-heart-rate) and won't turn 'Intermediate' into daily racing. Pair with injury literacy — Higdon assumes you'll skip or swap when smart.",
+          "**Best for:** self-directed runners who want a proven table and minimal app friction.",
+          "**Tradeoff:** no integrated tips, injury hub, or adaptive missed-week logic inside the PDF.",
+        ],
+      },
+      {
+        id: "chooser",
+        heading: "Which should you pick?",
+        list: [
+          "**Never ran, anxious, want one free home base** → [Start on LetsRunNow](/start) or read [None to Run gentle path](/blog/none-to-run-gentle-beginners)",
+          "**Need audio to leave the house** → NRC guided runs + any written plan for structure",
+          "**Finished a 5K, will pay for coaching** → Runna or similar for next distance",
+          "**Like paper/table people** → Higdon Novice + LetsRunNow articles for everything Higdon doesn't say",
+          "**Still paralyzed** → [Beginner A–Z map](/blog/beginner-running-a-to-z) — pick one path for four weeks",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "The best app is the one you'll still use in week five — when motivation is gone and weather is rude. Free structure beats premium abandonment; guided audio beats no-shows; paid coaching beats guessing **only if** you'll show up to strength days too.",
+          "LetsRunNow exists for the free-structure camp. NRC, Runna, and Higdon all have honest roles — mix them if that's what your calendar needs, but **don't app-hop every Sunday**.",
+        ],
+        cta: { text: "Pick a free beginner plan", href: "/start" },
+      },
+    ],
+  },
+  {
     slug: "altitude-travel-race-running",
     metaTitle: "Running Destination Races at Altitude: Acclimation & Travel Tips",
     title:

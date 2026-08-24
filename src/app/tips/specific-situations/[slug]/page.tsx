@@ -125,6 +125,24 @@ export default async function SituationalTipDetailPage({ params }: PageProps) {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+            {tip.learnMore && tip.learnMore.length > 0 && (
+              <div className="mt-4 space-y-1.5 border-t border-border/60 pt-4 text-sm text-muted-foreground">
+                <p className="font-medium text-foreground">Authoritative references</p>
+                {tip.learnMore.map((source) => (
+                  <p key={source.href}>
+                    <a
+                      href={source.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-primary hover:underline"
+                    >
+                      {source.label}
+                    </a>{" "}
+                    <span className="text-xs">({source.publisher})</span>
+                  </p>
+                ))}
+              </div>
+            )}
           </TipDetailCard>
         </FadeIn>
 

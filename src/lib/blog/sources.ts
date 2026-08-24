@@ -1024,4 +1024,10 @@ export const SOURCES = {
     href: "https://ods.od.nih.gov/factsheets/Creatine-HealthProfessional/",
     publisher: "NIH Office of Dietary Supplements",
   },
+  postpartumReturnToRunGoom2019: {
+    label:
+      "Returning to running postnatal — guideline for medical, health and fitness professionals (Goom et al., BJSM 2019)",
+    href: "https://doi.org/10.1136/bjsports-2019-081571",
+    publisher: "British Journal of Sports Medicine",
+  },
 } satisfies Record<string, BlogSource>;

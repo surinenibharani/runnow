@@ -358,8 +358,8 @@ export const newsletterWeeklyTips: NewsletterTip[] = [
     "Injury prevention",
     "Ice is not a personality trait",
     "Ice is for acute bumps, not daily soreness",
-    "RICE helps fresh twists and swelling. Chronic tightness usually needs rest, gentle movement, and addressing load — not nightly ice packs.",
-    { href: "/injuries" }
+    "PEACE & LOVE beats old-school RICE for most soft-tissue niggles: protect and load-manage first. Brief icing may soothe an acute bump, but chronic tightness usually needs rest, gentle movement, and addressing load — not nightly ice packs.",
+    { blogSlug: "ankle-sprain-return-to-run" }
   ),
   tip(
     "Treadmill",

@@ -401,7 +401,7 @@ export const runnerTips: RunnerTip[] = [
     category: "Health",
     title: "Coming back after a cold — wait until fever-free",
     content:
-      "No fever, improving energy, and symptoms above the neck only is the usual green light for a gentle return — not a tempo. After COVID or any illness with chest symptoms, start easier than you think and stop for chest pain, undue breathlessness, or palpitations. Graduated return beats hero miles on half-healed lungs.",
+      "No fever and improving energy are prerequisites — not a tempo green light. A mild runny nose with no chest symptoms may allow very easy movement, but the 'above the neck' rule has limits: body aches, fatigue, COVID, asthma, or anything systemic means more rest. After COVID or chest symptoms, start easier than you think and stop for chest pain, undue breathlessness, or palpitations.",
     blogSlug: "return-to-run-after-illness",
   },
   {

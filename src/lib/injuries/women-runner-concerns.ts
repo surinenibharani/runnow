@@ -229,7 +229,7 @@ export const womenRunnerConcerns: WomenRunnerConcern[] = [
       {
         heading: "Postpartum timeline",
         items: [
-          "Minimum 6 weeks before any impact — often 8–12+ weeks depending on delivery type and healing",
+          "Clearance around 6 weeks (often longer after C-section) usually covers light activity — not automatic permission for impact running; many need 8–12+ weeks before run-walk feels safe",
           "Vaginal birth: pelvic floor assessment before high mileage; start with walking, then run-walk",
           "C-section: longer recovery for abdominal incision — core healing before speed or hills; ask when scar tissue is safe for impact",
           "A good rule of thumb: walk 30–45 minutes comfortably and do basic core exercises without pain or bulging before run-walk intervals",
@@ -264,6 +264,10 @@ export const womenRunnerConcerns: WomenRunnerConcern[] = [
     readMore: [
       { label: "Running during pregnancy", href: "/blog/running-during-pregnancy" },
       { label: "Postpartum return to run", href: "/blog/postpartum-return-to-run" },
+      {
+        label: "Goom et al. postnatal return-to-running guideline (BJSM 2019)",
+        href: "https://doi.org/10.1136/bjsports-2019-081571",
+      },
       { label: "Pregnancy & health conditions tips", href: "/tips/specific-situations" },
       { label: "Running with health conditions", href: "/blog/running-with-health-conditions" },
     ],

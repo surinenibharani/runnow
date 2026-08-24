@@ -30,6 +30,8 @@ export const remainingGapPosts: BlogPost[] = [
     closingQuestion:
       "If you've returned to running after birth — what do you wish someone had told you before week one?",
     sources: [
+      SOURCES.postpartumReturnToRunGoom2019,
+      SOURCES.acogPhysicalActivityPregnancy2020,
       SOURCES.exerciseAfterPregnancy,
       SOURCES.pregnancyExercise,
       SOURCES.preParticipationScreening,
@@ -64,6 +66,7 @@ export const remainingGapPosts: BlogPost[] = [
         heading: "Clearance is the starting line — not the finish",
         paragraphs: [
           "ACOG's guidance on [exercise after pregnancy](https://www.acog.org/womens-health/faqs/exercise-after-pregnancy) emphasizes gradual return and listening to your body. 'Cleared for exercise' usually means light activity is okay — not that impact running is automatic.",
+          "The [Goom et al. postnatal return-to-running framework](https://doi.org/10.1136/bjsports-2019-081571) (BJSM 2019) stresses pelvic floor and abdominal recovery milestones before impact — clearance at ~6 weeks is a conversation starter, not a green light to resume pre-pregnancy mileage.",
         ],
         list: [
           "Get explicit clearance for your birth type and complications",

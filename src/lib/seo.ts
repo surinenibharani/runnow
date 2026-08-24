@@ -82,6 +82,23 @@ export function articleJsonLd(post: BlogPost) {
       "@type": "WebPage",
       "@id": url,
     },
+    ...(post.sources?.length
+      ? {
+          isBasedOn: post.sources.map((source) => ({
+            "@type": "CreativeWork",
+            name: source.label,
+            url: source.href,
+            ...(source.publisher
+              ? {
+                  publisher: {
+                    "@type": "Organization",
+                    name: source.publisher,
+                  },
+                }
+              : {}),
+          })),
+        }
+      : {}),
   };
 }
 

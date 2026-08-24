@@ -32,6 +32,7 @@ export const aug23GapPosts: BlogPost[] = [
       SOURCES.peaceAndLove,
       SOURCES.ankleSprainMayo,
       SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.exercisePreventionRRIWu2024,
     ],
     faq: [
       {
@@ -48,6 +49,11 @@ export const aug23GapPosts: BlogPost[] = [
         question: "Why do ankles keep re-spraining?",
         answer:
           "Proprioception lags behind how 'fine' the ankle feels. Balance work for months after the sprain cuts re-injury risk more than another week of pure rest.",
+      },
+      {
+        question: "Do I need an X-ray after rolling my ankle?",
+        answer:
+          "Mayo Clinic and emergency guidelines use rules like Ottawa ankle criteria: inability to bear weight for several steps, bone tenderness at specific points, or a pop with severe pain often warrant imaging. When unsure, get it checked — DIY guessing on fractures is expensive.",
       },
     ],
     howTo: {
@@ -99,6 +105,27 @@ export const aug23GapPosts: BlogPost[] = [
           "First jog: short, flat, conversational — stop if gait changes",
         ],
         cta: { text: "Injury hub — when to get help", href: "/injuries" },
+      },
+      {
+        id: "grades",
+        heading: "Grade 1 vs 2 vs 3 (why calendars lie)",
+        list: [
+          "**Grade 1** — mild stretch, walk with a limp for a day or two, swelling modest",
+          "**Grade 2** — partial tear, more swelling/bruising, longer limp — don't copy a friend's 10-day return",
+          "**Grade 3** — complete tear or instability — clinician and often bracing/physio, not YouTube rehab",
+          "Feeling '80% better' at two weeks is not the same as ready for trails",
+        ],
+        paragraphs: [
+          "Mayo's sprained-ankle guidance emphasizes protection early, then rehabilitation — timelines vary by grade and your sport demands. Runners need stable hops, not just pain-free couch sitting.",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Protect the ankle when it's angry, load it when walking is calm, rebuild balance like homework, and earn trails last. PEACE & LOVE isn't anti-rest — it's anti-endless rest without loading.",
+        ],
+        cta: { text: "Twisted ankle tip", href: "/tips/twisted-ankle-protect-then-load-dont-ice-forever" },
       },
     ],
   },
@@ -209,6 +236,7 @@ export const aug23GapPosts: BlogPost[] = [
       SOURCES.nutritionAthleticPerformanceACSM2016,
       SOURCES.runningNutrition,
       SOURCES.marathonWallRapoport2010,
+      SOURCES.hyponatremia,
     ],
     faq: [
       {
@@ -225,6 +253,11 @@ export const aug23GapPosts: BlogPost[] = [
         question: "What is a beginner carb-load?",
         answer:
           "For events ~90+ minutes, shifting toward easier carbs for 1–3 days before the race while slightly tapering miles — not stuffing yourself until you feel sick. Mayo-style eating-and-exercise guidance still favors foods you already tolerate.",
+      },
+      {
+        question: "Can I drink only water on a long run with gels?",
+        answer:
+          "Pair gels with water — sticky carbs without fluid often upset the gut. Don't chug excessive water either; hyponatremia (overdrinking) is a real race-day risk on cool days when nerves spike.",
       },
     ],
     howTo: {
@@ -249,6 +282,7 @@ export const aug23GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical or dietetic advice.** Individual needs vary with health conditions, medications, and race distance. A registered dietitian or sports medicine clinician can personalize targets.",
           "The wall is partly math: glycogen is finite. Rapoport's modeling and decades of sports nutrition agree that **carbohydrate availability** decides late-race fate for longer events.",
           "Beginners skip the boring part — **practice**. Race day becomes the first time a gel hits a nervous stomach at mile 10. That is a gut experiment, not a fueling plan.",
         ],
@@ -264,6 +298,51 @@ export const aug23GapPosts: BlogPost[] = [
           "5K and short 10Ks rarely need mid-race carbs — don't overcomplicate",
         ],
         cta: { text: "Nutrition by run type", href: "/blog/nutrition-for-training-by-run-type" },
+      },
+      {
+        id: "carb-load",
+        heading: "A sane first carb-load (half / marathon)",
+        list: [
+          "Shift toward familiar carbs 1–3 days out — not a brand-new buffet",
+          "Slightly reduce fiber and fat if your gut is sensitive; keep foods you've trained on",
+          "Hydrate normally; don't chug liters you never practice with",
+          "Night-before meal: boring beats adventurous — see [GI distress](/blog/runners-gi-distress)",
+          "5K and 10K usually don't need a multi-day carb-load — don't overeat because the word 'marathon' is on your calendar",
+        ],
+        paragraphs: [
+          "ACSM and Burke-style sports nutrition guidance emphasizes **training the gut** and matching carb intake to event duration — not extreme depletion/reloading schemes unless a clinician directs you.",
+        ],
+      },
+      {
+        id: "by-distance",
+        heading: "Fuel by distance (beginner defaults)",
+        list: [
+          "**5K / short 10K** — normal meals + hydration; mid-race carbs usually unnecessary",
+          "**Long 10K / 15K** — optional small carb if >75 min; practice once in training",
+          "**Half marathon** — practice 30–60 g/hr on long runs; carb-load lightly 1–2 days out",
+          "**Marathon** — gut training is non-negotiable; carb-load familiar foods; never debut products race morning",
+        ],
+        paragraphs: [
+          "See [nutrition for training by run type](/blog/nutrition-for-training-by-run-type) for weekly habits — this section is race-week specifics.",
+        ],
+      },
+      {
+        id: "products",
+        heading: "Gels vs chews vs sports drink",
+        list: [
+          "Gels — fast, portable; need water; some stomachs hate texture",
+          "Chews — slower to eat; easier for nervous chewers; still need fluid",
+          "Diluted sports drink — steady carbs + sodium; harder to carry on long loops without a vest",
+          "Real food (dates, pretzels) — valid on training long runs if gut tolerates — practice still required",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Race fueling is a skill built on boring long runs, not a shopping cart the night before. One product, repeated practice, water paired, carb-load with foods you trust — then show up and execute.",
+        ],
+        cta: { text: "Hitting the wall guide", href: "/blog/hitting-the-wall-marathon" },
       },
     ],
   },
@@ -289,6 +368,7 @@ export const aug23GapPosts: BlogPost[] = [
     sources: [
       SOURCES.plantarFasciitis,
       SOURCES.mortonsNeuroma,
+      SOURCES.mortonsShoeOrthoticsColo2020,
       SOURCES.patellofemoralPain,
     ],
     faq: [
@@ -306,6 +386,11 @@ export const aug23GapPosts: BlogPost[] = [
         question: "When do I need custom orthotics?",
         answer:
           "Often after a clinician finds a clear mechanical issue, prior injury pattern, or when OTC options fail. Custom devices are not a personality upgrade.",
+      },
+      {
+        question: "Can orthotics fix Morton's neuroma?",
+        answer:
+          "Reviews of shoe modifications and orthotics for Morton's neuroma often show pressure relief helps some people — especially with wider toe boxes — but they are not a guaranteed cure. Burning between toes still deserves a podiatrist if it persists.",
       },
     ],
     howTo: {
@@ -330,6 +415,7 @@ export const aug23GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not podiatric or medical advice.** Persistent pain, neuroma-type burning, or stress-injury worry needs an in-person exam, not another mail-order insert.",
           "Inserts rearrange load. They do not forgive a 40% mileage jump. Beginners often buy orthotics because an ad promised knee salvation — then keep training like the insert erased physics.",
           "Start with **shoes that fit**, then treat inserts as an experiment with an exit plan.",
         ],
@@ -344,6 +430,40 @@ export const aug23GapPosts: BlogPost[] = [
           "Not: 'I pronate so I must buy motion control and custom plates on day one'",
         ],
         cta: { text: "Shoe fit guide", href: "/blog/choosing-running-shoes" },
+      },
+      {
+        id: "skip",
+        heading: "When inserts are the wrong first move",
+        list: [
+          "Pain that is pinpoint on bone or worsens at night — stress injury workup first",
+          "Sharp Achilles or calf pain with a pop history — not an insert problem",
+          "Bilateral knee pain after a huge mileage jump — load management beats hardware",
+          "Neuroma-style burning between toes — toe box and clinician assessment before pads",
+        ],
+        paragraphs: [
+          "OTC inserts are a **trial**, not a diagnosis. If the trial fails in 2–3 weeks of sane load, escalate to a podiatrist or sports physio.",
+        ],
+      },
+      {
+        id: "otc-vs-custom",
+        heading: "OTC vs custom — honest expectations",
+        list: [
+          "OTC — cheap experiment for mild fatigue or generic arch support; swap if they cause new pain",
+          "Heat-mold kiosk inserts — middle ground; still not a substitute for exam if pain is sharp",
+          "Custom — cast/scan after clinician assessment; better for structural issues, leg-length workups, post-surgical needs",
+          "Neither fixes a 50% mileage jump — load management remains the base layer",
+        ],
+        paragraphs: [
+          "Colò et al. and related foot-surgery reviews summarize orthotics and shoe mods as **pressure redistribution** tools — useful, not magical.",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Shoes first, sane load second, inserts third. If a $40 insole solves it, great. If not, a podiatrist beats buying six more pairs from the same ad funnel.",
+        ],
+        cta: { text: "Plantar fasciitis guide", href: "/blog/plantar-fasciitis-running" },
       },
     ],
   },
@@ -365,7 +485,12 @@ export const aug23GapPosts: BlogPost[] = [
       "stress-fracture-running",
     ],
     closingQuestion: "Was it shoes, speedwork, or a sudden long run that lit up the ball of your foot?",
-    sources: [SOURCES.mortonsNeuroma, SOURCES.plantarFasciitis, SOURCES.peaceAndLove],
+    sources: [
+      SOURCES.mortonsNeuroma,
+      SOURCES.plantarFasciitis,
+      SOURCES.peaceAndLove,
+      SOURCES.stressFracture,
+    ],
     faq: [
       {
         question: "Is metatarsalgia the same as Morton's neuroma?",
@@ -376,6 +501,16 @@ export const aug23GapPosts: BlogPost[] = [
         question: "Can I run through ball-of-foot pain?",
         answer:
           "Not if it sharpens mid-run or changes your gait. Cut intensity, widen the toe box, and get checked if pain is pinpoint on bone or night pain appears.",
+      },
+      {
+        question: "How is metatarsalgia different from a stress fracture?",
+        answer:
+          "Metatarsalgia is often diffuse forefoot ache from overload. Stress fractures tend toward pinpoint tenderness on one bone, pain at rest or night, and worsening with every step. Imaging clarifies — don't guess for weeks.",
+      },
+      {
+        question: "Do metatarsal pads help?",
+        answer:
+          "Sometimes — if a fitter or clinician places them correctly. Random pads from a drawer often miss the spot and can worsen pressure. Shoe width and load cuts come first.",
       },
     ],
     howTo: {
@@ -414,6 +549,40 @@ export const aug23GapPosts: BlogPost[] = [
           "Compare notes with [Morton's neuroma](/blog/mortons-neuroma-running) if toes buzz",
         ],
         cta: { text: "Morton's neuroma guide", href: "/blog/mortons-neuroma-running" },
+      },
+      {
+        id: "red-flags",
+        heading: "When ball-of-foot pain needs a clinician",
+        list: [
+          "Pinpoint pain on one metatarsal head that worsens with weight-bearing",
+          "Night pain or pain at rest — stress injury patterns need imaging, not another pad",
+          "Numbness or electric shocks between toes that don't improve with wider shoes",
+          "Swelling, bruising, or gait change that persists after 2–3 weeks of load cuts",
+        ],
+        paragraphs: [
+          "Metatarsalgia and neuroma overlap in symptoms. A podiatrist or sports medicine clinician can separate overload, nerve, and bone issues before you keep stacking miles.",
+        ],
+      },
+      {
+        id: "load",
+        heading: "Load changes that actually help",
+        list: [
+          "Cut speedwork and downhill repeats for 1–2 weeks",
+          "Rotate out stiff plated racers until easy flats stay quiet",
+          "Keep easy days truly easy — forefoot overload often follows 'junk miles'",
+          "Cross-train (bike, pool) if walking still hurts after shoe changes",
+        ],
+        paragraphs: [
+          "PEACE & LOVE applies to irritated soft tissue: protect early, then reload gradually — not hero miles on a bruised forefoot.",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Ball-of-foot pain is usually load + shoes, sometimes nerve, occasionally bone. Widen the box, flatten the week, escalate if pinpoint or night pain shows up.",
+        ],
+        cta: { text: "Stress fracture guide", href: "/blog/stress-fracture-running" },
       },
     ],
   },
@@ -613,6 +782,7 @@ export const aug23GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical or mental-health advice.** If stopping a race triggers shame, anxiety, or obsessive training thoughts, talk to someone you trust or a clinician.",
           "**DNS** = did not start. **DNF** = did not finish. Social media turns both into shame. Sports medicine turns both into **risk management**.",
           "Finishing injured so you can post a medal is how beginners earn stress fractures and months of bitterness.",
         ],
@@ -627,6 +797,19 @@ export const aug23GapPosts: BlogPost[] = [
           "Talk to someone if the shame spiral is bigger than the event — burnout posts exist for a reason",
         ],
         cta: { text: "Race-day nerves guide", href: "/blog/race-anxiety-nerves" },
+      },
+      {
+        id: "when-stop",
+        heading: "On-course signals to step off",
+        list: [
+          "Pain that sharpens mile over mile — not 'normal race hurt'",
+          "Heat illness signs: confusion, vomiting, stopped sweating, or dizziness that doesn't clear",
+          "Chest pressure, palpitations, or breathlessness out of proportion to pace",
+          "Gait change you can't fix — limping to the finish is a DNF with interest due later",
+        ],
+        paragraphs: [
+          "Volunteers and med tents exist for this. A DNF with a clear body reason beats a finisher photo and six weeks on the couch.",
+        ],
       },
     ],
   },
@@ -915,6 +1098,7 @@ export const aug23GapPosts: BlogPost[] = [
       SOURCES.creatineNIH,
       SOURCES.nutritionAthleticPerformanceACSM2016,
       SOURCES.runningNutrition,
+      SOURCES.redS,
     ],
     faq: [
       {
@@ -931,6 +1115,11 @@ export const aug23GapPosts: BlogPost[] = [
         question: "How much protein do masters runners need?",
         answer:
           "Athletes often benefit from higher protein than sedentary guidelines, spread across meals. Exact targets vary — food first, then discuss supplements with a professional if appetite is low.",
+      },
+      {
+        question: "Who should skip creatine without talking to a clinician?",
+        answer:
+          "Kidney disease, relevant medications, unexplained bloating with supplements, or pregnancy/breastfeeding — creatine is not a default add-on. NIH ODS lists interactions and cautions worth reading before buying tubs.",
       },
     ],
     howTo: {
@@ -968,7 +1157,41 @@ export const aug23GapPosts: BlogPost[] = [
           "Creatine only after the basics are boringly consistent",
           "Ignore 'dirty bulk for runners' social media",
         ],
+        paragraphs: [
+          "ACSM's nutrition for athletic performance position stand emphasizes adequate energy and protein for training adaptation — supplements sit on top of that base, not instead of it.",
+        ],
         cta: { text: "Running after 50", href: "/blog/running-over-50-beginners" },
+      },
+      {
+        id: "protein",
+        heading: "Protein timing without the bro-science",
+        list: [
+          "Spread protein across meals — one giant post-run shake rarely fixes a low-protein day",
+          "After hard or long sessions, include carbs + protein within a few hours if appetite allows",
+          "Masters runners often need more protein per meal than they assume — food first",
+          "RED-S and under-fueling erase strength gains — see [nutrition basics](/blog/nutrition-basics-for-beginners)",
+        ],
+      },
+      {
+        id: "creatine-dose",
+        heading: "Creatine — what NIH summaries actually say",
+        paragraphs: [
+          "NIH ODS describes creatine monohydrate as the most studied form, commonly used in **3–5 g/day** maintenance doses after optional loading phases in research settings. Running beginners rarely need loading drama — consistency matters more than megadosing day one.",
+        ],
+        list: [
+          "Buy monohydrate — other forms are marketing until your dietitian says otherwise",
+          "Mix with water; expect possible early water weight in muscle — not fat",
+          "Stop if GI upset persists — food timing and dose tweaks help some people",
+          "Creatine supports strength/power contexts more than easy 5K aerobic base",
+        ],
+      },
+      {
+        id: "bottom",
+        heading: "Bottom line",
+        paragraphs: [
+          "Masters runners lose muscle faster when under-fueled. Protein at meals + twice-weekly strength is the prescription; creatine is an optional footnote after clinician clearance and boring consistency.",
+        ],
+        cta: { text: "Bone health for masters", href: "/blog/bone-health-masters-runners" },
       },
     ],
   },

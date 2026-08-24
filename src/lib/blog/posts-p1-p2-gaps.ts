@@ -432,7 +432,7 @@ export const p1P2GapPosts: BlogPost[] = [
       {
         question: "When can I run again after a cold?",
         answer:
-          "A common pragmatic rule: no fever, and symptoms confined above the neck improving — then start very easy. Chest symptoms, fever, or feeling systemically ill mean more rest. When unsure, ask a clinician.",
+          "A common pragmatic rule used in sports medicine: no fever, symptoms improving, and only mild 'above the neck' complaints (e.g. runny nose) — then consider very easy movement. **This rule has limits:** chest congestion, body aches, fatigue, COVID, asthma, diabetes, or anything that feels systemic means more rest — not a jog to 'test it.' When unsure, ask a clinician.",
       },
       {
         question: "How long should a return take after mild COVID?",
@@ -469,8 +469,9 @@ export const p1P2GapPosts: BlogPost[] = [
         list: [
           "No fever — and ideally a stretch of fever-free time before hard efforts",
           "Systemic symptoms (body aches, heavy fatigue, chills) → keep resting",
-          "'Above the neck' mild symptoms that are improving → consider very easy movement only",
-          "Chest congestion, wheeze, or deep cough → delay running; walk if cleared",
+          "'Above the neck' mild symptoms that are improving → consider very easy movement only — not a hard session",
+          "The neck rule is a rough heuristic, not a clearance protocol — chest congestion, wheeze, deep cough, COVID, or chronic conditions need clinician judgment",
+          "Chest congestion, wheeze, or deep cough → delay running; walk only if cleared",
           "Medications that mask fever don't mean you're cleared to hammer",
         ],
         paragraphs: [

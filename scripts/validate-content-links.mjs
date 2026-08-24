@@ -85,15 +85,8 @@ gearSlugs.add("level-up");
 const tipSlugs = new Set();
 const tipsSrc = fs.readFileSync(path.join(root, "src/lib/tips/tips.ts"), "utf8");
 for (const m of tipsSrc.matchAll(/slug: "([^"]+)"/g)) tipSlugs.add(m[1]);
-for (const m of tipsSrc.matchAll(/slugifyTipTitle\("([^"]+)"\)/g)) {
-  tipSlugs.add(
-    m[1]
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-")
-      .trim()
-  );
+for (const m of tipsSrc.matchAll(/slugifyTipTitle\(\s*"([^"]+)"\s*\)/gs)) {
+  tipSlugs.add(slugifyTitle(m[1]));
 }
 
 function slugifyTitle(title) {
@@ -108,7 +101,7 @@ function slugifyTitle(title) {
 const weatherTipSlugs = new Set();
 const weatherSrc = fs.readFileSync(path.join(root, "src/lib/tips/weather.ts"), "utf8");
 for (const m of weatherSrc.matchAll(/slug: "([^"]+)"/g)) weatherTipSlugs.add(m[1]);
-for (const m of weatherSrc.matchAll(/slugifyTipTitle\("([^"]+)"\)/g)) {
+for (const m of weatherSrc.matchAll(/slugifyTipTitle\(\s*"([^"]+)"\s*\)/gs)) {
   weatherTipSlugs.add(slugifyTitle(m[1]));
 }
 
@@ -120,7 +113,7 @@ const situationalSrc = fs.readFileSync(
 for (const m of situationalSrc.matchAll(/slug: "([^"]+)"/g)) {
   situationalTipSlugs.add(m[1]);
 }
-for (const m of situationalSrc.matchAll(/slugifyTipTitle\("([^"]+)"\)/g)) {
+for (const m of situationalSrc.matchAll(/slugifyTipTitle\(\s*"([^"]+)"\s*\)/gs)) {
   situationalTipSlugs.add(slugifyTitle(m[1]));
 }
 
