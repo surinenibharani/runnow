@@ -54,8 +54,8 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
               Pick a distance and how many weeks you have, then add your age,
-              fitness level, and goal race date. Customize run days, rest day,
-              and long run day — workouts shift to fit your schedule.
+              fitness level, and goal race date. Only one distance is shown at a
+              time so you can choose a length without scrolling past the others.
             </p>
             <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
               You can also{" "}

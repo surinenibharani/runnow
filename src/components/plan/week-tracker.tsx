@@ -6,10 +6,8 @@ import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ChevronDown, Cloud, Flame, Moon, RotateCcw, Sparkles } from "lucide-react";
 import {
-  PLAN_FAMILIES,
   PLANS,
   DEFAULT_PLAN_ID,
-  getPlansForFamily,
   getTotalWorkouts,
   isStrengthSession,
   scheduleDayKindLabel,
@@ -675,35 +673,6 @@ export function WeekTracker({
     ]
   );
 
-  const handleFamilyChange = useCallback(
-    (id: string) => {
-      const recommendation = recommendPlanVariantId(id, planProfile);
-      const variants = getPlansForFamily(id);
-      const selected =
-        PLANS.find((p) => p.id === recommendation?.planId) ??
-        variants[variants.length - 1] ??
-        variants[0];
-      if (selected) {
-        setFamilyId(id);
-        setPlanId(selected.id);
-        setBasePlan(selected);
-        const nextPrefs = deriveSchedulePrefs(
-          schedulePrefs,
-          planProfile,
-          selected.runsPerWeek
-        );
-        setSchedulePrefs(nextPrefs);
-        syncPlanUrl(selected.id);
-        if (useRemote) {
-          void persistPlanSettings(selected.id, nextPrefs, planProfile, 1);
-        } else {
-          saveSchedulePreferences(nextPrefs);
-        }
-      }
-    },
-    [useRemote, schedulePrefs, planProfile, persistPlanSettings, syncPlanUrl]
-  );
-
   const handleVariantChange = useCallback(
     (id: string) => {
       applyPlanSelection(id, { resetWeek: false });
@@ -976,95 +945,25 @@ export function WeekTracker({
         </p>
       )}
 
-      {lockToPlan ? (
-        <div className="overflow-hidden rounded-xl border border-border/60">
-          <PlanFamilyIllustration
-            familyId={familyId}
-            familyName={basePlan.name}
-            decorative
-          />
-          <div className="bg-muted/20 p-4 sm:p-5">
-            <h2 className="text-lg font-semibold">{basePlan.name}</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {basePlan.description}
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <Badge variant="outline">{basePlan.duration}</Badge>
-              <Badge variant="outline">
-                {basePlan.runsPerWeek} runs / week
-              </Badge>
-            </div>
+      <div className="overflow-hidden rounded-xl border border-border/60">
+        <PlanFamilyIllustration
+          familyId={familyId}
+          familyName={basePlan.name}
+          decorative
+        />
+        <div className="bg-muted/20 p-4 sm:p-5">
+          <h2 className="text-lg font-semibold">{basePlan.name}</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {basePlan.description}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Badge variant="outline">{basePlan.duration}</Badge>
+            <Badge variant="outline">
+              {basePlan.runsPerWeek} runs / week
+            </Badge>
           </div>
         </div>
-      ) : (
-      <Tabs value={familyId} onValueChange={handleFamilyChange}>
-        <TabsList
-          className="grid w-full grid-cols-1 gap-1 bg-muted/50 p-1 min-[480px]:grid-cols-3 sm:flex sm:h-auto sm:flex-row"
-          aria-label="Training plan distance"
-        >
-          {PLAN_FAMILIES.map((f) => (
-            <TabsTrigger
-              key={f.id}
-              value={f.id}
-              className="flex-1 data-active:bg-background py-2.5"
-            >
-              {f.shortName}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-
-        {PLAN_FAMILIES.map((f) => {
-          const familyVariants = getPlansForFamily(f.id);
-          const displayPlan =
-            f.id === familyId
-              ? basePlan
-              : familyVariants[familyVariants.length - 1] ?? familyVariants[0];
-
-          return (
-          <TabsContent key={f.id} value={f.id} className="mt-6 space-y-4">
-            <div className="overflow-hidden rounded-xl border border-border/60">
-              <PlanFamilyIllustration familyId={f.id} familyName={f.name} decorative />
-              <div className="bg-muted/20 p-4 sm:p-5">
-                <h2 className="text-lg font-semibold">{f.name}</h2>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {displayPlan?.description}
-                </p>
-                <Badge variant="outline" className="mt-3">
-                  {f.prerequisite}
-                </Badge>
-              </div>
-            </div>
-
-            <div role="group" aria-labelledby={`${f.id}-duration-label`}>
-              <p id={`${f.id}-duration-label`} className="text-sm font-medium mb-2">
-                Choose duration
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {getPlansForFamily(f.id).map((variant) => {
-                  const selected = planId === variant.id;
-                  return (
-                  <Button
-                    key={variant.id}
-                    variant={selected ? "default" : "outline"}
-                    size="sm"
-                    aria-pressed={selected}
-                    aria-label={`${variant.duration} week plan`}
-                    onClick={() => {
-                      setFamilyId(f.id);
-                      handleVariantChange(variant.id);
-                    }}
-                  >
-                    {variant.duration}
-                  </Button>
-                  );
-                })}
-              </div>
-            </div>
-          </TabsContent>
-          );
-        })}
-      </Tabs>
-      )}
+      </div>
 
       <PlanProfilePicker
         profile={planProfile}

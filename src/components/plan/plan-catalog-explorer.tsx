@@ -2,14 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import {
-  Calendar,
-  ChevronDown,
-  ChevronUp,
-  Footprints,
-  Route,
-  Timer,
-} from "lucide-react";
+import { Calendar, Footprints, Route, Timer } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -19,7 +12,7 @@ import {
   planMatchesFilters,
   type PlanFilter,
 } from "@/lib/plan-catalog";
-import { DEFAULT_PLAN_ID, PLAN_FAMILIES } from "@/lib/plans";
+import { DEFAULT_FAMILY_ID, DEFAULT_PLAN_ID, PLAN_FAMILIES } from "@/lib/plans";
 import type { SampleWeekPreview } from "@/lib/plan-stats";
 import { PlanSampleWeek } from "@/components/plan/plan-sample-week";
 import { cn } from "@/lib/utils";
@@ -90,14 +83,12 @@ export function PlanCatalogExplorer({
     pathPlanMatch?.[1] ??
     searchParams.get("plan") ??
     undefined;
+  const activeFamilyId =
+    plans.find((p) => p.id === activePlanId)?.familyId ?? DEFAULT_FAMILY_ID;
 
   const [activeFilters, setActiveFilters] = useState<PlanFilter[]>([]);
-  const [previewMode, setPreviewMode] = useState<
-    Record<string, "week1" | "peak">
-  >({});
-  const [expandedFamilyId, setExpandedFamilyId] = useState<string | null>(
-    null
-  );
+  const [previewMode, setPreviewMode] = useState<"week1" | "peak">("week1");
+  const [selectedFamilyId, setSelectedFamilyId] = useState(activeFamilyId);
   const [selectedByFamily, setSelectedByFamily] = useState<
     Record<string, string>
   >({});
@@ -116,8 +107,12 @@ export function PlanCatalogExplorer({
         prerequisite: family.prerequisite,
         variants,
       };
-    }).filter((g) => g.variants.length > 0);
+    });
   }, [plans, activeFilters]);
+
+  const selectedGroup =
+    familyGroups.find((g) => g.familyId === selectedFamilyId) ??
+    familyGroups[0];
 
   useEffect(() => {
     queueMicrotask(() => {
@@ -125,8 +120,7 @@ export function PlanCatalogExplorer({
         const next = { ...prev };
         for (const group of familyGroups) {
           const preferred =
-            activePlanId &&
-            group.variants.some((v) => v.id === activePlanId)
+            activePlanId && group.variants.some((v) => v.id === activePlanId)
               ? activePlanId
               : prev[group.familyId];
           const resolved = defaultVariantId(group.variants, preferred);
@@ -139,19 +133,9 @@ export function PlanCatalogExplorer({
 
   useEffect(() => {
     queueMicrotask(() => {
-      if (activePlanId) {
-        const family = plans.find((p) => p.id === activePlanId)?.familyId;
-        if (family) setExpandedFamilyId(family);
-        return;
-      }
-      setExpandedFamilyId((current) => {
-        if (current && familyGroups.some((g) => g.familyId === current)) {
-          return current;
-        }
-        return familyGroups[0]?.familyId ?? null;
-      });
+      if (activeFamilyId) setSelectedFamilyId(activeFamilyId);
     });
-  }, [activePlanId, familyGroups, plans]);
+  }, [activeFamilyId]);
 
   const selectPlan = (planId: string) => {
     router.push(`/plan/${planId}#plan-tracker`, { scroll: false });
@@ -163,6 +147,17 @@ export function PlanCatalogExplorer({
     });
   };
 
+  const selectFamily = (familyId: string) => {
+    setSelectedFamilyId(familyId);
+    const group = familyGroups.find((g) => g.familyId === familyId);
+    if (!group || group.variants.length === 0) return;
+    const preferred = selectedByFamily[familyId] ?? activePlanId;
+    const nextId = defaultVariantId(group.variants, preferred);
+    if (nextId && nextId !== activePlanId) {
+      selectPlan(nextId);
+    }
+  };
+
   const toggleFilter = (filter: PlanFilter) => {
     setActiveFilters((current) =>
       current.includes(filter)
@@ -171,6 +166,17 @@ export function PlanCatalogExplorer({
     );
   };
 
+  const selectedId = selectedGroup
+    ? (selectedByFamily[selectedGroup.familyId] ??
+      defaultVariantId(selectedGroup.variants, activePlanId))
+    : "";
+  const plan =
+    selectedGroup?.variants.find((v) => v.id === selectedId) ??
+    selectedGroup?.variants[0];
+  const isSelected = Boolean(plan && activePlanId === plan.id);
+  const preview =
+    plan && previewMode === "peak" ? plan.peakWeek : plan?.sampleWeek;
+
   return (
     <section aria-labelledby="plan-catalog-heading" className="mb-12">
       <div className="mb-6">
@@ -178,15 +184,54 @@ export function PlanCatalogExplorer({
           Choose your distance
         </h2>
         <p className="mt-1 text-sm text-muted-foreground sm:text-base">
-          Pick a distance, choose how many weeks you have, then load that plan
-          into the tracker below.
+          Pick 5K, 10K, half, or marathon — then only that distance’s weeks and
+          sample week are shown.
         </p>
       </div>
 
       <div
+        role="radiogroup"
+        aria-label="Training distance"
+        className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-4"
+      >
+        {PLAN_FAMILIES.map((family) => {
+          const selected = family.id === selectedFamilyId;
+          return (
+            <button
+              key={family.id}
+              type="button"
+              role="radio"
+              aria-checked={selected}
+              onClick={() => selectFamily(family.id)}
+              className={cn(
+                "rounded-xl border px-3 py-3 text-left transition-colors sm:px-4",
+                selected
+                  ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                  : "border-border/60 bg-background text-foreground hover:border-primary/40"
+              )}
+            >
+              <span className="block text-sm font-semibold sm:text-base">
+                {family.shortName}
+              </span>
+              <span
+                className={cn(
+                  "mt-0.5 block text-xs",
+                  selected
+                    ? "text-primary-foreground/80"
+                    : "text-muted-foreground"
+                )}
+              >
+                {family.name}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div
         role="group"
-        aria-label="Filter training plans"
-        className="-mx-4 mb-6 flex w-auto max-w-none gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
+        aria-label="Filter plans for this distance"
+        className="-mx-4 mb-4 flex w-auto max-w-none gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
       >
         {PLAN_FILTERS.map((filter) => {
           const active = activeFilters.includes(filter.id);
@@ -219,243 +264,180 @@ export function PlanCatalogExplorer({
         )}
       </div>
 
-      {familyGroups.length === 0 ? (
+      {!selectedGroup || selectedGroup.variants.length === 0 || !plan ? (
         <p className="rounded-xl border border-dashed border-border/60 px-4 py-8 text-center text-sm text-muted-foreground">
-          No plans match those filters. Try removing one.
+          No {selectedGroup?.shortName ?? "plans"} match those filters. Try
+          removing one, or pick another distance.
         </p>
       ) : (
-        <ul className="space-y-4">
-          {familyGroups.map((group) => {
-            const selectedId =
-              selectedByFamily[group.familyId] ??
-              defaultVariantId(group.variants, activePlanId);
-            const plan =
-              group.variants.find((v) => v.id === selectedId) ??
-              group.variants[0];
-            if (!plan) return null;
-
-            const isExpanded = expandedFamilyId === group.familyId;
-            const isSelected = activePlanId === plan.id;
-            const preview =
-              previewMode[group.familyId] === "peak"
-                ? plan.peakWeek
-                : plan.sampleWeek;
-
-            return (
-              <li key={group.familyId}>
-                <Card
-                  className={cn(
-                    "overflow-hidden border-border/60 transition-shadow",
-                    isSelected && "ring-2 ring-primary/30 border-primary/30"
-                  )}
-                >
-                  <CardContent className="p-0">
-                    <div className="p-4 sm:p-5">
-                      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                        <div className="min-w-0 flex-1">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <Badge variant="outline" className="text-xs">
-                              {group.shortName}
-                            </Badge>
-                            {isGentlePlan(plan.id) && (
-                              <Badge className="text-xs bg-teal-600/15 text-teal-800 dark:text-teal-200 border-teal-600/25 hover:bg-teal-600/20">
-                                Walk-first
-                              </Badge>
-                            )}
-                            {isSelected && (
-                              <Badge className="text-xs">Selected</Badge>
-                            )}
-                          </div>
-                          <h3 className="mt-2 text-lg font-semibold sm:text-xl">
-                            {group.familyName}
-                          </h3>
-                          <p className="mt-1 text-sm text-muted-foreground">
-                            {plan.description}
-                          </p>
-                        </div>
-
-                        <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-stretch">
-                          <Button
-                            type="button"
-                            size="sm"
-                            className="w-full sm:min-w-[8rem] inline-flex items-center justify-center gap-1"
-                            onClick={() => selectPlan(plan.id)}
-                          >
-                            {isSelected ? "Open tracker" : "Load this plan"}
-                          </Button>
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="sm"
-                            className="w-full sm:min-w-[8rem] inline-flex items-center justify-center gap-1"
-                            onClick={() =>
-                              setExpandedFamilyId(
-                                isExpanded ? null : group.familyId
-                              )
-                            }
-                            aria-expanded={isExpanded}
-                          >
-                            {isExpanded ? (
-                              <>
-                                Hide preview
-                                <ChevronUp className="size-4" aria-hidden />
-                              </>
-                            ) : (
-                              <>
-                                Sample week
-                                <ChevronDown className="size-4" aria-hidden />
-                              </>
-                            )}
-                          </Button>
-                        </div>
-                      </div>
-
-                      <div className="mt-4">
-                        <p className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-                          Duration
-                        </p>
-                        <div
-                          role="radiogroup"
-                          aria-label={`${group.familyName} duration`}
-                          className="mt-2 flex flex-wrap gap-2"
-                        >
-                          {group.variants.map((variant) => {
-                            const selected = variant.id === plan.id;
-                            return (
-                              <button
-                                key={variant.id}
-                                type="button"
-                                role="radio"
-                                aria-checked={selected}
-                                onClick={() => {
-                                  setSelectedByFamily((prev) => ({
-                                    ...prev,
-                                    [group.familyId]: variant.id,
-                                  }));
-                                  if (variant.id !== activePlanId) {
-                                    selectPlan(variant.id);
-                                  }
-                                }}
-                                className={cn(
-                                  "rounded-full border px-3.5 py-2 text-sm font-medium transition-colors",
-                                  selected
-                                    ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                                    : "border-border/60 bg-background text-foreground/80 hover:border-primary/40 hover:text-foreground"
-                                )}
-                              >
-                                {durationChipLabel(variant)}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                        <div className="rounded-lg bg-muted/40 px-3 py-2.5">
-                          <dt className="flex items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-                            <Calendar className="size-3" aria-hidden />
-                            Duration
-                          </dt>
-                          <dd className="mt-0.5 text-sm font-semibold">
-                            {plan.stats.durationWeeks} weeks
-                          </dd>
-                        </div>
-                        <div className="rounded-lg bg-muted/40 px-3 py-2.5">
-                          <dt className="flex items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-                            <Footprints className="size-3" aria-hidden />
-                            Total runs
-                          </dt>
-                          <dd className="mt-0.5 text-sm font-semibold">
-                            {plan.stats.totalRuns}
-                          </dd>
-                        </div>
-                        <div className="rounded-lg bg-muted/40 px-3 py-2.5">
-                          <dt className="flex items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-                            <Route className="size-3" aria-hidden />
-                            Peak week
-                          </dt>
-                          <dd className="mt-0.5 text-sm font-semibold">
-                            {plan.stats.peakWeeklyMileageLabel}
-                          </dd>
-                        </div>
-                        <div className="rounded-lg bg-muted/40 px-3 py-2.5">
-                          <dt className="flex items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-                            <Timer className="size-3" aria-hidden />
-                            Cross-train
-                          </dt>
-                          <dd className="mt-0.5 text-sm font-semibold">
-                            {plan.stats.crossTrainDaysPerWeek} days/wk
-                          </dd>
-                        </div>
-                      </dl>
-
-                      <p className="mt-3 text-xs text-muted-foreground">
-                        {group.prerequisite}
-                      </p>
-                    </div>
-
-                    {isExpanded && (
-                      <div className="border-t border-border/60 bg-background/50 px-4 py-4 sm:px-5">
-                        <div className="mb-3 flex flex-wrap gap-2">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setPreviewMode((m) => ({
-                                ...m,
-                                [group.familyId]: "week1",
-                              }))
-                            }
-                            className={cn(
-                              "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-                              previewMode[group.familyId] !== "peak"
-                                ? "bg-primary/10 text-foreground"
-                                : "text-muted-foreground hover:text-foreground"
-                            )}
-                          >
-                            Week 1
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setPreviewMode((m) => ({
-                                ...m,
-                                [group.familyId]: "peak",
-                              }))
-                            }
-                            className={cn(
-                              "rounded-full px-3 py-1 text-xs font-medium transition-colors",
-                              previewMode[group.familyId] === "peak"
-                                ? "bg-primary/10 text-foreground"
-                                : "text-muted-foreground hover:text-foreground"
-                            )}
-                          >
-                            Peak week
-                          </button>
-                        </div>
-                        <PlanSampleWeek
-                          title={preview.title}
-                          focus={preview.focus}
-                          weekLabel={
-                            previewMode[group.familyId] === "peak"
-                              ? `Peak week (W${preview.week})`
-                              : `Sample week (W${preview.week})`
-                          }
-                          days={preview.days}
-                        />
-                      </div>
+        <Card
+          className={cn(
+            "overflow-hidden border-border/60",
+            isSelected && "ring-2 ring-primary/30 border-primary/30"
+          )}
+        >
+          <CardContent className="p-0">
+            <div className="p-4 sm:p-5">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge variant="outline" className="text-xs">
+                      {selectedGroup.shortName}
+                    </Badge>
+                    {isGentlePlan(plan.id) && (
+                      <Badge className="text-xs bg-teal-600/15 text-teal-800 dark:text-teal-200 border-teal-600/25 hover:bg-teal-600/20">
+                        Walk-first
+                      </Badge>
                     )}
-                  </CardContent>
-                </Card>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+                    {isSelected && (
+                      <Badge className="text-xs">Selected</Badge>
+                    )}
+                  </div>
+                  <h3 className="mt-2 text-lg font-semibold sm:text-xl">
+                    {selectedGroup.familyName}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {plan.description}
+                  </p>
+                </div>
 
-      <p className="mt-4 text-center text-xs text-muted-foreground">
-        {PLAN_FAMILIES.length} distances · choose a length on each card · default
-        schedule: 3–4 run days + cross-training
-      </p>
+                <Button
+                  type="button"
+                  size="sm"
+                  className="w-full sm:w-auto sm:min-w-[8rem]"
+                  onClick={() => selectPlan(plan.id)}
+                >
+                  {isSelected ? "Open tracker" : "Load this plan"}
+                </Button>
+              </div>
+
+              <div className="mt-4">
+                <p className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+                  How many weeks
+                </p>
+                <div
+                  role="radiogroup"
+                  aria-label={`${selectedGroup.familyName} duration`}
+                  className="mt-2 flex flex-wrap gap-2"
+                >
+                  {selectedGroup.variants.map((variant) => {
+                    const selected = variant.id === plan.id;
+                    return (
+                      <button
+                        key={variant.id}
+                        type="button"
+                        role="radio"
+                        aria-checked={selected}
+                        onClick={() => {
+                          setSelectedByFamily((prev) => ({
+                            ...prev,
+                            [selectedGroup.familyId]: variant.id,
+                          }));
+                          if (variant.id !== activePlanId) {
+                            selectPlan(variant.id);
+                          }
+                        }}
+                        className={cn(
+                          "rounded-full border px-3.5 py-2 text-sm font-medium transition-colors",
+                          selected
+                            ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                            : "border-border/60 bg-background text-foreground/80 hover:border-primary/40 hover:text-foreground"
+                        )}
+                      >
+                        {durationChipLabel(variant)}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <div className="rounded-lg bg-muted/40 px-3 py-2.5">
+                  <dt className="flex items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+                    <Calendar className="size-3" aria-hidden />
+                    Duration
+                  </dt>
+                  <dd className="mt-0.5 text-sm font-semibold">
+                    {plan.stats.durationWeeks} weeks
+                  </dd>
+                </div>
+                <div className="rounded-lg bg-muted/40 px-3 py-2.5">
+                  <dt className="flex items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+                    <Footprints className="size-3" aria-hidden />
+                    Total runs
+                  </dt>
+                  <dd className="mt-0.5 text-sm font-semibold">
+                    {plan.stats.totalRuns}
+                  </dd>
+                </div>
+                <div className="rounded-lg bg-muted/40 px-3 py-2.5">
+                  <dt className="flex items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+                    <Route className="size-3" aria-hidden />
+                    Peak week
+                  </dt>
+                  <dd className="mt-0.5 text-sm font-semibold">
+                    {plan.stats.peakWeeklyMileageLabel}
+                  </dd>
+                </div>
+                <div className="rounded-lg bg-muted/40 px-3 py-2.5">
+                  <dt className="flex items-center gap-1 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+                    <Timer className="size-3" aria-hidden />
+                    Cross-train
+                  </dt>
+                  <dd className="mt-0.5 text-sm font-semibold">
+                    {plan.stats.crossTrainDaysPerWeek} days/wk
+                  </dd>
+                </div>
+              </dl>
+
+              <p className="mt-3 text-xs text-muted-foreground">
+                {selectedGroup.prerequisite}
+              </p>
+            </div>
+
+            {preview && (
+              <div className="border-t border-border/60 bg-background/50 px-4 py-4 sm:px-5">
+                <div className="mb-3 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPreviewMode("week1")}
+                    className={cn(
+                      "rounded-full px-3 py-1 text-xs font-medium transition-colors",
+                      previewMode !== "peak"
+                        ? "bg-primary/10 text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    Week 1
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPreviewMode("peak")}
+                    className={cn(
+                      "rounded-full px-3 py-1 text-xs font-medium transition-colors",
+                      previewMode === "peak"
+                        ? "bg-primary/10 text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    Peak week
+                  </button>
+                </div>
+                <PlanSampleWeek
+                  title={preview.title}
+                  focus={preview.focus}
+                  weekLabel={
+                    previewMode === "peak"
+                      ? `Peak week (W${preview.week})`
+                      : `Sample week (W${preview.week})`
+                  }
+                  days={preview.days}
+                />
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
     </section>
   );
 }
