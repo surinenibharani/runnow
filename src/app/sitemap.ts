@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getPublishedBlogPosts } from "@/lib/blog/posts";
+import { getPublishedBlogSitemapEntries } from "@/lib/blog/posts";
 import { getTipSitemapEntries } from "@/lib/tips/helpers";
 import { commonInjurySlugs } from "@/lib/injuries/common-injuries";
 import { menRunnerConcernSlugs } from "@/lib/injuries/men-runner-concerns";
@@ -7,7 +7,8 @@ import { womenRunnerConcernSlugs } from "@/lib/injuries/women-runner-concerns";
 import { getPlanSitemapEntries } from "@/lib/seo/plans";
 import { SITE_URL } from "@/lib/site";
 
-export const revalidate = 3600;
+/** Date-gated posts go live at 7am ET — rebuild on each request so crawlers see today's URLs. */
+export const dynamic = "force-dynamic";
 
 /** Public marketing and content routes (excludes auth, dashboard, API). */
 const staticRoutes = [
@@ -64,12 +65,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  const posts: MetadataRoute.Sitemap = getPublishedBlogPosts().map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.updatedAt ?? post.publishedAt),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  const posts: MetadataRoute.Sitemap = getPublishedBlogSitemapEntries().map(
+    (post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt ?? post.publishedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })
+  );
 
   const tipPages: MetadataRoute.Sitemap = getTipSitemapEntries().map(
     (entry) => ({

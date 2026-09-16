@@ -1,4 +1,4 @@
-import type { CrossTrainCategory, CrossTraining } from "@/lib/plan-types";
+import type { CrossTrainCategory, CrossTraining, ScheduledWeek } from "@/lib/plan-types";
 import type {
   OnboardingAnswers,
   OnboardingNiggleArea,
@@ -198,6 +198,27 @@ const BY_TIME_OFF_REASON: Record<OnboardingTimeOffReason, CrossTrainSuggestion[]
   ],
 };
 
+const BY_CONDITION: CrossTrainSuggestion[] = [
+  {
+    category: "walking",
+    title: "Easy movement walk",
+    why: "Keeps the habit going with almost no impact while you train around a health condition.",
+    how: "15–25 min flat conversational walk. Stop for chest pain, dizziness, or unusual shortness of breath.",
+  },
+  {
+    category: "yoga",
+    title: "Gentle mobility",
+    why: "Light range of motion supports joints and recovery without a hard session.",
+    how: "10–15 min easy flow: Cat-Cow, Child's Pose, gentle hip openers. No forcing.",
+  },
+  {
+    category: "cycling",
+    title: "Optional easy spin",
+    why: "Backup cardio if walking still feels like too much load that day.",
+    how: "10–20 min very easy bike only if the condition stays quiet and a clinician has cleared exercise.",
+  },
+];
+
 const DEFAULT_PLAN_CROSS_TRAIN: CrossTrainSuggestion[] = [
   {
     category: "yoga",
@@ -247,6 +268,10 @@ export function getCrossTrainGuidanceForAnswers(
     picked.push(...BY_TIME_OFF_REASON[answers.timeOffReason]);
   }
 
+  if (answers.setback === "condition") {
+    picked.push(...BY_CONDITION);
+  }
+
   if (picked.length === 0) {
     return DEFAULT_PLAN_CROSS_TRAIN;
   }
@@ -280,6 +305,9 @@ export function healthFocusLabel(
     if (timeOffReason === "injury") return "returning after injury time off";
     return "rebuilding after time off";
   }
+  if (setback === "condition") {
+    return "training around a health condition";
+  }
   return null;
 }
 
@@ -294,7 +322,8 @@ export function getDefaultPlanRationale(plan: TrainingPlan): string {
  */
 export function applyHealthCrossTrain(
   crossTraining: CrossTraining,
-  suggestions: CrossTrainSuggestion[]
+  suggestions: CrossTrainSuggestion[],
+  healthFocus?: string | null
 ): CrossTraining {
   if (suggestions.length === 0) return crossTraining;
 
@@ -309,9 +338,36 @@ export function applyHealthCrossTrain(
     (a) => !seen.has(a.title.toLowerCase())
   );
 
+  const prefix = healthFocus
+    ? `Supporting ${healthFocus} on this non-run day.`
+    : "Prioritize the first options if you’re managing a niggle or comeback.";
+
   return {
     ...crossTraining,
-    focus: `${crossTraining.focus} Prioritize the first options if you’re managing a niggle or comeback.`,
+    focus: `${prefix} ${crossTraining.focus}`,
     activities: [...tailored, ...rest].slice(0, 5),
   };
+}
+
+/** Overlay health suggestions onto every non-run (cross-train) day, including strength. */
+export function overlayHealthOnScheduledWeeks(
+  weeks: ScheduledWeek[],
+  suggestions: CrossTrainSuggestion[],
+  healthFocus?: string | null
+): ScheduledWeek[] {
+  if (suggestions.length === 0) return weeks;
+  return weeks.map((week) => ({
+    ...week,
+    days: week.days.map((day) => {
+      if (day.kind !== "cross-train" || !day.crossTraining) return day;
+      return {
+        ...day,
+        crossTraining: applyHealthCrossTrain(
+          day.crossTraining,
+          suggestions,
+          healthFocus
+        ),
+      };
+    }),
+  }));
 }

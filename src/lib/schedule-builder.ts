@@ -9,10 +9,12 @@ import type {
 } from "@/lib/plan-types";
 import { DAY_NAMES } from "@/lib/plan-types";
 import {
-  deriveSchedulePrefs,
   personalizePlanWorkouts,
   type PlanPersonalization,
 } from "@/lib/plan-personalization";
+
+/** How health answers reshape non-run days. */
+export type HealthPlanMode = "none" | "support" | "protect";
 
 export interface SchedulePreferences {
   restDay: number;
@@ -44,20 +46,19 @@ export function isValidSchedule(prefs: SchedulePreferences): boolean {
 export function applyScheduleToPlan(
   plan: TrainingPlan,
   prefs: SchedulePreferences,
-  personalization?: PlanPersonalization | null
+  personalization?: PlanPersonalization | null,
+  options?: { healthMode?: HealthPlanMode }
 ): TrainingPlan & { scheduledWeeks: ScheduledWeek[] } {
   const profiledPlan = personalization
     ? personalizePlanWorkouts(plan, personalization)
     : plan;
-  const baseSchedule = isValidSchedule(prefs) ? prefs : DEFAULT_SCHEDULE;
-  const schedule = personalization
-    ? deriveSchedulePrefs(baseSchedule, personalization, plan.runsPerWeek)
-    : baseSchedule;
+  const schedule = isValidSchedule(prefs) ? prefs : DEFAULT_SCHEDULE;
+  const healthMode = options?.healthMode ?? "none";
 
   return {
     ...profiledPlan,
     scheduledWeeks: profiledPlan.weeks.map((week) =>
-      scheduleWeek(profiledPlan.id, week, schedule)
+      scheduleWeek(profiledPlan.id, week, schedule, healthMode)
     ),
   };
 }
@@ -65,7 +66,8 @@ export function applyScheduleToPlan(
 function scheduleWeek(
   planId: string,
   week: WeekTemplate,
-  prefs: SchedulePreferences
+  prefs: SchedulePreferences,
+  healthMode: HealthPlanMode = "none"
 ): ScheduledWeek {
   const { restDay, longRunDay, runDaysPerWeek } = prefs;
   const activeDays = DAY_NAMES.map((_, i) => i + 1).filter((d) => d !== restDay);
@@ -78,7 +80,6 @@ function scheduleWeek(
   const runDays = pickRunDays(activeDays, longRunDay, adjustedRuns.length);
   const runAssignment = assignRunsToDays(adjustedRuns, runDays, longRunDay);
 
-  const runDaySet = new Set(runDays);
   const nextRunTypeByDay = buildNextRunLookup(runDays, runAssignment);
 
   const days: ScheduleDay[] = [];
@@ -138,7 +139,7 @@ function scheduleWeek(
     week: week.week,
     title: week.title,
     focus: week.focus,
-    days,
+    days: assignStrengthDays(days, healthMode),
   };
 }
 
@@ -543,4 +544,63 @@ function getCrossTrainingContent(
   }
 
   return base;
+}
+
+const STRENGTH_DAYS_PER_WEEK = 2;
+
+function strengthScore(day: ScheduleDay): number {
+  const name = day.crossTraining?.name ?? "";
+  if (/eve prep|race day/i.test(name)) return -1;
+  if (/long run recovery/i.test(name)) return 0;
+  if (/walk-run|easy day/i.test(name)) return 3;
+  if (/recovery run/i.test(name)) return 2;
+  return 1;
+}
+
+function buildStrengthSession(existing: CrossTraining): CrossTraining {
+  return {
+    ...existing,
+    name: "Runner strength",
+    focus:
+      "Two short strength days a week protect knees and hips better than extra junk miles.",
+    duration: "15–20 min",
+    emphasis: "strength",
+    guideHref: "/blog/bodyweight-strength-for-runners",
+    guideLabel: "Bodyweight strength guide",
+    activities: [
+      {
+        category: "bodyweight",
+        title: "Foundation circuit",
+        details:
+          "Glute bridges 3×12 · Sit-to-stands 2×10 · Calf raises 3×12 · Bird-dog 2×8/side · Side plank 2×20 sec/side. Easy effort — skip jumps. Optional: swap in the dumbbell circuit from the guide.",
+      },
+    ],
+  };
+}
+
+/** Promote up to two non-run days into dedicated, checkable strength sessions. */
+export function assignStrengthDays(
+  days: ScheduleDay[],
+  healthMode: HealthPlanMode = "none"
+): ScheduleDay[] {
+  const slots =
+    healthMode === "protect" ? 0 : healthMode === "support" ? 1 : STRENGTH_DAYS_PER_WEEK;
+  if (slots === 0) return days;
+
+  const ranked = days
+    .map((day, index) => ({ day, index, score: strengthScore(day) }))
+    .filter(({ day, score }) => day.kind === "cross-train" && score > 0)
+    .sort((a, b) => b.score - a.score || a.index - b.index)
+    .slice(0, slots);
+
+  if (ranked.length === 0) return days;
+
+  const chosen = new Set(ranked.map(({ index }) => index));
+  return days.map((day, index) => {
+    if (!chosen.has(index) || !day.crossTraining) return day;
+    return {
+      ...day,
+      crossTraining: buildStrengthSession(day.crossTraining),
+    };
+  });
 }

@@ -1,17 +1,19 @@
 import { cn } from "@/lib/utils";
 import type { SampleWeekDay } from "@/lib/plan-stats";
 
-const kindStyles: Record<SampleWeekDay["kind"], string> = {
-  run: "border-l-orange-500 bg-orange-500/5",
-  "cross-train": "border-l-sky-500 bg-sky-500/5",
-  rest: "border-l-slate-400 bg-muted/30",
-};
+function dayKindStyle(day: SampleWeekDay): string {
+  if (day.isStrength) return "border-l-amber-500 bg-amber-500/5";
+  if (day.kind === "run") return "border-l-orange-500 bg-orange-500/5";
+  if (day.kind === "cross-train") return "border-l-sky-500 bg-sky-500/5";
+  return "border-l-slate-400 bg-muted/30";
+}
 
-const kindLabels: Record<SampleWeekDay["kind"], string> = {
-  run: "Run",
-  "cross-train": "Cross-train",
-  rest: "Rest",
-};
+function dayKindLabel(day: SampleWeekDay): string {
+  if (day.isStrength) return "Strength";
+  if (day.kind === "run") return "Run";
+  if (day.kind === "cross-train") return "Cross-train";
+  return "Rest";
+}
 
 type PlanSampleWeekProps = {
   title: string;
@@ -53,7 +55,7 @@ export function PlanSampleWeek({
             key={day.dayName}
             className={cn(
               "rounded-md border-l-2 px-2 py-2 text-center",
-              kindStyles[day.kind]
+              dayKindStyle(day)
             )}
           >
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
@@ -63,7 +65,7 @@ export function PlanSampleWeek({
               {day.kind === "rest" ? "Rest" : day.label.split(" ").slice(0, 3).join(" ")}
             </p>
             <p className="mt-0.5 text-[9px] text-muted-foreground capitalize">
-              {kindLabels[day.kind]}
+              {dayKindLabel(day)}
             </p>
           </div>
         ))}
@@ -76,7 +78,7 @@ export function PlanSampleWeek({
             key={day.dayName}
             className={cn(
               "rounded-md border-l-2 px-3 py-2.5",
-              kindStyles[day.kind]
+              dayKindStyle(day)
             )}
           >
             <div className="flex items-start justify-between gap-2">
@@ -86,7 +88,7 @@ export function PlanSampleWeek({
                     {day.dayName}
                   </span>
                   <span className="rounded-full bg-background/80 px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-                    {kindLabels[day.kind]}
+                    {dayKindLabel(day)}
                   </span>
                 </div>
                 <p className="mt-0.5 text-sm font-medium text-foreground">

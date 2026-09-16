@@ -102,10 +102,12 @@ export function TurnstileWidget({
   const onErrorRef = useRef(onError);
   const onLoadErrorRef = useRef(onLoadError);
 
-  onVerifyRef.current = onVerify;
-  onExpireRef.current = onExpire;
-  onErrorRef.current = onError;
-  onLoadErrorRef.current = onLoadError;
+  useEffect(() => {
+    onVerifyRef.current = onVerify;
+    onExpireRef.current = onExpire;
+    onErrorRef.current = onError;
+    onLoadErrorRef.current = onLoadError;
+  });
 
   const retryWidget = useCallback(() => {
     setLoadError(false);

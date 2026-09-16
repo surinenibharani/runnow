@@ -11,11 +11,17 @@ import {
   DEFAULT_PLAN_ID,
   getPlansForFamily,
   getTotalWorkouts,
+  isStrengthSession,
+  scheduleDayKindLabel,
 } from "@/lib/plans";
 import type { TrainingPlan, ScheduleDay } from "@/lib/plans";
-import { applyHealthCrossTrain } from "@/lib/plan/cross-train-guidance";
-import { readPlanBrief } from "@/lib/plan/plan-brief";
-import { applyScheduleToPlan, DEFAULT_SCHEDULE } from "@/lib/schedule-builder";
+import { overlayHealthOnScheduledWeeks } from "@/lib/plan/cross-train-guidance";
+import { readPlanBrief, type PlanBrief } from "@/lib/plan/plan-brief";
+import {
+  applyScheduleToPlan,
+  DEFAULT_SCHEDULE,
+  type HealthPlanMode,
+} from "@/lib/schedule-builder";
 import type { SchedulePreferences } from "@/lib/schedule-builder";
 import {
   getSchedulePreferences,
@@ -43,6 +49,8 @@ import { getActivityCaption } from "@/lib/workout-caption";
 import { StravaConnectBanner } from "@/components/strava/strava-connect-banner";
 import { SchedulePicker } from "@/components/plan/schedule-picker";
 import { PlanProfilePicker } from "@/components/plan/plan-profile-picker";
+import { PlanRaceCountdown } from "@/components/plan/plan-race-countdown";
+import { WorkoutIntervalTimer } from "@/components/plan/workout-interval-timer";
 import { AdaptivePlanCoach } from "@/components/plan/adaptive-plan-coach";
 import { getAdaptivePlanSuggestion } from "@/lib/adaptive-plan";
 import { PlanLoading } from "@/components/plan/plan-loading";
@@ -71,6 +79,43 @@ function planIdFromPath(pathname: string): string | null {
   const match = pathname.match(/^\/plan\/([^/]+)\/?$/);
   if (!match) return null;
   return PLANS.some((p) => p.id === match[1]) ? match[1] : null;
+}
+
+function settingsFromBrief(
+  planId: string,
+  prefs: SchedulePreferences,
+  profile: PlanPersonalization
+): {
+  prefs: SchedulePreferences;
+  profile: PlanPersonalization;
+  healthMode: HealthPlanMode;
+  healthCrossTrain: PlanBrief["crossTrain"];
+  healthFocus: string | null;
+} {
+  const brief = readPlanBrief(planId);
+  if (!brief?.fromQuiz) {
+    return {
+      prefs,
+      profile,
+      healthMode: "none",
+      healthCrossTrain: [],
+      healthFocus: null,
+    };
+  }
+  return {
+    prefs: {
+      ...prefs,
+      runDaysPerWeek: brief.runDaysPerWeek ?? prefs.runDaysPerWeek,
+    },
+    profile: {
+      ...profile,
+      fitnessLevel: brief.fitnessLevel ?? profile.fitnessLevel,
+      age: brief.age !== undefined ? brief.age : profile.age,
+    },
+    healthMode: brief.healthMode ?? "none",
+    healthCrossTrain: brief.crossTrain ?? [],
+    healthFocus: brief.healthFocus ?? null,
+  };
 }
 
 const emptyProgress: ProgressData = {
@@ -126,35 +171,51 @@ export function WeekTracker({
   const urlPlanId = pathPlanId ?? queryPlanId;
   const explicitUrlPlanId =
     urlPlanId && PLANS.some((p) => p.id === urlPlanId) ? urlPlanId : null;
+  const planIdRef = useRef(planId);
+  const explicitUrlPlanIdRef = useRef(explicitUrlPlanId);
+
+  useEffect(() => {
+    planIdRef.current = planId;
+    explicitUrlPlanIdRef.current = explicitUrlPlanId;
+  });
 
   const [healthCrossTrain, setHealthCrossTrain] = useState(
     () => readPlanBrief(initialPlan.id)?.crossTrain ?? []
   );
+  const [healthFocus, setHealthFocus] = useState<string | null>(
+    () => readPlanBrief(initialPlan.id)?.healthFocus ?? null
+  );
+  const [healthMode, setHealthMode] = useState<HealthPlanMode>(
+    () => readPlanBrief(initialPlan.id)?.healthMode ?? "none"
+  );
 
   useEffect(() => {
-    setHealthCrossTrain(readPlanBrief(planId)?.crossTrain ?? []);
+    queueMicrotask(() => {
+      const settings = settingsFromBrief(
+        planId,
+        getSchedulePreferences(),
+        getPlanProfile()
+      );
+      setHealthCrossTrain(settings.healthCrossTrain);
+      setHealthFocus(settings.healthFocus);
+      setHealthMode(settings.healthMode);
+    });
   }, [planId]);
 
   const scheduledPlan = useMemo(() => {
-    const built = applyScheduleToPlan(basePlan, schedulePrefs, planProfile);
+    const built = applyScheduleToPlan(basePlan, schedulePrefs, planProfile, {
+      healthMode,
+    });
     if (healthCrossTrain.length === 0) return built;
     return {
       ...built,
-      scheduledWeeks: built.scheduledWeeks.map((week) => ({
-        ...week,
-        days: week.days.map((day) => {
-          if (day.kind !== "cross-train" || !day.crossTraining) return day;
-          return {
-            ...day,
-            crossTraining: applyHealthCrossTrain(
-              day.crossTraining,
-              healthCrossTrain
-            ),
-          };
-        }),
-      })),
+      scheduledWeeks: overlayHealthOnScheduledWeeks(
+        built.scheduledWeeks,
+        healthCrossTrain,
+        healthFocus
+      ),
     };
-  }, [basePlan, schedulePrefs, planProfile, healthCrossTrain]);
+  }, [basePlan, schedulePrefs, planProfile, healthCrossTrain, healthFocus, healthMode]);
 
   const weeks = scheduledPlan.scheduledWeeks;
   const totalWorkouts = getTotalWorkouts(weeks);
@@ -237,17 +298,47 @@ export function WeekTracker({
       lastCompletedDate: remote.lastCompletedDate,
     });
     setActiveWeek(String(remote.currentWeek || 1));
+
+    const briefSettings = settingsFromBrief(remote.planId, prefs, profile);
+    if (readPlanBrief(remote.planId)?.fromQuiz) {
+      setSchedulePrefs(briefSettings.prefs);
+      setPlanProfile(briefSettings.profile);
+      setHealthMode(briefSettings.healthMode);
+      setHealthCrossTrain(briefSettings.healthCrossTrain);
+      setHealthFocus(briefSettings.healthFocus);
+    }
   }, []);
 
   useEffect(() => {
     if (authStatus === "loading") return;
 
     if (authStatus !== "authenticated") {
-      setUseRemote(false);
-      setSchedulePrefs(getSchedulePreferences());
-      setPlanProfile(getPlanProfile());
-      setProgress(getProgress(planId));
-      setBootstrapComplete(true);
+      queueMicrotask(() => {
+        setUseRemote(false);
+        const planIdForBrief =
+          explicitUrlPlanIdRef.current ?? planIdRef.current;
+        const settings = settingsFromBrief(
+          planIdForBrief,
+          getSchedulePreferences(),
+          getPlanProfile()
+        );
+        const selected = PLANS.find((p) => p.id === planIdForBrief);
+        setSchedulePrefs(
+          selected
+            ? deriveSchedulePrefs(
+                settings.prefs,
+                settings.profile,
+                selected.runsPerWeek
+              )
+            : settings.prefs
+        );
+        setPlanProfile(settings.profile);
+        setHealthMode(settings.healthMode);
+        setHealthCrossTrain(settings.healthCrossTrain);
+        setHealthFocus(settings.healthFocus);
+        setProgress(getProgress(planIdRef.current));
+        setBootstrapComplete(true);
+      });
       return;
     }
 
@@ -262,9 +353,28 @@ export function WeekTracker({
 
         if (!remote) {
           setUseRemote(false);
-          setSchedulePrefs(getSchedulePreferences());
-          setPlanProfile(getPlanProfile());
-          setProgress(getProgress(planId));
+          const planIdForBrief =
+            explicitUrlPlanIdRef.current ?? planIdRef.current;
+          const settings = settingsFromBrief(
+            planIdForBrief,
+            getSchedulePreferences(),
+            getPlanProfile()
+          );
+          const selected = PLANS.find((p) => p.id === planIdForBrief);
+          setSchedulePrefs(
+            selected
+              ? deriveSchedulePrefs(
+                  settings.prefs,
+                  settings.profile,
+                  selected.runsPerWeek
+                )
+              : settings.prefs
+          );
+          setPlanProfile(settings.profile);
+          setHealthMode(settings.healthMode);
+          setHealthCrossTrain(settings.healthCrossTrain);
+          setHealthFocus(settings.healthFocus);
+          setProgress(getProgress(planIdRef.current));
           return;
         }
 
@@ -291,39 +401,59 @@ export function WeekTracker({
               lastCompletedDate: localProgress.lastCompletedDate,
             });
             applyRemotePlan(merged);
-          } else if (explicitUrlPlanId && explicitUrlPlanId !== remote.planId) {
-            const selected = PLANS.find((p) => p.id === explicitUrlPlanId)!;
+          } else if (
+            explicitUrlPlanIdRef.current &&
+            explicitUrlPlanIdRef.current !== remote.planId
+          ) {
+            const selected = PLANS.find((p) => p.id === explicitUrlPlanIdRef.current)!;
             setFamilyId(selected.familyId);
             setPlanId(selected.id);
             setBasePlan(selected);
-            const profile = getPlanProfile();
-            const nextPrefs = deriveSchedulePrefs(
+            const settings = settingsFromBrief(
+              selected.id,
               getSchedulePreferences(),
-              profile,
+              getPlanProfile()
+            );
+            const nextPrefs = deriveSchedulePrefs(
+              settings.prefs,
+              settings.profile,
               selected.runsPerWeek
             );
-            setPlanProfile(profile);
+            setPlanProfile(settings.profile);
             setSchedulePrefs(nextPrefs);
-            setProgress(getProgress(explicitUrlPlanId));
+            setHealthMode(settings.healthMode);
+            setHealthCrossTrain(settings.healthCrossTrain);
+            setHealthFocus(settings.healthFocus);
+            setProgress(getProgress(explicitUrlPlanIdRef.current));
             setActiveWeek("1");
           } else {
             applyRemotePlan(remote);
           }
           migratedRef.current = true;
-        } else if (explicitUrlPlanId && explicitUrlPlanId !== remote.planId) {
-          const selected = PLANS.find((p) => p.id === explicitUrlPlanId)!;
+        } else if (
+          explicitUrlPlanIdRef.current &&
+          explicitUrlPlanIdRef.current !== remote.planId
+        ) {
+          const selected = PLANS.find((p) => p.id === explicitUrlPlanIdRef.current)!;
           setFamilyId(selected.familyId);
           setPlanId(selected.id);
           setBasePlan(selected);
-          const profile = getPlanProfile();
-          const nextPrefs = deriveSchedulePrefs(
+          const settings = settingsFromBrief(
+            selected.id,
             getSchedulePreferences(),
-            profile,
+            getPlanProfile()
+          );
+          const nextPrefs = deriveSchedulePrefs(
+            settings.prefs,
+            settings.profile,
             selected.runsPerWeek
           );
-          setPlanProfile(profile);
+          setPlanProfile(settings.profile);
           setSchedulePrefs(nextPrefs);
-          setProgress(getProgress(explicitUrlPlanId));
+          setHealthMode(settings.healthMode);
+          setHealthCrossTrain(settings.healthCrossTrain);
+          setHealthFocus(settings.healthFocus);
+          setProgress(getProgress(explicitUrlPlanIdRef.current));
           setActiveWeek("1");
         } else {
           applyRemotePlan(remote);
@@ -332,9 +462,28 @@ export function WeekTracker({
         setUseRemote(true);
       } catch {
         setUseRemote(false);
-        setSchedulePrefs(getSchedulePreferences());
-        setPlanProfile(getPlanProfile());
-        setProgress(getProgress(planId));
+        const planIdForBrief =
+          explicitUrlPlanIdRef.current ?? planIdRef.current;
+        const settings = settingsFromBrief(
+          planIdForBrief,
+          getSchedulePreferences(),
+          getPlanProfile()
+        );
+        const selected = PLANS.find((p) => p.id === planIdForBrief);
+        setSchedulePrefs(
+          selected
+            ? deriveSchedulePrefs(
+                settings.prefs,
+                settings.profile,
+                selected.runsPerWeek
+              )
+            : settings.prefs
+        );
+        setPlanProfile(settings.profile);
+        setHealthMode(settings.healthMode);
+        setHealthCrossTrain(settings.healthCrossTrain);
+        setHealthFocus(settings.healthFocus);
+        setProgress(getProgress(planIdRef.current));
       } finally {
         if (!cancelled) {
           setSyncing(false);
@@ -343,7 +492,9 @@ export function WeekTracker({
       }
     }
 
-    loadRemote();
+    void Promise.resolve().then(() => {
+      void loadRemote();
+    });
     return () => {
       cancelled = true;
     };
@@ -351,9 +502,11 @@ export function WeekTracker({
 
   useEffect(() => {
     if (!isAuthenticated || !useRemote) {
-      setProgress(getProgress(planId));
-      setActiveWeek("1");
-      setExpandedDay(null);
+      queueMicrotask(() => {
+        setProgress(getProgress(planId));
+        setActiveWeek("1");
+        setExpandedDay(null);
+      });
     }
   }, [planId, schedulePrefs, isAuthenticated, useRemote]);
 
@@ -718,14 +871,12 @@ export function WeekTracker({
     [useRemote]
   );
 
-  const dayKindLabel = (day: ScheduleDay) => {
-    if (day.kind === "run") return "Run";
-    if (day.kind === "cross-train") return "Cross-train";
-    return "Rest";
-  };
+  const dayKindLabel = (day: ScheduleDay) => scheduleDayKindLabel(day);
 
   const dayKindColor = (day: ScheduleDay) => {
     if (day.kind === "run") return "bg-primary/10 text-primary";
+    if (isStrengthSession(day))
+      return "bg-amber-500/10 text-amber-700 dark:text-amber-400";
     if (day.kind === "cross-train")
       return "bg-sky-500/10 text-sky-600 dark:text-sky-400";
     return "bg-muted text-muted-foreground";
@@ -976,6 +1127,11 @@ export function WeekTracker({
         </Card>
       </div>
 
+      <PlanRaceCountdown
+        profile={planProfile}
+        onChange={handleProfileChange}
+      />
+
       {completedInPlan > 0 && (
         <ProgressShare
           input={shareInput}
@@ -1069,7 +1225,9 @@ export function WeekTracker({
                           ? "rest"
                           : day.kind === "run"
                             ? "run"
-                            : "cross-train"
+                            : isStrengthSession(day)
+                              ? "strength"
+                              : "cross-train"
                       }
                     />
                     <CardHeader className="p-4 sm:p-6">
@@ -1176,6 +1334,10 @@ export function WeekTracker({
                                 <p className="text-sm text-muted-foreground leading-relaxed">
                                   {day.run.intervals}
                                 </p>
+                                <WorkoutIntervalTimer
+                                  key={day.id}
+                                  intervals={day.run.intervals}
+                                />
                               </div>
                             )}
                             {day.kind === "cross-train" && day.crossTraining && (

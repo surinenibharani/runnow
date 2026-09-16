@@ -120,32 +120,36 @@ export function PlanCatalogExplorer({
   }, [plans, activeFilters]);
 
   useEffect(() => {
-    setSelectedByFamily((prev) => {
-      const next = { ...prev };
-      for (const group of familyGroups) {
-        const preferred =
-          activePlanId &&
-          group.variants.some((v) => v.id === activePlanId)
-            ? activePlanId
-            : prev[group.familyId];
-        const resolved = defaultVariantId(group.variants, preferred);
-        if (resolved) next[group.familyId] = resolved;
-      }
-      return next;
+    queueMicrotask(() => {
+      setSelectedByFamily((prev) => {
+        const next = { ...prev };
+        for (const group of familyGroups) {
+          const preferred =
+            activePlanId &&
+            group.variants.some((v) => v.id === activePlanId)
+              ? activePlanId
+              : prev[group.familyId];
+          const resolved = defaultVariantId(group.variants, preferred);
+          if (resolved) next[group.familyId] = resolved;
+        }
+        return next;
+      });
     });
   }, [activePlanId, familyGroups]);
 
   useEffect(() => {
-    if (activePlanId) {
-      const family = plans.find((p) => p.id === activePlanId)?.familyId;
-      if (family) setExpandedFamilyId(family);
-      return;
-    }
-    setExpandedFamilyId((current) => {
-      if (current && familyGroups.some((g) => g.familyId === current)) {
-        return current;
+    queueMicrotask(() => {
+      if (activePlanId) {
+        const family = plans.find((p) => p.id === activePlanId)?.familyId;
+        if (family) setExpandedFamilyId(family);
+        return;
       }
-      return familyGroups[0]?.familyId ?? null;
+      setExpandedFamilyId((current) => {
+        if (current && familyGroups.some((g) => g.familyId === current)) {
+          return current;
+        }
+        return familyGroups[0]?.familyId ?? null;
+      });
     });
   }, [activePlanId, familyGroups, plans]);
 
@@ -323,12 +327,15 @@ export function PlanCatalogExplorer({
                                 type="button"
                                 role="radio"
                                 aria-checked={selected}
-                                onClick={() =>
+                                onClick={() => {
                                   setSelectedByFamily((prev) => ({
                                     ...prev,
                                     [group.familyId]: variant.id,
-                                  }))
-                                }
+                                  }));
+                                  if (variant.id !== activePlanId) {
+                                    selectPlan(variant.id);
+                                  }
+                                }}
                                 className={cn(
                                   "rounded-full border px-3.5 py-2 text-sm font-medium transition-colors",
                                   selected

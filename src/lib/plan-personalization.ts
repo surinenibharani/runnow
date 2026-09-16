@@ -64,17 +64,92 @@ export function parseAge(value: unknown): number | null {
   return n;
 }
 
-export function weeksUntilDate(goalDateIso: string): number | null {
-  const goal = new Date(goalDateIso);
-  if (Number.isNaN(goal.getTime())) return null;
+export function parseLocalDate(iso: string): Date | null {
+  const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso);
+  if (!match) return null;
+  const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+  return Number.isNaN(date.getTime()) ? null : date;
+}
 
-  const today = new Date();
+export function weeksUntilDate(
+  goalDateIso: string,
+  now: Date = new Date()
+): number | null {
+  const days = daysUntilDate(goalDateIso, now);
+  if (days === null) return null;
+  if (days <= 0) return 0;
+  return Math.max(1, Math.ceil(days / 7));
+}
+
+/** Whole days from today to the goal date. Negative if the date has passed. */
+export function daysUntilDate(
+  goalDateIso: string,
+  now: Date = new Date()
+): number | null {
+  const goal = parseLocalDate(goalDateIso);
+  if (!goal) return null;
+
+  const today = new Date(now);
   today.setHours(0, 0, 0, 0);
   goal.setHours(0, 0, 0, 0);
 
-  const diffMs = goal.getTime() - today.getTime();
-  if (diffMs < 0) return 0;
-  return Math.max(1, Math.ceil(diffMs / (7 * 24 * 60 * 60 * 1000)));
+  return Math.round((goal.getTime() - today.getTime()) / (24 * 60 * 60 * 1000));
+}
+
+export type RaceCountdown = {
+  days: number;
+  headline: string;
+  detail: string;
+  status: "upcoming" | "week" | "today" | "past";
+};
+
+export function getRaceCountdown(
+  goalDateIso: string,
+  now: Date = new Date()
+): RaceCountdown | null {
+  const days = daysUntilDate(goalDateIso, now);
+  const goal = parseLocalDate(goalDateIso);
+  if (days === null || !goal) return null;
+
+  const raceLabel = goal.toLocaleDateString(undefined, {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+
+  if (days < 0) {
+    return {
+      days,
+      headline: "Race date passed",
+      detail: `${raceLabel} is behind you. Set a new date when you’re ready for the next start line.`,
+      status: "past",
+    };
+  }
+
+  if (days === 0) {
+    return {
+      days,
+      headline: "Race day",
+      detail: `${raceLabel} — easy effort, walk breaks allowed. Finish wanting to come back.`,
+      status: "today",
+    };
+  }
+
+  if (days <= 7) {
+    return {
+      days,
+      headline: `Race week · ${days} day${days === 1 ? "" : "s"}`,
+      detail: `${raceLabel}. Keep runs easy. No stacking missed miles.`,
+      status: "week",
+    };
+  }
+
+  return {
+    days,
+    headline: `${days} days to race`,
+    detail: `${raceLabel}. Parkrun or a local 5K is a fine first finish line.`,
+    status: "upcoming",
+  };
 }
 
 export function recommendPlanVariantId(
@@ -93,7 +168,7 @@ export function recommendPlanVariantId(
   let fitting = variants;
   let tightTimeline = false;
 
-  if (weeksUntil !== null) {
+  if (weeksUntil !== null && weeksUntil > 0) {
     const fits = variants.filter((v) => v.durationWeeks <= weeksUntil);
     if (fits.length > 0) {
       fitting = fits;
@@ -120,7 +195,7 @@ export function recommendPlanVariantId(
   }
 
   const parts: string[] = [];
-  if (weeksUntil !== null) {
+  if (weeksUntil !== null && weeksUntil > 0) {
     parts.push(
       tightTimeline
         ? `Only ${weeksUntil} week${weeksUntil === 1 ? "" : "s"} until your race — using the shortest ${pick.shortName} plan`
@@ -156,22 +231,12 @@ export function recommendPlanVariantId(
 export function deriveSchedulePrefs(
   prefs: SchedulePreferences,
   profile: PlanPersonalization,
-  planRunsPerWeek: number
+  _planRunsPerWeek: number
 ): SchedulePreferences {
   let runDaysPerWeek = prefs.runDaysPerWeek;
 
-  if (
-    profile.fitnessLevel === "beginner" ||
-    profile.fitnessLevel === "returning"
-  ) {
-    runDaysPerWeek = 3;
-  } else if (
-    profile.fitnessLevel === "advanced" &&
-    planRunsPerWeek >= 4
-  ) {
-    runDaysPerWeek = 4;
-  }
-
+  // Honor the runner’s chosen run days. Only age 55+ still needs an extra
+  // recovery day even if they asked for four runs.
   if (profile.age && profile.age >= 55) {
     runDaysPerWeek = 3;
   }
@@ -308,11 +373,15 @@ export function getPlanTimelineHint(
   if (weeksUntil === null) return null;
 
   const weeksLeftInPlan = plan.durationWeeks - currentWeek + 1;
-  const raceLabel = new Date(profile.goalRaceDate).toLocaleDateString(undefined, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+  const raceDate = parseLocalDate(profile.goalRaceDate);
+  const raceLabel = (raceDate ?? new Date(profile.goalRaceDate)).toLocaleDateString(
+    undefined,
+    {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }
+  );
 
   if (weeksUntil === 0) {
     return `Race week — your goal date is ${raceLabel}.`;

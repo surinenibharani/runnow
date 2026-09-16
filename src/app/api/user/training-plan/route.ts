@@ -6,7 +6,7 @@ import {
   getUserTrainingPlan,
   updateUserTrainingPlan,
 } from "@/lib/teams";
-import { parseCompletedIdsFromDb, serializeCompletedIds } from "@/lib/plan-alignment";
+import { parseCompletedIdsFromDb } from "@/lib/plan-alignment";
 import { getPlanById } from "@/lib/plans";
 import { parseAge, parseFitnessLevel, type FitnessLevel } from "@/lib/plan-personalization";
 import {

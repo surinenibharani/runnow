@@ -9,11 +9,13 @@ export function StravaConnectBanner() {
   const { status } = useSession();
   const [connected, setConnected] = useState<boolean | null>(null);
 
+  const authenticated = status === "authenticated";
+  if (!authenticated && connected !== null) {
+    setConnected(null);
+  }
+
   useEffect(() => {
-    if (status !== "authenticated") {
-      setConnected(null);
-      return;
-    }
+    if (status !== "authenticated") return;
 
     fetch("/api/strava/status")
       .then((res) => (res.ok ? res.json() : null))

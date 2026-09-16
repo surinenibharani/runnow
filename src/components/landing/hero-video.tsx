@@ -127,7 +127,6 @@ export function HeroVideo({ className }: HeroVideoProps) {
   );
 
   const beginPlayRef = useRef(beginPlay);
-  beginPlayRef.current = beginPlay;
 
   const startSession = useCallback(() => {
     const video = videoRef.current;
@@ -148,10 +147,13 @@ export function HeroVideo({ className }: HeroVideoProps) {
   }, [clearHoldWatch]);
 
   const pauseAtHoldRef = useRef(pauseAtHold);
-  pauseAtHoldRef.current = pauseAtHold;
-
   const startSessionRef = useRef(startSession);
-  startSessionRef.current = startSession;
+
+  useEffect(() => {
+    beginPlayRef.current = beginPlay;
+    pauseAtHoldRef.current = pauseAtHold;
+    startSessionRef.current = startSession;
+  });
 
   useEffect(() => {
     const video = videoRef.current;

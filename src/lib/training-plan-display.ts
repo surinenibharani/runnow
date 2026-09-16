@@ -1,6 +1,6 @@
 import { parseCompletedIdsFromDb } from "@/lib/plan-alignment";
 import { getFamilyById, getPlanById } from "@/lib/plans";
-import { DAY_NAMES, getTotalWorkouts } from "@/lib/plan-types";
+import { DAY_NAMES, getTotalWorkouts, isStrengthSession } from "@/lib/plan-types";
 import {
   FITNESS_LEVEL_OPTIONS,
   parseFitnessLevel,
@@ -15,6 +15,7 @@ export type TrainingPlanWeekDayPreview = {
   dayName: string;
   label: string;
   kind: "run" | "cross-train" | "rest";
+  isStrength?: boolean;
 };
 
 export type TrainingPlanWeekPreview = {
@@ -119,6 +120,7 @@ export function buildTrainingPlanWeekPreview(
     days: week.days.map((day) => ({
       dayName: day.dayName,
       kind: day.kind,
+      isStrength: isStrengthSession(day),
       label:
         day.kind === "run"
           ? (day.run?.name ?? "Run")

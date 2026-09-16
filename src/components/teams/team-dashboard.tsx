@@ -59,7 +59,11 @@ export function TeamDashboardContent({ slug }: { slug: string }) {
 
   useEffect(() => {
     if (status === "unauthenticated") router.push("/login");
-    if (status === "authenticated") load();
+    if (status === "authenticated") {
+      void Promise.resolve().then(() => {
+        void load();
+      });
+    }
   }, [status, router, load]);
 
   if (loading) {

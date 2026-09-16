@@ -63,13 +63,17 @@ export function AdaptiveTodayCard({
   const [polished, setPolished] = useState(false);
   const [applying, setApplying] = useState(false);
   const [applyMessage, setApplyMessage] = useState("");
-
-  useEffect(() => {
+  const [briefKey, setBriefKey] = useState(
+    `${brief.action}:${brief.headline}:${brief.body}`
+  );
+  const nextBriefKey = `${brief.action}:${brief.headline}:${brief.body}`;
+  if (nextBriefKey !== briefKey) {
+    setBriefKey(nextBriefKey);
     setHeadline(brief.headline);
     setBody(brief.body);
     setPolished(false);
     setApplyMessage("");
-  }, [brief.headline, brief.body, brief.action]);
+  }
 
   useEffect(() => {
     if (!aiConfigured || polished) return;

@@ -86,9 +86,11 @@ function MoreNavMenu({
     isNavLinkActive(pathname, link.href, link.matchPrefix)
   );
 
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -228,11 +230,7 @@ function useResponsiveNav(
   barRef: RefObject<HTMLDivElement | null>
 ) {
   const [visibleCount, setVisibleCount] = useState(flexibleLinks.length);
-  const [useHamburger, setUseHamburger] = useState(() =>
-    typeof window !== "undefined"
-      ? window.innerWidth <= FORCE_HAMBURGER_MAX
-      : true
-  );
+  const [useHamburger, setUseHamburger] = useState(true);
 
   useLayoutEffect(() => {
     const slot = slotRef.current;
@@ -329,9 +327,11 @@ function useResponsiveNav(
     };
   }, [flexibleLinks, alwaysMoreLinks, slotRef, measureRef, barRef]);
 
-  useEffect(() => {
+  const [linkCount, setLinkCount] = useState(flexibleLinks.length);
+  if (flexibleLinks.length !== linkCount) {
+    setLinkCount(flexibleLinks.length);
     setVisibleCount(flexibleLinks.length);
-  }, [flexibleLinks.length]);
+  }
 
   return { visibleCount, useHamburger };
 }
@@ -367,13 +367,17 @@ export function Navbar() {
   const displayName =
     session?.user?.name?.split(" ")[0] || session?.user?.email?.split("@")[0];
 
-  useEffect(() => {
-    if (!useHamburger) setMenuOpen(false);
-  }, [useHamburger]);
-
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setMenuOpen(false);
-  }, [pathname]);
+  }
+
+  const [wasHamburger, setWasHamburger] = useState(useHamburger);
+  if (useHamburger !== wasHamburger) {
+    setWasHamburger(useHamburger);
+    if (!useHamburger) setMenuOpen(false);
+  }
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -384,6 +388,8 @@ export function Navbar() {
       'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
     );
     firstFocusable?.focus();
+
+    const menuToggle = menuToggleRef.current;
 
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -437,7 +443,7 @@ export function Navbar() {
       ) {
         previouslyFocused.focus();
       } else {
-        menuToggleRef.current?.focus();
+        menuToggle?.focus();
       }
     };
   }, [menuOpen]);

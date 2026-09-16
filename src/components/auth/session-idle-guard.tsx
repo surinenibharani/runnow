@@ -91,12 +91,15 @@ export function SessionIdleGuard() {
     scheduleIdleTimer();
   }, [clearPromptTimers, scheduleIdleTimer]);
 
+  if (status !== "authenticated" && showPrompt) {
+    setShowPrompt(false);
+  }
+
   useEffect(() => {
     if (status !== "authenticated") {
       clearIdleTimer();
       clearPromptTimers();
       promptOpenRef.current = false;
-      setShowPrompt(false);
       return;
     }
 

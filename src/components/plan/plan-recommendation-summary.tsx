@@ -50,7 +50,8 @@ export function PlanRecommendationSummary({
   const [brief, setBrief] = useState<PlanBrief | null>(null);
 
   useEffect(() => {
-    setBrief(readPlanBrief(plan.id));
+    const next = readPlanBrief(plan.id);
+    queueMicrotask(() => setBrief(next));
   }, [plan.id]);
 
   const rationale = useMemo(() => {
@@ -110,13 +111,30 @@ export function PlanRecommendationSummary({
           Tailored for {brief.healthFocus}
         </p>
       )}
+      {brief?.adjustments && brief.adjustments.length > 0 && (
+        <div className="mt-4 rounded-lg border border-border/50 bg-background/60 p-4">
+          <h3 className="text-sm font-semibold tracking-tight">
+            What we changed for you
+          </h3>
+          <ul className="mt-3 space-y-2">
+            {brief.adjustments.map((item) => (
+              <li key={item.title}>
+                <p className="text-sm font-medium text-foreground">{item.title}</p>
+                <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
+                  {item.detail}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="mt-5 border-t border-border/50 pt-4">
         <h3 className="text-sm font-semibold tracking-tight">
-          Suggested cross-training
+          Supporting cross-training on non-run days
         </h3>
         <p className="mt-1 text-sm text-muted-foreground">
-          Use these on cross-train days (or as a gentle swap if a run feels
+          Use these on every cross-train day (or as a gentle swap if a run feels
           aggressive). They add fitness while easing the issues you flagged.
         </p>
         <CrossTrainList items={crossTrain} />

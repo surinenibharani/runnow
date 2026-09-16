@@ -198,15 +198,14 @@ export function DashboardContent() {
   }
 
   useEffect(() => {
-    if (!data || selectedHrActivityId === "all") {
-      setActivityHrZones(null);
-      setActivityHrZonesLoading(false);
-      return;
-    }
+    if (!data || selectedHrActivityId === "all") return;
 
     let cancelled = false;
-    setActivityHrZonesLoading(true);
-    setActivityHrZones(null);
+    void Promise.resolve().then(() => {
+      if (cancelled) return;
+      setActivityHrZonesLoading(true);
+      setActivityHrZones(null);
+    });
 
     fetch(`/api/activities/${selectedHrActivityId}/heart-rate-zones`)
       .then(async (res) => {
@@ -281,11 +280,13 @@ export function DashboardContent() {
       return;
     }
     if (status === "authenticated") {
-      loadDashboard();
+      void Promise.resolve().then(() => {
+        void loadDashboard();
+      });
     }
   }, [status, router, loadDashboard]);
 
-  useEffect(() => {
+  const queryMessage = useMemo(() => {
     const connected = searchParams.get("connected");
     const error = searchParams.get("error");
     const synced = searchParams.get("synced");
@@ -297,19 +298,21 @@ export function DashboardContent() {
         if (planMatched && planMatched !== "0") {
           parts.push(`${planMatched} matched your training plan`);
         }
-        setMessage(parts.join(" · ") + ".");
-      } else {
-        setMessage("Strava connected! Your runs will sync automatically.");
+        return `${parts.join(" · ")}.`;
       }
+      return "Strava connected! Your runs will sync automatically.";
     }
 
-    if (error === "strava_denied") setMessage("Strava authorization was cancelled.");
-    if (error === "strava_invalid") setMessage("Strava connection expired. Please try again.");
-    if (error === "strava_failed") setMessage("Strava connection failed. Check your app settings and try again.");
+    if (error === "strava_denied") return "Strava authorization was cancelled.";
+    if (error === "strava_invalid") return "Strava connection expired. Please try again.";
+    if (error === "strava_failed") return "Strava connection failed. Check your app settings and try again.";
     if (error === "strava_not_configured") {
-      setMessage("Strava is not configured on this server. Add STRAVA_CLIENT_ID and STRAVA_CLIENT_SECRET.");
+      return "Strava is not configured on this server. Add STRAVA_CLIENT_ID and STRAVA_CLIENT_SECRET.";
     }
+    return "";
   }, [searchParams]);
+
+  const bannerMessage = message || queryMessage;
 
   async function handleDisconnect() {
     if (!confirm("Disconnect Strava? Your synced runs will stay on your dashboard.")) return;
@@ -324,14 +327,7 @@ export function DashboardContent() {
 
   function formatLastSynced(iso: string | null): string {
     if (!iso) return "Never synced";
-    const date = new Date(iso);
-    const diffMs = Date.now() - date.getTime();
-    const mins = Math.floor(diffMs / 60000);
-    if (mins < 1) return "Synced just now";
-    if (mins < 60) return `Synced ${mins}m ago`;
-    const hours = Math.floor(mins / 60);
-    if (hours < 24) return `Synced ${hours}h ago`;
-    return `Synced ${date.toLocaleDateString()}`;
+    return `Synced ${new Date(iso).toLocaleString()}`;
   }
 
   async function handleSync() {
@@ -432,8 +428,8 @@ export function DashboardContent() {
               </Button>
             </div>
           </div>
-          {message && (
-            <p className="text-sm text-primary mt-3">{message}</p>
+          {bannerMessage && (
+            <p className="text-sm text-primary mt-3">{bannerMessage}</p>
           )}
         </FadeIn>
 

@@ -3,7 +3,10 @@ import {
   healthFocusLabel,
   type CrossTrainSuggestion,
 } from "@/lib/plan/cross-train-guidance";
+import type { PlanAdjustment } from "@/lib/plan/plan-brief";
+import type { FitnessLevel } from "@/lib/plan-personalization";
 import { getPlanById, getPlansForFamily, type TrainingPlan } from "@/lib/plans";
+import type { HealthPlanMode } from "@/lib/schedule-builder";
 
 export type OnboardingExperience =
   | "never"
@@ -40,7 +43,8 @@ export type OnboardingAgeBand = "under-40" | "40-54" | "55-plus";
 export type OnboardingSetback =
   | "none"
   | "time-off"
-  | "niggle";
+  | "niggle"
+  | "condition";
 
 /** Follow-ups when coming back after time off. */
 export type OnboardingTimeOffDuration =
@@ -116,6 +120,10 @@ export type PlanRecommendation = {
   healthFocus?: string | null;
   /** Cross-training tailored to section 7 answers */
   crossTrain: CrossTrainSuggestion[];
+  /** Concrete changes applied because of the runner’s answers */
+  adjustments: PlanAdjustment[];
+  healthMode: HealthPlanMode;
+  runDaysPerWeek: 3 | 4;
 };
 
 export const ONBOARDING_STEPS: { id: OnboardingStepId; label: string }[] = [
@@ -229,6 +237,7 @@ function wantsGentle(answers: OnboardingAnswers): boolean {
     answers.ageBand === "55-plus" ||
     answers.setback === "niggle" ||
     answers.setback === "time-off" ||
+    answers.setback === "condition" ||
     answers.experience === "never" ||
     answers.longestRun === "none" ||
     answers.longestRun === "under-10" ||
@@ -239,6 +248,70 @@ function wantsGentle(answers: OnboardingAnswers): boolean {
     answers.timeOffReason === "injury" ||
     answers.timeOffReason === "illness"
   );
+}
+
+export function healthPlanModeFromAnswers(
+  answers: Pick<
+    OnboardingAnswers,
+    "setback" | "niggleSeverity" | "timeOffReason" | "timeOffDuration"
+  >
+): HealthPlanMode {
+  if (answers.setback === "condition") return "protect";
+  if (answers.setback === "niggle") {
+    if (
+      answers.niggleSeverity === "sharp-worsening" ||
+      answers.niggleSeverity === "daily" ||
+      answers.niggleSeverity === "during-runs"
+    ) {
+      return "protect";
+    }
+    return "support";
+  }
+  if (answers.setback === "time-off") {
+    if (
+      answers.timeOffReason === "injury" ||
+      answers.timeOffReason === "illness" ||
+      answers.timeOffDuration === "3-plus-mo"
+    ) {
+      return "protect";
+    }
+    return "support";
+  }
+  return "none";
+}
+
+export function fitnessLevelFromOnboarding(
+  answers: OnboardingAnswers
+): FitnessLevel {
+  const score = fitnessScore(answers);
+  if (score <= 2) return "beginner";
+  if (score <= 4) return "returning";
+  if (score <= 5) return "intermediate";
+  return "advanced";
+}
+
+export function ageFromOnboardingBand(band: OnboardingAgeBand): number {
+  switch (band) {
+    case "under-40":
+      return 32;
+    case "40-54":
+      return 47;
+    case "55-plus":
+      return 60;
+  }
+}
+
+/** Run days actually applied after necessary health / age / plan-structure changes. */
+export function appliedRunDaysFromAnswers(
+  answers: OnboardingAnswers,
+  planRunsPerWeek?: number
+): 3 | 4 {
+  const mode = healthPlanModeFromAnswers(answers);
+  if (mode === "protect" || answers.ageBand === "55-plus") return 3;
+  if (answers.days === 4 && (planRunsPerWeek === undefined || planRunsPerWeek >= 4)) {
+    return 4;
+  }
+  return 3;
 }
 
 function timelineWeeks(timeline: OnboardingTimeline): number | null {
@@ -355,6 +428,7 @@ function readyForGoal(answers: OnboardingAnswers): boolean {
 /** Severe niggles should not jump into long-distance plans. */
 function forceGentleStart(answers: OnboardingAnswers): boolean {
   return (
+    answers.setback === "condition" ||
     answers.niggleSeverity === "sharp-worsening" ||
     answers.niggleSeverity === "daily" ||
     (answers.setback === "time-off" &&
@@ -469,7 +543,7 @@ function buildNotes(
     }
     if (answers.niggleArea) {
       notes.push(
-        "Use easy effort only, skip anything that reproduces the niggle, and prefer walk-run over forcing continuous jogging. On cross-train days, use the suggested low-impact options for your niggle instead of stacking more running."
+        "Use easy effort only, skip anything that reproduces the niggle, and prefer walk-run over forcing continuous jogging. On non-run days, use the suggested low-impact options for your niggle instead of stacking more running."
       );
     }
   }
@@ -487,6 +561,13 @@ function buildNotes(
         "Coming back after time off: the first 2 weeks should feel almost too easy. Use suggested cross-training to stay consistent between easy runs."
       );
     }
+  }
+  if (answers.setback === "condition") {
+    caution =
+      "If you have a heart, joint, metabolic, pregnancy, or other health condition, get clinician clearance before starting or changing a program. This plan is education, not medical advice.";
+    notes.push(
+      "We start easier than the distance you named and keep supporting cross-training on every non-run day so fitness still moves without extra pounding."
+    );
   }
 
   let alternate: PlanRecommendation["alternate"] | undefined;
@@ -522,7 +603,9 @@ function buildNotes(
   const injuryHref =
     answers.setback === "niggle"
       ? niggleInjuryHref(answers.niggleArea)
-      : undefined;
+      : answers.setback === "condition"
+        ? "/blog/running-with-health-conditions"
+        : undefined;
 
   return {
     note: notes.length ? notes.join(" ") : undefined,
@@ -530,6 +613,57 @@ function buildNotes(
     alternate,
     injuryHref,
   };
+}
+
+function buildAdjustments(
+  answers: OnboardingAnswers,
+  plan: TrainingPlan,
+  redirected: boolean,
+  appliedDays: 3 | 4
+): PlanAdjustment[] {
+  const items: PlanAdjustment[] = [];
+  const mode = healthPlanModeFromAnswers(answers);
+
+  if (redirected) {
+    items.push({
+      title: "Easier starting distance",
+      detail: `${plan.shortName} is the safer first step from the fitness and health answers you gave. Build this, then step up.`,
+    });
+  }
+
+  if (answers.days === 4 && appliedDays === 3) {
+    items.push({
+      title: "3 run days instead of 4",
+      detail:
+        "The extra day stays a supporting non-run session so recovery and the issues you flagged get room.",
+    });
+  }
+
+  if (mode !== "none") {
+    items.push({
+      title: "Supporting cross-training on non-run days",
+      detail:
+        "Every cross-train day now leads with low-impact work matched to the issues you flagged, instead of extra running.",
+    });
+  }
+
+  if (mode === "protect") {
+    items.push({
+      title: "Softer strength load",
+      detail:
+        "Generic strength circuits are scaled back so those days can stay on the supporting work for your issue.",
+    });
+  }
+
+  if (answers.ageBand === "55-plus") {
+    items.push({
+      title: "Extra recovery for 55+",
+      detail:
+        "Volume stays easier and we keep an extra recovery-focused day when legs feel heavy.",
+    });
+  }
+
+  return items;
 }
 
 /**
@@ -552,6 +686,8 @@ export function recommendOnboardingPlan(
     answers.niggleArea,
     answers.timeOffReason
   );
+  const runDaysPerWeek = appliedRunDaysFromAnswers(answers, plan.runsPerWeek);
+  const healthMode = healthPlanModeFromAnswers(answers);
 
   return {
     planId: plan.id,
@@ -559,6 +695,9 @@ export function recommendOnboardingPlan(
     rationale: buildRationale(answers, plan, wasRedirected),
     healthFocus,
     crossTrain: getCrossTrainGuidanceForAnswers(answers),
+    adjustments: buildAdjustments(answers, plan, wasRedirected, runDaysPerWeek),
+    healthMode,
+    runDaysPerWeek,
     ...extras,
   };
 }

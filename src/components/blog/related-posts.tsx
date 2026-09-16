@@ -3,7 +3,7 @@ import { Clock } from "lucide-react";
 import type { BlogPost } from "@/lib/blog/types";
 import { Badge } from "@/components/ui/badge";
 import { categoryToParam } from "@/lib/blog/categories";
-import { buildBlogPostHref, getBlogPreviewHrefSuffix, appendBlogPreviewParam } from "@/lib/blog/preview";
+import { buildBlogPostHref, appendBlogPreviewParam } from "@/lib/blog/preview";
 
 type RelatedPostsProps = {
   posts: BlogPost[];

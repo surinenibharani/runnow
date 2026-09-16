@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
+  appliedRunDaysFromAnswers,
   fitnessScore,
+  healthPlanModeFromAnswers,
   isOnboardingComplete,
   recommendOnboardingPlan,
   type OnboardingAnswers,
@@ -91,6 +93,56 @@ describe("onboarding recommendations", () => {
     assert.equal(result.injuryHref, "/injuries/shin-splints");
   });
 
+  it("asks about health conditions and steers volume plus supporting CT", () => {
+    const result = recommendOnboardingPlan({
+      experience: "consistent",
+      longestRun: "30-plus",
+      goal: "half",
+      timeline: "12-plus",
+      days: 4,
+      ageBand: "under-40",
+      setback: "condition",
+    });
+    assert.equal(result.plan.familyId, "5k");
+    assert.equal(result.healthMode, "protect");
+    assert.equal(result.runDaysPerWeek, 3);
+    assert.equal(result.healthFocus, "training around a health condition");
+    assert.equal(result.injuryHref, "/blog/running-with-health-conditions");
+    assert.ok(result.caution);
+    assert.ok(result.crossTrain.some((item) => /walk/i.test(item.title)));
+    assert.ok(
+      result.adjustments.some((item) => /cross-training on non-run/i.test(item.title))
+    );
+  });
+
+  it("keeps a healthy 4-day pick and drops to 3 when health needs protection", () => {
+    assert.equal(
+      appliedRunDaysFromAnswers({ ...base, days: 4, setback: "none" }),
+      4
+    );
+    assert.equal(
+      appliedRunDaysFromAnswers({ ...base, days: 4, setback: "none" }, 3),
+      3
+    );
+    assert.equal(
+      healthPlanModeFromAnswers({
+        setback: "niggle",
+        niggleSeverity: "mild-after",
+      }),
+      "support"
+    );
+    assert.equal(
+      appliedRunDaysFromAnswers({
+        ...base,
+        days: 4,
+        setback: "niggle",
+        niggleArea: "knee",
+        niggleSeverity: "during-runs",
+      }),
+      3
+    );
+  });
+
   it("scores fitness from experience + longest run", () => {
     assert.equal(fitnessScore(base), 0);
     assert.ok(
@@ -137,6 +189,16 @@ describe("onboarding completion", () => {
         setback: "niggle",
         niggleArea: "knee",
         niggleSeverity: "mild-after",
+      }),
+      true
+    );
+  });
+
+  it("treats a health-condition answer as complete without extra follow-ups", () => {
+    assert.equal(
+      isOnboardingComplete({
+        ...base,
+        setback: "condition",
       }),
       true
     );

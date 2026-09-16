@@ -68,4 +68,4 @@ export type {
   ScheduleDay,
   PlanFamily,
 } from "@/lib/plan-types";
-export { getTotalWorkouts } from "@/lib/plan-types";
+export { getTotalWorkouts, isStrengthSession, scheduleDayKindLabel } from "@/lib/plan-types";

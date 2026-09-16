@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { BlogPostCardSummary } from "@/lib/blog/types";
 import { filterPostsByCategory, paramToCategory, SCHEDULED_BLOG_FILTER } from "@/lib/blog/categories";
@@ -28,10 +28,11 @@ export function BlogFilteredPosts({
   const filteredPosts = filterPostsByCategory(posts, categoryParam);
   const listKey = categoryParam ?? "all";
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
-
-  useEffect(() => {
+  const [countKey, setCountKey] = useState(listKey);
+  if (listKey !== countKey) {
+    setCountKey(listKey);
     setVisibleCount(INITIAL_VISIBLE);
-  }, [listKey]);
+  }
 
   const visiblePosts = filteredPosts.slice(0, visibleCount);
   const remaining = filteredPosts.length - visiblePosts.length;

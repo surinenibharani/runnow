@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import type { CrossTraining, CrossTrainCategory } from "@/lib/plan-types";
 import { Bike, Dumbbell, Footprints, PersonStanding, Sparkles } from "lucide-react";
@@ -90,6 +91,16 @@ export function CrossTrainingDetails({
           );
         })}
       </div>
+      {crossTraining.guideHref && (
+        <p className="text-sm">
+          <Link
+            href={crossTraining.guideHref}
+            className="text-primary hover:underline"
+          >
+            {crossTraining.guideLabel ?? "Strength guide"}
+          </Link>
+        </p>
+      )}
     </div>
   );
 }

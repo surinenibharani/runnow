@@ -61,14 +61,14 @@ export function ProfileModalProvider({
 
   const openProfile = useCallback(() => {
     setOpen(true);
+    setLoading(true);
+    setError("");
   }, []);
 
   useEffect(() => {
     if (!open) return;
 
     let cancelled = false;
-    setLoading(true);
-    setError("");
 
     fetch("/api/user/profile")
       .then(async (res) => {

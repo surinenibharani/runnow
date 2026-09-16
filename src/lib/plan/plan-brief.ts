@@ -1,6 +1,13 @@
 import type { CrossTrainSuggestion } from "@/lib/plan/cross-train-guidance";
+import type { FitnessLevel } from "@/lib/plan-personalization";
+import type { HealthPlanMode } from "@/lib/schedule-builder";
 
 export const PLAN_BRIEF_STORAGE_KEY = "letsrunnow-plan-brief";
+
+export type PlanAdjustment = {
+  title: string;
+  detail: string;
+};
 
 export type PlanBrief = {
   planId: string;
@@ -12,6 +19,12 @@ export type PlanBrief = {
   /** Health focus label e.g. "knee comfort" */
   healthFocus?: string | null;
   crossTrain: CrossTrainSuggestion[];
+  /** Concrete plan changes driven by quiz / health answers */
+  adjustments?: PlanAdjustment[];
+  runDaysPerWeek?: 3 | 4;
+  age?: number | null;
+  fitnessLevel?: FitnessLevel;
+  healthMode?: HealthPlanMode;
   fromQuiz: boolean;
   savedAt: string;
 };

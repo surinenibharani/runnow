@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { Calendar, Sparkles, User } from "lucide-react";
+import { Sparkles, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -19,12 +19,6 @@ interface PlanProfilePickerProps {
   plan: TrainingPlan;
   currentWeek: number;
   onChange: (profile: PlanPersonalization) => void;
-}
-
-function minGoalDate(): string {
-  const d = new Date();
-  d.setDate(d.getDate() + 7);
-  return d.toISOString().slice(0, 10);
 }
 
 export function PlanProfilePicker({
@@ -49,63 +43,36 @@ export function PlanProfilePicker({
       <div>
         <h3 className="font-semibold">Your runner profile</h3>
         <p className="text-sm text-muted-foreground mt-1">
-          Age, fitness, and goal date tune plan length, weekly volume, and workout
-          intensity.
+          Age and fitness tune weekly volume and intensity. Set a first-race date
+          below for a countdown and plan-length hint.
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <Label htmlFor="plan-age" className="text-sm font-medium">
-            Age
-          </Label>
-          <div className="relative mt-2">
-            <User className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              id="plan-age"
-              type="number"
-              min={13}
-              max={100}
-              placeholder="e.g. 32"
-              value={profile.age ?? ""}
-              onChange={(e) =>
-                onChange({
-                  ...profile,
-                  age: e.target.value ? parseInt(e.target.value, 10) : null,
-                })
-              }
-              className="pl-8"
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-1.5">
-            Runners 55+ get slightly lower volume for recovery.
-          </p>
+      <div>
+        <Label htmlFor="plan-age" className="text-sm font-medium">
+          Age
+        </Label>
+        <div className="relative mt-2 max-w-xs">
+          <User className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            id="plan-age"
+            type="number"
+            min={13}
+            max={100}
+            placeholder="e.g. 32"
+            value={profile.age ?? ""}
+            onChange={(e) =>
+              onChange({
+                ...profile,
+                age: e.target.value ? parseInt(e.target.value, 10) : null,
+              })
+            }
+            className="pl-8"
+          />
         </div>
-
-        <div>
-          <Label htmlFor="plan-goal-date" className="text-sm font-medium">
-            Goal race date
-          </Label>
-          <div className="relative mt-2">
-            <Calendar className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              id="plan-goal-date"
-              type="date"
-              min={minGoalDate()}
-              value={profile.goalRaceDate?.slice(0, 10) ?? ""}
-              onChange={(e) =>
-                onChange({
-                  ...profile,
-                  goalRaceDate: e.target.value || null,
-                })
-              }
-              className="pl-8"
-            />
-          </div>
-          <p className="text-xs text-muted-foreground mt-1.5">
-            Picks the best plan length and aligns your calendar.
-          </p>
-        </div>
+        <p className="text-xs text-muted-foreground mt-1.5">
+          Runners 55+ get slightly lower volume for recovery.
+        </p>
       </div>
 
       <div role="group" aria-labelledby="plan-fitness-label">

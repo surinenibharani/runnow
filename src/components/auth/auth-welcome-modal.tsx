@@ -40,8 +40,10 @@ export function AuthWelcomeModal() {
     if (!welcome) return;
 
     shownRef.current = true;
-    setMessage(welcome);
-    setOpen(true);
+    queueMicrotask(() => {
+      setMessage(welcome);
+      setOpen(true);
+    });
   }, [status]);
 
   function dismiss() {

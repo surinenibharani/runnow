@@ -503,10 +503,7 @@ function formatRelativeWorkoutTime(startDate: Date, now: Date): string {
  * Do not invent resting HR from activity average HR — easy-run averages are
  * typically 120–150 bpm and are not resting values. Only manual logs count.
  */
-export function estimateRestingHeartRate(
-  _activities: ActivitySummary[],
-  _lookbackDays = 14
-): number | null {
+export function estimateRestingHeartRate(): number | null {
   return null;
 }
 
@@ -520,8 +517,7 @@ function median(values: number[]): number | null {
 }
 
 function resolveTodayRhr(
-  wellness: WellnessSnapshot[],
-  _activities: ActivitySummary[]
+  wellness: WellnessSnapshot[]
 ): { rhr: number | null; source: "manual" | "estimated" | null } {
   const todayKey = toDateKey(new Date());
   const todayManual = wellness.find(
@@ -546,8 +542,7 @@ function resolveTodayRhr(
 }
 
 function resolveBaselineRhr(
-  wellness: WellnessSnapshot[],
-  _activities: ActivitySummary[]
+  wellness: WellnessSnapshot[]
 ): number | null {
   const manual = wellness
     .filter((w) => w.restingHeartRate != null)
@@ -626,8 +621,8 @@ export function calculateRecoveryReadiness(
   }
 ): RecoveryReadiness {
   const sleep = resolveLastNightSleep(wellness);
-  const { rhr, source } = resolveTodayRhr(wellness, activities);
-  const baselineRhr = resolveBaselineRhr(wellness, activities);
+  const { rhr, source } = resolveTodayRhr(wellness);
+  const baselineRhr = resolveBaselineRhr(wellness);
 
   const profile = buildAthleteProfile(
     {

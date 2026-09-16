@@ -31,9 +31,11 @@ export function HeroRaceMarkers() {
     ).matches;
 
     if (reducedMotion) {
-      setSettled(true);
-      setFocusIndex(-1);
-      setAllFaded(false);
+      queueMicrotask(() => {
+        setSettled(true);
+        setFocusIndex(-1);
+        setAllFaded(false);
+      });
       return;
     }
 

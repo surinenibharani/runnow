@@ -14,7 +14,7 @@ import {
   getVisibleBlogPostCards,
 } from "@/lib/blog/posts";
 import { SCHEDULED_BLOG_FILTER, buildBlogCategories } from "@/lib/blog/categories";
-import { bootstrapBlogPreview, hasBlogPreviewAccess, isValidPreviewSecret } from "@/lib/blog/preview-server";
+import { bootstrapBlogPreview } from "@/lib/blog/preview-server";
 import { isBlogPostScheduled } from "@/lib/blog/preview";
 import { BlogPreviewBanner } from "@/components/blog/blog-preview-banner";
 import { BlogPageHero } from "@/components/visuals/content-scenes";

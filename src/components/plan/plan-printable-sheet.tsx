@@ -7,12 +7,22 @@ import { PrintPageButton } from "@/components/blog/print-page-button";
 import {
   getDefaultCrossTrainGuidance,
   getDefaultPlanRationale,
+  overlayHealthOnScheduledWeeks,
   type CrossTrainSuggestion,
 } from "@/lib/plan/cross-train-guidance";
 import { readPlanBrief } from "@/lib/plan/plan-brief";
+import { DEFAULT_PERSONALIZATION } from "@/lib/plan-personalization";
 import { BRAND_CAPTION } from "@/lib/brand";
 import { SITE_NAME } from "@/lib/site";
-import type { ScheduledWeek, TrainingPlan } from "@/lib/plan-types";
+import {
+  applyScheduleToPlan,
+  DEFAULT_SCHEDULE,
+} from "@/lib/schedule-builder";
+import {
+  isStrengthSession,
+  type ScheduledWeek,
+  type TrainingPlan,
+} from "@/lib/plan-types";
 
 type PlanPrintableSheetProps = {
   plan: TrainingPlan;
@@ -92,9 +102,11 @@ function WeekTable({
                 const ctHint =
                   day.kind === "cross-train" && focusTitles
                     ? focusTitles
-                    : day.kind === "cross-train"
-                      ? "See focus list"
-                      : "";
+                    : isStrengthSession(day)
+                      ? day.crossTraining?.activities[0]?.title ?? "Runner strength"
+                      : day.kind === "cross-train"
+                        ? "See focus list"
+                        : "";
 
                 return (
                   <tr key={day.id} className="border-b border-border/50">
@@ -177,17 +189,44 @@ export function PlanPrintableSheet({
     getDefaultPlanRationale(plan)
   );
   const [healthFocus, setHealthFocus] = useState<string | null>(null);
+  const [displayWeeks, setDisplayWeeks] = useState(weeks);
 
   useEffect(() => {
     const brief = readPlanBrief(plan.id);
-    if (brief?.crossTrain?.length) {
-      setFocusCt(brief.crossTrain);
-    } else {
-      setFocusCt(getDefaultCrossTrainGuidance());
-    }
-    setRationale(brief?.rationale ?? getDefaultPlanRationale(plan));
-    setHealthFocus(brief?.healthFocus ?? null);
-  }, [plan]);
+    queueMicrotask(() => {
+      if (brief?.crossTrain?.length) {
+        setFocusCt(brief.crossTrain);
+      } else {
+        setFocusCt(getDefaultCrossTrainGuidance());
+      }
+      setRationale(brief?.rationale ?? getDefaultPlanRationale(plan));
+      setHealthFocus(brief?.healthFocus ?? null);
+
+      if (brief?.fromQuiz) {
+        const prefs = {
+          ...DEFAULT_SCHEDULE,
+          runDaysPerWeek: brief.runDaysPerWeek ?? DEFAULT_SCHEDULE.runDaysPerWeek,
+        };
+        const profile = {
+          ...DEFAULT_PERSONALIZATION,
+          age: brief.age ?? null,
+          fitnessLevel: brief.fitnessLevel ?? DEFAULT_PERSONALIZATION.fitnessLevel,
+        };
+        const built = applyScheduleToPlan(plan, prefs, profile, {
+          healthMode: brief.healthMode ?? "none",
+        });
+        setDisplayWeeks(
+          overlayHealthOnScheduledWeeks(
+            built.scheduledWeeks,
+            brief.crossTrain ?? [],
+            brief.healthFocus
+          )
+        );
+      } else {
+        setDisplayWeeks(weeks);
+      }
+    });
+  }, [plan, weeks]);
 
   return (
     <div className="relative mx-auto max-w-5xl px-4 py-8 sm:px-6 print:max-w-none print:px-0 print:py-0">
@@ -258,7 +297,7 @@ export function PlanPrintableSheet({
       )}
 
       <div className="space-y-4">
-        {weeks.map((week) => (
+        {displayWeeks.map((week) => (
           <WeekTable key={week.week} week={week} focusCt={focusCt} />
         ))}
       </div>

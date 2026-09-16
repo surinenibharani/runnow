@@ -64,9 +64,16 @@ export function BlogComments({
   const [editError, setEditError] = useState("");
   const [savingId, setSavingId] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const sessionName = session?.user?.name ?? "";
+  const [seenSessionName, setSeenSessionName] = useState(sessionName);
 
   const captchaRequired = isTurnstileEnabled();
   const apiPath = commentsApiPath(targetType, postSlug);
+
+  if (sessionName !== seenSessionName) {
+    setSeenSessionName(sessionName);
+    if (sessionName) setAuthorName(sessionName);
+  }
 
   const loadComments = useCallback(async () => {
     try {
@@ -82,15 +89,8 @@ export function BlogComments({
 
   useEffect(() => {
     if (sessionStatus === "loading") return;
-    setLoading(true);
     void loadComments();
   }, [loadComments, sessionStatus]);
-
-  useEffect(() => {
-    if (session?.user?.name) {
-      setAuthorName(session.user.name);
-    }
-  }, [session?.user?.name]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

@@ -40,11 +40,12 @@ export function ActivityPieChart({
     );
   }
 
-  let cumulative = 0;
-  const gradientStops = slices.map((slice) => {
-    const start = (cumulative / total) * 100;
-    cumulative += slice.value;
-    const end = (cumulative / total) * 100;
+  const gradientStops = slices.map((slice, index) => {
+    const prior = slices
+      .slice(0, index)
+      .reduce((sum, item) => sum + item.value, 0);
+    const start = (prior / total) * 100;
+    const end = ((prior + slice.value) / total) * 100;
     return `${slice.color} ${start}% ${end}%`;
   });
 

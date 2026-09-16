@@ -27,6 +27,10 @@ export interface CrossTraining {
   focus: string;
   duration: string;
   activities: CrossTrainingActivity[];
+  /** Dedicated strength session — shown as Strength, not a mix-and-match CT menu. */
+  emphasis?: "strength";
+  guideHref?: string;
+  guideLabel?: string;
 }
 
 export interface Workout {
@@ -85,6 +89,17 @@ export interface PlanFamily {
 }
 
 export const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
+
+export function isStrengthSession(day: ScheduleDay): boolean {
+  return day.kind === "cross-train" && day.crossTraining?.emphasis === "strength";
+}
+
+export function scheduleDayKindLabel(day: ScheduleDay): string {
+  if (isStrengthSession(day)) return "Strength";
+  if (day.kind === "run") return "Run";
+  if (day.kind === "cross-train") return "Cross-train";
+  return "Rest";
+}
 
 export function getTotalWorkouts(weeks: ScheduledWeek[]): number {
   return weeks.reduce(

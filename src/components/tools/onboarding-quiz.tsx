@@ -8,10 +8,16 @@ import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-b
 import { MedicalDisclaimerText } from "@/components/legal/medical-disclaimer-text";
 import { healthFocusLabel } from "@/lib/plan/cross-train-guidance";
 import { savePlanBrief } from "@/lib/plan/plan-brief";
+import { getPlanProfile, savePlanProfile } from "@/lib/plan-profile";
+import { getSchedulePreferences, saveSchedulePreferences } from "@/lib/schedule-preferences";
 import {
   ONBOARDING_STEPS,
+  ageFromOnboardingBand,
+  appliedRunDaysFromAnswers,
   clearHealthFollowUps,
+  fitnessLevelFromOnboarding,
   getOnboardingFields,
+  healthPlanModeFromAnswers,
   isHealthField,
   isOnboardingComplete,
   recommendOnboardingPlan,
@@ -28,6 +34,7 @@ import {
   type OnboardingTimeOffDuration,
   type OnboardingTimeOffReason,
   type OnboardingTimeline,
+  type PlanRecommendation,
 } from "@/lib/tools/onboarding";
 import { cn } from "@/lib/utils";
 
@@ -150,17 +157,22 @@ const SETBACK_OPTIONS: Option<OnboardingSetback>[] = [
   {
     value: "none",
     label: "Feeling healthy",
-    hint: "No recent injury or long break",
+    hint: "No current pain, long break, or condition to plan around",
   },
   {
     value: "time-off",
     label: "Coming back after time off",
-    hint: "We'll ask a couple follow-ups",
+    hint: "We'll ask how long and why, then ease the comeback",
   },
   {
     value: "niggle",
-    label: "I have a lingering niggle",
-    hint: "We'll ask where it shows up",
+    label: "A lingering niggle or pain",
+    hint: "We'll ask where it shows up and suggest supporting work",
+  },
+  {
+    value: "condition",
+    label: "A health condition",
+    hint: "Heart, joints, pregnancy, or something a clinician should know about",
   },
 ];
 
@@ -287,15 +299,15 @@ function titleForField(field: OnboardingFieldId): string {
     case "ageBand":
       return "Which age range fits you?";
     case "setback":
-      return "Anything we should go easy on?";
+      return "Any current issues we should plan around?";
     case "timeOffDuration":
       return "How long were you away from running?";
     case "timeOffReason":
       return "What mostly caused the time off?";
     case "niggleArea":
-      return "Where do you notice the niggle most?";
+      return "Where do you notice the issue most?";
     case "niggleSeverity":
-      return "How does that niggle usually feel?";
+      return "How does that issue usually feel?";
   }
 }
 
@@ -306,14 +318,59 @@ function chipLabelForField(field: OnboardingFieldId): string {
     case "timeOffReason":
       return "Why offline";
     case "niggleArea":
-      return "Niggle area";
+      return "Issue area";
     case "niggleSeverity":
-      return "Niggle feel";
+      return "How it feels";
     default: {
       const step = ONBOARDING_STEPS.find((s) => s.id === field);
       return step?.label ?? field;
     }
   }
+}
+
+function persistQuizPlan(
+  planId: string,
+  answers: OnboardingAnswers,
+  recommendation: PlanRecommendation
+) {
+  const runDaysPerWeek =
+    recommendation.runDaysPerWeek ?? appliedRunDaysFromAnswers(answers);
+  savePlanBrief({
+    planId,
+    rationale: recommendation.rationale,
+    note: recommendation.note,
+    caution: recommendation.caution,
+    injuryHref: recommendation.injuryHref,
+    healthFocus:
+      recommendation.healthFocus ??
+      healthFocusLabel(
+        answers.setback,
+        answers.niggleArea,
+        answers.timeOffReason
+      ),
+    crossTrain: recommendation.crossTrain,
+    adjustments: recommendation.adjustments,
+    runDaysPerWeek,
+    age: ageFromOnboardingBand(answers.ageBand),
+    fitnessLevel: fitnessLevelFromOnboarding(answers),
+    healthMode:
+      recommendation.healthMode ?? healthPlanModeFromAnswers(answers),
+    fromQuiz: true,
+    savedAt: new Date().toISOString(),
+  });
+
+  const existingPrefs = getSchedulePreferences();
+  saveSchedulePreferences({
+    ...existingPrefs,
+    runDaysPerWeek,
+  });
+
+  const existingProfile = getPlanProfile();
+  savePlanProfile({
+    ...existingProfile,
+    age: ageFromOnboardingBand(answers.ageBand),
+    fitnessLevel: fitnessLevelFromOnboarding(answers),
+  });
 }
 
 function labelForAnswer(
@@ -412,7 +469,9 @@ export function OnboardingQuiz() {
           complete
         />
 
-        {(answers.setback === "time-off" || answers.setback === "niggle") && (
+        {(answers.setback === "time-off" ||
+          answers.setback === "niggle" ||
+          answers.setback === "condition") && (
           <HealthDisclaimerBlock />
         )}
 
@@ -437,6 +496,25 @@ export function OnboardingQuiz() {
                 </MedicalDisclaimerText>
               </p>
             )}
+            {recommendation.adjustments.length > 0 && (
+              <div className="mt-4 rounded-lg border border-border/50 bg-background/60 p-4">
+                <h3 className="text-sm font-semibold tracking-tight">
+                  What we’re changing for you
+                </h3>
+                <ul className="mt-3 space-y-2.5">
+                  {recommendation.adjustments.map((item) => (
+                    <li key={item.title}>
+                      <p className="text-sm font-medium text-foreground">
+                        {item.title}
+                      </p>
+                      <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
+                        {item.detail}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {recommendation.injuryHref && (
               <p className="mt-2 text-sm text-muted-foreground">
                 <Link
@@ -456,14 +534,14 @@ export function OnboardingQuiz() {
           {recommendation.crossTrain.length > 0 && (
             <div className="rounded-lg border border-border/50 bg-background/60 p-4">
               <h3 className="text-sm font-semibold tracking-tight">
-                Suggested cross-training
+                Supporting cross-training on non-run days
                 {recommendation.healthFocus
                   ? ` for ${recommendation.healthFocus}`
                   : ""}
               </h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                Use these on cross-train days to build fitness without stacking
-                more running impact.
+                Use these on every non-running day to build fitness without
+                stacking more impact.
               </p>
               <ul className="mt-3 space-y-2.5">
                 {recommendation.crossTrain.map((item) => (
@@ -497,24 +575,11 @@ export function OnboardingQuiz() {
                 <Link
                   href={`/plan/${recommendation.planId}?from=start#plan-tracker`}
                   onClick={() => {
-                    const complete = answers as OnboardingAnswers;
-                    savePlanBrief({
-                      planId: recommendation.planId,
-                      rationale: recommendation.rationale,
-                      note: recommendation.note,
-                      caution: recommendation.caution,
-                      injuryHref: recommendation.injuryHref,
-                      healthFocus:
-                        recommendation.healthFocus ??
-                        healthFocusLabel(
-                          complete.setback,
-                          complete.niggleArea,
-                          complete.timeOffReason
-                        ),
-                      crossTrain: recommendation.crossTrain,
-                      fromQuiz: true,
-                      savedAt: new Date().toISOString(),
-                    });
+                    persistQuizPlan(
+                      recommendation.planId,
+                      answers as OnboardingAnswers,
+                      recommendation
+                    );
                   }}
                 />
               }
@@ -531,24 +596,15 @@ export function OnboardingQuiz() {
                   <Link
                     href={`/plan/${recommendation.alternate.planId}?from=start#plan-tracker`}
                     onClick={() => {
-                      const complete = answers as OnboardingAnswers;
-                      savePlanBrief({
-                        planId: recommendation.alternate!.planId,
-                        rationale: `${recommendation.alternate!.label} ${recommendation.rationale}`,
-                        note: recommendation.note,
-                        caution: recommendation.caution,
-                        injuryHref: recommendation.injuryHref,
-                        healthFocus:
-                          recommendation.healthFocus ??
-                          healthFocusLabel(
-                            complete.setback,
-                            complete.niggleArea,
-                            complete.timeOffReason
-                          ),
-                        crossTrain: recommendation.crossTrain,
-                        fromQuiz: true,
-                        savedAt: new Date().toISOString(),
-                      });
+                      persistQuizPlan(
+                        recommendation.alternate!.planId,
+                        answers as OnboardingAnswers,
+                        {
+                          ...recommendation,
+                          planId: recommendation.alternate!.planId,
+                          rationale: `${recommendation.alternate!.label} ${recommendation.rationale}`,
+                        }
+                      );
                     }}
                   />
                 }
@@ -564,24 +620,11 @@ export function OnboardingQuiz() {
                 <Link
                   href={`/plan/${recommendation.planId}/printable?from=start`}
                   onClick={() => {
-                    const complete = answers as OnboardingAnswers;
-                    savePlanBrief({
-                      planId: recommendation.planId,
-                      rationale: recommendation.rationale,
-                      note: recommendation.note,
-                      caution: recommendation.caution,
-                      injuryHref: recommendation.injuryHref,
-                      healthFocus:
-                        recommendation.healthFocus ??
-                        healthFocusLabel(
-                          complete.setback,
-                          complete.niggleArea,
-                          complete.timeOffReason
-                        ),
-                      crossTrain: recommendation.crossTrain,
-                      fromQuiz: true,
-                      savedAt: new Date().toISOString(),
-                    });
+                    persistQuizPlan(
+                      recommendation.planId,
+                      answers as OnboardingAnswers,
+                      recommendation
+                    );
                   }}
                 />
               }
@@ -688,9 +731,18 @@ export function OnboardingQuiz() {
 
       <div className="space-y-4">
         <div className="flex items-start justify-between gap-3">
-          <h2 className="text-lg font-semibold tracking-tight sm:text-xl">
-            {titleForField(fieldId)}
-          </h2>
+          <div className="min-w-0 space-y-1">
+            <h2 className="text-lg font-semibold tracking-tight sm:text-xl">
+              {titleForField(fieldId)}
+            </h2>
+            {fieldId === "setback" && (
+              <p className="text-sm text-muted-foreground">
+                Tell us about pain, time off, or a health condition. We’ll
+                suggest easier volume and supporting cross-training on non-run
+                days.
+              </p>
+            )}
+          </div>
           <p className="shrink-0 text-sm text-muted-foreground tabular-nums">
             {stepIndex + 1} / {totalSteps}
           </p>

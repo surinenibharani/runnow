@@ -7302,6 +7302,19 @@ export function getPublishedBlogPosts(now: Date = new Date()): BlogPost[] {
   return getVisibleBlogPosts(false, now);
 }
 
+/** Slug + dates only — sitemap should not enrich HowTo / why-it-matters. */
+export function getPublishedBlogSitemapEntries(
+  now: Date = new Date()
+): Array<{ slug: string; publishedAt: string; updatedAt?: string }> {
+  return blogPosts
+    .filter((post) => isBlogPostPublishedAt(post.publishedAt, now))
+    .map((post) => ({
+      slug: post.slug,
+      publishedAt: post.publishedAt,
+      updatedAt: post.updatedAt,
+    }));
+}
+
 export function getPostBySlug(slug: string): BlogPost | undefined {
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return undefined;

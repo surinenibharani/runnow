@@ -1,4 +1,9 @@
-import type { TrainingPlan, WeekTemplate, Workout } from "@/lib/plan-types";
+import {
+  isStrengthSession,
+  type TrainingPlan,
+  type WeekTemplate,
+  type Workout,
+} from "@/lib/plan-types";
 import { applyScheduleToPlan, DEFAULT_SCHEDULE } from "@/lib/schedule-builder";
 
 export type PlanStats = {
@@ -92,6 +97,7 @@ export type SampleWeekDay = {
   kind: "run" | "cross-train" | "rest";
   label: string;
   detail: string;
+  isStrength?: boolean;
 };
 
 export type SampleWeekPreview = {
@@ -137,6 +143,7 @@ export function getSampleWeekPreview(
           kind: "cross-train" as const,
           label: day.crossTraining.name,
           detail: day.crossTraining.focus,
+          isStrength: isStrengthSession(day),
         };
       }
       return {

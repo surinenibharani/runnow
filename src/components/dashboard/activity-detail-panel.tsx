@@ -72,15 +72,19 @@ export function ActivityDetailPanel({
   }, []);
 
   useEffect(() => {
-    if (!activityId) {
-      setData(null);
-      setError(null);
-      return;
-    }
-    void loadDetail(activityId);
+    if (!activityId) return;
+    void Promise.resolve().then(() => {
+      void loadDetail(activityId);
+    });
   }, [activityId, loadDetail]);
 
-  if (!activityId) return null;
+  if (!activityId) {
+    if (data !== null || error !== null) {
+      setData(null);
+      setError(null);
+    }
+    return null;
+  }
 
   const summary = data?.summary;
 

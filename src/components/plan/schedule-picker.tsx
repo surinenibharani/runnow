@@ -45,7 +45,8 @@ export function SchedulePicker({ preferences, onChange }: SchedulePickerProps) {
         <h3 className="font-semibold">Your weekly schedule</h3>
         <p className="text-sm text-muted-foreground mt-1">
           Choose how many days you run each week, then set your rest and long run
-          days. Cross-training fills the remaining active days.
+          days. Cross-training fills the remaining active days, including
+          supporting work when you flagged a health issue.
         </p>
       </div>
 
@@ -71,8 +72,9 @@ export function SchedulePicker({ preferences, onChange }: SchedulePickerProps) {
           })}
         </div>
         <p className="text-xs text-muted-foreground mt-2">
-          {preferences.runDaysPerWeek} runs + {crossTrainDays} cross-training + 1
-          rest day
+          {preferences.runDaysPerWeek} runs + {crossTrainDays} cross-train
+          {" "}
+          + 1 rest day
         </p>
       </div>
 
@@ -145,7 +147,7 @@ export function SchedulePicker({ preferences, onChange }: SchedulePickerProps) {
         <span className="rounded-md bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 px-2 py-1">
           {preferences.runDaysPerWeek} run days
         </span>
-        <span className="rounded-md bg-sky-500/10 text-sky-700 dark:text-sky-400 px-2 py-1">
+        <span className="rounded-md bg-amber-500/10 text-amber-700 dark:text-amber-400 px-2 py-1">
           {crossTrainDays} cross-train
         </span>
       </div>

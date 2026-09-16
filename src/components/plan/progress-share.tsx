@@ -38,9 +38,11 @@ export function ProgressShare({
       : `Finished Week ${input.week}? Share your progress`;
 
   useEffect(() => {
-    setCanNativeShare(
-      typeof navigator !== "undefined" && typeof navigator.share === "function"
-    );
+    queueMicrotask(() => {
+      setCanNativeShare(
+        typeof navigator !== "undefined" && typeof navigator.share === "function"
+      );
+    });
   }, []);
 
   const onCopy = useCallback(async () => {

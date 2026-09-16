@@ -106,11 +106,12 @@ export function PlanPageHero({ className }: { className?: string }) {
   );
 }
 
-type WorkoutKind = "run" | "cross-train" | "rest";
+type WorkoutKind = "run" | "cross-train" | "strength" | "rest";
 
 const WORKOUT_ACCENTS: Record<WorkoutKind, string> = {
   run: "from-orange-500/15 to-transparent",
   "cross-train": "from-sky-500/15 to-transparent",
+  strength: "from-amber-500/20 to-transparent",
   rest: "from-slate-500/10 to-transparent",
 };
 

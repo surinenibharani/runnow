@@ -1,4 +1,5 @@
 import type { RunType, ScheduleDay, Workout } from "@/lib/plan-types";
+import { isStrengthSession } from "@/lib/plan-types";
 import type { PlanPersonalization } from "@/lib/plan-personalization";
 import { weeksUntilDate } from "@/lib/plan-personalization";
 
@@ -135,6 +136,9 @@ export function getActivityCaption(day: ScheduleDay, ctx: CaptionContext): strin
   }
 
   if (day.kind === "cross-train" && day.crossTraining) {
+    if (isStrengthSession(day)) {
+      return `${day.crossTraining.focus} Check it off like a run — 15–20 minutes is enough.`;
+    }
     return `${day.crossTraining.focus} ${crossTrainScheduleNote(ctx.runDaysPerWeek)}`;
   }
 

@@ -18,6 +18,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PlanProfilePicker } from "@/components/plan/plan-profile-picker";
+import { PlanRaceCountdown } from "@/components/plan/plan-race-countdown";
 import { SchedulePicker } from "@/components/plan/schedule-picker";
 import {
   deriveSchedulePrefs,
@@ -76,10 +77,18 @@ function stateToDraft(state: TrainingPlanState) {
   };
 }
 
-function dayKindClass(kind: "run" | "cross-train" | "rest") {
+function dayKindClass(kind: "run" | "cross-train" | "rest", isStrength?: boolean) {
   if (kind === "run") return "bg-primary/10 text-primary";
+  if (isStrength) return "bg-amber-500/10 text-amber-700 dark:text-amber-300";
   if (kind === "cross-train") return "bg-sky-500/10 text-sky-700 dark:text-sky-300";
   return "bg-muted text-muted-foreground";
+}
+
+function dayKindLabel(kind: "run" | "cross-train" | "rest", isStrength?: boolean) {
+  if (isStrength) return "Strength";
+  if (kind === "cross-train") return "Cross-train";
+  if (kind === "run") return "Run";
+  return "Rest";
 }
 
 export function TrainingPlanEditorCard({
@@ -114,7 +123,7 @@ export function TrainingPlanEditorCard({
   const [completedIds, setCompletedIds] = useState<string[]>([]);
 
   useEffect(() => {
-    setDisplayPlan(plan);
+    queueMicrotask(() => setDisplayPlan(plan));
   }, [plan]);
 
   const draftRecord = useMemo(
@@ -207,13 +216,11 @@ export function TrainingPlanEditorCard({
 
       const recommendationResult = recommendPlanVariantId(familyId, nextProfile);
       let nextPlan = basePlan;
-      let nextPlanId = planId;
 
       if (recommendationResult) {
         const selected = PLANS.find((item) => item.id === recommendationResult.planId);
         if (selected) {
           nextPlan = selected;
-          nextPlanId = selected.id;
           setPlanId(selected.id);
           setBasePlan(selected);
         }
@@ -223,7 +230,7 @@ export function TrainingPlanEditorCard({
         deriveSchedulePrefs(prefs, nextProfile, nextPlan.runsPerWeek)
       );
     },
-    [familyId, basePlan, planId]
+    [familyId, basePlan]
   );
 
   const applyFamilyChange = useCallback(
@@ -304,29 +311,6 @@ export function TrainingPlanEditorCard({
     profile,
     onPlanUpdated,
   ]);
-
-  const applyDisplayPlan = useCallback(
-    (nextDisplay: TrainingPlanDisplay, completed: string[] = []) => {
-      setDisplayPlan(nextDisplay);
-      onPlanUpdated(nextDisplay);
-      setCompletedIds(completed);
-      setFamilyId(nextDisplay.familyId || "5k");
-      setPlanId(nextDisplay.planId);
-      setBasePlan(getPlanById(nextDisplay.planId) ?? getPlanById("5k-8w")!);
-      setCurrentWeek(nextDisplay.currentWeek);
-      setProfile({
-        age: nextDisplay.age,
-        fitnessLevel: nextDisplay.fitnessLevel,
-        goalRaceDate: nextDisplay.goalRaceDate,
-      });
-      setSchedulePrefs({
-        restDay: nextDisplay.restDay,
-        longRunDay: nextDisplay.longRunDay,
-        runDaysPerWeek: nextDisplay.runDaysPerWeek,
-      });
-    },
-    [onPlanUpdated]
-  );
 
   const handleDelete = useCallback(async () => {
     if (
@@ -581,6 +565,8 @@ export function TrainingPlanEditorCard({
               onChange={applyProfileChange}
             />
 
+            <PlanRaceCountdown profile={profile} onChange={applyProfileChange} />
+
             <SchedulePicker preferences={schedulePrefs} onChange={setSchedulePrefs} />
 
             {(recommendation || timelineHint) && (
@@ -629,9 +615,12 @@ export function TrainingPlanEditorCard({
                   <span className="min-w-0 flex-1 truncate">{day.label}</span>
                   <Badge
                     variant="outline"
-                    className={cn("shrink-0 text-xs capitalize", dayKindClass(day.kind))}
+                    className={cn(
+                      "shrink-0 text-xs capitalize",
+                      dayKindClass(day.kind, day.isStrength)
+                    )}
                   >
-                    {day.kind === "cross-train" ? "Cross-train" : day.kind}
+                    {dayKindLabel(day.kind, day.isStrength)}
                   </Badge>
                 </li>
               ))}

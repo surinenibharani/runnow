@@ -25,7 +25,7 @@ jobs:
         run: npm run validate:links
 
       - name: Lint
-        run: npm run lint:ci
+        run: npm run lint
 
       - name: Unit tests
         run: npm test

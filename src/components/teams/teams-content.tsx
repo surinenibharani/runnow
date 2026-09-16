@@ -72,9 +72,11 @@ export function TeamsContent() {
   useEffect(() => {
     if (status === "loading") return;
     if (status === "authenticated") {
-      load();
+      void Promise.resolve().then(() => {
+        void load();
+      });
     } else {
-      setLoading(false);
+      queueMicrotask(() => setLoading(false));
     }
   }, [status, load]);
 
@@ -88,7 +90,9 @@ export function TeamsContent() {
         load();
       })();
     } else if (checkout === "cancelled") {
-      setMessage("Checkout cancelled. No charges were made.");
+      queueMicrotask(() => {
+        setMessage("Checkout cancelled. No charges were made.");
+      });
     }
   }, [searchParams, status, update, load]);
 
