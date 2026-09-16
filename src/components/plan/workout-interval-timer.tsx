@@ -66,8 +66,9 @@ export function WorkoutIntervalTimer({ intervals }: WorkoutIntervalTimerProps) {
   if (activeIntervals !== intervals) {
     setActiveIntervals(intervals);
     if (cues) {
+      const first = cues[0];
       setCueIndex(0);
-      setRemainingMs(cues[0].seconds * 1000);
+      setRemainingMs((first?.seconds ?? 0) * 1000);
       setRunning(false);
     }
   }
@@ -82,6 +83,7 @@ export function WorkoutIntervalTimer({ intervals }: WorkoutIntervalTimerProps) {
 
   useEffect(() => {
     if (!running || !cues) return;
+    const playlist = cues;
 
     const tickMs = 200;
     const id = window.setInterval(() => {
@@ -93,7 +95,8 @@ export function WorkoutIntervalTimer({ intervals }: WorkoutIntervalTimerProps) {
       }
 
       const nextIndex = cueIndexRef.current + 1;
-      if (nextIndex >= cues.length) {
+      const next = playlist[nextIndex];
+      if (!next) {
         remainingRef.current = 0;
         setRemainingMs(0);
         setRunning(false);
@@ -103,11 +106,10 @@ export function WorkoutIntervalTimer({ intervals }: WorkoutIntervalTimerProps) {
       }
 
       cueIndexRef.current = nextIndex;
-      remainingRef.current = cues[nextIndex].seconds * 1000;
+      remainingRef.current = next.seconds * 1000;
       setCueIndex(nextIndex);
-      setRemainingMs(cues[nextIndex].seconds * 1000);
-      const nextKind = cues[nextIndex].kind;
-      beep(nextKind === "Walk" || nextKind === "Rest" ? 440 : 660);
+      setRemainingMs(next.seconds * 1000);
+      beep(next.kind === "Walk" || next.kind === "Rest" ? 440 : 660);
     }, tickMs);
 
     return () => window.clearInterval(id);
@@ -115,45 +117,53 @@ export function WorkoutIntervalTimer({ intervals }: WorkoutIntervalTimerProps) {
 
   if (!cues) return null;
 
-  const cue = cues[Math.min(cueIndex, cues.length - 1)];
+  const playlist = cues;
+  const cue = playlist[Math.min(cueIndex, playlist.length - 1)] ?? playlist[0];
+  if (!cue) return null;
   const totalMs = cue.seconds * 1000;
   const elapsedRatio =
     totalMs <= 0 ? 1 : Math.min(1, Math.max(0, 1 - remainingMs / totalMs));
-  const finished = !running && remainingMs === 0 && cueIndex >= cues.length - 1;
-  const nextCue = cueIndex < cues.length - 1 ? cues[cueIndex + 1] : null;
+  const finished =
+    !running && remainingMs === 0 && cueIndex >= playlist.length - 1;
+  const nextCue =
+    cueIndex < playlist.length - 1 ? playlist[cueIndex + 1] : null;
 
   function startOrResume() {
+    const first = playlist[0];
+    if (!first) return;
     if (finished) {
-      remainingRef.current = cues[0].seconds * 1000;
+      remainingRef.current = first.seconds * 1000;
       cueIndexRef.current = 0;
       setCueIndex(0);
-      setRemainingMs(cues[0].seconds * 1000);
+      setRemainingMs(first.seconds * 1000);
     }
     setRunning(true);
     beep(cue.kind === "Walk" || cue.kind === "Rest" ? 440 : 660);
   }
 
   function skip() {
-    if (!cues) return;
     const nextIndex = cueIndex + 1;
-    if (nextIndex >= cues.length) {
+    const next = playlist[nextIndex];
+    if (!next) {
       remainingRef.current = 0;
       setRemainingMs(0);
       setRunning(false);
       return;
     }
     cueIndexRef.current = nextIndex;
-    remainingRef.current = cues[nextIndex].seconds * 1000;
+    remainingRef.current = next.seconds * 1000;
     setCueIndex(nextIndex);
-    setRemainingMs(cues[nextIndex].seconds * 1000);
+    setRemainingMs(next.seconds * 1000);
   }
 
   function reset() {
-    remainingRef.current = cues[0].seconds * 1000;
+    const first = playlist[0];
+    if (!first) return;
+    remainingRef.current = first.seconds * 1000;
     cueIndexRef.current = 0;
     setRunning(false);
     setCueIndex(0);
-    setRemainingMs(cues[0].seconds * 1000);
+    setRemainingMs(first.seconds * 1000);
   }
 
   return (
@@ -188,7 +198,7 @@ export function WorkoutIntervalTimer({ intervals }: WorkoutIntervalTimerProps) {
               : nextCue
                 ? `Next: ${nextCue.kind} ${formatCueClock(nextCue.seconds)}`
                 : "Last interval"}
-            {!finished && ` · ${cueIndex + 1} of ${cues.length}`}
+            {!finished && ` · ${cueIndex + 1} of ${playlist.length}`}
           </p>
         </div>
       </div>
