@@ -36,13 +36,32 @@ describe("onboarding recommendations", () => {
     assert.equal(result.plan.familyId, "10k");
   });
 
-  it("keeps marathon beginners on 5K first", () => {
+  it("keeps a beginner 10K goal on a 10K plan", () => {
+    const result = recommendOnboardingPlan({
+      ...base,
+      goal: "10k",
+    });
+    assert.equal(result.plan.familyId, "10k");
+    assert.equal(result.planId, "10k-10w");
+  });
+
+  it("keeps a beginner half-marathon goal on a half plan", () => {
+    const result = recommendOnboardingPlan({
+      ...base,
+      goal: "half",
+      days: 4,
+    });
+    assert.equal(result.plan.familyId, "half-marathon");
+  });
+
+  it("keeps a beginner marathon goal on a marathon plan", () => {
     const result = recommendOnboardingPlan({
       ...base,
       goal: "marathon",
       days: 4,
     });
-    assert.equal(result.planId, "5k-gentle-16w");
+    assert.equal(result.plan.familyId, "full-marathon");
+    assert.equal(result.planId, "full-16w");
   });
 
   it("allows marathon only for consistent high-fitness runners", () => {
@@ -76,7 +95,7 @@ describe("onboarding recommendations", () => {
     assert.equal(result.healthFocus, "knee comfort");
   });
 
-  it("forces a gentle 5K start for sharp or daily niggles", () => {
+  it("keeps a half-marathon goal for sharp niggles and adds caution", () => {
     const result = recommendOnboardingPlan({
       experience: "consistent",
       longestRun: "30-plus",
@@ -88,7 +107,7 @@ describe("onboarding recommendations", () => {
       niggleArea: "shin",
       niggleSeverity: "sharp-worsening",
     });
-    assert.equal(result.plan.familyId, "5k");
+    assert.equal(result.plan.familyId, "half-marathon");
     assert.ok(result.caution);
     assert.equal(result.injuryHref, "/injuries/shin-splints");
   });
@@ -103,7 +122,7 @@ describe("onboarding recommendations", () => {
       ageBand: "under-40",
       setback: "condition",
     });
-    assert.equal(result.plan.familyId, "5k");
+    assert.equal(result.plan.familyId, "half-marathon");
     assert.equal(result.healthMode, "protect");
     assert.equal(result.runDaysPerWeek, 3);
     assert.equal(result.healthFocus, "training around a health condition");

@@ -333,7 +333,8 @@ function timelineWeeks(timeline: OnboardingTimeline): number | null {
  */
 function pickVariant(
   familyId: string,
-  answers: OnboardingAnswers
+  answers: OnboardingAnswers,
+  preferLongest = false
 ): { planId: string; tightTimeline: boolean } {
   const variants = getPlansForFamily(familyId).sort(
     (a, b) => a.durationWeeks - b.durationWeeks
@@ -360,7 +361,7 @@ function pickVariant(
   const gentle = wantsGentle(answers);
 
   let pick: TrainingPlan;
-  if (gentle || score <= 2) {
+  if (preferLongest || gentle || score <= 2) {
     pick = fitting[fitting.length - 1];
   } else if (score >= 5) {
     pick = fitting[0];
@@ -371,26 +372,11 @@ function pickVariant(
   return { planId: pick.id, tightTimeline };
 }
 
-function familyForGoal(
-  goal: OnboardingGoal,
-  readyForDistance: boolean
-): { familyId: string; redirected: boolean } {
-  if (goal === "get-started" || goal === "5k") {
-    return { familyId: "5k", redirected: false };
-  }
-  if (goal === "10k") {
-    return readyForDistance
-      ? { familyId: "10k", redirected: false }
-      : { familyId: "5k", redirected: true };
-  }
-  if (goal === "half") {
-    return readyForDistance
-      ? { familyId: "half-marathon", redirected: false }
-      : { familyId: "5k", redirected: true };
-  }
-  return readyForDistance
-    ? { familyId: "full-marathon", redirected: false }
-    : { familyId: "5k", redirected: true };
+function familyForGoal(goal: OnboardingGoal): string {
+  if (goal === "10k") return "10k";
+  if (goal === "half") return "half-marathon";
+  if (goal === "marathon") return "full-marathon";
+  return "5k";
 }
 
 /**
@@ -440,7 +426,7 @@ function forceGentleStart(answers: OnboardingAnswers): boolean {
 function buildRationale(
   answers: OnboardingAnswers,
   plan: TrainingPlan,
-  redirected: boolean
+  conservativeBuild: boolean
 ): string {
   const focus = healthFocusLabel(
     answers.setback,
@@ -451,14 +437,14 @@ function buildRationale(
     ? ` It also leaves room for recovery and cross-training aimed at ${focus}.`
     : "";
 
-  if (redirected) {
+  if (conservativeBuild) {
     if (answers.goal === "10k") {
-      return `A 10K is easier once continuous easy running feels boring. Start with ${plan.name} (${plan.duration}) to build that base first.${healthClause}`;
+      return `You chose a 10K. ${plan.name} (${plan.duration}) is the gentlest 10K we offer for your current fitness and health answers.${healthClause}`;
     }
     if (answers.goal === "half") {
-      return `Half marathon training needs a real running base. ${plan.name} (${plan.duration}) is the safer first step — then 10K, then the half.${healthClause}`;
+      return `You chose a half marathon. ${plan.name} (${plan.duration}) stays on that distance with the longest, easiest build we have.${healthClause}`;
     }
-    return `Marathon training is a long runway. ${plan.name} (${plan.duration}) builds the habit and injury buffer before bigger distances.${healthClause}`;
+    return `You chose a marathon. ${plan.name} (${plan.duration}) keeps that goal and uses the longest runway so the jump is as gentle as we can make it.${healthClause}`;
   }
 
   if (plan.familyId === "5k") {
@@ -486,7 +472,7 @@ function buildRationale(
 function buildNotes(
   answers: OnboardingAnswers,
   plan: TrainingPlan,
-  redirected: boolean,
+  conservativeBuild: boolean,
   tightTimeline: boolean
 ): {
   note?: string;
@@ -503,14 +489,10 @@ function buildNotes(
     );
   }
 
-  if (redirected && answers.goal === "10k") {
-    notes.push("After this 5K plan, try our 8- or 10-week 10K schedules.");
-  }
-  if (redirected && answers.goal === "half") {
-    notes.push("Path: finish 5K → 10K → half marathon plans when easy runs feel repeatable.");
-  }
-  if (redirected && answers.goal === "marathon") {
-    notes.push("Path: 5K → 10K → half → then our 16-week marathon plan.");
+  if (conservativeBuild) {
+    notes.push(
+      "Keep the first two weeks easier than written if runs feel like a leap — supporting cross-training still counts."
+    );
   }
 
   if (answers.days === 4 && plan.runsPerWeek === 3) {
@@ -571,13 +553,13 @@ function buildNotes(
   }
 
   let alternate: PlanRecommendation["alternate"] | undefined;
-  if (!redirected && plan.id === "5k-gentle-16w") {
+  if (!conservativeBuild && plan.id === "5k-gentle-16w") {
     alternate = {
       planId: "5k-8w",
       label: "Already comfortable with jog intervals? Try the 8-week couch to 5K",
     };
   } else if (
-    !redirected &&
+    !conservativeBuild &&
     plan.familyId === "5k" &&
     plan.id === "5k-8w" &&
     wantsGentle(answers) &&
@@ -587,16 +569,16 @@ function buildNotes(
       planId: "5k-gentle-16w",
       label: "Want a walk-first path? Try the 16-week gentle plan",
     };
-  } else if (!redirected && plan.familyId === "5k" && plan.id !== "5k-8w" && plan.id !== "5k-gentle-16w" && wantsGentle(answers)) {
+  } else if (!conservativeBuild && plan.familyId === "5k" && plan.id !== "5k-8w" && plan.id !== "5k-gentle-16w" && wantsGentle(answers)) {
     alternate = { planId: "5k-8w", label: "Prefer the full 8-week couch to 5K?" };
   }
-  if (!redirected && plan.familyId === "10k" && plan.id === "10k-6w") {
+  if (!conservativeBuild && plan.familyId === "10k" && plan.id === "10k-6w") {
     alternate = { planId: "10k-8w", label: "Want a slightly gentler 8-week 10K?" };
   }
-  if (!redirected && plan.familyId === "half-marathon" && plan.id === "half-8w") {
+  if (!conservativeBuild && plan.familyId === "half-marathon" && plan.id === "half-8w") {
     alternate = { planId: "half-12w", label: "Prefer the fuller 12-week half?" };
   }
-  if (!redirected && plan.familyId === "full-marathon" && plan.id !== "full-16w") {
+  if (!conservativeBuild && plan.familyId === "full-marathon" && plan.id !== "full-16w") {
     alternate = { planId: "full-16w", label: "Prefer the fullest 16-week marathon?" };
   }
 
@@ -618,16 +600,16 @@ function buildNotes(
 function buildAdjustments(
   answers: OnboardingAnswers,
   plan: TrainingPlan,
-  redirected: boolean,
+  conservativeBuild: boolean,
   appliedDays: 3 | 4
 ): PlanAdjustment[] {
   const items: PlanAdjustment[] = [];
   const mode = healthPlanModeFromAnswers(answers);
 
-  if (redirected) {
+  if (conservativeBuild) {
     items.push({
-      title: "Easier starting distance",
-      detail: `${plan.shortName} is the safer first step from the fitness and health answers you gave. Build this, then step up.`,
+      title: "Gentlest version of your goal",
+      detail: `${plan.shortName} (${plan.duration}) matches the distance you picked. We chose the longest, easiest build because of your fitness or health answers.`,
     });
   }
 
@@ -673,13 +655,17 @@ export function recommendOnboardingPlan(
   answers: OnboardingAnswers
 ): PlanRecommendation {
   const gentleStart = forceGentleStart(answers);
+  const familyId = familyForGoal(answers.goal);
   const ready = readyForGoal(answers) && !gentleStart;
-  const { familyId, redirected } = familyForGoal(answers.goal, ready);
-  const targetFamily = gentleStart ? "5k" : familyId;
-  const { planId, tightTimeline } = pickVariant(targetFamily, answers);
+  const conservativeBuild =
+    !ready && answers.goal !== "get-started" && answers.goal !== "5k";
+  const { planId, tightTimeline } = pickVariant(
+    familyId,
+    answers,
+    conservativeBuild
+  );
   const plan = requirePlan(planId);
-  const wasRedirected = redirected || gentleStart;
-  const extras = buildNotes(answers, plan, wasRedirected, tightTimeline);
+  const extras = buildNotes(answers, plan, conservativeBuild, tightTimeline);
 
   const healthFocus = healthFocusLabel(
     answers.setback,
@@ -692,10 +678,10 @@ export function recommendOnboardingPlan(
   return {
     planId: plan.id,
     plan,
-    rationale: buildRationale(answers, plan, wasRedirected),
+    rationale: buildRationale(answers, plan, conservativeBuild),
     healthFocus,
     crossTrain: getCrossTrainGuidanceForAnswers(answers),
-    adjustments: buildAdjustments(answers, plan, wasRedirected, runDaysPerWeek),
+    adjustments: buildAdjustments(answers, plan, conservativeBuild, runDaysPerWeek),
     healthMode,
     runDaysPerWeek,
     ...extras,

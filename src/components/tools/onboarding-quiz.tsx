@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -409,6 +409,15 @@ export function OnboardingQuiz() {
     if (!showResult || !isOnboardingComplete(answers)) return null;
     return recommendOnboardingPlan(answers);
   }, [answers, showResult]);
+
+  useEffect(() => {
+    if (!recommendation || !isOnboardingComplete(answers)) return;
+    persistQuizPlan(
+      recommendation.planId,
+      answers as OnboardingAnswers,
+      recommendation
+    );
+  }, [recommendation, answers]);
 
   const selectAnswer = (field: OnboardingFieldId, value: string | number) => {
     setAnswers((prev) => {

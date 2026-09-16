@@ -14,7 +14,7 @@ import {
 } from "@/lib/plans";
 import type { TrainingPlan, ScheduleDay } from "@/lib/plans";
 import { overlayHealthOnScheduledWeeks } from "@/lib/plan/cross-train-guidance";
-import { readPlanBrief, type PlanBrief } from "@/lib/plan/plan-brief";
+import { peekPlanBrief, readPlanBrief, type PlanBrief } from "@/lib/plan/plan-brief";
 import {
   applyScheduleToPlan,
   DEFAULT_SCHEDULE,
@@ -77,6 +77,15 @@ function planIdFromPath(pathname: string): string | null {
   const match = pathname.match(/^\/plan\/([^/]+)\/?$/);
   if (!match) return null;
   return PLANS.some((p) => p.id === match[1]) ? match[1] : null;
+}
+
+function quizOrUrlPlanId(explicitUrlPlanId: string | null): string | null {
+  if (explicitUrlPlanId) return explicitUrlPlanId;
+  const brief = peekPlanBrief();
+  if (brief?.fromQuiz && PLANS.some((p) => p.id === brief.planId)) {
+    return brief.planId;
+  }
+  return null;
 }
 
 function settingsFromBrief(
@@ -314,13 +323,18 @@ export function WeekTracker({
       queueMicrotask(() => {
         setUseRemote(false);
         const planIdForBrief =
-          explicitUrlPlanIdRef.current ?? planIdRef.current;
+          quizOrUrlPlanId(explicitUrlPlanIdRef.current) ?? planIdRef.current;
         const settings = settingsFromBrief(
           planIdForBrief,
           getSchedulePreferences(),
           getPlanProfile()
         );
         const selected = PLANS.find((p) => p.id === planIdForBrief);
+        if (selected) {
+          setFamilyId(selected.familyId);
+          setPlanId(selected.id);
+          setBasePlan(selected);
+        }
         setSchedulePrefs(
           selected
             ? deriveSchedulePrefs(
@@ -334,7 +348,7 @@ export function WeekTracker({
         setHealthMode(settings.healthMode);
         setHealthCrossTrain(settings.healthCrossTrain);
         setHealthFocus(settings.healthFocus);
-        setProgress(getProgress(planIdRef.current));
+        setProgress(getProgress(selected?.id ?? planIdRef.current));
         setBootstrapComplete(true);
       });
       return;
@@ -352,13 +366,18 @@ export function WeekTracker({
         if (!remote) {
           setUseRemote(false);
           const planIdForBrief =
-            explicitUrlPlanIdRef.current ?? planIdRef.current;
+            quizOrUrlPlanId(explicitUrlPlanIdRef.current) ?? planIdRef.current;
           const settings = settingsFromBrief(
             planIdForBrief,
             getSchedulePreferences(),
             getPlanProfile()
           );
           const selected = PLANS.find((p) => p.id === planIdForBrief);
+          if (selected) {
+            setFamilyId(selected.familyId);
+            setPlanId(selected.id);
+            setBasePlan(selected);
+          }
           setSchedulePrefs(
             selected
               ? deriveSchedulePrefs(
@@ -372,9 +391,35 @@ export function WeekTracker({
           setHealthMode(settings.healthMode);
           setHealthCrossTrain(settings.healthCrossTrain);
           setHealthFocus(settings.healthFocus);
-          setProgress(getProgress(planIdRef.current));
+          setProgress(getProgress(selected?.id ?? planIdRef.current));
           return;
         }
+
+        const preferredId = quizOrUrlPlanId(explicitUrlPlanIdRef.current);
+        const applyPreferredPlan = (id: string) => {
+          const selected = PLANS.find((p) => p.id === id);
+          if (!selected) return;
+          setFamilyId(selected.familyId);
+          setPlanId(selected.id);
+          setBasePlan(selected);
+          const settings = settingsFromBrief(
+            selected.id,
+            getSchedulePreferences(),
+            getPlanProfile()
+          );
+          const nextPrefs = deriveSchedulePrefs(
+            settings.prefs,
+            settings.profile,
+            selected.runsPerWeek
+          );
+          setPlanProfile(settings.profile);
+          setSchedulePrefs(nextPrefs);
+          setHealthMode(settings.healthMode);
+          setHealthCrossTrain(settings.healthCrossTrain);
+          setHealthFocus(settings.healthFocus);
+          setProgress(getProgress(id));
+          setActiveWeek("1");
+        };
 
         if (!migratedRef.current) {
           const localProgress = getProgress(remote.planId);
@@ -399,60 +444,14 @@ export function WeekTracker({
               lastCompletedDate: localProgress.lastCompletedDate,
             });
             applyRemotePlan(merged);
-          } else if (
-            explicitUrlPlanIdRef.current &&
-            explicitUrlPlanIdRef.current !== remote.planId
-          ) {
-            const selected = PLANS.find((p) => p.id === explicitUrlPlanIdRef.current)!;
-            setFamilyId(selected.familyId);
-            setPlanId(selected.id);
-            setBasePlan(selected);
-            const settings = settingsFromBrief(
-              selected.id,
-              getSchedulePreferences(),
-              getPlanProfile()
-            );
-            const nextPrefs = deriveSchedulePrefs(
-              settings.prefs,
-              settings.profile,
-              selected.runsPerWeek
-            );
-            setPlanProfile(settings.profile);
-            setSchedulePrefs(nextPrefs);
-            setHealthMode(settings.healthMode);
-            setHealthCrossTrain(settings.healthCrossTrain);
-            setHealthFocus(settings.healthFocus);
-            setProgress(getProgress(explicitUrlPlanIdRef.current));
-            setActiveWeek("1");
+          } else if (preferredId && preferredId !== remote.planId) {
+            applyPreferredPlan(preferredId);
           } else {
             applyRemotePlan(remote);
           }
           migratedRef.current = true;
-        } else if (
-          explicitUrlPlanIdRef.current &&
-          explicitUrlPlanIdRef.current !== remote.planId
-        ) {
-          const selected = PLANS.find((p) => p.id === explicitUrlPlanIdRef.current)!;
-          setFamilyId(selected.familyId);
-          setPlanId(selected.id);
-          setBasePlan(selected);
-          const settings = settingsFromBrief(
-            selected.id,
-            getSchedulePreferences(),
-            getPlanProfile()
-          );
-          const nextPrefs = deriveSchedulePrefs(
-            settings.prefs,
-            settings.profile,
-            selected.runsPerWeek
-          );
-          setPlanProfile(settings.profile);
-          setSchedulePrefs(nextPrefs);
-          setHealthMode(settings.healthMode);
-          setHealthCrossTrain(settings.healthCrossTrain);
-          setHealthFocus(settings.healthFocus);
-          setProgress(getProgress(explicitUrlPlanIdRef.current));
-          setActiveWeek("1");
+        } else if (preferredId && preferredId !== remote.planId) {
+          applyPreferredPlan(preferredId);
         } else {
           applyRemotePlan(remote);
         }
@@ -461,13 +460,18 @@ export function WeekTracker({
       } catch {
         setUseRemote(false);
         const planIdForBrief =
-          explicitUrlPlanIdRef.current ?? planIdRef.current;
+          quizOrUrlPlanId(explicitUrlPlanIdRef.current) ?? planIdRef.current;
         const settings = settingsFromBrief(
           planIdForBrief,
           getSchedulePreferences(),
           getPlanProfile()
         );
         const selected = PLANS.find((p) => p.id === planIdForBrief);
+        if (selected) {
+          setFamilyId(selected.familyId);
+          setPlanId(selected.id);
+          setBasePlan(selected);
+        }
         setSchedulePrefs(
           selected
             ? deriveSchedulePrefs(
@@ -481,7 +485,7 @@ export function WeekTracker({
         setHealthMode(settings.healthMode);
         setHealthCrossTrain(settings.healthCrossTrain);
         setHealthFocus(settings.healthFocus);
-        setProgress(getProgress(planIdRef.current));
+        setProgress(getProgress(selected?.id ?? planIdRef.current));
       } finally {
         if (!cancelled) {
           setSyncing(false);

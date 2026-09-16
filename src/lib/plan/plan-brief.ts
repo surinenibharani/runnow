@@ -38,17 +38,21 @@ export function savePlanBrief(brief: PlanBrief): void {
   }
 }
 
-export function readPlanBrief(planId: string): PlanBrief | null {
+export function peekPlanBrief(): PlanBrief | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = sessionStorage.getItem(PLAN_BRIEF_STORAGE_KEY);
     if (!raw) return null;
-    const parsed = JSON.parse(raw) as PlanBrief;
-    if (parsed.planId !== planId) return null;
-    return parsed;
+    return JSON.parse(raw) as PlanBrief;
   } catch {
     return null;
   }
+}
+
+export function readPlanBrief(planId: string): PlanBrief | null {
+  const parsed = peekPlanBrief();
+  if (!parsed || parsed.planId !== planId) return null;
+  return parsed;
 }
 
 export function clearPlanBrief(): void {

@@ -13,6 +13,7 @@ import {
   type PlanFilter,
 } from "@/lib/plan-catalog";
 import { DEFAULT_FAMILY_ID, DEFAULT_PLAN_ID, PLAN_FAMILIES } from "@/lib/plans";
+import { peekPlanBrief } from "@/lib/plan/plan-brief";
 import type { SampleWeekPreview } from "@/lib/plan-stats";
 import { PlanSampleWeek } from "@/components/plan/plan-sample-week";
 import { cn } from "@/lib/utils";
@@ -78,10 +79,12 @@ export function PlanCatalogExplorer({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const pathPlanMatch = pathname.match(/^\/plan\/([^/]+)\/?$/);
+  const [quizPlanId, setQuizPlanId] = useState<string | undefined>();
   const activePlanId =
     selectedPlanId ??
     pathPlanMatch?.[1] ??
     searchParams.get("plan") ??
+    quizPlanId ??
     undefined;
   const activeFamilyId =
     plans.find((p) => p.id === activePlanId)?.familyId ?? DEFAULT_FAMILY_ID;
@@ -92,6 +95,12 @@ export function PlanCatalogExplorer({
   const [selectedByFamily, setSelectedByFamily] = useState<
     Record<string, string>
   >({});
+
+  useEffect(() => {
+    const brief = peekPlanBrief();
+    if (!brief?.fromQuiz || !brief.planId) return;
+    queueMicrotask(() => setQuizPlanId(brief.planId));
+  }, []);
 
   const familyGroups = useMemo((): FamilyGroup[] => {
     return PLAN_FAMILIES.map((family) => {
