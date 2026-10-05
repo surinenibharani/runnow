@@ -19,7 +19,7 @@ function planHref(planId: string) {
 
 const DEFAULT_HEADLINE = "Don't know where to start?";
 const DEFAULT_DESCRIPTION =
-  "Start here — a short quiz recommends a free beginner plan. No account, no app download.";
+  "Start here — a short quiz recommends a free beginner-friendly plan. First-timers, comebacks, and runners with a base are all welcome. No account, no app download.";
 
 export function StartPlanCta({
   variant = "banner",

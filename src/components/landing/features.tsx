@@ -19,7 +19,7 @@ const features = [
     icon: Heart,
     title: "Built for day one",
     description:
-      "Walk-run intervals, rest days, and no shame if you have never jogged a step.",
+      "Walk-run intervals, rest days, and no shame if you have never jogged a step. Comebacks and experienced runners get the same honest ramp.",
   },
   {
     icon: Trophy,
@@ -38,7 +38,8 @@ export function Features() {
             Everything you need to start
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-            No app download. No gear list. A clear week at a time.
+            No app download. Walk-run is fine. A clear week at a time — from
+            first jog to the next distance.
           </p>
         </FadeIn>
 

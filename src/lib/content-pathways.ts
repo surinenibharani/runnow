@@ -23,7 +23,7 @@ export const storiesPathwayLink: PathwayLink = {
   kind: "stories",
   href: "/stories",
   label: "Success stories",
-  detail: "Real beginners who started scared and kept showing up.",
+  detail: "Real beginners who started scared — and people who came back.",
 };
 
 const injuryPathways: Record<string, PathwayLink[]> = {
@@ -176,7 +176,7 @@ const tipPathways: Record<string, PathwayLink[]> = {
       kind: "plan",
       href: "/start",
       label: "Start here",
-      detail: "Two-minute quiz → free beginner plan.",
+      detail: "Two-minute quiz → a free beginner-friendly plan.",
     },
     {
       kind: "blog",
@@ -965,6 +965,32 @@ const blogPathways: Record<string, PathwayLink[]> = {
     },
     storiesPathwayLink,
   ],
+  "marathon-sleep-before-other-sports": [
+    {
+      kind: "blog",
+      href: "/blog/sleep-recovery-for-runners",
+      label: "Sleep is recovery",
+      detail: "Bedtime habits that survive a training week.",
+    },
+    {
+      kind: "blog",
+      href: "/blog/prioritize-running-marathon-training",
+      label: "Prioritize the marathon block",
+      detail: "Protect long runs, fuel, and rest days.",
+    },
+    {
+      kind: "plan",
+      href: "/plan",
+      label: "Free marathon plans",
+      detail: "Rest days are already on the calendar.",
+    },
+    {
+      kind: "tip",
+      href: "/tips/rest-days-are-training-days",
+      label: "Rest days are training days",
+      detail: "Adaptation happens when you are not running.",
+    },
+  ],
   "none-to-run-gentle-beginners": [
     {
       kind: "plan",
@@ -1024,7 +1050,7 @@ export const tipsHubNextSteps: PathwayLink[] = [
     kind: "plan",
     href: "/start",
     label: "Start here",
-    detail: "A two-minute quiz picks a free beginner plan.",
+    detail: "A two-minute quiz picks a free beginner-friendly plan.",
   },
   storiesPathwayLink,
   {

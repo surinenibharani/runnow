@@ -15,7 +15,7 @@ const PLAN_KEYWORDS = [
 ] as const;
 
 export const PLAN_INDEX_DESCRIPTION =
-  "Free couch to 5K and 10K plans for beginners — running schedules in your browser, no app required. Half marathon and marathon plans from 4–16 weeks with cross-training, rest days, and progress tracking.";
+  "Free beginner-friendly couch to 5K and 10K plans — running schedules in your browser, no app required. Half marathon and marathon plans for comebacks and runners with a base, with cross-training, rest days, and progress tracking.";
 
 function truncateDescription(text: string, max = 158): string {
   if (text.length <= max) return text;
@@ -30,7 +30,7 @@ export function getPlanMetaDescription(plan: TrainingPlan): string {
       ? `Free couch to 5K plan (${plan.duration}) — beginner running schedule, no app.`
       : plan.familyId === "10k"
         ? `Free 10K training plan (${plan.duration}) — build from a 5K base in your browser.`
-        : `Free ${plan.name} plan (${plan.duration}) — beginner running schedule in your browser.`;
+        : `Free ${plan.name} plan (${plan.duration}) — training schedule in your browser for the next honest distance.`;
 
   return truncateDescription(
     `${lead} ${plan.description} ${plan.runsPerWeek} runs per week with cross-training, rest days, and progress tracking.`

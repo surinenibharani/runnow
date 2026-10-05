@@ -7,7 +7,7 @@ export type RoadmapStep = {
   hrefLabel: string;
 };
 
-/** Beginner journey: first week → first 5K. */
+/** First-week through first 5K, then the next honest distance or a comeback. */
 export const beginnerRoadmap: RoadmapStep[] = [
   {
     id: "week-1",
@@ -44,6 +44,15 @@ export const beginnerRoadmap: RoadmapStep[] = [
       "Walk–jog is allowed. The goal is crossing the line wanting to come back.",
     href: "/plan/5k-gentle-16w",
     hrefLabel: "Walk-to-5K plan",
+  },
+  {
+    id: "next",
+    stage: "Already running or coming back",
+    title: "Pick the next honest distance",
+    summary:
+      "10K, half, marathon, or a comeback block. Same idea: easy days, rest, and a plan that matches the body you have this season.",
+    href: "/blog/comeback-after-running-break",
+    hrefLabel: "Comeback guide",
   },
 ];
 

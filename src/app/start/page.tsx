@@ -9,9 +9,9 @@ import { breadcrumbJsonLd, howToJsonLd, webPageJsonLd } from "@/lib/seo";
 import { beginnerRoadmapHowToSteps } from "@/lib/beginner-roadmap";
 import { pageMetadata } from "@/lib/seo/metadata";
 
-const PAGE_TITLE = "Start Here — Find Your Beginner Running Plan";
+const PAGE_TITLE = "Start Here — Find Your Beginner-Friendly Running Plan";
 const PAGE_DESCRIPTION =
-  "Answer a short quiz about experience, fitness, goals, schedule, and recovery needs — we'll recommend a free LetsRunNow training plan.";
+  "Answer a short quiz about experience, fitness, goals, schedule, and recovery — we'll recommend a free beginner-friendly LetsRunNow plan. First-timers, comebacks, and experienced runners are all welcome.";
 
 export const metadata: Metadata = pageMetadata({
   title: PAGE_TITLE,
@@ -34,7 +34,7 @@ export default function StartPage() {
             { name: "Start here", path: "/start" },
           ]),
           howToJsonLd({
-            name: "Beginner running roadmap: week 1 to first 5K",
+            name: "Beginner running roadmap: week 1 to first 5K — and beyond",
             description: PAGE_DESCRIPTION,
             path: "/start",
             steps: beginnerRoadmapHowToSteps(),
@@ -51,9 +51,10 @@ export default function StartPage() {
             Start here
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-            Don&apos;t know where to start? Answer a short quiz about your
-            experience, fitness, goal, and health context — then get a free plan
-            that fits, in your browser.
+            Don&apos;t know where to start? Answer a short quiz — then get a
+            free beginner-friendly plan that fits, whether you have never run,
+            you are coming back, or you already have a base. Walk-run is
+            allowed.
           </p>
           <p className="mx-auto mt-3 max-w-lg text-sm text-muted-foreground">
             Already know your distance?{" "}
@@ -72,7 +73,7 @@ export default function StartPage() {
         </FadeIn>
 
         <FadeIn className="mb-8">
-          <BeginnerRoadmap heading="The path in four steps" />
+          <BeginnerRoadmap heading="Beginner roadmap" />
         </FadeIn>
 
         <FadeIn>

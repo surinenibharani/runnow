@@ -234,6 +234,7 @@ export const aug23GapPosts: BlogPost[] = [
     sources: [
       SOURCES.carbsTrainingCompetitionBurke2011,
       SOURCES.nutritionAthleticPerformanceACSM2016,
+      SOURCES.issnNutrientTiming2017,
       SOURCES.runningNutrition,
       SOURCES.marathonWallRapoport2010,
       SOURCES.hyponatremia,
@@ -902,7 +903,7 @@ export const aug23GapPosts: BlogPost[] = [
       "avoiding-injuries",
     ],
     closingQuestion: "Do you use Pilates as recovery, strength, or mostly for calm?",
-    sources: [SOURCES.physicalActivityGuidelinesUS, SOURCES.acsmPhysicalActivityBoneHealth2004],
+    sources: [SOURCES.physicalActivityGuidelinesUS, SOURCES.acsmPhysicalActivityBoneHealth2004, SOURCES.essaOsteoporosisExercise2017],
     faq: [
       {
         question: "Can Pilates replace strength training?",
@@ -1097,6 +1098,7 @@ export const aug23GapPosts: BlogPost[] = [
     sources: [
       SOURCES.creatineNIH,
       SOURCES.nutritionAthleticPerformanceACSM2016,
+      SOURCES.issnNutrientTiming2017,
       SOURCES.runningNutrition,
       SOURCES.redS,
     ],

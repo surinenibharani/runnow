@@ -92,9 +92,10 @@ export const SOURCES = {
     publisher: "Mayo Clinic",
   },
   peaceAndLove: {
-    label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
-    href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
-    publisher: "British Journal of Sports Medicine blog",
+    label:
+      "Soft-tissue injuries simply need PEACE & LOVE (Dubois & Esculier, 2019)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/31377722/",
+    publisher: "British Journal of Sports Medicine / PubMed",
   },
   intermittentFasting: {
     label: "Intermittent fasting: what is it, and how does it work?",
@@ -217,9 +218,15 @@ export const SOURCES = {
   },
   lactateThresholdNarrative2024: {
     label:
-      "Lactate threshold training to improve long-distance running performance (narrative review, 2024)",
-    href: "https://doi.org/10.26773/mjssm.240303",
-    publisher: "Montenegrin Journal of Sports Science and Medicine",
+      "Polarized vs other training-intensity distributions on endurance performance — systematic review & meta-analysis (Silva Oliveira et al., 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/38717713/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  polarizedTrainingMeta2024: {
+    label:
+      "Polarized vs other training-intensity distributions on endurance performance — systematic review & meta-analysis (Silva Oliveira et al., 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/38717713/",
+    publisher: "PubMed / Sports Medicine",
   },
   lactateFixedThresholdIndividual2023: {
     label:
@@ -389,9 +396,26 @@ export const SOURCES = {
   },
   acsmExercisePrescription2009: {
     label:
-      "ACSM Position Stand: Exercise prescription for apparently healthy adults (2009)",
-    href: "https://www.bewegenismedicijn.nl/files/downloads/full_text_acsm_position_stand_parameters_of_exercise_for_adults.pdf",
-    publisher: "ACSM",
+      "ACSM Position Stand: Quantity and quality of exercise for developing and maintaining fitness (Garber et al., 2011)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/21694556/",
+    publisher: "PubMed / Medicine & Science in Sports & Exercise",
+  },
+  acsmGetp12: {
+    label:
+      "ACSM's Guidelines for Exercise Testing and Prescription, 12th edition (2025)",
+    href: "https://acsm.org/education-resources/books/guidelines-exercise-testing-prescription/",
+    publisher: "American College of Sports Medicine",
+  },
+  acsmExertionalHeat2023: {
+    label:
+      "ACSM expert consensus statement on exertional heat illness (Roberts et al., 2023)",
+    href: "https://journals.lww.com/acsm-csmr/fulltext/2023/04000/acsm_expert_consensus_statement_on_exertional_heat.3.aspx",
+    publisher: "Current Sports Medicine Reports / ACSM",
+  },
+  cdcLightningSafety: {
+    label: "Lightning safety — when thunder roars, go indoors",
+    href: "https://www.cdc.gov/niosh/lightning/about/index.html",
+    publisher: "CDC / NIOSH",
   },
   exerciseAfterPregnancy: {
     label: "Exercise after pregnancy",
@@ -437,6 +461,18 @@ export const SOURCES = {
       "Incidence and determinants of lower extremity running injuries in long distance runners — systematic review (van Gent et al., 2007)",
     href: "https://pubmed.ncbi.nlm.nih.gov/17473005/",
     publisher: "PubMed / British Journal of Sports Medicine",
+  },
+  runningInjuriesKakouris2021: {
+    label:
+      "Running-related musculoskeletal injuries — systematic review of incidence and prevalence (Kakouris, Yener & Fong, 2021)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/33862272/",
+    publisher: "PubMed / Journal of Sport and Health Science",
+  },
+  rriRiskFactorsUmbrella2024: {
+    label:
+      "Risk factors for running-related injuries — umbrella systematic review (2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/38697289/",
+    publisher: "PubMed / Journal of Sport and Health Science",
   },
   runningKneeOAAlentornGeli2017: {
     label:
@@ -487,6 +523,12 @@ export const SOURCES = {
     publisher:
       "Academy of Nutrition and Dietetics, Dietitians of Canada & ACSM / PubMed",
   },
+  issnNutrientTiming2017: {
+    label:
+      "ISSN position stand: nutrient timing (Kerksick et al., 2017)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/28969491/",
+    publisher: "PubMed / Journal of the International Society of Sports Nutrition",
+  },
   eliteMarathonNutritionStellingwerff2013: {
     label:
       "Contemporary nutrition approaches to optimize elite marathon performance (Stellingwerff, 2013)",
@@ -498,6 +540,12 @@ export const SOURCES = {
       "ACSM Position Stand: Physical activity and bone health (Kohrt et al., 2004)",
     href: "https://pubmed.ncbi.nlm.nih.gov/15514517/",
     publisher: "PubMed / Medicine & Science in Sports & Exercise",
+  },
+  essaOsteoporosisExercise2017: {
+    label:
+      "ESSA position statement: exercise prescription for prevention and management of osteoporosis (Beck et al., 2017)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/28040262/",
+    publisher: "PubMed / Journal of Science and Medicine in Sport",
   },
   resistanceTrainingBMDZhao2015: {
     label:
@@ -561,9 +609,9 @@ export const SOURCES = {
   },
   cycleRunCrossTrainingMeta2026: {
     label:
-      "Cross-training between running and cycling: VO₂max and running performance — systematic review & meta-analysis (2026)",
-    href: "https://doi.org/10.3389/fspor.2026.1843803",
-    publisher: "Frontiers in Sports and Active Living",
+      "Cross-training between running and cycling: VO₂max and running performance — systematic review & meta-analysis (Menges et al., 2026)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/42267259/",
+    publisher: "PubMed / Frontiers in Sports and Active Living",
   },
   sleepDeprivationEnduranceLopes2023: {
     label:
@@ -611,6 +659,42 @@ export const SOURCES = {
       "Impact of sleep interventions on athletic performance — systematic review (2023)",
     href: "https://pubmed.ncbi.nlm.nih.gov/37462808/",
     publisher: "PubMed",
+  },
+  sleepDeprivationSportsKong2025: {
+    label:
+      "Sleep deprivation, sports performance, and perceived exertion — systematic review & meta-analysis (Kong et al., 2025)",
+    href: "https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2025.1544286/full",
+    publisher: "Frontiers in Physiology",
+  },
+  overreachingSleepMurphy2024: {
+    label:
+      "Does overreaching from endurance-based training impair sleep? — systematic review & meta-analysis (Murphy et al., 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/38809828/",
+    publisher: "PubMed / PLOS ONE",
+  },
+  overreachingSleepHausswirth2014: {
+    label:
+      "Disturbed sleep and increased illness in overreached endurance athletes (Hausswirth et al., 2014)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/24091995/",
+    publisher: "PubMed / Medicine & Science in Sports & Exercise",
+  },
+  concurrentTrainingSexStatusHuiberts2024: {
+    label:
+      "Concurrent strength and endurance training — sex and training status meta-analysis (Huiberts, Wüst & van der Zwaard, 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/37847373/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  taperingEnduranceWang2023: {
+    label:
+      "Effects of tapering on performance in endurance athletes — systematic review & meta-analysis (Wang et al., 2023)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/37163550/",
+    publisher: "PubMed / PLOS ONE",
+  },
+  badmintonLungeLoadYu2020: {
+    label:
+      "Badminton movement and injury risk — lunges ~15% of play, impact ~2.5× body weight (Yu et al., 2020)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7648456/",
+    publisher: "PMC / Sports",
   },
   giEnduranceNutritionStrategies2025: {
     label:
@@ -671,8 +755,8 @@ export const SOURCES = {
   marathonHeartAcuteLaily2026: {
     label:
       "Acute effects of marathon running on the heart — systematic review & meta-analysis (Laily et al., 2026)",
-    href: "https://doi.org/10.1136/bmjsem-2026-003201",
-    publisher: "BMJ Open Sport & Exercise Medicine",
+    href: "https://pubmed.ncbi.nlm.nih.gov/42299359/",
+    publisher: "PubMed / BMJ Open Sport & Exercise Medicine",
   },
   marathonTroponinMetaLi2023: {
     label:
@@ -741,25 +825,27 @@ export const SOURCES = {
     publisher: "Footwear Science",
   },
   outsideSuperShoeInjuries: {
-    label: "Does super shoe technology prevent injury? Experts aren't sure",
-    href: "https://run.outsideonline.com/gear/do-super-shoes-prevent-injuries-experts-share-their-findings/",
-    publisher: "Outside / Trail Runner",
+    label:
+      "Bone stress injuries in runners using carbon-plated shoes — case series (Tenforde et al., 2023)",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10356879/",
+    publisher: "PMC / Sports Medicine",
   },
   runnersWorldWaShoeRules: {
-    label: "Banned running shoes: World Athletics stack-height & plate rules",
-    href: "https://www.runnersworld.com/gear/a42418666/banned-running-shoes/",
-    publisher: "Runner's World",
+    label: "World Athletics Book of Rules — athletic shoe regulations",
+    href: "https://worldathletics.org/about-iaaf/documents/book-of-rules",
+    publisher: "World Athletics",
   },
   runningWarehouseWhoSuperShoes: {
-    label: "Who should buy super shoes?",
-    href: "https://www.runningwarehouse.com/learningcenter/gear_guides/footwear/who-should-buy-super-shoes.html",
-    publisher: "Running Warehouse",
+    label:
+      "A comparison of the energetic cost of running in marathon racing shoes (Hoogkamer et al., 2018)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/29243931/",
+    publisher: "PubMed / Sports Medicine",
   },
   wirecutterCasualSuperShoes: {
     label:
-      "Super shoes aren't just for Olympians — but do casual runners really need them?",
-    href: "https://www.nytimes.com/wirecutter/reviews/carbon-plate-running-shoes/",
-    publisher: "NYT Wirecutter",
+      "Effects of advanced footwear technology on running economy — systematic review & meta-analysis (2025)",
+    href: "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2025.1509322/full",
+    publisher: "Frontiers in Sports and Active Living",
   },
   mortonsShoeOrthoticsColo2020: {
     label:
@@ -881,10 +967,9 @@ export const SOURCES = {
     publisher: "Sports Medicine",
   },
   ironDeficiencyAthletesPrevention2024: {
-    label:
-      "Approaches to prevent iron deficiency in athletes (German Journal of Sports Medicine, 2024)",
-    href: "https://www.germanjournalsportsmedicine.com/archive/archive-2024/issue-5/approaches-to-prevent-iron-deficiency-in-athletes/",
-    publisher: "German Journal of Sports Medicine",
+    label: "Iron — fact sheet for health professionals",
+    href: "https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/",
+    publisher: "NIH Office of Dietary Supplements",
   },
   aclReturnToRunningScoping2018: {
     label:
@@ -930,9 +1015,9 @@ export const SOURCES = {
   },
   hormonalContraceptiveAthleticPerformance2020: {
     label:
-      "Effects of hormonal contraceptives on injury risk and athletic performance in female athletes — systematic review (2020)",
-    href: "https://www.jscimedcentral.com/public/assets/articles/sportsmedicine-7-1162.pdf",
-    publisher: "Annals of Sports Medicine and Research",
+      "The effects of oral contraceptives on exercise performance in women — systematic review and meta-analysis (Elliott-Sale et al., 2020)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/32378033/",
+    publisher: "PubMed / Sports Medicine",
   },
   overtrainingSystematicReview2022: {
     label:
@@ -1028,6 +1113,18 @@ export const SOURCES = {
     label:
       "Returning to running postnatal — guideline for medical, health and fitness professionals (Goom et al., BJSM 2019)",
     href: "https://doi.org/10.1136/bjsports-2019-081571",
+    publisher: "British Journal of Sports Medicine",
+  },
+  postpartumReturnToRunChristopher2024: {
+    label:
+      "Return-to-running readiness after childbirth — international Delphi consensus (Christopher et al., 2024)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/38148108/",
+    publisher: "PubMed / British Journal of Sports Medicine",
+  },
+  postpartumReturnToRunDeering2024: {
+    label:
+      "Designing a postpartum return-to-running programme — international Delphi consensus (Deering et al., 2024)",
+    href: "https://doi.org/10.1136/bjsports-2023-107490",
     publisher: "British Journal of Sports Medicine",
   },
 } satisfies Record<string, BlogSource>;

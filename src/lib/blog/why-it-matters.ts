@@ -122,6 +122,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Short easy runs rarely need a science kit — heat and long efforts do. Clear water-vs-sports-drink rules prevent both dehydration drama and overdrinking mistakes.",
   "sleep-recovery-for-runners":
     "You can't out-supplement a chronic sleep deficit. Protecting bedtime is the recovery lever that makes mileage, strength, and easy days finally add up.",
+  "marathon-sleep-before-other-sports":
+    "Marathon weeks already tax repair, sleep, and tendons. Meta-analyses show sleep loss hits long endurance hardest — while extra HIIT, pickup sports, and heavy gym sessions spend the same recovery budget. Protecting the night, and parking high-intensity extras, is how the long run still pays off.",
   "speedwork-after-5k-beginners":
     "Adding speed too early turns every run into injury practice. After a solid 5K base, one controlled quality day teaches speed without torching recovery.",
   "running-shoes-without-lab-reviews":

@@ -25,11 +25,12 @@ export function BeginnerRoadmap({
         {heading}
       </h2>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-        Week 1 to your first 5K — slow on purpose. Skip ahead only if the
+        Week 1 to your first 5K — slow on purpose. Then the next honest
+        distance, or a comeback, when you&apos;re ready. Skip ahead only if the
         current step already feels easy.
       </p>
 
-      <ol className="mt-8 grid gap-0 sm:grid-cols-2 lg:grid-cols-4 sm:gap-3">
+      <ol className="mt-8 grid gap-0 sm:grid-cols-2 lg:grid-cols-5 sm:gap-3">
         {beginnerRoadmap.map((step, index) => (
           <li
             key={step.id}

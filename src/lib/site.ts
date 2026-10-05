@@ -4,16 +4,17 @@ export const SITE_NAME = "LetsRunNow";
 /** Matches the logo caption. */
 export const SITE_TAGLINE = BRAND_CAPTION;
 export const SITE_DESCRIPTION =
-  "Free couch to 5K, 10K, half marathon, and marathon training plans — a beginner running schedule in your browser, no app required. Pick a plan, track progress, and optional Strava sync. Run with us.";
+  "Beginner-friendly running plans for every level — never ran, coming back from a break, or chasing a 5K, 10K, half, or marathon. Walk-run is allowed. Tips, injury prevention, and how to get better, in your browser. No app required.";
 export const SITE_KEYWORDS = [
   "couch to 5k free plan",
   "beginner running schedule no app",
   "free 5k training plan beginner",
-  "couch to 5k no app",
-  "beginner running plan free",
-  "free marathon training plan beginner",
+  "return to running after a break",
+  "intermediate running training plan",
+  "free marathon training plan",
   "half marathon training plan free",
   "how to start running beginner",
+  "running injury prevention",
   "running plan in browser",
   "LetsRunNow",
 ] as const;

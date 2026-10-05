@@ -114,6 +114,10 @@ export const menRunnerConcerns: MenRunnerConcern[] = [
     quote:
       "I thought I was just getting old at 28. Turns out I was under-fueling by about 800 calories a day. Once I ate like an athlete, my shin pain cleared and my easy pace dropped 30 seconds.",
     readMore: [
+      {
+        label: "2023 IOC consensus on REDs (BJSM)",
+        href: "https://doi.org/10.1136/bjsports-2023-106994",
+      },
       { label: "Men's running guide", href: "/blog/running-guide-for-men" },
       { label: "Nutrition basics", href: "/blog/nutrition-basics-for-beginners" },
     ],
@@ -175,6 +179,14 @@ export const menRunnerConcerns: MenRunnerConcern[] = [
     callout:
       "Sudden cardiac death in runners is rare but real. Most events involve undiagnosed heart disease, inherited conditions (even in fit-looking runners), or jumping from sedentary to maximal effort too fast.",
     readMore: [
+      {
+        label: "Exercise and chronic disease — Mayo Clinic",
+        href: "https://www.mayoclinic.org/healthy-lifestyle/fitness/in-depth/exercise-and-chronic-disease/art-20046049",
+      },
+      {
+        label: "2025 AHA/ACC high blood pressure guideline",
+        href: "https://doi.org/10.1161/cir.0000000000001356",
+      },
       { label: "Men's running guide — heart section", href: "/blog/running-guide-for-men#heart-health" },
       { label: "Health conditions tips", href: "/tips/specific-situations" },
     ],

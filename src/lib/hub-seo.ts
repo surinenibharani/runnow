@@ -13,7 +13,7 @@ export type HubEditorial = {
 export const tipsHubEditorial: HubEditorial = {
   intro: [
     "Most beginner running advice is either a 40-minute lecture or a slogan. This hub is the middle: one idea per card, grouped by what you're actually stuck on — pace, shoes, rest, weather, or the voice that says you're behind.",
-    "Start with Getting started if you have never jogged on purpose. Use Scheduling when life keeps eating the run. Open Recovery before you add a fourth day. Bad-weather and health-situation guides live in their own sections because those answers are longer than a card.",
+    "Start with Getting started if you have never jogged on purpose. Use Scheduling when life keeps eating the run. Open Recovery before you add a fourth day. Coming back from a break? Same rest and easy-pace rules still apply. Bad-weather and health-situation guides live in their own sections because those answers are longer than a card.",
     "Nothing here replaces a clinician. If pain is sharp, one-sided, or changing how you walk, skip the tip and use the injury hub.",
   ],
   faqs: [
@@ -105,7 +105,7 @@ export const gearHubEditorial: HubEditorial = {
 
 export const injuriesHubEditorial: HubEditorial = {
   intro: [
-    "Beginner injuries are usually a load error: too much, too soon, too little rest, or shoes that should have been retired. This hub names the common ones, shows what they feel like, and points to a strength tip plus how to ease the plan — not a diagnosis.",
+    "Running injuries are usually a load error: too much, too soon, too little rest, or shoes that should have been retired — whether you are on week two or year ten. This hub is beginner-friendly: it names the common ones, shows what they feel like, and points to strength plus how to ease the plan — not a diagnosis.",
     "Open a condition for prevention, recovery, and red flags. Women- and men-specific concerns (pelvic floor, REDs, heart symptoms, groin pain) live on their own pages because the advice is not one-size.",
     "Educational only. Sharp pain, swelling, numbness, night pain, or a limp that lasts more than a few days belongs with a clinician or sports physiotherapist — not another internet checklist.",
   ],
@@ -121,15 +121,15 @@ export const injuriesHubEditorial: HubEditorial = {
         "If walking is calm, cycling or swimming can keep the habit without the same impact. If walking hurts, rest the tissue and see someone. Don't replace missed runs with extra jogging later in the week.",
     },
     {
-      question: "What's the fastest way to prevent beginner injuries?",
+      question: "What's the fastest way to prevent running injuries?",
       answer:
-        "Three run days, easy pace you can talk through, rest days that stay rest, and strength twice a week for hips and calves. Most shin and knee niggles start when those four slip.",
+        "Three run days, easy pace you can talk through, rest days that stay rest, and strength twice a week for hips and calves. Most shin and knee niggles start when those four slip — including when experienced runners skip easy days.",
     },
   ],
   howTo: {
     name: "What to do when something hurts while running",
     description:
-      "A simple sequence for beginners: stop the damage, name the pattern, ease the plan, get help if red flags show.",
+      "A simple sequence for beginners — and anyone ramping back up: stop the damage, name the pattern, ease the plan, get help if red flags show.",
     steps: [
       {
         name: "Stop if it's sharp or changing your gait",
@@ -197,7 +197,7 @@ export const womenInjuriesHubEditorial: HubEditorial = {
 
 export const menInjuriesHubEditorial: HubEditorial = {
   intro: [
-    "Men's beginner injuries get sold as toughness problems. Often they are load, fueling, or a heart-and-groin pattern that generic 'just run more' advice misses. This hub covers RED-S without periods as a clue, chest symptoms, groin and core, overtraining, and heat.",
+    "Men's running injuries get sold as toughness problems. Often they are load, fueling, or a heart-and-groin pattern that generic 'just run more' advice misses. This hub covers RED-S without periods as a clue, chest symptoms, groin and core, overtraining, and heat.",
     "Chest pain, fainting, or new palpitations while running are stop-and-get-checked — not a hydration tweak. Groin pain that you cannot cough without noticing is not a hip flexor stretch night.",
     "Educational only. New chest symptoms, blood in urine, or pain that changes how you walk belongs with a clinician.",
   ],

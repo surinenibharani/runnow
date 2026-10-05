@@ -37,7 +37,7 @@ export async function GET() {
   <channel>
     <title>${escapeXml(SITE_NAME)} Running Blog</title>
     <link>${SITE_URL}/blog</link>
-    <description>Beginner running tips, training advice, nutrition, and injury prevention from ${escapeXml(SITE_NAME)}.</description>
+    <description>Beginner-friendly running tips, training plans, nutrition, and injury prevention from ${escapeXml(SITE_NAME)} — also for comebacks and experienced runners.</description>
     <language>en-us</language>
     <lastBuildDate>${buildDate}</lastBuildDate>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>

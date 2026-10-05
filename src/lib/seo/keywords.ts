@@ -1,15 +1,17 @@
 import { SITE_NAME } from "@/lib/site";
 
-/** Site-wide long-tail terms for beginners searching without an app. */
+/** Site-wide long-tail terms for runners searching without an app. */
 export const GLOBAL_SEO_KEYWORDS = [
   "couch to 5k free plan",
   "beginner running schedule no app",
   "free 5k training plan beginner",
+  "return to running after a break",
+  "intermediate running training plan",
   "couch to 5k no app",
-  "beginner running plan free",
   "how to start running beginner",
-  "free marathon training plan beginner",
+  "free marathon training plan",
   "half marathon training plan free",
+  "running injury prevention",
   "running plan in browser",
   SITE_NAME.toLowerCase(),
 ] as const;
@@ -18,6 +20,7 @@ export const HOME_SEO_KEYWORDS = [
   ...GLOBAL_SEO_KEYWORDS,
   "start running today",
   "beginner runner training schedule",
+  "comeback running plan after break",
   "free running plan no download",
   "couch to 5k for beginners",
 ] as const;
@@ -37,6 +40,8 @@ export const PLAN_SEO_KEYWORDS = [
 export const BLOG_SEO_KEYWORDS = [
   ...GLOBAL_SEO_KEYWORDS,
   "beginner running tips",
+  "running tips for experienced runners",
+  "return to running after a break",
   "first time runner advice",
   "running blog for beginners",
 ] as const;
@@ -44,6 +49,7 @@ export const BLOG_SEO_KEYWORDS = [
 export const TIPS_SEO_KEYWORDS = [
   ...GLOBAL_SEO_KEYWORDS,
   "beginner running tips",
+  "running tips for intermediate runners",
   "how to pace yourself running",
   "running tips for new runners",
   "easy running pace beginner",
@@ -63,6 +69,7 @@ export const GEAR_SEO_KEYWORDS = [
 
 export const INJURIES_SEO_KEYWORDS = [
   "beginner running injuries",
+  "running injury prevention",
   "shin splints prevention running",
   "runner knee beginner",
   "how to avoid running injuries",
@@ -70,11 +77,12 @@ export const INJURIES_SEO_KEYWORDS = [
   "running injuries women",
   "pelvic floor running leakage",
   "RED-S running female",
+  "return to running after injury",
 ] as const;
 
 export const BAD_WEATHER_SEO_KEYWORDS = [
   "running in rain tips",
-  "running in heat beginner",
+  "running in heat",
   "indoor running alternatives",
   "bad weather running plan",
 ] as const;
@@ -82,6 +90,7 @@ export const BAD_WEATHER_SEO_KEYWORDS = [
 export const SITUATIONAL_SEO_KEYWORDS = [
   "running while pregnant",
   "running over 55 beginner",
+  "return to running after 50",
   "running with asthma",
   "running with diabetes beginner",
 ] as const;
@@ -581,6 +590,19 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "sleep injury risk athletes research",
     "best recovery for runners sleep",
     "sleep extension athletic performance",
+  ],
+  "marathon-sleep-before-other-sports": [
+    "sleep recovery marathon training",
+    "should I stop other sports before a marathon",
+    "HIIT during marathon training",
+    "gym workouts marathon taper",
+    "cross training vs rest marathon",
+    "prioritize sleep before marathon",
+    "pickup basketball marathon training",
+    "pickleball during marathon training",
+    "volleyball during marathon training",
+    "boxing during marathon training",
+    "strength training during marathon peak",
   ],
   "runners-gi-distress": [
     "runners diarrhea causes",

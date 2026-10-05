@@ -8,6 +8,8 @@ import {
   Sun,
   Wind,
 } from "lucide-react";
+import type { BlogSource } from "@/lib/blog/types";
+import { SOURCES } from "@/lib/blog/sources";
 import { slugifyTipTitle, type TipIllustrationId } from "@/lib/tips/tips";
 
 export type WeatherTip = {
@@ -19,6 +21,7 @@ export type WeatherTip = {
   outdoorTips: string[];
   indoorAlternatives: string[];
   skipOutdoor?: string;
+  learnMore?: BlogSource[];
 };
 
 export const weatherTips: WeatherTip[] = [
@@ -63,6 +66,11 @@ export const weatherTips: WeatherTip[] = [
     ],
     skipOutdoor:
       "Do not run outdoors in heat advisories, extreme humidity with high heart rate, or if you feel faint or headachey before you start.",
+    learnMore: [
+      SOURCES.heatExhaustion,
+      SOURCES.heatSafety,
+      SOURCES.acsmExertionalHeat2023,
+    ],
   },
   {
     slug: slugifyTipTitle("Cold, ice, and snow"),
@@ -104,6 +112,7 @@ export const weatherTips: WeatherTip[] = [
     ],
     skipOutdoor:
       "Never run outdoors during active lightning. Wait 30 minutes after the last thunder clap before going back out.",
+    learnMore: [SOURCES.cdcLightningSafety],
   },
   {
     slug: slugifyTipTitle("Windy days"),
@@ -143,6 +152,10 @@ export const weatherTips: WeatherTip[] = [
     ],
     skipOutdoor:
       "Avoid outdoor exercise when air is rated unhealthy or hazardous, or when wildfire smoke is in your area.",
+    learnMore: [
+      SOURCES.acsmAirQualityOutdoorExercise,
+      SOURCES.whoAirPollutionPersonalActions2024,
+    ],
   },
   {
     slug: slugifyTipTitle("Stuck inside? Keep the habit"),

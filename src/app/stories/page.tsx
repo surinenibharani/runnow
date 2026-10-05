@@ -15,7 +15,7 @@ import { getCommunityTestimonials } from "@/lib/testimonials/community";
 
 const TITLE = "Success Stories from Beginner Runners";
 const DESCRIPTION =
-  "Real beginners sharing how they started running with LetsRunNow — walk-run wins, streaks, and finishing their first training plan.";
+  "Real beginners sharing how they started running with LetsRunNow — plus comebacks and first-race finishes. Walk-run wins, streaks, and one week at a time.";
 
 export const metadata: Metadata = pageMetadata({
   title: TITLE,
@@ -67,8 +67,9 @@ export default async function StoriesPage() {
             Success Stories
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Beginners who laced up, stuck with the plan, and proved they could do
-            hard things — one week at a time.
+            Beginners who laced up, stuck with the plan, and proved they could
+            do hard things — one week at a time. Comebacks and people chasing
+            the next distance belong here too.
           </p>
           <Button
             nativeButton={false}

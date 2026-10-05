@@ -57,8 +57,13 @@ export const commonInjuries: CommonInjury[] = [
     additionalLearnMore: [
       {
         label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
-        href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
-        publisher: "British Journal of Sports Medicine blog",
+        href: "https://pubmed.ncbi.nlm.nih.gov/31377722/",
+        publisher: "British Journal of Sports Medicine / PubMed",
+      },
+      {
+        label: "Medial tibial stress syndrome in novice runners — systematic review (2020)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/33066291/",
+        publisher: "PubMed",
       },
     ],
     relatedBlog: {
@@ -99,8 +104,13 @@ export const commonInjuries: CommonInjury[] = [
     additionalLearnMore: [
       {
         label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
-        href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
-        publisher: "British Journal of Sports Medicine blog",
+        href: "https://pubmed.ncbi.nlm.nih.gov/31377722/",
+        publisher: "British Journal of Sports Medicine / PubMed",
+      },
+      {
+        label: "Patellofemoral pain best-practice guide (Collins et al., 2024)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/39401870/",
+        publisher: "PubMed / British Journal of Sports Medicine",
       },
     ],
     relatedBlog: {
@@ -141,8 +151,13 @@ export const commonInjuries: CommonInjury[] = [
     additionalLearnMore: [
       {
         label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
-        href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
-        publisher: "British Journal of Sports Medicine blog",
+        href: "https://pubmed.ncbi.nlm.nih.gov/31377722/",
+        publisher: "British Journal of Sports Medicine / PubMed",
+      },
+      {
+        label: "Conservative treatment for IT band syndrome in runners (2024)",
+        href: "https://pubmed.ncbi.nlm.nih.gov/39247485/",
+        publisher: "PubMed",
       },
     ],
     relatedBlog: {
@@ -183,8 +198,13 @@ export const commonInjuries: CommonInjury[] = [
     additionalLearnMore: [
       {
         label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
-        href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
-        publisher: "British Journal of Sports Medicine blog",
+        href: "https://pubmed.ncbi.nlm.nih.gov/31377722/",
+        publisher: "British Journal of Sports Medicine / PubMed",
+      },
+      {
+        label: "Plantar fasciitis treatment — systematic review of reviews (Rhim et al., 2021)",
+        href: "https://doi.org/10.3390/life11121287",
+        publisher: "Life (Basel)",
       },
     ],
     relatedBlog: {
@@ -226,8 +246,8 @@ export const commonInjuries: CommonInjury[] = [
     additionalLearnMore: [
       {
         label: "Soft-tissue injuries need PEACE & LOVE (modern rehab guidance)",
-        href: "https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/",
-        publisher: "British Journal of Sports Medicine blog",
+        href: "https://pubmed.ncbi.nlm.nih.gov/31377722/",
+        publisher: "British Journal of Sports Medicine / PubMed",
       },
     ],
     relatedBlog: {

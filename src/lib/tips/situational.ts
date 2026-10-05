@@ -43,6 +43,8 @@ export const situationalTips: SituationalTip[] = [
     learnMore: [
       SOURCES.acogPhysicalActivityPregnancy2020,
       SOURCES.pregnancyExercise,
+      SOURCES.postpartumReturnToRunChristopher2024,
+      SOURCES.exerciseAfterPregnancy,
     ],
   },
   {
@@ -62,6 +64,7 @@ export const situationalTips: SituationalTip[] = [
       "If you have not been active recently, or you have heart disease risk factors, ask your doctor before starting a new program.",
     learnMore: [
       SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.acsmGetp12,
       SOURCES.strengthForRunners,
     ],
   },
@@ -82,7 +85,9 @@ export const situationalTips: SituationalTip[] = [
       "Bone density, balance, and medications can change how your body responds to exercise. Medical clearance is wise before a new running routine.",
     learnMore: [
       SOURCES.physicalActivityGuidelinesUS,
+      SOURCES.acsmGetp12,
       SOURCES.exerciseWithOsteoporosis,
+      SOURCES.essaOsteoporosisExercise2017,
     ],
   },
   {

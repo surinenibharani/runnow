@@ -124,10 +124,17 @@ export const womenRunnerConcerns: WomenRunnerConcern[] = [
     illustration: "bone-health",
     readMore: [
       {
+        label: "2023 IOC consensus on REDs (BJSM)",
+        href: "https://doi.org/10.1136/bjsports-2023-106994",
+      },
+      {
+        label: "Stress fractures — Mayo Clinic",
+        href: "https://www.mayoclinic.org/diseases-conditions/stress-fractures/symptoms-causes/syc-20354057",
+      },
+      {
         label: "REDs & underfueling deep dive",
         href: "/blog/reds-low-energy-availability-runners",
       },
-      { label: "Stress fracture deep dive", href: "/blog/stress-fracture-running" },
       { label: "Women's running guide", href: "/blog/running-guide-for-women" },
     ],
   },
@@ -229,10 +236,11 @@ export const womenRunnerConcerns: WomenRunnerConcern[] = [
       {
         heading: "Postpartum timeline",
         items: [
-          "Clearance around 6 weeks (often longer after C-section) usually covers light activity — not automatic permission for impact running; many need 8–12+ weeks before run-walk feels safe",
+          "2024 BJSM consensus: after a minimum recovery period, timelines are individualized — screen pelvic-floor symptoms, strength, sleep, and prior training before impact; do not copy someone else's week-8 montage",
+          "Clearance around 6 weeks (often longer after C-section) usually covers light activity — not automatic permission for impact running",
           "Vaginal birth: pelvic floor assessment before high mileage; start with walking, then run-walk",
           "C-section: longer recovery for abdominal incision — core healing before speed or hills; ask when scar tissue is safe for impact",
-          "A good rule of thumb: walk 30–45 minutes comfortably and do basic core exercises without pain or bulging before run-walk intervals",
+          "Walk 30–45 minutes comfortably and do basic core exercises without pain, leaking, heaviness, or bulging before run-walk intervals",
         ],
       },
       {
@@ -262,14 +270,17 @@ export const womenRunnerConcerns: WomenRunnerConcern[] = [
       "A good rule of thumb: You should be able to walk for 30–45 minutes comfortably and do basic core exercises without pain or bulging before progressing to run-walk intervals.",
     illustration: "pregnancy",
     readMore: [
+      {
+        label: "ACOG — exercise during pregnancy",
+        href: "https://www.acog.org/womens-health/faqs/exercise-during-pregnancy",
+      },
+      {
+        label: "Return-to-running after childbirth — BJSM 2024 consensus",
+        href: "https://pubmed.ncbi.nlm.nih.gov/38148108/",
+      },
       { label: "Running during pregnancy", href: "/blog/running-during-pregnancy" },
       { label: "Postpartum return to run", href: "/blog/postpartum-return-to-run" },
-      {
-        label: "Goom et al. postnatal return-to-running guideline (BJSM 2019)",
-        href: "https://doi.org/10.1136/bjsports-2019-081571",
-      },
       { label: "Pregnancy & health conditions tips", href: "/tips/specific-situations" },
-      { label: "Running with health conditions", href: "/blog/running-with-health-conditions" },
     ],
   },
   {

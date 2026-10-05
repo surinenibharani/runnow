@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 import { SITE_NAME, SITE_URL, SUPPORT_EMAIL } from "@/lib/site";
 
 const TITLE = "Frequently Asked Questions";
-const DESCRIPTION = `Common questions about ${SITE_NAME} training plans, accounts, Strava sync, and getting started as a beginner runner.`;
+const DESCRIPTION = `Common questions about ${SITE_NAME} training plans, accounts, Strava sync, and getting started as a beginner — plus running at every level.`;
 
 const FAQ_ITEMS = [
   {
@@ -29,7 +29,7 @@ const FAQ_ITEMS = [
   {
     question: "What if I have to walk during runs?",
     answer:
-      "Walk breaks are part of many beginner plans. Easy effort and consistency matter more than never walking.",
+      "Walk breaks are part of many beginner-friendly plans. Easy effort and consistency matter more than never walking — including on comeback and easy days.",
   },
   {
     question: "Is Strava required?",

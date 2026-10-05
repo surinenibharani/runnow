@@ -1672,7 +1672,7 @@ export const p1P2GapPosts: BlogPost[] = [
           "A deep end-range calf or hamstring stretch before restarting can leave the next kilometers feeling flat and less springy — the same force-reduction story, now at mile 12 when you can least afford it",
         ],
         closingParagraphs: [
-          "If something truly grabs mid-run (sharp, one-spot, or changing your stride), **stopping to force a stretch is the wrong protocol**. Modern soft-tissue guidance emphasizes protection and graduated loading, not aggressive lengthening into pain — see PEACE & LOVE principles for soft-tissue care ([BJSM PEACE & LOVE](https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/)). Walk it in, cut the run if needed, and get it assessed if it doesn't settle.",
+          "If something truly grabs mid-run (sharp, one-spot, or changing your stride), **stopping to force a stretch is the wrong protocol**. Modern soft-tissue guidance emphasizes protection and graduated loading, not aggressive lengthening into pain — see PEACE & LOVE principles for soft-tissue care ([BJSM PEACE & LOVE](https://pubmed.ncbi.nlm.nih.gov/31377722/)). Walk it in, cut the run if needed, and get it assessed if it doesn't settle.",
           "Often long runs feel hard for pacing, fuel, heat, and jumps in distance — not \"insufficient stretching.\" See [why long runs feel hard](/blog/why-long-runs-feel-hard).",
         ],
       },

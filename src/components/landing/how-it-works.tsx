@@ -8,7 +8,7 @@ const steps = [
   {
     step: "01",
     title: "Get a plan",
-    description: "A short quiz picks a free beginner schedule that fits your fitness.",
+    description: "A short quiz picks a free beginner-friendly schedule that fits your fitness.",
   },
   {
     step: "02",

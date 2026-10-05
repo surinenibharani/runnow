@@ -23,7 +23,7 @@ export function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <Logo className="[&_img]:h-24 sm:[&_img]:h-28" />
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Helping beginners lace up and love running — one step at a time.
+              Helping beginners lace up — and keeping every runner going.
             </p>
             <div className="mt-4 flex flex-col gap-2">
               <Link

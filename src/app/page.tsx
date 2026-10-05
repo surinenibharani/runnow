@@ -18,7 +18,7 @@ import { SITE_NAME, SITE_TAGLINE } from "@/lib/site";
 export const metadata: Metadata = pageMetadata({
   title: `${SITE_NAME} — ${SITE_TAGLINE}`,
   description:
-    "Free couch to 5K plan for beginners — 8-week running schedule in your browser, no app download. Half marathon and marathon plans, cross-training, and optional Strava sync.",
+    "Beginner-friendly running plans — never ran, coming back, or chasing a 5K, 10K, half, or marathon. Walk-run is allowed. Tips, injury prevention, and how to get better, in your browser. No app required.",
   path: "/",
   titleAbsolute: true,
   keywords: [...HOME_SEO_KEYWORDS],
@@ -29,9 +29,9 @@ export default function Home() {
     <>
       <JsonLd
         data={howToJsonLd({
-          name: "Beginner running roadmap: week 1 to first 5K",
+          name: "Beginner running roadmap: week 1 to first 5K — and the next distance",
           description:
-            "Show up three times, protect the habit, jog continuously, then finish a 5K without racing it.",
+            "Show up three times, protect the habit, jog continuously, finish a 5K, then pick the next honest goal or a comeback block.",
           path: "/",
           steps: beginnerRoadmapHowToSteps(),
         })}

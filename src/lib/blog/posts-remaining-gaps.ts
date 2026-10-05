@@ -30,6 +30,8 @@ export const remainingGapPosts: BlogPost[] = [
     closingQuestion:
       "If you've returned to running after birth — what do you wish someone had told you before week one?",
     sources: [
+      SOURCES.postpartumReturnToRunChristopher2024,
+      SOURCES.postpartumReturnToRunDeering2024,
       SOURCES.postpartumReturnToRunGoom2019,
       SOURCES.acogPhysicalActivityPregnancy2020,
       SOURCES.exerciseAfterPregnancy,
@@ -66,7 +68,7 @@ export const remainingGapPosts: BlogPost[] = [
         heading: "Clearance is the starting line — not the finish",
         paragraphs: [
           "ACOG's guidance on [exercise after pregnancy](https://www.acog.org/womens-health/faqs/exercise-after-pregnancy) emphasizes gradual return and listening to your body. 'Cleared for exercise' usually means light activity is okay — not that impact running is automatic.",
-          "The [Goom et al. postnatal return-to-running framework](https://doi.org/10.1136/bjsports-2019-081571) (BJSM 2019) stresses pelvic floor and abdominal recovery milestones before impact — clearance at ~6 weeks is a conversation starter, not a green light to resume pre-pregnancy mileage.",
+          "The [2024 BJSM Delphi consensus on postpartum run-readiness](https://pubmed.ncbi.nlm.nih.gov/38148108/) (Christopher et al.) recommends a **minimum recovery period**, then an **individualized** timeline — screen pelvic-floor symptoms, strength, sleep, and prior training before impact. The earlier [Goom et al. postnatal return-to-running framework](https://doi.org/10.1136/bjsports-2019-081571) (BJSM 2019) still helps as a milestone checklist: clearance at ~6 weeks is a conversation starter, not a green light to resume pre-pregnancy mileage.",
         ],
         list: [
           "Get explicit clearance for your birth type and complications",
@@ -916,6 +918,7 @@ export const remainingGapPosts: BlogPost[] = [
     sources: [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.acsmExercisePrescription2009,
+      SOURCES.acsmGetp12,
       SOURCES.tendonAdaptationBohm2015,
       SOURCES.tendonCollagenSynthesisMiller2005,
       SOURCES.boneStressWorkloadWarden2021,
@@ -927,6 +930,9 @@ export const remainingGapPosts: BlogPost[] = [
       SOURCES.plantarFasciitis,
       SOURCES.itBandSyndrome,
       SOURCES.runningInjuriesVanGent2007,
+      SOURCES.runningInjuriesKakouris2021,
+      SOURCES.rriRiskFactorsUmbrella2024,
+      SOURCES.exercisePreventionRRIWu2024,
       SOURCES.runningNutrition,
       SOURCES.sleepTips,
       SOURCES.strengthForRunners,
@@ -988,7 +994,7 @@ export const remainingGapPosts: BlogPost[] = [
         id: "why-not",
         heading: "Why a first-year marathon usually isn't the right approach",
         paragraphs: [
-          "Running fitness has layers that adapt on different clocks. Cardiorespiratory fitness (how well you move oxygen and clear effort) often improves within weeks to a few months of consistent training — which is why beginners notice big early progress (see [Mayo Clinic on VO₂ max and fitness](https://newsnetwork.mayoclinic.org/discussion/mayo-clinic-qa-what-does-a-vo2-max-have-to-do-with-overall-fitness/) and progressive-training principles in the [ACSM exercise-prescription position stand](https://www.bewegenismedicijn.nl/files/downloads/full_text_acsm_position_stand_parameters_of_exercise_for_adults.pdf)). Soft tissue and bone capacity under **cyclic impact** adapt more slowly — and they are what keep you durable when the long run keeps getting longer.",
+          "Running fitness has layers that adapt on different clocks. Cardiorespiratory fitness (how well you move oxygen and clear effort) often improves within weeks to a few months of consistent training — which is why beginners notice big early progress (see [Mayo Clinic on VO₂ max and fitness](https://newsnetwork.mayoclinic.org/discussion/mayo-clinic-qa-what-does-a-vo2-max-have-to-do-with-overall-fitness/) and progressive-training principles in the [ACSM exercise-prescription position stand](https://pubmed.ncbi.nlm.nih.gov/21694556/) and [ACSM GETP 12th edition, 2025](https://acsm.org/education-resources/books/guidelines-exercise-testing-prescription/)). Soft tissue and bone capacity under **cyclic impact** adapt more slowly — and they are what keep you durable when the long run keeps getting longer.",
           "A marathon is not \"just\" extra motivation. It is thousands of impacts per hour, for hours. Each landing loads feet, Achilles, calves, knees, hips, and the bones that support them. Muscle can feel stronger while collagen-rich tissue is still catching up. That mismatch is how \"I felt amazing until mile 16\" turns into months off for [shin pain](/blog/shin-splints-running), [Achilles issues](/blog/achilles-tendinitis-running), or a [stress fracture](/blog/stress-fracture-running).",
         ],
         list: [
@@ -1708,6 +1714,7 @@ export const remainingGapPosts: BlogPost[] = [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.preParticipationScreening,
       SOURCES.acsmExercisePrescription2009,
+      SOURCES.acsmGetp12,
       SOURCES.runningKneeOAAlentornGeli2017,
       SOURCES.runningKneeOADhillon2023,
       SOURCES.runningKneeOALo2017,
@@ -1916,7 +1923,7 @@ export const remainingGapPosts: BlogPost[] = [
         id: "weekly",
         heading: "G — A simple weekly rhythm",
         paragraphs: [
-          "For the first month, copy this idea — not the exact minutes. Progressive overload (a little more over time, with recovery) is the same principle sports-medicine exercise prescription uses for healthy adults ([ACSM parameters of exercise](https://www.bewegenismedicijn.nl/files/downloads/full_text_acsm_position_stand_parameters_of_exercise_for_adults.pdf)) — beginners just apply it gently.",
+          "For the first month, copy this idea — not the exact minutes. Progressive overload (a little more over time, with recovery) is the same principle sports-medicine exercise prescription uses for healthy adults ([ACSM 2011 position stand](https://pubmed.ncbi.nlm.nih.gov/21694556/); current handbook: [ACSM GETP 12th ed., 2025](https://acsm.org/education-resources/books/guidelines-exercise-testing-prescription/)) — start easy and apply it gently.",
         ],
         list: [
           "**3 run/walk days** — same easy effort",
@@ -2318,6 +2325,7 @@ export const remainingGapPosts: BlogPost[] = [
       SOURCES.marathonWallRapoport2010,
       SOURCES.carbsTrainingCompetitionBurke2011,
       SOURCES.nutritionAthleticPerformanceACSM2016,
+      SOURCES.issnNutrientTiming2017,
       SOURCES.eliteMarathonNutritionStellingwerff2013,
       SOURCES.runningNutrition,
       SOURCES.dehydration,
@@ -2576,6 +2584,7 @@ export const remainingGapPosts: BlogPost[] = [
       "When did strength training start feeling like part of your running — not a separate hobby?",
     sources: [
       SOURCES.acsmPhysicalActivityBoneHealth2004,
+      SOURCES.essaOsteoporosisExercise2017,
       SOURCES.resistanceTrainingBMDZhao2015,
       SOURCES.exerciseBMDPostmenopausalKemmler2023,
       SOURCES.resistanceTrainingBMDOptimal2025,
@@ -2995,6 +3004,7 @@ export const remainingGapPosts: BlogPost[] = [
       SOURCES.crossTrainingTanaka1994,
       SOURCES.cycleRunCrossTrainingMeta2026,
       SOURCES.acsmExercisePrescription2009,
+      SOURCES.acsmGetp12,
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.boneStressWorkloadWarden2021,
       SOURCES.exercisePreventionRRIWu2024,
@@ -3085,7 +3095,7 @@ export const remainingGapPosts: BlogPost[] = [
         id: "how-to-use",
         heading: "How to use cycling between runs",
         paragraphs: [
-          "Match the bike to the job: easy aerobic filler, not a secret interval day. Public health and clinical exercise guidance already treat cycling as valid aerobic work — [U.S. adult physical activity guidelines](https://www.cdc.gov/physical-activity-basics/guidelines/adults.html) and [ACSM exercise-prescription standards](https://www.bewegenismedicijn.nl/files/downloads/full_text_acsm_position_stand_parameters_of_exercise_for_adults.pdf) count moderate-to-vigorous bike time toward cardiorespiratory fitness, even when your sport of choice is running.",
+          "Match the bike to the job: easy aerobic filler, not a secret interval day. Public health and clinical exercise guidance already treat cycling as valid aerobic work — [U.S. adult physical activity guidelines](https://www.cdc.gov/physical-activity-basics/guidelines/adults.html) and [ACSM exercise-prescription standards](https://pubmed.ncbi.nlm.nih.gov/21694556/) count moderate-to-vigorous bike time toward cardiorespiratory fitness, even when your sport of choice is running.",
         ],
         list: [
           "**When:** after a hard run day, instead of a disposable easy jog, or on a planned cross-train day ([cross-training](/blog/importance-of-cross-training))",
@@ -3160,6 +3170,7 @@ export const remainingGapPosts: BlogPost[] = [
       "Which between-run tool do you reach for first when legs feel beat — the gym, the mat, or the bike?",
     sources: [
       SOURCES.acsmPhysicalActivityBoneHealth2004,
+      SOURCES.essaOsteoporosisExercise2017,
       SOURCES.resistanceTrainingBMDZhao2015,
       SOURCES.exerciseBMDPostmenopausalKemmler2023,
       SOURCES.resistanceTrainingBMDOptimal2025,
@@ -3328,6 +3339,7 @@ export const remainingGapPosts: BlogPost[] = [
       "weight-yoga-cycling-between-runs",
       "mental-side-of-running",
       "prioritize-running-marathon-training",
+      "marathon-sleep-before-other-sports",
       "building-a-running-habit",
       "nutrition-for-runners",
     ],

@@ -37,14 +37,15 @@ export function Hero() {
               className="pointer-events-none absolute inset-x-0 -inset-y-4 rounded-2xl bg-gradient-to-b from-background/65 via-background/45 to-background/15 backdrop-blur-[2px] sm:-inset-y-6 sm:from-background/60 sm:via-background/35 sm:to-transparent"
             />
             <h1 className="relative z-10 text-display font-bold text-balance drop-shadow-[0_1px_1px_oklch(1_0_0/0.08)] dark:drop-shadow-none">
-              Your first run starts{" "}
-              <span className="text-gradient">right here</span>
+              Run with us — whatever{" "}
+              <span className="text-gradient">your starting line</span>
             </h1>
           </div>
 
           <p className="text-lead relative z-10 mt-5 max-w-xl text-muted-foreground text-balance sm:mt-6">
-            We plan the miles, write the tips, and keep the next article close.
-            You check the day off. That&apos;s how a runner is built.
+            Never ran? Start here — walk-run is allowed. Coming back or already
+            logging miles? You&apos;re in too. Free beginner-friendly plans,
+            tips, and injury guides — in your browser.
           </p>
 
           <div className="relative z-10 mt-7 flex w-full max-w-md flex-col items-center gap-3 sm:mt-8">
@@ -79,6 +80,15 @@ export function Hero() {
               >
                 Beginner tips
               </Button>
+              <Button
+                nativeButton={false}
+                render={<Link href="/blog/comeback-after-running-break" />}
+                variant="outline"
+                size="sm"
+                className="border-amber-500/30 bg-amber-500/[0.06] text-amber-800 backdrop-blur-sm hover:bg-amber-500/10 dark:text-amber-300"
+              >
+                Coming back
+              </Button>
             </div>
           </div>
 
@@ -111,8 +121,8 @@ export function Hero() {
           >
             {[
               { value: "4", label: "Distance plans" },
-              { value: "3–4×", label: "Runs per week (max)" },
-              { value: "0", label: "Experience needed" },
+              { value: "All", label: "Ages & levels" },
+              { value: "0", label: "Experience required" },
             ].map((stat) => (
               <div
                 key={stat.label}

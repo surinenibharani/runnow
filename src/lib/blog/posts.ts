@@ -18,6 +18,7 @@ import { p1P2GapPosts } from "./posts-p1-p2-gaps";
 import { p1P3GapPosts } from "./posts-p1-p3-gaps";
 import { longtailBeginnerPosts } from "./posts-longtail-beginner";
 import { aug23GapPosts } from "./posts-aug23-gaps";
+import { marathonSleepRecoveryPosts } from "./posts-marathon-sleep-recovery";
 
 export const BLOG_AUTHOR = "B";
 
@@ -378,7 +379,7 @@ export const blogPosts: BlogPost[] = [
     author: BLOG_AUTHOR,
     publishedAt: "2026-02-19",
     readTime: "9 min",
-    relatedSlugs: ["training-first-half-marathon", "training-half-and-full-marathon-same-season", "prioritize-running-marathon-training", "race-day-tips", "mental-side-of-running"],
+    relatedSlugs: ["training-first-half-marathon", "training-half-and-full-marathon-same-season", "prioritize-running-marathon-training", "marathon-sleep-before-other-sports", "race-day-tips", "mental-side-of-running"],
     sources: [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.runningNutrition,
@@ -492,6 +493,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "7 min",
     relatedSlugs: [
       "training-first-full-marathon",
+      "marathon-sleep-before-other-sports",
       "nutrition-for-runners",
       "post-run-recovery",
       "what-to-do-on-rest-days",
@@ -1081,6 +1083,7 @@ export const blogPosts: BlogPost[] = [
       SOURCES.hyponatremia,
       SOURCES.ironDeficiency,
       SOURCES.nutritionAthleticPerformanceACSM2016,
+      SOURCES.issnNutrientTiming2017,
       SOURCES.carbsTrainingCompetitionBurke2011,
     ],
     title: "Runner's Nutrition: Before, During & After (5K, Half & Marathon)",
@@ -3261,7 +3264,7 @@ export const blogPosts: BlogPost[] = [
         list: [
           "Foam rolling tight calves and quads — 2–3 minutes, not a torture session",
           "Elevating legs for 10 minutes after a long run",
-          "Ice a specific hot spot for 10–15 minutes if something feels inflamed — soothing for comfort, but modern guidance ([PEACE & LOVE](https://blogs.bmj.com/bjsm/2019/04/26/soft-tissue-injuries-simply-need-peace-love/)) leans on gentle movement and load over ice as the main driver of healing",
+          "Ice a specific hot spot for 10–15 minutes if something feels inflamed — soothing for comfort, but modern guidance ([PEACE & LOVE](https://pubmed.ncbi.nlm.nih.gov/31377722/)) leans on gentle movement and load over ice as the main driver of healing",
           "Two short strength sessions per week — glutes, calves, core",
         ],
         cta: { text: "Read what to do on rest days", href: "/blog/what-to-do-on-rest-days" },
@@ -3275,6 +3278,7 @@ export const blogPosts: BlogPost[] = [
       SOURCES.runningNutrition,
       SOURCES.physicalActivityGuidelines,
       SOURCES.nutritionAthleticPerformanceACSM2016,
+      SOURCES.issnNutrientTiming2017,
       SOURCES.redS,
     ],
     title: "Nutrition Basics for Beginners: What to Eat When You Start Running",
@@ -3620,6 +3624,8 @@ export const blogPosts: BlogPost[] = [
       SOURCES.osteoporosis,
       SOURCES.pregnancyExercise,
       SOURCES.acogPhysicalActivityPregnancy2020,
+      SOURCES.postpartumReturnToRunChristopher2024,
+      SOURCES.postpartumReturnToRunDeering2024,
       SOURCES.postpartumReturnToRunGoom2019,
     ],
     title: "A Beginner Running Guide for Women",
@@ -3660,7 +3666,7 @@ export const blogPosts: BlogPost[] = [
       {
         question: "When can I start running again after giving birth?",
         answer:
-          "There's no universal week number. Many clinicians discuss clearance around 6 weeks for uncomplicated vaginal births — longer after C-section or complications — but **clearance for exercise is not the same as ready to run**. The [Goom et al. postnatal return-to-running guideline (BJSM 2019)](https://doi.org/10.1136/bjsports-2019-081571) treats impact running as milestone-based — pelvic floor and abdominal recovery first, not a calendar green light. Build from walking and pelvic-floor–friendly strength; run-walk comes later when walking feels easy and red flags (leaking, heaviness, pain) are absent. Always follow your OB, midwife, or pelvic health clinician — see our [postpartum return guide](/blog/postpartum-return-to-run).",
+          "There's no universal week number. Many clinicians discuss clearance around 6 weeks for uncomplicated vaginal births — longer after C-section or complications — but **clearance for exercise is not the same as ready to run**. The [2024 BJSM Delphi consensus](https://pubmed.ncbi.nlm.nih.gov/38148108/) (Christopher et al.) uses a **minimum recovery period plus screening**, then an individualized walk-run — not a calendar green light. The [Goom et al. postnatal guideline (BJSM 2019)](https://doi.org/10.1136/bjsports-2019-081571) still maps pelvic-floor and abdominal milestones. Build from walking and pelvic-floor–friendly strength; run-walk comes later when walking feels easy and red flags (leaking, heaviness, pain) are absent. Always follow your OB, midwife, or pelvic health clinician — see our [postpartum return guide](/blog/postpartum-return-to-run).",
       },
       {
         question: "Can running cause me to lose my period?",
@@ -3837,7 +3843,7 @@ export const blogPosts: BlogPost[] = [
         heading: "Pregnancy and postpartum return",
         paragraphs: [
           "Many women run during pregnancy with medical clearance. Postpartum return needs more patience than your pre-baby Strava stats suggest — pelvic floor recovery often matters more than cardio fitness.",
-          "The [Goom et al. postnatal return-to-running framework](https://doi.org/10.1136/bjsports-2019-081571) (BJSM 2019) stresses that clearance at ~6 weeks is a conversation starter, not permission to resume pre-pregnancy mileage.",
+          "The [2024 BJSM Delphi consensus](https://pubmed.ncbi.nlm.nih.gov/38148108/) and the earlier [Goom et al. postnatal return-to-running framework](https://doi.org/10.1136/bjsports-2019-081571) (BJSM 2019) both stress that clearance at ~6 weeks is a conversation starter, not permission to resume pre-pregnancy mileage.",
           "In-pregnancy guide: [running during pregnancy](/blog/running-during-pregnancy). After birth: [postpartum return to run](/blog/postpartum-return-to-run).",
         ],
         subsections: [
@@ -6482,6 +6488,7 @@ export const blogPosts: BlogPost[] = [
       SOURCES.exerciseWeightLossOverview2020,
       SOURCES.exerciseCardiometabolicOverweight2021,
       SOURCES.nutritionAthleticPerformanceACSM2016,
+      SOURCES.issnNutrientTiming2017,
     ],
     title: "Running for Weight Loss: Facts and Myths",
     metaTitle:
@@ -7219,6 +7226,7 @@ export const blogPosts: BlogPost[] = [
   ...p1P3GapPosts,
   ...longtailBeginnerPosts,
   ...aug23GapPosts,
+  ...marathonSleepRecoveryPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

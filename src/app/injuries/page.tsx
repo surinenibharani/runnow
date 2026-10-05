@@ -25,9 +25,9 @@ import { injuriesHubEditorial } from "@/lib/hub-seo";
 import { SITE_URL } from "@/lib/site";
 
 const INJURIES_TITLE =
-  "Common Running Injuries — Prevention & Recovery for Beginners";
+  "Common Running Injuries — Beginner-Friendly Prevention & Recovery";
 const INJURIES_DESCRIPTION =
-  "Shin splints, runner's knee, IT band pain, and plantar fasciitis — how beginners can prevent, recover from, and avoid common running injuries.";
+  "Shin splints, runner's knee, IT band pain, and plantar fasciitis — how beginners can prevent, recover, and know when to get help. Comebacks and experienced runners use the same load rules.";
 
 const injuryHubNextSteps: PathwayLink[] = [
   {

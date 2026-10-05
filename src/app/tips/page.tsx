@@ -29,9 +29,9 @@ import { beginnerRoadmapHowToSteps } from "@/lib/beginner-roadmap";
 import { SITE_URL } from "@/lib/site";
 import { tipsHubNextSteps } from "@/lib/content-pathways";
 
-const TIPS_TITLE = "Beginner Running Tips — Pace, Gear, Recovery & More";
+const TIPS_TITLE = "Beginner-Friendly Running Tips — Pace, Gear, Recovery & Getting Better";
 const TIPS_DESCRIPTION =
-  "Beginner running tips for couch to 5K starters: easy pace, shoes, hydration, rest days, and bad-weather alternatives — no app, no paywall.";
+  "Beginner-friendly running tips that also help comebacks and experienced runners: easy pace, shoes, hydration, rest days, weather, and how to get better — no app, no paywall.";
 
 export const metadata: Metadata = pageMetadata({
   title: TIPS_TITLE,
@@ -55,7 +55,7 @@ export default function TipsPage() {
             { name: "Tips", path: "/tips" },
           ]),
           itemListJsonLd({
-            name: "Beginner running tips",
+            name: "Running tips",
             path: "/tips",
             items: runnerTips.map((tip) => ({
               name: tip.title,
@@ -70,9 +70,9 @@ export default function TipsPage() {
             steps: tipsHubEditorial.howTo.steps,
           }),
           howToJsonLd({
-            name: "Beginner running roadmap: week 1 to first 5K",
+            name: "Beginner running roadmap: week 1 to first 5K — and the next distance",
             description:
-              "Show up three times, protect the habit, jog continuously, then finish a 5K without racing it.",
+              "Show up three times, protect the habit, jog continuously, finish a 5K, then pick the next honest goal or a comeback block.",
             path: "/tips",
             steps: beginnerRoadmapHowToSteps(),
           }),
@@ -210,7 +210,7 @@ export default function TipsPage() {
           <StartPlanCta
             variant="compact"
             headline="Ready for a plan?"
-            description="A short quiz recommends a free beginner schedule. No account, no app."
+            description="A short quiz recommends a free beginner-friendly schedule. Comebacks and experienced runners are welcome too. No account, no app."
           />
         </FadeIn>
       </div>

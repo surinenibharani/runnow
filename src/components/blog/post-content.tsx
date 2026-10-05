@@ -18,6 +18,7 @@ import { appendBlogPreviewParam } from "@/lib/blog/preview";
 import { getBlogPostCanonicalUrl, getBlogPostDisplayUrl } from "@/lib/blog/urls";
 import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
 import { getBlogPathway } from "@/lib/content-pathways";
+import { orderBlogSectionsForReading } from "@/lib/blog/section-order";
 
 type PostContentProps = {
   post: BlogPost;
@@ -39,6 +40,7 @@ export function PostContent({
   scheduled = false,
 }: PostContentProps) {
   const pathway = getBlogPathway(post.slug);
+  const sections = orderBlogSectionsForReading(post.sections);
 
   return (
     <article>
@@ -126,17 +128,20 @@ export function PostContent({
       </header>
 
       <BlogTableOfContents
-        sections={post.sections}
-        extra={
-          post.faq?.length
+        sections={sections}
+        extra={[
+          ...(post.faq?.length
             ? [{ id: "faq", label: "Frequently asked questions" }]
-            : []
-        }
+            : []),
+          ...(post.sources?.length
+            ? [{ id: "sources-heading", label: "Sources & further reading" }]
+            : []),
+        ]}
         className="mb-10"
       />
 
       <div className="space-y-10">
-        {post.sections.map((section, index) => (
+        {sections.map((section, index) => (
           <BlogSectionBlock
             key={section.id ?? section.heading ?? section.paragraphs?.[0]}
             section={section}
