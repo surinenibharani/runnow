@@ -1127,4 +1127,79 @@ export const SOURCES = {
     href: "https://doi.org/10.1136/bjsports-2023-107490",
     publisher: "British Journal of Sports Medicine",
   },
+  cdcHeatPrevention: {
+    label: "Preventing heat-related illness",
+    href: "https://www.cdc.gov/heat-health/prevention/index.html",
+    publisher: "Centers for Disease Control and Prevention (CDC)",
+  },
+  cdcHypothermiaFrostbite: {
+    label: "Prevent hypothermia and frostbite",
+    href: "https://www.cdc.gov/winter-weather/prevention/prevent-hypothermia-frostbite.html",
+    publisher: "Centers for Disease Control and Prevention (CDC)",
+  },
+  mayoFrostbite: {
+    label: "Frostbite — symptoms & causes",
+    href: "https://www.mayoclinic.org/diseases-conditions/frostbite/symptoms-causes/syc-20372656",
+    publisher: "Mayo Clinic",
+  },
+  mayoHypothermia: {
+    label: "Hypothermia — symptoms & causes",
+    href: "https://www.mayoclinic.org/diseases-conditions/hypothermia/symptoms-causes/syc-20352682",
+    publisher: "Mayo Clinic",
+  },
+  nwsWindChill: {
+    label: "Wind chill chart and cold weather safety",
+    href: "https://www.weather.gov/safety/cold-wind-chill-chart",
+    publisher: "National Weather Service",
+  },
+  clevelandJoggersNipple: {
+    label: "Jogger's nipple — what it is and how to prevent it",
+    href: "https://health.clevelandclinic.org/whats-joggers-nipple-and-how-can-you-avoid-it",
+    publisher: "Cleveland Clinic",
+  },
+  rwBeginnerGear2025: {
+    label: "The best running gear for beginners (2025 tester picks)",
+    href: "https://www.runnersworld.com/beginner/g63250285/best-running-gear-for-beginners/",
+    publisher: "Runner's World",
+  },
+  rwSummerGear2026: {
+    label: "The best summer running gear of 2026",
+    href: "https://www.runnersworld.com/gear/a26977933/summer-running-gear/",
+    publisher: "Runner's World",
+  },
+  rwRunningShorts2026: {
+    label: "The best running shorts of 2026",
+    href: "https://www.runnersworld.com/gear/a22749888/running-shorts/",
+    publisher: "Runner's World",
+  },
+  rwWinterShoes2025: {
+    label: "The best winter running shoes of 2025",
+    href: "https://www.runnersworld.com/gear/a20865467/best-winter-running-shoes/",
+    publisher: "Runner's World",
+  },
+  outsideRunningShirts2026: {
+    label: "The best running shirts for men (2026 lab and street tested)",
+    href: "https://www.outsideonline.com/outdoor-gear/clothing-apparel/best-running-shirts-for-men/",
+    publisher: "Outside",
+  },
+  fleetFeetSummer2026: {
+    label: "Summer running guide — hot-weather gear",
+    href: "https://www.fleetfeet.com/running-clothes-buyers-guide/best-summer-running-gear",
+    publisher: "Fleet Feet",
+  },
+  irunfarRainJackets2026: {
+    label: "Best running rain jackets of 2026",
+    href: "https://www.irunfar.com/best-running-rain-jacket",
+    publisher: "iRunFar",
+  },
+  irunfarTraction2026: {
+    label: "Best winter running traction devices of 2026",
+    href: "https://www.irunfar.com/best-winter-running-traction-devices",
+    publisher: "iRunFar",
+  },
+  irunfarSportsBras2026: {
+    label: "Best sports bras for running of 2026",
+    href: "https://www.irunfar.com/best-sports-bra-for-running",
+    publisher: "iRunFar",
+  },
 } satisfies Record<string, BlogSource>;

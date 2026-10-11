@@ -3,7 +3,7 @@ export const whyItMattersBySlug: Record<string, string> = {
   "hitting-the-wall-marathon":
     "Observational reports suggest more than two-fifths of marathoners hit severe carbohydrate depletion mid-race. Understanding the wall — and practicing fueling and pacing before race day — is how you finish strong instead of surviving the last 10K.",
   "weight-training-bone-structure-runners":
-    "Bone is living tissue that remolds under load. Progressive weight training — paired with smart running — is one of the most practical ways runners build denser, more resilient bone and fewer season-ending stress injuries.",
+    "Bone is living tissue that remodels under load. Progressive weight training — paired with smart running — is one of the most practical ways runners build denser, more resilient bone and fewer season-ending stress injuries.",
   "yoga-between-runs":
     "Easy days do not have to mean the couch. Gentle yoga can improve flexibility, balance, and calm between hard sessions — without replacing the strength and easy miles that actually build a runner.",
   "cycling-between-runs":
@@ -64,6 +64,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Run one is where bad habits get baked in — too fast, wrong shoes, no plan. A few simple rules make the difference between 'never again' and 'when's run two?'",
   "what-to-wear-running":
     "Chafing, freezing, or overheating on run one can convince you running isn't for you. The right basics are cheap and mostly already in your closet.",
+  "weather-running-gear-tops-bottoms-shoes":
+    "The wrong top, bottom, or shoe fails faster than your fitness in heat, rain, or ice. Knowing what not to wear — and what differs for women and men — is how the weather stops being an excuse to quit.",
   "post-run-recovery":
     "What you do in the hour after a run shapes how sore you feel tomorrow — and whether you show up for the next one.",
   "nutrition-basics-for-beginners":
@@ -84,6 +86,10 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Starting strength after 40 feels intimidating — and most programs assume you've lifted before. Adjustable dumbbells or a small fixed set, plus a gradual 12-week progression, is enough to build visible muscle without a gym.",
   "advanced-strength-training-for-runners":
     "Experienced runners hit plateaus when they only add miles. High-load strength and plyometrics — periodized around key runs — improve economy a few percent and protect you when training peaks.",
+  "running-beyond-the-numbers":
+    "Most of us start running to destress, feel good, or get outside — then the watch quietly takes over. Noticing the drift is how you keep the habit without turning every easy run into a report card.",
+  "running-apps-compared-beginner-plans":
+    "Beginners don't fail because they picked the wrong logo. They fail because the app they downloaded doesn't protect rest, walk-run, or a missed week. Comparing plans on those terms is how you pick a home — not a hype screen.",
   "running-vs-biking":
     "Cycling isn't cheating on your run plan — it's how many beginners stay consistent when impact, weather, or soreness would otherwise sideline them.",
   "hiking-instead-of-long-run":

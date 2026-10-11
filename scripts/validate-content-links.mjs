@@ -130,14 +130,15 @@ function collectFiles(dir, acc = []) {
   return acc;
 }
 
-const hrefPattern = /(?:href:\s*"(\/[^"]+)"|\]\((\/[^)]+)\))/g;
+const hrefPattern =
+  /(?:href:\s*"(\/[^"]+)"|\]\((\/[^)]+)\)|href=["'](\/[^"']+)["'])/g;
 const issues = [];
 
 for (const file of collectFiles(path.join(root, "src"))) {
   if (file.endsWith("format-blog-text.tsx")) continue;
   const text = fs.readFileSync(file, "utf8");
   for (const match of text.matchAll(hrefPattern)) {
-    const raw = match[1] ?? match[2];
+    const raw = (match[1] ?? match[2] ?? match[3] ?? "").split("?")[0];
     if (!raw || !raw.startsWith("/")) continue;
     const [pathname, hash = ""] = raw.split("#");
     const rel = path.relative(root, file);
@@ -250,6 +251,17 @@ for (const file of collectFiles(path.join(root, "src"))) {
 
     if (!staticRoutes.has(pathname) && !pathname.startsWith("/api")) {
       issues.push(`${rel}: unknown route ${pathname}`);
+    }
+  }
+}
+
+for (const src of blogSources) {
+  for (const block of src.matchAll(/slug: "([^"]+)"[\s\S]*?relatedSlugs:\s*\[([^\]]*)\]/g)) {
+    const from = block[1];
+    for (const rel of block[2].matchAll(/"([^"]+)"/g)) {
+      if (!blogSlugs.has(rel[1])) {
+        issues.push(`relatedSlugs: ${from} -> unknown ${rel[1]}`);
+      }
     }
   }
 }

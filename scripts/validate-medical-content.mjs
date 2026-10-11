@@ -168,6 +168,26 @@ if (fs.existsSync(injuriesPath)) {
   }
 }
 
+const disclaimerRe =
+  /not medical(?:\s+or(?:\s+\w+)*)?\s+advice|Educational only|general (?:fitness )?education/i;
+for (const src of fs
+  .readdirSync(path.join(root, "src/lib/blog"))
+  .filter((name) => /^posts.*\.ts$/.test(name))) {
+  const text = fs.readFileSync(path.join(root, "src/lib/blog", src), "utf8");
+  const slugs = [...text.matchAll(/slug: "([^"]+)"/g)].map((m) => m[1]);
+  for (let i = 0; i < slugs.length; i++) {
+    const start = text.indexOf(`slug: "${slugs[i]}"`);
+    const end =
+      i + 1 < slugs.length
+        ? text.indexOf(`slug: "${slugs[i + 1]}"`, start + 1)
+        : text.length;
+    const block = text.slice(start, end);
+    if (!disclaimerRe.test(block)) {
+      issues.push(`${src}: ${slugs[i]} missing medical/education disclaimer`);
+    }
+  }
+}
+
 if (issues.length) {
   console.error("Medical content validation failed:\n" + issues.map((i) => `- ${i}`).join("\n"));
   process.exit(1);

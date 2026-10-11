@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { FadeIn } from "@/components/motion/fade-in";
 import { RacePredictor } from "@/components/tools/race-predictor";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -50,6 +51,13 @@ export default function RacePredictorPage() {
             Enter a race you&apos;ve finished and see a ballpark time for another
             distance.
           </p>
+        </FadeIn>
+
+        <FadeIn className="mb-6">
+          <MedicalDisclaimerBanner>
+            Predicted times are a rough formula estimate — not a training plan
+            or a race-day target.
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <FadeIn>

@@ -487,9 +487,9 @@ const tipPathways: Record<string, PathwayLink[]> = {
     },
     {
       kind: "blog",
-      href: "/blog/what-to-wear-running",
-      label: "What to wear",
-      detail: "Layers, hands, ears, and when to bail on ice.",
+      href: "/blog/weather-running-gear-tops-bottoms-shoes",
+      label: "Weather kit: what not to wear",
+      detail: "Tops, bottoms, and shoes by heat, rain, and ice.",
     },
     {
       kind: "tip",
@@ -965,6 +965,32 @@ const blogPathways: Record<string, PathwayLink[]> = {
     },
     storiesPathwayLink,
   ],
+  "weather-running-gear-tops-bottoms-shoes": [
+    {
+      kind: "blog",
+      href: "/blog/what-to-wear-running",
+      label: "What to wear (short version)",
+      detail: "The day-one kit without the weather matrix.",
+    },
+    {
+      kind: "gear",
+      href: "/gear#shoes",
+      label: "Shoe guide",
+      detail: "Fit first — weather picks the outsole.",
+    },
+    {
+      kind: "tip",
+      href: "/tips/bad-weather",
+      label: "Bad-weather tips",
+      detail: "When the right kit is staying inside.",
+    },
+    {
+      kind: "blog",
+      href: "/blog/sports-bra-guide-runners",
+      label: "Sports bra guide",
+      detail: "Support is gear, in every season.",
+    },
+  ],
   "marathon-sleep-before-other-sports": [
     {
       kind: "blog",
@@ -1068,6 +1094,34 @@ export const tipsHubNextSteps: PathwayLink[] = [
 ];
 
 const gearPathways: Record<string, PathwayLink[]> = {
+  shirts: [
+    {
+      kind: "blog",
+      href: "/blog/weather-running-gear-tops-bottoms-shoes",
+      label: "Weather running gear",
+      detail: "What top to wear — and skip — in heat, cold, rain, and ice.",
+    },
+    {
+      kind: "blog",
+      href: "/blog/what-to-wear-running",
+      label: "What to wear",
+      detail: "The short day-one kit.",
+    },
+  ],
+  bottoms: [
+    {
+      kind: "blog",
+      href: "/blog/weather-running-gear-tops-bottoms-shoes",
+      label: "Weather running gear",
+      detail: "Shorts, tights, and what not to wear when the weather changes.",
+    },
+    {
+      kind: "blog",
+      href: "/blog/what-to-wear-running",
+      label: "What to wear",
+      detail: "The short day-one kit.",
+    },
+  ],
   shoes: [
     {
       kind: "tip",
@@ -1080,6 +1134,12 @@ const gearPathways: Record<string, PathwayLink[]> = {
       href: "/blog/choosing-running-shoes",
       label: "Shoe guide",
       detail: "Fit, drop, and when to replace.",
+    },
+    {
+      kind: "blog",
+      href: "/blog/weather-running-gear-tops-bottoms-shoes",
+      label: "Shoes by weather",
+      detail: "Daily trainer, rain, trail lugs, and ice grips.",
     },
     {
       kind: "injury",
@@ -1158,9 +1218,9 @@ export const gearHubReads: PathwayLink[] = [
   },
   {
     kind: "blog",
-    href: "/blog/what-to-wear-running",
-    label: "What to wear",
-    detail: "Weather, sports bras, and skip-the-cotton basics.",
+    href: "/blog/weather-running-gear-tops-bottoms-shoes",
+    label: "Weather running gear",
+    detail: "Everyday, heat, cold, rain, ice — and what not to wear.",
   },
   {
     kind: "tip",

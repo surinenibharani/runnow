@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { ArrowUpRight, Footprints, ShoppingBag, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, BookOpen, Footprints, ShoppingBag, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -136,6 +138,41 @@ export default function GearPage() {
                   because an ad told you to.
                 </p>
               </div>
+            </CardContent>
+          </Card>
+        </FadeIn>
+
+        <FadeIn className="mb-10">
+          <Card className="border-sky-500/20 bg-sky-500/[0.03] transition-shadow duration-300 hover:shadow-md">
+            <CardContent className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex gap-4">
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-sky-500/15 text-sky-700 dark:text-sky-300">
+                  <BookOpen className="size-5" />
+                </div>
+                <div>
+                  <h2 className="text-base font-semibold text-foreground">
+                    Weather running gear
+                  </h2>
+                  <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                    What to wear — and skip — for everyday weather, heat, cold,
+                    rain, and ice. Tops, bottoms, and shoes, with specific picks
+                    and a louder list of what not to wear for everyone, women,
+                    and men.
+                  </p>
+                </div>
+              </div>
+              <Button
+                nativeButton={false}
+                render={
+                  <Link href="/blog/weather-running-gear-tops-bottoms-shoes" />
+                }
+                variant="outline"
+                size="sm"
+                className="shrink-0 border-sky-500/30 text-sky-700 hover:bg-sky-500/10 dark:text-sky-300"
+              >
+                Read guide
+                <ArrowRight className="size-4" />
+              </Button>
             </CardContent>
           </Card>
         </FadeIn>

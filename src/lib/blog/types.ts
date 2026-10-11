@@ -4,10 +4,19 @@ export type BlogFigure = {
   caption?: string;
 };
 
+export type BlogTable = {
+  /** Optional line above the table. */
+  caption?: string;
+  columns: string[];
+  /** One string per column. Markdown bold and internal links work. */
+  rows: string[][];
+};
+
 export type BlogSubsection = {
   heading: string;
   paragraphs?: string[];
   list?: string[];
+  table?: BlogTable;
   /** Rendered after the subsection list when present. */
   closingParagraphs?: string[];
   variant?: "quote";

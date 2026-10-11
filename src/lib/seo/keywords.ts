@@ -406,6 +406,16 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "what to wear for running beginner",
     "running clothes for beginners",
   ],
+  "weather-running-gear-tops-bottoms-shoes": [
+    "what to wear running in heat",
+    "what not to wear running",
+    "running clothes for cold weather",
+    "running shoes for rain and ice",
+    "running gear for women vs men",
+    "cotton vs moisture wicking running",
+    "sports bra winter running",
+    "what shoes not to wear on ice",
+  ],
   "building-a-running-habit": [
     "how to stick to running habit",
     "running consistency beginner",

@@ -19,6 +19,7 @@ import { p1P3GapPosts } from "./posts-p1-p3-gaps";
 import { longtailBeginnerPosts } from "./posts-longtail-beginner";
 import { aug23GapPosts } from "./posts-aug23-gaps";
 import { marathonSleepRecoveryPosts } from "./posts-marathon-sleep-recovery";
+import { weatherRunningGearPosts } from "./posts-weather-running-gear";
 
 export const BLOG_AUTHOR = "B";
 
@@ -2800,7 +2801,7 @@ export const blogPosts: BlogPost[] = [
         paragraphs: [
           "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "Running Instagram wants you to believe you need carbon plates, compression everything, and a watch that predicts the weather. You don't — not yet.",
-          "Here's a honest under-$50 starter kit that covers what actually matters for your first few months. Shoes are the big ticket; everything else is cheap insurance against blisters and boredom.",
+          "Here's an honest under-$50 starter kit that covers what actually matters for your first few months. Shoes are the big ticket; everything else is cheap insurance against blisters and boredom.",
         ],
       },
       {
@@ -3043,6 +3044,8 @@ export const blogPosts: BlogPost[] = [
       "beginner-gear-guide-under-50",
       "choosing-running-shoes",
       "running-in-bad-weather",
+      "weather-running-gear-tops-bottoms-shoes",
+      "sports-bra-guide-runners",
     ],
     sources: [
       SOURCES.heatSafety,
@@ -3095,7 +3098,7 @@ export const blogPosts: BlogPost[] = [
       {
         paragraphs: [
           "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
-          "Running clothes don't need to be expensive or branded. They need to keep you comfortable, visible, and blister-free. Most beginners overbuy gadgets and underthink fabric and fit.",
+          "Running clothes don't need to be expensive or branded. They need to keep you comfortable, visible, and blister-free. Most beginners overbuy gadgets and underthink fabric and fit. For heat, cold, rain, and ice — including **what not to wear**, split for everyone, women, and men — see [weather running gear](/blog/weather-running-gear-tops-bottoms-shoes).",
         ],
       },
       {
@@ -7227,6 +7230,7 @@ export const blogPosts: BlogPost[] = [
   ...longtailBeginnerPosts,
   ...aug23GapPosts,
   ...marathonSleepRecoveryPosts,
+  ...weatherRunningGearPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {

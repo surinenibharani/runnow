@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { FormatBlogText } from "@/components/blog/format-blog-text";
+import { BlogContentTable } from "@/components/blog/blog-content-table";
 import type { BlogSection } from "@/lib/blog/types";
 import { resolveSectionId } from "@/lib/blog/section-ids";
 import { cn } from "@/lib/utils";
@@ -130,6 +131,7 @@ export function BlogSectionBlock({
               ))}
             </ul>
           )}
+          {sub.table && <BlogContentTable table={sub.table} />}
           {sub.closingParagraphs?.map((p) => (
             <p
               key={p}

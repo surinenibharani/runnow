@@ -85,7 +85,7 @@ export const competitiveGapPosts: BlogPost[] = [
         paragraphs: [
           "Every running app screenshot promises transformation. Most beginners actually need **boring structure**: three protected run days, walk breaks allowed, rest that isn't guilt, and an injury filter before heroics.",
           "This guide compares **LetsRunNow**, **Nike Run Club (NRC)**, **Runna**, and **Hal Higdon** — plus when **None to Run**-style ultra-gentle plans fit — without pretending one logo owns fitness. Pair with [why LetsRunNow exists](/blog/why-letsrunnow) and [never ran? where to start](/blog/never-ran-where-to-start).",
-          "**Educational only.** Heart disease, pregnancy, joint replacements, or recent illness need clinician clearance before any app plan.",
+          "**Educational only — not medical advice.** Heart disease, pregnancy, joint replacements, or recent illness need clinician clearance before any app plan.",
         ],
       },
       {

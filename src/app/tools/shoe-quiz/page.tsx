@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { FadeIn } from "@/components/motion/fade-in";
 import { ShoeQuiz } from "@/components/tools/shoe-quiz";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -50,6 +51,13 @@ export default function ShoeQuizPage() {
             Four quick questions. We&apos;ll suggest a shoe category and send you
             to the gear guide — no fake medical claims.
           </p>
+        </FadeIn>
+
+        <FadeIn className="mb-6">
+          <MedicalDisclaimerBanner>
+            Shoe categories are a starting point, not a diagnosis or a
+            prescription for pain.
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <FadeIn>

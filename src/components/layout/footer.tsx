@@ -132,6 +132,8 @@ export function Footer() {
         <div className="flex flex-col items-center gap-3 text-center text-xs text-muted-foreground sm:flex-row sm:justify-between">
           <p>
             © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+            {" "}
+            Educational fitness content — not medical advice.
           </p>
           <nav aria-label="Legal">
             <Link href="/privacy" className="transition-colors hover:text-foreground">

@@ -269,6 +269,7 @@ export const remainingGapPosts: BlogPost[] = [
       "running-in-bad-weather",
       "hydration-electrolytes-running",
       "what-to-wear-running",
+      "weather-running-gear-tops-bottoms-shoes",
       "treadmill-indoor-winter-running",
       "nutrition-for-training-by-run-type",
       "easy-runs-effort-heart-rate",
@@ -2563,7 +2564,7 @@ export const remainingGapPosts: BlogPost[] = [
     title:
       "How Weight Training Changes Bone Structure (and Why Runners Should Lift)",
     excerpt:
-      "Bone is living tissue that remolds under load. Here's how progressive strength training changes bone mineral density and architecture — and how that durability, plus stronger muscle, helps you run with fewer stress injuries.",
+      "Bone is living tissue that remodels under load. Here's how progressive strength training changes bone mineral density and architecture — and how that durability, plus stronger muscle, helps you run with fewer stress injuries.",
     category: "Training",
     author: AUTHOR,
     publishedAt: "2026-09-29",
@@ -2600,7 +2601,7 @@ export const remainingGapPosts: BlogPost[] = [
       {
         question: "Does weight training really change bone structure?",
         answer:
-          "Yes. Bone continuously remolds. Progressive resistance and other high-loading activities apply mechanical strain that stimulates bone formation and can increase bone mineral density (BMD) at loaded sites — especially when programs are progressive and sustained for months.",
+          "Yes. Bone continuously remodels. Progressive resistance and other high-loading activities apply mechanical strain that stimulates bone formation and can increase bone mineral density (BMD) at loaded sites — especially when programs are progressive and sustained for months.",
       },
       {
         question: "How does stronger bone help running?",
@@ -2627,13 +2628,13 @@ export const remainingGapPosts: BlogPost[] = [
       {
         paragraphs: [
           "Runners love miles. Bones love **load with a purpose**. Skip the gym for a year of only easy jogging and you may still feel fit — until a mileage spike, a cambered road season, or midlife hormone shifts reveals that muscle adapted faster than the skeleton underneath it.",
-          "Weight training does not turn your bones into steel overnight. It does something better documented: it applies mechanical strain that tells bone-building cells to reinforce the places you load. That remolding — denser mineral where it counts, better muscle to control impact — is why strength work belongs in a running plan, not just a bodybuilding one.",
+          "Weight training does not turn your bones into steel overnight. It does something better documented: it applies mechanical strain that tells bone-building cells to reinforce the places you load. That remodeling — denser mineral where it counts, better muscle to control impact — is why strength work belongs in a running plan, not just a bodybuilding one.",
           "**Educational only — not medical advice.** Known osteoporosis, prior fragility fractures, unexplained bone pain, or eating-disorder history deserve a clinician’s plan before high-impact or heavy lifting ([osteoporosis overview](https://www.mayoclinic.org/diseases-conditions/osteoporosis/symptoms-causes/syc-20351968); [exercising with osteoporosis](https://www.mayoclinic.org/diseases-conditions/osteoporosis/in-depth/osteoporosis/art-20044989)).",
         ],
       },
       {
         id: "living-bone",
-        heading: "Bone is not concrete — it remolds",
+        heading: "Bone is not concrete — it remodels",
         paragraphs: [
           "Bone is living tissue. It continuously breaks down old material and lays down new. Mechanical loading — muscle pull and ground-reaction forces — is a primary signal. The classic framing (often summarized as **Wolff’s law**) is that bone adapts its structure to the habitual loads placed on it.",
           "In practice: progressive resistance training creates **high-magnitude, site-specific strains**. Osteoblasts respond by depositing mineral and reinforcing architecture along those stress lines. Unload a bone for months (bed rest, casting, crash dieting plus no strength) and the opposite drift can happen.",
@@ -2789,7 +2790,7 @@ export const remainingGapPosts: BlogPost[] = [
         id: "final",
         heading: "Final thoughts",
         paragraphs: [
-          "Weight training changes bone structure by applying the mechanical language bone understands: progressive, site-specific strain. Meta-analyses and the ACSM bone-health position stand support resistance training — especially when paired with weight-bearing activity — for improving or preserving BMD. For runners, that remolding plus stronger muscle means better tolerance for miles, better force control, and a sturdier long game than jogging alone.",
+          "Weight training changes bone structure by applying the mechanical language bone understands: progressive, site-specific strain. Meta-analyses and the ACSM bone-health position stand support resistance training — especially when paired with weight-bearing activity — for improving or preserving BMD. For runners, that remodeling plus stronger muscle means better tolerance for miles, better force control, and a sturdier long game than jogging alone.",
           "Lift like your next training block depends on it — because your skeleton is keeping score even when Strava is not.",
           "Two short sessions. Multi-joint patterns. Enough food. Months of consistency. That is how iron in the gym becomes resilience on the road.",
         ],

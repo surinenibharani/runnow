@@ -174,6 +174,11 @@ export function RecoveryReadinessCard({
             <p className="text-xs text-muted-foreground leading-relaxed">
               {recovery.profileSummary}
             </p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Readiness scores are general fitness education, not medical
+              advice. Stop for chest pain, fainting, or unusual
+              breathlessness.
+            </p>
             <div className="grid gap-4">
               {recovery.factors.map((factor) => (
                 <FactorBar key={factor.id} factor={factor} />

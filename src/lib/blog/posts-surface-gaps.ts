@@ -133,6 +133,7 @@ export const surfaceGapPosts: BlogPost[] = [
     relatedSlugs: [
       "running-in-bad-weather",
       "what-to-wear-running",
+      "weather-running-gear-tops-bottoms-shoes",
       "treadmill-indoor-winter-running",
       "night-running-safety",
       "warm-up-cool-down-running",
@@ -313,6 +314,7 @@ export const surfaceGapPosts: BlogPost[] = [
     readTime: "7 min",
     relatedSlugs: [
       "what-to-wear-running",
+      "weather-running-gear-tops-bottoms-shoes",
       "choosing-running-shoes",
       "beginner-gear-guide-under-50",
       "hot-weather-running-hub",
@@ -1162,6 +1164,7 @@ export const surfaceGapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "Solo running works. Habit failure often isn't laziness — it's loneliness, intimidation, or no one expecting you at 7 a.m. Saturday.",
           "Community doesn't mean becoming a 'team athlete.' It can mean one predictable loop with friendly faces, a volunteer high-five at km 3, or a couch-to-5K coach who normalizes walk breaks.",
           "This guide is practical discovery — not peer pressure. If solo stays your joy, keep solo. If you've restarted three times alone, try one low-stakes group before you quit again.",

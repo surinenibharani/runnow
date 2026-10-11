@@ -136,7 +136,8 @@ export const p1P3GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
-          "Side stitches are common in beginners and in speed sessions — a localized stab under the ribs that makes you gasp and grab your side. They're usually **exercise-related transient abdominal pain (ETAP)**, not a organ emergency.",
+          "**Educational only — not medical advice.** A stitch that eases when you slow down is usually ETAP — not a diagnosis. Pain with fever, fainting, or that does not ease off belongs with a clinician.",
+          "Side stitches are common in beginners and in speed sessions — a localized stab under the ribs that makes you gasp and grab your side. They're usually **exercise-related transient abdominal pain (ETAP)**, not an organ emergency.",
           "For GI-heavy symptoms (urgency, nausea, full-belly pain), see the broader [runner's GI distress guide](/blog/runners-gi-distress). This post is the focused stitch playbook.",
         ],
       },
@@ -220,6 +221,7 @@ export const p1P3GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before starting if you have chronic conditions or concerning symptoms.",
           "Run culture treats walking like a consolation prize. Physiology disagrees. Brisk walking is moderate aerobic work — it counts toward the **150 minutes per week** target in U.S. guidelines and builds the habit loop that keeps people moving for decades.",
           "Some beginners should walk-only first: high BMI with joint sensitivity, post-injury return, cardiac clearance that limits impact, or simply preference. Running can wait; quitting because you forced impact too early cannot be undone with pride.",
         ],
@@ -292,6 +294,7 @@ export const p1P3GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Stop for chest pain, fainting, or unusual breathlessness, and get clinical guidance if you have chronic conditions before hard sessions.",
           "Morning versus evening debates fill running forums. For beginners, the winner is almost always **the time you reliably show up** — not the hour with a 2% lab performance edge.",
         ],
       },
@@ -368,6 +371,7 @@ export const p1P3GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This is general safety education, not a diagnosis or a substitute for local traffic laws.",
           "Headphones aren't a character test — they're a trade-off between motivation and sensory input. For beginners, music or podcasts often bridge the awkward first months. The goal is keeping the playlist **without** missing the cyclist, dog, or car that needed a half-second of your attention.",
         ],
       },
@@ -445,7 +449,7 @@ export const p1P3GapPosts: BlogPost[] = [
         paragraphs: [
           "You breathe far more air per minute while running than while sitting — so air quality hits athletes harder on bad days. A 2024 review in *Eco-Environment & Health* frames the trade-off between pollution exposure and physical activity as a public-health balancing act, not a binary 'never run outside.'",
           "WHO 2024 guidance on personal actions recommends checking local air-quality forecasts, favoring green spaces away from traffic, and easing or stopping if cough, chest tightness, or wheeze appears.",
-          "**Educational only.** Asthma, COPD, pregnancy, and heart disease may need stricter thresholds — follow your clinician's plan.",
+          "**Educational only — not medical advice.** Asthma, COPD, pregnancy, and heart disease may need stricter thresholds — follow your clinician's plan.",
         ],
       },
       {
@@ -491,6 +495,7 @@ export const p1P3GapPosts: BlogPost[] = [
     relatedSlugs: [
       "running-guide-for-women",
       "what-to-wear-running",
+      "weather-running-gear-tops-bottoms-shoes",
       "chafing-blisters-running",
       "beginner-gear-guide-under-50",
       "avoiding-injuries",
@@ -516,6 +521,7 @@ export const p1P3GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Persistent breast pain, a new lump, or skin changes belong with a clinician — not a different sports-bra brand.",
           "Breast support is performance equipment. Reviews estimate large fractions of active women report **exercise-induced breast pain** despite wearing bras — often a fit or support-level problem, not a reason to quit running.",
           "Biomechanics research (McGhee & Steele, 2020) notes excessive breast motion during running contributes to pain and can alter upper-body mechanics — good support reduces that load.",
         ],

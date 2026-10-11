@@ -74,6 +74,7 @@ export const longtailBeginnerPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Get clinical guidance before hard training if you have chronic conditions or concerning symptoms.",
           "The internet loves a streak. Beginner bodies love a gap. **Three run days a week** is the boring answer that keeps people running in month three instead of icing shins in week three.",
           "CDC adult guidelines target **150 minutes a week** of moderate-intensity activity — not seven jogging sessions. Walk–run intervals and brisk walks both count. Frequency is a tool; impact is the tax.",
         ],
@@ -158,6 +159,7 @@ export const longtailBeginnerPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This guide is for general education — it is not a diagnosis, treatment plan, or substitute for care from a qualified clinician.",
           "A 5K is 3.1 miles. Nobody at the finish line is auditing your purity. **Walk breaks are a pacing tool**, the same way shifting gears is a cycling tool.",
           "Couch-to-5K programs exist because continuous jogging is a later skill. Finishing with a pattern you practiced is smarter than exploding at 2K and shuffling home ashamed.",
         ],
@@ -236,7 +238,7 @@ export const longtailBeginnerPosts: BlogPost[] = [
         paragraphs: [
           "**Delayed-onset muscle soreness (DOMS)** is the stiff, two-sided, 'I did something new' feeling that shows up a day later. It is annoying. It is not automatically an injury.",
           "Injury patterns are pickier: one spot, sharper as the run continues, swelling, or a limp that rest doesn't explain. Shin-bone pinpoint pain is a different conversation than tired quads.",
-          "**Educational only.** Night pain, numbness, or inability to hop on one foot needs a clinician, not a blog flowchart.",
+          "**Educational only — not medical advice.** Night pain, numbness, or inability to hop on one foot needs a clinician, not a blog flowchart.",
         ],
       },
       {
@@ -311,6 +313,7 @@ export const longtailBeginnerPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Stop for chest pain, fainting, or unusual breathlessness, and get clinical guidance if you have chronic conditions before hard sessions.",
           "Beginners argue treadmill vs pavement like it's a values test. It isn't. **The better run is the one you do.** The belt is a weather machine, a safety rail, and a pace teacher. The path is wind, curbs, and the event you signed up for.",
           "A moving belt slightly changes the work of running. Many coaches nudge a **small incline** so easy effort doesn't feel suspiciously cheap. Use it if it feels natural; skip it if your calves hate it.",
         ],
@@ -385,6 +388,7 @@ export const longtailBeginnerPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical or nutrition advice.** Persistent dizziness, vomiting, or GI bleeding needs a clinician — not a shorter snack window.",
           "There isn't one stopwatch number for every stomach. Mayo Clinic's eating-and-exercise guidance still gives beginners a usable map: **larger meals need more time**; **small snacks can sit closer to the start**.",
           "Side stitches and sloshy guts are often a timing problem, not a fitness problem. Slow the first ten minutes anyway — food plus a sprint is a classic stitch recipe.",
         ],

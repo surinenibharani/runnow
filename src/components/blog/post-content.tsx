@@ -17,6 +17,7 @@ import { categoryToParam } from "@/lib/blog/categories";
 import { appendBlogPreviewParam } from "@/lib/blog/preview";
 import { getBlogPostCanonicalUrl, getBlogPostDisplayUrl } from "@/lib/blog/urls";
 import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { getBlogPathway } from "@/lib/content-pathways";
 import { orderBlogSectionsForReading } from "@/lib/blog/section-order";
 
@@ -126,6 +127,11 @@ export function PostContent({
           />
         </div>
       </header>
+
+      <MedicalDisclaimerBanner className="mb-10">
+        Articles are for general education — they are not a diagnosis or a
+        training prescription.
+      </MedicalDisclaimerBanner>
 
       <BlogTableOfContents
         sections={sections}

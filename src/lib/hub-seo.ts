@@ -95,6 +95,11 @@ export const gearHubEditorial: HubEditorial = {
         url: "/blog/what-to-wear-running",
       },
       {
+        name: "Match kit to the day's weather",
+        text: "Start from an everyday kit, then swap pieces for heat, cold, rain, or ice — and skip the closet mistakes.",
+        url: "/blog/weather-running-gear-tops-bottoms-shoes",
+      },
+      {
         name: "Add one thing at a time",
         text: "Anti-chafe, a cap, or a vest only after the problem appears. Don't kit out for a marathon you haven't signed up for.",
         url: "/gear#start-here",

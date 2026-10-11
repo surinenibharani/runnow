@@ -193,7 +193,7 @@ export const aug23GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
-          "**Educational only.** Deep butt pain has many owners: tendon, muscle, referred back pain, or true nerve issues. This page is a beginner map, not a diagnosis.",
+          "**Educational only — not medical advice.** Deep butt pain has many owners: tendon, muscle, referred back pain, or true nerve issues. This page is a beginner map, not a diagnosis.",
           "Cleveland Clinic describes piriformis syndrome as irritation where the piriformis can affect the nearby sciatic nerve — often with sitting, climbing, or sudden volume. In coaching reality, **weak hips + desk sitting + a mileage jump** show up more often than a mysterious cursed muscle.",
         ],
       },
@@ -536,7 +536,7 @@ export const aug23GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
-          "**Educational only.** Forefoot pain can be soft tissue, nerve, or bone. Persistent one-spot pain deserves a professional exam.",
+          "**Educational only — not medical advice.** Forefoot pain can be soft tissue, nerve, or bone. Persistent one-spot pain deserves a professional exam.",
           "Metatarsalgia is the umbrella word for pain under the metatarsal heads — the 'ball' that takes landing force. Speedwork, stiff plates, and shoes that pinch toes stack the odds.",
         ],
       },
@@ -643,6 +643,7 @@ export const aug23GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Stop for chest pain, fainting, or unusual breathlessness. Sharp pain that changes your gait needs a clinician — not another workout name.",
           "**Tempo:** sustained hard-but-controlled. **Intervals:** work / rest repeats. **Fartlek:** playful speed changes inside a run. Same family — different stress shapes.",
           "Beginners get hurt collecting all three before easy miles feel boring. One hard day. Recover. Repeat.",
         ],
@@ -713,6 +714,7 @@ export const aug23GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** This is general fitness education, not a diagnosis or clearance to race.",
           "Paid 5Ks are great. **Parkrun** (where available) removes the entry-fee anxiety and gives weekly community structure — barcodes, volunteers, and a course you can learn.",
           "Beginners should treat it like a **dress rehearsal**: start line nerves, other humans, a clock that doesn't define your worth.",
         ],
@@ -867,6 +869,7 @@ export const aug23GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** A sprain, inability to bear weight, or pain that changes your gait needs clinical care — not a tougher trail.",
           "You already have [trail ultra intro](/blog/trail-ultra-intro-beginners) for longer ambitions. This post is the **first trail 5K**: still a beginner distance, new surface skills.",
           "Expect to hike. Expect the watch to lie. Expect ankles to work harder — which is why sprains belong in your prevention brain before race day.",
         ],
@@ -938,6 +941,7 @@ export const aug23GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
+          "**Educational only — not medical advice.** Acute injury, unexplained joint pain, or pregnancy/postpartum restrictions need clinician guidance before new studio classes. Stop any move that causes sharp pain.",
           "Yoga already has a home on this site. **Pilates** earns its own page because beginners hear it sold as the cure for every IT band. It isn't. It is excellent for **controlled core and hip awareness** when you keep ego out of the studio.",
         ],
       },
@@ -1061,7 +1065,7 @@ export const aug23GapPosts: BlogPost[] = [
     sections: [
       {
         paragraphs: [
-          "**Educational only.** Night pain, fever, or inability to walk needs care. Mayo's bursitis pages describe inflammation of bursae; runners often have overlapping **gluteal tendinopathy** patterns.",
+          "**Educational only — not medical advice.** Night pain, fever, or inability to walk needs care. Mayo's bursitis pages describe inflammation of bursae; runners often have overlapping **gluteal tendinopathy** patterns.",
           "Stretching the side of the hip into oblivion is a popular mistake. Controlled loading usually wins.",
         ],
       },
