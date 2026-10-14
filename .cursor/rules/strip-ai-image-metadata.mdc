@@ -1,0 +1,27 @@
+---
+description: Strip AI provenance metadata from generated images before sharing
+alwaysApply: true
+---
+
+# Strip AI metadata from generated images
+
+After creating any image (GenerateImage, canvas export, screenshot composite, or similar), **remove AI provenance metadata** before treating the file as done.
+
+## Do this every time
+
+1. Save the image to disk.
+2. Run:
+
+```bash
+node scripts/strip-image-metadata.mjs <path-to-image>
+```
+
+3. If several files were created, pass the folder.
+
+The script drops JPEG EXIF/XMP/IPTC/C2PA/comment segments and PNG text chunks, without changing the picture.
+
+## Scope
+
+Applies to Instagram graphics, branded assets, and any other generated image the user may download or post — in the repo (`public/`) or Cursor assets folders.
+
+Do not skip this because the file "looks clean." C2PA and XMP are invisible in Preview.
