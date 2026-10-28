@@ -8,6 +8,7 @@ import {
   volumeMultiplier,
   type PlanPersonalization,
 } from "./plan-personalization";
+import { parseWorkoutIntervals } from "./workout-intervals";
 import { estimateMinutes, formatWorkoutTimeAndDistance } from "./workout-load";
 
 const beginner: PlanPersonalization = {
@@ -50,6 +51,11 @@ describe("level volume and pace", () => {
   it("does not add volume on race week", () => {
     const advancedPeak = volumeMultiplier(advanced, 8, 8);
     assert.ok(advancedPeak <= 1);
+  });
+
+  it("scales beginner half-marathon down from the Novice 3-mile opener", () => {
+    assert.ok(volumeMultiplier(beginner, 1, 12, "half-marathon") < 0.8);
+    assert.equal(volumeMultiplier(intermediate, 1, 12, "half-marathon"), 1);
   });
 });
 
@@ -104,6 +110,18 @@ describe("personalizePlanWorkouts", () => {
     assert.match(beg.distance ?? "", /3\.1 mi/);
     assert.match(adv.distance ?? "", /3\.1 mi/);
     assert.ok(estimateMinutes(adv.duration) < estimateMinutes(beg.duration));
+  });
+
+  it("gives beginner half-marathon a walk-run opener under 3 miles", () => {
+    const plan = getPlanById("half-12w");
+    assert.ok(plan);
+    const beg = personalizePlanWorkouts(plan, beginner).weeks[0]!.runs[0]!;
+    const mid = personalizePlanWorkouts(plan, intermediate).weeks[0]!.runs[0]!;
+    assert.equal(beg.runType, "walk-run");
+    assert.match(beg.intervals, /Jog 1 min/);
+    assert.equal(formatWorkoutTimeAndDistance(beg), "~20 min · ~1.4 mi");
+    assert.ok(parseWorkoutIntervals(beg.intervals));
+    assert.match(formatWorkoutTimeAndDistance(mid), /~30 min · ~3 mi/);
   });
 
   it("scales a 10K long run's miles for advanced, keeps race at 6.2", () => {

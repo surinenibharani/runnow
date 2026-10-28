@@ -147,6 +147,26 @@ export function PlanProfilePicker({
           </a>{" "}
           progressive overload keeps the jump modest.
         </p>
+        {profile.fitnessLevel === "beginner" &&
+          (familyId === "10k" ||
+            familyId === "half-marathon" ||
+            familyId === "full-marathon") && (
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+              {familyId === "full-marathon" ? "Marathon" : familyId === "10k" ? "10K" : "Half-marathon"}{" "}
+              tables usually assume you can already jog about 30 minutes (
+              <a
+                href="https://www.halhigdon.com/training-programs/"
+                className="text-primary hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Hal Higdon
+              </a>{" "}
+              Novice). Your beginner week uses shorter walk–run days instead of
+              the written continuous miles. A 5K plan first is safer if the
+              race can wait.
+            </p>
+          )}
       </div>
 
       {(recommendation || timelineHint) && (

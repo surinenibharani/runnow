@@ -3,6 +3,7 @@ import {
   type TrainingPlan,
   type WeekTemplate,
 } from "@/lib/plan-types";
+import { DEFAULT_PERSONALIZATION } from "@/lib/plan-personalization";
 import { applyScheduleToPlan, DEFAULT_SCHEDULE } from "@/lib/schedule-builder";
 import {
   estimateMilesFromDuration,
@@ -80,7 +81,11 @@ export function getSampleWeekPreview(
   plan: TrainingPlan,
   weekNumber = 1
 ): SampleWeekPreview {
-  const scheduled = applyScheduleToPlan(plan, DEFAULT_SCHEDULE);
+  const scheduled = applyScheduleToPlan(
+    plan,
+    DEFAULT_SCHEDULE,
+    DEFAULT_PERSONALIZATION
+  );
   const week =
     scheduled.scheduledWeeks.find((w) => w.week === weekNumber) ??
     scheduled.scheduledWeeks[0];

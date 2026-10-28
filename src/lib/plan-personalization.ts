@@ -254,9 +254,8 @@ export function deriveSchedulePrefs(
 }
 
 /**
- * Distance volume vs the written (Novice) template.
- * Hal Higdon Intermediate tables typically sit ~20–30% above Novice weekly
- * mileage; ACSM progressive overload keeps the jump a level change, not a spike.
+ * 5K templates are NHS Couch to 5K (true beginner). Higher levels add
+ * Higdon-style volume (~20–30% Novice → Intermediate) without a weekly spike.
  */
 export const LEVEL_VOLUME: Record<FitnessLevel, number> = {
   beginner: 1,
@@ -264,6 +263,44 @@ export const LEVEL_VOLUME: Record<FitnessLevel, number> = {
   intermediate: 1.22,
   advanced: 1.32,
 };
+
+/**
+ * 10K / half templates match Hal Higdon Novice — they assume you can already
+ * jog ~30 minutes. Beginner scales down; Intermediate keeps the written miles.
+ */
+const NOVICE_DISTANCE_VOLUME: Record<FitnessLevel, number> = {
+  beginner: 0.65,
+  returning: 0.85,
+  intermediate: 1,
+  advanced: 1.18,
+};
+
+/** Marathon templates assume a half-marathon base. */
+const MARATHON_VOLUME: Record<FitnessLevel, number> = {
+  beginner: 0.5,
+  returning: 0.78,
+  intermediate: 1,
+  advanced: 1.15,
+};
+
+export function volumeForLevel(
+  familyId: string,
+  level: FitnessLevel
+): number {
+  if (familyId === "full-marathon") return MARATHON_VOLUME[level];
+  if (familyId === "10k" || familyId === "half-marathon") {
+    return NOVICE_DISTANCE_VOLUME[level];
+  }
+  return LEVEL_VOLUME[level];
+}
+
+export function isNoviceDistanceFamily(familyId: string): boolean {
+  return (
+    familyId === "10k" ||
+    familyId === "half-marathon" ||
+    familyId === "full-marathon"
+  );
+}
 
 /**
  * Easy/conversational minutes per mile (Jack Daniels E-pace bands for
@@ -306,9 +343,10 @@ export function easyPaceMinPerMile(
 export function volumeMultiplier(
   profile: PlanPersonalization,
   weekNum: number,
-  totalWeeks: number
+  totalWeeks: number,
+  familyId = "5k"
 ): number {
-  let mult = LEVEL_VOLUME[profile.fitnessLevel];
+  let mult = volumeForLevel(familyId, profile.fitnessLevel);
 
   if (profile.age) {
     if (profile.age >= 65) mult *= 0.85;
@@ -330,7 +368,41 @@ export function volumeMultiplier(
     mult = Math.min(mult, 1);
   }
 
-  return Math.min(1.4, Math.max(0.75, mult));
+  return Math.min(1.4, Math.max(0.45, mult));
+}
+
+/** Couch-to-5K-style recipe the in-app timer can parse. */
+export function beginnerWalkRunRecipe(
+  minutes: number,
+  kind: "easy" | "long"
+): string {
+  if (kind === "long") {
+    const warmup = 5;
+    const reps = Math.max(3, Math.round((minutes - warmup * 2) / 4));
+    return `Walk ${warmup} min → (Jog 2 min, Walk 2 min) × ${reps} → Walk ${warmup} min`;
+  }
+  const warmup = 4;
+  const reps = Math.max(3, Math.round((minutes - warmup * 2) / 3));
+  return `Walk ${warmup} min → (Jog 1 min, Walk 2 min) × ${reps} → Walk ${warmup} min`;
+}
+
+function isRestPlaceholder(workout: Workout): boolean {
+  return (
+    /^\s*rest\b/i.test(workout.duration) || /^\s*rest\b/i.test(workout.intervals)
+  );
+}
+
+function beginnerWalkRunOnDistancePlan(
+  familyId: string,
+  profile: PlanPersonalization,
+  workout: Workout
+): boolean {
+  return (
+    profile.fitnessLevel === "beginner" &&
+    isNoviceDistanceFamily(familyId) &&
+    workout.runType !== "race" &&
+    !isRestPlaceholder(workout)
+  );
 }
 
 function roundSessionMinutes(minutes: number): number {
@@ -384,8 +456,11 @@ function scaleIntervalRecipe(
 function adjustWorkout(
   workout: Workout,
   multiplier: number,
-  profile: PlanPersonalization
+  profile: PlanPersonalization,
+  familyId: string
 ): Workout {
+  if (isRestPlaceholder(workout)) return workout;
+
   const baseMiles = workoutBaseMiles(workout);
   const baseMinutes = estimateMinutes(workout.duration) || baseMiles * 11;
   const isRace = workout.runType === "race";
@@ -393,11 +468,10 @@ function adjustWorkout(
     raceMilesFromText(`${workout.intervals} ${workout.name}`) ??
     (isRace ? baseMiles : null);
 
-  const targetMiles = roundMiles(
-    isRace && raceMiles ? raceMiles : baseMiles * multiplier
-  );
+  const walkRun = beginnerWalkRunOnDistancePlan(familyId, profile, workout);
 
   if (
+    !walkRun &&
     profile.fitnessLevel === "beginner" &&
     Math.abs(multiplier - 1) < 0.02
   ) {
@@ -409,9 +483,38 @@ function adjustWorkout(
 
   const targetMinutes = roundSessionMinutes(
     isRace
-      ? targetMiles * easyPaceMinPerMile(profile.fitnessLevel, workout.runType)
+      ? (raceMiles ?? baseMiles) *
+          easyPaceMinPerMile(profile.fitnessLevel, workout.runType)
       : baseMinutes * multiplier
   );
+  const targetMiles = roundMiles(
+    isRace && raceMiles
+      ? raceMiles
+      : walkRun
+        ? targetMinutes / easyPaceMinPerMile("beginner", "walk-run")
+        : baseMiles * multiplier
+  );
+
+  if (walkRun) {
+    const duration = formatDurationMinutes(targetMinutes);
+    const distance = formatDistanceLabel(targetMiles);
+    const intervals = beginnerWalkRunRecipe(
+      targetMinutes,
+      workout.runType === "long" ? "long" : "easy"
+    );
+    const qualityNote =
+      workout.runType === "tempo" || workout.runType === "interval"
+        ? " Skip the speed work until easy days feel relaxed."
+        : "";
+    return {
+      ...workout,
+      runType: "walk-run",
+      duration,
+      intervals,
+      distance,
+      description: `${workout.description} Walk breaks are the workout — this plan usually assumes a 30-minute jog.${qualityNote}`,
+    };
+  }
 
   const mileRatio =
     !isRace && baseMiles > 0 ? targetMiles / baseMiles : 1;
@@ -436,12 +539,13 @@ function adjustWorkout(
 function adjustWeek(
   week: WeekTemplate,
   profile: PlanPersonalization,
-  totalWeeks: number
+  totalWeeks: number,
+  familyId: string
 ): WeekTemplate {
-  const mult = volumeMultiplier(profile, week.week, totalWeeks);
+  const mult = volumeMultiplier(profile, week.week, totalWeeks, familyId);
   return {
     ...week,
-    runs: week.runs.map((run) => adjustWorkout(run, mult, profile)),
+    runs: week.runs.map((run) => adjustWorkout(run, mult, profile, familyId)),
   };
 }
 
@@ -452,7 +556,7 @@ export function personalizePlanWorkouts(
   return {
     ...plan,
     weeks: plan.weeks.map((week) =>
-      adjustWeek(week, profile, plan.durationWeeks)
+      adjustWeek(week, profile, plan.durationWeeks, plan.familyId)
     ),
   };
 }
