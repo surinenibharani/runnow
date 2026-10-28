@@ -28,7 +28,6 @@ export async function GET(_request: Request, context: RouteContext) {
               id: true,
               name: true,
               email: true,
-              stravaAccount: { select: { athleteId: true } },
             },
           },
         },
@@ -61,6 +60,7 @@ export async function GET(_request: Request, context: RouteContext) {
     prisma.activity.findMany({
       where: { userId: { in: memberUserIds } },
       orderBy: { startDate: "desc" },
+      take: 400,
       select: activitySummarySelect,
     }),
     prisma.userTrainingPlan.findMany({
@@ -68,7 +68,7 @@ export async function GET(_request: Request, context: RouteContext) {
     }),
     prisma.stravaAccount.findMany({
       where: { userId: { in: memberUserIds } },
-      select: { userId: true, athleteId: true },
+      select: { userId: true },
     }),
   ]);
 
@@ -100,7 +100,9 @@ export async function GET(_request: Request, context: RouteContext) {
       });
 
       return {
-        user: member.user,
+        user: isCoach
+          ? member.user
+          : { id: member.user.id, name: member.user.name },
         stravaConnected: !!stravaAccount,
         streak,
         totalRuns: activities.length,
@@ -131,7 +133,9 @@ export async function GET(_request: Request, context: RouteContext) {
       slug: team.slug,
       description: team.description,
       inviteCode: isCoach ? team.inviteCode : undefined,
-      coach: team.coach,
+      coach: isCoach
+        ? team.coach
+        : { id: team.coach.id, name: team.coach.name },
     },
     isCoach,
     pending,

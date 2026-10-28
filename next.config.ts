@@ -32,6 +32,7 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_TURNSTILE_CONFIGURED: turnstileConfigured ? "true" : "",
   },
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "*.cdninstagram.com" },
       { protocol: "https", hostname: "*.fbcdn.net" },
@@ -41,11 +42,20 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
   async headers() {
+    const staticAssetCache = [
+      {
+        key: "Cache-Control",
+        value: "public, max-age=86400, stale-while-revalidate=604800",
+      },
+    ];
     return [
       {
         source: "/(.*)",
         headers: securityHeaders,
       },
+      { source: "/brand/:path*", headers: staticAssetCache },
+      { source: "/hero/:path*", headers: staticAssetCache },
+      { source: "/instagram/:path*", headers: staticAssetCache },
     ];
   },
 };

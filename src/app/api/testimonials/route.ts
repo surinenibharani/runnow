@@ -6,6 +6,7 @@ import { newTestimonialEmail } from "@/lib/email/templates";
 import { getClientIp, rateLimitAsync, enforceRateLimitForIp } from "@/lib/security/rate-limit";
 import { isHoneypotTriggered, sanitizeText } from "@/lib/security/sanitize";
 import { verifyTurnstile } from "@/lib/security/turnstile";
+import { timingSafeStringEqual } from "@/lib/security/timing-safe";
 
 const COMMENT_NOTIFY_EMAIL =
   process.env.COMMENT_NOTIFY_EMAIL?.trim() || "letsrunnow79@gmail.com";
@@ -21,6 +22,7 @@ export async function GET(request: Request) {
 
   try {
     const testimonials = await prisma.testimonial.findMany({
+      where: { approved: true },
       orderBy: { createdAt: "desc" },
       take: 100,
       select: {
@@ -114,6 +116,7 @@ export async function POST(request: Request) {
         story: storyText || null,
         detail: detailText || null,
         milestone: milestoneText || null,
+        approved: false,
       },
       select: {
         id: true,
@@ -135,6 +138,7 @@ export async function POST(request: Request) {
       }
 
       const message = newTestimonialEmail({
+        id: testimonial.id,
         authorName: testimonial.authorName,
         quote: testimonial.quote,
         story: testimonial.story,
@@ -157,11 +161,46 @@ export async function POST(request: Request) {
       }
     });
 
-    return NextResponse.json({ testimonial }, { status: 201 });
+    return NextResponse.json(
+      { testimonial, pendingReview: true },
+      { status: 201 }
+    );
   } catch {
     return NextResponse.json(
       { error: "Failed to submit testimonial" },
       { status: 500 }
     );
+  }
+}
+
+function isCronAuthorized(request: Request): boolean {
+  const secret = process.env.CRON_SECRET?.trim();
+  if (!secret) return false;
+  const auth = request.headers.get("authorization");
+  if (!auth?.startsWith("Bearer ")) return false;
+  return timingSafeStringEqual(auth.slice("Bearer ".length), secret);
+}
+
+/** Approve a pending story. Authorization: Bearer CRON_SECRET, body `{ "id": "..." }`. */
+export async function PATCH(request: Request) {
+  if (!isCronAuthorized(request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const body = await request.json().catch(() => ({}));
+  const id = typeof body?.id === "string" ? body.id.trim() : "";
+  if (!id) {
+    return NextResponse.json({ error: "id is required" }, { status: 400 });
+  }
+
+  try {
+    const testimonial = await prisma.testimonial.update({
+      where: { id },
+      data: { approved: true },
+      select: { id: true, authorName: true, approved: true },
+    });
+    return NextResponse.json({ testimonial });
+  } catch {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 }

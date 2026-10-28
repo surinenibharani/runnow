@@ -31,6 +31,17 @@ export async function GET(request: Request) {
 
   try {
     const tokens = await exchangeStravaCode(code);
+    const athleteId = String(tokens.athlete.id);
+    const taken = await prisma.stravaAccount.findFirst({
+      where: { athleteId, NOT: { userId } },
+      select: { userId: true },
+    });
+    if (taken) {
+      return NextResponse.redirect(
+        `${baseUrl}/dashboard?error=strava_already_linked`
+      );
+    }
+
     const encrypted = writeStoredTokenPair({
       accessToken: tokens.access_token,
       refreshToken: tokens.refresh_token,
@@ -40,14 +51,14 @@ export async function GET(request: Request) {
       where: { userId },
       create: {
         userId,
-        athleteId: String(tokens.athlete.id),
+        athleteId,
         accessToken: encrypted.accessToken,
         refreshToken: encrypted.refreshToken,
         expiresAt: new Date(tokens.expires_at * 1000),
         scope: STRAVA_SCOPES,
       },
       update: {
-        athleteId: String(tokens.athlete.id),
+        athleteId,
         accessToken: encrypted.accessToken,
         refreshToken: encrypted.refreshToken,
         expiresAt: new Date(tokens.expires_at * 1000),

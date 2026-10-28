@@ -3,14 +3,18 @@ import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { safeCallbackUrl } from "@/lib/security/callback-url";
-import { rateLimitAsync } from "@/lib/security/rate-limit";
+import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
 
 const AUTH_FAIL_DELAY_MS = 400;
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
   trustHost: true,
-  session: { strategy: "jwt" },
+  session: {
+    strategy: "jwt",
+    maxAge: 7 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
+  },
   pages: {
     signIn: "/login",
   },
@@ -24,10 +28,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       async authorize(credentials, request) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        const ip =
-          request?.headers?.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-          request?.headers?.get("x-real-ip") ||
-          "unknown";
+        const ip = request ? getClientIp(request) : "unknown";
         const limited = await rateLimitAsync(`login:${ip}`, 20, 15 * 60 * 1000);
         if (!limited.ok) return null;
 

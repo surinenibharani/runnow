@@ -22,7 +22,7 @@ type TeamDashboard = {
   };
   isCoach: boolean;
   members: Array<{
-    user: { id: string; name: string | null; email: string };
+    user: { id: string; name: string | null; email?: string };
     stravaConnected: boolean;
     streak: { current: number; longest: number };
     totalRuns: number;
@@ -108,7 +108,9 @@ export function TeamDashboardContent({ slug }: { slug: string }) {
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="text-base">
-                    {member.user.name ?? member.user.email.split("@")[0]}
+                    {member.user.name ??
+                      member.user.email?.split("@")[0] ??
+                      "Runner"}
                   </CardTitle>
                   <Badge variant={member.stravaConnected ? "default" : "outline"}>
                     {member.stravaConnected ? "Strava" : "No Strava"}

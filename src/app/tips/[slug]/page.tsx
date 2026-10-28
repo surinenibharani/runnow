@@ -18,7 +18,7 @@ import { getCommentCount } from "@/lib/blog/comment-counts";
 import {
   commentStorageSlug,
 } from "@/lib/engagement/comments-api";
-import { getContentLikeStateForSession } from "@/lib/engagement/content-likes";
+import { getCachedLikeCount } from "@/lib/engagement/content-likes";
 import { breadcrumbJsonLd, faqPageJsonLd, simpleArticleJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { TIPS_SEO_KEYWORDS } from "@/lib/seo/keywords";
@@ -67,7 +67,7 @@ export default async function TipDetailPage({ params }: PageProps) {
   if (!tip) notFound();
 
   const post = tip.blogSlug ? getPublishedPostBySlug(tip.blogSlug) : undefined;
-  const likeState = await getContentLikeStateForSession("tip", slug);
+  const likeCount = await getCachedLikeCount("tip", slug);
   const commentCount = await getCommentCount(commentStorageSlug("tip", slug));
   const pageUrl = `${SITE_URL}/tips/${slug}`;
   const seoTitleText = tipSeoTitle(tip);
@@ -141,8 +141,8 @@ export default async function TipDetailPage({ params }: PageProps) {
                 <ContentLikeButton
                   targetType="tip"
                   targetSlug={tip.slug}
-                  initialCount={likeState.count}
-                  initialLiked={likeState.liked}
+                  initialCount={likeCount}
+                  initialLiked={false}
                   className="mt-6"
                 />
                 {tip.blogSlug && post && (

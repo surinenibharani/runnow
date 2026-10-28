@@ -71,8 +71,8 @@ export function TestimonialForm() {
       >
         <h2 className="text-xl font-semibold">Thanks for sharing</h2>
         <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-          Your story is live on Success Stories. It helps the next beginner lace
-          up.
+          We review stories before they appear on Success Stories, so other
+          beginners only see genuine notes.
         </p>
         <Button
           nativeButton={false}

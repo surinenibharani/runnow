@@ -222,11 +222,24 @@ export async function mergeStravaPlanCompletions(userId: string): Promise<number
 export async function findUserIdByStravaAthleteId(
   athleteId: string
 ): Promise<string | null> {
-  const account = await prisma.stravaAccount.findFirst({
+  const account = await prisma.stravaAccount.findUnique({
     where: { athleteId: String(athleteId) },
     select: { userId: true },
   });
   return account?.userId ?? null;
+}
+
+/** True only when Strava rejects the stored tokens (revoked / unauthorized). */
+export async function isStravaAuthorizationRevoked(
+  userId: string
+): Promise<boolean> {
+  try {
+    await getValidAccessToken(userId);
+    return false;
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "";
+    return /failed: 40[01]/.test(message);
+  }
 }
 
 export async function disconnectStrava(userId: string): Promise<void> {

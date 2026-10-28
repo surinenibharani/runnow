@@ -9,18 +9,20 @@ type LogoProps = {
   /** @deprecated Full logo image always includes the wordmark and tagline. */
   showWordmark?: boolean;
   href?: string;
+  /** Set on the header mark so it can be the LCP image. Footer should omit this. */
+  priority?: boolean;
 };
 
-export function Logo({ className, href = "/" }: LogoProps) {
+export function Logo({ className, href = "/", priority = false }: LogoProps) {
   const image = (
     <Image
       src={BRAND_LOGO_PATH}
       alt={`${SITE_NAME} — ${BRAND_CAPTION}`}
       width={651}
       height={449}
+      sizes="180px"
       className="h-12 w-auto bg-transparent object-contain sm:h-14"
-      priority
-      unoptimized
+      priority={priority}
     />
   );
 

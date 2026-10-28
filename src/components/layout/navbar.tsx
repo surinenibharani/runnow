@@ -482,7 +482,7 @@ export function Navbar() {
         ref={barRef}
         className="mx-auto flex h-16 w-full min-w-0 max-w-6xl items-center gap-2 px-4 sm:gap-3 sm:px-6"
       >
-        <Logo className="shrink-0 [&_img]:h-11 sm:[&_img]:h-12" />
+        <Logo priority className="shrink-0 [&_img]:h-11 sm:[&_img]:h-12" />
 
         <div
           ref={navSlotRef}

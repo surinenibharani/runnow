@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FadeIn } from "@/components/motion/fade-in";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { PostContent } from "@/components/blog/post-content";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getCommentCount } from "@/lib/blog/comment-counts";
-import { getContentLikeStateForSession } from "@/lib/engagement/content-likes";
+import { getCachedLikeCount } from "@/lib/engagement/content-likes";
 import { articleJsonLd, breadcrumbJsonLd, faqPageJsonLd, howToJsonLd } from "@/lib/seo";
 import {
   postOgImageMeta,
@@ -38,8 +37,8 @@ type PageProps = {
   searchParams: Promise<{ preview?: string }>;
 };
 
-/** Publish gate is 7am ET — do not cache a pre-publish 404 past go-live. */
-export const dynamic = "force-dynamic";
+/** Publish gate is 7am ET — hourly rebuild is enough; preview still uses cookies. */
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   return blogPosts
@@ -53,9 +52,10 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const { preview: previewToken } = await searchParams;
-  const preview =
-    (await hasBlogPreviewAccess()) ||
-    isValidPreviewSecret(previewToken);
+  const published = getVisiblePostBySlug(slug, false);
+  const preview = published
+    ? isValidPreviewSecret(previewToken)
+    : (await hasBlogPreviewAccess()) || isValidPreviewSecret(previewToken);
 
   const visible = getVisiblePostBySlug(slug, preview);
   if (!visible) {
@@ -103,8 +103,12 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params, searchParams }: PageProps) {
   const { slug } = await params;
   const { preview: previewToken } = await searchParams;
-  const preview = await bootstrapBlogPreview(previewToken, `/blog/${slug}`);
-  const post = getVisiblePostBySlug(slug, preview);
+  const published = getVisiblePostBySlug(slug, false);
+  const preview =
+    previewToken || !published
+      ? await bootstrapBlogPreview(previewToken, `/blog/${slug}`)
+      : false;
+  const post = published ?? getVisiblePostBySlug(slug, preview);
 
   if (!post) {
     notFound();
@@ -113,7 +117,7 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
   const scheduled = isBlogPostScheduled(post.publishedAt);
   const related = getRelatedPosts(post, preview);
   const commentCount = await getCommentCount(slug);
-  const likeState = await getContentLikeStateForSession("blog", slug);
+  const likeCount = await getCachedLikeCount("blog", slug);
 
   return (
     <div className="py-12 sm:py-16">
@@ -141,38 +145,36 @@ export default async function BlogPostPage({ params, searchParams }: PageProps) 
         ]}
       />
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <FadeIn>
-          <Breadcrumbs
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Blog", href: "/blog" },
-              { label: post.title },
-            ]}
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Blog", href: "/blog" },
+            { label: post.title },
+          ]}
+        />
+
+        {preview && scheduled && (
+          <BlogPreviewBanner
+            publishSchedule={formatBlogPostPublishSchedule(post.publishedAt)}
           />
+        )}
 
-          {preview && scheduled && (
-            <BlogPreviewBanner
-              publishSchedule={formatBlogPostPublishSchedule(post.publishedAt)}
-            />
-          )}
+        <PostContent
+          post={post}
+          related={related}
+          commentCount={commentCount}
+          likeCount={likeCount}
+          likedByMe={false}
+          scheduled={preview && scheduled}
+        />
 
-          <PostContent
-            post={post}
-            related={related}
-            commentCount={commentCount}
-            likeCount={likeState.count}
-            likedByMe={likeState.liked}
-            scheduled={preview && scheduled}
-          />
-
-          {slug === "avoiding-injuries" && (
-            <p className="mt-8 text-sm text-muted-foreground">
-              <Link href="/injuries" className="text-primary hover:underline">
-                View our full injury prevention guide →
-              </Link>
-            </p>
-          )}
-        </FadeIn>
+        {slug === "avoiding-injuries" && (
+          <p className="mt-8 text-sm text-muted-foreground">
+            <Link href="/injuries" className="text-primary hover:underline">
+              View our full injury prevention guide →
+            </Link>
+          </p>
+        )}
       </div>
     </div>
   );

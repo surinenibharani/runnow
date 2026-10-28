@@ -49,7 +49,8 @@ export default function WriteStoryPage() {
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
             Finished a week, a streak, or your whole plan? Tell other beginners
-            what helped — no login required. Stories appear on{" "}
+            what helped — no login required. We review stories before they
+            appear on{" "}
             <Link href="/stories" className="text-primary hover:underline">
               Success Stories
             </Link>

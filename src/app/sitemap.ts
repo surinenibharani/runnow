@@ -7,8 +7,8 @@ import { womenRunnerConcernSlugs } from "@/lib/injuries/women-runner-concerns";
 import { getPlanSitemapEntries } from "@/lib/seo/plans";
 import { SITE_URL } from "@/lib/site";
 
-/** Date-gated posts go live at 7am ET — rebuild on each request so crawlers see today's URLs. */
-export const dynamic = "force-dynamic";
+/** Date-gated posts go live at 7am ET — hourly rebuild is enough for crawlers. */
+export const revalidate = 3600;
 
 /** Public marketing and content routes (excludes auth, dashboard, API). */
 const staticRoutes = [

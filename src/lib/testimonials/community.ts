@@ -15,6 +15,7 @@ export async function getCommunityTestimonials(
 ): Promise<CommunityTestimonial[]> {
   try {
     return await prisma.testimonial.findMany({
+      where: { approved: true },
       orderBy: { createdAt: "desc" },
       take,
       select: {

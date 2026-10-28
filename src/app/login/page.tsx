@@ -43,7 +43,6 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [noAccount, setNoAccount] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -52,50 +51,10 @@ function LoginForm() {
     }
   }, [status, callbackUrl]);
 
-  async function resolveSignInError(): Promise<{
-    message: string;
-    noAccount: boolean;
-  }> {
-    try {
-      const res = await fetch("/api/auth/account-status", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      const data = (await res.json()) as {
-        registered?: boolean;
-        hasPassword?: boolean;
-      };
-
-      if (data?.registered === false) {
-        return {
-          message: "We couldn't find an account with that email.",
-          noAccount: true,
-        };
-      }
-
-      if (data?.registered && data?.hasPassword === false) {
-        return {
-          message:
-            "This account was created without a password. Reset your password to sign in.",
-          noAccount: false,
-        };
-      }
-
-      return {
-        message: "Incorrect password. Please try again.",
-        noAccount: false,
-      };
-    } catch {
-      return { message: "Invalid email or password.", noAccount: false };
-    }
-  }
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError("");
-    setNoAccount(false);
 
     sessionStorage.setItem(AUTH_WELCOME_STORAGE_KEY, "login");
 
@@ -109,9 +68,7 @@ function LoginForm() {
       sessionStorage.removeItem(AUTH_WELCOME_STORAGE_KEY);
 
       if (result?.error === "CredentialsSignin") {
-        const resolved = await resolveSignInError();
-        setError(resolved.message);
-        setNoAccount(resolved.noAccount);
+        setError("Invalid email or password.");
       } else {
         setError("Sign in failed. Please try again.");
       }
@@ -181,20 +138,6 @@ function LoginForm() {
                   aria-live="polite"
                 >
                   <p>{error}</p>
-                  {noAccount && (
-                    <p className="mt-1 text-foreground/80">
-                      New here?{" "}
-                      <Link
-                        href={`/signup?callbackUrl=${encodeURIComponent(callbackUrl)}${
-                          email ? `&email=${encodeURIComponent(email)}` : ""
-                        }`}
-                        className="font-medium text-primary hover:underline"
-                      >
-                        Create an account
-                      </Link>{" "}
-                      to get started.
-                    </p>
-                  )}
                 </div>
               )}
               <Button type="submit" className="w-full" disabled={loading}>

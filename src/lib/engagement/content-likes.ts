@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { cookies } from "next/headers";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -123,3 +124,18 @@ export async function getContentLikeStateForSession(
   const { identityKey } = await resolveLikeIdentity();
   return getContentLikeState(targetType, targetSlug, identityKey);
 }
+
+/** Cached public like count — does not read cookies, so pages can stay ISR. */
+export const getCachedLikeCount = unstable_cache(
+  async (targetType: ContentLikeTargetType, targetSlug: string) => {
+    try {
+      return await prisma.contentLike.count({
+        where: { targetType, targetSlug },
+      });
+    } catch {
+      return 0;
+    }
+  },
+  ["content-like-count"],
+  { revalidate: 300 }
+);

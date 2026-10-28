@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   disconnectStrava,
   findUserIdByStravaAthleteId,
+  isStravaAuthorizationRevoked,
   syncStravaActivitiesForUser,
 } from "@/lib/strava-sync";
 import { getClientIp, rateLimitAsync } from "@/lib/security/rate-limit";
@@ -113,6 +114,13 @@ export async function POST(request: Request) {
             headers: { "Retry-After": String(disconnectLimited.retryAfter) },
           }
         );
+      }
+      const revoked = await isStravaAuthorizationRevoked(userId);
+      if (!revoked) {
+        return NextResponse.json({
+          received: true,
+          skipped: "token_still_valid",
+        });
       }
       await disconnectStrava(userId);
       return NextResponse.json({ received: true, action: "disconnected" });

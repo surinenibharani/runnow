@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,12 +14,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-6xl px-4 pb-20 sm:px-6 sm:pb-28 lg:pb-36">
         <HeroVideo />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative z-10 flex flex-col items-center text-center"
-        >
+        <div className="relative z-10 flex flex-col items-center text-center">
           <Badge
             variant="secondary"
             className="relative z-10 mb-4 mt-14 bg-background/70 px-3.5 py-1.5 text-xs backdrop-blur-sm sm:mb-5 sm:mt-20 sm:px-4 sm:text-sm"
@@ -113,12 +105,7 @@ export function Hero() {
             </Button>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="relative z-10 mt-12 grid w-full max-w-3xl grid-cols-3 gap-2.5 sm:mt-16 sm:gap-4"
-          >
+          <div className="relative z-10 mt-12 grid w-full max-w-3xl grid-cols-3 gap-2.5 sm:mt-16 sm:gap-4">
             {[
               { value: "4", label: "Distance plans" },
               { value: "All", label: "Ages & levels" },
@@ -136,8 +123,8 @@ export function Hero() {
                 </div>
               </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -29,7 +29,11 @@ export async function GET() {
       where: { userId },
       include: {
         team: {
-          include: {
+          select: {
+            id: true,
+            name: true,
+            slug: true,
+            description: true,
             coach: { select: { id: true, name: true } },
             members: { where: { status: "APPROVED" }, select: { id: true } },
           },

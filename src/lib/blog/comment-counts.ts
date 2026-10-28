@@ -1,13 +1,17 @@
 import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
-export async function getCommentCount(postSlug: string): Promise<number> {
-  try {
-    return await prisma.blogComment.count({ where: { postSlug } });
-  } catch {
-    return 0;
-  }
-}
+export const getCommentCount = unstable_cache(
+  async (postSlug: string): Promise<number> => {
+    try {
+      return await prisma.blogComment.count({ where: { postSlug } });
+    } catch {
+      return 0;
+    }
+  },
+  ["blog-comment-count"],
+  { revalidate: 300 }
+);
 
 async function fetchCommentCountsBySlug(): Promise<Record<string, number>> {
   try {

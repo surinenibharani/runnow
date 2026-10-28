@@ -174,12 +174,14 @@ View: ${url}`,
 }
 
 export function newTestimonialEmail({
+  id,
   authorName,
   quote,
   story,
   detail,
   milestone,
 }: {
+  id?: string;
   authorName: string;
   quote: string;
   story?: string | null;
@@ -192,12 +194,13 @@ export function newTestimonialEmail({
   const safeStory = story ? escapeHtml(story) : "";
   const safeDetail = detail ? escapeHtml(detail) : "";
   const safeMilestone = milestone ? escapeHtml(milestone) : "";
-  const preheader = `${safeAuthor} shared a success story`;
+  const preheader = `${safeAuthor} shared a success story (pending review)`;
 
   const body = `
-    <h1 style="margin:0 0 12px;font-size:22px;line-height:1.3;">New success story</h1>
+    <h1 style="margin:0 0 12px;font-size:22px;line-height:1.3;">New success story — pending review</h1>
     <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#4b5563;">
-      <strong>${safeAuthor}</strong> submitted a testimonial.
+      <strong>${safeAuthor}</strong> submitted a testimonial. It is hidden until you approve it
+      with <code>PATCH /api/testimonials</code> and body <code>{"id":"${id ?? ""}"}</code>.
     </p>
     <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;">
       <p style="margin:0 0 12px;font-size:16px;line-height:1.6;color:#111827;font-style:italic;">&ldquo;${safeQuote}&rdquo;</p>
@@ -209,13 +212,13 @@ export function newTestimonialEmail({
   `;
 
   return {
-    subject: `New success story from ${sanitizeEmailHeader(authorName)}`,
+    subject: `Pending success story from ${sanitizeEmailHeader(authorName)}`,
     html: emailLayout({ preheader, body }),
-    text: `New success story from ${authorName}
+    text: `Pending success story from ${authorName}${id ? ` (id: ${id})` : ""}
 
 "${quote}"
 ${story ? `\n${story}\n` : ""}${detail ? `\n${detail}` : ""}${milestone ? `\nMilestone: ${milestone}` : ""}
 
-View: ${pageUrl}`,
+This is hidden until approved. View live stories: ${pageUrl}`,
   };
 }

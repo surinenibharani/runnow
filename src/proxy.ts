@@ -25,6 +25,12 @@ const blockedBotUserAgents =
 const searchEngineUserAgents =
   /Googlebot|Bingbot|Slurp|DuckDuckBot|Baiduspider|YandexBot|Applebot|facebookexternalhit|Twitterbot|LinkedInBot|SkypeUriPreview|WhatsApp|Slackbot/i;
 
+function isPublicStaticAsset(pathname: string): boolean {
+  return /\.(?:png|jpe?g|webp|avif|gif|svg|ico|mp4|webm|woff2)$/i.test(
+    pathname
+  );
+}
+
 function isProtectedRoute(pathname: string): boolean {
   if (pathname === "/dashboard" || pathname.startsWith("/dashboard/")) {
     return true;
@@ -53,6 +59,10 @@ export const proxy = auth(async (request) => {
   const { pathname } = request.nextUrl;
   const nonce = generateCspNonce();
   const userAgent = request.headers.get("user-agent") ?? "";
+
+  if (isPublicStaticAsset(pathname)) {
+    return NextResponse.next();
+  }
 
   if (blockedPaths.some((pattern) => pattern.test(pathname))) {
     return withCsp(new NextResponse(null, { status: 404 }), nonce);
@@ -134,5 +144,7 @@ export const proxy = auth(async (request) => {
 });
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:ico|png|jpe?g|gif|webp|avif|svg|mp4|webm|woff2)$).*)",
+  ],
 };

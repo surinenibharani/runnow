@@ -75,7 +75,7 @@ model VerificationToken {
 model StravaAccount {
   id           String    @id @default(cuid())
   userId       String    @unique
-  athleteId    String
+  athleteId    String    @unique
   accessToken  String
   refreshToken String
   expiresAt    DateTime
@@ -89,8 +89,6 @@ model StravaAccount {
   user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
-
-  @@index([athleteId])
 }
 
 model Activity {
@@ -157,9 +155,11 @@ model Testimonial {
   story      String?
   detail     String?
   milestone  String?
+  approved   Boolean  @default(false)
   createdAt  DateTime @default(now())
 
   @@index([createdAt])
+  @@index([approved, createdAt])
 }
 
 // User likes on file-based blog posts or tips, keyed by slug.

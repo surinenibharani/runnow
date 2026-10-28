@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState, useTransition } from "react";
+import { useCallback, useEffect, useState, useTransition } from "react";
 import { Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ContentLikeTargetType } from "@/lib/engagement/content-likes";
@@ -26,6 +26,26 @@ export function ContentLikeButton({
   const [liked, setLiked] = useState(initialLiked);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
+
+  useEffect(() => {
+    let cancelled = false;
+    void fetch(
+      `/api/likes?type=${encodeURIComponent(targetType)}&slug=${encodeURIComponent(targetSlug)}`
+    )
+      .then(async (res) => {
+        if (!res.ok) return;
+        const data = (await res.json()) as { count?: number; liked?: boolean };
+        if (cancelled) return;
+        if (typeof data.count === "number") setCount(data.count);
+        if (typeof data.liked === "boolean") setLiked(data.liked);
+      })
+      .catch(() => {
+        /* keep SSR count */
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [targetSlug, targetType]);
 
   const onToggle = useCallback(() => {
     setError(null);

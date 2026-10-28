@@ -304,6 +304,9 @@ export function DashboardContent() {
     }
 
     if (error === "strava_denied") return "Strava authorization was cancelled.";
+    if (error === "strava_already_linked") {
+      return "That Strava account is already connected to a different LetsRunNow login.";
+    }
     if (error === "strava_invalid") return "Strava connection expired. Please try again.";
     if (error === "strava_failed") return "Strava connection failed. Check your app settings and try again.";
     if (error === "strava_not_configured") {

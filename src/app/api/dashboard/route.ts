@@ -86,7 +86,7 @@ export async function GET(request: Request) {
     prisma.activity.findMany({
       where: { userId },
       orderBy: { startDate: "desc" },
-      take: 500,
+      take: 200,
       select: activitySummarySelect,
     }),
     prisma.activity.findMany({
@@ -97,7 +97,7 @@ export async function GET(request: Request) {
           : {}),
       },
       orderBy: { startDate: "desc" },
-      take: 2000,
+      take: 400,
       select: activitySummarySelect,
     }),
     prisma.stravaAccount.findUnique({ where: { userId } }),
@@ -163,7 +163,8 @@ export async function GET(request: Request) {
     bestEfforts: formatBestEffortsForDisplay(cachedBestEfforts),
   });
 
-  const hrActivities = chartActivities.map((a) => ({
+  const listActivities = chartActivities.slice(0, 80);
+  const hrActivities = listActivities.map((a) => ({
     id: a.id,
     name: a.name,
     type: a.type,
@@ -173,7 +174,7 @@ export async function GET(request: Request) {
     movingTime: a.movingTime,
   }));
 
-  const activityList = chartActivities.map((a) => ({
+  const activityList = listActivities.map((a) => ({
     id: a.id,
     name: a.name,
     type: a.type,
@@ -260,7 +261,6 @@ export async function GET(request: Request) {
       subscriptionTier: user.subscriptionTier,
     },
     stravaConnected: !!stravaAccount,
-    stravaAthleteId: stravaAccount?.athleteId ?? null,
     stravaLastSyncedAt: stravaAccount?.lastSyncedAt?.toISOString() ?? null,
     stravaProfileUrl: stravaAccount
       ? `https://www.strava.com/athletes/${stravaAccount.athleteId}`

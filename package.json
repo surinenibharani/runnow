@@ -19,7 +19,7 @@
     "validate:seo": "node scripts/validate-blog-seo.mjs",
     "images:strip-meta": "node scripts/strip-image-metadata.mjs",
     "content:copy-check": "node scripts/content-copy-check-phrases.mjs",
-    "test": "tsx --test src/lib/tools/*.test.ts src/lib/blog/publish-schedule.test.ts src/lib/blog/section-order.test.ts src/components/blog/format-blog-text.test.ts src/lib/week-rebuild.test.ts src/lib/workout-intervals.test.ts src/lib/plan-leverage.test.ts src/lib/plan-stats.test.ts src/lib/plan-personalization.test.ts",
+    "test": "tsx --test src/lib/tools/*.test.ts src/lib/blog/publish-schedule.test.ts src/lib/blog/section-order.test.ts src/components/blog/format-blog-text.test.ts src/lib/week-rebuild.test.ts src/lib/workout-intervals.test.ts src/lib/plan-leverage.test.ts src/lib/plan-stats.test.ts src/lib/plan-personalization.test.ts src/lib/security/rate-limit.test.ts",
     "strava:encrypt-tokens": "node scripts/encrypt-strava-tokens.mjs",
     "postinstall": "prisma generate"
   },

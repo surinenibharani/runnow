@@ -1204,7 +1204,7 @@ export const SOURCES = {
   },
   nhsCouchTo5k: {
     label: "Get running with Couch to 5K",
-    href: "https://www.nhs.uk/live-well/exercise/running-and-aerobic-exercises/get-running-with-couch-to-5k/",
+    href: "https://www.nhs.uk/better-health/get-active/get-running-with-couch-to-5k/",
     publisher: "NHS",
   },
   higdonTrainingPrograms: {

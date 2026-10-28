@@ -129,7 +129,7 @@ export function PlanProfilePicker({
           </a>{" "}
           easy-pace bands).{" "}
           <a
-            href="https://www.nhs.uk/live-well/exercise/running-and-aerobic-exercises/get-running-with-couch-to-5k/"
+            href="https://www.nhs.uk/better-health/get-active/get-running-with-couch-to-5k/"
             className="text-primary hover:underline"
             target="_blank"
             rel="noopener noreferrer"

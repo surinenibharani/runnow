@@ -37,11 +37,40 @@ function pruneStore(now: number) {
   }
 }
 
+/**
+ * Client IP for rate limits. Prefer platform-provided headers that clients
+ * cannot spoof. Never trust the first X-Forwarded-For hop — on Vercel the
+ * client can prepend an address and the platform appends the real one.
+ */
 export function getClientIp(request: Request): string {
+  const vercel = request.headers
+    .get("x-vercel-forwarded-for")
+    ?.split(",")[0]
+    ?.trim();
+  if (vercel) return vercel;
+
+  const realIp = request.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
+
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) {
+    const hops = forwarded
+      .split(",")
+      .map((hop) => hop.trim())
+      .filter(Boolean);
+    if (hops.length > 0) return hops[hops.length - 1]!;
+  }
+
+  return "unknown";
+}
+
+/** Auth and write endpoints must not fall open if Redis is missing in production. */
+const FAIL_CLOSED_KEY =
+  /^(login|auth|register|account-status|newsletter|testimonial|comment|blog-preview|team-join|team-create|stripe-checkout|strava-webhook|like):/;
+
+function shouldFailClosedWithoutRedis(key: string): boolean {
   return (
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    request.headers.get("x-real-ip") ||
-    "unknown"
+    process.env.NODE_ENV === "production" && FAIL_CLOSED_KEY.test(key)
   );
 }
 
@@ -119,6 +148,12 @@ export async function rateLimitAsync(
 ): Promise<RateLimitResult> {
   const distributed = getDistributedLimiter(limit, windowMs);
   if (!distributed) {
+    if (shouldFailClosedWithoutRedis(key)) {
+      console.error(
+        `[rate-limit] refusing ${key.split(":")[0]} — Upstash Redis is not configured in production.`
+      );
+      return { ok: false, retryAfter: 60 };
+    }
     warnIfMissingDistributedRateLimit();
     return rateLimit(key, limit, windowMs);
   }
