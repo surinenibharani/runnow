@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { getPlanById } from "./plans";
+import { getPlanById, PLANS } from "./plans";
 import {
   easyPaceMinPerMile,
   LEVEL_VOLUME,
@@ -48,9 +48,9 @@ describe("level volume and pace", () => {
     );
   });
 
-  it("does not add volume on race week", () => {
-    const advancedPeak = volumeMultiplier(advanced, 8, 8);
-    assert.ok(advancedPeak <= 1);
+  it("keeps skill-level volume on the last week", () => {
+    assert.ok(volumeMultiplier(advanced, 8, 8, "5k") > 1);
+    assert.ok(volumeMultiplier(beginner, 12, 12, "half-marathon") < 0.8);
   });
 
   it("scales beginner half-marathon down from the Novice 3-mile opener", () => {
@@ -122,6 +122,46 @@ describe("personalizePlanWorkouts", () => {
     assert.equal(formatWorkoutTimeAndDistance(beg), "~20 min · ~1.4 mi");
     assert.ok(parseWorkoutIntervals(beg.intervals));
     assert.match(formatWorkoutTimeAndDistance(mid), /~30 min · ~3 mi/);
+  });
+
+  it("changes every week's time or distance with skill level on every plan", () => {
+    for (const plan of PLANS) {
+      const begPlan = personalizePlanWorkouts(plan, beginner);
+      const advPlan = personalizePlanWorkouts(plan, advanced);
+      assert.equal(begPlan.weeks.length, plan.weeks.length, plan.id);
+      for (let i = 0; i < plan.weeks.length; i++) {
+        const begRuns = begPlan.weeks[i]!.runs;
+        const advRuns = advPlan.weeks[i]!.runs;
+        const weekDiffers = begRuns.some((run, j) => {
+          const other = advRuns[j];
+          if (!other) return true;
+          return (
+            formatWorkoutTimeAndDistance(run) !==
+            formatWorkoutTimeAndDistance(other)
+          );
+        });
+        assert.ok(
+          weekDiffers,
+          `${plan.id} week ${plan.weeks[i]!.week} should change with skill level`
+        );
+      }
+    }
+  });
+
+  it("keeps half-marathon later weeks easier for beginners than intermediates", () => {
+    const plan = getPlanById("half-12w");
+    assert.ok(plan);
+    const midWeek = 5;
+    const beg = personalizePlanWorkouts(plan, beginner).weeks[midWeek]!.runs.find(
+      (r) => r.runType === "walk-run" || r.runType === "long"
+    )!;
+    const mid = personalizePlanWorkouts(plan, intermediate).weeks[midWeek]!.runs.find(
+      (r) => r.runType === "long" || r.runType === "easy"
+    )!;
+    assert.ok(estimateMinutes(beg.duration) < estimateMinutes(mid.duration));
+    const begMiles = parseFloat(beg.distance?.replace(/[^\d.]/g, "") ?? "9");
+    const midMiles = parseFloat(mid.distance?.replace(/[^\d.]/g, "") ?? "0");
+    assert.ok(begMiles < midMiles);
   });
 
   it("scales a 10K long run's miles for advanced, keeps race at 6.2", () => {

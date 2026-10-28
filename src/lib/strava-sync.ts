@@ -197,6 +197,9 @@ export async function mergeStravaPlanCompletions(userId: string): Promise<number
     runDaysPerWeek: trainingPlan.runDaysPerWeek,
     completedIds: trainingPlan.completedIds,
     activities,
+    age: trainingPlan.age,
+    fitnessLevel: trainingPlan.fitnessLevel,
+    goalRaceDate: trainingPlan.goalRaceDate,
   });
 
   if (!alignment) return 0;

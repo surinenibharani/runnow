@@ -3,6 +3,7 @@ import type { ScheduleDay, ScheduledWeek } from "@/lib/plan-types";
 import { applyScheduleToPlan } from "@/lib/schedule-builder";
 import { getPlanById, DEFAULT_PLAN_ID } from "@/lib/plans";
 import { formatDistance, formatDuration } from "@/lib/strava";
+import { buildPlanPersonalization } from "@/lib/plan-validation";
 
 export type AlignmentStatus = "completed" | "missed" | "today" | "upcoming" | "rest";
 
@@ -85,17 +86,24 @@ type AlignmentInput = {
   runDaysPerWeek?: number;
   completedIds: string;
   activities: ActivitySummary[];
+  age?: number | null;
+  fitnessLevel?: string | null;
+  goalRaceDate?: Date | string | null;
 };
 
 export function analyzePlanAlignment(input: AlignmentInput): PlanAlignmentSummary | null {
   const plan = getPlanById(input.planId) ?? getPlanById(DEFAULT_PLAN_ID);
   if (!plan) return null;
 
-  const scheduled = applyScheduleToPlan(plan, {
-    restDay: input.restDay,
-    longRunDay: input.longRunDay,
-    runDaysPerWeek: input.runDaysPerWeek === 4 ? 4 : 3,
-  });
+  const scheduled = applyScheduleToPlan(
+    plan,
+    {
+      restDay: input.restDay,
+      longRunDay: input.longRunDay,
+      runDaysPerWeek: input.runDaysPerWeek === 4 ? 4 : 3,
+    },
+    buildPlanPersonalization(input.age, input.fitnessLevel, input.goalRaceDate)
+  );
 
   const weekIndex = Math.min(
     Math.max(input.currentWeek, 1),

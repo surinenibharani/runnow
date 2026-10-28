@@ -443,9 +443,9 @@ export function PlanCatalogExplorer({
                   days={preview.days}
                 />
                 <p className="mt-2 text-xs text-muted-foreground">
-                  Beginner start — walk–run and shorter days on 10K, half, and
-                  marathon. Intermediate keeps the written Novice miles. Your
-                  tracker below follows the fitness level you pick.
+                  Preview uses a beginner start. Every week in the tracker
+                  follows the fitness level you pick — Intermediate keeps the
+                  written Novice miles; Advanced steps up.
                 </p>
               </div>
             )}

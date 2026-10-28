@@ -34,6 +34,9 @@ export async function GET() {
     runDaysPerWeek: trainingPlan.runDaysPerWeek,
     completedIds: trainingPlan.completedIds,
     activities,
+    age: trainingPlan.age,
+    fitnessLevel: trainingPlan.fitnessLevel,
+    goalRaceDate: trainingPlan.goalRaceDate,
   });
 
   return NextResponse.json({ alignment });

@@ -12,12 +12,11 @@ import {
 } from "@/lib/plan/cross-train-guidance";
 import { readPlanBrief } from "@/lib/plan/plan-brief";
 import { DEFAULT_PERSONALIZATION } from "@/lib/plan-personalization";
+import { getPlanProfile } from "@/lib/plan-profile";
+import { getSchedulePreferences } from "@/lib/schedule-preferences";
 import { BRAND_CAPTION } from "@/lib/brand";
 import { SITE_NAME } from "@/lib/site";
-import {
-  applyScheduleToPlan,
-  DEFAULT_SCHEDULE,
-} from "@/lib/schedule-builder";
+import { applyScheduleToPlan } from "@/lib/schedule-builder";
 import {
   isStrengthSession,
   type ScheduledWeek,
@@ -203,29 +202,29 @@ export function PlanPrintableSheet({
       setRationale(brief?.rationale ?? getDefaultPlanRationale(plan));
       setHealthFocus(brief?.healthFocus ?? null);
 
-      if (brief?.fromQuiz) {
-        const prefs = {
-          ...DEFAULT_SCHEDULE,
-          runDaysPerWeek: brief.runDaysPerWeek ?? DEFAULT_SCHEDULE.runDaysPerWeek,
-        };
-        const profile = {
-          ...DEFAULT_PERSONALIZATION,
-          age: brief.age ?? null,
-          fitnessLevel: brief.fitnessLevel ?? DEFAULT_PERSONALIZATION.fitnessLevel,
-        };
-        const built = applyScheduleToPlan(plan, prefs, profile, {
-          healthMode: brief.healthMode ?? "none",
-        });
-        setDisplayWeeks(
-          overlayHealthOnScheduledWeeks(
-            built.scheduledWeeks,
-            brief.crossTrain ?? [],
-            brief.healthFocus
-          )
-        );
-      } else {
-        setDisplayWeeks(weeks);
-      }
+      const stored = getPlanProfile();
+      const prefs = {
+        ...getSchedulePreferences(),
+        ...(brief?.runDaysPerWeek
+          ? { runDaysPerWeek: brief.runDaysPerWeek }
+          : {}),
+      };
+      const profile = {
+        ...DEFAULT_PERSONALIZATION,
+        ...stored,
+        ...(brief?.age != null ? { age: brief.age } : {}),
+        ...(brief?.fitnessLevel ? { fitnessLevel: brief.fitnessLevel } : {}),
+      };
+      const built = applyScheduleToPlan(plan, prefs, profile, {
+        healthMode: brief?.healthMode ?? "none",
+      });
+      setDisplayWeeks(
+        overlayHealthOnScheduledWeeks(
+          built.scheduledWeeks,
+          brief?.crossTrain ?? [],
+          brief?.healthFocus ?? null
+        )
+      );
     });
   }, [plan, weeks]);
 

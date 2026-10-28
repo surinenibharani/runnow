@@ -94,6 +94,9 @@ export async function GET(_request: Request, context: RouteContext) {
         runDaysPerWeek: plan.runDaysPerWeek,
         completedIds: plan.completedIds,
         activities,
+        age: plan.age,
+        fitnessLevel: plan.fitnessLevel,
+        goalRaceDate: plan.goalRaceDate,
       });
 
       return {

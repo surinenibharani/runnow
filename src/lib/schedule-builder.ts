@@ -9,6 +9,7 @@ import type {
 } from "@/lib/plan-types";
 import { DAY_NAMES } from "@/lib/plan-types";
 import {
+  DEFAULT_PERSONALIZATION,
   personalizePlanWorkouts,
   type PlanPersonalization,
 } from "@/lib/plan-personalization";
@@ -49,9 +50,10 @@ export function applyScheduleToPlan(
   personalization?: PlanPersonalization | null,
   options?: { healthMode?: HealthPlanMode }
 ): TrainingPlan & { scheduledWeeks: ScheduledWeek[] } {
-  const profiledPlan = personalization
-    ? personalizePlanWorkouts(plan, personalization)
-    : plan;
+  const profiledPlan = personalizePlanWorkouts(
+    plan,
+    personalization ?? DEFAULT_PERSONALIZATION
+  );
   const schedule = isValidSchedule(prefs) ? prefs : DEFAULT_SCHEDULE;
   const healthMode = options?.healthMode ?? "none";
 

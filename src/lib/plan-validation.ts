@@ -131,9 +131,7 @@ export function buildPlanPersonalization(
   age: number | null | undefined,
   fitnessLevel: string | null | undefined,
   goalRaceDate: Date | string | null | undefined
-): PlanPersonalization | null {
-  if (age == null && !fitnessLevel && !goalRaceDate) return null;
-
+): PlanPersonalization {
   return {
     age: age ?? null,
     fitnessLevel: parseFitnessLevel(fitnessLevel),
@@ -141,8 +139,8 @@ export function buildPlanPersonalization(
       goalRaceDate == null
         ? null
         : goalRaceDate instanceof Date
-          ? goalRaceDate.toISOString()
-          : goalRaceDate,
+          ? goalRaceDate.toISOString().slice(0, 10)
+          : String(goalRaceDate).slice(0, 10),
   };
 }
 

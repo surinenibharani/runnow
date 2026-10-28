@@ -1,3 +1,4 @@
+import { getPlanFilters, isGentlePlan } from "@/lib/plan-catalog";
 import type { RunType, TrainingPlan, WeekTemplate, Workout } from "@/lib/plan-types";
 import { getPlansForFamily } from "@/lib/plans";
 import type { SchedulePreferences } from "@/lib/schedule-builder";
@@ -283,10 +284,27 @@ const MARATHON_VOLUME: Record<FitnessLevel, number> = {
   advanced: 1.15,
 };
 
+/** Walk-first 16-week 5K — keep the walking ramp, nudge volume only a little. */
+const GENTLE_VOLUME: Record<FitnessLevel, number> = {
+  beginner: 1,
+  returning: 1.04,
+  intermediate: 1.08,
+  advanced: 1.12,
+};
+
 export function volumeForLevel(
   familyId: string,
-  level: FitnessLevel
+  level: FitnessLevel,
+  planId?: string
 ): number {
+  if (planId && isGentlePlan(planId)) return GENTLE_VOLUME[level];
+  if (
+    planId &&
+    familyId === "5k" &&
+    getPlanFilters(planId).includes("already-running")
+  ) {
+    return NOVICE_DISTANCE_VOLUME[level];
+  }
   if (familyId === "full-marathon") return MARATHON_VOLUME[level];
   if (familyId === "10k" || familyId === "half-marathon") {
     return NOVICE_DISTANCE_VOLUME[level];
@@ -344,9 +362,10 @@ export function volumeMultiplier(
   profile: PlanPersonalization,
   weekNum: number,
   totalWeeks: number,
-  familyId = "5k"
+  familyId = "5k",
+  planId?: string
 ): number {
-  let mult = volumeForLevel(familyId, profile.fitnessLevel);
+  let mult = volumeForLevel(familyId, profile.fitnessLevel, planId);
 
   if (profile.age) {
     if (profile.age >= 65) mult *= 0.85;
@@ -362,10 +381,6 @@ export function volumeMultiplier(
     if (weeksUntil !== null && weeksUntil === weeksLeftInPlan - 1) {
       mult *= 0.85;
     }
-  }
-
-  if (weekNum === totalWeeks) {
-    mult = Math.min(mult, 1);
   }
 
   return Math.min(1.4, Math.max(0.45, mult));
@@ -395,13 +410,17 @@ function isRestPlaceholder(workout: Workout): boolean {
 function beginnerWalkRunOnDistancePlan(
   familyId: string,
   profile: PlanPersonalization,
-  workout: Workout
+  workout: Workout,
+  planId?: string
 ): boolean {
-  return (
-    profile.fitnessLevel === "beginner" &&
-    isNoviceDistanceFamily(familyId) &&
-    workout.runType !== "race" &&
-    !isRestPlaceholder(workout)
+  if (profile.fitnessLevel !== "beginner") return false;
+  if (workout.runType === "race" || isRestPlaceholder(workout)) return false;
+  if (workout.runType === "walk-run" || workout.runType === "walking") {
+    return false;
+  }
+  if (isNoviceDistanceFamily(familyId)) return true;
+  return Boolean(
+    planId && getPlanFilters(planId).includes("already-running")
   );
 }
 
@@ -457,7 +476,8 @@ function adjustWorkout(
   workout: Workout,
   multiplier: number,
   profile: PlanPersonalization,
-  familyId: string
+  familyId: string,
+  planId: string
 ): Workout {
   if (isRestPlaceholder(workout)) return workout;
 
@@ -468,7 +488,12 @@ function adjustWorkout(
     raceMilesFromText(`${workout.intervals} ${workout.name}`) ??
     (isRace ? baseMiles : null);
 
-  const walkRun = beginnerWalkRunOnDistancePlan(familyId, profile, workout);
+  const walkRun = beginnerWalkRunOnDistancePlan(
+    familyId,
+    profile,
+    workout,
+    planId
+  );
 
   if (
     !walkRun &&
@@ -540,12 +565,21 @@ function adjustWeek(
   week: WeekTemplate,
   profile: PlanPersonalization,
   totalWeeks: number,
-  familyId: string
+  familyId: string,
+  planId: string
 ): WeekTemplate {
-  const mult = volumeMultiplier(profile, week.week, totalWeeks, familyId);
+  const mult = volumeMultiplier(
+    profile,
+    week.week,
+    totalWeeks,
+    familyId,
+    planId
+  );
   return {
     ...week,
-    runs: week.runs.map((run) => adjustWorkout(run, mult, profile, familyId)),
+    runs: week.runs.map((run) =>
+      adjustWorkout(run, mult, profile, familyId, planId)
+    ),
   };
 }
 
@@ -556,7 +590,7 @@ export function personalizePlanWorkouts(
   return {
     ...plan,
     weeks: plan.weeks.map((week) =>
-      adjustWeek(week, profile, plan.durationWeeks, plan.familyId)
+      adjustWeek(week, profile, plan.durationWeeks, plan.familyId, plan.id)
     ),
   };
 }
