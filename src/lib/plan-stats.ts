@@ -2,9 +2,19 @@ import {
   isStrengthSession,
   type TrainingPlan,
   type WeekTemplate,
-  type Workout,
 } from "@/lib/plan-types";
 import { applyScheduleToPlan, DEFAULT_SCHEDULE } from "@/lib/schedule-builder";
+import {
+  estimateMilesFromDuration,
+  formatWorkoutTimeAndDistance,
+  parseMilesFromText,
+} from "@/lib/workout-load";
+
+export {
+  formatWorkoutDistance,
+  formatWorkoutTimeAndDistance,
+  parseMilesFromText,
+} from "@/lib/workout-load";
 
 export type PlanStats = {
   durationWeeks: number;
@@ -13,117 +23,6 @@ export type PlanStats = {
   peakWeeklyMileageLabel: string;
   crossTrainDaysPerWeek: number;
 };
-
-function formatMilesNumber(miles: number): string {
-  const rounded = Math.round(miles * 10) / 10;
-  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
-}
-
-function raceMilesFromText(text: string): number | null {
-  const normalized = text.toLowerCase();
-  if (/\b26\.2\b/.test(normalized) || /\bfull marathon\b/.test(normalized)) {
-    return 26.2;
-  }
-  if (/\b13\.1\b/.test(normalized) || /\bhalf marathon\b/.test(normalized)) {
-    return 13.1;
-  }
-  if (/\b10k\b/.test(normalized) || /\b6\.2\b/.test(normalized)) {
-    return 6.2;
-  }
-  if (/\b5k\b/.test(normalized)) {
-    return 3.1;
-  }
-  return null;
-}
-
-function parseMileRange(text: string): { low: number; high: number } | null {
-  const match = text
-    .toLowerCase()
-    .match(/(\d+(?:\.\d+)?)\s*[–-]\s*(\d+(?:\.\d+)?)\s*mi\b/);
-  if (!match) return null;
-  const low = parseFloat(match[1]);
-  const high = parseFloat(match[2]);
-  if (!Number.isFinite(low) || !Number.isFinite(high) || high < low) return null;
-  return { low, high };
-}
-
-/** Parse distance in miles from workout interval text. */
-export function parseMilesFromText(text: string): number | null {
-  const race = raceMilesFromText(text);
-  if (race != null) return race;
-
-  const range = parseMileRange(text);
-  const miles: number[] = range ? [(range.low + range.high) / 2] : [];
-  const remainder = range
-    ? text.toLowerCase().replace(/(\d+(?:\.\d+)?)\s*[–-]\s*(\d+(?:\.\d+)?)\s*mi\b/g, " ")
-    : text.toLowerCase();
-
-  const miRegex = /(\d+(?:\.\d+)?)\s*mi\b/g;
-  let match: RegExpExecArray | null;
-  while ((match = miRegex.exec(remainder)) !== null) {
-    miles.push(parseFloat(match[1]));
-  }
-
-  if (miles.length === 0) return null;
-  return Math.round(miles.reduce((sum, n) => sum + n, 0) * 10) / 10;
-}
-
-function estimateMinutes(duration: string): number {
-  const nums = [...duration.matchAll(/(\d+(?:\.\d+)?)/g)].map((m) =>
-    parseFloat(m[1])
-  );
-  if (nums.length === 0) return 0;
-  if (nums.length === 1) return nums[0];
-  return (nums[0] + nums[1]) / 2;
-}
-
-function estimateMilesFromDuration(workout: Workout): number {
-  const minutes = estimateMinutes(workout.duration);
-  if (!minutes) return 0;
-
-  const race = raceMilesFromText(`${workout.intervals} ${workout.name}`);
-  if (race != null) return race;
-
-  if (workout.runType === "walking") {
-    return Math.round((minutes / 18) * 10) / 10;
-  }
-  if (workout.runType === "walk-run") {
-    return Math.round((minutes / 14) * 10) / 10;
-  }
-  return Math.round((minutes / 11) * 10) / 10;
-}
-
-/** How far this run should cover — prescribed miles, or an easy-pace estimate. */
-export function formatWorkoutDistance(workout: Workout): string | null {
-  const range = parseMileRange(workout.intervals);
-  if (range) {
-    return `~${formatMilesNumber(range.low)}–${formatMilesNumber(range.high)} mi`;
-  }
-
-  const estimated = estimateMilesFromDuration(workout);
-  const parsed = parseMilesFromText(`${workout.intervals} ${workout.name}`);
-
-  if (parsed != null && (estimated === 0 || parsed >= estimated * 0.65)) {
-    return `~${formatMilesNumber(parsed)} mi`;
-  }
-  if (estimated > 0) {
-    return `~${formatMilesNumber(estimated)} mi`;
-  }
-  if (parsed != null) {
-    return `~${formatMilesNumber(parsed)} mi`;
-  }
-  return null;
-}
-
-/** Time plus distance, e.g. "~25 min · ~1.8 mi". */
-export function formatWorkoutTimeAndDistance(workout: Workout): string {
-  const distance = formatWorkoutDistance(workout);
-  if (!distance) return workout.duration;
-  if (/\bmi\b|\bkm\b|\b5k\b|\b10k\b/i.test(workout.duration)) {
-    return workout.duration;
-  }
-  return `${workout.duration} · ${distance}`;
-}
 
 export function computeWeeklyMileage(week: WeekTemplate): number {
   let total = 0;

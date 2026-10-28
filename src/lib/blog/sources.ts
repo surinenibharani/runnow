@@ -1202,4 +1202,19 @@ export const SOURCES = {
     href: "https://www.irunfar.com/best-sports-bra-for-running",
     publisher: "iRunFar",
   },
+  nhsCouchTo5k: {
+    label: "Get running with Couch to 5K",
+    href: "https://www.nhs.uk/live-well/exercise/running-and-aerobic-exercises/get-running-with-couch-to-5k/",
+    publisher: "NHS",
+  },
+  higdonTrainingPrograms: {
+    label: "Hal Higdon training programs",
+    href: "https://www.halhigdon.com/training-programs/",
+    publisher: "Hal Higdon",
+  },
+  jackDanielsVdot: {
+    label: "Jack Daniels VDOT training system",
+    href: "https://www.vdoto2.com/",
+    publisher: "VDOT O2 (Jack Daniels)",
+  },
 } satisfies Record<string, BlogSource>;

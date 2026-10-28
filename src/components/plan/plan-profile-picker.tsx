@@ -43,8 +43,8 @@ export function PlanProfilePicker({
       <div>
         <h3 className="font-semibold">Your runner profile</h3>
         <p className="text-sm text-muted-foreground mt-1">
-          Age and fitness tune weekly volume and intensity. Set a first-race date
-          below for a countdown and plan-length hint.
+          Age and fitness change each run&apos;s time and distance. Set a
+          first-race date below for a countdown and plan-length hint.
         </p>
       </div>
 
@@ -106,6 +106,47 @@ export function PlanProfilePicker({
             );
           })}
         </div>
+        <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+          Miles and minutes step up from the Novice template the way classic
+          planners do (
+          <a
+            href="https://www.halhigdon.com/training-programs/"
+            className="text-primary hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Hal Higdon
+          </a>{" "}
+          Novice → Intermediate). Race-day time uses easy, conversational pace
+          — slower when you&apos;re newer (
+          <a
+            href="https://www.vdoto2.com/"
+            className="text-primary hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Jack Daniels
+          </a>{" "}
+          easy-pace bands).{" "}
+          <a
+            href="https://www.nhs.uk/live-well/exercise/running-and-aerobic-exercises/get-running-with-couch-to-5k/"
+            className="text-primary hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NHS Couch to 5K
+          </a>{" "}
+          keeps true beginners on ~20–30 minute walk–run sessions;{" "}
+          <a
+            href="https://acsm.org/education-resources/books/guidelines-exercise-testing-prescription/"
+            className="text-primary hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ACSM
+          </a>{" "}
+          progressive overload keeps the jump modest.
+        </p>
       </div>
 
       {(recommendation || timelineHint) && (

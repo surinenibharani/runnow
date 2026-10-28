@@ -41,6 +41,8 @@ export interface Workout {
   duration: string;
   intervals: string;
   runType: RunType;
+  /** Display distance, e.g. "~2.2 mi" — set when a profile scales the workout. */
+  distance?: string;
 }
 
 export interface ScheduleDay {

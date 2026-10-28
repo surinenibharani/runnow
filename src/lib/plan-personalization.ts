@@ -1,6 +1,15 @@
-import type { TrainingPlan, WeekTemplate, Workout } from "@/lib/plan-types";
+import type { RunType, TrainingPlan, WeekTemplate, Workout } from "@/lib/plan-types";
 import { getPlansForFamily } from "@/lib/plans";
 import type { SchedulePreferences } from "@/lib/schedule-builder";
+import {
+  estimateMinutes,
+  formatDistanceLabel,
+  formatDurationMinutes,
+  formatMilesNumber,
+  parseMileRange,
+  raceMilesFromText,
+  workoutBaseMiles,
+} from "@/lib/workout-load";
 
 export type FitnessLevel =
   | "beginner"
@@ -244,23 +253,62 @@ export function deriveSchedulePrefs(
   return { ...prefs, runDaysPerWeek };
 }
 
-function volumeMultiplier(profile: PlanPersonalization, weekNum: number, totalWeeks: number): number {
-  let mult = 1;
+/**
+ * Distance volume vs the written (Novice) template.
+ * Hal Higdon Intermediate tables typically sit ~20–30% above Novice weekly
+ * mileage; ACSM progressive overload keeps the jump a level change, not a spike.
+ */
+export const LEVEL_VOLUME: Record<FitnessLevel, number> = {
+  beginner: 1,
+  returning: 1.1,
+  intermediate: 1.22,
+  advanced: 1.32,
+};
 
-  switch (profile.fitnessLevel) {
-    case "beginner":
-      mult = 0.88;
-      break;
-    case "returning":
-      mult = 0.94;
-      break;
-    case "intermediate":
-      mult = 1;
-      break;
-    case "advanced":
-      mult = 1.05;
-      break;
-  }
+/**
+ * Easy/conversational minutes per mile (Jack Daniels E-pace bands for
+ * recreational VDOT ~30–52). Walk-run overall pace matches NHS Couch to 5K
+ * session length (~20–30 min covering ~1.5–2 mi for true beginners).
+ */
+const EASY_MIN_PER_MILE: Record<FitnessLevel, number> = {
+  beginner: 13,
+  returning: 11.5,
+  intermediate: 10.2,
+  advanced: 8.8,
+};
+
+const WALK_RUN_MIN_PER_MILE: Record<FitnessLevel, number> = {
+  beginner: 14,
+  returning: 13,
+  intermediate: 12,
+  advanced: 11,
+};
+
+/** Race-day finish estimate — a bit quicker than easy, still not elite. */
+const RACE_MIN_PER_MILE: Record<FitnessLevel, number> = {
+  beginner: 11.5,
+  returning: 10.2,
+  intermediate: 9,
+  advanced: 7.8,
+};
+
+export function easyPaceMinPerMile(
+  level: FitnessLevel,
+  runType: RunType
+): number {
+  if (runType === "walking") return 18;
+  if (runType === "walk-run") return WALK_RUN_MIN_PER_MILE[level];
+  if (runType === "race") return RACE_MIN_PER_MILE[level];
+  if (runType === "recovery") return EASY_MIN_PER_MILE[level] + 0.6;
+  return EASY_MIN_PER_MILE[level];
+}
+
+export function volumeMultiplier(
+  profile: PlanPersonalization,
+  weekNum: number,
+  totalWeeks: number
+): number {
+  let mult = LEVEL_VOLUME[profile.fitnessLevel];
 
   if (profile.age) {
     if (profile.age >= 65) mult *= 0.85;
@@ -276,35 +324,61 @@ function volumeMultiplier(profile: PlanPersonalization, weekNum: number, totalWe
     if (weeksUntil !== null && weeksUntil === weeksLeftInPlan - 1) {
       mult *= 0.85;
     }
-    if (weekNum === totalWeeks) {
-      mult = 1;
-    }
   }
 
-  return Math.min(1.12, Math.max(0.75, mult));
+  if (weekNum === totalWeeks) {
+    mult = Math.min(mult, 1);
+  }
+
+  return Math.min(1.4, Math.max(0.75, mult));
 }
 
-function scaleDuration(duration: string, multiplier: number): string {
-  if (multiplier === 1) return duration;
-  return duration.replace(
-    /~?(\d+)\s*[–-]\s*(\d+)\s*min/g,
-    (_, low, high) => {
-      const a = Math.max(10, Math.round(Number(low) * multiplier));
-      const b = Math.max(a + 2, Math.round(Number(high) * multiplier));
-      return `~${a}–${b} min`;
-    }
-  ).replace(/~?(\d+)\s*min/g, (_, mins) => {
-    const scaled = Math.max(10, Math.round(Number(mins) * multiplier));
-    return `~${scaled} min`;
-  });
+function roundSessionMinutes(minutes: number): number {
+  const rounded =
+    minutes >= 50
+      ? Math.round(minutes / 5) * 5
+      : Math.round(minutes / 2) * 2;
+  return Math.min(180, Math.max(10, rounded));
 }
 
-function scaleMiles(text: string, multiplier: number): string {
-  if (multiplier === 1) return text;
-  return text.replace(/(\d+(?:\.\d+)?)\s*mi\b/g, (_, num) => {
-    const scaled = Math.round(parseFloat(num) * multiplier * 10) / 10;
-    return `${scaled} mi`;
-  });
+function roundMiles(miles: number): number {
+  return Math.round(Math.max(0.5, miles) * 10) / 10;
+}
+
+function roundClockMinutes(value: number): number {
+  if (value < 2) return Math.max(1, Math.round(value * 2) / 2);
+  return Math.max(1, Math.round(value));
+}
+
+function scaleIntervalRecipe(
+  text: string,
+  mileRatio: number,
+  timeRatio: number
+): string {
+  let next = text;
+  if (Math.abs(mileRatio - 1) > 0.02) {
+    next = next.replace(
+      /(\d+(?:\.\d+)?)\s*[–-]\s*(\d+(?:\.\d+)?)\s*mi\b/g,
+      (_, low, high) => {
+        const a = roundMiles(parseFloat(low) * mileRatio);
+        const b = Math.max(a + 0.5, roundMiles(parseFloat(high) * mileRatio));
+        return `${formatMilesNumber(a)}–${formatMilesNumber(b)} mi`;
+      }
+    );
+    next = next.replace(/(\d+(?:\.\d+)?)\s*mi\b/g, (_, num) => {
+      return `${formatMilesNumber(roundMiles(parseFloat(num) * mileRatio))} mi`;
+    });
+  }
+  if (Math.abs(timeRatio - 1) > 0.02) {
+    next = next.replace(/(\d+(?:\.\d+)?)\s*min\b/g, (_, num) => {
+      return `${roundClockMinutes(parseFloat(num) * timeRatio)} min`;
+    });
+    next = next.replace(/(\d+)\s*sec\b/g, (_, num) => {
+      const scaled = Math.max(15, Math.round(parseFloat(num) * timeRatio));
+      return `${scaled} sec`;
+    });
+  }
+  return next;
 }
 
 function adjustWorkout(
@@ -312,20 +386,51 @@ function adjustWorkout(
   multiplier: number,
   profile: PlanPersonalization
 ): Workout {
-  if (multiplier === 1 && !profile.age) return workout;
-  if (workout.runType === "race") return workout;
+  const baseMiles = workoutBaseMiles(workout);
+  const baseMinutes = estimateMinutes(workout.duration) || baseMiles * 11;
+  const isRace = workout.runType === "race";
+  const raceMiles =
+    raceMilesFromText(`${workout.intervals} ${workout.name}`) ??
+    (isRace ? baseMiles : null);
 
-  const duration = scaleDuration(workout.duration, multiplier);
-  const intervals = scaleMiles(workout.intervals, multiplier);
+  const targetMiles = roundMiles(
+    isRace && raceMiles ? raceMiles : baseMiles * multiplier
+  );
+
+  if (
+    profile.fitnessLevel === "beginner" &&
+    Math.abs(multiplier - 1) < 0.02
+  ) {
+    return {
+      ...workout,
+      distance: formatDistanceLabel(isRace && raceMiles ? raceMiles : baseMiles),
+    };
+  }
+
+  const targetMinutes = roundSessionMinutes(
+    isRace
+      ? targetMiles * easyPaceMinPerMile(profile.fitnessLevel, workout.runType)
+      : baseMinutes * multiplier
+  );
+
+  const mileRatio =
+    !isRace && baseMiles > 0 ? targetMiles / baseMiles : 1;
+  const timeRatio = baseMinutes > 0 ? targetMinutes / baseMinutes : 1;
+  const duration = formatDurationMinutes(targetMinutes, isRace);
+  const range = parseMileRange(workout.intervals);
+  const distance = range
+    ? `~${formatMilesNumber(roundMiles(range.low * mileRatio))}–${formatMilesNumber(roundMiles(range.high * mileRatio))} mi`
+    : formatDistanceLabel(targetMiles);
+  const intervals = scaleIntervalRecipe(workout.intervals, mileRatio, timeRatio);
 
   let description = workout.description;
   if (multiplier < 0.95 && profile.fitnessLevel !== "advanced") {
     description = `${description} Ease off if breathing feels strained.`;
-  } else if (multiplier > 1 && profile.fitnessLevel === "advanced") {
+  } else if (multiplier > 1.05 && profile.fitnessLevel === "advanced") {
     description = `${description} Optional: add 5 easy minutes if you feel strong.`;
   }
 
-  return { ...workout, duration, intervals, description };
+  return { ...workout, duration, intervals, distance, description };
 }
 
 function adjustWeek(
@@ -334,8 +439,6 @@ function adjustWeek(
   totalWeeks: number
 ): WeekTemplate {
   const mult = volumeMultiplier(profile, week.week, totalWeeks);
-  if (mult === 1 && !profile.age && !profile.goalRaceDate) return week;
-
   return {
     ...week,
     runs: week.runs.map((run) => adjustWorkout(run, mult, profile)),
@@ -346,14 +449,6 @@ export function personalizePlanWorkouts(
   plan: TrainingPlan,
   profile: PlanPersonalization
 ): TrainingPlan {
-  if (
-    !profile.age &&
-    profile.fitnessLevel === "beginner" &&
-    !profile.goalRaceDate
-  ) {
-    return plan;
-  }
-
   return {
     ...plan,
     weeks: plan.weeks.map((week) =>
