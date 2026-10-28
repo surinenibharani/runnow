@@ -612,7 +612,14 @@ export function TrainingPlanEditorCard({
                   className="flex items-center justify-between gap-3 rounded-lg border border-border/60 bg-background/50 px-3 py-2 text-sm"
                 >
                   <span className="font-medium w-10 shrink-0">{day.dayName}</span>
-                  <span className="min-w-0 flex-1 truncate">{day.label}</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate">{day.label}</span>
+                    {day.load && (
+                      <span className="block truncate text-xs text-muted-foreground">
+                        {day.load}
+                      </span>
+                    )}
+                  </span>
                   <Badge
                     variant="outline"
                     className={cn(

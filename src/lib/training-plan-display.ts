@@ -1,4 +1,5 @@
 import { parseCompletedIdsFromDb } from "@/lib/plan-alignment";
+import { formatWorkoutTimeAndDistance } from "@/lib/plan-stats";
 import { getFamilyById, getPlanById } from "@/lib/plans";
 import { DAY_NAMES, getTotalWorkouts, isStrengthSession } from "@/lib/plan-types";
 import {
@@ -14,6 +15,7 @@ import type { TrainingPlanState } from "@/lib/training-plan-client";
 export type TrainingPlanWeekDayPreview = {
   dayName: string;
   label: string;
+  load?: string;
   kind: "run" | "cross-train" | "rest";
   isStrength?: boolean;
 };
@@ -127,6 +129,12 @@ export function buildTrainingPlanWeekPreview(
           : day.kind === "cross-train"
             ? (day.crossTraining?.name ?? "Cross-train")
             : "Rest",
+      load:
+        day.kind === "run" && day.run
+          ? formatWorkoutTimeAndDistance(day.run)
+          : day.kind === "cross-train"
+            ? day.crossTraining?.duration
+            : undefined,
     })),
   };
 }

@@ -23,6 +23,7 @@ import {
   type ScheduledWeek,
   type TrainingPlan,
 } from "@/lib/plan-types";
+import { formatWorkoutTimeAndDistance } from "@/lib/plan-stats";
 
 type PlanPrintableSheetProps = {
   plan: TrainingPlan;
@@ -71,8 +72,8 @@ function WeekTable({
                 <th className="px-1.5 py-1.5 font-semibold sm:px-2">Day</th>
                 <th className="px-1.5 py-1.5 font-semibold sm:px-2">Session</th>
                 <th className="px-1.5 py-1.5 font-semibold sm:px-2">Plan</th>
-                <th className="w-[4.5rem] px-1 py-1.5 text-center font-semibold">
-                  Duration
+                <th className="w-[6.5rem] px-1 py-1.5 text-center font-semibold">
+                  Time / distance
                 </th>
                 <th className="w-[5.5rem] px-1 py-1.5 text-center font-semibold">
                   Cross-train
@@ -94,8 +95,8 @@ function WeekTable({
                       ? day.crossTraining?.name ?? "Cross-train"
                       : "Rest";
                 const planHint =
-                  day.kind === "run"
-                    ? day.run?.duration ?? ""
+                  day.kind === "run" && day.run
+                    ? formatWorkoutTimeAndDistance(day.run)
                     : day.kind === "cross-train"
                       ? day.crossTraining?.duration ?? ""
                       : "—";
@@ -135,7 +136,7 @@ function WeekTable({
                           —
                         </span>
                       ) : (
-                        <WriteLine label="min" />
+                        <WriteLine label="min / mi" />
                       )}
                     </td>
                     <td className="px-1 py-1.5 align-top">

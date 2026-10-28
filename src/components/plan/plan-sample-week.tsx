@@ -67,6 +67,11 @@ export function PlanSampleWeek({
             <p className="mt-0.5 text-[9px] text-muted-foreground capitalize">
               {dayKindLabel(day)}
             </p>
+            {day.load && (
+              <p className="mt-0.5 text-[9px] leading-tight text-muted-foreground">
+                {day.load}
+              </p>
+            )}
           </div>
         ))}
       </div>
@@ -94,6 +99,11 @@ export function PlanSampleWeek({
                 <p className="mt-0.5 text-sm font-medium text-foreground">
                   {day.label}
                 </p>
+                {day.load && (
+                  <p className="mt-0.5 text-xs font-medium text-foreground/80">
+                    {day.load}
+                  </p>
+                )}
                 {day.detail && (
                   <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground line-clamp-2">
                     {day.detail}

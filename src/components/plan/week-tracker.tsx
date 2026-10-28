@@ -43,6 +43,7 @@ import {
 import { remapCompletedIds } from "@/lib/plan-validation";
 import { CrossTrainingDetails, CrossTrainingPreview } from "@/components/plan/cross-training-details";
 import { PlanFamilyIllustration, WorkoutKindAccent } from "@/components/visuals/plan-scenes";
+import { formatWorkoutTimeAndDistance } from "@/lib/plan-stats";
 import { getActivityCaption } from "@/lib/workout-caption";
 import { StravaConnectBanner } from "@/components/strava/strava-connect-banner";
 import { SchedulePicker } from "@/components/plan/schedule-picker";
@@ -1110,7 +1111,7 @@ export function WeekTracker({
                 const duration = isCompleteRest
                   ? "Rest"
                   : day.kind === "run"
-                    ? day.run!.duration
+                    ? formatWorkoutTimeAndDistance(day.run!)
                     : day.crossTraining!.duration;
 
                 return (
@@ -1234,7 +1235,10 @@ export function WeekTracker({
                                 <p className="text-sm font-medium mb-1">
                                   Workout details
                                 </p>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                <p className="text-sm font-medium text-foreground">
+                                  {formatWorkoutTimeAndDistance(day.run)}
+                                </p>
+                                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
                                   {day.run.intervals}
                                 </p>
                                 <WorkoutIntervalTimer

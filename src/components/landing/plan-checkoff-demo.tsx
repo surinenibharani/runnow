@@ -1,9 +1,9 @@
 import { Check, Flame } from "lucide-react";
 
 const workouts = [
-  { day: "Mon", name: "Easy Does It", detail: "Walk–jog · ~25 min" },
-  { day: "Wed", name: "Shuffle Club", detail: "Walk–jog · ~25 min" },
-  { day: "Sat", name: "Weekend Wander", detail: "Easy long · ~30 min" },
+  { day: "Mon", name: "Easy Does It", detail: "Walk–jog · ~25 min · ~1.8 mi" },
+  { day: "Wed", name: "Shuffle Club", detail: "Walk–jog · ~25 min · ~1.8 mi" },
+  { day: "Sat", name: "Weekend Wander", detail: "Easy long · ~30 min · ~2.1 mi" },
 ];
 
 /** CSS-animated preview of checking off a week — no video asset required. */
