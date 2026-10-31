@@ -145,7 +145,7 @@ export function getMoreNavLinks(options: {
   isAuthenticated: boolean;
 }): NavLink[] {
   return flattenNavGroups(mainNavGroups, options).filter(
-    (link) => link.navSlot === "more"
+    (link) => link.navSlot === "more" && !link.comingSoon
   );
 }
 

@@ -10,7 +10,7 @@ import {
   footerTipsLinks,
   footerTrainLinks,
 } from "@/lib/navigation";
-import { INSTAGRAM_HANDLE, INSTAGRAM_URL, SITE_NAME } from "@/lib/site";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, SITE_COPYRIGHT_YEAR, SITE_NAME } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function Footer() {
@@ -63,7 +63,9 @@ export function Footer() {
           <div>
             <h3 className="mb-3 text-sm font-semibold">Learn</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              {footerLearnLinks.map((link) => (
+              {footerLearnLinks
+              .filter((link) => !link.comingSoon)
+              .map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -131,7 +133,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center gap-3 text-center text-xs text-muted-foreground sm:flex-row sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+            © {SITE_COPYRIGHT_YEAR} {SITE_NAME}. All rights reserved.
             {" "}
             Educational fitness content — not medical advice.
           </p>

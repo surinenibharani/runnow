@@ -80,7 +80,7 @@ export default function ForWomenRunnersInjuriesPage() {
         </FadeIn>
 
         <FadeIn className="mb-8">
-          <MedicalDisclaimerBanner variant="full">
+          <MedicalDisclaimerBanner>
             Persistent pelvic, bone, or postpartum symptoms need a clinician —
             not another training week.{" "}
           </MedicalDisclaimerBanner>

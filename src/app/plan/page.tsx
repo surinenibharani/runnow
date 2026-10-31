@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FadeIn } from "@/components/motion/fade-in";
@@ -8,6 +7,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PlanCatalog } from "@/components/plan/plan-catalog";
 import { PlanLoading } from "@/components/plan/plan-loading";
+import { WeekTracker } from "@/components/plan/week-tracker";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
 import { getPlanById } from "@/lib/plans";
@@ -15,11 +15,6 @@ import {
   buildPlanPageMetadata,
   plansPageJsonLd,
 } from "@/lib/seo/plans";
-
-const WeekTracker = dynamic(
-  () => import("@/components/plan/week-tracker").then((m) => ({ default: m.WeekTracker })),
-  { loading: () => <PlanLoading variant="bundle" /> }
-);
 
 type PlanPageProps = {
   searchParams: Promise<{ plan?: string }>;

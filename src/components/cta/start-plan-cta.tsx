@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { DEFAULT_PLAN_ID } from "@/lib/plans";
 import { cn } from "@/lib/utils";
 
@@ -35,15 +35,13 @@ export function StartPlanCta({
 
   if (variant === "button") {
     return (
-      <Button
-        nativeButton={false}
-        render={<Link href="/start" />}
-        size="sm"
-        className={className}
+      <Link
+        href="/start"
+        className={cn(buttonVariants({ size: "sm" }), "gap-1.5", className)}
       >
         Start here
         <ArrowRight className="size-4" aria-hidden />
-      </Button>
+      </Link>
     );
   }
 
@@ -60,23 +58,17 @@ export function StartPlanCta({
           <p className="mt-1 text-sm text-muted-foreground">{description}</p>
         </div>
         <div className="flex shrink-0 flex-wrap gap-2">
-          <Button
-            nativeButton={false}
-            render={<Link href="/start" />}
-            className="gap-2"
-          >
+          <Link href="/start" className={cn(buttonVariants(), "gap-2")}>
             Start here
             <ArrowRight className="size-4" aria-hidden />
-          </Button>
+          </Link>
           {!primaryOnly && (
-            <Button
-              nativeButton={false}
-              render={<Link href={browseHref} />}
-              variant="outline"
-              className="gap-2"
+            <Link
+              href={browseHref}
+              className={cn(buttonVariants({ variant: "outline" }), "gap-2")}
             >
               Browse plans
-            </Button>
+            </Link>
           )}
         </div>
       </div>
@@ -99,26 +91,26 @@ export function StartPlanCta({
           {description}
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <Button
-            nativeButton={false}
-            render={<Link href="/start" />}
-            size="lg"
-            variant="secondary"
-            className="h-12 gap-2 px-8 text-base"
+          <Link
+            href="/start"
+            className={cn(
+              buttonVariants({ size: "lg", variant: "secondary" }),
+              "h-12 gap-2 px-8 text-base"
+            )}
           >
             Start here
             <ArrowRight className="size-4" aria-hidden />
-          </Button>
+          </Link>
           {!primaryOnly && (
-            <Button
-              nativeButton={false}
-              render={<Link href={browseHref} />}
-              size="lg"
-              variant="outline"
-              className="h-12 border-primary-foreground/35 bg-transparent px-6 text-base text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+            <Link
+              href={browseHref}
+              className={cn(
+                buttonVariants({ size: "lg", variant: "outline" }),
+                "h-12 border-primary-foreground/35 bg-transparent px-6 text-base text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+              )}
             >
               Browse plans
-            </Button>
+            </Link>
           )}
         </div>
       </div>

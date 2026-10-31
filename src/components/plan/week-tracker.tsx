@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Check, ChevronDown, Cloud, Flame, Moon, RotateCcw, Sparkles } from "lucide-react";
 import {
   PLANS,
@@ -187,15 +186,11 @@ export function WeekTracker({
     explicitUrlPlanIdRef.current = explicitUrlPlanId;
   });
 
-  const [healthCrossTrain, setHealthCrossTrain] = useState(
-    () => readPlanBrief(initialPlan.id)?.crossTrain ?? []
-  );
-  const [healthFocus, setHealthFocus] = useState<string | null>(
-    () => readPlanBrief(initialPlan.id)?.healthFocus ?? null
-  );
-  const [healthMode, setHealthMode] = useState<HealthPlanMode>(
-    () => readPlanBrief(initialPlan.id)?.healthMode ?? "none"
-  );
+  const [healthCrossTrain, setHealthCrossTrain] = useState<
+    PlanBrief["crossTrain"]
+  >([]);
+  const [healthFocus, setHealthFocus] = useState<string | null>(null);
+  const [healthMode, setHealthMode] = useState<HealthPlanMode>("none");
 
   useEffect(() => {
     queueMicrotask(() => {
@@ -1154,17 +1149,7 @@ export function WeekTracker({
                                 : `Mark ${title} complete`
                             }
                           >
-                            <AnimatePresence mode="wait">
-                              {isDone && (
-                                <motion.div
-                                  initial={{ scale: 0 }}
-                                  animate={{ scale: 1 }}
-                                  exit={{ scale: 0 }}
-                                >
-                                  <Check className="size-5" />
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
+                            {isDone ? <Check className="size-5" /> : null}
                           </button>
                         ) : (
                           <div className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-border bg-muted">
@@ -1223,15 +1208,8 @@ export function WeekTracker({
                       </div>
                     </CardHeader>
 
-                    <AnimatePresence>
-                      {isExpanded && !isCompleteRest && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="overflow-hidden"
-                        >
+                    {isExpanded && !isCompleteRest ? (
+                        <div>
                           <CardContent className="pt-0 pb-4 sm:pb-6 px-4 sm:px-6 ml-14 sm:ml-16">
                             {day.kind === "run" && day.run && (
                               <div className="rounded-xl bg-muted/50 p-4">
@@ -1256,9 +1234,8 @@ export function WeekTracker({
                               />
                             )}
                           </CardContent>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                        </div>
+                    ) : null}
                   </Card>
                 );
               })}

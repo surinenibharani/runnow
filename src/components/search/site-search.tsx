@@ -30,7 +30,7 @@ export function SiteSearch({
   className,
   inputClassName,
   defaultQuery = "",
-  placeholder = "Search LetsRunNow",
+  placeholder = "Search",
   onNavigate,
 }: SiteSearchProps) {
   const router = useRouter();

@@ -84,28 +84,6 @@ export function PlanFamilyIllustration({
   );
 }
 
-export function PlanPageHero({ className }: { className?: string }) {
-  return (
-    <IllustrationBanner
-      gradient={PLAN_GRADIENTS.hero}
-      className={cn("h-36 rounded-2xl", className)}
-      label="Training plan progress illustration"
-      decorative
-    >
-      <>
-        <path d="M10 60 Q35 44 60 56 T110 52" className="stroke-primary/30" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-        <path d="M10 60 Q35 44 60 56 T110 52" className="stroke-orange-500/20" strokeWidth="6" fill="none" strokeLinecap="round" />
-        <circle cx="60" cy="54" r="4" className="fill-primary/80" />
-        <path d="M60 58 L54 70 M60 58 L66 70 M60 58 L60 66" className="stroke-primary/75" strokeWidth="2" strokeLinecap="round" />
-        <rect x="18" y="34" width="14" height="18" rx="3" className="fill-primary/10 stroke-primary/25" strokeWidth="1.5" />
-        <rect x="36" y="30" width="14" height="22" rx="3" className="fill-primary/15 stroke-primary/30" strokeWidth="1.5" />
-        <rect x="54" y="26" width="14" height="26" rx="3" className="fill-primary/20 stroke-primary/35" strokeWidth="1.5" />
-        <rect x="72" y="22" width="14" height="30" rx="3" className="fill-primary/25 stroke-primary/40" strokeWidth="1.5" />
-      </>
-    </IllustrationBanner>
-  );
-}
-
 type WorkoutKind = "run" | "cross-train" | "strength" | "rest";
 
 const WORKOUT_ACCENTS: Record<WorkoutKind, string> = {

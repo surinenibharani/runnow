@@ -131,7 +131,7 @@ export default async function CommonInjuryDetailPage({
         <FadeIn className="mb-8">
           <CommonInjuryCard injury={injury} />
           {pathway && <RelatedPathways pathway={pathway} className="mt-6" />}
-          <MedicalDisclaimerBanner variant="full" className="mt-6">
+          <MedicalDisclaimerBanner className="mt-6">
             Persistent, worsening, or one-spot pain needs a professional exam.{" "}
           </MedicalDisclaimerBanner>
           <BlogFaq items={faqs} heading="Quick questions" />

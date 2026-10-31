@@ -126,7 +126,7 @@ export function getRaceCountdown(
   const goal = parseLocalDate(goalDateIso);
   if (days === null || !goal) return null;
 
-  const raceLabel = goal.toLocaleDateString(undefined, {
+  const raceLabel = goal.toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",
     day: "numeric",
@@ -626,7 +626,7 @@ export function getPlanTimelineHint(
   const weeksLeftInPlan = plan.durationWeeks - currentWeek + 1;
   const raceDate = parseLocalDate(profile.goalRaceDate);
   const raceLabel = (raceDate ?? new Date(profile.goalRaceDate)).toLocaleDateString(
-    undefined,
+    "en-US",
     {
       month: "short",
       day: "numeric",

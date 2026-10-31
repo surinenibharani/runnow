@@ -212,24 +212,3 @@ export function GearGroupVisual({ group, className }: GearGroupVisualProps) {
   );
 }
 
-type GearPageHeroProps = {
-  className?: string;
-};
-
-export function GearPageHero({ className }: GearPageHeroProps) {
-  return (
-    <IllustrationBanner
-      gradient="from-violet-500/20 via-orange-400/10 to-card"
-      className={cn("h-24 rounded-2xl sm:h-32", className)}
-      label="Running gear guide illustration"
-      decorative
-    >
-      <>
-        <path d="M20 58 Q40 50 60 58 T100 58" className="stroke-primary/25" strokeWidth="2" fill="none" />
-        <path d="M28 58 C28 50 36 44 48 44 H72 C84 44 92 50 92 58 V62 H28 Z" className="fill-violet-500/20 stroke-violet-600/35" strokeWidth="1.5" />
-        <path d="M54 38 L46 46 V66 H58 L60 50 H72 L74 66 H86 V46 L78 38 H68 L60 44 H54 Z" className="fill-sky-500/15 stroke-sky-600/30" strokeWidth="1.5" />
-        <circle cx="72" cy="48" r="10" className="fill-emerald-500/15 stroke-emerald-600/30" strokeWidth="1.5" />
-      </>
-    </IllustrationBanner>
-  );
-}

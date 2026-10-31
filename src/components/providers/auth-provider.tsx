@@ -7,7 +7,7 @@ import { ProfileModalProvider } from "@/components/profile/profile-modal";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   return (
-    <SessionProvider>
+    <SessionProvider refetchOnWindowFocus={false} refetchInterval={0}>
       <ProfileModalProvider>
         {children}
         <AuthWelcomeModal />

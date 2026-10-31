@@ -119,7 +119,7 @@ export default function InjuriesPage() {
         </FadeIn>
 
         <FadeIn className="mb-8">
-          <MedicalDisclaimerBanner variant="full">
+          <MedicalDisclaimerBanner>
             Sharp pain, swelling, numbness, or pain that worsens over days
             warrants a visit to a doctor or sports physiotherapist. When in
             doubt, rest and get checked out.{" "}

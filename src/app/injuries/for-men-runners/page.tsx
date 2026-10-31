@@ -80,7 +80,7 @@ export default function ForMenRunnersInjuriesPage() {
         </FadeIn>
 
         <FadeIn className="mb-8">
-          <MedicalDisclaimerBanner variant="full">
+          <MedicalDisclaimerBanner>
             Chest pain, fainting, or unusual breathlessness while running need
             urgent medical care — not another workout.{" "}
           </MedicalDisclaimerBanner>

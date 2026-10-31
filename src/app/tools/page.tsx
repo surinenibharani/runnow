@@ -71,13 +71,6 @@ export default function ToolsPage() {
           </p>
         </FadeIn>
 
-        <FadeIn className="mb-8">
-          <MedicalDisclaimerBanner>
-            Pace and race estimates are ballpark numbers, not a training
-            prescription.{" "}
-          </MedicalDisclaimerBanner>
-        </FadeIn>
-
         <StaggerChildren className="grid gap-4 sm:grid-cols-1">
           {TOOLS.map((tool) => {
             const Icon = tool.icon;
@@ -109,6 +102,13 @@ export default function ToolsPage() {
             );
           })}
         </StaggerChildren>
+
+        <FadeIn className="mt-8">
+          <MedicalDisclaimerBanner>
+            Pace and race estimates are ballpark numbers, not a training
+            prescription.{" "}
+          </MedicalDisclaimerBanner>
+        </FadeIn>
 
         <FadeIn className="mt-10 text-center text-sm text-muted-foreground">
           <p>

@@ -240,7 +240,7 @@ export function PlanCatalogExplorer({
       <div
         role="group"
         aria-label="Filter plans for this distance"
-        className="-mx-4 mb-4 flex w-auto max-w-none gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
+        className="mb-4 flex flex-wrap gap-2"
       >
         {PLAN_FILTERS.map((filter) => {
           const active = activeFilters.includes(filter.id);

@@ -503,7 +503,7 @@ export function Navbar() {
               : "w-28 sm:w-36 md:w-40 xl:w-48"
           )}
           inputClassName="bg-background/80"
-          placeholder={useHamburger ? "Search" : "Search LetsRunNow"}
+          placeholder="Search"
         />
 
         {!useHamburger && <NavAuth variant="desktop" />}

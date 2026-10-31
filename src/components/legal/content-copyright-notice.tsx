@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_COPYRIGHT_YEAR, SITE_NAME } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type ContentCopyrightNoticeProps = {
@@ -31,7 +31,7 @@ export function ContentCopyrightNotice({
         className
       )}
     >
-      {label} is © {new Date().getFullYear()} {SITE_NAME}. For personal use
+      {label} is © {SITE_COPYRIGHT_YEAR} {SITE_NAME}. For personal use
       only — please don’t republish or scrape it for another site. See our{" "}
       <Link href="/terms" className="underline underline-offset-2 hover:text-foreground">
         Terms

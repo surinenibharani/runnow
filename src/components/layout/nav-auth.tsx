@@ -5,7 +5,8 @@ import { User } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { useProfileModal } from "@/components/profile/profile-modal";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type NavAuthProps = {
   variant: "desktop" | "mobile";
@@ -25,14 +26,12 @@ export function NavAuth({ variant, onNavigate }: NavAuthProps) {
         <StartPlanCta variant="button" />
         {isAuthenticated ? (
           <>
-            <Button
-              nativeButton={false}
-              render={<Link href="/dashboard" />}
-              variant="ghost"
-              size="sm"
+            <Link
+              href="/dashboard"
+              className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}
             >
               Dashboard
-            </Button>
+            </Link>
             {displayName ? (
               <span className="hidden max-w-[7rem] truncate text-sm text-muted-foreground xl:inline">
                 {displayName}
@@ -52,21 +51,18 @@ export function NavAuth({ variant, onNavigate }: NavAuthProps) {
           </>
         ) : (
           <>
-            <Button
-              nativeButton={false}
-              render={<Link href="/login" />}
-              variant="outline"
-              size="sm"
+            <Link
+              href="/login"
+              className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
             >
               Log in
-            </Button>
-            <Button
-              nativeButton={false}
-              render={<Link href="/signup" />}
-              size="sm"
+            </Link>
+            <Link
+              href="/signup"
+              className={cn(buttonVariants({ size: "sm" }))}
             >
               Sign up
-            </Button>
+            </Link>
           </>
         )}
       </div>
@@ -81,15 +77,16 @@ export function NavAuth({ variant, onNavigate }: NavAuthProps) {
             {displayName}
           </p>
         ) : null}
-        <Button
-          nativeButton={false}
-          render={<Link href="/dashboard" />}
-          variant="outline"
-          className="justify-start"
+        <Link
+          href="/dashboard"
+          className={cn(
+            buttonVariants({ variant: "outline" }),
+            "justify-start"
+          )}
           onClick={onNavigate}
         >
           Dashboard
-        </Button>
+        </Link>
         <Button
           variant="outline"
           className="justify-start"
@@ -114,23 +111,20 @@ export function NavAuth({ variant, onNavigate }: NavAuthProps) {
 
   return (
     <div className="mt-2 flex flex-col gap-2">
-      <Button
-        nativeButton={false}
-        render={<Link href="/login" />}
-        variant="outline"
-        className="justify-start"
+      <Link
+        href="/login"
+        className={cn(buttonVariants({ variant: "outline" }), "justify-start")}
         onClick={onNavigate}
       >
         Log in
-      </Button>
-      <Button
-        nativeButton={false}
-        render={<Link href="/signup" />}
-        className="justify-start"
+      </Link>
+      <Link
+        href="/signup"
+        className={cn(buttonVariants(), "justify-start")}
         onClick={onNavigate}
       >
         Sign up
-      </Button>
+      </Link>
     </div>
   );
 }

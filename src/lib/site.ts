@@ -1,6 +1,8 @@
 import { BRAND_CAPTION } from "@/lib/brand";
 
 export const SITE_NAME = "LetsRunNow";
+/** Shown in footers and copyright lines — keep in sync with the calendar year. */
+export const SITE_COPYRIGHT_YEAR = 2026;
 /** Matches the logo caption. */
 export const SITE_TAGLINE = BRAND_CAPTION;
 export const SITE_DESCRIPTION =

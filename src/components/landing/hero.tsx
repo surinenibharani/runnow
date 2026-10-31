@@ -46,7 +46,7 @@ export function Hero() {
             </Button>
             <Link
               href="/blog/why-letsrunnow"
-              className="relative z-10 mt-3 inline-flex min-h-11 items-center justify-center text-sm font-medium text-primary hover:underline"
+              className="relative z-10 mt-6 inline-flex min-h-11 items-center justify-center text-sm font-medium text-primary hover:underline"
             >
               Why LetsRunNow?
             </Link>

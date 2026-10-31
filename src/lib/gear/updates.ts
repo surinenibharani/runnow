@@ -45,10 +45,10 @@ export function getGearUpdatesCoverage(): {
 
 export function formatGearUpdatedAt(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
+    month: "short",
     day: "numeric",
     year: "numeric",
+    timeZone: "UTC",
   });
 }
 

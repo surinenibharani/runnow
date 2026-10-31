@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Loader2, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   TurnstileWidget,
@@ -105,17 +105,17 @@ export function EmailSignup({ className, compact = false }: EmailSignupProps) {
           className="h-9 flex-1"
           aria-label="Email address"
         />
-        <Button
+        <button
           type="submit"
           disabled={status === "loading" || (captchaRequired && !turnstileToken)}
-          className="shrink-0"
+          className={cn(buttonVariants(), "shrink-0")}
         >
           {status === "loading" ? (
             <Loader2 className="size-4 animate-spin" aria-hidden />
           ) : (
             "Subscribe"
           )}
-        </Button>
+        </button>
       </div>
       <input
         type="text"

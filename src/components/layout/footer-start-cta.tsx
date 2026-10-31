@@ -21,7 +21,7 @@ const SKIP_PREFIXES = [
 ];
 
 function hideFooterCta(pathname: string) {
-  if (pathname === "/") return true;
+  if (!pathname || pathname === "/") return true;
   return SKIP_PREFIXES.some(
     (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
   );
@@ -29,7 +29,7 @@ function hideFooterCta(pathname: string) {
 
 /** Compact start CTA in the footer — skipped when the page already has one. */
 export function FooterStartCta() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "";
   if (hideFooterCta(pathname)) return null;
 
   return (
