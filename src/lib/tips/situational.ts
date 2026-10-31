@@ -39,7 +39,7 @@ export const situationalTips: SituationalTip[] = [
       "After delivery, return gradually. Pelvic floor recovery matters; walking and strength work often come before running again.",
     ],
     caution:
-      "Pregnancy is highly individual. What felt fine last week may not be appropriate this week — follow medical guidance over any training plan.",
+      "This is education, not medical advice. Pregnancy is highly individual. What felt fine last week may not be appropriate this week — follow medical guidance over any training plan.",
     learnMore: [
       SOURCES.acogPhysicalActivityPregnancy2020,
       SOURCES.pregnancyExercise,
@@ -61,7 +61,7 @@ export const situationalTips: SituationalTip[] = [
       "Invest in well-cushioned shoes and replace them before they feel dead (often every 300–400 miles).",
     ],
     caution:
-      "If you have not been active recently, or you have heart disease risk factors, ask your doctor before starting a new program.",
+      "This is education, not medical advice. If you have not been active recently, or you have heart disease risk factors, ask your doctor before starting a new program.",
     learnMore: [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.acsmGetp12,
@@ -82,7 +82,7 @@ export const situationalTips: SituationalTip[] = [
       "Listen to joint feedback the next day, not just during the run. Persistent pain means back off and get assessed.",
     ],
     caution:
-      "Bone density, balance, and medications can change how your body responds to exercise. Medical clearance is wise before a new running routine.",
+      "This is education, not medical advice. Bone density, balance, and medications can change how your body responds to exercise. Medical clearance is wise before a new running routine.",
     learnMore: [
       SOURCES.physicalActivityGuidelinesUS,
       SOURCES.acsmGetp12,
@@ -104,7 +104,7 @@ export const situationalTips: SituationalTip[] = [
       "Foot care matters: inspect feet after runs; moisture-wicking socks and proper shoes reduce blister and ulcer risk.",
     ],
     caution:
-      "Do not run with very high or very low blood sugar. Your diabetes plan should override any generic training schedule.",
+      "This is education, not medical advice. Do not run with very high or very low blood sugar. Your diabetes plan should override any generic training schedule.",
     learnMore: [SOURCES.diabetesExercise, SOURCES.adaStandardsPhysicalActivity2025],
   },
   {
@@ -121,7 +121,7 @@ export const situationalTips: SituationalTip[] = [
       "Stop immediately for chest tightness, wheezing that does not ease with your plan, or lightheadedness.",
     ],
     caution:
-      "Exercise-induced bronchospasm is manageable for many runners, but uncontrolled asthma needs medical treatment first.",
+      "This is education, not medical advice. Exercise-induced bronchospasm is manageable for many runners, but uncontrolled asthma needs medical treatment first.",
     learnMore: [SOURCES.exerciseInducedAsthma],
   },
   {
@@ -138,7 +138,7 @@ export const situationalTips: SituationalTip[] = [
       "Consider run-walk intervals, trails, or a track with consistent surface instead of cambered roads.",
     ],
     caution:
-      "Sharp pain, swelling, or locking joints need evaluation — do not run through structural injury symptoms.",
+      "This is education, not medical advice. Sharp pain, swelling, or locking joints need evaluation — do not run through structural injury symptoms.",
     learnMore: [SOURCES.runningKneeOALo2018, SOURCES.runningKneeOADhillon2023],
   },
   {
@@ -155,7 +155,7 @@ export const situationalTips: SituationalTip[] = [
       "Build volume slowly. Many cardiac rehab graduates return to running with walk-run progressions over months.",
     ],
     caution:
-      "This is general education, not cardiac rehab. Follow your physician's exercise prescription if you have one.",
+      "This is education, not medical advice — and not cardiac rehab. Follow your physician's exercise prescription if you have one.",
     learnMore: [SOURCES.heartDiseaseExercise, SOURCES.ahaExerciseBloodPressure],
   },
   {
@@ -172,7 +172,7 @@ export const situationalTips: SituationalTip[] = [
       "Ensure adequate calcium, vitamin D, and protein as part of your overall bone-health plan.",
     ],
     caution:
-      "Vertebral or hip fracture history usually requires individualized guidance before returning to impact sports.",
+      "This is education, not medical advice. Vertebral or hip fracture history usually requires individualized guidance before returning to impact sports.",
     learnMore: [SOURCES.exerciseWithOsteoporosis, SOURCES.osteoporosis],
   },
 ];

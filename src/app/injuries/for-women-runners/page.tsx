@@ -11,6 +11,7 @@ import { WomenRunnerConcernsSection } from "@/components/injuries/women-runner-c
 import { womenRunnerOverwhelmedBox } from "@/lib/injuries/women-runner-concerns";
 import { HubEditorialBlock } from "@/components/content/hub-editorial";
 import { JsonLd } from "@/components/seo/json-ld";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { breadcrumbJsonLd, faqPageJsonLd, howToJsonLd, webPageJsonLd } from "@/lib/seo";
 import { womenInjuriesHubEditorial } from "@/lib/hub-seo";
 import { SITE_URL } from "@/lib/site";
@@ -78,6 +79,13 @@ export default function ForWomenRunnersInjuriesPage() {
               for breast, cervical, and heart checks.
             </p>
           </div>
+        </FadeIn>
+
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner>
+            Persistent pelvic, bone, or postpartum symptoms need a clinician —
+            not another training week.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <HubEditorialBlock editorial={womenInjuriesHubEditorial} />

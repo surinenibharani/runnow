@@ -8,6 +8,7 @@ import {
 } from "@/lib/blog/dumbbell-workout-sheet";
 import { BRAND_CAPTION } from "@/lib/brand";
 import { SITE_NAME } from "@/lib/site";
+import { MedicalDisclaimerNote } from "@/components/legal/medical-disclaimer-note";
 
 type DumbbellWorkoutPrintSheetProps = {
   articleHref: string;
@@ -55,6 +56,7 @@ export function DumbbellWorkoutPrintSheet({ articleHref }: DumbbellWorkoutPrintS
             Use your browser&apos;s print dialog and choose &quot;Save as PDF&quot; for a portable
             copy. letsrunnow.com
           </p>
+          <MedicalDisclaimerNote className="mt-2 print:text-[10px]" />
         </header>
 
         <section className="mb-10">

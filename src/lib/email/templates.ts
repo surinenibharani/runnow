@@ -55,7 +55,9 @@ Thanks for subscribing. Here's what to expect:
 
 Your first weekly tip will arrive soon.
 
-Start your free plan: ${planUrl}`,
+Start your free plan: ${planUrl}
+
+Educational fitness content — not medical advice. Talk to a clinician before starting or changing an exercise program.`,
   };
 }
 
@@ -80,7 +82,7 @@ export function weeklyTipEmail(tip: NewsletterTip, unsubscribeToken: string) {
   return {
     subject: tip.headline,
     html: emailLayout({ preheader, body, unsubscribeToken }),
-    text: `${tip.headline}\n\n${tip.title}\n\n${tip.content}\n\nRead more: ${readMore}`,
+    text: `${tip.headline}\n\n${tip.title}\n\n${tip.content}\n\nRead more: ${readMore}\n\nEducational fitness content — not medical advice. Talk to a clinician before starting or changing an exercise program.`,
   };
 }
 
@@ -100,7 +102,7 @@ export function newPostEmail(post: BlogPost, unsubscribeToken: string) {
   return {
     subject: `New post: ${post.title}`,
     html: emailLayout({ preheader, body, unsubscribeToken }),
-    text: `${post.title}\n\n${post.excerpt}\n\nRead: ${url}`,
+    text: `${post.title}\n\n${post.excerpt}\n\nRead: ${url}\n\nEducational fitness content — not medical advice. Talk to a clinician before starting or changing an exercise program.`,
   };
 }
 

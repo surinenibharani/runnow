@@ -18,6 +18,7 @@ import { bootstrapBlogPreview } from "@/lib/blog/preview-server";
 import { isBlogPostScheduled } from "@/lib/blog/preview";
 import { BlogPreviewBanner } from "@/components/blog/blog-preview-banner";
 import { BlogPageHero } from "@/components/visuals/content-scenes";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { blogIndexJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { BLOG_SEO_KEYWORDS } from "@/lib/seo/keywords";
@@ -88,6 +89,13 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               .
             </p>
           </div>
+        </FadeIn>
+
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner>
+            Articles are for general education — they are not a diagnosis or a
+            training prescription.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <Suspense fallback={null}>

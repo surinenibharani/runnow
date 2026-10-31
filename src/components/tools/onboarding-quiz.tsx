@@ -18,11 +18,11 @@ import {
   fitnessLevelFromOnboarding,
   getOnboardingFields,
   healthPlanModeFromAnswers,
-  isHealthField,
   isOnboardingComplete,
   recommendOnboardingPlan,
   type OnboardingAgeBand,
   type OnboardingAnswers,
+  type OnboardingConditionArea,
   type OnboardingDays,
   type OnboardingExperience,
   type OnboardingFieldId,
@@ -172,7 +172,40 @@ const SETBACK_OPTIONS: Option<OnboardingSetback>[] = [
   {
     value: "condition",
     label: "A health condition",
-    hint: "Heart, joints, pregnancy, or something a clinician should know about",
+    hint: "We'll ask which one, then add rest, walking, or supporting exercises",
+  },
+];
+
+const CONDITION_AREA_OPTIONS: Option<OnboardingConditionArea>[] = [
+  {
+    value: "heart",
+    label: "Heart or blood pressure",
+    hint: "Extra rest, easy walking, and no all-out efforts",
+  },
+  {
+    value: "joints",
+    label: "Joints or arthritis",
+    hint: "Bike, pool, or walking plus hip and glute work",
+  },
+  {
+    value: "pregnancy",
+    label: "Pregnancy",
+    hint: "Talk-test walking, prenatal-safe mobility, extra rest",
+  },
+  {
+    value: "metabolic",
+    label: "Diabetes or metabolic",
+    hint: "Steady easy walking and light strength — not intervals",
+  },
+  {
+    value: "asthma",
+    label: "Asthma or breathing",
+    hint: "Longer warm-up and an indoor option if air is a trigger",
+  },
+  {
+    value: "other",
+    label: "Something else",
+    hint: "We'll keep extra rest, walking, and gentle mobility",
   },
 ];
 
@@ -281,6 +314,8 @@ function optionsForField(field: OnboardingFieldId): Option<string | number>[] {
       return NIGGLE_AREA_OPTIONS;
     case "niggleSeverity":
       return NIGGLE_SEVERITY_OPTIONS;
+    case "conditionArea":
+      return CONDITION_AREA_OPTIONS;
   }
 }
 
@@ -308,6 +343,8 @@ function titleForField(field: OnboardingFieldId): string {
       return "Where do you notice the issue most?";
     case "niggleSeverity":
       return "How does that issue usually feel?";
+    case "conditionArea":
+      return "Which health topic should we plan around?";
   }
 }
 
@@ -321,6 +358,8 @@ function chipLabelForField(field: OnboardingFieldId): string {
       return "Issue area";
     case "niggleSeverity":
       return "How it feels";
+    case "conditionArea":
+      return "Condition";
     default: {
       const step = ONBOARDING_STEPS.find((s) => s.id === field);
       return step?.label ?? field;
@@ -346,7 +385,8 @@ function persistQuizPlan(
       healthFocusLabel(
         answers.setback,
         answers.niggleArea,
-        answers.timeOffReason
+        answers.timeOffReason,
+        answers.conditionArea
       ),
     crossTrain: recommendation.crossTrain,
     adjustments: recommendation.adjustments,
@@ -478,11 +518,7 @@ export function OnboardingQuiz() {
           complete
         />
 
-        {(answers.setback === "time-off" ||
-          answers.setback === "niggle" ||
-          answers.setback === "condition") && (
-          <HealthDisclaimerBlock />
-        )}
+        <HealthDisclaimerBlock />
 
         <div className="space-y-5 rounded-xl border border-border/60 bg-muted/20 p-5 sm:p-6">
           <div>
@@ -675,7 +711,6 @@ export function OnboardingQuiz() {
 
   const currentValue = answerValue(answers, fieldId);
   const options = optionsForField(fieldId);
-  const showHealthDisclaimer = isHealthField(fieldId);
 
   return (
     <div className="space-y-6">
@@ -736,7 +771,7 @@ export function OnboardingQuiz() {
         </ol>
       </nav>
 
-      {showHealthDisclaimer && <HealthDisclaimerBlock />}
+      <HealthDisclaimerBlock />
 
       <div className="space-y-4">
         <div className="flex items-start justify-between gap-3">

@@ -5,6 +5,7 @@ import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { AdaptivePlanSuggestion } from "@/lib/adaptive-plan";
+import { MedicalDisclaimerNote } from "@/components/legal/medical-disclaimer-note";
 import { cn } from "@/lib/utils";
 
 type AdaptivePlanCoachProps = {
@@ -66,6 +67,9 @@ export function AdaptivePlanCoach({
             <p className="text-sm text-muted-foreground leading-relaxed">
               {suggestion.detail}
             </p>
+            <MedicalDisclaimerNote>
+              Educational suggestion — not medical advice.
+            </MedicalDisclaimerNote>
           </div>
         </div>
         {(showWeek || showPlan || suggestion.tipHref) && (

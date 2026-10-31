@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Shield, Stethoscope } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { InjuryHubCard } from "@/components/injuries/injury-hub-card";
@@ -16,7 +15,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbJsonLd, faqPageJsonLd, howToJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { INJURIES_SEO_KEYWORDS } from "@/lib/seo/keywords";
-import { MedicalDisclaimerText } from "@/components/legal/medical-disclaimer-text";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { HubNextSteps } from "@/components/content/hub-next-steps";
 import { HubEditorialBlock } from "@/components/content/hub-editorial";
 import { cn } from "@/lib/utils";
@@ -124,23 +123,11 @@ export default function InjuriesPage() {
         <HubEditorialBlock editorial={injuriesHubEditorial} />
 
         <FadeIn className="mb-10">
-          <Card className="border-primary/20 bg-primary/5">
-            <CardContent className="flex gap-4 p-6">
-              <Stethoscope className="mt-0.5 size-6 shrink-0 text-primary" />
-              <div className="text-sm leading-relaxed">
-                <p>
-                  <MedicalDisclaimerText>
-                    This page is educational, not medical advice.
-                  </MedicalDisclaimerText>
-                </p>
-                <p className="mt-1 text-muted-foreground">
-                  Sharp pain, swelling, numbness, or pain that worsens over days
-                  warrants a visit to a doctor or sports physiotherapist. When in
-                  doubt, rest and get checked out.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          <MedicalDisclaimerBanner>
+            Sharp pain, swelling, numbness, or pain that worsens over days
+            warrants a visit to a doctor or sports physiotherapist. When in
+            doubt, rest and get checked out.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <FadeIn className="mb-12">

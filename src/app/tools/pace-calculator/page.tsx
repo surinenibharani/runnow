@@ -3,6 +3,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { FadeIn } from "@/components/motion/fade-in";
 import { PaceCalculator } from "@/components/tools/pace-calculator";
 import { JsonLd } from "@/components/seo/json-ld";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -50,6 +51,13 @@ export default function PaceCalculatorPage() {
             Distance and time → pace, or pace and distance → finish time. Miles
             or kilometers.
           </p>
+        </FadeIn>
+
+        <FadeIn className="mb-6">
+          <MedicalDisclaimerBanner>
+            Calculated paces are estimates — not a race-day target or medical
+            clearance.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <FadeIn>

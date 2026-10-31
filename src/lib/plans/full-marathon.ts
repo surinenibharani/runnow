@@ -130,17 +130,36 @@ const weeks14: WeekDef[] = [
   ]},
 ];
 
-const weeks12Indices = [0, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+function withLongMiles(week: WeekDef, miles: number): WeekDef {
+  return {
+    ...week,
+    items: week.items.map((item) =>
+      item.runType === "long"
+        ? {
+            ...item,
+            duration: `~${miles * 10} min`,
+            intervals: `${miles} mi easy`,
+          }
+        : item
+    ),
+  };
+}
 
-const peakWeek16: WeekDef = {
-  title: "Extended Peak", focus: "22-mile long run for extra endurance",
-  items: [
-    { day: 1, name: "Pre-Peak Pep (Extended)", description: "Easy miles before the longest run.", duration: "~48 min", intervals: "6 mi easy", runType: "easy" },
-    { day: 2, name: "Tempo Torch (Extended)", description: "30 min tempo.", duration: "~55 min", intervals: "1 mi warm-up → 30 min tempo → 1 mi cool-down", runType: "tempo" },
-    { day: 3, name: "Restful Rambler (Extended)", description: "Bank energy.", duration: "~30 min", intervals: "3 mi very easy", runType: "recovery" },
-    { day: 4, name: "The Big Two-Two", description: "22 miles — extra confidence for race day.", duration: "~220 min", intervals: "22 mi easy", runType: "long" },
-  ],
-};
+/** Compressed 12-week marathon: +1 mile longs, then a 3-week taper. */
+const weeks12: WeekDef[] = [
+  withLongMiles(weeks14[2], 12),
+  withLongMiles(weeks14[3], 13),
+  withLongMiles(weeks14[4], 14),
+  withLongMiles(weeks14[5], 15),
+  withLongMiles(weeks14[6], 16),
+  withLongMiles(weeks14[7], 17),
+  withLongMiles(weeks14[8], 18),
+  withLongMiles(weeks14[9], 20),
+  weeks14[10],
+  weeks14[11],
+  weeks14[12],
+  weeks14[13],
+];
 
 export const planFull14w = buildFullPlan(
   "full-14w",
@@ -155,18 +174,17 @@ export const planFull12w = buildFullPlan(
   12,
   "12 weeks",
   "A compressed marathon plan for experienced half marathoners.",
-  weeks12Indices.map((i) => weeks14[i])
+  weeks12
 );
 
 export const planFull16w = buildFullPlan(
   "full-16w",
   16,
   "16 weeks",
-  "An extended marathon build with gentler base weeks and a 22-mile peak.",
+  "An extended marathon build with gentler base weeks and a 20-mile peak.",
   [
     ...baseWeeks16,
-    ...weeks14.slice(0, 9),
-    peakWeek16,
+    ...weeks14.slice(0, 10),
     ...weeks14.slice(10),
   ]
 );

@@ -1,4 +1,9 @@
 import { getPlanFilters, isGentlePlan } from "@/lib/plan-catalog";
+import {
+  enforceStandardProgression,
+  startFactorFromPeak,
+  weekVolumeFactor,
+} from "@/lib/plan-periodization";
 import type { RunType, TrainingPlan, WeekTemplate, Workout } from "@/lib/plan-types";
 import { getPlansForFamily } from "@/lib/plans";
 import type { SchedulePreferences } from "@/lib/schedule-builder";
@@ -270,18 +275,18 @@ export const LEVEL_VOLUME: Record<FitnessLevel, number> = {
  * jog ~30 minutes. Beginner scales down; Intermediate keeps the written miles.
  */
 const NOVICE_DISTANCE_VOLUME: Record<FitnessLevel, number> = {
-  beginner: 0.65,
-  returning: 0.85,
+  beginner: 0.88,
+  returning: 0.94,
   intermediate: 1,
   advanced: 1.18,
 };
 
-/** Marathon templates assume a half-marathon base. */
+/** Marathon templates assume a half-marathon base. Peak long ~16–20+ mi. */
 const MARATHON_VOLUME: Record<FitnessLevel, number> = {
-  beginner: 0.5,
-  returning: 0.78,
+  beginner: 0.82,
+  returning: 0.9,
   intermediate: 1,
-  advanced: 1.15,
+  advanced: 1.12,
 };
 
 /** Walk-first 16-week 5K — keep the walking ramp, nudge volume only a little. */
@@ -365,15 +370,23 @@ export function volumeMultiplier(
   familyId = "5k",
   planId?: string
 ): number {
-  let mult = volumeForLevel(familyId, profile.fitnessLevel, planId);
+  let peak = volumeForLevel(familyId, profile.fitnessLevel, planId);
 
   if (profile.age) {
-    if (profile.age >= 65) mult *= 0.85;
-    else if (profile.age >= 55) mult *= 0.9;
+    if (profile.age >= 65) peak *= 0.85;
+    else if (profile.age >= 55) peak *= 0.9;
     else if (profile.age <= 25 && profile.fitnessLevel === "advanced") {
-      mult *= 1.02;
+      peak *= 1.02;
     }
   }
+
+  let mult = weekVolumeFactor({
+    weekNum,
+    totalWeeks,
+    familyId,
+    startFactor: startFactorFromPeak(familyId, peak, profile.fitnessLevel),
+    peakFactor: peak,
+  });
 
   if (profile.goalRaceDate) {
     const weeksUntil = weeksUntilDate(profile.goalRaceDate);
@@ -418,6 +431,8 @@ function beginnerWalkRunOnDistancePlan(
   if (workout.runType === "walk-run" || workout.runType === "walking") {
     return false;
   }
+  // Keep the long run as miles so weekly progression and taper stay honest.
+  if (workout.runType === "long") return false;
   if (isNoviceDistanceFamily(familyId)) return true;
   return Boolean(
     planId && getPlanFilters(planId).includes("already-running")
@@ -429,7 +444,7 @@ function roundSessionMinutes(minutes: number): number {
     minutes >= 50
       ? Math.round(minutes / 5) * 5
       : Math.round(minutes / 2) * 2;
-  return Math.min(180, Math.max(10, rounded));
+  return Math.min(300, Math.max(10, rounded));
 }
 
 function roundMiles(miles: number): number {
@@ -552,7 +567,9 @@ function adjustWorkout(
   const intervals = scaleIntervalRecipe(workout.intervals, mileRatio, timeRatio);
 
   let description = workout.description;
-  if (multiplier < 0.95 && profile.fitnessLevel !== "advanced") {
+  if (profile.fitnessLevel === "beginner" && workout.runType === "long") {
+    description = `${description} Walk breaks are fine — keep the long run easy.`;
+  } else if (multiplier < 0.95 && profile.fitnessLevel !== "advanced") {
     description = `${description} Ease off if breathing feels strained.`;
   } else if (multiplier > 1.05 && profile.fitnessLevel === "advanced") {
     description = `${description} Optional: add 5 easy minutes if you feel strong.`;
@@ -587,12 +604,13 @@ export function personalizePlanWorkouts(
   plan: TrainingPlan,
   profile: PlanPersonalization
 ): TrainingPlan {
-  return {
+  const scaled: TrainingPlan = {
     ...plan,
     weeks: plan.weeks.map((week) =>
       adjustWeek(week, profile, plan.durationWeeks, plan.familyId, plan.id)
     ),
   };
+  return enforceStandardProgression(scaled, profile.fitnessLevel);
 }
 
 export function getPlanTimelineHint(

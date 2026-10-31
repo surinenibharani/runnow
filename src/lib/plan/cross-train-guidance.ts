@@ -1,6 +1,7 @@
 import type { CrossTrainCategory, CrossTraining, ScheduledWeek } from "@/lib/plan-types";
 import type {
   OnboardingAnswers,
+  OnboardingConditionArea,
   OnboardingNiggleArea,
   OnboardingSetback,
   OnboardingTimeOffReason,
@@ -198,7 +199,7 @@ const BY_TIME_OFF_REASON: Record<OnboardingTimeOffReason, CrossTrainSuggestion[]
   ],
 };
 
-const BY_CONDITION: CrossTrainSuggestion[] = [
+const GENERIC_CONDITION: CrossTrainSuggestion[] = [
   {
     category: "walking",
     title: "Easy movement walk",
@@ -218,6 +219,110 @@ const BY_CONDITION: CrossTrainSuggestion[] = [
     how: "10–20 min very easy bike only if the condition stays quiet and a clinician has cleared exercise.",
   },
 ];
+
+const BY_CONDITION: Record<OnboardingConditionArea, CrossTrainSuggestion[]> = {
+  heart: [
+    {
+      category: "walking",
+      title: "Easy walk",
+      why: "Walking is the default cardio around heart or blood-pressure conditions until a clinician clears more.",
+      how: "20–30 min conversational. Stop for chest pain, unusual shortness of breath, dizziness, or palpitations.",
+    },
+    {
+      category: "yoga",
+      title: "Easy range-of-motion",
+      why: "Light mobility supports recovery without stacking intensity on a rest-heavy week.",
+      how: "10–15 min ankles, hips, and Cat-Cow. Skip all-out efforts and heavy lifting.",
+    },
+    {
+      category: "walking",
+      title: "Short walk-around",
+      why: "A second easy walk beats a hard session when extra rest is part of the plan.",
+      how: "10–20 min easy only if you feel well. Otherwise this is a rest day.",
+    },
+  ],
+  joints: [
+    {
+      category: "cycling",
+      title: "Easy bike or pool",
+      why: "Cycling or water walking loads joints less than another pavement session.",
+      how: "20–30 min easy. Prefer seated spinning or a pool if a joint is cranky.",
+    },
+    {
+      category: "bodyweight",
+      title: "Hip and glute support",
+      why: "Stronger hips often take load off sore knees and hips.",
+      how: "Glute bridges 2×10 · Sit-to-stands 2×8 · Side-lying clams 2×8/side. Stop if a joint swells.",
+    },
+    {
+      category: "walking",
+      title: "Easy walk",
+      why: "Keeps aerobic work going on a forgiving surface when joints feel calm.",
+      how: "15–25 min flat walk. Skip hills if they aggravate the joint.",
+    },
+  ],
+  pregnancy: [
+    {
+      category: "walking",
+      title: "Easy walk",
+      why: "ACOG supports staying active with clearance; walking stays at a talk-test effort.",
+      how: "20–30 min conversational. Stop for pain, dizziness, contractions, bleeding, or calf swelling.",
+    },
+    {
+      category: "yoga",
+      title: "Prenatal-safe mobility",
+      why: "Gentle mobility keeps you moving without jumping or long time on your back later in pregnancy.",
+      how: "Cat-cow, standing hip openers, pelvic tilts. Skip jumping and long supine work in later pregnancy.",
+    },
+    {
+      category: "yoga",
+      title: "Easy stretch or rest",
+      why: "Low-energy days should stay rest — extra rest is built into this plan on purpose.",
+      how: "10 min easy stretching if you feel well. If energy is low, take the full rest day.",
+    },
+  ],
+  metabolic: [
+    {
+      category: "walking",
+      title: "Easy walk",
+      why: "Steady easy work is usually a better fit than all-out intervals around diabetes or metabolic conditions.",
+      how: "20–30 min conversational. Pair with the meal and medication plan you already use with your clinician.",
+    },
+    {
+      category: "bodyweight",
+      title: "Light strength",
+      why: "Short strength work supports muscles without stacking extra running.",
+      how: "Sit-to-stands 2×8 · Wall push-ups 2×8 · Glute bridges 2×10. Stop if you feel shaky or dizzy.",
+    },
+    {
+      category: "cycling",
+      title: "Easy bike",
+      why: "Indoor cardio if weather or energy is off.",
+      how: "15–25 min very easy. Carry your usual supplies the way your clinician advised.",
+    },
+  ],
+  asthma: [
+    {
+      category: "walking",
+      title: "Easy walk with a longer warm-up",
+      why: "A longer warm-up often makes breathing sessions more comfortable.",
+      how: "20–30 min easy after 8–10 min of walking warm-up. Use your action plan.",
+    },
+    {
+      category: "yoga",
+      title: "Easy mobility",
+      why: "Keeps the body moving without an all-out effort that can trigger symptoms.",
+      how: "10–15 min ankles, hips, and easy breathing drills you already use. Stop if tightness does not ease when you slow down.",
+    },
+    {
+      category: "cycling",
+      title: "Indoor bike",
+      why: "A backup if outdoor air, cold, or pollen is a known trigger that day.",
+      how: "15–25 min easy indoors. Keep rescue medication available the way your clinician advised.",
+    },
+  ],
+  other: GENERIC_CONDITION,
+};
 
 const DEFAULT_PLAN_CROSS_TRAIN: CrossTrainSuggestion[] = [
   {
@@ -255,7 +360,12 @@ function uniqueByTitle(items: CrossTrainSuggestion[]): CrossTrainSuggestion[] {
 export function getCrossTrainGuidanceForAnswers(
   answers: Pick<
     OnboardingAnswers,
-    "setback" | "niggleArea" | "niggleSeverity" | "timeOffReason" | "timeOffDuration"
+    | "setback"
+    | "niggleArea"
+    | "niggleSeverity"
+    | "timeOffReason"
+    | "timeOffDuration"
+    | "conditionArea"
   >
 ): CrossTrainSuggestion[] {
   const picked: CrossTrainSuggestion[] = [];
@@ -269,7 +379,8 @@ export function getCrossTrainGuidanceForAnswers(
   }
 
   if (answers.setback === "condition") {
-    picked.push(...BY_CONDITION);
+    const area = answers.conditionArea ?? "other";
+    picked.push(...BY_CONDITION[area]);
   }
 
   if (picked.length === 0) {
@@ -287,7 +398,8 @@ export function getDefaultCrossTrainGuidance(): CrossTrainSuggestion[] {
 export function healthFocusLabel(
   setback: OnboardingSetback | undefined,
   niggleArea?: OnboardingNiggleArea,
-  timeOffReason?: OnboardingTimeOffReason
+  timeOffReason?: OnboardingTimeOffReason,
+  conditionArea?: OnboardingConditionArea
 ): string | null {
   if (setback === "niggle" && niggleArea) {
     const labels: Record<OnboardingNiggleArea, string> = {
@@ -306,7 +418,15 @@ export function healthFocusLabel(
     return "rebuilding after time off";
   }
   if (setback === "condition") {
-    return "training around a health condition";
+    const labels: Record<OnboardingConditionArea, string> = {
+      heart: "training around a heart or blood-pressure condition",
+      joints: "training around joint issues",
+      pregnancy: "training during pregnancy",
+      metabolic: "training around diabetes or metabolic conditions",
+      asthma: "training with asthma or breathing issues",
+      other: "training around a health condition",
+    };
+    return labels[conditionArea ?? "other"];
   }
   return null;
 }

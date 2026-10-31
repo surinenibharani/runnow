@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 interface SchedulePickerProps {
   preferences: SchedulePreferences;
   onChange: (prefs: SchedulePreferences) => void;
+  /** Protect-mode health plans add a second full rest day. */
+  extraRestDay?: boolean;
 }
 
 const dayButtonClass = (selected: boolean, disabled = false) =>
@@ -18,8 +20,13 @@ const dayButtonClass = (selected: boolean, disabled = false) =>
       : "bg-background border-border/60 text-foreground/80 hover:text-foreground"
   );
 
-export function SchedulePicker({ preferences, onChange }: SchedulePickerProps) {
-  const crossTrainDays = 6 - preferences.runDaysPerWeek;
+export function SchedulePicker({
+  preferences,
+  onChange,
+  extraRestDay = false,
+}: SchedulePickerProps) {
+  const restDays = extraRestDay ? 2 : 1;
+  const crossTrainDays = 7 - preferences.runDaysPerWeek - restDays;
 
   const setRestDay = (day: number) => {
     const next = { ...preferences, restDay: day };
@@ -74,7 +81,7 @@ export function SchedulePicker({ preferences, onChange }: SchedulePickerProps) {
         <p className="text-xs text-muted-foreground mt-2">
           {preferences.runDaysPerWeek} runs + {crossTrainDays} cross-train
           {" "}
-          + 1 rest day
+          + {restDays} rest {restDays === 1 ? "day" : "days"}
         </p>
       </div>
 

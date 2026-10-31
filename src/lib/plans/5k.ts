@@ -68,9 +68,9 @@ const week8 = [
     { day: 2, name: "Comfort Zone Cruise", description: "Find a sustainable pace.", duration: "~30 min", intervals: "Walk 5 min → Jog 20 min → Walk 5 min", runType: "easy" as const },
     { day: 3, name: "One Week Wonder", description: "One week left.", duration: "~30 min", intervals: "Walk 5 min → Jog 20 min → Walk 5 min", runType: "easy" as const },
   ]},
-  { title: "5K Ready", focus: "Run your first 5K distance", items: [
-    { day: 1, name: "Confidence Booster", description: "25-minute run to build confidence.", duration: "~35 min", intervals: "Walk 5 min → Jog 25 min → Walk 5 min", runType: "easy" as const },
-    { day: 2, name: "Easy Does It Express", description: "Easy run — save energy for race day.", duration: "~30 min", intervals: "Walk 5 min → Jog 20 min → Walk 5 min", runType: "recovery" as const },
+  { title: "5K Ready", focus: "Taper, then run your first 5K", items: [
+    { day: 1, name: "Confidence Booster", description: "Short easy jog — freshness beats extra miles this week.", duration: "~25 min", intervals: "Walk 5 min → Jog 12 min → Walk 5 min", runType: "easy" as const },
+    { day: 2, name: "Easy Does It Express", description: "Shakeout only — save energy for race day.", duration: "~20 min", intervals: "Walk 5 min → Jog 8 min → Walk 5 min", runType: "recovery" as const },
     { day: 3, name: "The 5K Coronation", description: "Run 5K at your own pace. Celebrate!", duration: "~35–45 min", intervals: "Walk 5 min → Run 5K easy → Walk 5 min", runType: "race" as const },
   ]},
 ];
@@ -91,9 +91,9 @@ const week4 = [
     { day: 2, name: "Ten Minute Tenderizer", description: "Two 8-min jogs back to back.", duration: "~38 min", intervals: "Walk 5 min → (Jog 8 min, Walk 3 min) × 2 → Walk 5 min", runType: "easy" as const },
     { day: 3, name: "Twenty Minute Thunder", description: "First continuous 20-minute run.", duration: "~30 min", intervals: "Walk 5 min → Jog 20 min → Walk 5 min", runType: "easy" as const },
   ]},
-  { title: "5K Sprint Finish", focus: "Race week", items: [
-    { day: 1, name: "Dress Rehearsal Dash", description: "25-minute confidence run.", duration: "~35 min", intervals: "Walk 5 min → Jog 25 min → Walk 5 min", runType: "easy" as const },
-    { day: 2, name: "Taper Tapper", description: "Short easy jog before race day.", duration: "~25 min", intervals: "Walk 5 min → Jog 15 min → Walk 5 min", runType: "recovery" as const },
+  { title: "5K Sprint Finish", focus: "Race week — taper, then 5K", items: [
+    { day: 1, name: "Dress Rehearsal Dash", description: "Short confidence jog — do not cram extra miles.", duration: "~25 min", intervals: "Walk 5 min → Jog 12 min → Walk 5 min", runType: "easy" as const },
+    { day: 2, name: "Taper Tapper", description: "Shakeout only before race day.", duration: "~20 min", intervals: "Walk 5 min → Jog 8 min → Walk 5 min", runType: "recovery" as const },
     { day: 3, name: "The 5K Coronation", description: "Race day! Run 5K and celebrate.", duration: "~35–45 min", intervals: "Walk 5 min → Run 5K easy → Walk 5 min", runType: "race" as const },
   ]},
 ];

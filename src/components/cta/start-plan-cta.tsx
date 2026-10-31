@@ -11,6 +11,8 @@ type StartPlanCtaProps = {
   className?: string;
   headline?: string;
   description?: string;
+  /** Homepage close: Start here only, no Browse plans. */
+  primaryOnly?: boolean;
 };
 
 function planHref(planId: string) {
@@ -27,6 +29,7 @@ export function StartPlanCta({
   className,
   headline = DEFAULT_HEADLINE,
   description = DEFAULT_DESCRIPTION,
+  primaryOnly = false,
 }: StartPlanCtaProps) {
   const browseHref = planHref(planId);
 
@@ -65,14 +68,16 @@ export function StartPlanCta({
             Start here
             <ArrowRight className="size-4" aria-hidden />
           </Button>
-          <Button
-            nativeButton={false}
-            render={<Link href={browseHref} />}
-            variant="outline"
-            className="gap-2"
-          >
-            Browse plans
-          </Button>
+          {!primaryOnly && (
+            <Button
+              nativeButton={false}
+              render={<Link href={browseHref} />}
+              variant="outline"
+              className="gap-2"
+            >
+              Browse plans
+            </Button>
+          )}
         </div>
       </div>
     );
@@ -104,15 +109,17 @@ export function StartPlanCta({
             Start here
             <ArrowRight className="size-4" aria-hidden />
           </Button>
-          <Button
-            nativeButton={false}
-            render={<Link href={browseHref} />}
-            size="lg"
-            variant="outline"
-            className="h-12 border-primary-foreground/35 bg-transparent px-6 text-base text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
-          >
-            Browse plans
-          </Button>
+          {!primaryOnly && (
+            <Button
+              nativeButton={false}
+              render={<Link href={browseHref} />}
+              size="lg"
+              variant="outline"
+              className="h-12 border-primary-foreground/35 bg-transparent px-6 text-base text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+            >
+              Browse plans
+            </Button>
+          )}
         </div>
       </div>
     </div>

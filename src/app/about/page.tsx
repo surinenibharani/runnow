@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { Button } from "@/components/ui/button";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -50,6 +51,10 @@ export default function AboutPage() {
             clear week — without downloading another app or paying for a coach
             on day one.
           </p>
+
+          <div className="mt-8">
+            <MedicalDisclaimerBanner />
+          </div>
 
           <div className="mt-10 space-y-8 text-sm leading-relaxed text-muted-foreground sm:text-base">
             <section>

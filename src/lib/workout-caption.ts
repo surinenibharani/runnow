@@ -8,6 +8,8 @@ type CaptionContext = {
   durationWeeks: number;
   weekNumber: number;
   runDaysPerWeek: 3 | 4;
+  /** Extra rest from health protect mode. Defaults to one rest day. */
+  restDaysPerWeek?: 1 | 2;
   isLongRunDay: boolean;
   personalization?: PlanPersonalization | null;
 };
@@ -131,8 +133,14 @@ function crossTrainScheduleNote(runDaysPerWeek: 3 | 4): string {
 
 export function getActivityCaption(day: ScheduleDay, ctx: CaptionContext): string {
   if (day.kind === "rest") {
-    const crossDays = 6 - ctx.runDaysPerWeek;
-    return `Full rest — no running or cross-training. You have ${ctx.runDaysPerWeek} runs and ${crossDays} cross-training days this week.`;
+    const restDays = ctx.restDaysPerWeek ?? 1;
+    const crossDays = 7 - ctx.runDaysPerWeek - restDays;
+    const restLabel = restDays === 1 ? "1 rest day" : `${restDays} rest days`;
+    const crossLabel =
+      crossDays === 1
+        ? "1 cross-training day"
+        : `${crossDays} cross-training days`;
+    return `Full rest — no running or cross-training. You have ${ctx.runDaysPerWeek} runs, ${crossLabel}, and ${restLabel} this week.`;
   }
 
   if (day.kind === "cross-train" && day.crossTraining) {

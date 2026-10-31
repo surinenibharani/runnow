@@ -49,12 +49,29 @@ describe("level volume and pace", () => {
   });
 
   it("keeps skill-level volume on the last week", () => {
-    assert.ok(volumeMultiplier(advanced, 8, 8, "5k") > 1);
-    assert.ok(volumeMultiplier(beginner, 12, 12, "half-marathon") < 0.8);
+    assert.ok(
+      volumeMultiplier(advanced, 8, 8, "5k") >
+        volumeMultiplier(beginner, 8, 8, "5k")
+    );
+    assert.ok(
+      volumeMultiplier(beginner, 12, 12, "half-marathon") <
+        volumeMultiplier(intermediate, 12, 12, "half-marathon")
+    );
   });
 
-  it("scales beginner half-marathon down from the Novice 3-mile opener", () => {
+  it("tapers 5K race week below the peak week", () => {
+    assert.ok(
+      volumeMultiplier(intermediate, 8, 8, "5k") <
+        volumeMultiplier(intermediate, 7, 8, "5k")
+    );
+  });
+
+  it("ramps beginner half-marathon from an easier opener toward peak", () => {
     assert.ok(volumeMultiplier(beginner, 1, 12, "half-marathon") < 0.8);
+    assert.ok(
+      volumeMultiplier(beginner, 9, 12, "half-marathon") >
+        volumeMultiplier(beginner, 1, 12, "half-marathon")
+    );
     assert.equal(volumeMultiplier(intermediate, 1, 12, "half-marathon"), 1);
   });
 });

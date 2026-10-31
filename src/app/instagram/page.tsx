@@ -9,6 +9,7 @@ import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-i
 import { AppImage } from "@/components/ui/app-image";
 import { Button } from "@/components/ui/button";
 import { JsonLd } from "@/components/seo/json-ld";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { getInstagramGridPosts } from "@/lib/instagram/fetch-posts";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -71,6 +72,13 @@ export default async function InstagramPage() {
             </a>
             . Tap a post to watch or save it on Instagram.
           </p>
+        </FadeIn>
+
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner>
+            Social posts are beginner tips, not a diagnosis or a training
+            prescription.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <StaggerChildren className="grid gap-5 sm:grid-cols-2">

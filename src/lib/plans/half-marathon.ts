@@ -103,7 +103,32 @@ const weeks12: WeekDef[] = [
   ]},
 ];
 
-const weeks8Indices = [0, 2, 4, 6, 7, 8, 10, 11];
+function withLongMiles(week: WeekDef, miles: number): WeekDef {
+  return {
+    ...week,
+    items: week.items.map((item) =>
+      item.runType === "long"
+        ? {
+            ...item,
+            duration: `~${miles * 10} min`,
+            intervals: `${miles} mi easy`,
+          }
+        : item
+    ),
+  };
+}
+
+/** Accelerated 8-week half: +1 mile on the long run, then a taper week. */
+const weeks8: WeekDef[] = [
+  withLongMiles(weeks12[1], 5),
+  withLongMiles(weeks12[2], 6),
+  withLongMiles(weeks12[3], 7),
+  withLongMiles(weeks12[4], 8),
+  withLongMiles(weeks12[5], 9),
+  withLongMiles(weeks12[6], 10),
+  withLongMiles(weeks12[10], 8),
+  weeks12[11],
+];
 
 export const planHalf12w = buildHalfPlan(
   "half-12w",
@@ -118,7 +143,7 @@ export const planHalf8w = buildHalfPlan(
   8,
   "8 weeks",
   "An accelerated half marathon plan for runners with a solid 5K base.",
-  weeks8Indices.map((i) => weeks12[i])
+  weeks8
 );
 
 export const plansHalf = [planHalf8w, planHalf12w];

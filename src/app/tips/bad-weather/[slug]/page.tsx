@@ -109,8 +109,15 @@ export default async function WeatherTipDetailPage({ params }: PageProps) {
           </Link>
         </FadeIn>
 
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner>
+            Extreme heat, cold, or poor air quality carry real health risks —
+            when in doubt, move your run indoors.{" "}
+          </MedicalDisclaimerBanner>
+        </FadeIn>
+
         <FadeIn>
-          <TipDetailCard
+          <TipDetailCard>
             illustration={tip.illustration}
             icon={tip.icon}
             iconClassName="bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
@@ -160,13 +167,6 @@ export default async function WeatherTipDetailPage({ params }: PageProps) {
 
         <FadeIn className="mt-6">
           <ContentCopyrightNotice kind="tip" />
-        </FadeIn>
-
-        <FadeIn className="mt-8">
-          <MedicalDisclaimerBanner>
-            Extreme heat, cold, or poor air quality carry real health risks —
-            when in doubt, move your run indoors.{" "}
-          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <FadeIn className="mt-10">

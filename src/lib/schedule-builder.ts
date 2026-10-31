@@ -141,7 +141,10 @@ function scheduleWeek(
     week: week.week,
     title: week.title,
     focus: week.focus,
-    days: assignStrengthDays(days, healthMode),
+    days: assignProtectRestDays(
+      assignStrengthDays(days, healthMode),
+      healthMode
+    ),
   };
 }
 
@@ -603,6 +606,34 @@ export function assignStrengthDays(
     return {
       ...day,
       crossTraining: buildStrengthSession(day.crossTraining),
+    };
+  });
+}
+
+/** Turn one extra cross-train day into rest when health mode is protect. */
+function assignProtectRestDays(
+  days: ScheduleDay[],
+  healthMode: HealthPlanMode
+): ScheduleDay[] {
+  if (healthMode !== "protect") return days;
+  const restCount = days.filter((day) => day.kind === "rest").length;
+  if (restCount >= 2) return days;
+
+  const ranked = days
+    .map((day, index) => ({ day, index, score: strengthScore(day) }))
+    .filter(({ day, score }) => day.kind === "cross-train" && score >= 0)
+    .sort((a, b) => a.score - b.score || a.index - b.index);
+
+  const target = ranked[0];
+  if (!target) return days;
+
+  return days.map((day, index) => {
+    if (index !== target.index) return day;
+    return {
+      id: day.id.replace(/-ct$/, "-rest"),
+      dayOfWeek: day.dayOfWeek,
+      dayName: day.dayName,
+      kind: "rest",
     };
   });
 }

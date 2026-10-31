@@ -110,8 +110,14 @@ export default async function SituationalTipDetailPage({ params }: PageProps) {
           </Link>
         </FadeIn>
 
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner>
+            Talk to your physician before starting or changing exercise.{" "}
+          </MedicalDisclaimerBanner>
+        </FadeIn>
+
         <FadeIn>
-          <TipDetailCard
+          <TipDetailCard>
             illustration={tip.illustration}
             icon={tip.icon}
             iconClassName="bg-sky-500/10 text-sky-600 dark:text-sky-400"
@@ -148,13 +154,6 @@ export default async function SituationalTipDetailPage({ params }: PageProps) {
 
         <FadeIn className="mt-6">
           <ContentCopyrightNotice kind="tip" />
-        </FadeIn>
-
-        <FadeIn className="mt-8">
-          <MedicalDisclaimerBanner>
-            LetsRunNow provides general fitness education, not medical advice.
-            Talk to your physician before starting or changing exercise.{" "}
-          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <FadeIn className="mt-10">

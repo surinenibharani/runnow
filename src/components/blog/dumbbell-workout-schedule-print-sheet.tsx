@@ -12,6 +12,7 @@ import {
 } from "@/lib/blog/dumbbell-workout-sheet";
 import { BRAND_CAPTION } from "@/lib/brand";
 import { SITE_NAME } from "@/lib/site";
+import { MedicalDisclaimerNote } from "@/components/legal/medical-disclaimer-note";
 
 const WEEK_DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
 
@@ -60,6 +61,7 @@ export function DumbbellWorkoutSchedulePrintSheet({
           Print → Save as PDF. Pair with the{" "}
           <span className="text-foreground">workout sheet</span> for exercise diagrams.
         </p>
+        <MedicalDisclaimerNote className="mt-2 print:text-[10px]" />
       </header>
 
       <section className="mb-8">

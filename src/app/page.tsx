@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Hero } from "@/components/landing/hero";
-import { Features } from "@/components/landing/features";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import { Testimonials } from "@/components/landing/testimonials";
 import { CtaSection } from "@/components/landing/cta-section";
-import { TipsTicker } from "@/components/landing/tips-ticker";
-import { StickyStartHere } from "@/components/landing/sticky-start-here";
-import { BeginnerRoadmap } from "@/components/content/beginner-roadmap";
 import { JsonLd } from "@/components/seo/json-ld";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { howToJsonLd } from "@/lib/seo";
-import { beginnerRoadmapHowToSteps } from "@/lib/beginner-roadmap";
 import { HOME_SEO_KEYWORDS } from "@/lib/seo/keywords";
 import { SITE_NAME, SITE_TAGLINE } from "@/lib/site";
 
@@ -29,11 +24,24 @@ export default function Home() {
     <>
       <JsonLd
         data={howToJsonLd({
-          name: "Beginner running roadmap: week 1 to first 5K — and the next distance",
+          name: "How LetsRunNow works",
           description:
-            "Show up three times, protect the habit, jog continuously, finish a 5K, then pick the next honest goal or a comeback block.",
+            "Get a free plan, follow the day's walk-run, and check it off in your browser.",
           path: "/",
-          steps: beginnerRoadmapHowToSteps(),
+          steps: [
+            {
+              name: "Get a plan",
+              text: "A short quiz picks a free beginner-friendly schedule that fits your fitness.",
+            },
+            {
+              name: "Follow the day",
+              text: "Each workout says when to walk and when to jog. Slow is the point.",
+            },
+            {
+              name: "Check it off",
+              text: "Tap the circle when you finish. Your streak lives in the browser — no app.",
+            },
+          ],
         })}
       />
       <div className="overflow-x-clip border-b border-border/60 bg-muted/30">
@@ -44,27 +52,12 @@ export default function Home() {
           >
             Why LetsRunNow?
           </Link>
-          <span className="hidden text-muted-foreground sm:inline" aria-hidden>
-            ·
-          </span>
-          <Link
-            href="/tips/specific-situations"
-            className="inline-flex min-h-11 max-w-full items-center justify-center px-1 font-medium text-primary hover:underline touch-target sm:min-h-0"
-          >
-            Situational tips
-          </Link>
         </div>
       </div>
-      <TipsTicker />
       <Hero />
-      <Features />
       <HowItWorks />
-      <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20">
-        <BeginnerRoadmap />
-      </div>
       <Testimonials />
       <CtaSection />
-      <StickyStartHere />
     </>
   );
 }

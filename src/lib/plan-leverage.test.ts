@@ -52,6 +52,56 @@ describe("health-aware schedule", () => {
       healthMode: "protect",
     });
     assert.equal(protect.scheduledWeeks[0].days.filter(isStrengthSession).length, 0);
+    assert.equal(
+      protect.scheduledWeeks[0].days.filter((day) => day.kind === "rest").length,
+      2
+    );
+  });
+
+  it("keeps a single rest day in support mode", () => {
+    const plan = getPlanById("5k-8w");
+    assert.ok(plan);
+    const support = applyScheduleToPlan(plan, DEFAULT_SCHEDULE, null, {
+      healthMode: "support",
+    });
+    assert.equal(
+      support.scheduledWeeks[0].days.filter((day) => day.kind === "rest").length,
+      1
+    );
+  });
+
+  it("overlays condition exercises onto remaining cross-train days after extra rest", () => {
+    const plan = getPlanById("5k-8w");
+    assert.ok(plan);
+    const scheduled = applyScheduleToPlan(plan, DEFAULT_SCHEDULE, null, {
+      healthMode: "protect",
+    });
+    const overlaid = overlayHealthOnScheduledWeeks(
+      scheduled.scheduledWeeks,
+      [
+        {
+          category: "walking",
+          title: "Easy walk",
+          why: "Heart-friendly cardio.",
+          how: "20 min conversational.",
+        },
+        {
+          category: "yoga",
+          title: "Easy range-of-motion",
+          why: "Recovery without intensity.",
+          how: "10 min Cat-Cow.",
+        },
+      ],
+      "training around a heart or blood-pressure condition"
+    );
+    const restDays = overlaid[0].days.filter((day) => day.kind === "rest");
+    const ctDays = overlaid[0].days.filter((day) => day.kind === "cross-train");
+    assert.equal(restDays.length, 2);
+    assert.ok(ctDays.length >= 1);
+    for (const day of ctDays) {
+      assert.equal(day.crossTraining?.activities[0]?.title, "Easy walk");
+      assert.match(day.crossTraining?.focus ?? "", /heart/i);
+    }
   });
 
   it("overlays supporting CT onto strength days", () => {

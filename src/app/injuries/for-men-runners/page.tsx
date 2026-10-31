@@ -11,6 +11,7 @@ import { MenRunnerConcernsSection } from "@/components/injuries/men-runner-conce
 import { menRunnerOverwhelmedBox } from "@/lib/injuries/men-runner-concerns";
 import { HubEditorialBlock } from "@/components/content/hub-editorial";
 import { JsonLd } from "@/components/seo/json-ld";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { breadcrumbJsonLd, faqPageJsonLd, howToJsonLd, webPageJsonLd } from "@/lib/seo";
 import { menInjuriesHubEditorial } from "@/lib/hub-seo";
 import { SITE_URL } from "@/lib/site";
@@ -78,6 +79,13 @@ export default function ForMenRunnersInjuriesPage() {
               for prostate, colorectal, and heart checks.
             </p>
           </div>
+        </FadeIn>
+
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner>
+            Chest pain, fainting, or unusual breathlessness while running need
+            urgent medical care — not another workout.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <HubEditorialBlock editorial={menInjuriesHubEditorial} />

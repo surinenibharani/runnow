@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { SITE_NAME, SITE_URL, SUPPORT_EMAIL } from "@/lib/site";
@@ -39,7 +40,7 @@ const FAQ_ITEMS = [
   {
     question: "Is this medical advice?",
     answer:
-      "No. Content is educational. If you have pain, a medical condition, or are returning after illness or pregnancy, check with a qualified clinician before starting or continuing a program.",
+      "No. LetsRunNow provides general fitness education, not medical advice. If you have pain, a medical condition, or are returning after illness or pregnancy, check with a qualified clinician before starting or continuing a program.",
   },
   {
     question: "How do I get help with my account?",
@@ -82,6 +83,10 @@ export default function FaqPage() {
           <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
             Short answers to the questions beginners ask most.
           </p>
+
+          <div className="mt-8">
+            <MedicalDisclaimerBanner />
+          </div>
 
           <div className="mt-10 space-y-6">
             {FAQ_ITEMS.map((item) => (

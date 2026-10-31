@@ -168,6 +168,60 @@ if (fs.existsSync(injuriesPath)) {
   }
 }
 
+const requiredBannerFiles = [
+  "src/app/plan/page.tsx",
+  "src/app/plan/[planId]/page.tsx",
+  "src/app/tips/page.tsx",
+  "src/app/tips/[slug]/page.tsx",
+  "src/app/tips/bad-weather/page.tsx",
+  "src/app/tips/bad-weather/[slug]/page.tsx",
+  "src/app/tips/specific-situations/[slug]/page.tsx",
+  "src/app/injuries/page.tsx",
+  "src/app/injuries/[slug]/page.tsx",
+  "src/app/injuries/for-women-runners/page.tsx",
+  "src/app/injuries/for-women-runners/[slug]/page.tsx",
+  "src/app/injuries/for-men-runners/page.tsx",
+  "src/app/injuries/for-men-runners/[slug]/page.tsx",
+  "src/app/gear/page.tsx",
+  "src/app/tools/page.tsx",
+  "src/app/tools/pace-calculator/page.tsx",
+  "src/app/tools/race-predictor/page.tsx",
+  "src/app/tools/shoe-quiz/page.tsx",
+  "src/app/blog/(index)/page.tsx",
+  "src/app/faq/page.tsx",
+  "src/app/about/page.tsx",
+  "src/app/instagram/page.tsx",
+  "src/components/tools/onboarding-quiz.tsx",
+  "src/components/blog/post-content.tsx",
+  "src/components/dashboard/dashboard-content.tsx",
+  "src/components/tips/situational-tips-grid.tsx",
+  "src/components/plan/adaptive-plan-coach.tsx",
+];
+
+for (const rel of requiredBannerFiles) {
+  const full = path.join(root, rel);
+  if (!fs.existsSync(full)) {
+    issues.push(`${rel}: missing required disclaimer surface`);
+    continue;
+  }
+  const text = fs.readFileSync(full, "utf8");
+  if (
+    !text.includes("MedicalDisclaimerBanner") &&
+    !text.includes("MedicalDisclaimerNote") &&
+    !text.includes("MedicalDisclaimerText")
+  ) {
+    issues.push(`${rel}: missing MedicalDisclaimerBanner/Note/Text`);
+  }
+}
+
+const emailClient = fs.readFileSync(
+  path.join(root, "src/lib/email/client.ts"),
+  "utf8"
+);
+if (!/not medical advice/i.test(emailClient)) {
+  issues.push("src/lib/email/client.ts: newsletter layout missing medical disclaimer");
+}
+
 const disclaimerRe =
   /not medical(?:\s+or(?:\s+\w+)*)?\s+advice|Educational only|general (?:fitness )?education/i;
 for (const src of fs

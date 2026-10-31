@@ -4,6 +4,7 @@ import { ArrowRight, Calculator, Footprints, Timer } from "lucide-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { FadeIn, StaggerChildren, StaggerItem } from "@/components/motion/fade-in";
 import { JsonLd } from "@/components/seo/json-ld";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -68,6 +69,13 @@ export default function ToolsPage() {
             Quick calculators and a shoe quiz for beginners — free, no account
             required.
           </p>
+        </FadeIn>
+
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner>
+            Pace and race estimates are ballpark numbers, not a training
+            prescription.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <StaggerChildren className="grid gap-4 sm:grid-cols-1">

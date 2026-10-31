@@ -81,6 +81,11 @@ export function estimateMilesFromDuration(workout: Workout): number {
 }
 
 export function workoutBaseMiles(workout: Workout): number {
+  const labeled = workout.distance
+    ? parseMilesFromText(workout.distance)
+    : null;
+  if (labeled != null) return labeled;
+
   const estimated = estimateMilesFromDuration(workout);
   const parsed = parseMilesFromText(`${workout.intervals} ${workout.name}`);
   if (parsed != null && (estimated === 0 || parsed >= estimated * 0.65)) {

@@ -23,6 +23,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { FadeIn } from "@/components/motion/fade-in";
+import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { formatDistance, formatDuration, formatPace } from "@/lib/strava";
 import type { PlanAlignmentSummary } from "@/lib/plan-alignment";
 import { PlanAlignmentCard } from "@/components/dashboard/plan-alignment";
@@ -434,6 +435,13 @@ export function DashboardContent() {
           {bannerMessage && (
             <p className="text-sm text-primary mt-3">{bannerMessage}</p>
           )}
+        </FadeIn>
+
+        <FadeIn>
+          <MedicalDisclaimerBanner>
+            Dashboard insights and coaching suggestions are general fitness
+            education, not a diagnosis or a training prescription.{" "}
+          </MedicalDisclaimerBanner>
         </FadeIn>
 
         <FadeIn>

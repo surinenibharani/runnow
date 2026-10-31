@@ -121,6 +121,10 @@ export default async function TipDetailPage({ params }: PageProps) {
           </Link>
         </FadeIn>
 
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner />
+        </FadeIn>
+
         <FadeIn>
           <article>
             <div className="overflow-hidden rounded-xl border border-border/60">
@@ -170,10 +174,6 @@ export default async function TipDetailPage({ params }: PageProps) {
             targetType="tip"
             initialCount={commentCount}
           />
-        </FadeIn>
-
-        <FadeIn className="mt-8">
-          <MedicalDisclaimerBanner />
         </FadeIn>
 
         {pathway && (

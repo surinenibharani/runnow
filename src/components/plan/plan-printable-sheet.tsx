@@ -23,6 +23,7 @@ import {
   type TrainingPlan,
 } from "@/lib/plan-types";
 import { formatWorkoutTimeAndDistance } from "@/lib/plan-stats";
+import { MedicalDisclaimerNote } from "@/components/legal/medical-disclaimer-note";
 
 type PlanPrintableSheetProps = {
   plan: TrainingPlan;
@@ -256,6 +257,7 @@ export function PlanPrintableSheet({
           {plan.name} · {plan.duration}
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">{BRAND_CAPTION}</p>
+        <MedicalDisclaimerNote className="mt-2 print:text-[10px]" />
         {fromQuiz && (
           <p className="mt-2 text-xs text-muted-foreground">
             Personalized from Start Here

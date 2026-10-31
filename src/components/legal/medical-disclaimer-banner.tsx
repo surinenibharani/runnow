@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AlertTriangle } from "lucide-react";
 import { MedicalDisclaimerText } from "@/components/legal/medical-disclaimer-text";
+import { STANDARD_MEDICAL_DISCLAIMER } from "@/lib/medical-disclaimer";
 import { cn } from "@/lib/utils";
 
 type MedicalDisclaimerBannerProps = {
@@ -27,7 +28,7 @@ export function MedicalDisclaimerBanner({
       <AlertTriangle className="mt-0.5 size-5 shrink-0 text-amber-600 dark:text-amber-400" />
       <p className="leading-relaxed text-muted-foreground">
         <MedicalDisclaimerText>
-          LetsRunNow provides general fitness education, not medical advice.
+          {STANDARD_MEDICAL_DISCLAIMER}
         </MedicalDisclaimerText>{" "}
         Talk to your doctor before starting or changing an exercise program —
         especially if you have a health condition, are pregnant, are recovering

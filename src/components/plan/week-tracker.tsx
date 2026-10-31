@@ -987,6 +987,7 @@ export function WeekTracker({
       <SchedulePicker
         preferences={schedulePrefs}
         onChange={handleScheduleChange}
+        extraRestDay={healthMode === "protect"}
       />
 
       <div className="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 sm:grid-cols-3">
@@ -1094,6 +1095,7 @@ export function WeekTracker({
                       durationWeeks: basePlan.durationWeeks,
                       weekNumber: week.week,
                       runDaysPerWeek: schedulePrefs.runDaysPerWeek,
+                      restDaysPerWeek: healthMode === "protect" ? 2 : 1,
                       isLongRunDay: false,
                       personalization: planProfile,
                     })
@@ -1102,6 +1104,7 @@ export function WeekTracker({
                       durationWeeks: basePlan.durationWeeks,
                       weekNumber: week.week,
                       runDaysPerWeek: schedulePrefs.runDaysPerWeek,
+                      restDaysPerWeek: healthMode === "protect" ? 2 : 1,
                       isLongRunDay:
                         day.kind === "run" &&
                         day.dayOfWeek === schedulePrefs.longRunDay,

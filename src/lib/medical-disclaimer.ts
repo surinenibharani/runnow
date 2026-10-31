@@ -1,6 +1,12 @@
 /** Tailwind classes for medical disclaimer copy site-wide. */
 export const MEDICAL_DISCLAIMER_CLASS = "font-semibold text-foreground";
 
+export const STANDARD_MEDICAL_DISCLAIMER =
+  "LetsRunNow provides general fitness education, not medical advice.";
+
+export const PRINTABLE_MEDICAL_DISCLAIMER =
+  "Educational only — not medical advice. Stop for chest pain, dizziness, or sharp pain. Talk to a clinician before starting or changing a program.";
+
 /**
  * Sentences that state content is educational / not medical advice.
  * Used to auto-bold disclaimer lines in blog copy and other text surfaces.

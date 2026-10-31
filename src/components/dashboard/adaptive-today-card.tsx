@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AdaptivePlanCoach } from "@/components/plan/adaptive-plan-coach";
+import { MedicalDisclaimerNote } from "@/components/legal/medical-disclaimer-note";
 import type { AdaptiveBrief, AdaptiveMetricInsight } from "@/lib/adaptive-brief";
 import { saveTrainingPlan } from "@/lib/training-plan-client";
 import { cn } from "@/lib/utils";
@@ -240,6 +241,9 @@ export function AdaptiveTodayCard({
           {applyMessage && (
             <p className="text-xs text-primary">{applyMessage}</p>
           )}
+          <MedicalDisclaimerNote>
+            Educational suggestion — not medical advice.
+          </MedicalDisclaimerNote>
         </CardContent>
       </Card>
 

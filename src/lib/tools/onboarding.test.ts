@@ -121,6 +121,7 @@ describe("onboarding recommendations", () => {
       days: 4,
       ageBand: "under-40",
       setback: "condition",
+      conditionArea: "other",
     });
     assert.equal(result.plan.familyId, "half-marathon");
     assert.equal(result.healthMode, "protect");
@@ -132,6 +133,55 @@ describe("onboarding recommendations", () => {
     assert.ok(
       result.adjustments.some((item) => /cross-training on non-run/i.test(item.title))
     );
+    assert.ok(result.adjustments.some((item) => /extra rest/i.test(item.title)));
+  });
+
+  it("matches rest, CT, and exercises to the chosen health condition", () => {
+    const heart = recommendOnboardingPlan({
+      ...base,
+      experience: "consistent",
+      longestRun: "30-plus",
+      goal: "5k",
+      days: 4,
+      setback: "condition",
+      conditionArea: "heart",
+    });
+    assert.equal(heart.healthMode, "protect");
+    assert.equal(heart.runDaysPerWeek, 3);
+    assert.match(heart.healthFocus ?? "", /heart/i);
+    assert.ok(heart.crossTrain.some((item) => /walk/i.test(item.title)));
+    assert.ok(heart.adjustments.some((item) => /extra rest/i.test(item.title)));
+
+    const joints = recommendOnboardingPlan({
+      ...base,
+      experience: "consistent",
+      longestRun: "30-plus",
+      goal: "5k",
+      days: 4,
+      setback: "condition",
+      conditionArea: "joints",
+    });
+    assert.equal(joints.healthMode, "support");
+    assert.equal(joints.runDaysPerWeek, 3);
+    assert.match(joints.healthFocus ?? "", /joint/i);
+    assert.ok(joints.crossTrain.some((item) => /bike|pool/i.test(item.title)));
+    assert.ok(joints.crossTrain.some((item) => /hip|glute/i.test(item.title)));
+    assert.equal(
+      joints.adjustments.some((item) => /extra rest/i.test(item.title)),
+      false
+    );
+
+    const pregnancy = recommendOnboardingPlan({
+      ...base,
+      experience: "walk-run",
+      longestRun: "10-20",
+      goal: "5k",
+      setback: "condition",
+      conditionArea: "pregnancy",
+    });
+    assert.equal(pregnancy.healthMode, "protect");
+    assert.equal(pregnancy.injuryHref, "/blog/running-during-pregnancy");
+    assert.ok(pregnancy.crossTrain.some((item) => /prenatal/i.test(item.title)));
   });
 
   it("keeps a healthy 4-day pick and drops to 3 when health needs protection", () => {
@@ -213,11 +263,19 @@ describe("onboarding completion", () => {
     );
   });
 
-  it("treats a health-condition answer as complete without extra follow-ups", () => {
+  it("requires a health-condition follow-up", () => {
     assert.equal(
       isOnboardingComplete({
         ...base,
         setback: "condition",
+      }),
+      false
+    );
+    assert.equal(
+      isOnboardingComplete({
+        ...base,
+        setback: "condition",
+        conditionArea: "joints",
       }),
       true
     );

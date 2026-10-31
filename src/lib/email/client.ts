@@ -122,12 +122,15 @@ export function emailLayout({
   body: string;
   unsubscribeToken?: string;
 }): string {
+  const disclaimer = `<p style="margin:32px 0 0;font-size:12px;color:#6b7280;line-height:1.5;">
+        Educational fitness content — not medical advice. Talk to a clinician before starting or changing an exercise program.
+      </p>`;
   const footer = unsubscribeToken
-    ? `<p style="margin:32px 0 0;font-size:12px;color:#6b7280;line-height:1.5;">
+    ? `${disclaimer}<p style="margin:12px 0 0;font-size:12px;color:#6b7280;line-height:1.5;">
         You&apos;re receiving this because you subscribed at ${SITE_NAME}.
         <a href="${unsubscribeUrl(unsubscribeToken)}" style="color:#6b7280;">Unsubscribe</a>
       </p>`
-    : "";
+    : disclaimer;
 
   return `<!DOCTYPE html>
 <html lang="en">

@@ -73,6 +73,15 @@ export type OnboardingNiggleSeverity =
   | "daily"
   | "sharp-worsening";
 
+/** Follow-up when the runner flags a health condition to plan around. */
+export type OnboardingConditionArea =
+  | "heart"
+  | "joints"
+  | "pregnancy"
+  | "metabolic"
+  | "asthma"
+  | "other";
+
 export type OnboardingAnswers = {
   experience: OnboardingExperience;
   longestRun: OnboardingLongestRun;
@@ -85,13 +94,15 @@ export type OnboardingAnswers = {
   timeOffReason?: OnboardingTimeOffReason;
   niggleArea?: OnboardingNiggleArea;
   niggleSeverity?: OnboardingNiggleSeverity;
+  conditionArea?: OnboardingConditionArea;
 };
 
 export type OnboardingFollowUpId =
   | "timeOffDuration"
   | "timeOffReason"
   | "niggleArea"
-  | "niggleSeverity";
+  | "niggleSeverity"
+  | "conditionArea";
 
 export type OnboardingStepId =
   | "experience"
@@ -150,6 +161,9 @@ export function getOnboardingFields(
   if (answers.setback === "niggle") {
     fields.push("niggleArea", "niggleSeverity");
   }
+  if (answers.setback === "condition") {
+    fields.push("conditionArea");
+  }
   return fields;
 }
 
@@ -159,7 +173,8 @@ export function isHealthField(field: OnboardingFieldId): boolean {
     field === "timeOffDuration" ||
     field === "timeOffReason" ||
     field === "niggleArea" ||
-    field === "niggleSeverity"
+    field === "niggleSeverity" ||
+    field === "conditionArea"
   );
 }
 
@@ -171,6 +186,7 @@ export function clearHealthFollowUps(
   delete next.timeOffReason;
   delete next.niggleArea;
   delete next.niggleSeverity;
+  delete next.conditionArea;
   return next;
 }
 
@@ -188,6 +204,29 @@ function niggleInjuryHref(area: OnboardingNiggleArea | undefined): string | unde
       return "/injuries/it-band-syndrome";
     default:
       return "/injuries";
+  }
+}
+
+function conditionHref(area: OnboardingConditionArea | undefined): string {
+  if (area === "pregnancy") return "/blog/running-during-pregnancy";
+  if (area === "joints") return "/injuries";
+  return "/blog/running-with-health-conditions";
+}
+
+function conditionPlanNote(area: OnboardingConditionArea | undefined): string {
+  switch (area) {
+    case "heart":
+      return "Extra rest is built in. Keep every session conversational and stop for chest pain, dizziness, or unusual shortness of breath. Non-run days stay on easy walking and gentle mobility.";
+    case "joints":
+      return "We keep 3 run days and put bike, pool, or walking plus hip/glute work on the others so joints get less pavement time.";
+    case "pregnancy":
+      return "Extra rest is built in. Stay at a talk-test effort and stop for pain, dizziness, contractions, bleeding, or calf swelling. Cross-train days stay on walking and prenatal-safe mobility.";
+    case "metabolic":
+      return "Non-run days stay on easy walking and light strength. Pair sessions with the meal and medication plan you already use with your clinician — don't skip fueling.";
+    case "asthma":
+      return "Warm up longer than usual, keep efforts easy, and use an indoor bike if air quality, cold, or pollen is a known trigger. Keep your usual action plan nearby.";
+    default:
+      return "We start easier than the distance you named, add extra rest, and keep supporting cross-training on remaining non-run days so fitness still moves without extra pounding.";
   }
 }
 
@@ -253,10 +292,23 @@ function wantsGentle(answers: OnboardingAnswers): boolean {
 export function healthPlanModeFromAnswers(
   answers: Pick<
     OnboardingAnswers,
-    "setback" | "niggleSeverity" | "timeOffReason" | "timeOffDuration"
+    | "setback"
+    | "niggleSeverity"
+    | "timeOffReason"
+    | "timeOffDuration"
+    | "conditionArea"
   >
 ): HealthPlanMode {
-  if (answers.setback === "condition") return "protect";
+  if (answers.setback === "condition") {
+    if (
+      answers.conditionArea === "joints" ||
+      answers.conditionArea === "metabolic" ||
+      answers.conditionArea === "asthma"
+    ) {
+      return "support";
+    }
+    return "protect";
+  }
   if (answers.setback === "niggle") {
     if (
       answers.niggleSeverity === "sharp-worsening" ||
@@ -307,7 +359,13 @@ export function appliedRunDaysFromAnswers(
   planRunsPerWeek?: number
 ): 3 | 4 {
   const mode = healthPlanModeFromAnswers(answers);
-  if (mode === "protect" || answers.ageBand === "55-plus") return 3;
+  if (
+    mode === "protect" ||
+    answers.setback === "condition" ||
+    answers.ageBand === "55-plus"
+  ) {
+    return 3;
+  }
   if (answers.days === 4 && (planRunsPerWeek === undefined || planRunsPerWeek >= 4)) {
     return 4;
   }
@@ -431,7 +489,8 @@ function buildRationale(
   const focus = healthFocusLabel(
     answers.setback,
     answers.niggleArea,
-    answers.timeOffReason
+    answers.timeOffReason,
+    answers.conditionArea
   );
   const healthClause = focus
     ? ` It also leaves room for recovery and cross-training aimed at ${focus}.`
@@ -547,9 +606,7 @@ function buildNotes(
   if (answers.setback === "condition") {
     caution =
       "If you have a heart, joint, metabolic, pregnancy, or other health condition, get clinician clearance before starting or changing a program. This plan is education, not medical advice.";
-    notes.push(
-      "We start easier than the distance you named and keep supporting cross-training on every non-run day so fitness still moves without extra pounding."
-    );
+    notes.push(conditionPlanNote(answers.conditionArea));
   }
 
   let alternate: PlanRecommendation["alternate"] | undefined;
@@ -586,7 +643,7 @@ function buildNotes(
     answers.setback === "niggle"
       ? niggleInjuryHref(answers.niggleArea)
       : answers.setback === "condition"
-        ? "/blog/running-with-health-conditions"
+        ? conditionHref(answers.conditionArea)
         : undefined;
 
   return {
@@ -625,11 +682,16 @@ function buildAdjustments(
     items.push({
       title: "Supporting cross-training on non-run days",
       detail:
-        "Every cross-train day now leads with low-impact work matched to the issues you flagged, instead of extra running.",
+        "Every cross-train day now leads with low-impact work and exercises matched to the issues you flagged, instead of extra running.",
     });
   }
 
   if (mode === "protect") {
+    items.push({
+      title: "An extra rest day",
+      detail:
+        "One mid-week day is full rest — not a disguised workout — so the remaining sessions have room to recover.",
+    });
     items.push({
       title: "Softer strength load",
       detail:
@@ -670,7 +732,8 @@ export function recommendOnboardingPlan(
   const healthFocus = healthFocusLabel(
     answers.setback,
     answers.niggleArea,
-    answers.timeOffReason
+    answers.timeOffReason,
+    answers.conditionArea
   );
   const runDaysPerWeek = appliedRunDaysFromAnswers(answers, plan.runsPerWeek);
   const healthMode = healthPlanModeFromAnswers(answers);
@@ -707,6 +770,9 @@ export function isOnboardingComplete(
   }
   if (answers.setback === "niggle") {
     return answers.niggleArea != null && answers.niggleSeverity != null;
+  }
+  if (answers.setback === "condition") {
+    return answers.conditionArea != null;
   }
   return true;
 }
