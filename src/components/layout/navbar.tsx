@@ -4,13 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import type { RefObject } from "react";
-import { ChevronDown, Menu, User, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
+import { NavAuth } from "@/components/layout/nav-auth";
 import { SiteSearch } from "@/components/search/site-search";
-import { useSession, signOut } from "next-auth/react";
-import { Button } from "@/components/ui/button";
-import { useProfileModal } from "@/components/profile/profile-modal";
 import {
   getMoreNavLinks,
   getPrimaryNavLinks,
@@ -345,12 +343,8 @@ export function Navbar() {
   const navSlotRef = useRef<HTMLDivElement>(null);
   const measureRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
-  const { data: session } = useSession();
-  const { openProfile } = useProfileModal();
-
-  const isAuthenticated = Boolean(session?.user);
-  const primaryLinks = getPrimaryNavLinks({ isAuthenticated });
-  const alwaysMoreLinks = getMoreNavLinks({ isAuthenticated });
+  const primaryLinks = getPrimaryNavLinks({ isAuthenticated: false });
+  const alwaysMoreLinks = getMoreNavLinks({ isAuthenticated: false });
 
   const { visibleCount, useHamburger } = useResponsiveNav(
     primaryLinks,
@@ -363,9 +357,6 @@ export function Navbar() {
   const visibleLinks = primaryLinks.slice(0, visibleCount);
   const overflowedPrimary = primaryLinks.slice(visibleCount);
   const moreMenuLinks = [...overflowedPrimary, ...alwaysMoreLinks];
-
-  const displayName =
-    session?.user?.name?.split(" ")[0] || session?.user?.email?.split("@")[0];
 
   const [prevPathname, setPrevPathname] = useState(pathname);
   if (pathname !== prevPathname) {
@@ -512,51 +503,10 @@ export function Navbar() {
               : "w-28 sm:w-36 md:w-40 xl:w-48"
           )}
           inputClassName="bg-background/80"
+          placeholder={useHamburger ? "Search" : "Search LetsRunNow"}
         />
 
-        {!useHamburger && (
-          <div className="flex shrink-0 items-center gap-1.5 xl:gap-2">
-            <StartPlanCta variant="button" />
-            {session ? (
-              <>
-                {displayName && (
-                  <span className="hidden max-w-[7rem] truncate text-sm text-muted-foreground xl:inline">
-                    {displayName}
-                  </span>
-                )}
-                <Button variant="outline" size="sm" onClick={openProfile}>
-                  <User className="size-4" />
-                  <span className="hidden xl:inline">Profile</span>
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => signOut({ callbackUrl: "/" })}
-                >
-                  Sign out
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button
-                  nativeButton={false}
-                  render={<Link href="/login" />}
-                  variant="outline"
-                  size="sm"
-                >
-                  Log in
-                </Button>
-                <Button
-                  nativeButton={false}
-                  render={<Link href="/signup" />}
-                  size="sm"
-                >
-                  Sign up
-                </Button>
-              </>
-            )}
-          </div>
-        )}
+        {!useHamburger && <NavAuth variant="desktop" />}
 
         {useHamburger && (
           <button
@@ -612,53 +562,10 @@ export function Navbar() {
               </div>
             )}
 
-            {session ? (
-              <>
-                {displayName && (
-                  <p className="px-4 py-2 text-sm font-medium text-foreground">
-                    {displayName}
-                  </p>
-                )}
-                <Button
-                  variant="outline"
-                  className="mx-4 justify-start"
-                  onClick={() => {
-                    setMenuOpen(false);
-                    openProfile();
-                  }}
-                >
-                  <User className="size-4" />
-                  Profile
-                </Button>
-                <Button
-                  variant="ghost"
-                  className="mt-2 justify-start"
-                  onClick={() => signOut({ callbackUrl: "/" })}
-                >
-                  Sign out
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button
-                  nativeButton={false}
-                  render={<Link href="/login" />}
-                  variant="outline"
-                  className="mt-2"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Log in
-                </Button>
-                <Button
-                  nativeButton={false}
-                  render={<Link href="/signup" />}
-                  className="mt-2"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Sign up
-                </Button>
-              </>
-            )}
+            <NavAuth
+              variant="mobile"
+              onNavigate={() => setMenuOpen(false)}
+            />
           </div>
         </nav>
       )}

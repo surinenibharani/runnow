@@ -51,10 +51,8 @@ export default function StartPage() {
             Start here
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-            Don&apos;t know where to start? Answer a short quiz — then get a
-            free beginner-friendly plan that fits, whether you have never run,
-            you are coming back, or you already have a base. Walk-run is
-            allowed.
+            A short quiz picks a free plan — first-timers, comebacks, and
+            runners with a base. Walk-run is allowed.
           </p>
           <p className="mx-auto mt-3 max-w-lg text-sm text-muted-foreground">
             Already know your distance?{" "}

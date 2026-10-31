@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Hero } from "@/components/landing/hero";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import { Testimonials } from "@/components/landing/testimonials";
@@ -44,16 +43,6 @@ export default function Home() {
           ],
         })}
       />
-      <div className="overflow-x-clip border-b border-border/60 bg-muted/30">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 text-center text-sm sm:px-6">
-          <Link
-            href="/blog/why-letsrunnow"
-            className="inline-flex min-h-11 items-center justify-center font-medium text-primary hover:underline touch-target sm:min-h-0"
-          >
-            Why LetsRunNow?
-          </Link>
-        </div>
-      </div>
       <Hero />
       <HowItWorks />
       <Testimonials />

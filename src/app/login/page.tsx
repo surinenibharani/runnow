@@ -21,17 +21,37 @@ export default function LoginPage() {
         <Breadcrumbs
           items={[{ label: "Home", href: "/" }, { label: "Log in" }]}
         />
-        <Suspense
-          fallback={
-            <div className="py-16 text-center text-muted-foreground">
-              Loading…
-            </div>
-          }
-        >
+        <Suspense fallback={<AuthFormFallback title="Welcome back" />}>
           <LoginForm />
         </Suspense>
       </div>
     </div>
+  );
+}
+
+function AuthFormFallback({ title }: { title: string }) {
+  return (
+    <Card className="border-border/60">
+      <CardHeader className="text-center">
+        <h1 className="text-2xl font-heading font-medium">{title}</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Log in to save your plan and check off workouts
+        </p>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4" aria-hidden>
+          <div className="space-y-2">
+            <div className="h-4 w-12 rounded bg-muted" />
+            <div className="h-9 rounded-lg bg-muted" />
+          </div>
+          <div className="space-y-2">
+            <div className="h-4 w-16 rounded bg-muted" />
+            <div className="h-9 rounded-lg bg-muted" />
+          </div>
+          <div className="h-10 rounded-lg bg-muted" />
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -80,12 +100,6 @@ function LoginForm() {
     window.location.assign(callbackUrl);
   }
 
-  if (status === "loading") {
-    return (
-      <div className="py-16 text-center text-muted-foreground">Loading…</div>
-    );
-  }
-
   if (status === "authenticated") {
     return (
       <div className="py-16 text-center text-muted-foreground">
@@ -104,7 +118,7 @@ function LoginForm() {
             <p className="text-sm text-muted-foreground mt-1">
               {isCoachFlow
                 ? "Sign in to manage your teams or subscribe to the coach plan"
-                : "Log in to sync Strava and track your runs"}
+                : "Log in to save your plan and check off workouts"}
             </p>
           </CardHeader>
           <CardContent>

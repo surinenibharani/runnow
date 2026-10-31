@@ -21,7 +21,7 @@ export function Footer() {
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
-            <Logo className="[&_img]:h-24 sm:[&_img]:h-28" />
+            <Logo className="[&_img]:h-11 sm:[&_img]:h-12" />
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Helping beginners lace up — and keeping every runner going.
             </p>

@@ -11,7 +11,6 @@ import { BeginnerRoadmap } from "@/components/content/beginner-roadmap";
 import { HubNextSteps } from "@/components/content/hub-next-steps";
 import { HubEditorialBlock } from "@/components/content/hub-editorial";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
-import { TipsPageHero } from "@/components/visuals/content-scenes";
 import { getPublishedPostBySlug } from "@/lib/blog/posts";
 import {
   breadcrumbJsonLd,
@@ -83,7 +82,6 @@ export default function TipsPage() {
         <TipsSectionNav />
 
         <FadeIn className="mb-10">
-          <TipsPageHero className="mb-8" />
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Tips for new runners
@@ -93,10 +91,6 @@ export default function TipsPage() {
               and keep moving.
             </p>
           </div>
-        </FadeIn>
-
-        <FadeIn className="mb-10">
-          <BeginnerRoadmap />
         </FadeIn>
 
         <FadeIn className="mb-8">
@@ -119,8 +113,6 @@ export default function TipsPage() {
         <FadeIn className="mb-8">
           <MedicalDisclaimerBanner />
         </FadeIn>
-
-        <HubEditorialBlock editorial={tipsHubEditorial} />
 
         {tipHubSections.map((section) => {
           const tips = tipsForHubSection(section);
@@ -201,6 +193,12 @@ export default function TipsPage() {
             />
           );
         })}
+
+        <FadeIn className="mb-10">
+          <BeginnerRoadmap />
+        </FadeIn>
+
+        <HubEditorialBlock editorial={tipsHubEditorial} />
 
         <FadeIn className="mt-4">
           <HubNextSteps steps={tipsHubNextSteps} />

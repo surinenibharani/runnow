@@ -123,7 +123,7 @@ export default async function WomenRunnerConcernDetailPage({
             basePath={BASE_PATH}
             showIllustration
           />
-          <MedicalDisclaimerBanner className="mt-6">
+          <MedicalDisclaimerBanner variant="full" className="mt-6">
             Missed periods, pelvic-floor symptoms, or pregnancy and postpartum
             questions should be reviewed with a clinician.{" "}
           </MedicalDisclaimerBanner>

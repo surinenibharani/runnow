@@ -17,7 +17,6 @@ import { SCHEDULED_BLOG_FILTER, buildBlogCategories } from "@/lib/blog/categorie
 import { bootstrapBlogPreview } from "@/lib/blog/preview-server";
 import { isBlogPostScheduled } from "@/lib/blog/preview";
 import { BlogPreviewBanner } from "@/components/blog/blog-preview-banner";
-import { BlogPageHero } from "@/components/visuals/content-scenes";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { blogIndexJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -74,7 +73,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
 
         <FadeIn className="mb-10">
-          <BlogPageHero className="mb-8" />
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               The {SITE_NAME} Blog

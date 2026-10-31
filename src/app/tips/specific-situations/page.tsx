@@ -5,7 +5,6 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { SituationalTipsGrid } from "@/components/tips/situational-tips-grid";
-import { SpecificSituationsTipsPageHero } from "@/components/visuals/content-scenes";
 import { HubNextSteps } from "@/components/content/hub-next-steps";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -78,7 +77,6 @@ export default function SpecificSituationsTipsPage() {
         <TipsSectionNav />
 
         <FadeIn className="mb-12">
-          <SpecificSituationsTipsPageHero className="mb-8" />
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Running for specific situations

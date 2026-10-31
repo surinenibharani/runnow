@@ -39,9 +39,25 @@ export default function SignupPage() {
         />
         <Suspense
           fallback={
-            <div className="py-16 text-center text-muted-foreground">
-              Loading…
-            </div>
+            <Card className="border-border/60">
+              <CardHeader className="text-center">
+                <h1 className="text-2xl font-heading font-medium">
+                  Create your account
+                </h1>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Join {SITE_NAME} — save your plan and track workouts in the
+                  browser
+                </p>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4" aria-hidden>
+                  <div className="h-9 rounded-lg bg-muted" />
+                  <div className="h-9 rounded-lg bg-muted" />
+                  <div className="h-9 rounded-lg bg-muted" />
+                  <div className="h-10 rounded-lg bg-muted" />
+                </div>
+              </CardContent>
+            </Card>
           }
         >
           <SignupForm />
@@ -136,12 +152,6 @@ function SignupForm() {
     window.location.assign(callbackUrl);
   }
 
-  if (status === "loading") {
-    return (
-      <div className="py-16 text-center text-muted-foreground">Loading…</div>
-    );
-  }
-
   if (status === "authenticated") {
     return (
       <div className="py-16 text-center text-muted-foreground">
@@ -162,7 +172,7 @@ function SignupForm() {
             <p className="text-sm text-muted-foreground mt-1">
               {isCoachFlow
                 ? "Create your account, then subscribe to the coach plan on the Teams page"
-                : `Join ${SITE_NAME} — connect Strava for personalized insights`}
+                : `Join ${SITE_NAME} — save your plan and track workouts in the browser`}
             </p>
           </CardHeader>
           <CardContent>

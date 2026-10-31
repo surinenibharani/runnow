@@ -44,6 +44,12 @@ export function Hero() {
               Start here
               <ArrowRight className="size-5 shrink-0" />
             </Button>
+            <Link
+              href="/blog/why-letsrunnow"
+              className="relative z-10 mt-3 inline-flex min-h-11 items-center justify-center text-sm font-medium text-primary hover:underline"
+            >
+              Why LetsRunNow?
+            </Link>
           </div>
         </div>
       </section>
@@ -98,8 +104,6 @@ export function Hero() {
           >
             Men&apos;s guide
           </Button>
-        </div>
-        <div className="mx-auto mt-2 flex max-w-6xl flex-wrap items-center justify-center gap-2">
           <Button
             nativeButton={false}
             render={<Link href="/injuries" />}

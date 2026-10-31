@@ -720,7 +720,10 @@ export function OnboardingQuiz() {
         answeredCount={answeredCount}
       />
 
-      <nav aria-label="Quiz steps" className="overflow-x-auto pb-1">
+      <nav
+        aria-label="Quiz steps"
+        className="hidden overflow-x-auto pb-1 sm:block"
+      >
         <ol className="flex min-w-max gap-1.5 sm:gap-2">
           {fields.map((field, index) => {
             const done = answerValue(answers, field) != null;

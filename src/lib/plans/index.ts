@@ -15,7 +15,7 @@ export const PLAN_FAMILIES: PlanFamily[] = [
   },
   {
     id: "10k",
-    name: "10K",
+    name: "5K to 10K",
     shortName: "10K",
     prerequisite: "Comfortable completing a 5K or running ~30 minutes continuously",
     runsPerWeek: 3,

@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
-import { WomenRunnersInjuriesPageHero } from "@/components/visuals/content-scenes";
 import { WomenRunnerConcernsSection } from "@/components/injuries/women-runner-concerns-section";
 import { womenRunnerOverwhelmedBox } from "@/lib/injuries/women-runner-concerns";
 import { HubEditorialBlock } from "@/components/content/hub-editorial";
@@ -64,7 +63,6 @@ export default function ForWomenRunnersInjuriesPage() {
         />
 
         <FadeIn className="mb-12">
-          <WomenRunnersInjuriesPageHero className="mb-8" />
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               For women runners
@@ -82,13 +80,13 @@ export default function ForWomenRunnersInjuriesPage() {
         </FadeIn>
 
         <FadeIn className="mb-8">
-          <MedicalDisclaimerBanner>
+          <MedicalDisclaimerBanner variant="full">
             Persistent pelvic, bone, or postpartum symptoms need a clinician —
             not another training week.{" "}
           </MedicalDisclaimerBanner>
         </FadeIn>
 
-        <HubEditorialBlock editorial={womenInjuriesHubEditorial} />
+        <WomenRunnerConcernsSection />
 
         <FadeIn className="mb-10">
           <Card className="border-violet-500/20 bg-violet-500/[0.03] hover:shadow-md transition-shadow duration-300">
@@ -122,7 +120,7 @@ export default function ForWomenRunnersInjuriesPage() {
           </Card>
         </FadeIn>
 
-        <WomenRunnerConcernsSection />
+        <HubEditorialBlock editorial={womenInjuriesHubEditorial} />
 
         <FadeIn className="mb-12">
           <Card className="border-primary/20 bg-primary/5">

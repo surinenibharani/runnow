@@ -118,7 +118,7 @@ export default async function MenRunnerConcernDetailPage({
 
         <FadeIn className="mb-8">
           <RunnerConcernCard concern={concern} theme="sky" basePath={BASE_PATH} />
-          <MedicalDisclaimerBanner className="mt-6">
+          <MedicalDisclaimerBanner variant="full" className="mt-6">
             New chest pain, blood in urine, or symptoms that persist need prompt
             medical evaluation.{" "}
           </MedicalDisclaimerBanner>

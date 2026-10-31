@@ -29,12 +29,6 @@ export const mainNavGroups: NavGroup[] = [
     links: [
       { href: "/start", label: "Start here", matchPrefix: true },
       { href: "/plan", label: "Plans", matchPrefix: true },
-      {
-        href: "/dashboard",
-        label: "Dashboard",
-        matchPrefix: true,
-        authRequired: true,
-      },
     ],
   },
   {
@@ -42,9 +36,14 @@ export const mainNavGroups: NavGroup[] = [
     links: [
       { href: "/blog", label: "Blog", matchPrefix: true },
       { href: "/tips", label: "Tips", matchPrefix: true },
-      { href: "/tools", label: "Tools", matchPrefix: true },
-      { href: "/gear", label: "Gear", matchPrefix: true },
-      { href: "/injuries", label: "Injuries", matchPrefix: true },
+      { href: "/tools", label: "Tools", matchPrefix: true, navSlot: "more" },
+      { href: "/gear", label: "Gear", matchPrefix: true, navSlot: "more" },
+      {
+        href: "/injuries",
+        label: "Injuries",
+        matchPrefix: true,
+        navSlot: "more",
+      },
       {
         href: "/instagram",
         label: "Instagram",
@@ -87,7 +86,6 @@ export const tipsSectionNav = [
 export const footerTrainLinks = [
   { href: "/start", label: "Start here" },
   { href: "/plan", label: "Training Plans" },
-  { href: "/dashboard", label: "Dashboard" },
 ] as const;
 
 export const footerLearnLinks: FooterLink[] = [
@@ -142,7 +140,7 @@ export function getPrimaryNavLinks(options: {
   );
 }
 
-/** Instagram / Stories / Teams — desktop More menu + mobile overflow section. */
+/** Tools / Gear / Injuries / Instagram / Stories / Teams — desktop More + mobile overflow. */
 export function getMoreNavLinks(options: {
   isAuthenticated: boolean;
 }): NavLink[] {

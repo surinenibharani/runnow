@@ -12,7 +12,6 @@ import { PlanRecommendationSummary } from "@/components/plan/plan-recommendation
 import { RecommendedPlanBanner } from "@/components/plan/recommended-plan-banner";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
-import { PlanPageHero } from "@/components/visuals/plan-scenes";
 import { getPlanById, PLANS } from "@/lib/plans";
 import {
   buildPlanPageMetadata,
@@ -70,7 +69,6 @@ export default async function PlanVariantPage({
         />
 
         <FadeIn className="mb-10">
-          {!fromQuiz && <PlanPageHero className="mb-8" />}
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               {getPlanPageTitle(selectedPlan)}

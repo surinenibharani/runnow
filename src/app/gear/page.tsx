@@ -10,7 +10,6 @@ import { GearCategoryCard } from "@/components/gear/gear-category-card";
 import { GearTierSuggestions } from "@/components/gear/gear-tier-suggestions";
 import { GearWeeklyNews } from "@/components/gear/gear-weekly-news";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
-import { GearPageHero } from "@/components/visuals/gear-scenes";
 import { HubNextSteps } from "@/components/content/hub-next-steps";
 import { RelatedPathways } from "@/components/content/related-pathways";
 import { HubEditorialBlock } from "@/components/content/hub-editorial";
@@ -76,7 +75,6 @@ export default function GearPage() {
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Gear guide" }]} />
 
         <FadeIn className="mb-8">
-          <GearPageHero className="mb-8" />
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Running Gear Guide
@@ -93,8 +91,6 @@ export default function GearPage() {
             </p>
           </div>
         </FadeIn>
-
-        <HubEditorialBlock editorial={gearHubEditorial} />
 
         <FadeIn className="mb-8">
           <nav
@@ -140,58 +136,6 @@ export default function GearPage() {
               </div>
             </CardContent>
           </Card>
-        </FadeIn>
-
-        <FadeIn className="mb-10">
-          <Card className="border-sky-500/20 bg-sky-500/[0.03] transition-shadow duration-300 hover:shadow-md">
-            <CardContent className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex gap-4">
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-sky-500/15 text-sky-700 dark:text-sky-300">
-                  <BookOpen className="size-5" />
-                </div>
-                <div>
-                  <h2 className="text-base font-semibold text-foreground">
-                    Weather running gear
-                  </h2>
-                  <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                    What to wear — and skip — for everyday weather, heat, cold,
-                    rain, and ice. Tops, bottoms, and shoes, with specific picks
-                    and a louder list of what not to wear for everyone, women,
-                    and men.
-                  </p>
-                </div>
-              </div>
-              <Button
-                nativeButton={false}
-                render={
-                  <Link href="/blog/weather-running-gear-tops-bottoms-shoes" />
-                }
-                variant="outline"
-                size="sm"
-                className="shrink-0 border-sky-500/30 text-sky-700 hover:bg-sky-500/10 dark:text-sky-300"
-              >
-                Read guide
-                <ArrowRight className="size-4" />
-              </Button>
-            </CardContent>
-          </Card>
-        </FadeIn>
-
-        <FadeIn className="mb-10">
-          <MedicalDisclaimerBanner>
-            Some picks (like anti-chafe or skin products) are used off-label by
-            runners — check the label and ask a clinician or pharmacist if you
-            have sensitive skin or a health condition.{" "}
-          </MedicalDisclaimerBanner>
-        </FadeIn>
-
-        <FadeIn className="mb-12">
-          <RelatedPathways
-            pathway={{
-              title: "Read first — then buy only what you need",
-              links: gearHubReads,
-            }}
-          />
         </FadeIn>
 
         <div className="space-y-16">
@@ -287,6 +231,60 @@ export default function GearPage() {
             );
           })}
         </div>
+
+        <FadeIn className="mt-12 mb-10">
+          <Card className="border-sky-500/20 bg-sky-500/[0.03] transition-shadow duration-300 hover:shadow-md">
+            <CardContent className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex gap-4">
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-sky-500/15 text-sky-700 dark:text-sky-300">
+                  <BookOpen className="size-5" />
+                </div>
+                <div>
+                  <h2 className="text-base font-semibold text-foreground">
+                    Weather running gear
+                  </h2>
+                  <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                    What to wear — and skip — for everyday weather, heat, cold,
+                    rain, and ice. Tops, bottoms, and shoes, with specific picks
+                    and a louder list of what not to wear for everyone, women,
+                    and men.
+                  </p>
+                </div>
+              </div>
+              <Button
+                nativeButton={false}
+                render={
+                  <Link href="/blog/weather-running-gear-tops-bottoms-shoes" />
+                }
+                variant="outline"
+                size="sm"
+                className="shrink-0 border-sky-500/30 text-sky-700 hover:bg-sky-500/10 dark:text-sky-300"
+              >
+                Read guide
+                <ArrowRight className="size-4" />
+              </Button>
+            </CardContent>
+          </Card>
+        </FadeIn>
+
+        <FadeIn className="mb-10">
+          <MedicalDisclaimerBanner>
+            Some picks (like anti-chafe or skin products) are used off-label by
+            runners — check the label and ask a clinician or pharmacist if you
+            have sensitive skin or a health condition.{" "}
+          </MedicalDisclaimerBanner>
+        </FadeIn>
+
+        <FadeIn className="mb-12">
+          <RelatedPathways
+            pathway={{
+              title: "Read first — then buy only what you need",
+              links: gearHubReads,
+            }}
+          />
+        </FadeIn>
+
+        <HubEditorialBlock editorial={gearHubEditorial} />
 
         <FadeIn className="mt-12">
           <HubNextSteps

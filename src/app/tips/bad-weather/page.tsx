@@ -6,7 +6,6 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { TipsSectionNav } from "@/components/tips/tips-section-nav";
 import { WeatherTipsGrid } from "@/components/tips/weather-tips-grid";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
-import { BadWeatherTipsPageHero } from "@/components/visuals/content-scenes";
 import { HubNextSteps } from "@/components/content/hub-next-steps";
 import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/seo";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -79,7 +78,6 @@ export default function BadWeatherTipsPage() {
         <TipsSectionNav />
 
         <FadeIn className="mb-12">
-          <BadWeatherTipsPageHero className="mb-8" />
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Bad weather? Stay on track

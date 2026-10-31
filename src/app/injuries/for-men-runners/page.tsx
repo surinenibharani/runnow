@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
-import { MenRunnersInjuriesPageHero } from "@/components/visuals/content-scenes";
 import { MenRunnerConcernsSection } from "@/components/injuries/men-runner-concerns-section";
 import { menRunnerOverwhelmedBox } from "@/lib/injuries/men-runner-concerns";
 import { HubEditorialBlock } from "@/components/content/hub-editorial";
@@ -64,7 +63,6 @@ export default function ForMenRunnersInjuriesPage() {
         />
 
         <FadeIn className="mb-12">
-          <MenRunnersInjuriesPageHero className="mb-8" />
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               For men runners
@@ -82,13 +80,13 @@ export default function ForMenRunnersInjuriesPage() {
         </FadeIn>
 
         <FadeIn className="mb-8">
-          <MedicalDisclaimerBanner>
+          <MedicalDisclaimerBanner variant="full">
             Chest pain, fainting, or unusual breathlessness while running need
             urgent medical care — not another workout.{" "}
           </MedicalDisclaimerBanner>
         </FadeIn>
 
-        <HubEditorialBlock editorial={menInjuriesHubEditorial} />
+        <MenRunnerConcernsSection />
 
         <FadeIn className="mb-10">
           <Card className="border-sky-500/20 bg-sky-500/[0.03] transition-shadow duration-300 hover:shadow-md">
@@ -122,7 +120,7 @@ export default function ForMenRunnersInjuriesPage() {
           </Card>
         </FadeIn>
 
-        <MenRunnerConcernsSection />
+        <HubEditorialBlock editorial={menInjuriesHubEditorial} />
 
         <FadeIn className="mb-12">
           <Card className="border-primary/20 bg-primary/5">

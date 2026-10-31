@@ -6,7 +6,6 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { InjuryHubCard } from "@/components/injuries/injury-hub-card";
 import { StartPlanCta } from "@/components/cta/start-plan-cta";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
-import { InjuriesPageHero } from "@/components/visuals/content-scenes";
 import {
   commonInjuries,
   preventionPrinciples,
@@ -106,8 +105,7 @@ export default function InjuriesPage() {
           </div>
         </div>
 
-        <FadeIn className="mb-12">
-          <InjuriesPageHero className="mb-8" />
+        <FadeIn className="mb-8">
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Common Running Injuries
@@ -120,29 +118,12 @@ export default function InjuriesPage() {
           </div>
         </FadeIn>
 
-        <HubEditorialBlock editorial={injuriesHubEditorial} />
-
-        <FadeIn className="mb-10">
-          <MedicalDisclaimerBanner>
+        <FadeIn className="mb-8">
+          <MedicalDisclaimerBanner variant="full">
             Sharp pain, swelling, numbness, or pain that worsens over days
             warrants a visit to a doctor or sports physiotherapist. When in
             doubt, rest and get checked out.{" "}
           </MedicalDisclaimerBanner>
-        </FadeIn>
-
-        <FadeIn className="mb-12">
-          <h2 className="mb-4 text-xl font-bold">Universal prevention habits</h2>
-          <ul className="grid gap-2 sm:grid-cols-2">
-            {preventionPrinciples.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-2 text-sm text-muted-foreground"
-              >
-                <Shield className="mt-0.5 size-4 shrink-0 text-primary" />
-                {item}
-              </li>
-            ))}
-          </ul>
         </FadeIn>
 
         <FadeIn className="mb-6">
@@ -179,6 +160,23 @@ export default function InjuriesPage() {
             </div>
           ))}
         </div>
+
+        <FadeIn className="mb-12">
+          <h2 className="mb-4 text-xl font-bold">Universal prevention habits</h2>
+          <ul className="grid gap-2 sm:grid-cols-2">
+            {preventionPrinciples.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-2 text-sm text-muted-foreground"
+              >
+                <Shield className="mt-0.5 size-4 shrink-0 text-primary" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </FadeIn>
+
+        <HubEditorialBlock editorial={injuriesHubEditorial} />
 
         <FadeIn className="mb-8">
           <HubNextSteps

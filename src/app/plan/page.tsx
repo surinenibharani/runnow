@@ -10,8 +10,6 @@ import { PlanCatalog } from "@/components/plan/plan-catalog";
 import { PlanLoading } from "@/components/plan/plan-loading";
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { ContentCopyrightNotice } from "@/components/legal/content-copyright-notice";
-import { PlanPageHero } from "@/components/visuals/plan-scenes";
-import { Button } from "@/components/ui/button";
 import { getPlanById } from "@/lib/plans";
 import {
   buildPlanPageMetadata,
@@ -47,40 +45,25 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Training plans" }]} />
 
         <FadeIn className="mb-10">
-          <PlanPageHero className="mb-8" />
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Your Training Plans
+              Training plans
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              Pick a distance and how many weeks you have, then add your age,
-              fitness level, and goal race date. Only one distance is shown at a
-              time so you can choose a length without scrolling past the others.
-            </p>
-            <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
-              You can also{" "}
+              Pick a distance, then a length. New to running? Choose{" "}
               <span className="font-medium text-foreground">
-                print or download a PDF
+                16 wk · Walk-first
               </span>{" "}
-              of any plan (browser Print → Save as PDF) after you load it — handy
-              for the fridge or gym bag.
-            </p>
-            <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
-              New to running? On Couch to 5K, choose{" "}
-              <span className="font-medium text-foreground">16 wk · Walk-first</span>{" "}
-              — or{" "}
+              on Couch to 5K, or{" "}
               <Link href="/start" className="font-medium text-primary hover:underline">
                 Start here
               </Link>{" "}
               for a 60-second recommendation.
             </p>
-            <Button
-              nativeButton={false}
-              render={<Link href="/start" />}
-              className="mt-5"
-            >
-              Start here
-            </Button>
+            <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground sm:text-base">
+              After you load a plan you can print it or save a PDF from the
+              browser.
+            </p>
           </div>
         </FadeIn>
 
@@ -95,7 +78,7 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
 
         <div id="plan-tracker" className="scroll-mt-24">
           <div className="mb-6 border-t border-border/60 pt-10">
-            <h2 className="text-xl font-bold sm:text-2xl">Your plan tracker</h2>
+            <h2 className="text-xl font-bold sm:text-2xl">Plan tracker</h2>
             <p className="mt-1 text-sm text-muted-foreground">
               Mark workouts complete, adjust your schedule, and sync progress when
               signed in. Prefer paper? Open the printable sheet for your selected

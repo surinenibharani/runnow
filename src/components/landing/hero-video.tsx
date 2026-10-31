@@ -10,6 +10,18 @@ const HERO_POSTER_SRC = "/hero/hero-poster.jpg";
 const HOLD_AT = 1;
 const HOLD_PLAY = 2;
 
+function shouldSkipHeroAutoplay(): boolean {
+  const connection = (
+    navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }
+  ).connection;
+  if (!connection) return false;
+  if (connection.saveData) return true;
+  const type = connection.effectiveType;
+  return type === "slow-2g" || type === "2g" || type === "3g";
+}
+
 type HeroVideoProps = {
   className?: string;
 };
@@ -23,6 +35,7 @@ export function HeroVideo({ className }: HeroVideoProps) {
   const holdTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hasAutoStartedRef = useRef(false);
   const [showPlayButton, setShowPlayButton] = useState(false);
+  const [preload, setPreload] = useState<"none" | "metadata">("none");
 
   const clearHoldWatch = useCallback(() => {
     if (rafRef.current) {
@@ -201,8 +214,14 @@ export function HeroVideo({ className }: HeroVideoProps) {
 
     if (mq.matches) {
       applyReducedMotion();
+    } else if (shouldSkipHeroAutoplay()) {
+      clearHoldWatch();
+      phaseRef.current = "paused";
+      video.pause();
+      setShowPlayButton(true);
     } else if (!hasAutoStartedRef.current) {
       hasAutoStartedRef.current = true;
+      setPreload("metadata");
       const boot = () => startSessionRef.current();
       if (video.readyState >= 1) {
         boot();
@@ -241,7 +260,7 @@ export function HeroVideo({ className }: HeroVideoProps) {
             poster={HERO_POSTER_SRC}
             muted
             playsInline
-            preload="metadata"
+            preload={preload}
           />
           <div
             aria-hidden
