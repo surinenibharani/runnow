@@ -1,7 +1,7 @@
-import type { GearSuggestion } from "@/lib/gear/items";
+import type { GearSuggestion, GearTier, GearTierSuggestion } from "@/lib/gear/items";
 import type { GearSuggestionPick, GearUpdates } from "@/lib/gear/types";
 import gearUpdatesData from "@/data/gear-updates.json";
-import { gearCategories } from "@/lib/gear/items";
+import { gearCategories, gearTierMeta } from "@/lib/gear/items";
 
 export type GearSuggestionVariant = "default" | "women";
 
@@ -54,4 +54,53 @@ export function formatGearUpdatedAt(iso: string): string {
 
 export function getCategoryTitle(slug: string): string {
   return gearCategories.find((c) => c.slug === slug)?.title ?? "Gear";
+}
+
+export type ThisWeekCatalogPick = GearSuggestionPick & {
+  categorySlug: string;
+  categoryTitle: string;
+};
+
+export function getThisWeeksCatalogPicks(
+  updates: GearUpdates = getGearUpdates()
+): ThisWeekCatalogPick[] {
+  const picks: ThisWeekCatalogPick[] = [];
+
+  for (const category of gearCategories) {
+    const featured = updates.suggestionsByCategory?.[category.slug]?.find(
+      (pick) => pick.weekly
+    );
+    if (!featured) continue;
+    picks.push({
+      ...featured,
+      categorySlug: category.slug,
+      categoryTitle: category.title,
+    });
+  }
+
+  return picks;
+}
+
+export function getWeeklyTierSuggestions(tier: GearTier): GearTierSuggestion[] {
+  const updates = getGearUpdates();
+  const priceByName = new Map(
+    Object.values(gearTierMeta).flatMap((meta) =>
+      meta.suggestions.map((suggestion) => [suggestion.name, suggestion.price] as const)
+    )
+  );
+
+  return gearTierMeta[tier].suggestions.map((pick) => {
+    const featured = updates.suggestionsByCategory?.[pick.categorySlug]?.find(
+      (item) => item.weekly
+    );
+    if (!featured) return pick;
+
+    return {
+      ...pick,
+      name: featured.name,
+      note: featured.note,
+      price: priceByName.get(featured.name) ?? pick.price,
+      weekly: true,
+    };
+  });
 }

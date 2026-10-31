@@ -19,7 +19,12 @@ import {
   getGearByTier,
   type GearTier,
 } from "@/lib/gear/items";
-import { getGearUpdates, formatGearUpdatedAt, getMergedSuggestions } from "@/lib/gear/updates";
+import {
+  getGearUpdates,
+  formatGearUpdatedAt,
+  getMergedSuggestions,
+  getWeeklyTierSuggestions,
+} from "@/lib/gear/updates";
 import { gearHubNextSteps, gearHubReads, getGearPathway } from "@/lib/content-pathways";
 import { gearHubEditorial } from "@/lib/hub-seo";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -84,7 +89,7 @@ export default function GearPage() {
               marathon. Suggestions, not sponsorships.
             </p>
             <p className="mt-3 text-sm text-muted-foreground">
-              Guide refreshed weekly — last updated{" "}
+              Guide refreshed every Tuesday and Friday — last updated{" "}
               <time dateTime={gearUpdates.updatedAt}>
                 {formatGearUpdatedAt(gearUpdates.updatedAt)}
               </time>
@@ -97,6 +102,13 @@ export default function GearPage() {
             aria-label="Gear budget sections"
             className="flex flex-wrap justify-center gap-2"
           >
+            <a
+              href="#this-week"
+              className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-primary/10"
+            >
+              This week
+              <ArrowUpRight className="size-3.5 shrink-0 opacity-50" aria-hidden />
+            </a>
             {gearTiers.map((tier) => {
               const meta = gearTierMeta[tier];
               const Icon = tierIcon(tier);
@@ -136,6 +148,10 @@ export default function GearPage() {
               </div>
             </CardContent>
           </Card>
+        </FadeIn>
+
+        <FadeIn className="mb-10">
+          <GearWeeklyNews updates={gearUpdates} />
         </FadeIn>
 
         <div className="space-y-16">
@@ -185,7 +201,7 @@ export default function GearPage() {
                 <GearTierSuggestions
                   tier={tier}
                   intro={meta.suggestionsIntro}
-                  suggestions={meta.suggestions}
+                  suggestions={getWeeklyTierSuggestions(tier)}
                 />
 
                 <div className="space-y-6">
@@ -210,17 +226,12 @@ export default function GearPage() {
                             : undefined
                         }
                         afterCard={
-                          <>
-                            {pathway && (
-                              <RelatedPathways
-                                pathway={pathway}
-                                className="mt-4"
-                              />
-                            )}
-                            {item.slug === "coros" ? (
-                              <GearWeeklyNews updates={gearUpdates} />
-                            ) : null}
-                          </>
+                          pathway ? (
+                            <RelatedPathways
+                              pathway={pathway}
+                              className="mt-4"
+                            />
+                          ) : undefined
                         }
                       />
                     </div>

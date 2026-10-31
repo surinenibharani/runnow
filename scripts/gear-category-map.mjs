@@ -16,8 +16,15 @@ export const GEAR_CATEGORY_MAP = [
       "hoka",
       "saucony",
       "asics",
+      "adidas",
+      "adizero",
       "nike peg",
       "new balance",
+      "cloudsurfer",
+      "clifton",
+      "ghost",
+      "nimbus",
+      "shoe-reviews",
     ],
   },
   {
@@ -26,15 +33,12 @@ export const GEAR_CATEGORY_MAP = [
     keywords: [
       "shirt",
       "shirts",
-      "top",
       "tee",
       "jersey",
       "singlet",
-      "apparel",
       "sports bra",
       "run bra",
       "oiselle",
-      "women's",
     ],
   },
   {
@@ -50,17 +54,24 @@ export const GEAR_CATEGORY_MAP = [
   {
     slug: "apple-watch",
     title: "Apple Watch",
-    keywords: ["apple watch", "watchos", "ultra 2", "series 10", "series 11"],
+    keywords: [
+      "apple watch",
+      "watchos",
+      "ultra 2",
+      "series 10",
+      "series 11",
+      "series 12",
+    ],
   },
   {
     slug: "garmin",
     title: "Garmin",
-    keywords: ["garmin", "forerunner", "fenix", "epix"],
+    keywords: ["garmin", "forerunner", "fenix", "epix", "garmin edge"],
   },
   {
     slug: "coros",
     title: "Coros",
-    keywords: ["coros", "pace 3", "apex"],
+    keywords: ["coros", "pace 3", "pace 4", "coros apex"],
   },
   {
     slug: "strava-app",
@@ -119,21 +130,35 @@ export const GEAR_CATEGORY_MAP = [
 
 export const GEAR_CATEGORY_SLUGS = GEAR_CATEGORY_MAP.map((category) => category.slug);
 
-const DEFAULT_CATEGORY = GEAR_CATEGORY_MAP[0];
+/**
+ * @param {string} text
+ * @param {string} keyword
+ */
+function keywordMatches(text, keyword) {
+  const lowerKeyword = keyword.toLowerCase();
+  if (lowerKeyword.includes(" ") || lowerKeyword.includes("-")) {
+    return text.includes(lowerKeyword);
+  }
+  const escaped = lowerKeyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`\\b${escaped}\\b`, "i").test(text);
+}
 
 /**
  * @param {string} text
- * @returns {GearCategoryMapEntry}
+ * @returns {GearCategoryMapEntry | null}
  */
 export function categorizeGearText(text) {
   const lower = text.toLowerCase();
-  let best = DEFAULT_CATEGORY;
+  /** @type {GearCategoryMapEntry | null} */
+  let best = null;
   let bestScore = 0;
 
   for (const category of GEAR_CATEGORY_MAP) {
     let score = 0;
     for (const keyword of category.keywords) {
-      if (lower.includes(keyword)) score += keyword.includes(" ") ? 2 : 1;
+      if (keywordMatches(lower, keyword)) {
+        score += keyword.includes(" ") || keyword.includes("-") ? 2 : 1;
+      }
     }
     if (score > bestScore) {
       bestScore = score;
@@ -141,5 +166,5 @@ export function categorizeGearText(text) {
     }
   }
 
-  return bestScore > 0 ? best : DEFAULT_CATEGORY;
+  return bestScore > 0 ? best : null;
 }

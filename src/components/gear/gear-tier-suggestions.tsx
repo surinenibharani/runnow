@@ -24,7 +24,7 @@ export function GearTierSuggestions({
           : "border-violet-500/15 bg-background"
       )}
     >
-      <h3 className="text-sm font-semibold">Our suggestions</h3>
+      <h3 className="text-sm font-semibold">This week&apos;s suggestions</h3>
       <p className="mt-1 text-sm text-muted-foreground">{intro}</p>
       <ul className="mt-4 space-y-3">
         {suggestions.map((pick) => (
@@ -33,6 +33,11 @@ export function GearTierSuggestions({
             className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-4"
           >
             <div className="min-w-0 text-sm">
+              {pick.weekly && (
+                <Badge variant="outline" className="mr-1.5 px-1.5 py-0 text-[10px] align-middle">
+                  This week
+                </Badge>
+              )}
               <span className="font-medium text-foreground">{pick.name}</span>
               <span className="text-muted-foreground"> — {pick.note}</span>
             </div>

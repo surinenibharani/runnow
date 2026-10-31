@@ -3,7 +3,10 @@ import { ExternalLink, Newspaper, RefreshCw } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { GearUpdates } from "@/lib/gear/types";
-import { formatGearUpdatedAt } from "@/lib/gear/updates";
+import {
+  formatGearUpdatedAt,
+  getThisWeeksCatalogPicks,
+} from "@/lib/gear/updates";
 
 type GearWeeklyNewsProps = {
   updates: GearUpdates;
@@ -13,9 +16,14 @@ type GearWeeklyNewsProps = {
 export function GearWeeklyNews({ updates, limit = 5 }: GearWeeklyNewsProps) {
   const updatedLabel = formatGearUpdatedAt(updates.updatedAt);
   const headlines = updates.items.slice(0, limit);
+  const weeklyPicks = getThisWeeksCatalogPicks(updates);
 
   return (
-    <section aria-labelledby="gear-weekly-heading" className="scroll-mt-24">
+    <section
+      id="this-week"
+      aria-labelledby="gear-weekly-heading"
+      className="scroll-mt-24"
+    >
       <Card className="border-border/60">
         <CardHeader className="pb-3">
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -31,14 +39,37 @@ export function GearWeeklyNews({ updates, limit = 5 }: GearWeeklyNewsProps) {
             </Badge>
           </div>
           <p className="text-sm text-muted-foreground mt-2">
-            Headlines and top suggestions refresh from trusted running gear
-            RSS feeds every Friday.
+            Catalog picks rotate every week. Press mentions from Believe in
+            the Run, Runner&apos;s World, DC Rainmaker, iRunFar, and Road Trail
+            Run get a This week tag.
           </p>
         </CardHeader>
-        <CardContent className="pt-0">
+        <CardContent className="pt-0 space-y-6">
+          {weeklyPicks.length > 0 && (
+            <div>
+              <h3 className="text-sm font-semibold">In the press this week</h3>
+              <ul className="mt-3 space-y-2">
+                {weeklyPicks.map((pick) => (
+                  <li key={`${pick.categorySlug}-${pick.name}`} className="text-sm">
+                    <Badge variant="outline" className="mr-1.5 px-1.5 py-0 text-[10px] align-middle">
+                      This week
+                    </Badge>
+                    <span className="font-medium text-foreground">{pick.name}</span>
+                    <span className="text-muted-foreground"> — {pick.note}</span>
+                    <Link
+                      href={`#${pick.categorySlug}`}
+                      className="ml-1.5 text-xs font-medium text-primary hover:underline"
+                    >
+                      {pick.categoryTitle}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {headlines.length === 0 ? (
             <p className="text-sm text-muted-foreground">
-              Fresh gear news will appear here after the next Friday update.
+              Fresh gear news will appear here after the next scheduled update.
             </p>
           ) : (
             <ul className="space-y-3">
@@ -59,6 +90,7 @@ export function GearWeeklyNews({ updates, limit = 5 }: GearWeeklyNewsProps) {
                           month: "short",
                           day: "numeric",
                           year: "numeric",
+                          timeZone: "UTC",
                         })}
                       </time>
                     </span>

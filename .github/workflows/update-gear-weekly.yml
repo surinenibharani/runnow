@@ -2,12 +2,16 @@ name: Update gear guide weekly
 
 on:
   schedule:
-    # Fridays at 14:00 UTC (~9–10am US Eastern)
-    - cron: "0 14 * * 5"
+    # Tuesdays and Fridays at 15:00 UTC (~11am US Eastern)
+    - cron: "0 15 * * 2,5"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: update-gear-weekly
+  cancel-in-progress: true
 
 jobs:
   update-gear:

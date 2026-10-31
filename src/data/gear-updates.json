@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-30T18:56:00.681Z",
-  "sourcesChecked": 5,
+  "updatedAt": "2026-10-31T02:59:42.041Z",
+  "sourcesChecked": 4,
   "feedCount": 5,
   "categories": [
     {
@@ -66,36 +66,20 @@
   ],
   "items": [
     {
+      "title": "This Is the Softest On Running Shoe I’ve Tried—Ever",
+      "url": "https://www.runnersworld.com/gear/a74183491/this-is-the-softest-on-running-shoe-ive-triedever/",
+      "source": "Runner's World",
+      "publishedAt": "2026-10-30T22:00:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
       "title": "Garmin Bringing Edge 1060 Features to Older Units: Full Details!",
       "url": "https://www.dcrainmaker.com/2026/10/garmin-edge-1060-features-to-older-computers.html",
       "source": "DC Rainmaker",
       "publishedAt": "2026-10-30T18:39:31.000Z",
       "categorySlug": "garmin",
       "categoryTitle": "Garmin"
-    },
-    {
-      "title": "How to Watch the 2026 New York City Marathon",
-      "url": "https://www.runnersworld.com/news/a74275444/2026-nyc-marathon-broadcast-stream-tracking/",
-      "source": "Runner's World",
-      "publishedAt": "2026-10-30T17:41:48.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Ahead of Racing the NYC Marathon, Matt James Shares the Playlist He’ll Turn to When the Miles Get Tough",
-      "url": "https://www.runnersworld.com/training/a74294940/matt-james-running-playlist/",
-      "source": "Runner's World",
-      "publishedAt": "2026-10-30T15:59:21.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Conner Mantz Is Racing His First Marathon Since Breaking the 23-Year-Old American Marathon Record. This Sunday, He’ll Take on the Streets of New York.",
-      "url": "https://www.runnersworld.com/runners-stories/a74295814/conner-mantz-american-marathon-record-rebuild-comeback/",
-      "source": "Runner's World",
-      "publishedAt": "2026-10-30T15:09:13.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
     },
     {
       "title": "Is the slimmed-down Adidas Hyperboost Run our new favorite trainer?",
@@ -122,10 +106,10 @@
       "categoryTitle": "Running Shoes"
     },
     {
-      "title": "If You Feel Like You’re Not Making Progress in Training, Use This Coach’s Method to Better Track Your Runs—and Improve Performance",
-      "url": "https://www.runnersworld.com/training/a74283826/how-to-better-track-runs/",
+      "title": "Nike Shoes Aren’t Just for the Elites. These Are the 10 Best Trainers Our Team Tested.",
+      "url": "https://www.runnersworld.com/gear/a22843945/best-nike-running-shoes/",
       "source": "Runner's World",
-      "publishedAt": "2026-10-29T20:58:43.000Z",
+      "publishedAt": "2026-10-29T19:27:00.000Z",
       "categorySlug": "shoes",
       "categoryTitle": "Running Shoes"
     },
@@ -136,14 +120,6 @@
       "publishedAt": "2026-10-29T18:46:25.000Z",
       "categorySlug": "shoes",
       "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "The NYC Marathon’s Last Living “Trailblazer” Looks Back on the Race That Changed Running",
-      "url": "https://www.runnersworld.com/news/a74275446/the-nyc-marathons-last-living-trailblazer-looks-back-on-the-race-that-changed-running/",
-      "source": "Runner's World",
-      "publishedAt": "2026-10-29T17:25:37.000Z",
-      "categorySlug": "cap",
-      "categoryTitle": "Caps & Headwear"
     },
     {
       "title": "The 9 Best Stability Shoes for Every Type of Runner",
@@ -170,26 +146,50 @@
       "categoryTitle": "Running Shoes"
     },
     {
-      "title": "The 10 Best Dog Leashes for Runners Who Go the Distance",
-      "url": "https://www.runnersworld.com/gear/g68021546/best-dog-leashes-for-runners/",
+      "title": "The Plushest Running Shoes for Base-Building Miles, Injury-Prone Runners, and Future Marathoners",
+      "url": "https://www.runnersworld.com/gear/a20865760/best-cushioned-running-shoes/",
       "source": "Runner's World",
-      "publishedAt": "2026-10-29T10:01:00.000Z",
-      "categorySlug": "cap",
-      "categoryTitle": "Caps & Headwear"
-    },
-    {
-      "title": "Wahoo Kickr Run Treadmill Review",
-      "url": "https://www.irunfar.com/wahoo-kickr-run-treadmill-review",
-      "source": "iRunFar",
-      "publishedAt": "2026-10-29T10:00:26.000Z",
+      "publishedAt": "2026-10-28T14:48:00.000Z",
       "categorySlug": "shoes",
       "categoryTitle": "Running Shoes"
     },
     {
-      "title": "The Best Reflective Running Gear to Keep You Safe on Evening Runs",
-      "url": "https://www.runnersworld.com/gear/a38254827/reflective-gear-to-run-safely-in-the-dark/",
+      "title": "Fila wants back into running, but is this the shoe to get it there?",
+      "url": "https://believeintherun.com/shoe-reviews/fila-speedtempo-plus-review/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-10-28T12:00:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "We Tested the lululemon Align and LSKD Fusion Leggings—Here’s Why You Need Both Pairs",
+      "url": "https://www.runnersworld.com/gear/a74219358/lululemon-align-leggings-review/",
       "source": "Runner's World",
-      "publishedAt": "2026-10-28T21:47:30.000Z",
+      "publishedAt": "2026-10-27T16:00:00.000Z",
+      "categorySlug": "tights",
+      "categoryTitle": "Tights & Leggings"
+    },
+    {
+      "title": "The Best Mizuno Running Shoes 2026: Our Top Picks for Stability, Trails, Marathons, and More",
+      "url": "https://www.runnersworld.com/gear/a23129470/best-mizuno-running-shoes/",
+      "source": "Runner's World",
+      "publishedAt": "2026-10-27T14:16:44.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "On Wants You to Feel Your Softest Ride Yet",
+      "url": "https://www.runnersworld.com/gear/a74078471/on-wants-you-to-feel-your-softest-ride-yet/",
+      "source": "Runner's World",
+      "publishedAt": "2026-10-27T14:15:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "I finally have a muscle roller that looks as good as it feels",
+      "url": "https://believeintherun.com/shoe-reviews/jeea-companion-review/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-10-27T13:00:00.000Z",
       "categorySlug": "shoes",
       "categoryTitle": "Running Shoes"
     }
@@ -197,18 +197,18 @@
   "suggestionsByCategory": {
     "shoes": [
       {
-        "name": "New Balance Fresh Foam 880",
-        "note": "Comfortable neutral shoe; wide widths available.",
-        "weekly": false
-      },
-      {
         "name": "Brooks Ghost",
         "note": "Reliable daily trainer — soft, forgiving, great for beginners.",
-        "weekly": false
+        "weekly": true
       },
       {
         "name": "ASICS Gel-Nimbus",
         "note": "Extra cushioning if you want maximum impact protection.",
+        "weekly": true
+      },
+      {
+        "name": "New Balance Fresh Foam 880",
+        "note": "Comfortable neutral shoe; wide widths available.",
         "weekly": false
       },
       {
@@ -263,6 +263,11 @@
     ],
     "tights": [
       {
+        "name": "Lululemon Fast and Free Tight",
+        "note": "Multiple pockets and a comfortable high waist.",
+        "weekly": true
+      },
+      {
         "name": "2XU Compression Tights",
         "note": "Snug fit — some runners like the supported feel on long runs.",
         "weekly": false
@@ -270,11 +275,6 @@
       {
         "name": "Nike Pro Warm Tights",
         "note": "Solid cold-weather staple with good warmth-to-weight ratio.",
-        "weekly": false
-      },
-      {
-        "name": "Lululemon Fast and Free Tight",
-        "note": "Multiple pockets and a comfortable high waist.",
         "weekly": false
       },
       {
@@ -302,35 +302,35 @@
     ],
     "garmin": [
       {
+        "name": "Garmin Forerunner 165",
+        "note": "Colour AMOLED screen, beginner-friendly — great first Garmin.",
+        "weekly": true
+      },
+      {
         "name": "Garmin Forerunner 255 / 265",
         "note": "The sweet spot for half and full marathon training.",
-        "weekly": false
+        "weekly": true
       },
       {
         "name": "Garmin Forerunner 55",
         "note": "Cheapest entry point — basic but reliable GPS tracking.",
         "weekly": false
-      },
-      {
-        "name": "Garmin Forerunner 165",
-        "note": "Colour AMOLED screen, beginner-friendly — great first Garmin.",
-        "weekly": false
       }
     ],
     "coros": [
       {
+        "name": "Coros Pace 3",
+        "note": "Best beginner pick — light, accurate GPS, weeks of battery.",
+        "weekly": true
+      },
+      {
         "name": "Coros Pace 2",
         "note": "Still solid if you find it discounted — slightly older but capable.",
-        "weekly": false
+        "weekly": true
       },
       {
         "name": "Coros Apex 2",
         "note": "Step up for trail runners who want maps and sapphire glass.",
-        "weekly": false
-      },
-      {
-        "name": "Coros Pace 3",
-        "note": "Best beginner pick — light, accurate GPS, weeks of battery.",
         "weekly": false
       }
     ],
@@ -509,18 +509,18 @@
   "womenSuggestionsByCategory": {
     "shoes": [
       {
-        "name": "Hoka Clifton (women's)",
-        "note": "Plush cushioning with a roomy toe box — good for longer easy miles.",
-        "weekly": false
-      },
-      {
         "name": "Brooks Ghost (women's)",
         "note": "Same forgiving ride with a women's-specific last — try both standard and wide.",
-        "weekly": false
+        "weekly": true
       },
       {
         "name": "ASICS Gel-Cumulus (women's)",
         "note": "Soft daily trainer; popular for higher arches and narrower heels.",
+        "weekly": true
+      },
+      {
+        "name": "Hoka Clifton (women's)",
+        "note": "Plush cushioning with a roomy toe box — good for longer easy miles.",
         "weekly": false
       },
       {
@@ -575,13 +575,13 @@
     ],
     "tights": [
       {
-        "name": "Brooks Method 7/8 Tight",
-        "note": "Running-specific fit with reflective details for dawn and dusk.",
-        "weekly": false
-      },
-      {
         "name": "Lululemon Fast and Free High-Rise Tight",
         "note": "High waist stays put; multiple pockets for phone and gels.",
+        "weekly": true
+      },
+      {
+        "name": "Brooks Method 7/8 Tight",
+        "note": "Running-specific fit with reflective details for dawn and dusk.",
         "weekly": false
       },
       {
@@ -614,35 +614,35 @@
     ],
     "garmin": [
       {
+        "name": "Garmin Forerunner 165",
+        "note": "43mm case suits smaller wrists; quick-release bands for a secure fit.",
+        "weekly": true
+      },
+      {
         "name": "Garmin Forerunner 265S",
         "note": "Smaller \"S\" size — same features with a narrower case and band.",
-        "weekly": false
+        "weekly": true
       },
       {
         "name": "Garmin silicone band (small)",
         "note": "Stock bands run long — size down so the watch doesn't slide on sweaty runs.",
         "weekly": false
-      },
-      {
-        "name": "Garmin Forerunner 165",
-        "note": "43mm case suits smaller wrists; quick-release bands for a secure fit.",
-        "weekly": false
       }
     ],
     "coros": [
       {
+        "name": "Coros Pace 3",
+        "note": "Light 30g case works well on smaller wrists — silicone band in S/M.",
+        "weekly": true
+      },
+      {
         "name": "Coros Pace 3 nylon band",
         "note": "Softer, lower-profile strap if the stock band feels stiff or long.",
-        "weekly": false
+        "weekly": true
       },
       {
         "name": "Coros Apex 2 (42mm)",
         "note": "Smaller case option if you want maps without a bulky watch face.",
-        "weekly": false
-      },
-      {
-        "name": "Coros Pace 3",
-        "note": "Light 30g case works well on smaller wrists — silicone band in S/M.",
         "weekly": false
       }
     ],

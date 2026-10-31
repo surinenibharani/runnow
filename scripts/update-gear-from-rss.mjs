@@ -2,7 +2,7 @@
 /**
  * Fetches running-gear RSS feeds and writes src/data/gear-updates.json.
  * Run locally: npm run gear:update
- * Scheduled: .github/workflows/update-gear-weekly.yml (Fridays)
+ * Scheduled: .github/workflows/update-gear-weekly.yml (Tuesdays and Fridays)
  */
 
 import { writeFileSync, readFileSync } from "node:fs";
@@ -21,7 +21,6 @@ const OUTPUT = join(__dirname, "../src/data/gear-updates.json");
 const CATALOG_PATH = join(__dirname, "../src/data/gear-catalog.json");
 const MAX_AGE_DAYS = 14;
 const MAX_NEWS_ITEMS = 16;
-const MAX_SCAN_ITEMS = 80;
 
 const FEEDS = [
   { name: "Believe in the Run", url: "https://believeintherun.com/feed/" },
@@ -32,11 +31,19 @@ const FEEDS = [
 ];
 
 const GEAR_SIGNAL =
-  /\b(run|runner|running|marathon|trail|shoe|watch|garmin|coros|hydration|gear|apparel|trainer|sneaker|shorts|tights|fuel|gel|electrolyte|strava)\b/i;
+  /\b(shoe|shoes|trainer|trainers|sneaker|sneakers|footwear|garmin|coros|forerunner|fenix|apple watch|gps watch|hydration|vest|apparel|shorts|tights|leggings|gel|gels|electrolyte|strava|hoka|saucony|asics|brooks|adidas|adizero|goodr|nuun|maurten|salomon|lululemon|sunglasses|spf|chafe|socks?|headwear|beanie)\b/i;
+
+const GEAR_URL_SIGNAL = /\/(shoe-reviews?|gear|gear-review|reviews?)\b/i;
+
+const SKIP_SIGNAL =
+  /\b(leash|leashes|dog|storage|entryway|playlist|broadcast|how to watch|treadmill|underwear)\b/i;
 
 const parser = new Parser({
   timeout: 15000,
-  headers: { "User-Agent": "LetsRunNow-GearUpdater/1.0" },
+  headers: {
+    "User-Agent":
+      "Mozilla/5.0 (compatible; LetsRunNowGearBot/1.0; +https://www.letsrunnow.com/gear)",
+  },
 });
 
 function parseDate(value) {
@@ -51,8 +58,10 @@ function isRecent(date) {
   return date.getTime() >= cutoff;
 }
 
-function isGearRelated(title, content) {
+function isGearRelated(title, content, url) {
   const text = `${title} ${content}`;
+  if (SKIP_SIGNAL.test(text) || SKIP_SIGNAL.test(url)) return false;
+  if (GEAR_URL_SIGNAL.test(url)) return true;
   return GEAR_SIGNAL.test(text);
 }
 
@@ -73,17 +82,20 @@ function loadCatalog() {
 async function fetchFeed(feed) {
   try {
     const parsed = await parser.parseURL(feed.url);
-    return (parsed.items ?? []).map((item) => ({
-      title: (item.title ?? "").trim(),
-      url: (item.link ?? item.guid ?? "").trim(),
-      source: feed.name,
-      publishedAt:
-        parseDate(item.isoDate ?? item.pubDate)?.toISOString() ?? new Date().toISOString(),
-      contentSnippet: (item.contentSnippet ?? item.content ?? "").slice(0, 500),
-    }));
+    return {
+      ok: true,
+      items: (parsed.items ?? []).map((item) => ({
+        title: (item.title ?? "").trim(),
+        url: (item.link ?? item.guid ?? "").trim(),
+        source: feed.name,
+        publishedAt:
+          parseDate(item.isoDate ?? item.pubDate)?.toISOString() ?? new Date().toISOString(),
+        contentSnippet: (item.contentSnippet ?? item.content ?? "").slice(0, 500),
+      })),
+    };
   } catch (error) {
     console.warn(`Feed failed (${feed.name}):`, error.message);
-    return [];
+    return { ok: false, items: [] };
   }
 }
 
@@ -92,8 +104,8 @@ async function main() {
   let sourcesChecked = 0;
 
   for (const feed of FEEDS) {
-    const items = await fetchFeed(feed);
-    sourcesChecked += 1;
+    const { ok, items } = await fetchFeed(feed);
+    if (ok) sourcesChecked += 1;
     rawItems.push(...items);
   }
 
@@ -104,12 +116,13 @@ async function main() {
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   )) {
     if (!item.title || !item.url || seen.has(item.url)) continue;
-    if (!isGearRelated(item.title, item.contentSnippet)) continue;
+    if (!isGearRelated(item.title, item.contentSnippet, item.url)) continue;
     if (!isRecent(parseDate(item.publishedAt))) continue;
 
     const category = categorizeGearText(
-      `${item.title} ${item.contentSnippet}`
+      `${item.title} ${item.contentSnippet} ${item.url}`
     );
+    if (!category) continue;
 
     seen.add(item.url);
     categorizedItems.push({
@@ -119,12 +132,18 @@ async function main() {
       publishedAt: item.publishedAt,
       categorySlug: category.slug,
       categoryTitle: category.title,
+      contentSnippet: item.contentSnippet,
     });
-
-    if (categorizedItems.length >= MAX_SCAN_ITEMS) break;
   }
 
-  const items = categorizedItems.slice(0, MAX_NEWS_ITEMS);
+  const items = categorizedItems.slice(0, MAX_NEWS_ITEMS).map((item) => ({
+    title: item.title,
+    url: item.url,
+    source: item.source,
+    publishedAt: item.publishedAt,
+    categorySlug: item.categorySlug,
+    categoryTitle: item.categoryTitle,
+  }));
   const catalog = loadCatalog();
   const { suggestionsByCategory, womenSuggestionsByCategory } = buildSuggestionsMaps(
     categorizedItems,
@@ -148,6 +167,12 @@ async function main() {
   console.log(
     `Wrote ${items.length} headline(s), ${weeklySuggestionCount} weekly suggestion(s) from ${sourcesChecked}/${FEEDS.length} feeds → ${OUTPUT}`
   );
+
+  if (sourcesChecked === 0) {
+    console.warn(
+      "All RSS feeds failed — catalog picks still rotated by week. Next scheduled run will retry."
+    );
+  }
 }
 
 main().catch((error) => {

@@ -46,6 +46,36 @@ export function getWeekIndex(date = new Date()) {
   return Math.floor((date.getTime() - start.getTime()) / (7 * 24 * 60 * 60 * 1000));
 }
 
+const PRODUCT_BRANDS = new Set([
+  "brooks",
+  "asics",
+  "saucony",
+  "hoka",
+  "garmin",
+  "coros",
+  "strava",
+  "goodr",
+  "nuun",
+  "maurten",
+  "salomon",
+  "lululemon",
+  "patagonia",
+  "icebreaker",
+  "smartwool",
+  "ciele",
+  "oakley",
+  "julbo",
+  "tifosi",
+  "lmnt",
+  "saltstick",
+  "apple",
+  "tracksmith",
+  "oiselle",
+  "athleta",
+  "2xu",
+  "nike",
+]);
+
 export function productMentioned(product, text) {
   const lower = text.toLowerCase();
   const name = product.name.toLowerCase();
@@ -54,10 +84,15 @@ export function productMentioned(product, text) {
   const tokens = name
     .split(/[\s/()]+/)
     .map((part) => part.replace(/[^a-z0-9]/g, ""))
-    .filter((part) => part.length > 3);
+    .filter((part) => part.length > 2);
+
+  if (!tokens.length) return false;
 
   const hits = tokens.filter((token) => lower.includes(token));
-  return hits.length >= Math.min(2, tokens.length);
+  if (hits.length >= Math.min(2, tokens.length)) return true;
+
+  const brand = tokens.find((token) => PRODUCT_BRANDS.has(token));
+  return Boolean(brand && lower.includes(brand));
 }
 
 export function buildPicksForProducts(products, categorizedItems, categorySlug) {

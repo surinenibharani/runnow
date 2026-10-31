@@ -46,6 +46,7 @@ export type GearTierSuggestion = {
   price: string;
   /** Links to the full category card on this page */
   categorySlug: string;
+  weekly?: boolean;
 };
 
 export const gearTierMeta: Record<
