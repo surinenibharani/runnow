@@ -117,7 +117,7 @@ export default async function SituationalTipDetailPage({ params }: PageProps) {
         </FadeIn>
 
         <FadeIn>
-          <TipDetailCard>
+          <TipDetailCard
             illustration={tip.illustration}
             icon={tip.icon}
             iconClassName="bg-sky-500/10 text-sky-600 dark:text-sky-400"

@@ -117,7 +117,7 @@ export default async function WeatherTipDetailPage({ params }: PageProps) {
         </FadeIn>
 
         <FadeIn>
-          <TipDetailCard>
+          <TipDetailCard
             illustration={tip.illustration}
             icon={tip.icon}
             iconClassName="bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
