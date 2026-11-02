@@ -306,6 +306,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Outer-hip pain that hates side-sleeping is often tendon load mislabeled as bursitis. Strength and flatter routes beat aggressive stretching.",
   "creatine-protein-masters-runners":
     "Masters beginners lose muscle when under-fueled. Food and strength first; creatine is an optional, clinician-aware add-on — not a personality.",
+  "atlantic-city-marathon-2026":
+    "A clean build does not guarantee a clean marathon. Atlantic City 2026 is a reminder that wind, a skipped warm-up, and a talking calf can rewrite the last 8 miles — and walking it in still counts.",
 };
 
 export function getWhyItMatters(slug: string): string | undefined {

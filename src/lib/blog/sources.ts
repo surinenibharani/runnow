@@ -747,6 +747,16 @@ export const SOURCES = {
     href: "https://www.mayoclinic.org/diseases-conditions/muscle-strains/diagnosis-treatment/drc-20350823",
     publisher: "Mayo Clinic",
   },
+  mayoMuscleCramps: {
+    label: "Muscle cramp — symptoms & causes",
+    href: "https://www.mayoclinic.org/diseases-conditions/muscle-cramp/symptoms-causes/syc-20350820",
+    publisher: "Mayo Clinic",
+  },
+  mayoMuscleCrampTreatment: {
+    label: "Muscle cramp — diagnosis & treatment",
+    href: "https://www.mayoclinic.org/diseases-conditions/muscle-cramp/diagnosis-treatment/drc-20350822",
+    publisher: "Mayo Clinic",
+  },
   toenailFungusMayo: {
     label: "Nail fungus / toenail problems — overview",
     href: "https://www.mayoclinic.org/diseases-conditions/nail-fungus/symptoms-causes/syc-20352300",

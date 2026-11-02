@@ -20,6 +20,7 @@ import { longtailBeginnerPosts } from "./posts-longtail-beginner";
 import { aug23GapPosts } from "./posts-aug23-gaps";
 import { marathonSleepRecoveryPosts } from "./posts-marathon-sleep-recovery";
 import { weatherRunningGearPosts } from "./posts-weather-running-gear";
+import { atlanticCityMarathonPosts } from "./posts-atlantic-city-marathon-2026";
 
 export const BLOG_AUTHOR = "B";
 
@@ -7231,6 +7232,7 @@ export const blogPosts: BlogPost[] = [
   ...aug23GapPosts,
   ...marathonSleepRecoveryPosts,
   ...weatherRunningGearPosts,
+  ...atlanticCityMarathonPosts,
 ];
 
 function withWhyItMatters(post: BlogPost): BlogPost {
