@@ -123,21 +123,6 @@ export async function createComment(
 
     const ip = getClientIp(request);
     const storageSlug = commentStorageSlug(type, slug);
-    const limit = await rateLimitAsync(
-      `comment:${ip}:${storageSlug}`,
-      5,
-      60 * 60 * 1000
-    );
-    if (!limit.ok) {
-      return NextResponse.json(
-        { error: "Too many comments. Please try again later." },
-        {
-          status: 429,
-          headers: { "Retry-After": String(limit.retryAfter) },
-        }
-      );
-    }
-
     const body = await request.json();
     const { authorName, content, turnstileToken, website } = body;
 
@@ -146,23 +131,6 @@ export async function createComment(
     }
 
     const session = await auth();
-    if (session?.user?.id) {
-      const userLimit = await rateLimitAsync(
-        `comment:user:${session.user.id}`,
-        20,
-        60 * 60 * 1000
-      );
-      if (!userLimit.ok) {
-        return NextResponse.json(
-          { error: "Too many comments. Please try again later." },
-          {
-            status: 429,
-            headers: { "Retry-After": String(userLimit.retryAfter) },
-          }
-        );
-      }
-    }
-
     const captchaOk = await verifyTurnstile(turnstileToken, ip);
     if (!captchaOk) {
       return NextResponse.json(
@@ -186,6 +154,44 @@ export async function createComment(
         { error: "Comment must be at least 3 characters" },
         { status: 400 }
       );
+    }
+
+    const limit = await rateLimitAsync(
+      `comment:${ip}:${storageSlug}`,
+      8,
+      60 * 60 * 1000
+    );
+    if (!limit.ok) {
+      return NextResponse.json(
+        {
+          error:
+            "You're commenting faster than we allow from this network. Please wait a bit and try again.",
+        },
+        {
+          status: 429,
+          headers: { "Retry-After": String(limit.retryAfter) },
+        }
+      );
+    }
+
+    if (session?.user?.id) {
+      const userLimit = await rateLimitAsync(
+        `comment:user:${session.user.id}`,
+        20,
+        60 * 60 * 1000
+      );
+      if (!userLimit.ok) {
+        return NextResponse.json(
+          {
+            error:
+              "You're commenting faster than we allow from this account. Please wait a bit and try again.",
+          },
+          {
+            status: 429,
+            headers: { "Retry-After": String(userLimit.retryAfter) },
+          }
+        );
+      }
     }
 
     const comment = await prisma.blogComment.create({

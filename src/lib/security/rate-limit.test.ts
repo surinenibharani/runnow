@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { getClientIp } from "./rate-limit";
+import { getClientIp, isFailClosedRateLimitKey } from "./rate-limit";
 
 function requestWith(headers: Record<string, string>): Request {
   return new Request("https://www.letsrunnow.com/", { headers });
@@ -29,5 +29,19 @@ describe("getClientIp", () => {
   it("falls back to x-real-ip", () => {
     const ip = getClientIp(requestWith({ "x-real-ip": "192.0.2.8" }));
     assert.equal(ip, "192.0.2.8");
+  });
+});
+
+describe("fail-closed rate-limit keys", () => {
+  it("keeps login and billing closed if Redis is missing", () => {
+    assert.equal(isFailClosedRateLimitKey("login:1.2.3.4"), true);
+    assert.equal(isFailClosedRateLimitKey("stripe-checkout:user-1"), true);
+  });
+
+  it("does not block comments or likes when Redis is missing", () => {
+    assert.equal(isFailClosedRateLimitKey("comment:1.2.3.4:a-post"), false);
+    assert.equal(isFailClosedRateLimitKey("like:ip:1.2.3.4"), false);
+    assert.equal(isFailClosedRateLimitKey("comments-list:1.2.3.4"), false);
+    assert.equal(isFailClosedRateLimitKey("likes-read:1.2.3.4"), false);
   });
 });

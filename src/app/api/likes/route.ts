@@ -93,7 +93,10 @@ export async function POST(request: Request) {
     const limit = await rateLimitAsync(rateKey, 60, 60 * 60 * 1000);
     if (!limit.ok) {
       return NextResponse.json(
-        { error: "Too many likes. Please try again later." },
+        {
+          error:
+            "You're liking faster than we allow from this network. Please wait a bit and try again.",
+        },
         {
           status: 429,
           headers: { "Retry-After": String(limit.retryAfter) },
