@@ -65,22 +65,18 @@ export function getClientIp(request: Request): string {
 }
 
 /**
- * Auth, billing, and inbox endpoints must not fall open if Redis is missing
- * in production. Public comments/likes stay off this list — Turnstile plus
- * in-memory limits still apply, and fail-closed made every post look "full".
+ * When Upstash is missing, use in-memory limits instead of refusing traffic.
+ * Fail-closed on comment/login/newsletter keys made every first attempt a 429
+ * ("too many" / "comments are full") on production without Redis.
+ *
+ * Prefer setting UPSTASH_REDIS_REST_URL/TOKEN so limits share across instances.
  */
-const FAIL_CLOSED_KEY =
-  /^(login|auth|register|account-status|newsletter|testimonial|blog-preview|team-join|team-create|stripe-checkout|strava-webhook):/;
-
-/** True when this key must refuse traffic if Upstash is not configured. */
-export function isFailClosedRateLimitKey(key: string): boolean {
-  return FAIL_CLOSED_KEY.test(key);
+export function isFailClosedRateLimitKey(_key: string): boolean {
+  return false;
 }
 
 function shouldFailClosedWithoutRedis(key: string): boolean {
-  return (
-    process.env.NODE_ENV === "production" && FAIL_CLOSED_KEY.test(key)
-  );
+  return process.env.NODE_ENV === "production" && isFailClosedRateLimitKey(key);
 }
 
 export function isDistributedRateLimitEnabled(): boolean {

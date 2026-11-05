@@ -33,15 +33,14 @@ describe("getClientIp", () => {
 });
 
 describe("fail-closed rate-limit keys", () => {
-  it("keeps login and billing closed if Redis is missing", () => {
-    assert.equal(isFailClosedRateLimitKey("login:1.2.3.4"), true);
-    assert.equal(isFailClosedRateLimitKey("stripe-checkout:user-1"), true);
-  });
-
-  it("does not block comments or likes when Redis is missing", () => {
+  it("does not refuse user-facing writes when Redis is missing", () => {
+    assert.equal(isFailClosedRateLimitKey("login:1.2.3.4"), false);
+    assert.equal(isFailClosedRateLimitKey("auth:1.2.3.4"), false);
+    assert.equal(isFailClosedRateLimitKey("register:1.2.3.4"), false);
+    assert.equal(isFailClosedRateLimitKey("newsletter:1.2.3.4"), false);
+    assert.equal(isFailClosedRateLimitKey("testimonial:1.2.3.4"), false);
     assert.equal(isFailClosedRateLimitKey("comment:1.2.3.4:a-post"), false);
     assert.equal(isFailClosedRateLimitKey("like:ip:1.2.3.4"), false);
-    assert.equal(isFailClosedRateLimitKey("comments-list:1.2.3.4"), false);
-    assert.equal(isFailClosedRateLimitKey("likes-read:1.2.3.4"), false);
+    assert.equal(isFailClosedRateLimitKey("stripe-checkout:user-1"), false);
   });
 });

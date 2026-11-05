@@ -20,6 +20,7 @@ import { ContentCopyrightNotice } from "@/components/legal/content-copyright-not
 import { MedicalDisclaimerBanner } from "@/components/legal/medical-disclaimer-banner";
 import { getBlogPathway } from "@/lib/content-pathways";
 import { orderBlogSectionsForReading } from "@/lib/blog/section-order";
+import { formatSiteDateKey } from "@/lib/date-keys";
 
 type PostContentProps = {
   post: BlogPost;
@@ -83,11 +84,7 @@ export function PostContent({
           </span>
           <span aria-hidden>·</span>
           <time dateTime={post.publishedAt}>
-            {new Date(post.publishedAt).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
+            {formatSiteDateKey(post.publishedAt)}
           </time>
           {post.updatedAt && post.updatedAt !== post.publishedAt && (
             <>
@@ -95,11 +92,7 @@ export function PostContent({
               <span>
                 Updated{" "}
                 <time dateTime={post.updatedAt}>
-                  {new Date(post.updatedAt).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
+                  {formatSiteDateKey(post.updatedAt)}
                 </time>
               </span>
             </>

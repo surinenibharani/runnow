@@ -1,6 +1,26 @@
 /** Site-facing calendar dates use US Eastern (matches blog publish schedule). */
 export const SITE_TIME_ZONE = "America/New_York";
 
+/**
+ * Format a YYYY-MM-DD (or ISO datetime) as a calendar date.
+ * Date-only strings like `2026-11-02` are UTC midnight; without a zone they
+ * show as the previous day in US time zones.
+ */
+export function formatSiteDateKey(
+  iso: string,
+  options: Intl.DateTimeFormatOptions = {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }
+): string {
+  const key = iso.slice(0, 10);
+  return parseZonedDateKey(key).toLocaleDateString("en-US", {
+    timeZone: SITE_TIME_ZONE,
+    ...options,
+  });
+}
+
 function readPart(parts: Intl.DateTimeFormatPart[], type: string): string {
   return parts.find((part) => part.type === type)?.value ?? "";
 }

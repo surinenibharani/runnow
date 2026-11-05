@@ -6,6 +6,7 @@ import {
   buildBlogPostHref,
   formatBlogPostPublishSchedule,
 } from "@/lib/blog/preview";
+import { formatSiteDateKey } from "@/lib/date-keys";
 import {
   getBlogPostCanonicalUrl,
   getBlogPostDisplayUrl,
@@ -81,7 +82,7 @@ export function BlogPostCard({
             {post.author}
           </span>
           <time dateTime={post.publishedAt}>
-            {new Date(post.publishedAt).toLocaleDateString("en-US", {
+            {formatSiteDateKey(post.publishedAt, {
               month: "short",
               day: "numeric",
               year: "numeric",
