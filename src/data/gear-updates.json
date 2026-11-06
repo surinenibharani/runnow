@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-03T20:43:47.177Z",
-  "sourcesChecked": 4,
+  "updatedAt": "2026-11-06T20:40:05.312Z",
+  "sourcesChecked": 5,
   "feedCount": 5,
   "categories": [
     {
@@ -66,130 +66,130 @@
   ],
   "items": [
     {
+      "title": "Janji’s New Winter Collection Has All the Gear You Need for Cold-Weather Running",
+      "url": "https://www.runnersworld.com/gear/a74359157/janji-new-winter-collection/",
+      "source": "Runner's World",
+      "publishedAt": "2026-11-06T17:54:48.000Z",
+      "categorySlug": "tights",
+      "categoryTitle": "Tights & Leggings"
+    },
+    {
+      "title": "481 | Nike Alphafly 4, Adidas Adios Pro 5, Guardian Caps",
+      "url": "https://believeintherun.com/shoe-reviews/481-nike-alphafly-4-adidas-adios-pro-5-guardian-caps/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-11-06T17:41:58.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "480 | Ben Morrow and Bit Klecker (Miler Running)",
+      "url": "https://believeintherun.com/shoe-reviews/480-ben-morrow-and-bit-klecker-miler-running/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-11-06T17:35:06.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The 9 Best Running Shoes for Runners With Flat Feet and Low Arches",
+      "url": "https://www.runnersworld.com/gear/a25750345/running-shoes-flat-feet/",
+      "source": "Runner's World",
+      "publishedAt": "2026-11-06T16:04:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The 35 Best Gifts for Runners Who Already Have a Favorite Pair of Shoes",
+      "url": "https://www.runnersworld.com/gear/g20856300/the-best-gifts-for-runners/",
+      "source": "Runner's World",
+      "publishedAt": "2026-11-06T15:00:33.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "What happens when you add Gore-Tex to this mountain GOAT?",
+      "url": "https://believeintherun.com/shoe-reviews/la-sportiva-prodigio-2-gtx-review/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-11-06T13:00:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The Top 9 Running Shorts That Prevent Chafing, Store All the Snacks, and Keep You Cool at Every Pace",
+      "url": "https://www.runnersworld.com/gear/a22749888/running-shorts/",
+      "source": "Runner's World",
+      "publishedAt": "2026-11-05T15:58:00.000Z",
+      "categorySlug": "bottoms",
+      "categoryTitle": "Shorts & Bottoms"
+    },
+    {
+      "title": "What happens when you add Gore-Tex to the road-tested Clifton 11?",
+      "url": "https://believeintherun.com/shoe-reviews/hoka-clifton-11-gtx-review/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-11-05T13:00:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "Arc’teryx Sylan 2 Review",
+      "url": "https://www.irunfar.com/arcteryx-sylan-2-review",
+      "source": "iRunFar",
+      "publishedAt": "2026-11-05T11:00:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "Salomon Aero Blaze 4 Grvl GTX Review: Built for Wet, Gritty Miles",
+      "url": "https://www.runnersworld.com/gear/a74336328/salomon-aero-blaze-4-grvl-gtx-review/",
+      "source": "Runner's World",
+      "publishedAt": "2026-11-04T20:51:29.000Z",
+      "categorySlug": "hydration-packs",
+      "categoryTitle": "Hydration Packs"
+    },
+    {
+      "title": "These 10 Brooks Running Shoes Will Help You Run Your Best Miles Yet",
+      "url": "https://www.runnersworld.com/gear/a20866339/best-brooks-running-shoes/",
+      "source": "Runner's World",
+      "publishedAt": "2026-11-04T19:45:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "Asics Just Announced the Gel-Nimbus 29—Here’s Everything We Know, Plus Where to Get the Nimbus 28 on Sale",
+      "url": "https://www.runnersworld.com/gear/a74326221/asics-gel-nimbus-29-launch/",
+      "source": "Runner's World",
+      "publishedAt": "2026-11-04T15:39:15.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The 10 Best Trail Running Shoes for Trails, Gravel, and More",
+      "url": "https://www.runnersworld.com/gear/a22115120/best-trail-running-shoes/",
+      "source": "Runner's World",
+      "publishedAt": "2026-11-04T15:36:28.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "Mizuno Sky Prime Max Cushion Road Trainer Review: 3 Comparisons",
+      "url": "https://www.roadtrailrun.com/2026/11/mizuno-sky-prime-max-cushion-road.html",
+      "source": "Road Trail Run",
+      "publishedAt": "2026-11-04T14:06:25.365Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The Olympus 275 HiLo should be Altra's new gold standard",
+      "url": "https://believeintherun.com/shoe-reviews/altra-olympus-275-hilo-review/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-11-04T13:00:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
       "title": "The Brooks Launch 12 Helps You Run Fast—and Save Big",
       "url": "https://www.runnersworld.com/gear/a71107239/brooks-launch-12-review/",
       "source": "Runner's World",
       "publishedAt": "2026-11-03T19:49:37.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "The Best Black Friday Running Shoe Deals Are Here—Save on Brooks, Asics, Saucony, and More",
-      "url": "https://www.runnersworld.com/gear/g70222395/best-running-shoe-deals-2026/",
-      "source": "Runner's World",
-      "publishedAt": "2026-11-03T18:59:00.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Editor-Favorite Running Shoes Are Marked Down on Amazon for Black Friday—Save on Brooks, Asics, Saucony, and More",
-      "url": "https://www.runnersworld.com/gear/g73747156/best-amazon-running-shoe-deals/",
-      "source": "Runner's World",
-      "publishedAt": "2026-11-03T18:57:37.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "The 10 Best Running Shoes for Wide Feet and Big Toes",
-      "url": "https://www.runnersworld.com/gear/g39135738/best-wide-toebox-running-shoes/",
-      "source": "Runner's World",
-      "publishedAt": "2026-11-03T18:19:00.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Can the Altra Olympus 7 beat its own all-mountain sibling?",
-      "url": "https://believeintherun.com/shoe-reviews/altra-olympus-7-review/",
-      "source": "Believe in the Run",
-      "publishedAt": "2026-11-03T13:00:00.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "The Fastest Shoes at the 2026 NYC Marathon",
-      "url": "https://www.runnersworld.com/gear/a74306133/fastest-shoes-of-2026-nyc-marathon/",
-      "source": "Runner's World",
-      "publishedAt": "2026-11-02T18:48:56.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "This Ultra-Plush Brooks Trainer Is 25% Off Right Now",
-      "url": "https://www.runnersworld.com/gear/a74311207/brooks-glycerin-max-sale-november-2026/",
-      "source": "Runner's World",
-      "publishedAt": "2026-11-02T16:20:36.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Small changes make the Saucony Endorphin Speed 6 better than ever",
-      "url": "https://believeintherun.com/shoe-reviews/saucony-endorphin-speed-6-review/",
-      "source": "Believe in the Run",
-      "publishedAt": "2026-11-02T13:00:00.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "The Best Gifts For Runners",
-      "url": "https://www.irunfar.com/the-best-gifts-for-runners",
-      "source": "iRunFar",
-      "publishedAt": "2026-11-02T10:55:18.000Z",
-      "categorySlug": "coros",
-      "categoryTitle": "Coros"
-    },
-    {
-      "title": "Best Cushioned Running Shoes of 2026",
-      "url": "https://www.irunfar.com/best-cushioned-running-shoes",
-      "source": "iRunFar",
-      "publishedAt": "2026-10-31T15:00:49.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "This Is the Softest On Running Shoe I’ve Tried—Ever",
-      "url": "https://www.runnersworld.com/gear/a74183491/this-is-the-softest-on-running-shoe-ive-triedever/",
-      "source": "Runner's World",
-      "publishedAt": "2026-10-30T22:00:00.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Garmin Bringing Edge 1060 Features to Older Units: Full Details!",
-      "url": "https://www.dcrainmaker.com/2026/10/garmin-edge-1060-features-to-older-computers.html",
-      "source": "DC Rainmaker",
-      "publishedAt": "2026-10-30T18:39:31.000Z",
-      "categorySlug": "garmin",
-      "categoryTitle": "Garmin"
-    },
-    {
-      "title": "Is the slimmed-down Adidas Hyperboost Run our new favorite trainer?",
-      "url": "https://believeintherun.com/shoe-reviews/adidas-hyperboost-run-review/",
-      "source": "Believe in the Run",
-      "publishedAt": "2026-10-30T13:00:00.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "We took the OTIVM Overdrive ST on a 50k trail run, and here's how it survived",
-      "url": "https://believeintherun.com/shoe-reviews/otivm-overdrive-st-review/",
-      "source": "Believe in the Run",
-      "publishedAt": "2026-10-30T12:00:00.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "The Adizero Adios Pro 5 Is the Fastest Adidas Racing Shoe You Can Actually Buy",
-      "url": "https://www.runnersworld.com/gear/a73824137/adidas-adizero-adios-pro-5-review/",
-      "source": "Runner's World",
-      "publishedAt": "2026-10-30T03:33:58.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Nike Shoes Aren’t Just for the Elites. These Are the 10 Best Trainers Our Team Tested.",
-      "url": "https://www.runnersworld.com/gear/a22843945/best-nike-running-shoes/",
-      "source": "Runner's World",
-      "publishedAt": "2026-10-29T19:27:00.000Z",
       "categorySlug": "shoes",
       "categoryTitle": "Running Shoes"
     }
@@ -207,22 +207,17 @@
         "weekly": true
       },
       {
-        "name": "New Balance Fresh Foam 880",
-        "note": "Comfortable neutral shoe; wide widths available.",
+        "name": "Saucony Ride",
+        "note": "Balanced feel — not too soft, not too firm. Good all-rounder.",
         "weekly": false
       },
       {
-        "name": "Saucony Ride",
-        "note": "Balanced feel — not too soft, not too firm. Good all-rounder.",
+        "name": "New Balance Fresh Foam 880",
+        "note": "Comfortable neutral shoe; wide widths available.",
         "weekly": false
       }
     ],
     "shirts": [
-      {
-        "name": "Merino base layer (Icebreaker / Smartwool)",
-        "note": "Odour-resistant and comfortable for cool-weather runs.",
-        "weekly": false
-      },
       {
         "name": "Nike Dri-FIT Miler",
         "note": "Classic beginner top — light, breathable, affordable.",
@@ -237,13 +232,18 @@
         "name": "Patagonia Capilene Cool",
         "note": "Great for hot weather and sustainability-minded runners.",
         "weekly": false
+      },
+      {
+        "name": "Merino base layer (Icebreaker / Smartwool)",
+        "note": "Odour-resistant and comfortable for cool-weather runs.",
+        "weekly": false
       }
     ],
     "bottoms": [
       {
         "name": "SOAR Running Split Shorts",
         "note": "Light and fast — better once you're running regularly.",
-        "weekly": false
+        "weekly": true
       },
       {
         "name": "Nike Challenger Shorts",
@@ -263,9 +263,9 @@
     ],
     "tights": [
       {
-        "name": "2XU Compression Tights",
-        "note": "Snug fit — some runners like the supported feel on long runs.",
-        "weekly": false
+        "name": "Lululemon Fast and Free Tight",
+        "note": "Multiple pockets and a comfortable high waist.",
+        "weekly": true
       },
       {
         "name": "Nike Pro Warm Tights",
@@ -273,22 +273,17 @@
         "weekly": false
       },
       {
-        "name": "Lululemon Fast and Free Tight",
-        "note": "Multiple pockets and a comfortable high waist.",
+        "name": "Under Armour ColdGear Leggings",
+        "note": "Brushed interior for winter mornings.",
         "weekly": false
       },
       {
-        "name": "Under Armour ColdGear Leggings",
-        "note": "Brushed interior for winter mornings.",
+        "name": "2XU Compression Tights",
+        "note": "Snug fit — some runners like the supported feel on long runs.",
         "weekly": false
       }
     ],
     "apple-watch": [
-      {
-        "name": "Apple Watch Series 9 / 10",
-        "note": "Brighter always-on display; easier to read mid-run.",
-        "weekly": false
-      },
       {
         "name": "Apple Watch Ultra",
         "note": "Overkill for beginners — consider only for trail ultras and multi-day battery needs.",
@@ -297,6 +292,11 @@
       {
         "name": "Apple Watch SE (2nd gen)",
         "note": "Best value — full GPS running features without the premium price.",
+        "weekly": false
+      },
+      {
+        "name": "Apple Watch Series 9 / 10",
+        "note": "Brighter always-on display; easier to read mid-run.",
         "weekly": false
       }
     ],
@@ -319,27 +319,22 @@
     ],
     "coros": [
       {
+        "name": "Coros Apex 2",
+        "note": "Step up for trail runners who want maps and sapphire glass.",
+        "weekly": false
+      },
+      {
         "name": "Coros Pace 3",
         "note": "Best beginner pick — light, accurate GPS, weeks of battery.",
-        "weekly": true
+        "weekly": false
       },
       {
         "name": "Coros Pace 2",
         "note": "Still solid if you find it discounted — slightly older but capable.",
-        "weekly": true
-      },
-      {
-        "name": "Coros Apex 2",
-        "note": "Step up for trail runners who want maps and sapphire glass.",
         "weekly": false
       }
     ],
     "strava-app": [
-      {
-        "name": "Strava + Apple Watch / Garmin / Coros",
-        "note": "Record on your watch; sync automatically when done.",
-        "weekly": false
-      },
       {
         "name": "LetsRunNow dashboard",
         "note": "Connect Strava in your account for streaks, route comparisons, and HR tips.",
@@ -349,14 +344,14 @@
         "name": "Phone-only tracking",
         "note": "Start here — just open Strava and hit Record before your run.",
         "weekly": false
+      },
+      {
+        "name": "Strava + Apple Watch / Garmin / Coros",
+        "note": "Record on your watch; sync automatically when done.",
+        "weekly": false
       }
     ],
     "cap": [
-      {
-        "name": "Smartwool Merino Beanie",
-        "note": "For freezing temps when a cap isn't enough.",
-        "weekly": false
-      },
       {
         "name": "Ciele GOCap",
         "note": "The cult favourite — light, stylish, great sweat management.",
@@ -371,14 +366,14 @@
         "name": "Buff UV Headband (winter alternative)",
         "note": "Covers ears in cold weather without overheating your head.",
         "weekly": false
+      },
+      {
+        "name": "Smartwool Merino Beanie",
+        "note": "For freezing temps when a cap isn't enough.",
+        "weekly": false
       }
     ],
     "goggles": [
-      {
-        "name": "Julbo Fury",
-        "note": "Great for trail runners who want wraparound coverage.",
-        "weekly": false
-      },
       {
         "name": "Goodr",
         "note": "Affordable, fun colours, no-slip fit — perfect starter shades.",
@@ -393,14 +388,14 @@
         "name": "Oakley Sutro Lite",
         "note": "Premium option with excellent clarity and stability.",
         "weekly": false
+      },
+      {
+        "name": "Julbo Fury",
+        "note": "Great for trail runners who want wraparound coverage.",
+        "weekly": false
       }
     ],
     "sunscreen": [
-      {
-        "name": "Sun Bum Original SPF 50",
-        "note": "Popular sport formula with a pleasant scent; reapply on long runs.",
-        "weekly": false
-      },
       {
         "name": "Neutrogena Sport Face SPF 70",
         "note": "Sweat-resistant and less likely to sting eyes than body formulas.",
@@ -415,14 +410,14 @@
         "name": "Supergoop! Play Everyday Lotion SPF 50",
         "note": "Light feel, no white cast — good for daily training.",
         "weekly": false
+      },
+      {
+        "name": "Sun Bum Original SPF 50",
+        "note": "Popular sport formula with a pleasant scent; reapply on long runs.",
+        "weekly": false
       }
     ],
     "chafing-creams": [
-      {
-        "name": "Vaseline",
-        "note": "Cheap and works in a pinch — not ideal for fabric stains.",
-        "weekly": false
-      },
       {
         "name": "Body Glide",
         "note": "The classic stick — apply to thighs, feet, and anywhere that rubs.",
@@ -437,14 +432,14 @@
         "name": "Bandelettes or Nip Guards",
         "note": "Physical barriers for nipple chafing on long runs.",
         "weekly": false
+      },
+      {
+        "name": "Vaseline",
+        "note": "Cheap and works in a pinch — not ideal for fabric stains.",
+        "weekly": false
       }
     ],
     "hydration-tablets": [
-      {
-        "name": "SaltStick FastChews",
-        "note": "Chewable electrolytes if you prefer not to mix drinks.",
-        "weekly": false
-      },
       {
         "name": "Nuun Sport",
         "note": "Light, fizzy, easy on the stomach — great starter electrolyte.",
@@ -459,14 +454,14 @@
         "name": "Precision Fuel & Hydration",
         "note": "Customizable sodium levels to match your sweat rate.",
         "weekly": false
+      },
+      {
+        "name": "SaltStick FastChews",
+        "note": "Chewable electrolytes if you prefer not to mix drinks.",
+        "weekly": false
       }
     ],
     "gels": [
-      {
-        "name": "Spring Energy",
-        "note": "Whole-food style fuel for runners who want real-ingredient options.",
-        "weekly": false
-      },
       {
         "name": "Maurten Gel 100",
         "note": "Gentle on the stomach — popular with marathoners.",
@@ -481,18 +476,18 @@
         "name": "Huma Gel",
         "note": "Made with chia and fruit — good if standard gels upset your gut.",
         "weekly": false
+      },
+      {
+        "name": "Spring Energy",
+        "note": "Whole-food style fuel for runners who want real-ingredient options.",
+        "weekly": false
       }
     ],
     "hydration-packs": [
       {
-        "name": "FlipBelt or handheld bottle",
-        "note": "Simpler option for shorter long runs — no vest needed yet.",
-        "weekly": false
-      },
-      {
         "name": "Salomon Active Skin 8",
         "note": "Light race vest — popular for half and full marathon training.",
-        "weekly": false
+        "weekly": true
       },
       {
         "name": "Nathan VaporHowe 2.0",
@@ -502,6 +497,11 @@
       {
         "name": "Osprey Dyna LT",
         "note": "Hybrid pack/vest — great for trail beginners.",
+        "weekly": false
+      },
+      {
+        "name": "FlipBelt or handheld bottle",
+        "note": "Simpler option for shorter long runs — no vest needed yet.",
         "weekly": false
       }
     ]
@@ -519,22 +519,17 @@
         "weekly": true
       },
       {
-        "name": "Hoka Clifton (women's)",
-        "note": "Plush cushioning with a roomy toe box — good for longer easy miles.",
+        "name": "New Balance Fresh Foam 880 (wide)",
+        "note": "Extra forefoot room if standard women's widths feel tight.",
         "weekly": false
       },
       {
-        "name": "New Balance Fresh Foam 880 (wide)",
-        "note": "Extra forefoot room if standard women's widths feel tight.",
+        "name": "Hoka Clifton (women's)",
+        "note": "Plush cushioning with a roomy toe box — good for longer easy miles.",
         "weekly": false
       }
     ],
     "shirts": [
-      {
-        "name": "Oiselle Flyout Tank",
-        "note": "Women's running brand — soft fabric and a relaxed race-day feel.",
-        "weekly": false
-      },
       {
         "name": "Brooks Drive 3 Pocket Run Bra",
         "note": "High-support sports bra with a phone pocket — reduces bounce on easy and long runs.",
@@ -549,14 +544,14 @@
         "name": "Nike Dri-FIT Swoosh Women's Tank",
         "note": "Light, breezy top with a flattering cut — easy first technical shirt.",
         "weekly": false
+      },
+      {
+        "name": "Oiselle Flyout Tank",
+        "note": "Women's running brand — soft fabric and a relaxed race-day feel.",
+        "weekly": false
       }
     ],
     "bottoms": [
-      {
-        "name": "Nike Tempo Women's Short",
-        "note": "Classic curved-hem running short — widely available and affordable.",
-        "weekly": false
-      },
       {
         "name": "Lululemon Hotty Hot High-Rise",
         "note": "Light 4\" short with liner and pockets — a common women's starter pick.",
@@ -571,18 +566,18 @@
         "name": "Athleta Ultimate Lined Short",
         "note": "Mid-rise option with a secure waistband for longer runs.",
         "weekly": false
+      },
+      {
+        "name": "Nike Tempo Women's Short",
+        "note": "Classic curved-hem running short — widely available and affordable.",
+        "weekly": false
       }
     ],
     "tights": [
       {
-        "name": "Brooks Method 7/8 Tight",
-        "note": "Running-specific fit with reflective details for dawn and dusk.",
-        "weekly": false
-      },
-      {
         "name": "Lululemon Fast and Free High-Rise Tight",
         "note": "High waist stays put; multiple pockets for phone and gels.",
-        "weekly": false
+        "weekly": true
       },
       {
         "name": "Athleta Ultimate Stash Tight",
@@ -593,14 +588,14 @@
         "name": "Sweaty Betty Power Leggings",
         "note": "Comfortable compression feel without feeling restrictive.",
         "weekly": false
+      },
+      {
+        "name": "Brooks Method 7/8 Tight",
+        "note": "Running-specific fit with reflective details for dawn and dusk.",
+        "weekly": false
       }
     ],
     "apple-watch": [
-      {
-        "name": "Apple Watch Series 9 / 10 (41mm)",
-        "note": "Compact size with a brighter screen for glancing at pace mid-run.",
-        "weekly": false
-      },
       {
         "name": "Sport Loop or Solo Loop (small)",
         "note": "Flexible bands that fit smaller wrists without extra tail flapping.",
@@ -609,6 +604,11 @@
       {
         "name": "Apple Watch SE (40mm)",
         "note": "Smaller case fits narrower wrists without overpowering your arm.",
+        "weekly": false
+      },
+      {
+        "name": "Apple Watch Series 9 / 10 (41mm)",
+        "note": "Compact size with a brighter screen for glancing at pace mid-run.",
         "weekly": false
       }
     ],
@@ -631,27 +631,22 @@
     ],
     "coros": [
       {
+        "name": "Coros Apex 2 (42mm)",
+        "note": "Smaller case option if you want maps without a bulky watch face.",
+        "weekly": false
+      },
+      {
         "name": "Coros Pace 3",
         "note": "Light 30g case works well on smaller wrists — silicone band in S/M.",
-        "weekly": true
+        "weekly": false
       },
       {
         "name": "Coros Pace 3 nylon band",
         "note": "Softer, lower-profile strap if the stock band feels stiff or long.",
-        "weekly": true
-      },
-      {
-        "name": "Coros Apex 2 (42mm)",
-        "note": "Smaller case option if you want maps without a bulky watch face.",
         "weekly": false
       }
     ],
     "strava-app": [
-      {
-        "name": "Strava privacy zones",
-        "note": "Hide start/end near home — useful if you often run solo from the same address.",
-        "weekly": false
-      },
       {
         "name": "Strava + sports watch (40–43mm)",
         "note": "Smaller watches pair the same way — record on wrist, review on phone after.",
@@ -661,14 +656,14 @@
         "name": "FlipBelt or armband (phone carry)",
         "note": "If you run phone-only, waist belts often sit better over high-rise shorts than pockets.",
         "weekly": false
+      },
+      {
+        "name": "Strava privacy zones",
+        "note": "Hide start/end near home — useful if you often run solo from the same address.",
+        "weekly": false
       }
     ],
     "cap": [
-      {
-        "name": "Smartwool Merino Headband",
-        "note": "Covers ears in winter while leaving room for a ponytail or braid.",
-        "weekly": false
-      },
       {
         "name": "Ciele TRKCap",
         "note": "Ponytail-friendly opening in back — no awkward bun stuffing.",
@@ -683,14 +678,14 @@
         "name": "Buff Coolnet UV+ Headband",
         "note": "Keeps hair off your face on hot runs without full hat hair.",
         "weekly": false
+      },
+      {
+        "name": "Smartwool Merino Headband",
+        "note": "Covers ears in winter while leaving room for a ponytail or braid.",
+        "weekly": false
       }
     ],
     "goggles": [
-      {
-        "name": "100% Speedcraft SL (narrow)",
-        "note": "Lightweight with a slimmer temple if standard sport frames feel wide.",
-        "weekly": false
-      },
       {
         "name": "Goodr Circle G",
         "note": "Smaller frame and nose bridge — fits narrower faces without sliding.",
@@ -705,14 +700,14 @@
         "name": "Oakley Revolver",
         "note": "Women's-specific fit with secure temples for sweaty miles.",
         "weekly": false
+      },
+      {
+        "name": "100% Speedcraft SL (narrow)",
+        "note": "Lightweight with a slimmer temple if standard sport frames feel wide.",
+        "weekly": false
       }
     ],
     "sunscreen": [
-      {
-        "name": "Banana Boat Light as Air SPF 50",
-        "note": "Thin body lotion for arms and legs — absorbs quickly before you lace up.",
-        "weekly": false
-      },
       {
         "name": "EltaMD UV Clear SPF 46",
         "note": "Lightweight face formula — popular under ponytails and visors.",
@@ -727,14 +722,14 @@
         "name": "Neutrogena Sport Face Oil-Free SPF 70",
         "note": "Sweat-resistant without a greasy feel on forehead and shoulders.",
         "weekly": false
+      },
+      {
+        "name": "Banana Boat Light as Air SPF 50",
+        "note": "Thin body lotion for arms and legs — absorbs quickly before you lace up.",
+        "weekly": false
       }
     ],
     "chafing-creams": [
-      {
-        "name": "Monistat Chafing Relief Powder Gel",
-        "note": "A silicone anti-chafe gel (not an antifungal medication) many runners use along bra lines and inner thighs. Patch-test first if you have sensitive skin.",
-        "weekly": false
-      },
       {
         "name": "Body Glide (sports bra band & underarms)",
         "note": "Apply along bra band, straps, and underarm seams before long runs.",
@@ -749,14 +744,14 @@
         "name": "Bandelettes thigh bands",
         "note": "Lace-free barrier when shorts liners aren't enough for thigh rub.",
         "weekly": false
+      },
+      {
+        "name": "Monistat Chafing Relief Powder Gel",
+        "note": "A silicone anti-chafe gel (not an antifungal medication) many runners use along bra lines and inner thighs. Patch-test first if you have sensitive skin.",
+        "weekly": false
       }
     ],
     "hydration-tablets": [
-      {
-        "name": "LMNT (half packet in 16 oz)",
-        "note": "High sodium for heavy sweaters — start with a lighter mix if new to electrolytes.",
-        "weekly": false
-      },
       {
         "name": "Nuun Sport (lower-sugar flavours)",
         "note": "Gentle on the stomach — useful if gels and sweet drinks feel heavy.",
@@ -771,14 +766,14 @@
         "name": "SaltStick FastChews",
         "note": "Easy to dose on long runs without carrying a full bottle mix.",
         "weekly": false
+      },
+      {
+        "name": "LMNT (half packet in 16 oz)",
+        "note": "High sodium for heavy sweaters — start with a lighter mix if new to electrolytes.",
+        "weekly": false
       }
     ],
     "gels": [
-      {
-        "name": "Spring Energy Canaberry",
-        "note": "Mild, fruit-forward taste — good starter gel for long runs.",
-        "weekly": false
-      },
       {
         "name": "Huma Gel",
         "note": "Real-food ingredients — often easier on sensitive stomachs.",
@@ -793,13 +788,18 @@
         "name": "GU Roctane (caffeine-free flavours)",
         "note": "Test caffeine-free first if you're sensitive during your cycle.",
         "weekly": false
+      },
+      {
+        "name": "Spring Energy Canaberry",
+        "note": "Mild, fruit-forward taste — good starter gel for long runs.",
+        "weekly": false
       }
     ],
     "hydration-packs": [
       {
-        "name": "FlipBelt",
-        "note": "Waist belt option if vests chafe under sports bra bands.",
-        "weekly": false
+        "name": "Salomon Active Skin 8 (S/M women's)",
+        "note": "Race vest with front flasks — check size chart for bust fit.",
+        "weekly": true
       },
       {
         "name": "Nathan VaporHowe 2.0",
@@ -812,8 +812,8 @@
         "weekly": false
       },
       {
-        "name": "Salomon Active Skin 8 (S/M women's)",
-        "note": "Race vest with front flasks — check size chart for bust fit.",
+        "name": "FlipBelt",
+        "note": "Waist belt option if vests chafe under sports bra bands.",
         "weekly": false
       }
     ]
