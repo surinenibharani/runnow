@@ -14,7 +14,7 @@ export const winterEastCoastPosts: BlogPost[] = [
     title:
       "After the Fall Races: What to Do on the East Coast So Next Season Still Works",
     excerpt:
-      "Race season is over and the sidewalks get honest. What to keep, what to swap for the bike and the weight room, and when an East Coast winter day is actually a running day.",
+      "Just finished a first 5K, a half, or a marathon — or coming back after time off? Keep the engine warm without an ice injury. Walk-run counts. Indoor miles count.",
     category: "Training",
     author: AUTHOR,
     publishedAt: "2026-11-16",
@@ -83,12 +83,12 @@ export const winterEastCoastPosts: BlogPost[] = [
       {
         question: "Will I lose all my fitness if I barely run until March?",
         answer:
-          "You lose some aerobic fitness if you stop, and more if the stop lasts the whole winter. Strength fades more slowly. A smaller plan — a little real effort, one longer easy session, two strength days — holds more than the couch, and it will not hold a marathon-length long run by itself. The ranges from the detraining reviews are in the notes at the bottom.",
+          "You lose some aerobic fitness if you stop, and more if the stop lasts the whole winter. Strength fades more slowly. A smaller plan — a little real effort, one longer easy session, two strength days — holds more than the couch, and it will not hold a marathon-length long run by itself. The ranges from the detraining reviews are in the optional notes at the bottom. You can skip them.",
       },
       {
         question: "How cold is too cold to run outside on the East Coast?",
         answer:
-          "There is no single cutoff. Most cold-weather exercise is safe with the right clothes, wind plan, and dry layers. On the I-95 corridor the usual reason to skip the outdoor run is ice, not frostbite. A 34°F morning after rain is often more dangerous than a dry afternoon in the 20s. The wind-chill lines where exposed skin can freeze are in the notes at the bottom.",
+          "There is no single cutoff. Most cold-weather exercise is safe with the right clothes, wind plan, and dry layers. On the I-95 corridor the usual reason to skip the outdoor run is ice, not frostbite. A 34°F morning after rain is often more dangerous than a dry afternoon in the 20s. The wind-chill lines where exposed skin can freeze are in the optional notes at the bottom. You can skip them.",
       },
       {
         question: "Is the treadmill a real run in the off-season?",
@@ -110,8 +110,9 @@ export const winterEastCoastPosts: BlogPost[] = [
       {
         paragraphs: [
           "**Educational only — not medical advice.** Chest pain, pressure, fainting, sudden shortness of breath, wheezing that does not settle, confusion, or a fall that leaves focal bone pain need clinical care. People with heart disease, asthma, or another condition that changes how they handle cold should follow their own clinician's plan before treating a blog as clearance.",
+          "Whether you just finished your first 5K, a half, or a marathon — or you're coming back after time off — the goal is the same: keep the engine warm without collecting an ice injury. Walk-run still counts. Indoor miles still count.",
           "Fall road racing on the East Coast runs from mid-October into November: Marine Corps, New York, the Philadelphia Marathon, half, and 8K, Atlantic City, and the other start lines people actually train for. Then the daylight shrinks, the freeze-thaw cycle starts, and a lot of good runners disappear until the first warm Saturday in March.",
-          "Hibernating feels logical. It is also how April becomes a six-week panic. The useful winter is smaller than race season, harder in the weight room, and picky about which days deserve shoes.",
+          "Hibernating feels logical. It is also how April becomes a six-week panic. The useful winter is smaller than race season. It is picky about which days deserve shoes, and it is fine if some of those days are a walk.",
         ],
       },
       {
@@ -136,10 +137,39 @@ export const winterEastCoastPosts: BlogPost[] = [
         id: "east-coast",
         heading: "What East Coast winter actually threatens",
         paragraphs: [
-          "From northern New England down the I-95 corridor, winter is not one climate. A January afternoon in Washington is a different sport from a January morning in Portland, Maine, or Burlington. The shared problems are the same: early dark, wind off the ocean or a river, and pavement that melts at lunch and freezes by dinner.",
-          "Around the winter solstice, Boston through Washington has roughly nine to nine and a half hours of daylight, and sunset is mid-afternoon. The coldest, slickest hour is often near sunrise, after the overnight refreeze. The warmest part of a clear day is typically mid-afternoon. If you have a choice, that later window is usually the outdoor run. If your only window is dark, the night-running rules apply, and ice plus darkness is a reason to stay in.",
-          "Use the feels-like temperature, not only the number on a bank sign. Frostbite needs the air itself below freezing. Above freezing, wind and wet clothes can still drop your core temperature. The chart values are in the notes at the bottom.",
-          "On this coast, the injury that ends more winters is a fall. Black ice does not care that the sign says 34°F. Traction devices help on packed snow. They do not turn glare ice into a workout. If the sidewalk is a rink, the treadmill is the training decision. Layering, cotton, and shoe rules live in the [cold-weather hub](/blog/cold-weather-running-hub) and the [gear guide](/blog/weather-running-gear-tops-bottoms-shoes).",
+          "From northern New England down the I-95 corridor, winter is not one climate. A January afternoon in Washington is a different sport from a January morning in Portland, Maine, or Burlington.",
+          "The shared problems are the same: early dark, wind off the ocean or a river, and pavement that melts at lunch and freezes by dinner.",
+          "Around the winter solstice, Boston through Washington has roughly nine to nine and a half hours of daylight, and sunset is mid-afternoon. The coldest, slickest hour is often near sunrise, after the overnight refreeze. The warmest part of a clear day is typically mid-afternoon.",
+          "If you have a choice, that later window is usually the outdoor run. If your only window is dark, the night-running rules apply, and ice plus darkness is a reason to stay in.",
+          "Use the feels-like temperature, not only the number on a bank sign. Frostbite needs the air itself below freezing. Above freezing, wind and wet clothes can still drop your core temperature. The chart values are in the optional notes at the bottom.",
+          "On this coast, the injury that ends more winters is a fall. Black ice does not care that the sign says 34°F. Traction devices help on packed snow. They do not turn glare ice into a workout.",
+          "If the sidewalk is a rink, the treadmill is the training decision. Layering, cotton, and shoe rules live in the [cold-weather hub](/blog/cold-weather-running-hub) and the [gear guide](/blog/weather-running-gear-tops-bottoms-shoes).",
+        ],
+      },
+      {
+        id: "decide",
+        heading: "Quick decision guide",
+        paragraphs: [
+          "When the forecast is messy, use this before you debate the workout.",
+        ],
+        subsections: [
+          {
+            heading: "Pick one. Then stop negotiating.",
+            table: {
+              columns: ["If this is true", "Do this"],
+              rows: [
+                [
+                  "Clear sidewalk and a reasonable wind chill",
+                  "Outdoor easy run, or a walk-run",
+                ],
+                [
+                  "Ice, a storm, or very low visibility",
+                  "Treadmill, bike, or strength",
+                ],
+                ["You feel off or sick", "Rest"],
+              ],
+            },
+          },
         ],
       },
       {
@@ -152,7 +182,8 @@ export const winterEastCoastPosts: BlogPost[] = [
           "Prefer a clear afternoon over a dark dawn when both are available",
           "Read the forecast's 'feels like,' not only the air temperature, especially on the water",
           "Dress so the first few minutes feel a little cool — you will heat up",
-          "Dress for air about 10–20°F warmer than it is, using the wind chill if that number is colder. Use the 10–15°F end for a short easy run or if you stay cold, so you wear more. Use about 20°F for a long run or if you heat up fast. It is a coaching guess, not a lab result. The source is in the notes",
+          "Dress for air about 10–20°F warmer than it is. If the wind chill is colder, use that number instead",
+          "Short easy run, or you stay cold: add about 10–15°F, which means wear more. Long run, or you heat up fast: add about 20°F. It is a coaching guess. The source is in the optional notes",
           "Skip cotton next to the skin. Once it is wet, it stays wet",
           "Cover ears, nose, fingers, and toes. Those are the parts that freeze. A light layer you can vent beats a parka you sweat through",
           "Run by effort. Cold, clothes, and cautious footing make summer pace feel harder. The talk test still works ([easy effort](/blog/easy-runs-effort-heart-rate))",
@@ -160,7 +191,9 @@ export const winterEastCoastPosts: BlogPost[] = [
           "Leave the alcohol for later. It can make you feel warmer than you are",
         ],
         closingParagraphs: [
-          "A heavy outdoor outfit can still make sense down through the single digits above 0°F, with no skin showing. Colder than that band, indoors is the simpler call for most people. The wind-chill line where exposed skin freezes quickly is in the notes. If you cannot feel your fingers or toes, or the skin turns white, gray, or waxy, the run is over. If you have chest pain, pressure, lightheadedness, or a heartbeat that will not settle, stop and get help. Cold tightens blood vessels and can raise blood pressure. People with coronary disease often feel chest pain in the cold. A sudden hard effort — shoveling is the classic case — is a bad idea if your heart history is complicated.",
+          "A heavy outdoor outfit can still make sense down through the single digits above 0°F, with no skin showing. Colder than that band, indoors is the simpler call for most people. The wind-chill line where exposed skin freezes quickly is in the optional notes.",
+          "If you cannot feel your fingers or toes, or the skin turns white, gray, or waxy, the run is over. If you have chest pain, pressure, lightheadedness, or a heartbeat that will not settle, stop and get help.",
+          "Cold tightens blood vessels and can raise blood pressure. People with coronary disease often feel chest pain in the cold. A sudden hard effort — shoveling is the classic case — is a bad idea if your heart history is complicated.",
           "Cold, dry air can also irritate airways, especially with a cold face. Cover your mouth lightly if that helps, use the inhaler plan you already have, and do not negotiate with wheezing that is new or getting worse.",
         ],
         cta: {
@@ -187,20 +220,21 @@ export const winterEastCoastPosts: BlogPost[] = [
         id: "what-helps",
         heading: "What to do instead, if the point is next season",
         paragraphs: [
-          "Four jobs beat 'run whenever I feel guilty.' Do them through December, January, and February, and March is a build instead of a rescue. Why these four, and what the studies actually measured, is in the notes at the bottom.",
+          "You don't need to train hard all winter. You just need to protect four things.",
+          "Here's what actually moves the needle — and it's okay if some weeks are lighter. Do them through December, January, and February, and March is a build instead of a rescue. The studies are optional reading at the bottom.",
         ],
         subsections: [
           {
             heading: "1. Two real strength sessions a week",
             paragraphs: [
-              "This is the highest-value indoor work for most recreational runners. Heavier lifting and plyometrics are the versions tied to easier running at the same pace, and to fewer overuse injuries. That is a help, not a promise you cannot get hurt, and it does not replace sensible mileage when you build again.",
+              "Two real strength sessions a week is the highest-return indoor work for most recreational runners — including beginners. Heavier lifting and plyometrics are the versions tied to easier running at the same pace, and to fewer overuse injuries. That is a help, not a promise you cannot get hurt, and it does not replace sensible mileage when you build again.",
               "Do the lifting indoors, on a floor that is not icy. Hips, single-leg strength, calves, and a hinge pattern cover most of what running asks. If bodyweight squats and lunges are still shaky, start there. If they are easy, add load. Plyometrics belong on a dry gym floor, not a frozen stoop. Two days is the right dose if you want next season's economy, not merely 'not weaker.'",
             ],
           },
           {
             heading: "2. Keep a little intensity, on a safe surface",
             paragraphs: [
-              "Aerobic fitness is easier to keep than to rebuild, and a little real effort is the piece that keeps it. Volume can drop. Easy-only, all winter, is the version that lets the engine fade.",
+              "A little intensity keeps the engine from fading. It does not have to be a full track session. Volume can drop. Easy-only, all winter, is the version that lets fitness slip.",
               "Once you have recovered from the race, one day a week with a few strides, or a short comfortably hard piece, on a treadmill or a clearly dry path. That is the intensity. It is not a track workout in the dark on untreated pavement. The lab sessions behind this were much harder, in young people. Do not copy them outdoors.",
             ],
           },
@@ -227,17 +261,17 @@ export const winterEastCoastPosts: BlogPost[] = [
         id: "week",
         heading: "One winter week that is enough",
         paragraphs: [
-          "This is a maintenance week for someone who has already taken the post-race downshift and wants to run again in the spring. It is not a marathon plan, and it is not medical clearance.",
+          "This is a maintenance template, not a rigid plan. Move days when the weather turns. Missed sessions stay missed — no doubling up. It is also not medical clearance.",
         ],
         subsections: [
           {
             heading: "A maintenance week after the downshift",
             paragraphs: [
-              "Move the run days when a storm shows up. Do not make up an icy Tuesday by doubling Thursday.",
+              "Use this after the easy post-race weeks, when you want to run again in the spring. Swap any run for a walk-run if that is what the day allows.",
             ],
             table: {
-              caption: "One possible week. Swap the run days when the forecast changes.",
-              columns: ["Day", "The job", "If the sidewalk is ice"],
+              caption: "What to aim for. Ice days use the right-hand column.",
+              columns: ["Day", "Focus", "If the sidewalk is ice"],
               rows: [
                 [
                   "Monday",
@@ -271,10 +305,17 @@ export const winterEastCoastPosts: BlogPost[] = [
         ],
       },
       {
-        id: "what-research-shows",
-        heading: "Notes and references",
+        id: "enough",
+        heading: "A smaller winter is not lost time",
         paragraphs: [
-          "The plan is above. These are the sources behind it, including the limits. The link list follows the questions.",
+          "A smaller winter is not lost time. It is how next spring starts from a better place instead of a rescue mission. Keep the easy days easy, respect the ice, and show up in whatever form the day allows — run, walk-run, bike, or strength. That is enough.",
+        ],
+      },
+      {
+        id: "what-research-shows",
+        heading: "Notes and references (optional deeper reading)",
+        paragraphs: [
+          "Optional. The plan above is enough. This is the research behind it, for anyone who wants the sources and the limits. The link list follows the questions.",
         ],
         subsections: [
           {

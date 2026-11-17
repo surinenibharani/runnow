@@ -167,7 +167,7 @@ export const whyItMattersBySlug: Record<string, string> = {
   "cold-weather-running-hub":
     "Ice and dark mornings end more seasons than hard workouts. A clear layering and bail playbook keeps winter from wiping your habit.",
   "winter-east-coast-after-race-season":
-    "The weeks after a fall race are when East Coast runners either hibernate or collect an ice injury. A smaller, safer winter keeps the engine — and the tendons — ready for spring.",
+    "A smaller winter still counts, whether you just finished a first 5K or a marathon. Keep the engine warm, respect the ice, and show up as a run, a walk-run, or a strength day.",
   "night-running-safety":
     "After-work miles only work if you're seen and on a sane route. Visibility and predictability beat bravery on unlit shortcuts.",
   "chafing-blisters-running":
