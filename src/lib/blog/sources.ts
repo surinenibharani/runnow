@@ -1144,7 +1144,7 @@ export const SOURCES = {
   },
   cdcHypothermiaFrostbite: {
     label: "Prevent hypothermia and frostbite",
-    href: "https://www.cdc.gov/winter-weather/prevention/prevent-hypothermia-frostbite.html",
+    href: "https://www.cdc.gov/winter-weather/prevention/index.html",
     publisher: "Centers for Disease Control and Prevention (CDC)",
   },
   mayoFrostbite: {
@@ -1226,5 +1226,68 @@ export const SOURCES = {
     label: "Jack Daniels VDOT training system",
     href: "https://www.vdoto2.com/",
     publisher: "VDOT O2 (Jack Daniels)",
+  },
+  mujikaPadillaDetraining2000a: {
+    label:
+      "Detraining: loss of training-induced adaptations. Part I, short term (Mujika & Padilla, 2000)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/10966148/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  mujikaPadillaDetraining2000b: {
+    label:
+      "Detraining: loss of training-induced adaptations. Part II, long term (Mujika & Padilla, 2000)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/10999420/",
+    publisher: "PubMed / Sports Medicine",
+  },
+  zhengDetrainingVo2max2022: {
+    label:
+      "Short- and long-term detraining and VO₂max in athletes — systematic review & meta-analysis (Zheng et al., 2022)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/36017396/",
+    publisher: "PubMed / BioMed Research International",
+  },
+  hicksonFrequency1981: {
+    label:
+      "Reduced training frequencies and maintenance of aerobic power (Hickson & Rosenkoetter, 1981)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/7219129/",
+    publisher: "PubMed / Medicine & Science in Sports & Exercise",
+  },
+  hicksonDuration1982: {
+    label:
+      "Reduced training duration, aerobic power, and long-term endurance (Hickson et al., 1982)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/6214534/",
+    publisher: "PubMed / Journal of Applied Physiology",
+  },
+  spieringMinimalDose2021: {
+    label:
+      "Minimal exercise dose to maintain endurance and strength (Spiering, Mujika, Sharp & Foulis, 2021)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/33629972/",
+    publisher: "PubMed / Journal of Strength and Conditioning Research",
+  },
+  acsmColdInjury2006: {
+    label:
+      "ACSM position stand: prevention of cold injuries during exercise (Castellani et al., 2006)",
+    href: "https://pubmed.ncbi.nlm.nih.gov/17095937/",
+    publisher: "PubMed / Medicine & Science in Sports & Exercise",
+  },
+  acsmColdInjuryConsensus2021: {
+    label:
+      "ACSM expert consensus: injury prevention during cold-weather exercise (2021)",
+    href: "https://journals.lww.com/acsm-csmr/fulltext/2021/11000/acsm_expert_consensus_statement__injury_prevention.11.aspx",
+    publisher: "Current Sports Medicine Reports",
+  },
+  ahaColdWeatherHeart: {
+    label: "Cold weather and cardiovascular disease",
+    href: "https://www.heart.org/en/health-topics/consumer-healthcare/what-is-cardiovascular-disease/cold-weather-and-cardiovascular-disease",
+    publisher: "American Heart Association",
+  },
+  ahaActiveInCold: {
+    label: "How to stay active in cold weather",
+    href: "https://www.heart.org/en/healthy-living/exercise-and-physical-activity/getting-active/how-to-stay-active-in-cold-weather",
+    publisher: "American Heart Association",
+  },
+  rwColdWeatherClothing: {
+    label: "What to wear for cold-weather training",
+    href: "https://www.runnersworld.com/gear/a20858978/what-to-wear-for-cold-weather-training/",
+    publisher: "Runner's World",
   },
 } satisfies Record<string, BlogSource>;

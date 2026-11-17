@@ -266,6 +266,11 @@ export const BLOG_POST_KEYWORDS: Record<string, string[]> = {
     "what to wear running in winter",
     "running on ice safety",
   ],
+  "winter-east-coast-after-race-season": [
+    "what to do in winter after running season",
+    "east coast winter running off season",
+    "cross training for runners in winter",
+  ],
   "night-running-safety": [
     "night running safety tips",
     "running in the dark reflective gear",

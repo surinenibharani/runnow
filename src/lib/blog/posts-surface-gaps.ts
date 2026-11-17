@@ -138,6 +138,7 @@ export const surfaceGapPosts: BlogPost[] = [
       "night-running-safety",
       "warm-up-cool-down-running",
       "hot-weather-running-hub",
+      "winter-east-coast-after-race-season",
     ],
     closingQuestion:
       "What's your coldest successful run — and what layer combo actually worked?",

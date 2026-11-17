@@ -166,6 +166,8 @@ export const whyItMattersBySlug: Record<string, string> = {
     "Trail running punishes road ego and rewards patience. Learning footing, hiking climbs, and time-on-feet thinking is how dirt stays fun instead of becoming an ankle story.",
   "cold-weather-running-hub":
     "Ice and dark mornings end more seasons than hard workouts. A clear layering and bail playbook keeps winter from wiping your habit.",
+  "winter-east-coast-after-race-season":
+    "The weeks after a fall race are when East Coast runners either hibernate or collect an ice injury. A smaller, safer winter keeps the engine — and the tendons — ready for spring.",
   "night-running-safety":
     "After-work miles only work if you're seen and on a sane route. Visibility and predictability beat bravery on unlit shortcuts.",
   "chafing-blisters-running":

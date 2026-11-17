@@ -389,6 +389,7 @@ export const nextGapPosts: BlogPost[] = [
       "easy-runs-effort-heart-rate",
       "importance-of-cross-training",
       "sleep-recovery-for-runners",
+      "winter-east-coast-after-race-season",
     ],
     closingQuestion:
       "What do you usually do after a race block — time off, random miles, or a deliberate base phase?",
