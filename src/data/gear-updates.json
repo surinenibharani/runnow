@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T22:05:51.668Z",
+  "updatedAt": "2026-11-24T23:42:26.314Z",
   "sourcesChecked": 5,
   "feedCount": 5,
   "categories": [
@@ -66,6 +66,78 @@
   ],
   "items": [
     {
+      "title": "I Run With Constantly Cold Hands—These Smartwool Gloves Keep My Fingers Warm Without Sacrificing Dexterity",
+      "url": "https://www.runnersworld.com/gear/a74507395/smartwool-active-fleece-gloves-review/",
+      "source": "Runner's World",
+      "publishedAt": "2026-11-24T14:49:26.000Z",
+      "categorySlug": "gels",
+      "categoryTitle": "Energy Gels"
+    },
+    {
+      "title": "The Coros Vertix 4 is ready for your next great adventure: Our first look",
+      "url": "https://believeintherun.com/gear-reviews/coros-vertix-4-first-thoughts/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-11-24T13:00:00.000Z",
+      "categorySlug": "coros",
+      "categoryTitle": "Coros"
+    },
+    {
+      "title": "COROS Vertix 4 In-Depth Review: Flashlight & Satellite Maps!",
+      "url": "https://www.dcrainmaker.com/2026/11/coros-vertix-4-in-depth-review-flashlight-satellite.html",
+      "source": "DC Rainmaker",
+      "publishedAt": "2026-11-24T13:00:00.000Z",
+      "categorySlug": "coros",
+      "categoryTitle": "Coros"
+    },
+    {
+      "title": "The Best Running Shoes of the Year (For Bigger Runners) | Best in Gear (BIG) Awards 2026",
+      "url": "https://believeintherun.com/videos/the-best-running-shoes-of-the-year-for-bigger-runners-best-in-gear-big-awards-20/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-11-23T20:07:37.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The Best Running Shoes of the Year | Best in Gear (BIG) Awards 2026",
+      "url": "https://believeintherun.com/videos/the-best-running-shoes-of-the-year-best-in-gear-big-awards-2026/",
+      "source": "Believe in the Run",
+      "publishedAt": "2026-11-23T20:05:14.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "Heads Up: All Garmin Fenix 9 Models $100 Off!",
+      "url": "https://www.dcrainmaker.com/2026/11/heads-up-all-garmin-fenix-9-models-100-off.html",
+      "source": "DC Rainmaker",
+      "publishedAt": "2026-11-23T19:06:16.000Z",
+      "categorySlug": "garmin",
+      "categoryTitle": "Garmin"
+    },
+    {
+      "title": "Best Smart Trainers Recommendation Guide: Winter 2026-2027",
+      "url": "https://www.dcrainmaker.com/2026/11/best-cycling-smart-trainers-recommendation-guide.html",
+      "source": "DC Rainmaker",
+      "publishedAt": "2026-11-23T14:56:50.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "The Best Asics Running Shoes Deliver Cushion, Stability, and Speed—Here Are Our Editors’ Top Picks",
+      "url": "https://www.runnersworld.com/gear/a22140215/best-asics-running-shoes/",
+      "source": "Runner's World",
+      "publishedAt": "2026-11-23T14:22:00.000Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
+      "title": "Brooks Winter 2026 Women's Momentum Collection Review: Thermal Vest, Tights, and Quarter Zip",
+      "url": "https://www.roadtrailrun.com/2026/11/brooks-winter-2026-womens-momentum.html",
+      "source": "Road Trail Run",
+      "publishedAt": "2026-11-21T14:04:53.714Z",
+      "categorySlug": "shoes",
+      "categoryTitle": "Running Shoes"
+    },
+    {
       "title": "The 40 Best Gifts for Runners Who Already Have a Favorite Pair of Shoes",
       "url": "https://www.runnersworld.com/gear/g20856300/the-best-gifts-for-runners/",
       "source": "Runner's World",
@@ -118,78 +190,6 @@
       "url": "https://www.runnersworld.com/gear/a24228881/affordable-running-shoes/",
       "source": "Runner's World",
       "publishedAt": "2026-11-19T17:20:00.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Tacx Nera Smart Trainer In-Depth Review: Consistently Inconsistent",
-      "url": "https://www.dcrainmaker.com/2026/11/tacx-nera-smart-trainer-in-depth-review.html",
-      "source": "DC Rainmaker",
-      "publishedAt": "2026-11-19T13:18:39.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Nnormal Cadí Review",
-      "url": "https://www.irunfar.com/nnormal-cadi-review",
-      "source": "iRunFar",
-      "publishedAt": "2026-11-19T10:00:44.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Testbericht - ASICS GT-2000 15 - Ein Stability Blast für den Trainingsalltag. 4 Vergleiche",
-      "url": "https://www.roadtrailrun.com/2026/11/testbericht-asics-gt-2000-15-ein.html",
-      "source": "Road Trail Run",
-      "publishedAt": "2026-11-19T00:33:01.415Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Mizuno Hyperwarp Racer Multi Tester Review: A stable and friendly, low drop entry level super shoe   6 Comparisons",
-      "url": "https://www.roadtrailrun.com/2026/11/mizuno-hyperwarp-racer-multi-tester.html",
-      "source": "Road Trail Run",
-      "publishedAt": "2026-11-18T20:02:48.601Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "These 10 Brooks Running Shoes Will Help You Run Your Best Miles Yet",
-      "url": "https://www.runnersworld.com/gear/a20866339/best-brooks-running-shoes/",
-      "source": "Runner's World",
-      "publishedAt": "2026-11-18T19:28:00.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Our Go-To Beginner Running Shoe Got Mixed Reviews—Here’s Why the Brooks Ghost 18 Is Still Worth Considering",
-      "url": "https://www.runnersworld.com/gear/a74464928/brooks-ghost-18-review/",
-      "source": "Runner's World",
-      "publishedAt": "2026-11-18T19:19:19.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "The 9 Best Stability Shoes for Every Type of Runner",
-      "url": "https://www.runnersworld.com/gear/a20865766/best-stability-running-shoes/",
-      "source": "Runner's World",
-      "publishedAt": "2026-11-17T19:37:26.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "The 12 Best Carbon Plate Shoes for Setting PRs, Running Your First Marathon, and Crossing the Finish Line Upright",
-      "url": "https://www.runnersworld.com/gear/g44064559/best-carbon-plate-shoes/",
-      "source": "Runner's World",
-      "publishedAt": "2026-11-17T19:15:00.000Z",
-      "categorySlug": "shoes",
-      "categoryTitle": "Running Shoes"
-    },
-    {
-      "title": "Fashion Has Entered Its Running Era",
-      "url": "https://www.runnersworld.com/gear/a74446344/best-running-shoe-fashion-collaborations/",
-      "source": "Runner's World",
-      "publishedAt": "2026-11-17T18:08:04.000Z",
       "categorySlug": "shoes",
       "categoryTitle": "Running Shoes"
     }
@@ -485,11 +485,6 @@
     ],
     "hydration-packs": [
       {
-        "name": "Salomon Active Skin 8",
-        "note": "Light race vest — popular for half and full marathon training.",
-        "weekly": true
-      },
-      {
         "name": "Osprey Dyna LT",
         "note": "Hybrid pack/vest — great for trail beginners.",
         "weekly": false
@@ -497,6 +492,11 @@
       {
         "name": "FlipBelt or handheld bottle",
         "note": "Simpler option for shorter long runs — no vest needed yet.",
+        "weekly": false
+      },
+      {
+        "name": "Salomon Active Skin 8",
+        "note": "Light race vest — popular for half and full marathon training.",
         "weekly": false
       },
       {
@@ -799,7 +799,7 @@
       {
         "name": "Salomon Active Skin 8 (S/M women's)",
         "note": "Race vest with front flasks — check size chart for bust fit.",
-        "weekly": true
+        "weekly": false
       },
       {
         "name": "FlipBelt",
