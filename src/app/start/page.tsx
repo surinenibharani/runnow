@@ -70,12 +70,12 @@ export default function StartPage() {
           </p>
         </FadeIn>
 
-        <FadeIn className="mb-8">
+        <FadeIn id="plan-quiz" className="mb-8 scroll-mt-24">
           <OnboardingQuiz />
         </FadeIn>
 
         <FadeIn>
-          <BeginnerRoadmap heading="Beginner roadmap" />
+          <BeginnerRoadmap heading="Beginner roadmap" quizOnPage />
         </FadeIn>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { beginnerRoadmap } from "@/lib/beginner-roadmap";
@@ -7,11 +8,21 @@ type BeginnerRoadmapProps = {
   className?: string;
   /** Compact heading when the surrounding page already has an h1. */
   heading?: string;
+  /** Quiz is already on this page — "Get a plan" should scroll to it. */
+  quizOnPage?: boolean;
 };
+
+function roadmapHref(href: string, quizOnPage: boolean) {
+  if (quizOnPage && (href === "/start" || href.startsWith("/start#"))) {
+    return "#plan-quiz";
+  }
+  return href;
+}
 
 export function BeginnerRoadmap({
   className,
   heading = "Beginner roadmap",
+  quizOnPage = false,
 }: BeginnerRoadmapProps) {
   return (
     <section
@@ -53,13 +64,10 @@ export function BeginnerRoadmap({
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 {step.summary}
               </p>
-              <Link
-                href={step.href}
-                className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
-              >
+              <RoadmapLink href={roadmapHref(step.href, quizOnPage)}>
                 {step.hrefLabel}
                 <ArrowRight className="size-3.5" aria-hidden />
-              </Link>
+              </RoadmapLink>
             </div>
           </li>
         ))}
@@ -76,5 +84,30 @@ export function BeginnerRoadmap({
         .
       </p>
     </section>
+  );
+}
+
+function RoadmapLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) {
+  const className =
+    "mt-2 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline";
+
+  if (href.startsWith("#")) {
+    return (
+      <a href={href} className={className}>
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
   );
 }

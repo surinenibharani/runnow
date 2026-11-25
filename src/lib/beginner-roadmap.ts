@@ -15,7 +15,7 @@ export const beginnerRoadmap: RoadmapStep[] = [
     title: "Show up three times",
     summary:
       "Walk–jog intervals, conversational effort. Finishing is the workout.",
-    href: "/start",
+    href: "/start#plan-quiz",
     hrefLabel: "Get a plan",
   },
   {

@@ -6,6 +6,7 @@ interface FadeInProps {
   className?: string;
   delay?: number;
   duration?: number;
+  id?: string;
   as?: "div" | "section" | "article";
 }
 
@@ -13,9 +14,14 @@ interface FadeInProps {
 export function FadeIn({
   children,
   className,
+  id,
   as: Tag = "div",
 }: FadeInProps) {
-  return <Tag className={cn(className)}>{children}</Tag>;
+  return (
+    <Tag id={id} className={cn(className)}>
+      {children}
+    </Tag>
+  );
 }
 
 export function StaggerChildren({
